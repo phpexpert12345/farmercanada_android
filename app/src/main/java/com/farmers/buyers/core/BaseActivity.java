@@ -1,0 +1,110 @@
+package com.farmers.buyers.core;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.farmers.buyers.R;
+
+/**
+ * created by Mohammad Sajjad
+ * on 22-01-2021 at 16:28
+ * mohammadsajjad679@gmail.com
+ */
+
+public abstract class BaseActivity extends AppCompatActivity {
+
+    private TextView mTextViewScreenTitle;
+    private ImageButton mImageButtonBack, menuMoreBtn;
+    private RelativeLayout fakeToolbar;
+    private Toolbar toolbar;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) getLayoutInflater().inflate(R.layout.base_layout, null);
+        FrameLayout container = coordinatorLayout.findViewById(R.id.layout_container);
+        mTextViewScreenTitle = coordinatorLayout.findViewById(R.id.text_screen_title);
+        mImageButtonBack = coordinatorLayout.findViewById(R.id.image_back_button);
+        menuMoreBtn = coordinatorLayout.findViewById(R.id.image_more_btn);
+        toolbar = coordinatorLayout.findViewById(R.id.base_toolbar);
+        getLayoutInflater().inflate(layoutResID, container,true);
+        fakeToolbar = coordinatorLayout.findViewById(R.id.dummy_base_toolbar);
+
+        if (showToolbar()) toolbar.setVisibility(View.VISIBLE); else toolbar.setVisibility(View.GONE);
+
+        super.setContentView(coordinatorLayout);
+    }
+
+    public abstract Boolean showToolbar() ;
+
+    public void setupToolbar(ToolbarConfig toolbarConfig) {
+        mTextViewScreenTitle.setText(toolbarConfig.title);
+        mImageButtonBack.setOnClickListener(toolbarConfig.onBackButtonClickListener);
+        if (toolbarConfig.showBackButton) {
+            mImageButtonBack.setVisibility(View.VISIBLE);
+        }
+        else {
+            mImageButtonBack.setVisibility(View.GONE);
+        }
+        if (toolbarConfig.showMenuButton) {
+            menuMoreBtn.setVisibility(View.VISIBLE);
+        }
+        else {
+            menuMoreBtn.setVisibility(View.GONE);
+
+        }
+
+        if (toolbarConfig.menuConfig != null) {
+            if (toolbarConfig.menuConfig.icon != 0 ) {
+                menuMoreBtn.setImageDrawable(getResources().getDrawable(toolbarConfig.menuConfig.icon));
+            }
+            menuMoreBtn.setOnClickListener(toolbarConfig.menuConfig.onClickListener);
+        }
+
+    }
+
+    public class ToolbarMenuConfig {
+        int icon;
+        View.OnClickListener onClickListener;
+
+        public ToolbarMenuConfig(int iconSrc, View.OnClickListener onClick){
+            this.icon = iconSrc;
+            this.onClickListener = onClick;
+        }
+
+    }
+
+    public class ToolbarConfig {
+        String title = "";
+        Boolean showBackButton;
+        View.OnClickListener onBackButtonClickListener;
+        Boolean showMenuButton;
+        ToolbarMenuConfig menuConfig;
+
+        public ToolbarConfig(String title, Boolean showBackButton, View.OnClickListener backButtonClickListener,
+                             Boolean showMenuButton, ToolbarMenuConfig toolbarMenuConfig) {
+            this.title = title;
+            this.showBackButton = showBackButton;
+            this.onBackButtonClickListener = backButtonClickListener;
+            this.showMenuButton = showMenuButton;
+            this.menuConfig = toolbarMenuConfig;
+
+        }
+    }
+
+
+}

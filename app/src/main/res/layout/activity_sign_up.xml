@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.signUp.SignUpActivity"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/dp_30_px">
+
+        <ImageView
+            android:layout_width="@dimen/dp_180_px"
+            android:layout_height="@dimen/dp_180_px"
+            android:src="@drawable/ic_sign_up_logo"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/do_yo_want_signup_as_a"
+                android:fontFamily="@font/sf_ui_regular"
+                android:textColor="@color/primaryTextColor"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/seller"
+                android:fontFamily="@font/sf_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_marginLeft="@dimen/dp_5_px"/>
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:textColor="@color/primaryTextColor"
+                android:text="Seller"
+                android:buttonTint="@color/primary_button_color"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_marginRight="@dimen/dp_8_px"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:textColor="@color/primaryTextColor"
+                android:buttonTint="@color/primary_button_color"
+                android:text="Buyer"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_marginLeft="@dimen/dp_8_px"/>
+        </RadioGroup>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/sign_up_submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:background="@drawable/round_corner_light_gradient_bg"
+            android:textColor="@color/secondaryTextColor"
+            android:layout_margin="@dimen/dp_16_px"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+
+        <TextView
+            android:id="@+id/sign_up_terms_condition_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_amp_conditions"
+            android:textColor="@color/primary_button_color"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:textSize="@dimen/sp_16_px"
+            android:layout_gravity="center_horizontal"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_bottom_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

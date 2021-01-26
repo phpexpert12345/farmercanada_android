@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.onBoarding.OnBoardingActivity">
+
+
+    <LinearLayout
+        android:id="@+id/on_boarding_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="@dimen/dp_5_px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_130_px">
+
+        <Button
+            android:id="@+id/on_boarding_get_start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_start"
+            android:textColor="@color/secondaryTextColor"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/round_corner_light_gradient_bg"
+            android:paddingLeft="@dimen/dp_50_px"
+            android:paddingRight="@dimen/dp_50_px"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/on_boarding_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <TextView
+        android:id="@+id/on_boarding_skip_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/sp_16_px"
+        android:layout_marginRight="@dimen/sp_16_px"
+        android:layout_marginBottom="@dimen/dp_8_px"
+        android:background="@null"
+        android:paddingLeft="@dimen/dp_10_px"
+        android:paddingTop="@dimen/dp_8_px"
+        android:paddingRight="@dimen/dp_10_px"
+        android:paddingBottom="@dimen/dp_8_px"
+        android:text="@string/skip"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="@dimen/sp_13_px" />
+
+
+</RelativeLayout>

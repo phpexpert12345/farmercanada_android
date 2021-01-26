@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Farmers</string>
+    <string name="skip">Skip</string>
+
+    <string name="onBoardingHeader">Lorem ipsum dolor</string>
+    <string name="onBoardingContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
+    <string name="location_required">Location Required</string>
+    <string name="manual_entry">Manual Entry</string>
+    <string name="location_required_content">We need your location to curate near by stores for you</string>
+    <string name="allow_access">Allow access</string>
+    <string name="get_start">Get Start</string>
+    <string name="address">4623 William Head Rd, Victoria, BC V9C 3Y7, Canada</string>
+    <string name="confirm_location">Confirm location</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="do_yo_want_signup_as_a">Do yo want signup as a</string>
+    <string name="seller">Seller?</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="terms_amp_conditions"><![CDATA[Terms & conditions]]></string>
+    <string name="otp_text">We need your Phone number \n to reach you</string>
+    <string name="submit_otp_text">Please enter the OTP code sent to 9902400000</string>
+    <string name="confirm_password">Confirm Password</string>
+</resources>

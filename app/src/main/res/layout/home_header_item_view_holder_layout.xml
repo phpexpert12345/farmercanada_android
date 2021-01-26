@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_16sdp">
+
+    <EditText
+        android:id="@+id/home_header_item_search_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp"
+        android:hint="Find your items"
+        android:fontFamily="@font/sf_ui_regular"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="@dimen/_8sdp"
+        android:background="@drawable/light_gray_round_border_bg"
+        android:drawableStart="@drawable/ic_search" />
+
+</LinearLayout>

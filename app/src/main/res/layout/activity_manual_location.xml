@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".modules.location.ManualLocationActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/map"
+            android:scaleType="centerCrop"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16_px"
+            android:fontFamily="@font/sf_ui_regular"
+            android:hint="@string/address"
+            android:textColorHint="@color/header_color"
+            android:background="@drawable/round_corner_white_bg"
+            android:paddingLeft="@dimen/dp_10_px"
+            android:paddingRight="@dimen/dp_10_px"
+            android:paddingTop="@dimen/dp_16_px"
+            android:paddingBottom="@dimen/dp_16_px"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            android:layout_marginTop="@dimen/dp_50_px"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawableRight="@drawable/ic_mic"
+            android:drawablePadding="@dimen/dp_16_px"
+            android:paddingStart="@dimen/dp_10_px"
+            android:paddingEnd="@dimen/dp_10_px"
+            android:drawableStart="@drawable/ic_search"
+            android:drawableEnd="@drawable/ic_mic"
+            android:enabled="false"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/top_left_right_round_corner_white_bg">
+
+        <LinearLayout
+            android:id="@+id/address_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_16_px"
+            android:layout_marginBottom="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_24_px"
+            android:layout_marginLeft="@dimen/dp_24_px">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.9"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:fontFamily="@font/sf_ui_regular"
+                android:textSize="@dimen/sp_16_px"
+                android:textColor="@color/header_color"
+                android:singleLine="true"
+                android:padding="@dimen/dp_16_px"/>
+
+            <ImageButton
+                android:layout_width="@dimen/dp_40_px"
+                android:layout_height="@dimen/dp_40_px"
+                android:src="@drawable/ic_edit"
+                android:background="@drawable/circle_bg"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/manual_location_confirm_btn"
+            android:layout_below="@+id/address_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_location"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/sp_16_px"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/dp_24_px"
+            android:layout_marginRight="@dimen/dp_24_px"
+            android:layout_marginBottom="@dimen/dp_16_px"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/round_corner_light_gradient_bg"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_gray_round_border_bg"
+        android:padding="@dimen/dp_16_px"
+        android:layout_margin="@dimen/dp_16_px"
+        android:text="William Head l"
+        android:textColor="@color/primaryTextColor"
+        android:fontFamily="@font/sf_ui_regular"
+        android:drawablePadding="@dimen/dp_16_px"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawableRight="@drawable/ic_mic"
+        android:drawableStart="@drawable/ic_search"
+        android:drawableEnd="@drawable/ic_mic" />
+
+
+</LinearLayout>
