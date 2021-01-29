@@ -1,27 +1,22 @@
 package com.farmers.buyers.modules.home.models;
 
+import android.os.Parcelable;
+
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
  * created by Mohammad Sajjad
- * on 25-01-2021 at 21:03
+ * on 27-01-2021 at 13:01
  * mohammadsajjad679@gmail.com
  */
 
-public class HomeHeaderListItem implements RecyclerViewListItem {
-    String userName;
-    String address;
-
-    public HomeHeaderListItem(String userName, String address) {
-        this.userName = userName;
-        this.address = address;
-    }
+public class DeliveryTypeItems implements RecyclerViewListItem {
 
 
     @Override
     public int getViewType() {
-        return CardConstant.HOME_HEADER_ADAPTER;
+        return CardConstant.DELIVERY_TYPE_ADAPTER;
     }
 
     @Override

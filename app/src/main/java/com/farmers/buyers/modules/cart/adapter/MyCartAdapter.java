@@ -1,0 +1,25 @@
+package com.farmers.buyers.modules.cart.adapter;
+
+import com.farmers.buyers.core.BaseAdapter;
+import com.farmers.buyers.modules.cart.view.MyCartCheckOutDelegate;
+import com.farmers.buyers.modules.cart.view.MyCartItemViewDelegate;
+import com.farmers.buyers.storage.CardConstant;
+
+/**
+ * created by Mohammad Sajjad
+ * on 29-01-2021 at 17:44
+ * mohammadsajjad679@gmail.com
+ */
+
+public class MyCartAdapter extends BaseAdapter {
+
+    public MyCartAdapter() {
+        super();
+        this.initDelegate();
+    }
+    @Override
+    public void initDelegate() {
+        delegates.put(CardConstant.MY_CART_ITEM_ADAPTER, new MyCartItemViewDelegate());
+        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate());
+    }
+}

@@ -15,6 +15,6 @@ public class HomeDelegate extends BaseDelegate {
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new HomeHeaderItemViewHolder(parent);
+        return new HomeSearchItemViewHolder(parent);
     }
 }

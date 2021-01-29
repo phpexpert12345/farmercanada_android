@@ -1,8 +1,7 @@
 package com.farmers.buyers.modules.home.view;
 
-import android.view.View;
+import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,12 +11,8 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.home.HomeCategoryAdapter;
+import com.farmers.buyers.modules.home.adapter.HomeCategoryAdapter;
 import com.farmers.buyers.modules.home.models.HomeCategoryListItem;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
 
@@ -42,6 +37,9 @@ public class HomeCategoriesViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
+        if (adapter == null) {
+            Log.e("adapter", "null");
+        }
         this.adapter.updateData(((HomeCategoryListItem)items).homeCategoryItems);
     }
 }

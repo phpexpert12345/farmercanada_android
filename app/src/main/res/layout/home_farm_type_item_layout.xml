@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="@dimen/_8sdp"
+    android:layout_marginRight="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    >
+    <TextView
+        android:id="@+id/home_farm_type_local_farm_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Local Farm"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@drawable/round_corner_light_gradient_bg"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/home_farm_type_home_made_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Home Made"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textColor="@color/primaryTextColor"
+        android:background="@drawable/light_gray_round_border_bg"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="-10dp"/>
+
+</LinearLayout>

@@ -7,7 +7,8 @@
     app:cardCornerRadius="@dimen/_5sdp"
     android:layout_marginLeft="@dimen/_8sdp"
     android:layout_marginRight="@dimen/_8sdp"
-    android:layout_marginBottom="@dimen/_8sdp"    >
+    android:layout_marginTop="@dimen/_8sdp"
+    android:id="@+id/home_item_card">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:id="@+id/home_list_item_img"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_90sdp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/farm_image"
             android:scaleType="centerCrop"/>
 
         <RelativeLayout
@@ -38,13 +39,13 @@
                 android:layout_marginLeft="@dimen/_3sdp"/>
 
             <ImageView
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"
-                android:src="@drawable/ic_search"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_save"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_8sdp"/>
+                />
         </RelativeLayout>
 
 
@@ -60,25 +61,37 @@
             android:layout_marginLeft="@dimen/_3sdp"
             />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/light_gray_round_border_bg"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingRight="@dimen/_8sdp"
+        android:paddingTop="@dimen/_3sdp"
+        android:paddingBottom="@dimen/_3sdp"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_star"/>
         <TextView
             android:id="@+id/customer_home_parlour_view_holder_rating_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/light_gray_round_border_bg"
             android:fontFamily="@font/sf_ui_regular"
-            android:paddingLeft="@dimen/dp_8_px"
-            android:paddingRight="@dimen/dp_8_px"
-            android:drawablePadding="@dimen/dp_8_px"
-            android:drawableLeft="@drawable/ic_star"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:layout_marginLeft="@dimen/_3sdp"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
             android:text="4.8"
             android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/sp_13_px" />
+            android:textSize="@dimen/sp_13_px"
+            android:layout_marginLeft="@dimen/_5sdp"/>
+    </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -92,19 +105,35 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@drawable/follow_image"/>
 
-            <TextView
-                android:id="@+id/home_list_item_layout_farmer_name_tv"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_toRightOf="@id/home_list_item_layout_farm_img"
                 android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_11_px"
-                android:textColor="@color/red"
-                android:fontFamily="@font/sf_ui_regular"
-                android:text="Follow this farm"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_follow"/>
+
+                <TextView
+                    android:id="@+id/home_list_item_layout_farmer_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_11_px"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="Follow this farm"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    />
+            </LinearLayout>
+
 
         </RelativeLayout>
 

@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.home.view;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,14 +12,14 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 
 /**
  * created by Mohammad Sajjad
- * on 25-01-2021 at 20:35
+ * on 27-01-2021 at 00:17
  * mohammadsajjad679@gmail.com
  */
 
-public class HomeHeaderItemViewHolder extends BaseViewHolder {
+public class HomeTopOffersItemViewHolder extends BaseViewHolder {
 
-    public HomeHeaderItemViewHolder(@NonNull ViewGroup parent) {
-        super(Extensions.inflate(parent, R.layout.home_header_item_view_holder_layout));
+    public HomeTopOffersItemViewHolder(@NonNull ViewGroup parent) {
+        super(Extensions.inflate(parent, R.layout.home_top_offers_item_layout));
     }
 
     @Override

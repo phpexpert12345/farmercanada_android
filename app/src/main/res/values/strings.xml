@@ -25,4 +25,6 @@
     <string name="otp_text">We need your Phone number \n to reach you</string>
     <string name="submit_otp_text">Please enter the OTP code sent to 9902400000</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="delivery">Delivery</string>
+    <string name="pickup">Pickup</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.farmers.buyers.modules.home;
+package com.farmers.buyers.modules.home.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.home.view.HomeCategoryListItemDelegate;
@@ -11,12 +11,14 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class HomeCategoryAdapter extends BaseAdapter {
-    public HomeCategoryAdapter() {
-        super();
-        this.initDelegate();
-    }
+
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.HOME_CATEGORY_LIST_ITEM_ADAPTER, new HomeCategoryListItemDelegate());
+    }
+
+    public HomeCategoryAdapter() {
+        super();
+        this.initDelegate();
     }
 }

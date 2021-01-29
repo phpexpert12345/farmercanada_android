@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ import com.farmers.buyers.R;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private TextView mTextViewScreenTitle;
-    private ImageButton mImageButtonBack, menuMoreBtn;
+    private ImageView mImageButtonBack, menuMoreBtn;
     private RelativeLayout fakeToolbar;
     private Toolbar toolbar;
 
