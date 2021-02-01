@@ -5,7 +5,7 @@
     <corners android:radius="@dimen/_8sdp" />
     <stroke
         android:width="@dimen/dp_0_5_px"
-        android:dashWidth="@dimen/_10sdp"
-        android:dashGap="@dimen/_10sdp" />
+        android:dashWidth="@dimen/_5sdp"
+        android:dashGap="@dimen/_5sdp" />
 
 </shape>

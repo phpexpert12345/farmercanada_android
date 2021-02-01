@@ -41,6 +41,16 @@ public class CardConstant {
     public static final int FARM_DETAIL_HEADER_ITEM_ADAPTER     = 17;
     public static final int MY_CART_ITEM_ADAPTER                = 18;
     public static final int MY_CART_CHECKOUT_ITEM_ADAPTER       = 19;
+    public static final int MY_CART_ADDRESS_ADAPTER             = 20;
+    public static final int MY_CART_PAYMENT_METHODS             = 21;
+    public static final int PLACE_ORDER_ADAPTER                 = 22;
+    public static final int PLACE_ORDER_ITEM_ADAPTER            = 23;
+    public static final int PROFILE_HEADER_ADAPTER              = 24;
+    public static final int PROFILE_OPTION_MENU_ADAPTER         = 25;
+    public static final int PROFILE_OPTION_MENU_ITEM_ADAPTER    = 26;
+    public static final int SIMPLE_ROW_ITEM                     = 27;
+    public static final int SIMPLE_ROW_LIST_ITEM                = 28;
+    public static final int FOLLOWERS_ITEM_ADAPTER              = 29;
 
 
 }

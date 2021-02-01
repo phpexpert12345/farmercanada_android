@@ -19,7 +19,7 @@ import com.farmers.buyers.R;
  */
 
 public abstract class BaseFragment extends Fragment {
-    private BaseActivity baseActivity;
+    public BaseActivity baseActivity;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -30,7 +30,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.base_fragment, container, false);
+        View view = inflater.inflate(getResourceFile(), container, false);
         bindBundle();
         bindViewModel();
         bindView(view);

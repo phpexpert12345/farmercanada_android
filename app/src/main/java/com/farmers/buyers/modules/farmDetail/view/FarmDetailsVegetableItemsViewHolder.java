@@ -12,7 +12,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.cart.MyCartActivity;
+import com.farmers.buyers.modules.cart.myCart.MyCartActivity;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 
 /**
