@@ -1,14 +1,17 @@
 package com.farmers.buyers.modules.cart.myCart;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.utils.SwipeControllerActions;
 import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -59,7 +62,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         recyclerView.setAdapter(adapter);
         adapter.updateData(items);
 
-    }
+        }
 
     private void prepareData() {
         items.addAll(MyCartTransformer.getMyCartItem());

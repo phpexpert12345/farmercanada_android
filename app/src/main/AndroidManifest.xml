@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".modules.chat.ChatActivity"></activity>
+        <activity android:name=".modules.orders.subOrderList.SubOrderListActivity"></activity>
+        <activity android:name=".modules.orders.list.OrdersListActivity" />
+        <activity android:name=".modules.chat.ChatActivity" />
         <activity android:name=".modules.inbox.NotificationsActivity" />
         <activity android:name=".modules.wallet.WalletActivity" />
         <activity android:name=".modules.profile.EditProfileActivity" />

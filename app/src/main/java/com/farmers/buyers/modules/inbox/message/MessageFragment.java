@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.inbox.message;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -9,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.chat.ChatActivity;
 import com.farmers.buyers.modules.inbox.InboxTransformer;
 import com.farmers.buyers.modules.inbox.adapter.MessageListAdapter;
+import com.farmers.buyers.modules.inbox.view.MessageListViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,7 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class MessageFragment extends BaseFragment {
+public class MessageFragment extends BaseFragment implements MessageListViewHolder.MessageItemClickListener {
 
     private RecyclerView recyclerView;
     private MessageListAdapter adapter;
@@ -44,7 +47,7 @@ public class MessageFragment extends BaseFragment {
     @Override
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.message_fragment_recyclerView);
-        adapter = new MessageListAdapter();
+        adapter = new MessageListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(baseActivity));
         prepareItems();
@@ -56,6 +59,12 @@ public class MessageFragment extends BaseFragment {
     }
 
     public void getMessages() {
+        items.addAll(InboxTransformer.getMessageList());
         Log.e("message", "message");
+    }
+
+    @Override
+    public void onMessageItemClicked(int position) {
+        startActivity(new Intent(baseActivity, ChatActivity.class));
     }
 }

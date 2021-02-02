@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.chat.view;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +19,19 @@ import com.farmers.buyers.core.RecyclerViewListItem;
  */
 
 public class ChatViewHolder extends BaseViewHolder {
-    TextView inComingTv;
-    TextView myMsgTv;
+    TextView receivedText;
+    TextView sendText;
+    TextView receiveTimeTv;
+    TextView sendTimeTv;
+    RelativeLayout receiveLayout;
+    RelativeLayout sendLayout;
 
     public ChatViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.chat_item_layout));
-        myMsgTv = itemView.findViewById(R.id.chat_my_msg_tv);
-        inComingTv = itemView.findViewById(R.id.chat_incomming_msg_tv);
+        receivedText = itemView.findViewById(R.id.chat_my_msg_tv);
+        sendText = itemView.findViewById(R.id.chat_item_received_msg_tv);
+        receiveTimeTv = itemView.findViewById(R.id.chat_my_msg_time_tv);
+        sendTimeTv = itemView.findViewById(R.id.chat_item_received_time_tv);
     }
 
     @Override

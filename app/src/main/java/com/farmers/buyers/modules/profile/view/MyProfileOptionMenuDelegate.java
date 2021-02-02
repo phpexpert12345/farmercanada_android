@@ -12,9 +12,14 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class MyProfileOptionMenuDelegate extends BaseDelegate {
+    private MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener profileOptionsGridMenuClicked;
+
+    public MyProfileOptionMenuDelegate(MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener profileOptionsGridMenuClicked) {
+        this.profileOptionsGridMenuClicked = profileOptionsGridMenuClicked;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new MyProfileOptionMenuHolder(parent);
+        return new MyProfileOptionMenuHolder(parent, profileOptionsGridMenuClicked);
     }
 }

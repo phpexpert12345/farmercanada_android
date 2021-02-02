@@ -1,4 +1,4 @@
-package com.farmers.buyers.modules.profile;
+package com.farmers.buyers.modules.profile.extraItems;
 
 /**
  * created by Mohammad Sajjad

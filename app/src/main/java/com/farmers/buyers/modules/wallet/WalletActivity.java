@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.wallet;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,11 +11,13 @@ import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.wallet.adapter.WalletHistoryAdapter;
+import com.farmers.buyers.modules.wallet.model.WalletHeaderItems;
+import com.farmers.buyers.modules.wallet.view.WalletHeaderViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WalletActivity extends BaseActivity {
+public class WalletActivity extends BaseActivity implements WalletHeaderViewHolder.WalletHeaderClickListener {
     private RecyclerView recyclerView;
     private WalletHistoryAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
@@ -30,13 +33,14 @@ public class WalletActivity extends BaseActivity {
 
     private void init() {
         recyclerView = findViewById(R.id.wallet_recyclerView);
-        adapter = new WalletHistoryAdapter();
+        adapter = new WalletHistoryAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.updateData(items);
     }
 
     private void prepareItems() {
+        items.add(new WalletHeaderItems());
         items.add(new SimpleTitleItem("Today"));
         items.addAll(WalletTransformer.getWalletHistory());
         items.add(new SimpleTitleItem("Yesterday"));
@@ -46,5 +50,14 @@ public class WalletActivity extends BaseActivity {
     @Override
     public Boolean showToolbar() {
         return false;
+    }
+
+    @Override
+    public void onBackClicked() {
+        onBackPressed();
+    }
+
+    @Override
+    public void onWithdrawClicked() {
     }
 }
