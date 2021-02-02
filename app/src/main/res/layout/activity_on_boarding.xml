@@ -5,30 +5,28 @@
     android:layout_height="match_parent"
     tools:context=".modules.onBoarding.OnBoardingActivity">
 
-
     <LinearLayout
         android:id="@+id/on_boarding_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:elevation="@dimen/dp_5_px"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_130_px">
+        android:layout_marginBottom="@dimen/dp_130_px"
+        android:elevation="@dimen/dp_5_px"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/on_boarding_get_start_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/get_start"
-            android:textColor="@color/secondaryTextColor"
-            android:textAllCaps="false"
             android:layout_gravity="center"
-            style="@style/Widget.AppCompat.Button.Borderless"
             android:background="@drawable/round_corner_light_gradient_bg"
             android:paddingLeft="@dimen/dp_50_px"
             android:paddingRight="@dimen/dp_50_px"
-            android:visibility="gone"
-            />
+            android:text="@string/get_start"
+            android:textAllCaps="false"
+            android:textColor="@color/secondaryTextColor"
+            android:visibility="gone" />
 
     </LinearLayout>
 

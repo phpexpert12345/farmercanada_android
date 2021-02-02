@@ -32,8 +32,6 @@
     <color name="middle_red">#FBD5D7</color>
     <color name="orange">#F47920</color>
     <color name="green">#10A100</color>
-
-
-
+    <color name="reset_bg">#DF5159</color>
 
 </resources>

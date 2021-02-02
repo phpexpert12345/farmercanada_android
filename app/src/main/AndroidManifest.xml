@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".modules.chat.ChatActivity"></activity>
+        <activity android:name=".modules.ratingAndReview.RatingAndReviewActivity"></activity>
+        <activity android:name=".modules.referFriends.ReferFriendsActivity" />
+        <activity android:name=".modules.resetPassword.ResetPasswordActivity" />
+        <activity android:name=".modules.chat.ChatActivity" />
         <activity android:name=".modules.inbox.NotificationsActivity" />
         <activity android:name=".modules.wallet.WalletActivity" />
         <activity android:name=".modules.profile.EditProfileActivity" />
@@ -33,7 +36,8 @@
         <activity android:name=".modules.location.ManualLocationActivity" />
         <activity android:name=".modules.location.LocationAccessActivity" />
         <activity android:name=".modules.onBoarding.OnBoardingActivity" />
-        <activity android:name=".modules.splash.SplashActivity">
+        <activity android:name=".modules.splash.SplashActivity" />
+        <activity android:name=".modules.accountDetails.AccountDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
