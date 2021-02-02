@@ -11,19 +11,25 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class MyProfileOptionMenuItems implements RecyclerViewListItem {
     String title;
-    String icon;
+    int icon;
+    int color;
 
-    public MyProfileOptionMenuItems(String title, String icon) {
+    public MyProfileOptionMenuItems(String title, int icon, int color) {
         this.title = title;
         this.icon = icon;
+        this.color = color;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getIcon() {
+    public int getIcon() {
         return icon;
+    }
+
+    public int getColor() {
+        return color;
     }
 
     @Override

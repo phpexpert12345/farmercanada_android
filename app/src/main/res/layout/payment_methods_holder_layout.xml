@@ -35,14 +35,18 @@
                 android:singleLine="true"
                 android:text="Cash on delivery"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_16_px" />
+                android:drawableLeft="@drawable/ic_cash_on_delivery"
+                android:drawablePadding="@dimen/dp_8_px"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_centerVertical="true"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/primary_button_color"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
 
         <View
@@ -70,14 +74,18 @@
                 android:singleLine="true"
                 android:text="Credit/Debit"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_16_px" />
+                android:textSize="@dimen/sp_16_px"
+                android:drawableLeft="@drawable/ic_credit_card"
+                android:drawablePadding="@dimen/dp_8_px"
+                android:layout_centerVertical="true"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/primary_button_color"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
@@ -103,14 +111,19 @@
                 android:singleLine="true"
                 android:text="Wallet"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_16_px" />
+                android:textSize="@dimen/sp_16_px"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/ic_wallet"
+                android:drawablePadding="@dimen/dp_8_px"
+                />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/primary_button_color"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"

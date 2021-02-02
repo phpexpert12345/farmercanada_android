@@ -1,7 +1,6 @@
 package com.farmers.buyers.modules.profile;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,9 +12,10 @@ import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.followers.FollowersActivity;
+import com.farmers.buyers.modules.inbox.NotificationsActivity;
 import com.farmers.buyers.modules.profile.adapter.MyProfileAdapter;
-import com.farmers.buyers.modules.profile.model.MyProfileHeaderItems;
 import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
+import com.farmers.buyers.modules.wallet.WalletActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,12 +79,12 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     @Override
     public void onWalletClicked() {
-
+        startActivity(new Intent(baseActivity, WalletActivity.class));
     }
 
     @Override
     public void onInboxClicked() {
-
+        startActivity(new Intent(baseActivity, NotificationsActivity.class));
     }
 
     @Override

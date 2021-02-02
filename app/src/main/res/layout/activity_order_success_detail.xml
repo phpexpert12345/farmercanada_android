@@ -2,21 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary_button_color"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/red_success_bg"
     android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".modules.cart.order.OrderSuccessDetailActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_24sdp"
         android:fontFamily="@font/sf_ui_bold"
         android:text="Thank You"
+        android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/secondaryTextColor"
-        android:textSize="@dimen/sp_32_px" />
+        android:textSize="@dimen/sp_24_px" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,27 +29,25 @@
         android:textColor="@color/secondaryTextColor"
         android:textSize="@dimen/_16sdp" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_18sdp"
-        app:cardCornerRadius="@dimen/_8sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_18_px"
+            android:layout_marginRight="@dimen/dp_18_px"
+            android:layout_marginBottom="@dimen/_30sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_marginTop="@dimen/dp_8_px"
+                android:src="@drawable/ic_order_success" />
 
             <View
                 android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="center"
                 android:text="You Can Track the delivery in the Orders Section"
-                android:textSize="@dimen/sp_16_px" />
+                android:textColor="@color/primaryTextColor"/>
 
 
             <RelativeLayout
@@ -114,7 +114,7 @@
                         android:fontFamily="@font/sf_ui_semibold"
                         android:text="#33834239"
                         android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="@dimen/sp_14_px" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,6 +124,7 @@
                         android:layout_marginLeft="@dimen/_24sdp"
                         android:fontFamily="@font/sf_ui_regular"
                         android:text="Copy"
+                        android:drawableRight="@drawable/ic_copy"
                         android:textSize="@dimen/sp_16_px" />
 
 
@@ -197,7 +198,7 @@
                     android:id="@+id/order_success_user_image"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/follow_image" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,7 +227,7 @@
                         android:text="4623 William Head Rd"
                         android:fontFamily="@font/sf_ui_semibold"
                         android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_18_px" />
+                        android:textSize="@dimen/sp_16_px" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -234,7 +235,7 @@
                         android:text="Victoria, BC V9C 3Y7, Canada"
                         android:fontFamily="@font/sf_ui_regular"
                         android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="@dimen/sp_14_px" />
 
                     <View
                         android:layout_width="match_parent"
@@ -249,7 +250,7 @@
                         android:text="+1 604 858 6368"
                         android:fontFamily="@font/sf_ui_regular"
                         android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="@dimen/sp_14_px" />
 
 
                 </LinearLayout>
@@ -260,8 +261,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_24sdp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:layout_marginRight="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                >
 
                 <Button
                     style="@style/Widget.AppCompat.Button.Borderless"
@@ -287,12 +290,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/secondaryTextColor" />
 
-
             </LinearLayout>
 
-
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
 
 </LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/chat_my_msg_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Message"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@drawable/left_right_bottom_round_corner_red_bg"/>
+
+    <TextView
+        android:id="@+id/chat_incomming_msg_tv"
+        android:layout_below="@id/chat_my_msg_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Message"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@drawable/top_left_right_bottom_corner_gray_bg"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

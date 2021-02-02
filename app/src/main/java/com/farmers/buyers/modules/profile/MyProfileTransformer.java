@@ -25,33 +25,33 @@ public class MyProfileTransformer {
 
     public static MyProfileOptionItem getProfileMenuItems() {
         List<RecyclerViewListItem> itemList = new ArrayList<>();
-        itemList.add(new MyProfileOptionMenuItems("Order",""));
-        itemList.add(new MyProfileOptionMenuItems("Address",""));
-        itemList.add(new MyProfileOptionMenuItems("Rating & Review",""));
-        itemList.add(new MyProfileOptionMenuItems("Payment",""));
+        itemList.add(new MyProfileOptionMenuItems("Order",R.drawable.ic_orders, R.color.light_green));
+        itemList.add(new MyProfileOptionMenuItems("Address",R.drawable.ic_menu_item_dark_red_location, R.color.middle_red));
+        itemList.add(new MyProfileOptionMenuItems("Rating & Review",R.drawable.ic_rating_review, R.color.middle_red));
+        itemList.add(new MyProfileOptionMenuItems("Payment",R.drawable.ic_payments, R.color.light_green));
         return new MyProfileOptionItem(itemList);
     }
 
     public static SimpleRowListItem getAccountSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
-        accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.ic_user_light_red_bg, 0, ProfileItem.EDIT_PROFILE));
-        accountSettingItem.add(new SimpleRowItem("Change Password", R.drawable.ic_user_light_red_bg, 0, ProfileItem.CHANGE_PASSWORD));
-        accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_user_light_red_bg, 0, ProfileItem.NOTIFICATION));
+        accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.ic_edit_profile, 0, ProfileItem.EDIT_PROFILE));
+        accountSettingItem.add(new SimpleRowItem("Change Password", R.drawable.ic_key, 0, ProfileItem.CHANGE_PASSWORD));
+        accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_notification_red, 0, ProfileItem.NOTIFICATION));
         return new SimpleRowListItem(accountSettingItem);
     }
 
     public static SimpleRowListItem getRoleSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
-        accountSettingItem.add(new SimpleRowItem("Open Store", R.drawable.ic_user_light_red_bg, 0, ProfileItem.OPEN_STORE));
-        accountSettingItem.add(new SimpleRowItem("Learn About Store", R.drawable.ic_user_light_red_bg, 0, ProfileItem.LEARN_ABOUT_STORE));
+        accountSettingItem.add(new SimpleRowItem("Open Store", R.drawable.ic_open_store, 0, ProfileItem.OPEN_STORE));
+        accountSettingItem.add(new SimpleRowItem("Learn About Store", R.drawable.ic_about_store, 0, ProfileItem.LEARN_ABOUT_STORE));
         return new SimpleRowListItem(accountSettingItem);
     }
 
   public static SimpleRowListItem getReferralSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
-        accountSettingItem.add(new SimpleRowItem("Earn Money", R.drawable.ic_user_light_red_bg, 0, ProfileItem.EARN_MONEY));
-        accountSettingItem.add(new SimpleRowItem("Support", R.drawable.ic_user_light_red_bg, 0, ProfileItem.SUPPORT));
-        accountSettingItem.add(new SimpleRowItem("Logout", R.drawable.ic_user_light_red_bg, 0, ProfileItem.LOGOUT));
+        accountSettingItem.add(new SimpleRowItem("Earn Money", R.drawable.ic_earn_money, 0, ProfileItem.EARN_MONEY));
+        accountSettingItem.add(new SimpleRowItem("Support", R.drawable.ic_chat, 0, ProfileItem.SUPPORT));
+        accountSettingItem.add(new SimpleRowItem("Logout", R.drawable.ic_log_out, 0, ProfileItem.LOGOUT));
         return new SimpleRowListItem(accountSettingItem);
     }
 

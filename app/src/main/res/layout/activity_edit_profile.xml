@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/edit_profile_cover_image"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,12 +47,15 @@
             android:fontFamily="@font/sf_ui_semibold"
             android:background="@drawable/light_gray_round_border_bg"
             android:backgroundTint="@color/on_boarding_header_color"
-            android:paddingLeft="@dimen/_16sdp"
-            android:paddingRight="@dimen/_16sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/_8sdp"/>
+            android:layout_margin="@dimen/_8sdp"
+            android:drawableLeft="@drawable/ic_camera"
+            android:drawablePadding="@dimen/_5sdp"
+            android:gravity="center_vertical"/>
 
     </RelativeLayout>
 
@@ -80,7 +83,11 @@
         android:paddingTop="@dimen/_5sdp"
         android:paddingBottom="@dimen/_5sdp"
         android:layout_margin="@dimen/_16sdp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:drawableRight="@drawable/ic_camera"
+        android:drawableTint="@color/light_gray"
+        android:drawablePadding="@dimen/_8sdp"
+        android:gravity="center_vertical"/>
 
     <LinearLayout
         android:layout_below="@+id/edit_profile_change_profile_tv"
