@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/primary_button_color"
         app:tabIndicatorFullWidth="false"
+        app:tabSelectedTextColor="@color/primary_button_color"
 
         />
 
