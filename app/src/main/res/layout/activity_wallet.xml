@@ -7,67 +7,6 @@
     android:orientation="vertical"
     tools:context=".modules.wallet.WalletActivity">
 
-    <RelativeLayout
-        android:id="@+id/header_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp"
-        android:background="@drawable/bottom_curve_red_bg">
-
-        <RelativeLayout
-            android:id="@+id/place_order_toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_16sdp"
-            android:elevation="@dimen/_5sdp">
-
-            <ImageView
-                android:id="@+id/wallet_back_image"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_white_back_arrow"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wallet"
-                android:fontFamily="@font/sf_ui_semibold"
-                android:textColor="@color/secondaryTextColor"
-                android:layout_centerHorizontal="true"/>
-
-            <ImageView
-                android:id="@+id/wallet_notification_image"
-                android:layout_alignParentEnd="true"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_notification"
-                android:layout_alignParentRight="true"
-                app:tint="@color/white" />
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-    <Button
-        android:id="@+id/wallet_withdraw_btn"
-        android:layout_below="@id/header_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Withdrawal"
-        android:textSize="@dimen/sp_16_px"
-        android:textColor="@color/primaryTextColor"
-        android:fontFamily="@font/sf_ui_semibold"
-        android:background="@color/light_green"
-        android:paddingLeft="@dimen/_16sdp"
-        android:paddingRight="@dimen/_16sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_minus25sdp"
-        android:layout_gravity="center_horizontal"
-        android:textAllCaps="false"
-        android:drawableLeft="@drawable/ic_withdraw"
-        android:drawablePadding="@dimen/_8sdp"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wallet_recyclerView"
         android:layout_width="match_parent"

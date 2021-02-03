@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:padding="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_8sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp">
+
+        <TextView
+            android:id="@+id/order_item_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10:30 pm"
+            android:fontFamily="@font/sf_ui_regular"
+            android:textColorHint="@color/primaryTextColor"
+            android:textSize="@dimen/sp_12_px"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/order_item_title_tv"
+            android:layout_below="@+id/order_item_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pomegranate (Name)"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_16_px"/>
+
+        <TextView
+            android:id="@+id/order_item_order_tv"
+            android:layout_below="@+id/order_item_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Id:"
+            android:fontFamily="@font/sf_ui_regular"/>
+
+        <TextView
+            android:id="@+id/order_item_order_id_tv"
+            android:layout_toRightOf="@+id/order_item_order_tv"
+            android:layout_below="@+id/order_item_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#79872542"
+            android:textColor="@color/primary_button_color"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:fontFamily="@font/sf_ui_semibold"/>
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_forward"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/order_item_title_tv"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

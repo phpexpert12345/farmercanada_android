@@ -13,8 +13,14 @@ import com.farmers.buyers.core.BaseViewHolder;
 
 public class MessageListDelegate extends BaseDelegate {
 
+    MessageListViewHolder.MessageItemClickListener messageItemClickListener;
+
+    public MessageListDelegate(MessageListViewHolder.MessageItemClickListener messageItemClickListener) {
+        this.messageItemClickListener = messageItemClickListener;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new MessageListViewHolder(parent);
+        return new MessageListViewHolder(parent, messageItemClickListener);
     }
 }

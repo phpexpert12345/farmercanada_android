@@ -37,6 +37,9 @@ public class ChatActivity extends BaseActivity {
 
             }
         })));
+
+        prepareChatKItems();
+        init();
     }
 
     private void init() {
@@ -44,11 +47,12 @@ public class ChatActivity extends BaseActivity {
         adapter = new ChatAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.updateData(items);
 
     }
 
     private void prepareChatKItems() {
-
+        items.addAll(ChatTransformer.getChats());
     }
 
     @Override

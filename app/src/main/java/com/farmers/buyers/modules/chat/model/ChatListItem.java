@@ -10,20 +10,33 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class ChatListItem implements RecyclerViewListItem {
-    String myMessage;
-    String inComingMessage;
+    String receiveMsg;
+    String sendMsg;
+    String receiveTime;
+    String sendTime;
 
-    public ChatListItem(String myMessage, String inComingMessage) {
-        this.myMessage = myMessage;
-        this.inComingMessage = inComingMessage;
+
+    public ChatListItem(String receiveMsg, String sendMsg, String receiveTime, String sendTime) {
+        this.receiveMsg = receiveMsg;
+        this.sendMsg = sendMsg;
+        this.receiveTime = receiveTime;
+        this.sendTime = sendTime;
     }
 
-    public String getMyMessage() {
-        return myMessage;
+    public String getReceiveMsg() {
+        return receiveMsg;
     }
 
-    public String getInComingMessage() {
-        return inComingMessage;
+    public String getSendMsg() {
+        return sendMsg;
+    }
+
+    public String getReceiveTime() {
+        return receiveTime;
+    }
+
+    public String getSendTime() {
+        return sendTime;
     }
 
     @Override

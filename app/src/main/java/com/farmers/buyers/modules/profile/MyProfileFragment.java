@@ -7,14 +7,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.SpacesItemDecoration;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.inbox.NotificationsActivity;
+import com.farmers.buyers.modules.orders.list.OrdersListActivity;
 import com.farmers.buyers.modules.profile.adapter.MyProfileAdapter;
+import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
+import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
 import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
+import com.farmers.buyers.modules.profile.view.MyProfileOptionItemViewHolder;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 
 import java.util.ArrayList;
@@ -26,7 +31,7 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class MyProfileFragment extends BaseFragment implements MyProfileHeaderViewHolder.MyProfileItemClickListener, SimpleRowViewHolder.OnSimpleRowItemClickedListener {
+public class MyProfileFragment extends BaseFragment implements MyProfileHeaderViewHolder.MyProfileItemClickListener, SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
 
     private MyProfileAdapter adapter;
     private RecyclerView recyclerView;
@@ -51,10 +56,11 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     @Override
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.my_profile_recyclerView);
-        adapter = new MyProfileAdapter(this, this);
+        adapter = new MyProfileAdapter(this, this, this);
+        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 16, false));
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(baseActivity));
-
 
     }
 
@@ -92,6 +98,16 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         switch (item) {
             case EDIT_PROFILE: {
                 startActivity(new Intent(baseActivity, EditProfileActivity.class));
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onGridMenuClicked(ProfileOptionsGridItem item) {
+        switch (item){
+            case ORDERS: {
+                baseActivity.startActivity(new Intent(baseActivity, OrdersListActivity.class));
                 break;
             }
         }

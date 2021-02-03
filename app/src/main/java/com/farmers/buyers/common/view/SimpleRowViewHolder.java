@@ -13,10 +13,9 @@ import androidx.annotation.NonNull;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.model.SimpleRowListItem;
-import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.profile.ProfileItem;
+import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
 
 /**
  * created by Mohammad Sajjad

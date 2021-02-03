@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.profile.model;
 
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -13,11 +14,14 @@ public class MyProfileOptionMenuItems implements RecyclerViewListItem {
     String title;
     int icon;
     int color;
+    ProfileOptionsGridItem gridItem;
 
-    public MyProfileOptionMenuItems(String title, int icon, int color) {
+
+    public MyProfileOptionMenuItems(String title, int icon, int color, ProfileOptionsGridItem gridItem) {
         this.title = title;
         this.icon = icon;
         this.color = color;
+        this.gridItem = gridItem;
     }
 
     public String getTitle() {
@@ -30,6 +34,10 @@ public class MyProfileOptionMenuItems implements RecyclerViewListItem {
 
     public int getColor() {
         return color;
+    }
+
+    public ProfileOptionsGridItem getGridItem() {
+        return gridItem;
     }
 
     @Override

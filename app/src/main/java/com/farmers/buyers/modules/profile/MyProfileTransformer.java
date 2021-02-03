@@ -4,6 +4,8 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleRowItem;
 import com.farmers.buyers.common.model.SimpleRowListItem;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
+import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
 import com.farmers.buyers.modules.profile.model.MyProfileHeaderItems;
 import com.farmers.buyers.modules.profile.model.MyProfileOptionItem;
 import com.farmers.buyers.modules.profile.model.MyProfileOptionMenuItems;
@@ -25,10 +27,10 @@ public class MyProfileTransformer {
 
     public static MyProfileOptionItem getProfileMenuItems() {
         List<RecyclerViewListItem> itemList = new ArrayList<>();
-        itemList.add(new MyProfileOptionMenuItems("Order",R.drawable.ic_orders, R.color.light_green));
-        itemList.add(new MyProfileOptionMenuItems("Address",R.drawable.ic_menu_item_dark_red_location, R.color.middle_red));
-        itemList.add(new MyProfileOptionMenuItems("Rating & Review",R.drawable.ic_rating_review, R.color.middle_red));
-        itemList.add(new MyProfileOptionMenuItems("Payment",R.drawable.ic_payments, R.color.light_green));
+        itemList.add(new MyProfileOptionMenuItems("Order",R.drawable.ic_orders, R.color.light_green, ProfileOptionsGridItem.ORDERS));
+        itemList.add(new MyProfileOptionMenuItems("Address",R.drawable.ic_menu_item_dark_red_location, R.color.middle_red,ProfileOptionsGridItem.ADDRESS));
+        itemList.add(new MyProfileOptionMenuItems("Rating & Review",R.drawable.ic_rating_review, R.color.middle_red, ProfileOptionsGridItem.RATING_REVIEW));
+        itemList.add(new MyProfileOptionMenuItems("Payment",R.drawable.ic_payments, R.color.light_green, ProfileOptionsGridItem.PAYMENTS));
         return new MyProfileOptionItem(itemList);
     }
 

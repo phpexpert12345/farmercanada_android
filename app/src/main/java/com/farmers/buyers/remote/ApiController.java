@@ -18,19 +18,7 @@ import retrofit2.http.Url;
 
 public interface ApiController {
 
-
-//    @POST("users/new")
-//    void createUser(@Body User user, Callback<User> cb);}
-
-//    @FormUrlEncoded
-//    @POST("getdata.php")
-//    fun getListOfImages(
-//            @Field("user_id") userId: Int,
-//            @Field("offset") page: Int,
-//            @Field("type") type: String
-//    ): Call<ListOfImagesApiModel>
-
-    @POST("api/user/authenticate.php")
+    @POST(ApiConstants.LOGIN)
     Call<LoginApiModel> getUserLogin(@Body LoginRequestParams params);
 
     @POST

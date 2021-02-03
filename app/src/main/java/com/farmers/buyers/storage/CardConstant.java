@@ -55,6 +55,9 @@ public class CardConstant {
     public static final int NOTIFICATION_LIST_ADAPTER           = 31;
     public static final int MESSAGE_LIST_ADAPTER                = 32;
     public static final int CHAT_ITEM_ADAPTER                   = 33;
+    public static final int WALLET_HEADER_ITEM_ADAPTER          = 34;
+    public static final int ORDER_ITEMS_ADAPTER                 = 35;
+
 
 
 }

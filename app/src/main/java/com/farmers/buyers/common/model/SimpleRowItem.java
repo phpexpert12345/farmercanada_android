@@ -1,7 +1,7 @@
 package com.farmers.buyers.common.model;
 
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.profile.ProfileItem;
+import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
 import com.farmers.buyers.storage.CardConstant;
 
 /**

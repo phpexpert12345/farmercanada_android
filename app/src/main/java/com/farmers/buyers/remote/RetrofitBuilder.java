@@ -7,6 +7,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.farmers.buyers.remote.ApiConstants.BASE_URL;
+
 /**
  * created by Mohammad Sajjad
  * on 29-01-2021 at 10:58
@@ -27,7 +29,7 @@ public class RetrofitBuilder {
                     .addInterceptor(new NetworkConnectionInterceptor(App.getAppContext())).build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://glamrrealindia.com/")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

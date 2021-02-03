@@ -8,11 +8,11 @@ package com.farmers.buyers.modules.login.model;
 
 public class LoginRequestParams {
 
-    String email_or_mobile_no;
+    String email;
     String password;
 
-    public LoginRequestParams(String email_or_mobile_no, String password) {
-        this.email_or_mobile_no = email_or_mobile_no;
+    public LoginRequestParams(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
