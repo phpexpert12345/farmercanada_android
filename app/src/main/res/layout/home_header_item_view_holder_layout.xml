@@ -45,8 +45,8 @@
             android:layout_width="@dimen/_18sdp"
             android:layout_height="@dimen/_18sdp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_notification"
-            app:tint="@color/primaryTextColor" />
+            android:src="@drawable/ic_notification_gray"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +63,7 @@
             android:id="@+id/textView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.9"
+            android:layout_weight="1"
             android:drawableLeft="@drawable/ic_address"
             android:drawablePadding="@dimen/_5sdp"
             android:fontFamily="@font/sf_ui_regular"

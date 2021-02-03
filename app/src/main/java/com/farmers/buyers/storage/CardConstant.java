@@ -58,6 +58,9 @@ public class CardConstant {
     public static final int WALLET_HEADER_ITEM_ADAPTER          = 34;
     public static final int ORDER_ITEMS_ADAPTER                 = 35;
     public static final int SUB_ORDER_ITEM_ADAPTER              = 36;
+    public static final int TRACK_ORDER_HEADER_ITEM             = 37;
+    public static final int TRACK_ORDER_ITEM_ADAPTER            = 38;
+
 
 
 
