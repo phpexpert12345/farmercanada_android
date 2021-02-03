@@ -29,8 +29,8 @@ public class MyCartTransformer {
         List<RecyclerViewListItem> item = new ArrayList<>();
         item.add(new PlaceOrderSlotItem("S", "31 Jan"));
         item.add(new PlaceOrderSlotItem("M", "2 Feb"));
-        item.add(new PlaceOrderSlotItem("T","3 Feb"));
-        item.add(new PlaceOrderSlotItem("W","4 Feb"));
+        item.add(new PlaceOrderSlotItem("T", "3 Feb"));
+        item.add(new PlaceOrderSlotItem("W", "4 Feb"));
         item.add(new PlaceOrderSlotItem("T", "5 Feb"));
         item.add(new PlaceOrderSlotItem("F", "6 Feb"));
         item.add(new PlaceOrderSlotItem("S", "7 Feb"));

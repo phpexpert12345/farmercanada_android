@@ -27,4 +27,14 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="delivery">Delivery</string>
     <string name="pickup">Pickup</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_number">Account number</string>
+    <string name="re_account_number">Re-enter Account number</string>
+    <string name="ifsc">IFSC</string>
+    <string name="recipient">Recipient Name</string>
+
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
