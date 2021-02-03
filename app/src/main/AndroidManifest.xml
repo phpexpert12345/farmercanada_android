@@ -40,13 +40,14 @@
         <activity android:name=".modules.location.ManualLocationActivity" />
         <activity android:name=".modules.location.LocationAccessActivity" />
         <activity android:name=".modules.onBoarding.OnBoardingActivity" />
-        <activity android:name=".modules.splash.SplashActivity" />
-        <activity android:name=".modules.accountDetails.AccountDetailsActivity">
+        <activity android:name=".modules.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".modules.accountDetails.AccountDetailsActivity">
         </activity>
     </application>
 
