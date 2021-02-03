@@ -22,6 +22,7 @@ import java.util.List;
  */
 
 public class NotificationFragment extends BaseFragment {
+
     private RecyclerView recyclerView;
     private NotificationListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
@@ -49,7 +50,6 @@ public class NotificationFragment extends BaseFragment {
         getNotification();
         adapter.updateData(items);
     }
-
 
     public void getNotification() {
         items.addAll(InboxTransformer.getNotificationItems());

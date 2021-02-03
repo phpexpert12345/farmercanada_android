@@ -32,9 +32,11 @@
     <string name="re_account_number">Re-enter Account number</string>
     <string name="ifsc">IFSC</string>
     <string name="recipient">Recipient Name</string>
-
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_of_address">Name of The Address</string>
+    <string name="city">City</string>
+    <string name="address_line">Address Line</string>
+    <string name="complete_address">Complete Address</string>
+    <string name="landmark">Landmark</string>
 </resources>

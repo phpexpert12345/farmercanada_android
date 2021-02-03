@@ -11,11 +11,9 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/notification_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/primary_button_color"
-        app:tabIndicatorFullWidth="false"
-        />
+        app:tabIndicatorFullWidth="false" />
 
     <View
         android:layout_width="match_parent"

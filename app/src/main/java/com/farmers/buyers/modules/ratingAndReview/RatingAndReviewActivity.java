@@ -3,24 +3,23 @@ package com.farmers.buyers.modules.ratingAndReview;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.widget.AppPagerAdapter;
 import com.farmers.buyers.core.BaseActivity;
-import com.farmers.buyers.modules.ratingAndReview.fragment.ReviewFragment;
-import com.farmers.buyers.modules.ratingAndReview.fragment.ReviewedFragment;
+import com.farmers.buyers.modules.ratingAndReview.review.ReviewFragment;
+import com.farmers.buyers.modules.ratingAndReview.reviewed.ReviewedFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RatingAndReviewActivity extends BaseActivity {
 
     public TabLayout tabLayout;
     public ViewPager viewPager;
+    public ReviewFragment tab1;
+    public ReviewedFragment tab2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,57 +38,83 @@ public class RatingAndReviewActivity extends BaseActivity {
             }
         })));
 
-        initView();
-    }
-
-    private void initView() {
-
-        viewPager = findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ReviewFragment(), "Review");
-        adapter.addFragment(new ReviewedFragment(), "Reviewed");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+        init();
     }
 
     @Override
     public Boolean showToolbar() {
         return true;
+    }
+
+    private void init() {
+        tabLayout = findViewById(R.id.notification_tab_layout);
+        viewPager = findViewById(R.id.notification_viewPager);
+        setUpTabLayout();
+
+    }
+
+    private void setUpTabLayout() {
+
+        setUpStateAdapter();
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                int count = fm.getBackStackEntryCount();
+                if (count > 1)
+                    getSupportFragmentManager().popBackStack();
+                ft.commit();
+
+                getNotificationList(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                getNotificationList(tab.getPosition());
+            }
+        });
+
+        tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                tabLayout.getTabAt(0).select();
+            }
+        });
+    }
+
+    private void setUpStateAdapter() {
+        tab1 = new ReviewFragment().get();
+        tab2 = new ReviewedFragment().get();
+
+        AppPagerAdapter adapter = new AppPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(tab1, tab1.getTitle());
+        adapter.addFragment(tab2, tab2.getTitle());
+
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager, true);
+
+    }
+
+    private void getNotificationList(int position) {
+        switch (position) {
+            case 0: {
+                tab1.getReview();
+                break;
+            }
+
+            case 1: {
+                tab2.getReviewed();
+                break;
+            }
+        }
     }
 }
