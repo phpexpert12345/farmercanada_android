@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
@@ -18,9 +19,19 @@ import com.farmers.buyers.modules.orders.model.OrderListItem;
  */
 
 public class OrdersItemViewHolder extends BaseViewHolder {
+    CardView orderItemCard;
 
-    public OrdersItemViewHolder(@NonNull ViewGroup parent) {
+    public OrdersItemViewHolder(@NonNull ViewGroup parent, final OrdersItemClickListener ordersItemClickListener) {
         super(Extensions.inflate(parent, R.layout.orders_item_layout));
+        orderItemCard = itemView.findViewById(R.id.order_item_card);
+
+        orderItemCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ordersItemClickListener.onOrderItemClicked(getAdapterPosition());
+            }
+        });
+
     }
 
     @Override

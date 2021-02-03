@@ -7,8 +7,23 @@
     android:orientation="vertical"
     tools:context=".modules.orders.subOrderList.SubOrderListActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sub_order_recyclerView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/sub_order_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/primary_button_color"
+        app:tabIndicatorFullWidth="false"
+        app:tabSelectedTextColor="@color/primary_button_color"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5_px"
+        android:background="@color/light_gray"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/sub_order_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
