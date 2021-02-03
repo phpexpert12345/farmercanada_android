@@ -38,17 +38,17 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
             viewHolder = delegateInterface != null ? delegateInterface.onCreateViewHolder(parent) : null;
             throw new NoDelegateFoundException(viewType, this.getClass().getSimpleName());
-            } catch (NoDelegateFoundException ex) {
-                ex.printStackTrace();
-            }
+        } catch (NoDelegateFoundException ex) {
+            ex.printStackTrace();
+        }
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        DelegateInterface delegateInterface = (DelegateInterface)this.delegates.get(this.getItemViewType(position));
+        DelegateInterface delegateInterface = (DelegateInterface) this.delegates.get(this.getItemViewType(position));
         if (delegateInterface != null) {
-            delegateInterface.onBindViewHolder(holder, (RecyclerViewListItem)this.items.get(position));
+            delegateInterface.onBindViewHolder(holder, (RecyclerViewListItem) this.items.get(position));
         }
     }
 
