@@ -40,4 +40,12 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="RatingBarSmall" parent="android:Widget.DeviceDefault.Light.RatingBar.Indicator">
+        <item name="android:progressDrawable">@drawable/ic_rating_star</item>
+    </style>
+
+    <style name="CustomRatingBarStyle" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_style_bg</item>
+    </style>
+
 </resources>

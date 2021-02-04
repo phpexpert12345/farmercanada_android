@@ -33,7 +33,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="order delivery successfully"
+                android:text="Order delivery successfully"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
@@ -46,10 +46,25 @@
                 android:text="Please Rate Our service"
                 android:textSize="@dimen/sp_16_px" />
 
-            <com.farmers.buyers.common.widget.RatingView
+            <com.willy.ratingbar.ScaleRatingBar
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/simpleRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
+                app:srb_numStars="5"
+                app:srb_minimumStars="0"
+                app:srb_starWidth="20dp"
+                app:srb_starHeight="20dp"
+                app:srb_starPadding="15dp"
+                app:srb_stepSize="0.5"
+                app:srb_isIndicator="false"
+                app:srb_clickable="true"
+                app:srb_scrollable="true"
+                app:srb_clearRatingEnabled="true"
+                app:srb_drawableEmpty="@drawable/ic_rating_star"
+                app:srb_drawableFilled="@drawable/ic_star"
+                android:layout_gravity="center_horizontal">
+            </com.willy.ratingbar.ScaleRatingBar>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,7 +78,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_margin="@dimen/sp_24_px"
+                android:layout_marginLeft="@dimen/sp_24_px"
+                android:layout_marginRight="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:background="@drawable/light_gray_round_border_bg"
                 android:maxLines="3"
                 android:paddingLeft="@dimen/_5sdp"

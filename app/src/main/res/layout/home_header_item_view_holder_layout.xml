@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_ui_semibold"
         android:singleLine="true"
-        android:text="User name"
-        android:textColor="@color/primaryTextColor"
+        android:text="Aman Kumar"
+        android:textColor="@color/heading_text_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,12 +32,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_3sdp"
             android:fontFamily="@font/sf_ui_semibold"
             android:singleLine="true"
-            android:text="Become a Seller"
+            android:text="Become a"
             android:textColor="@color/primaryTextColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_3sdp"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:singleLine="true"
+            android:text="Seller"
+            android:textColor="@color/primary_button_color"
+            android:background="@drawable/bottom_light_red_border"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,18 +70,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
-        <TextView
-            android:id="@+id/textView3"
+
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_address"
-            android:drawablePadding="@dimen/_5sdp"
-            android:fontFamily="@font/sf_ui_regular"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="@string/address"
-            />
+            >
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_address"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textSize="@dimen/sp_12_px"
+                android:text="@string/address"
+                />
+        </RelativeLayout>
+
 
         <ImageView
             android:id="@+id/home_header_edit_image"
@@ -81,8 +100,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             app:tint="@color/primaryTextColor"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"/>
+            />
 
     </LinearLayout>
 

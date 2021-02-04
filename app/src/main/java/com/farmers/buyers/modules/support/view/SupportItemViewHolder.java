@@ -1,7 +1,7 @@
 package com.farmers.buyers.modules.support.view;
 
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
@@ -9,7 +9,12 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.orders.model.OrderListItem;
+
+/**
+ * created by Mohammad Sajjad
+ * on 04-02-2021 at 11:30
+ * mohammadsajjad679@gmail.com
+ */
 
 public class SupportItemViewHolder extends BaseViewHolder {
 
@@ -20,9 +25,5 @@ public class SupportItemViewHolder extends BaseViewHolder {
     @Override
     public void bindView(RecyclerViewListItem items) {
 
-    }
-
-    public interface SupportItemClickListener {
-        void onSupportItemClicked(int position);
     }
 }

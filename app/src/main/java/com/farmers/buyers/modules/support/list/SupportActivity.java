@@ -2,18 +2,13 @@ package com.farmers.buyers.modules.support.list;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
-import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.orders.OrdersTransformer;
-import com.farmers.buyers.modules.orders.adapter.OrdersAdapter;
-import com.farmers.buyers.modules.ratingAndReview.adapter.ReviewListAdapter;
 import com.farmers.buyers.modules.support.SupportTransformer;
 import com.farmers.buyers.modules.support.adapter.SupportAdapter;
 
@@ -47,11 +42,10 @@ public class SupportActivity extends BaseActivity {
     }
 
     private void init() {
-
         rv_support_list = findViewById(R.id.rv_support_list);
         adapter = new SupportAdapter();
         rv_support_list.setAdapter(adapter);
-        rv_support_list.setLayoutManager(new LinearLayoutManager(SupportActivity.this));
+        rv_support_list.setLayoutManager(new LinearLayoutManager(this));
         prepareItems();
         adapter.updateData(items);
     }

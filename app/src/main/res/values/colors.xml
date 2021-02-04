@@ -34,4 +34,8 @@
     <color name="green">#10A100</color>
     <color name="reset_bg">#DF5159</color>
 
+    <color name="heading_text_color">#424242</color>
+
+    <color name="separator_color">#EEEEEE</color>
+
 </resources>

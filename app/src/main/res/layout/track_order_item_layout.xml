@@ -8,8 +8,8 @@
     
     <ImageView
         android:id="@+id/track_order_item_image"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:src="@drawable/fruit_one"
         android:scaleType="centerCrop"
         android:layout_centerVertical="true"/>

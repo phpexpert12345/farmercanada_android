@@ -39,4 +39,19 @@
     <string name="address_line">Address Line</string>
     <string name="complete_address">Complete Address</string>
     <string name="landmark">Landmark</string>
+    <string name="become_a_seller">Become a Seller</string>
+
+    <string-array name="labels">
+        <item>step 1</item>
+        <item>step 2</item>
+        <item>step 3</item>
+    </string-array>
+
+    <string-array name="labels2">
+        <item>step 1</item>
+        <item>step 2</item>
+        <item>step 3</item>
+        <item>step 4</item>
+        <item>step 5</item>
+    </string-array>
 </resources>

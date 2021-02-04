@@ -77,5 +77,4 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public abstract void initDelegate();
 
-
 }
