@@ -17,7 +17,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refer_friends);
-        setupToolbar(new ToolbarConfig("Enter Account Details", true, new View.OnClickListener() {
+        setupToolbar(new ToolbarConfig("Refer Friends", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -44,6 +44,6 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-//        startActivity(new Intent(ReferFriendsActivity.this, RatingAndReviewActivity.class));
+        startActivity(new Intent(ReferFriendsActivity.this, RatingAndReviewActivity.class));
     }
 }

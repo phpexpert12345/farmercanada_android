@@ -22,21 +22,21 @@ import java.util.List;
 public class MyProfileTransformer {
 
     public static MyProfileHeaderItems getProfileHeader() {
-        return new MyProfileHeaderItems("","","","","","","");
+        return new MyProfileHeaderItems("", "", "", "", "", "", "");
     }
 
     public static MyProfileOptionItem getProfileMenuItems() {
         List<RecyclerViewListItem> itemList = new ArrayList<>();
-        itemList.add(new MyProfileOptionMenuItems("Order",R.drawable.ic_orders, R.color.light_green, ProfileOptionsGridItem.ORDERS));
-        itemList.add(new MyProfileOptionMenuItems("Address",R.drawable.ic_menu_item_dark_red_location, R.color.middle_red,ProfileOptionsGridItem.ADDRESS));
-        itemList.add(new MyProfileOptionMenuItems("Rating & Review",R.drawable.ic_rating_review, R.color.middle_red, ProfileOptionsGridItem.RATING_REVIEW));
-        itemList.add(new MyProfileOptionMenuItems("Payment",R.drawable.ic_payments, R.color.light_green, ProfileOptionsGridItem.PAYMENTS));
+        itemList.add(new MyProfileOptionMenuItems("Orders", R.drawable.ic_orders, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.ORDERS));
+        itemList.add(new MyProfileOptionMenuItems("Address", R.drawable.ic_menu_item_dark_red_location, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.ADDRESS));
+        itemList.add(new MyProfileOptionMenuItems("Rating & Review", R.drawable.ic_rating_review, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.RATING_REVIEW));
+        itemList.add(new MyProfileOptionMenuItems("Payment", R.drawable.ic_payments, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.PAYMENTS));
         return new MyProfileOptionItem(itemList);
     }
 
     public static SimpleRowListItem getAccountSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
-        accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.ic_edit_profile, 0, ProfileItem.EDIT_PROFILE));
+        accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.edit_profile_icon, 0, ProfileItem.EDIT_PROFILE));
         accountSettingItem.add(new SimpleRowItem("Change Password", R.drawable.ic_key, 0, ProfileItem.CHANGE_PASSWORD));
         accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_notification_red, R.drawable.ic_forward, ProfileItem.NOTIFICATION));
         return new SimpleRowListItem(accountSettingItem);
@@ -49,10 +49,10 @@ public class MyProfileTransformer {
         return new SimpleRowListItem(accountSettingItem);
     }
 
-  public static SimpleRowListItem getReferralSetting() {
+    public static SimpleRowListItem getReferralSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
         accountSettingItem.add(new SimpleRowItem("Earn Money", R.drawable.ic_earn_money, 0, ProfileItem.EARN_MONEY));
-        accountSettingItem.add(new SimpleRowItem("Support", R.drawable.ic_chat, 0, ProfileItem.SUPPORT));
+        accountSettingItem.add(new SimpleRowItem("Support", R.drawable.support_icon, 0, ProfileItem.SUPPORT));
         accountSettingItem.add(new SimpleRowItem("Logout", R.drawable.ic_log_out, 0, ProfileItem.LOGOUT));
         return new SimpleRowListItem(accountSettingItem);
     }

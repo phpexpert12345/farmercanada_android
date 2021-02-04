@@ -1,6 +1,9 @@
 package com.farmers.buyers.common.widget;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -48,6 +51,11 @@ public class RatingView extends LinearLayout {
         ratingBar.setNumStars(5);
         ratingBar.setRating(ratingConfig.rating);
         ratingBar.setStepSize(1);
+
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(0).setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+//        stars.getDrawable(1).setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
     }
 
     static class RatingConfig {

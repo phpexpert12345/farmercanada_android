@@ -17,11 +17,14 @@ public class OnBoardingActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TextView skipButton;
     private Button getStartButton;
+    private TextView pageCount;
     private OnBoardingAdapter adapter;
     private int[] layouts;
     private int page = 0;
     private Handler handler;
     private Runnable runnable;
+    private int count = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.on_boarding_viewPager);
         skipButton = findViewById(R.id.on_boarding_skip_btn);
         getStartButton = findViewById(R.id.on_boarding_get_start_btn);
+        pageCount = findViewById(R.id.page_count);
 
         layouts = new int[]{R.layout.on_boarding_fragment_layout_one, R.layout.on_boarding_fragment_layout_two, R.layout.on_boarding_fragment_layout_three, R.layout.on_boarding_fragment_layout_four};
 
@@ -47,6 +51,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             public void run() {
                 if (adapter.getCount() == page) {
                     handler.removeCallbacks(this);
+
                 } else {
                     page++;
                 }
@@ -54,6 +59,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                 handler.postDelayed(this, 5000);
             }
         };
+
 
     }
 
@@ -78,6 +84,8 @@ public class OnBoardingActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+
+                pageCount.setText(position+1 + "/"+ layouts.length);
 
                 if (position == layouts.length - 1) {
                     getStartButton.setVisibility(View.VISIBLE);

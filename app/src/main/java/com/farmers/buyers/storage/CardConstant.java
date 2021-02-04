@@ -8,7 +8,7 @@ package com.farmers.buyers.storage;
 
 public class CardConstant {
 
-    private static CardConstant cardConstant = null ;
+    private static CardConstant cardConstant = null;
 
     CardConstant() {
 
@@ -60,8 +60,9 @@ public class CardConstant {
     public static final int SUB_ORDER_ITEM_ADAPTER              = 36;
     public static final int TRACK_ORDER_HEADER_ITEM             = 37;
     public static final int TRACK_ORDER_ITEM_ADAPTER            = 38;
-
-
+    public static final int REVIEWED_ITEMS_ADAPTER              = 39;
+    public static final int REVIEW_ITEMS_ADAPTER                = 40;
+    public static final int SUPPORT_ITEMS_ADAPTER               = 41;
 
 
 

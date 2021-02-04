@@ -30,6 +30,18 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/page_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1/4"
+        android:fontFamily="@font/sf_ui_regular"
+        android:textSize="@dimen/sp_18_px"
+        android:layout_alignParentEnd="true"
+        android:elevation="@dimen/_5sdp"
+        android:background="@null"
+        android:layout_margin="@dimen/_16sdp"/>
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/on_boarding_viewPager"

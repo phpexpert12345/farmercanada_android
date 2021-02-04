@@ -44,12 +44,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerTv, forgotPassword;
     private Button loginBtn;
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       init();
-       listener();
+        init();
+        listener();
     }
 
     private void listener() {
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
-                intent.putExtra("fromForgetPassword",true);
+                intent.putExtra("fromForgetPassword", true);
                 startActivity(intent);
             }
         });

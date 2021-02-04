@@ -31,12 +31,10 @@ public class MyProfileOptionItemViewHolder extends BaseViewHolder {
     public MyProfileOptionItemViewHolder(@NonNull ViewGroup parent, OnProfileOptionsGridMenuClickedListener profileOptionsGridMenuClicked) {
         super(Extensions.inflate(parent, R.layout.my_profile_option_menu_items_layout));
         optionIconImg = itemView.findViewById(R.id.my_profile_option_img_tv);
-                menuNameTv = itemView.findViewById(R.id.my_profile_option_menu_name_tv);
+        menuNameTv = itemView.findViewById(R.id.my_profile_option_menu_name_tv);
         menuOptionLL = itemView.findViewById(R.id.menu_option_ll);
 
         this.profileOptionsGridMenuClicked = profileOptionsGridMenuClicked;
-
-
     }
 
     @Override
@@ -44,10 +42,10 @@ public class MyProfileOptionItemViewHolder extends BaseViewHolder {
 
         final MyProfileOptionMenuItems item = (MyProfileOptionMenuItems) items;
 
-
-        menuNameTv.setText(((MyProfileOptionMenuItems)items).getTitle());
-        optionIconImg.setImageResource(((MyProfileOptionMenuItems)items).getIcon());
-        menuOptionLL.setBackgroundColor(itemView.getContext().getResources().getColor(((MyProfileOptionMenuItems)items).getColor()));
+        menuNameTv.setText(((MyProfileOptionMenuItems) items).getTitle());
+        optionIconImg.setImageResource(((MyProfileOptionMenuItems) items).getIcon());
+        //  menuOptionLL.setBackgroundColor(itemView.getContext().getResources().getColor(((MyProfileOptionMenuItems) items).getColor()));
+        menuOptionLL.setBackgroundResource(((MyProfileOptionMenuItems) items).getColor());
 
         menuOptionLL.setOnClickListener(new View.OnClickListener() {
             @Override

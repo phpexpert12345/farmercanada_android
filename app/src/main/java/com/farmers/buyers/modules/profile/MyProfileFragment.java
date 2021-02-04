@@ -23,6 +23,7 @@ import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
 import com.farmers.buyers.modules.profile.view.MyProfileOptionItemViewHolder;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
+import com.farmers.buyers.modules.support.list.SupportActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 
 import java.util.ArrayList;
@@ -54,7 +55,6 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     public void onViewCreated() {
         prepareItems();
     }
-
 
     @Override
     public void bindView(View view) {
@@ -113,6 +113,11 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
 
+            case SUPPORT: {
+                startActivity(new Intent(baseActivity, SupportActivity.class));
+                break;
+            }
+
         }
     }
 
@@ -128,6 +133,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 baseActivity.startActivity(new Intent(baseActivity, RatingAndReviewActivity.class));
                 break;
             }
+
         }
     }
 }

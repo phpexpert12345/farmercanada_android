@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.orders.track;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,6 +48,9 @@ public class TrackOrderActivity extends BaseActivity {
         adapter = new TrackOrderAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        divider.setDrawable(getResources().getDrawable(R.drawable.divider));
+        recyclerView.addItemDecoration(divider);
         adapter.updateData(items);
     }
 
