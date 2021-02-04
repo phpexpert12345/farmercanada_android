@@ -39,4 +39,5 @@
     <string name="address_line">Address Line</string>
     <string name="complete_address">Complete Address</string>
     <string name="landmark">Landmark</string>
+    <string name="write_about">Write About</string>
 </resources>

@@ -56,7 +56,6 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         prepareItems();
     }
 
-
     @Override
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.my_profile_recyclerView);
