@@ -19,6 +19,7 @@ public class SupportItemViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
+
     }
 
     public interface SupportItemClickListener {

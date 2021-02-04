@@ -31,12 +31,12 @@ public class SupportActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
 
-        setupToolbar(new BaseActivity.ToolbarConfig("24*7 Customer Support", true, new View.OnClickListener() {
+        setupToolbar(new ToolbarConfig("24*7 Customer Support", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, false, new BaseActivity.ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
