@@ -14,11 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".modules.support.list.SupportActivity"></activity>
+        <activity android:name=".modules.addAddress.AddNewAddressActivity" />
+        <activity android:name=".modules.ratingAndReview.RatingAndReviewActivity" />
+        <activity android:name=".modules.referFriends.ReferFriendsActivity" />
+
         <activity android:name=".modules.orders.track.TrackOrderActivity"></activity>
         <activity android:name=".modules.ratingAndReview.RatingAndReviewActivity" />
         <activity android:name=".modules.referFriends.ReferFriendsActivity" />
         <activity android:name=".modules.changePassword.ChangePasswordActivity" />
         <activity android:name=".modules.accountDetails.AccountDetailsActivity" />
+
         <activity android:name=".modules.orders.subOrderList.SubOrderListActivity" />
         <activity android:name=".modules.orders.list.OrdersListActivity" />
         <activity android:name=".modules.chat.ChatActivity" />
@@ -46,6 +53,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".modules.accountDetails.AccountDetailsActivity">
         </activity>
     </application>
 

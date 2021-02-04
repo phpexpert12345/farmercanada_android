@@ -14,7 +14,6 @@ import com.farmers.buyers.storage.CardConstant;
 public class MessageListAdapter extends BaseAdapter {
     MessageListViewHolder.MessageItemClickListener messageItemClickListener;
 
-
     public MessageListAdapter(MessageListViewHolder.MessageItemClickListener messageItemClickListener) {
         super();
         this.messageItemClickListener = messageItemClickListener;

@@ -24,6 +24,7 @@ public class NotificationsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+
         setupToolbar(new ToolbarConfig("Inbox", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
