@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/simple_row_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/_8sdp"
-    android:layout_margin="@dimen/_12sdp">
+    android:layout_margin="@dimen/_12sdp"
+    android:padding="@dimen/_8sdp">
 
     <ImageView
         android:id="@+id/simple_row_item_left_imageView"
-        android:layout_width="@dimen/_20sdp"
+        android:layout_width="@dimen/_15sdp"
         android:layout_height="@dimen/_20sdp"
-        android:src="@drawable/ic_user_light_red_bg"/>
+        android:src="@drawable/ic_user_light_red_bg" />
 
     <TextView
         android:id="@+id/simple_row_item_title_tv"
-        android:layout_toRightOf="@+id/simple_row_item_left_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/simple_row_item_left_imageView"
         android:fontFamily="@font/sf_ui_regular"
-        android:textColor="@color/primaryTextColor"
-        android:layout_centerVertical="true"/>
+        android:text="Edit Profile"
+        android:textColor="@color/primaryTextColor" />
 
     <ImageView
         android:id="@+id/simple_row_item_right_imageView"
         android:layout_width="@dimen/_15sdp"
         android:layout_height="@dimen/_15sdp"
-        android:src="@drawable/ic_forward"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_forward" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@color/transparent_gray" />
 </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -23,50 +23,72 @@
                 android:id="@+id/wallet_back_image"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_white_back_arrow"/>
+                android:src="@drawable/ic_white_back_arrow" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wallet"
+                android:layout_centerHorizontal="true"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:textColor="@color/secondaryTextColor"
-                android:layout_centerHorizontal="true"/>
+                android:text="Wallet"
+                android:textColor="@color/secondaryTextColor" />
 
             <ImageView
                 android:id="@+id/wallet_notification_image"
-                android:layout_alignParentEnd="true"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_notification"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:src="@drawable/ic_notification"
                 app:tint="@color/white" />
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="$205.00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Available Balance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
     </RelativeLayout>
+
     <Button
         android:id="@+id/wallet_withdraw_btn"
-        android:layout_below="@id/header_layout"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Withdrawal"
-        android:textSize="@dimen/sp_16_px"
-        android:textColor="@color/primaryTextColor"
-        android:fontFamily="@font/sf_ui_semibold"
+        android:layout_below="@id/header_layout"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_minus25sdp"
         android:background="@drawable/round_corner_ligh_red_bg"
         android:backgroundTint="@color/light_green"
-        android:paddingLeft="@dimen/_16sdp"
-        android:paddingRight="@dimen/_16sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_minus25sdp"
-        android:layout_gravity="center_horizontal"
-        android:textAllCaps="false"
         android:drawableLeft="@drawable/ic_withdraw"
         android:drawablePadding="@dimen/_8sdp"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
-
-
+        android:fontFamily="@font/sf_ui_semibold"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:text="Withdrawal"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/sp_16_px" />
 </LinearLayout>

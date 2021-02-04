@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/menu_option_ll"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/_60sdp"
-    android:orientation="horizontal"
-    android:padding="@dimen/_8sdp"
-    android:background="@drawable/round_corner_ligh_red_bg"
     android:gravity="center_vertical"
-    >
+    android:orientation="horizontal"
+    android:padding="@dimen/_8sdp">
 
     <ImageView
         android:id="@+id/my_profile_option_img_tv"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:src="@drawable/ic_address"
+        android:layout_width="@dimen/dp_20_px"
+        android:layout_height="@dimen/dp_20_px"
         android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginRight="@dimen/_8sdp"/>
+        android:layout_marginRight="@dimen/_8sdp"
+        android:src="@drawable/ic_address" />
 
     <TextView
         android:id="@+id/my_profile_option_menu_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Orders"
         android:fontFamily="@font/sf_ui_regular"
-        android:textColor="@color/primaryTextColor"
-        />
+        android:text="Orders"
+        android:textColor="@color/primaryTextColor" />
 
 </LinearLayout>

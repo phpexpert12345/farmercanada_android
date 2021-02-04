@@ -30,7 +30,7 @@ public class NotificationsActivity extends BaseActivity {
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

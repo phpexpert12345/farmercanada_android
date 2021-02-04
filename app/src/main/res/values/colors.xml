@@ -5,21 +5,19 @@
     <color name="colorAccent">@color/white</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="light_gray">#FACAC7C7</color>
+    <color name="light_gray">#8E9398</color>
 
     <color name="header_color">#434343</color>
     <color name="primaryTextColor">#d31f292e</color>
     <color name="secondaryTextColor">@color/white</color>
 
     <color name="on_boarding_header_color">#565656</color>
-
     <color name="indicator_color">#E8626A</color>
     <color name="in_active_indicator_color">#C4C4C4</color>
     <color name="in_active_visibility_indicator_color">#80E8626A</color>
     <color name="light_red">#3BE76169</color>
 
     <color name="primary_button_color">#E76169</color>
-
     <color name="gradient_color_light">#E76169</color>
     <color name="gradient_color_dark">#C9313A</color>
 
@@ -29,7 +27,7 @@
     <color name="transparent_gray">#F2F2F2</color>
 
     <color name="light_green">#D6F6DB</color>
-    <color name="middle_red">#FBD5D7</color>
+    <color name="middle_red">#FDEAEB</color>
     <color name="orange">#F47920</color>
     <color name="green">#10A100</color>
     <color name="reset_bg">#DF5159</color>

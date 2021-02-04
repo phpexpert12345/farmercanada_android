@@ -25,12 +25,12 @@ public class ChatActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_acttivity);
-        setupToolbar(new ToolbarConfig("Chat", true, new View.OnClickListener() {
+        setupToolbar(new ToolbarConfig("Kins's Farm Market", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener(){
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
