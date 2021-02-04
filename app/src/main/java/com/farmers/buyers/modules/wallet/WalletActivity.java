@@ -10,6 +10,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.accountDetails.AccountDetailsActivity;
 import com.farmers.buyers.modules.wallet.adapter.WalletHistoryAdapter;
 import com.farmers.buyers.modules.wallet.model.WalletHeaderItems;
 import com.farmers.buyers.modules.wallet.view.WalletHeaderViewHolder;
@@ -59,5 +60,6 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
 
     @Override
     public void onWithdrawClicked() {
+        startActivity(new Intent(this, AccountDetailsActivity.class));
     }
 }

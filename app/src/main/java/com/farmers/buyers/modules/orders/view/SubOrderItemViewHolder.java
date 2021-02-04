@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
@@ -20,10 +21,20 @@ import com.farmers.buyers.modules.orders.model.SubOrdersListItem;
 
 public class SubOrderItemViewHolder extends BaseViewHolder {
     TextView statusTv;
+    CardView subOrderCard;
 
-    public SubOrderItemViewHolder(@NonNull ViewGroup parent) {
+    public SubOrderItemViewHolder(@NonNull ViewGroup parent, final SubOrderItemClickListener subOrderItemClickListener) {
         super(Extensions.inflate(parent, R.layout.sub_order_item_layout));
         statusTv = itemView.findViewById(R.id.sub_order_item_status_tv);
+        subOrderCard = itemView.findViewById(R.id.sub_ordet_item_card);
+
+        subOrderCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                subOrderItemClickListener.onSubOrderItemClicked(getAdapterPosition());
+            }
+        });
+
     }
 
     @Override
@@ -48,6 +59,10 @@ public class SubOrderItemViewHolder extends BaseViewHolder {
             }
         }
 
+    }
+
+    public interface SubOrderItemClickListener {
+        void onSubOrderItemClicked(int position);
     }
 
 

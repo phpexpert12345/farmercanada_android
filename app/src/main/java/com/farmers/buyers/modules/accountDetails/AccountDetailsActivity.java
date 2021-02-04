@@ -7,8 +7,7 @@ import android.widget.Button;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
-import com.farmers.buyers.modules.resetPassword.ResetPasswordActivity;
-import com.google.android.material.tabs.TabLayout;
+import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 
 public class AccountDetailsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -47,6 +46,6 @@ public class AccountDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(AccountDetailsActivity.this, ResetPasswordActivity.class));
+        startActivity(new Intent(AccountDetailsActivity.this, ChangePasswordActivity.class));
     }
 }

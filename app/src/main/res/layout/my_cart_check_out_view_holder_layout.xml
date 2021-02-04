@@ -23,9 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:background="@drawable/light_gray_round_border_bg"
-            android:drawableStart="@drawable/ic_search"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/sf_ui_regular"
             android:hint="Apply Coupon Code"
             android:padding="@dimen/_8sdp" />

@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.orders.subOrderList;
 
+import android.content.Intent;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,8 @@ import com.farmers.buyers.modules.orders.OrdersTransformer;
 import com.farmers.buyers.modules.orders.SubOrderExtra;
 import com.farmers.buyers.modules.orders.adapter.SubOrderItemAdapter;
 import com.farmers.buyers.modules.orders.model.SubOrdersListItem;
+import com.farmers.buyers.modules.orders.track.TrackOrderActivity;
+import com.farmers.buyers.modules.orders.view.SubOrderItemViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class SubOrderListFragment extends BaseFragment {
+public class SubOrderListFragment extends BaseFragment implements SubOrderItemViewHolder.SubOrderItemClickListener {
     String title;
     SubOrderExtra extra;
     private List<RecyclerViewListItem> items = new ArrayList<>();
@@ -53,7 +56,7 @@ public class SubOrderListFragment extends BaseFragment {
     public void bindView(View view) {
 
         recyclerView = view.findViewById(R.id.sub_order_recyclerView);
-        adapter = new SubOrderItemAdapter();
+        adapter = new SubOrderItemAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(baseActivity));
 
@@ -80,5 +83,10 @@ public class SubOrderListFragment extends BaseFragment {
 
         adapter.updateData(items);
 
+    }
+
+    @Override
+    public void onSubOrderItemClicked(int position) {
+        startActivity(new Intent(baseActivity, TrackOrderActivity.class));
     }
 }

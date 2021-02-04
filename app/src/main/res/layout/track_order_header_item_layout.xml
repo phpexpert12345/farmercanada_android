@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_8sdp"
-    android:layout_margin="@dimen/_8sdp"
-    app:cardCornerRadius="@dimen/_8sdp"
-    android:id="@+id/sub_ordet_item_card">
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_8sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12-02-2020 10:30 AM"
+        android:gravity="end"
+        android:textSize="@dimen/sp_12_px"
+        android:fontFamily="@font/sf_ui_regular"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,8 +21,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/sub_order_item_farm_image"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:src="@drawable/farm_image"/>
 
         <LinearLayout
@@ -36,19 +40,17 @@
                 android:text="Kin's Farm Market"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px"
-                android:fontFamily="@font/sf_ui_semibold"/>
+                android:fontFamily="@font/sf_ui_regular"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Order Id:"
-                    android:textSize="@dimen/sp_14_px"
+                    android:textSize="@dimen/sp_12_px"
                     android:fontFamily="@font/sf_ui_regular"/>
 
 
@@ -56,33 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#7338937"
-                    android:textSize="@dimen/sp_16_px"
-                    android:textColor="@color/primary_button_color"
-                    android:fontFamily="@font/sf_ui_regular"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status:"
                     android:textSize="@dimen/sp_14_px"
-                    android:fontFamily="@font/sf_ui_regular"/>
-
-
-                <TextView
-                    android:id="@+id/sub_order_item_status_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="pending"
-                    android:textSize="@dimen/sp_16_px"
                     android:textColor="@color/primary_button_color"
                     android:fontFamily="@font/sf_ui_regular"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -92,34 +68,50 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/sub_order_item_time_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10: 30 am"
-            android:fontFamily="@font/sf_ui_regular"
-            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp">
 
         <TextView
-            android:layout_below="@+id/sub_order_item_time_tv"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/track_order_header_estimate_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ 150.80"
-            android:textSize="@dimen/sp_16_px"
+            android:text="Estimate Delivery"
+            android:textSize="@dimen/sp_12_px"
+            android:fontFamily="@font/sf_ui_regular"/>
+
+        <TextView
+            android:layout_below="@+id/track_order_header_estimate_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tomorrow, 10 AM - 3 PM"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_14_px"
+            android:fontFamily="@font/sf_ui_regular"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change"
             android:textColor="@color/primary_button_color"
-            android:fontFamily="@font/sf_ui_bold"
-            android:layout_alignParentRight="true"
+            android:textSize="@dimen/sp_12_px"
+            android:fontFamily="@font/sf_ui_regular"
+            android:background="@drawable/light_red_border_bg"
+            android:drawableRight="@drawable/ic_edit"
+            android:drawablePadding="@dimen/_8sdp"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/_16sdp"/>
-
-
-
-
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_3sdp"/>
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+
+</LinearLayout>

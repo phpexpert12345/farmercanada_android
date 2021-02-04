@@ -38,7 +38,7 @@ public class MyProfileTransformer {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
         accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.ic_edit_profile, 0, ProfileItem.EDIT_PROFILE));
         accountSettingItem.add(new SimpleRowItem("Change Password", R.drawable.ic_key, 0, ProfileItem.CHANGE_PASSWORD));
-        accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_notification_red, 0, ProfileItem.NOTIFICATION));
+        accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_notification_red, R.drawable.ic_forward, ProfileItem.NOTIFICATION));
         return new SimpleRowListItem(accountSettingItem);
     }
 

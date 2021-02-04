@@ -37,7 +37,7 @@
                 android:textColor="@color/primaryTextColor"
                 android:drawableLeft="@drawable/ic_cash_on_delivery"
                 android:drawablePadding="@dimen/dp_8_px"
-                android:textSize="@dimen/sp_16_px"
+                android:textSize="@dimen/sp_12_px"
                 android:layout_centerVertical="true"/>
 
             <RadioButton
@@ -74,7 +74,7 @@
                 android:singleLine="true"
                 android:text="Credit/Debit"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_16_px"
+                android:textSize="@dimen/sp_12_px"
                 android:drawableLeft="@drawable/ic_credit_card"
                 android:drawablePadding="@dimen/dp_8_px"
                 android:layout_centerVertical="true"/>
@@ -111,7 +111,7 @@
                 android:singleLine="true"
                 android:text="Wallet"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_16_px"
+                android:textSize="@dimen/sp_12_px"
                 android:layout_centerVertical="true"
                 android:drawableLeft="@drawable/ic_wallet"
                 android:drawablePadding="@dimen/dp_8_px"

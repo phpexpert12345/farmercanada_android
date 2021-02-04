@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/sp_16_px"
+    android:layout_marginRight="@dimen/sp_16_px">
+    
+    <ImageView
+        android:id="@+id/track_order_item_image"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:src="@drawable/fruit_one"
+        android:scaleType="centerCrop"
+        android:layout_centerVertical="true"/>
+    
+    <LinearLayout
+        android:layout_toRightOf="@id/track_order_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pomegranate"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_14_px"
+            android:fontFamily="@font/sf_ui_semibold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 kg"
+            android:textSize="@dimen/sp_12_px"
+            android:fontFamily="@font/sf_ui_regular"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_3sdp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 40"
+                android:textSize="@dimen/sp_16_px"
+                android:fontFamily="@font/sf_ui_regular"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 20.99 * 2"
+                android:textSize="@dimen/sp_16_px"
+                android:fontFamily="@font/sf_ui_regular"
+                android:textColor="@color/primary_button_color"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:layout_marginRight="@dimen/_3sdp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$ 42.00"
+        android:textSize="@dimen/sp_16_px"
+        android:fontFamily="@font/sf_ui_bold"
+        android:textColor="@color/primary_button_color"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>
