@@ -1,11 +1,11 @@
 package com.farmers.buyers.modules.orders.list;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
@@ -13,11 +13,13 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.orders.OrdersTransformer;
 import com.farmers.buyers.modules.orders.adapter.OrdersAdapter;
+import com.farmers.buyers.modules.orders.subOrderList.SubOrderListActivity;
+import com.farmers.buyers.modules.orders.view.OrdersItemViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersListActivity extends BaseActivity {
+public class OrdersListActivity extends BaseActivity implements OrdersItemViewHolder.OrdersItemClickListener {
     private RecyclerView recyclerView;
     private OrdersAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
@@ -46,7 +48,7 @@ public class OrdersListActivity extends BaseActivity {
 
     private void init() {
         recyclerView = findViewById(R.id.order_recyclerView);
-        adapter = new OrdersAdapter();
+        adapter = new OrdersAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.updateData(items);
@@ -62,5 +64,10 @@ public class OrdersListActivity extends BaseActivity {
     @Override
     public Boolean showToolbar() {
         return true;
+    }
+
+    @Override
+    public void onOrderItemClicked(int position) {
+        startActivity(new Intent(this, SubOrderListActivity.class));
     }
 }

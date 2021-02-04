@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_16sdp">
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -33,19 +34,21 @@
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="4 items"
                     android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/sp_16_px" />
+                    android:textSize="@dimen/sp_12_px" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:drawableRight="@drawable/ic_pluc"
+                    android:drawableRight="@drawable/ic_add_white"
+                    android:drawableTint="@color/primary_button_color"
                     android:drawablePadding="@dimen/_8sdp"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="Add items"
                     android:textColor="@color/primary_button_color"
-                    android:textSize="@dimen/sp_16_px" />
+                    android:textSize="@dimen/sp_12_px"
+                    android:gravity="center_vertical"/>
             </RelativeLayout>
 
             <TextView
@@ -54,12 +57,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cart_item_count_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:drawableLeft="@drawable/ic_swipe_hand"
                 android:drawablePadding="@dimen/_8sdp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Swipe on an item to delete"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_11_px"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/_my_cart_recyclerView"

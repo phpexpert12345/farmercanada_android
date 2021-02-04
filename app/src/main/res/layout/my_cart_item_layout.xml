@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="@dimen/dp_16_px"
     android:layout_marginRight="@dimen/dp_16_px"
-    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_10sdp"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardBackgroundColor="@color/white"
     >
@@ -18,8 +18,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/my_cart_item_image"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
                 android:fontFamily="@font/sf_ui_semibold"
                 android:singleLine="true"
                 android:text="Quince eco."
-                android:textSize="@dimen/sp_18_px"
+                android:textSize="@dimen/sp_14_px"
                 />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Northwest Territories, Canada"
-                android:textSize="@dimen/sp_14_px" />
+                android:textSize="@dimen/sp_12_px" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,8 +84,8 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
                 android:src="@drawable/ic_remove_white" />
 
             <TextView
@@ -93,17 +93,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="@dimen/_8sdp"
-                android:paddingTop="@dimen/_3sdp"
                 android:paddingRight="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_3sdp"
                 android:fontFamily="@font/sf_ui_bold"
                 android:text="1"
-                android:textSize="@dimen/sp_16_px"
                 android:textColor="@color/secondaryTextColor" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
                 android:src="@drawable/ic_add_white" />
 
 

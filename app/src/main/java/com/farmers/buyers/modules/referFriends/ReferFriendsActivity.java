@@ -44,6 +44,6 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(ReferFriendsActivity.this, RatingAndReviewActivity.class));
+//        startActivity(new Intent(ReferFriendsActivity.this, RatingAndReviewActivity.class));
     }
 }

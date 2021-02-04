@@ -3,6 +3,7 @@ package com.farmers.buyers.modules.orders.adapter;
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.orders.view.OrdersItemDelegate;
+import com.farmers.buyers.modules.orders.view.OrdersItemViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -13,14 +14,17 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class OrdersAdapter extends BaseAdapter {
 
-    public OrdersAdapter() {
+    OrdersItemViewHolder.OrdersItemClickListener ordersItemClickListener;
+
+    public OrdersAdapter(OrdersItemViewHolder.OrdersItemClickListener ordersItemClickListener) {
         super();
+        this.ordersItemClickListener = ordersItemClickListener;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
-        delegates.put(CardConstant.ORDER_ITEMS_ADAPTER, new OrdersItemDelegate());
+        delegates.put(CardConstant.ORDER_ITEMS_ADAPTER, new OrdersItemDelegate(ordersItemClickListener));
     }
 }

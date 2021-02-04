@@ -12,6 +12,7 @@ import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.inbox.NotificationsActivity;
 import com.farmers.buyers.modules.orders.list.OrdersListActivity;
@@ -20,6 +21,8 @@ import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
 import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
 import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
 import com.farmers.buyers.modules.profile.view.MyProfileOptionItemViewHolder;
+import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
+import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 
 import java.util.ArrayList;
@@ -100,6 +103,16 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 startActivity(new Intent(baseActivity, EditProfileActivity.class));
                 break;
             }
+            case CHANGE_PASSWORD: {
+                startActivity(new Intent(baseActivity, ChangePasswordActivity.class));
+                break;
+            }
+
+            case EARN_MONEY: {
+                startActivity(new Intent(baseActivity, ReferFriendsActivity.class));
+                break;
+            }
+
         }
     }
 
@@ -108,6 +121,11 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         switch (item){
             case ORDERS: {
                 baseActivity.startActivity(new Intent(baseActivity, OrdersListActivity.class));
+                break;
+            }
+
+            case RATING_REVIEW: {
+                baseActivity.startActivity(new Intent(baseActivity, RatingAndReviewActivity.class));
                 break;
             }
         }
