@@ -13,10 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/primary_button_color"
-        app:tabIndicatorFullWidth="false" />
-        app:tabIndicatorFullWidth="false"
-        app:tabSelectedTextColor="@color/primary_button_color"
-        />
+        app:tabSelectedTextColor="@color/primary_button_color" />
 
     <View
         android:layout_width="match_parent"
