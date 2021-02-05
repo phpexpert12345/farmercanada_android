@@ -11,10 +11,13 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10sdp"
         android:background="@drawable/light_red_border_bg"
+        android:id="@+id/my_address_layout"
+
         >
 
         <ImageView
@@ -38,6 +41,7 @@
             android:layout_marginEnd="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/my_address_type_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My home address"
@@ -45,6 +49,7 @@
                 android:fontFamily="@font/sf_ui_regular"/>
 
             <TextView
+                android:id="@+id/my_address_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4623 William Head Rd"
@@ -54,6 +59,7 @@
                 android:fontFamily="@font/sf_ui_semibold"/>
 
             <TextView
+                android:id="@+id/my_address_detail_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Victoria, BC V9C 3Y7, Canada"
