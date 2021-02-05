@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -46,15 +49,19 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void edit_profile_dialog(Activity activity) {
+    public void edit_profile_dialog(Activity activity) {
 
-        LayoutInflater li = LayoutInflater.from(this);
-        View promptsView = li.inflate(R.layout.edit_profile_dialog, null);
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity, R.style.NewDialog);
-        alertDialogBuilder.setView(promptsView);
+        final Dialog dialog = new Dialog(activity, R.style.NewDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.edit_profile_dialog);
 
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
     }
 
 }

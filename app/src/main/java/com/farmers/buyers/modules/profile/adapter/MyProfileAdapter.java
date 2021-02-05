@@ -30,6 +30,7 @@ public class MyProfileAdapter extends BaseAdapter {
         this.profileOptionsGridMenuClicked = profileOptionsGridMenuClicked;
         initDelegate();
     }
+
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.PROFILE_HEADER_ADAPTER, new MyProfileHeaderDelegate(profileItemClickListener));

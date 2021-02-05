@@ -75,7 +75,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
-                        android:id="@+id/login_btn"
+                        android:id="@+id/bt_submit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_15sdp"
@@ -85,9 +85,7 @@
                         android:textColor="@color/secondaryTextColor" />
 
                 </LinearLayout>
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-
 </RelativeLayout>
