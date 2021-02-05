@@ -15,7 +15,7 @@ import com.farmers.buyers.modules.profile.EditProfileActivity;
 
 public class AccountDetailsActivity extends BaseActivity implements View.OnClickListener {
 
-    private Button bt_save;
+    private Button saveAccountDetailBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,12 @@ public class AccountDetailsActivity extends BaseActivity implements View.OnClick
 
         init();
 
-        order_track_dialog(this);
     }
 
     private void init() {
-        bt_save = findViewById(R.id.bt_save);
+        saveAccountDetailBtn = findViewById(R.id.account_detail_save_btn);
 
-        bt_save.setOnClickListener(this);
+        saveAccountDetailBtn.setOnClickListener(this);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class AccountDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(AccountDetailsActivity.this, ChangePasswordActivity.class));
+
     }
 
     private void write_about_farm_dialog(Activity activity) {

@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_8sdp"
+    android:layout_margin="@dimen/_16sdp"
     app:cardCornerRadius="@dimen/_5sdp"
     >
 
@@ -72,19 +72,18 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/address_change_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_ui_semibold"
             android:text="Change"
             android:textSize="@dimen/sp_12_px"
             android:textColor="@color/primary_button_color"
-            android:drawableRight="@drawable/ic_edit"
+            android:drawableRight="@drawable/ic_edit_gray"
+            android:drawableTint="@color/primary_button_color"
             android:drawablePadding="@dimen/_5sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

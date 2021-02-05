@@ -10,14 +10,15 @@
     <ImageView
         android:id="@+id/login_bg_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_alignParentTop="true"
         android:scaleType="fitXY"
         android:src="@drawable/login_top_bg" />
 
     <LinearLayout
+        android:layout_below="@id/login_bg_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:padding="@dimen/dp_16_px">
@@ -27,20 +28,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_24_px"
-            android:layout_marginTop="@dimen/_100sdp"
             android:fontFamily="@font/sf_ui_bold"
             android:text="@string/login"
             android:textColor="@color/primary_button_color"
-            android:textSize="@dimen/_30sdp"
+            android:textSize="@dimen/_24ssp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_16_px"
-            android:layout_marginRight="@dimen/dp_16_px"
-            android:layout_marginBottom="@dimen/dp_16_px"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,12 +80,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginLeft="@dimen/dp_16_px"
-            android:layout_marginRight="@dimen/dp_16_px"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
             android:fontFamily="@font/sf_ui_regular"
             android:text="@string/forgot_password"
             android:textColor="@color/primary_button_color"
-            android:textSize="@dimen/sp_16_px" />
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/login_btn"
@@ -99,13 +100,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_24_px"
+            android:layout_marginTop="@dimen/dp_20_px"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="@dimen/dp_60_px"
-                android:layout_height="@dimen/dp_60_px"
+                android:layout_width="@dimen/dp_50_px"
+                android:layout_height="@dimen/dp_50_px"
                 android:layout_marginRight="@dimen/dp_8_px"
                 android:elevation="@dimen/dp_5_px"
                 android:padding="@dimen/dp_5_px">
@@ -118,7 +119,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
                         android:background="@color/white"
                         android:src="@drawable/ic_google" />
 
@@ -128,8 +129,8 @@
 
 
             <androidx.cardview.widget.CardView
-                android:layout_width="@dimen/dp_60_px"
-                android:layout_height="@dimen/dp_60_px"
+                android:layout_width="@dimen/dp_50_px"
+                android:layout_height="@dimen/dp_50_px"
                 android:layout_marginLeft="@dimen/dp_5_px"
                 android:elevation="@dimen/dp_5_px"
 
@@ -183,7 +184,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_120sdp"
         android:layout_alignParentBottom="true"
         android:scaleType="centerCrop"
         android:src="@drawable/login_bottom_bg" />

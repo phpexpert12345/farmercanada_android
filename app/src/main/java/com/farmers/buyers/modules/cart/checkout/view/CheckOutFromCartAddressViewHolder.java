@@ -25,7 +25,9 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
     TextView addressTv;
     TextView addressDetailTv;
     TextView addressTypeTv;
+    TextView changeAddress;
     ConstraintLayout addressCard;
+
 
 
     public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent) {
@@ -35,6 +37,7 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
         addressDetailTv = itemView.findViewById(R.id.my_address_detail_tv);
         addressTypeTv = itemView.findViewById(R.id.my_address_type_tv);
         addressCard = itemView.findViewById(R.id.my_address_layout);
+        changeAddress = itemView.findViewById(R.id.address_change_tv);
     }
 
     @Override
@@ -49,6 +52,13 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
         }
         else {
             addressCard.setBackground(null);
+        }
+
+        if (item.getCanChange()) {
+            changeAddress.setVisibility(View.VISIBLE);
+        }
+        else  {
+            changeAddress.setVisibility(View.GONE);
         }
 
     }

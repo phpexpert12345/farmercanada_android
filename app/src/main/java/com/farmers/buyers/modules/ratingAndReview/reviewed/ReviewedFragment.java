@@ -54,6 +54,5 @@ public class ReviewedFragment extends BaseFragment implements ReviewedListViewHo
 
     @Override
     public void onReviewedItemClicked(int position) {
-        Toast.makeText(getActivity(), "Reviewed", Toast.LENGTH_SHORT).show();
     }
 }

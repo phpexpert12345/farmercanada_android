@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/bottom_round_corner_bg"
     >
 
         <ImageView
@@ -12,7 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/farm_detail_img"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
+            android:background="@drawable/bottom_round_corner_bg"
             />
     </LinearLayout>
 

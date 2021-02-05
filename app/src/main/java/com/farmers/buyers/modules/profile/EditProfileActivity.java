@@ -52,8 +52,8 @@ public class EditProfileActivity extends AppCompatActivity {
         View promptsView = li.inflate(R.layout.edit_profile_dialog, null);
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity, R.style.NewDialog);
         alertDialogBuilder.setView(promptsView);
-
         AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setCancelable(true);
         alertDialog.show();
     }
 

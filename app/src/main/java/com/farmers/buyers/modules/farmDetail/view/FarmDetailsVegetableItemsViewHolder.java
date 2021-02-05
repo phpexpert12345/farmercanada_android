@@ -46,7 +46,11 @@ public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_shopping_cart, 0, 0, 0);
         }
         else {
+            addToCartTv.setText("Out of stock");
+            addToCartTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+            addToCartTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_info, 0, 0, 0);
+
         }
 
     }

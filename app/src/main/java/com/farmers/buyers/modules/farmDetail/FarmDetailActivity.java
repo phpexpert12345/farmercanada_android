@@ -56,6 +56,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     }
 
     @Override
+    public void onBecomeSellerClicked() {
+
+    }
+
+    @Override
     public void onOnBackClickListener() {
         onBackPressed();
     }

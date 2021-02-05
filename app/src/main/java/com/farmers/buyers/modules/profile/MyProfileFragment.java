@@ -116,7 +116,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case SUPPORT: {
-//                startActivity(new Intent(baseActivity, SupportActivity.class));
+                startActivity(new Intent(baseActivity, SupportActivity.class));
                 break;
             }
 

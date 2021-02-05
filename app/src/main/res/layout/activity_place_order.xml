@@ -102,6 +102,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             >
 
             <RadioButton
@@ -110,10 +112,10 @@
                 android:buttonTint="@color/primary_button_color" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Substitutions no -- refund all out of stock products."
-                android:textSize="@dimen/sp_12_px"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:textColor="@color/primaryTextColor"/>
 
@@ -134,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Substitutions are okay"
-                android:textSize="@dimen/sp_12_px"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:textColor="@color/primaryTextColor"/>
 
