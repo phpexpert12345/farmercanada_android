@@ -51,7 +51,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
-    compile 'com.github.ome450901:SimpleRatingBar:+'
+    implementation 'com.github.baoyachi:StepView:1.9'
+    implementation 'com.github.ome450901:SimpleRatingBar:+'
 
 
 

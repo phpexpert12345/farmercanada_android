@@ -12,10 +12,12 @@ import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.MyAddressActivity;
 import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.inbox.NotificationsActivity;
 import com.farmers.buyers.modules.orders.list.OrdersListActivity;
+import com.farmers.buyers.modules.orders.subOrderList.SubOrderListActivity;
 import com.farmers.buyers.modules.profile.adapter.MyProfileAdapter;
 import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
 import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
@@ -114,7 +116,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case SUPPORT: {
-                startActivity(new Intent(baseActivity, SupportActivity.class));
+//                startActivity(new Intent(baseActivity, SupportActivity.class));
                 break;
             }
 
@@ -125,12 +127,17 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     public void onGridMenuClicked(ProfileOptionsGridItem item) {
         switch (item){
             case ORDERS: {
-                baseActivity.startActivity(new Intent(baseActivity, OrdersListActivity.class));
+                baseActivity.startActivity(new Intent(baseActivity, SubOrderListActivity.class));
                 break;
             }
 
             case RATING_REVIEW: {
                 baseActivity.startActivity(new Intent(baseActivity, RatingAndReviewActivity.class));
+                break;
+            }
+
+            case ADDRESS: {
+                baseActivity.startActivity(new Intent(baseActivity, MyAddressActivity.class));
                 break;
             }
 

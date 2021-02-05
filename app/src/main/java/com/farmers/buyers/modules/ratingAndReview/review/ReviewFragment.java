@@ -6,15 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.addAddress.AddNewAddressActivity;
-import com.farmers.buyers.modules.inbox.InboxTransformer;
-import com.farmers.buyers.modules.inbox.adapter.MessageListAdapter;
-import com.farmers.buyers.modules.inbox.view.MessageListViewHolder;
+import com.farmers.buyers.modules.address.AddNewAddressActivity;
 import com.farmers.buyers.modules.ratingAndReview.ReviewTransfarmer;
 import com.farmers.buyers.modules.ratingAndReview.adapter.ReviewListAdapter;
 import com.farmers.buyers.modules.ratingAndReview.view.ReviewListViewHolder;

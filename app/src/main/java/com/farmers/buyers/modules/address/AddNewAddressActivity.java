@@ -1,4 +1,4 @@
-package com.farmers.buyers.modules.addAddress;
+package com.farmers.buyers.modules.address;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.modules.support.list.SupportActivity;
 
 public class AddNewAddressActivity extends BaseActivity implements View.OnClickListener {
-
     private Button bt_submit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, false, new BaseActivity.ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

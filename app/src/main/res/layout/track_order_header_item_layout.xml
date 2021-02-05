@@ -115,24 +115,19 @@
 
     </RelativeLayout>
 
-    <com.kofigyan.stateprogressbar.StateProgressBar
-        android:id="@+id/track_order_state_progress"
+    <com.baoyachi.stepview.HorizontalStepView
+        android:id="@+id/step_view5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:spb_currentStateNumber="two"
-        app:spb_maxStateNumber="four"
-        app:spb_stateBackgroundColor="#BDBDBD"
-        app:spb_stateForegroundColor="@color/green"
-        app:spb_stateNumberBackgroundColor="#808080"
-        app:spb_stateNumberForegroundColor="#eeeeee"
-        app:spb_currentStateDescriptionColor="@color/green"
-        app:spb_stateDescriptionColor="#808080"
-        app:spb_animateToCurrentProgressState="true"
-        app:spb_checkStateCompleted="true"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:spb_stateTextSize="@dimen/sp_12_px"
+        android:padding="@dimen/_8sdp"
+
         />
-    
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5_px"
+        android:background="@drawable/divider"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

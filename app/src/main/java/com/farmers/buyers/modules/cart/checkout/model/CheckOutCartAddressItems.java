@@ -12,6 +12,34 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class CheckOutCartAddressItems implements RecyclerViewListItem {
+    private String addressType;
+    private String address;
+    private String detail;
+    Boolean isSelected;
+
+    public CheckOutCartAddressItems(String addressType, String address, String detail, Boolean isSelected) {
+        this.addressType = addressType;
+        this.address = address;
+        this.detail = detail;
+        this.isSelected = isSelected;
+    }
+
+    public String getAddressType() {
+        return addressType;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public Boolean getSelected() {
+        return isSelected;
+    }
+
     @Override
     public int getViewType() {
         return CardConstant.MY_CART_ADDRESS_ADAPTER;
