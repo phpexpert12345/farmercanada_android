@@ -18,8 +18,8 @@
         android:background="?android:attr/windowBackground"
         android:foreground="?attr/selectableItemBackground"
         app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/primaryTextColor"
-        app:itemTextColor="@color/primaryTextColor"
+        app:itemIconTint="@color/primary_button_color"
+        app:itemTextColor="@color/primary_button_color"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:menu="@menu/bottom_navigation_menu" />
 

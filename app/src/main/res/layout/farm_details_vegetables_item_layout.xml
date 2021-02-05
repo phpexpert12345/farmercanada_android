@@ -65,8 +65,9 @@
                 android:layout_alignParentRight="true"
                 android:paddingLeft="@dimen/_5sdp"
                 android:paddingRight="@dimen/_5sdp"
-                android:paddingTop="@dimen/_3sdp"
-                android:paddingBottom="@dimen/_3sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:gravity="center"
                 android:drawableRight="@drawable/ic_drop_arror"
                 android:background="@drawable/gray_border_white_bg"/>
 

@@ -4,11 +4,13 @@ import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.farmers.buyers.R;
@@ -34,6 +36,10 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
     private Runnable runnable;
     private int page = 0;
     private TextView[] dots;
+
+    private SwitchCompat toggle;
+    private TextView deliveryTv, pickUpTv;
+
 
 
 
@@ -62,6 +68,24 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
         adapter.updateData(((FarmDetailHeaderListItem) items).getItem());
 
         addBottomDots(0, item.getItem().size());
+
+        toggle = itemView.findViewById(R.id.toggleButton1);
+        deliveryTv = itemView.findViewById(R.id.app_toggle_delivery_tv);
+        pickUpTv = itemView.findViewById(R.id.app_toggle_pickup_tv);
+        deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+                    deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
+                }
+                else {
+                    deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+                    pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
+                }
+            }
+        });
 
 
     }

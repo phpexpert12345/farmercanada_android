@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,100 +9,51 @@
     tools:context=".modules.address.AddNewAddressActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_30sdp">
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:hint="@string/name_of_address"
+                android:textColor="@color/black" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name_of_address"
-                    android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_16sdp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:hint="@string/city"
+                android:textColor="@color/black" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/city"
-                    android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.AppTheme.TextInputLayoutList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_16_px"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/dp_16_px">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/address_line"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginRight="@dimen/_20sdp"
-                    android:layout_weight="0.2"
-                    android:gravity="end">
-
-                    <ImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:src="@drawable/location_icon" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/dp_16_px">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:gravity="start"
-                    android:hint="@string/complete_address"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -115,30 +66,76 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/landmark"
+                    android:hint="@string/address_line"
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_weight="0.2"
+                android:gravity="end">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/location_icon" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_16sdp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:gravity="start"
+                android:hint="@string/complete_address"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/dp_16_px">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/landmark"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <LinearLayout
+
+    <Button
+        android:id="@+id/bt_submit"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/_30sdp"
+        android:background="@drawable/round_corner_light_gradient_bg"
+        android:text="Submit"
+        android:textColor="@color/secondaryTextColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/bt_submit"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_30sdp"
-            android:background="@drawable/round_corner_light_gradient_bg"
-            android:text="Submit"
-            android:textColor="@color/secondaryTextColor" />
 
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

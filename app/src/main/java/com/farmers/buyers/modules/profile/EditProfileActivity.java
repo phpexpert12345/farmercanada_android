@@ -51,6 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void edit_profile_dialog(Activity activity) {
 
+<<<<<<< HEAD
         final Dialog dialog = new Dialog(activity, R.style.NewDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -62,6 +63,15 @@ public class EditProfileActivity extends AppCompatActivity {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setAttributes(lp);
         dialog.show();
+=======
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.edit_profile_dialog, null);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity, R.style.NewDialog);
+        alertDialogBuilder.setView(promptsView);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setCancelable(true);
+        alertDialog.show();
+>>>>>>> 2d7db8b34a731b00e0152e1313715f5a0039cc9b
     }
 
 }

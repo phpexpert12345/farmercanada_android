@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/home_header_become_seller_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_8sdp"
@@ -81,10 +81,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_address"
-                android:drawablePadding="@dimen/_5sdp"
+                android:drawablePadding="@dimen/_3sdp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="center_vertical"
                 android:singleLine="true"
+                android:ellipsize="end"
                 android:textSize="@dimen/sp_12_px"
                 android:text="@string/address"
                 />
@@ -93,13 +94,13 @@
 
         <ImageView
             android:id="@+id/home_header_edit_image"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:src="@drawable/ic_edit"
+            android:src="@drawable/ic_edit_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             app:tint="@color/primaryTextColor"
+            android:layout_gravity="center"
             />
 
     </LinearLayout>

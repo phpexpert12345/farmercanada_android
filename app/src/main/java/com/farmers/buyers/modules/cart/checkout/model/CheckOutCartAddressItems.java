@@ -16,12 +16,14 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
     private String address;
     private String detail;
     Boolean isSelected;
+    Boolean canChange;
 
-    public CheckOutCartAddressItems(String addressType, String address, String detail, Boolean isSelected) {
+    public CheckOutCartAddressItems(String addressType, String address, String detail, Boolean isSelected, Boolean canChange) {
         this.addressType = addressType;
         this.address = address;
         this.detail = detail;
         this.isSelected = isSelected;
+        this.canChange = canChange;
     }
 
     public String getAddressType() {
@@ -38,6 +40,10 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
 
     public Boolean getSelected() {
         return isSelected;
+    }
+
+    public Boolean getCanChange() {
+        return canChange;
     }
 
     @Override

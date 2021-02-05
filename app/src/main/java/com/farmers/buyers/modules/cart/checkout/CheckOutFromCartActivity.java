@@ -1,12 +1,11 @@
 package com.farmers.buyers.modules.cart.checkout;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
@@ -59,7 +58,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private void prepareItem() {
         items.add(new SimpleTitleItem("Delivery Address"));
-        items.add(new CheckOutCartAddressItems("My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true));
+        items.add(new CheckOutCartAddressItems("My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true,true));
         items.add(new SimpleTitleItem("Payment Methods"));
         items.add(new PaymentMethodsItems());
         items.add(new MyCartCheckOutItem());

@@ -25,8 +25,8 @@ public class HomeAdapter extends BaseAdapter {
 
     public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener) {
         super();
-        this.initDelegate();
         this.headerListener = headerListener;
+        this.initDelegate();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.farmers.buyers.modules.home;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,5 +89,18 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     @Override
     public void onEditAddressClickListener(int position) {
         Log.e("position", String.valueOf(position));
+    }
+
+    @Override
+    public void onBecomeSellerClicked() {
+
+            LayoutInflater li = LayoutInflater.from(getContext());
+            View promptsView = li.inflate(R.layout.buyer_seller_switch_dialog, null);
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.NewDialog);
+            alertDialogBuilder.setView(promptsView);
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
     }
 }
