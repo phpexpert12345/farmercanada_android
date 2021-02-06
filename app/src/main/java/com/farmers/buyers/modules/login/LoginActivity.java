@@ -75,9 +75,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                viewModel.doLogin(stateMachine);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                finish();
+                viewModel.doLogin(stateMachine);
+
             }
         });
     }
@@ -101,7 +100,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                     case SUCCESS: {
-                        Log.e("success", "success");
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        finish();
                         break;
 
                     }
