@@ -129,5 +129,4 @@ public class AccountDetailsActivity extends BaseActivity implements View.OnClick
         dialog.getWindow().setAttributes(lp);
         dialog.show();
     }
-
 }

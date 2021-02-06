@@ -32,7 +32,7 @@ public class HomeFarmTypeViewHolder extends BaseViewHolder {
         localFarmTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                localFarmTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.round_corner_light_gradient_bg));
+                localFarmTv.setBackground(itemView.getContext().getResources().getDrawable(R.mipmap.farm_type_bg));
                 homeMadeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_gray_round_border_bg));
                 localFarmTv.setElevation(2f);
                 homeMadeTv.setElevation(0f);
@@ -44,7 +44,7 @@ public class HomeFarmTypeViewHolder extends BaseViewHolder {
         homeMadeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeMadeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.round_corner_light_gradient_bg));
+                homeMadeTv.setBackground(itemView.getContext().getResources().getDrawable(R.mipmap.farm_type_bg));
                 localFarmTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_gray_round_border_bg));
                 homeMadeTv.setElevation(2f);
                 localFarmTv.setElevation(0f);
