@@ -41,5 +41,4 @@ public class HomeAdapter extends BaseAdapter {
         delegates.put(CardConstant.DELIVERY_TYPE_ADAPTER, new HomeDeliveryTypeDelegate());
         delegates.put(CardConstant.HOME_FARM_TYPE_ADAPTER, new HomeFarmTypeDelegate());
     }
-
 }

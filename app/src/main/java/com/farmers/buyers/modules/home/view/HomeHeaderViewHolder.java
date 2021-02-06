@@ -29,8 +29,6 @@ public class HomeHeaderViewHolder extends BaseViewHolder {
         editAddressImage = itemView.findViewById(R.id.home_header_edit_image);
         becomeSellerLL = itemView.findViewById(R.id.home_header_become_seller_ll);
         this.listener = listener;
-
-
     }
 
     @Override
@@ -53,6 +51,7 @@ public class HomeHeaderViewHolder extends BaseViewHolder {
 
     public interface HeaderItemClickListener {
         void onEditAddressClickListener(int position);
+
         void onBecomeSellerClicked();
     }
 
