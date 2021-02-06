@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".modules.address.MyAddressActivity"></activity>
+
+        <activity android:name=".modules.address.MyAddressActivity" />
         <activity android:name=".modules.support.list.SupportActivity" />
         <activity android:name=".modules.address.AddNewAddressActivity" />
         <activity android:name=".modules.orders.track.TrackOrderActivity" />
         <activity android:name=".modules.ratingAndReview.RatingAndReviewActivity" />
         <activity android:name=".modules.referFriends.ReferFriendsActivity" />
         <activity android:name=".modules.changePassword.ChangePasswordActivity" />
-        <activity android:name=".modules.accountDetails.AccountDetailsActivity" />
         <activity android:name=".modules.orders.subOrderList.SubOrderListActivity" />
         <activity android:name=".modules.orders.list.OrdersListActivity" />
         <activity android:name=".modules.chat.ChatActivity" />
@@ -43,6 +43,7 @@
         <activity android:name=".modules.location.ManualLocationActivity" />
         <activity android:name=".modules.location.LocationAccessActivity" />
         <activity android:name=".modules.onBoarding.OnBoardingActivity" />
+        <activity android:name=".modules.accountDetails.AccountDetailsActivity" />
         <activity android:name=".modules.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
