@@ -4,6 +4,7 @@ import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.login.model.LoginRequestParams;
+import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
 
 import retrofit2.Call;
@@ -18,7 +19,7 @@ public class LoginRepository extends BaseRepository {
 
 
     public void doLogin(LoginRequestParams params, ApiResponseCallback<LoginApiModel> responseCallback) {
-        Call<LoginApiModel> call = RetrofitBuilder.createServiceContract().getUserLogin(params);
+        Call<LoginApiModel> call = RetrofitBuilder.createServiceContract().getUserLogin(ApiConstants.LOGIN, params.getMobile(), params.getPassword());
         makeRequest(call, responseCallback);
     }
 
