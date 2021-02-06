@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.adapter.FarmDetailsAdapter;

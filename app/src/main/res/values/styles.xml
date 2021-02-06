@@ -14,11 +14,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextAppearance.AppTheme.TextInputLayout.HintTextAlt" parent="TextAppearance.MaterialComponents.Subtitle2">
-    </style>
+    <style name="TextAppearance.AppTheme.TextInputLayout.HintTextAlt" parent="TextAppearance.MaterialComponents.Subtitle2"></style>
 
     <style name="Widget.AppTheme.TextInputLayoutList" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="hintTextAppearance">@style/TextAppearance.AppTheme.TextInputLayout.HintTextAlt</item>
+        <item name="hintTextAppearance">@style/TextAppearance.AppTheme.TextInputLayout.HintTextAlt
+        </item>
         <item name="android:tint">@color/primaryTextColor</item>
         <item name="buttonTint">@color/primaryTextColor</item>
         <item name="hintTextColor">@color/primaryTextColor</item>
@@ -59,4 +59,11 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <!-- Other Themes -->
+
+    <style name="ProgressDialogTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

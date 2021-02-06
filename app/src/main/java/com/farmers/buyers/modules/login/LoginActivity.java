@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
@@ -24,7 +25,7 @@ import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.remote.StandardError;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
@@ -51,6 +52,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         init();
         listener();
+    }
+
+    @Override
+    public Boolean showToolbar() {
+        return false;
     }
 
     private void listener() {
@@ -95,11 +101,12 @@ public class LoginActivity extends AppCompatActivity {
                         break;
                     }
                     case LOADING: {
-                        Log.e("laoding", "loading");
+                        showLoader();
                         break;
 
                     }
                     case SUCCESS: {
+                        dismissLoader();
                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         finish();
                         break;

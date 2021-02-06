@@ -62,7 +62,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.my_profile_recyclerView);
         adapter = new MyProfileAdapter(this, this, this);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 16, false));
+        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 50, false));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(baseActivity));

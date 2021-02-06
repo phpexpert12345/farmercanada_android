@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginLeft="@dimen/_8sdp"
-    android:layout_marginRight="@dimen/_8sdp"
-    >
+    android:layout_marginRight="@dimen/_8sdp">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/home_top_offers_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp" />
+        android:layout_height="@dimen/_70sdp"
+        android:background="@android:color/transparent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
     <LinearLayout
         android:id="@+id/home_top_offers_indicator_ll"
