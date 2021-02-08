@@ -30,6 +30,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
 
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.github.omiselabs:android-ssp:1.0.0'
+
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
@@ -53,6 +55,11 @@ dependencies {
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
     implementation 'com.github.baoyachi:StepView:1.9'
     implementation 'com.github.ome450901:SimpleRatingBar:+'
+
+    implementation 'com.params.stepview:stepview:1.0.2'
+
+    implementation 'com.wang.avi:library:2.1.3'
+
 
 
 

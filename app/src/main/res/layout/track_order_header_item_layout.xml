@@ -123,6 +123,33 @@
 
         />
 
+    <params.com.stepview.StatusViewScroller
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:stepCount="4"
+        app:currentCount="4"
+        app:drawLabels="true"
+        android:entries="@array/labels2"
+        app:lineGap="@dimen/dp_0_5_px"
+        app:lineWidth="@dimen/_1sdp"
+        app:lineColor="@color/light_gray"
+        app:lineColorIncomplete="@color/light_gray"
+        app:lineColorCurrent="@color/light_gray"
+        app:circleColor="@android:color/transparent"
+        app:circleColorCurrent="@android:color/transparent"
+        app:circleColorIncomplete="@color/light_gray"
+        app:textColorLabels="@android:color/transparent"
+        app:textColorLabelsCurrent="@color/white"
+        app:textColorLabelsIncomplete="@color/black"
+        app:circleStrokeWidth="0dp"
+        app:textSizeLabels="15sp"
+        app:currentDrawable="@drawable/ic_unchecked_right_circle"
+        app:incompleteDrawable="@drawable/ic_unchecked_right_circle"
+        app:completeDrawable="@drawable/ic_checked_green"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0_5_px"

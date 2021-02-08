@@ -58,11 +58,9 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
 
     public void getReview() {
         items.addAll(ReviewTransfarmer.getReviewList());
-        Log.e("review", "review");
     }
 
     @Override
     public void onReviewItemClicked(int position) {
-        startActivity(new Intent(getContext(), AddNewAddressActivity.class));
     }
 }

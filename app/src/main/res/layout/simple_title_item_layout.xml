@@ -13,6 +13,9 @@
         android:fontFamily="@font/sf_ui_regular"
         android:padding="@dimen/_5sdp"
         android:textColor="@color/primaryTextColor"
-        tools:text="Title" />
+        tools:text="Title"
+        android:textSize="@dimen/_12ssp"/>
+
+
 
 </LinearLayout>

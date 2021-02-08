@@ -46,7 +46,7 @@ public class SavedFarmsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new SpacesItemDecoration(2, 10, false));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        items.addAll(HomeTransformer.getHomeFarmListItem());
+        items.addAll(SaveFarmTransformer.getFarmListItem());
         adapter.updateData(items);
     }
 }

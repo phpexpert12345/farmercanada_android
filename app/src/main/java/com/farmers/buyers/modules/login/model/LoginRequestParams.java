@@ -8,13 +8,19 @@ package com.farmers.buyers.modules.login.model;
 
 public class LoginRequestParams {
 
-    String email;
+    String mobile;
     String password;
 
-    public LoginRequestParams(String email, String password) {
-        this.email = email;
+    public LoginRequestParams(String mobile, String password) {
+        this.mobile = mobile;
         this.password = password;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
 
+    public String getPassword() {
+        return password;
+    }
 }

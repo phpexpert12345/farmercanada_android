@@ -1,6 +1,5 @@
 package com.farmers.buyers.common.view;
 
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -30,5 +29,7 @@ public class SimpleTitleViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         SimpleTitleItem item = ((SimpleTitleItem)items);
         titleTv.setText(item.getTitle());
+
+        titleTv.setTextColor(item.getColor() == 0 ? itemView.getContext().getResources().getColor(R.color.primaryTextColor) : itemView.getContext().getResources().getColor(item.getColor()));
     }
 }

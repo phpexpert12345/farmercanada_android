@@ -1,5 +1,7 @@
 package com.farmers.buyers.modules.home;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,7 +44,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_fragment, container,false);
+        View view = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = view.findViewById(R.id.home_recyclerView);
         prepareListItems();
         init();
@@ -59,9 +61,16 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                if(adapter.getItemAt(position) instanceof HomeHeaderItem ||adapter.getItemAt(position) instanceof HomeSearchListItem || adapter.getItemAt(position) instanceof HomeCategoryListItem || adapter.getItemAt(position) instanceof SimpleTitleItem || adapter.getItemAt(position) instanceof HomeTopOffersListItems || adapter.getItemAt(position) instanceof HomeFilterListItems || adapter.getItemAt(position) instanceof DeliveryTypeItems|| adapter.getItemAt(position) instanceof HomeFarmTypeItem) {
+                if (adapter.getItemAt(position) instanceof HomeHeaderItem ||
+                        adapter.getItemAt(position) instanceof HomeSearchListItem ||
+                        adapter.getItemAt(position) instanceof HomeCategoryListItem ||
+                        adapter.getItemAt(position) instanceof SimpleTitleItem ||
+                        adapter.getItemAt(position) instanceof HomeTopOffersListItems ||
+                        adapter.getItemAt(position) instanceof HomeFilterListItems ||
+                        adapter.getItemAt(position) instanceof DeliveryTypeItems ||
+                        adapter.getItemAt(position) instanceof HomeFarmTypeItem) {
                     return 2;
-                }else {
+                } else {
                     return 1;
                 }
             }
@@ -87,5 +96,18 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     @Override
     public void onEditAddressClickListener(int position) {
         Log.e("position", String.valueOf(position));
+    }
+
+    @Override
+    public void onBecomeSellerClicked() {
+
+        LayoutInflater li = LayoutInflater.from(getContext());
+        View promptsView = li.inflate(R.layout.buyer_seller_switch_dialog, null);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.NewDialog);
+        alertDialogBuilder.setView(promptsView);
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 }

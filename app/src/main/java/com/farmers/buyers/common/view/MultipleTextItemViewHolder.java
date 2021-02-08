@@ -37,7 +37,7 @@ public class MultipleTextItemViewHolder extends BaseViewHolder {
             @Override
             public void onClick(View v) {
                 selectedPosition=getAdapterPosition();
-                title.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.round_corner_light_gradient_bg));
+                title.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.select_bg));
                 title.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
             }
         });

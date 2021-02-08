@@ -50,39 +50,5 @@ public class BaseRepository {
             }
         });
     }
-/*
-    public<C, T> LiveData<T> getLogin(C params, ) {
-        MutableLiveData<Resources<LoginApiModel>> mutableLiveData = new MutableLiveData<>();
-        mutableLiveData.setValue(Resources.loading(new LoginApiModel()));
-
-        ((Call<LoginApiModel>) apiCall.getFetchData(requestEntity)).enqueue(new Callback<ResponseEntity>() {
-            @Override
-            public void onResponse(@NotNull Call<ResponseEntity> call, @NotNull Response<ResponseEntity> response) {
-                try {
-                    LoginApiModel entity = response.body();
-                    switch (response.code()) {
-                        case 200:
-                            mutableLiveData.setValue(Resources.success(entity, entity.getMessage()));
-                            break;
-                        case 201:
-                            mutableLiveData.setValue(Resources.success(entity, entity.getMessage()));
-                            break;
-                        default:
-                            mutableLiveData.setValue(Resources.error(response.toString(), new ResponseEntity()));
-                            break;
-                    }
-                } catch (Exception e) {
-                    mutableLiveData.setValue(Resources.error(e.getMessage(), new ResponseEntity()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseEntity> call, Throwable t) {
-                mutableLiveData.setValue(Resources.error(t.toString(), new ResponseEntity()));
-            }
-        });
-        return mutableLiveData;
-    }
-*/
 
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,15 +17,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.remote.StandardError;
+import com.google.android.material.textfield.TextInputEditText;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
@@ -42,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel viewModel = factory.create(LoginViewModel.class);
     private TextView registerTv, forgotPassword;
+    private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
@@ -51,6 +55,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         init();
         listener();
+    }
+
+    @Override
+    public Boolean showToolbar() {
+        return false;
     }
 
     private void listener() {
@@ -75,9 +84,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                viewModel.doLogin(stateMachine);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                finish();
+                viewModel.doLogin(stateMachine, mobileEt.getText().toString(), passwordEt.getText().toString());
+
             }
         });
     }
@@ -86,22 +94,27 @@ public class LoginActivity extends AppCompatActivity {
         registerTv = findViewById(R.id.login_register_tv);
         forgotPassword = findViewById(R.id.login_forgot_password_tv);
         loginBtn = findViewById(R.id.login_btn);
+        mobileEt = findViewById(R.id.login_email_et);
+        passwordEt = findViewById(R.id.login_password_et);
 
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
             public void onChanged(DataFetchState dataFetchState) {
                 switch (dataFetchState.status) {
                     case ERROR: {
-                        Log.e("error", "error");
+                        dismissLoader();
+                        Toast.makeText(LoginActivity.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
-                        Log.e("laoding", "loading");
+                        showLoader();
                         break;
 
                     }
                     case SUCCESS: {
-                        Log.e("success", "success");
+                        dismissLoader();
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        finish();
                         break;
 
                     }

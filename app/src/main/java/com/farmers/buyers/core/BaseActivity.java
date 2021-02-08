@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.widget.ProgressDialog;
 
 /**
  * created by Mohammad Sajjad
@@ -27,6 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private ImageView mImageButtonBack, menuMoreBtn;
     private RelativeLayout fakeToolbar;
     private Toolbar toolbar;
+    ProgressDialog progressDialog = ProgressDialog.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         fakeToolbar = coordinatorLayout.findViewById(R.id.dummy_base_toolbar);
 
         if (showToolbar()) toolbar.setVisibility(View.VISIBLE); else toolbar.setVisibility(View.GONE);
+
 
         super.setContentView(coordinatorLayout);
     }
@@ -104,6 +107,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             this.menuConfig = toolbarMenuConfig;
 
         }
+    }
+
+    public void showLoader(String title) {
+        progressDialog.init(this, title);
+    }
+
+    public void showLoader() {
+        progressDialog.init(this, null);
+    }
+
+    public void dismissLoader() {
+        progressDialog.dismiss();
     }
 
 

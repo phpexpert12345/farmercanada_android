@@ -2,6 +2,7 @@ package com.farmers.buyers.common.model;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.farmers.buyers.R;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.storage.CardConstant;
 
@@ -13,6 +14,13 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class SimpleTitleItem implements RecyclerViewListItem {
     String title;
+    int color = R.color.primaryTextColor;
+
+
+    public SimpleTitleItem(String title, int color) {
+        this.title = title;
+        this.color = color;
+    }
 
     public SimpleTitleItem(String title) {
         this.title = title;
@@ -20,6 +28,10 @@ public class SimpleTitleItem implements RecyclerViewListItem {
 
     public String getTitle() {
         return title;
+    }
+
+    public int getColor() {
+        return color;
     }
 
     @Override

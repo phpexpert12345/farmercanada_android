@@ -1,107 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_10sdp"
-    android:layout_marginRight="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_10sdp"
-   >
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_ui_semibold"
-        android:singleLine="true"
-        android:text="Aman Kumar"
-        android:textColor="@color/heading_text_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_marginRight="@dimen/_10sdp"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_8sdp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_3sdp"
+            android:layout_weight="0.4"
             android:fontFamily="@font/sf_ui_semibold"
             android:singleLine="true"
-            android:text="Become a"
-            android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:fontFamily="@font/sf_ui_semibold"
-            android:singleLine="true"
-            android:text="Seller"
-            android:textColor="@color/primary_button_color"
-            android:background="@drawable/bottom_light_red_border"
+            android:text="Aman Kumar"
+            android:textColor="@color/heading_text_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_notification_gray"
-            />
+        <LinearLayout
+            android:id="@+id/home_header_become_seller_ll"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_weight="0.6"
+            android:gravity="end"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:singleLine="true"
+                android:text="Become a"
+                android:textColor="@color/primaryTextColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:background="@drawable/bottom_light_red_border"
+                android:fontFamily="@font/sf_ui_regular"
+                android:singleLine="true"
+                android:text="Seller"
+                android:textColor="@color/primary_button_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_notification_gray" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
         android:layout_marginTop="@dimen/_2sdp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
-            <TextView
-                android:id="@+id/textView3"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/location"
+                    android:layout_width="15sp"
+                    android:layout_height="15sp"
+                    android:src="@drawable/ic_address" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/address"
+                    android:textSize="@dimen/sp_12_px" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/home_header_edit_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_address"
-                android:drawablePadding="@dimen/_5sdp"
-                android:fontFamily="@font/sf_ui_regular"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:textSize="@dimen/sp_12_px"
-                android:text="@string/address"
-                />
-        </RelativeLayout>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_edit_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:tint="@color/primaryTextColor" />
 
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/home_header_edit_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:src="@drawable/ic_edit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:tint="@color/primaryTextColor"
-            />
+        <View
+            android:layout_width="@dimen/dp_160_px"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19sp"
+            android:background="@drawable/dash_line" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

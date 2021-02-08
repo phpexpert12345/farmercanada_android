@@ -34,12 +34,13 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         BaseViewHolder viewHolder = null;
 
         try {
+
             DelegateInterface delegateInterface = (DelegateInterface) this.delegates.get(viewType);
 
             viewHolder = delegateInterface != null ? delegateInterface.onCreateViewHolder(parent) : null;
             throw new NoDelegateFoundException(viewType, this.getClass().getSimpleName());
-        } catch (NoDelegateFoundException ex) {
-            ex.printStackTrace();
+        } catch (NoDelegateFoundException e) {
+            e.printStackTrace();
         }
         return viewHolder;
     }
