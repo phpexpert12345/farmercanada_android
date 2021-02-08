@@ -115,14 +115,6 @@
 
     </RelativeLayout>
 
-    <com.baoyachi.stepview.HorizontalStepView
-        android:id="@+id/step_view5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_8sdp"
-
-        />
-
     <params.com.stepview.StatusViewScroller
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,7 +122,7 @@
         app:currentCount="4"
         app:drawLabels="true"
         android:entries="@array/labels2"
-        app:lineGap="@dimen/dp_0_5_px"
+        app:lineGap="0dp"
         app:lineWidth="@dimen/_1sdp"
         app:lineColor="@color/light_gray"
         app:lineColorIncomplete="@color/light_gray"
@@ -147,8 +139,11 @@
         app:incompleteDrawable="@drawable/ic_unchecked_right_circle"
         app:completeDrawable="@drawable/ic_checked_green"
         android:layout_gravity="center_horizontal"
-        android:visibility="gone"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fitsSystemWindows="true"
         />
+
 
     <View
         android:layout_width="match_parent"
