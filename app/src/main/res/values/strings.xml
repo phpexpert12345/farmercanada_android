@@ -49,10 +49,9 @@
     </string-array>
 
     <string-array name="labels2">
-        <item>step 1</item>
-        <item>step 2</item>
-        <item>step 3</item>
-        <item>step 4</item>
-        <item>step 5</item>
+        <item>Placed</item>
+        <item>Packed</item>
+        <item>On the way</item>
+        <item>Delivered</item>
     </string-array>
 </resources>

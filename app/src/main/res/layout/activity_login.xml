@@ -34,6 +34,32 @@
             android:textSize="@dimen/_24ssp"
             android:textStyle="bold" />
 
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seller"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:button="@drawable/circle_check_drawable"
+                android:paddingLeft="@dimen/_5sdp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buyer"
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:button="@drawable/circle_check_drawable"
+                android:paddingLeft="@dimen/_5sdp"/>
+        </RadioGroup>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
