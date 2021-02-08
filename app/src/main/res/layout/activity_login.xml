@@ -16,9 +16,9 @@
         android:src="@drawable/login_top_bg" />
 
     <LinearLayout
-        android:layout_below="@id/login_bg_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/login_bg_top"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:padding="@dimen/dp_16_px">
@@ -37,27 +37,29 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seller"
-                android:textSize="@dimen/_14ssp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:fontFamily="@font/sf_ui_semibold"
                 android:button="@drawable/circle_check_drawable"
-                android:paddingLeft="@dimen/_5sdp"/>
+                android:fontFamily="@font/sf_ui_semibold"
+                android:paddingLeft="@dimen/_5sdp"
+                android:text="Seller"
+                android:textSize="@dimen/_14ssp" />
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buyer"
-                android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/sf_ui_semibold"
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:button="@drawable/circle_check_drawable"
-                android:paddingLeft="@dimen/_5sdp"/>
+                android:fontFamily="@font/sf_ui_semibold"
+                android:paddingLeft="@dimen/_5sdp"
+                android:text="Buyer"
+                android:textSize="@dimen/_14ssp" />
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -65,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="9876540982" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="password" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
