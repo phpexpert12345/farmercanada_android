@@ -8,8 +8,8 @@ package com.farmers.buyers.app;
 
 public class AppContextException extends Exception {
 
-    AppContextException(String exception) {
-        super(exception);
+    AppContextException() {
+        super("App context is null, try calling init function of the implementing class");
     }
 
 }

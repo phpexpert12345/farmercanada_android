@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.login.LoginViewModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
@@ -94,7 +95,7 @@ public class SignUpActivity extends BaseActivity {
 
     private void success() {
         dismissLoader();
-        Intent intent = new Intent(SignUpActivity.this, OtpActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         intent.putExtra("fromForgetPassword",false);
         startActivity(intent);
     }

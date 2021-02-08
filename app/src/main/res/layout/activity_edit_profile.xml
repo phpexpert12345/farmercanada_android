@@ -54,6 +54,7 @@
                 android:src="@drawable/edit_profile_cover_image" />
 
             <TextView
+                android:id="@+id/edit_profile_change_cover_image_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

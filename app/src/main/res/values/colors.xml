@@ -36,4 +36,9 @@
 
     <color name="separator_color">#EEEEEE</color>
 
+    <color name="secondaryBtnColor">#429345</color>
+    <color name="greenTextColor">#10A100</color>
+
+
+
 </resources>

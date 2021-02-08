@@ -1,10 +1,6 @@
 package com.farmers.buyers.modules.login;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
@@ -12,6 +8,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.login.model.LoginRequestParams;
 import com.farmers.buyers.remote.StandardError;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 /**
  * created by Mohammad Sajjad
@@ -23,7 +20,6 @@ public class LoginViewModel extends BaseViewModel {
 
     private LoginRepository repository = new LoginRepository();
 
-//    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine) {
     public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String mobile, String password) {
 
         if (mobile.isEmpty() ) {
@@ -42,8 +38,15 @@ public class LoginViewModel extends BaseViewModel {
         repository.doLogin(params, new ApiResponseCallback<LoginApiModel>() {
             @Override
             public void onSuccess(LoginApiModel response) {
-                Log.e("response", response.toString());
-                stateMachine.postValue(DataFetchState.success(response, ""));
+                if (response.getData() != null) {
+                    SharedPreferenceManager.getInstance().setIsLoggedIn(true);
+                    SharedPreferenceManager.getInstance().setToken(response.getData().getToken());
+                    stateMachine.postValue(DataFetchState.success(response, response.getData().getMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.<LoginApiModel>error(response.getData().getMessage(), null));
+                }
+
             }
 
             @Override

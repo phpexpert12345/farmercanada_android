@@ -7,4 +7,7 @@ package com.farmers.buyers.app;
  */
 
 interface AppControllerContract {
+
+
+
 }
