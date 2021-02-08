@@ -48,7 +48,7 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
                 .setStepViewComplectedTextColor(ContextCompat.getColor(itemView.getContext(), android.R.color.holo_green_dark))
                 .setStepViewUnComplectedTextColor(ContextCompat.getColor(itemView.getContext(), R.color.light_gray))
                 .setStepsViewIndicatorCompleteIcon(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_checked_green))
-                .setStepsViewIndicatorDefaultIcon(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_unchecked_gray));
+                .setStepsViewIndicatorDefaultIcon(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_unchecked_right_gray));
 
     }
 

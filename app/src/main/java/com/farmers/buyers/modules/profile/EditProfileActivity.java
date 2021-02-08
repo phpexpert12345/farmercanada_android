@@ -61,6 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setAttributes(lp);
         dialog.show();
+      
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.edit_profile_dialog, null);
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.NewDialog);

@@ -20,11 +20,31 @@ public class SignUpViewModel extends BaseViewModel {
 
     private SignUpRepository repository = new SignUpRepository();
 
-    public void doSignUp(final MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine) {
+    public void doSignUp(final MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine, String name, String mobile, String email, String password) {
 
         stateMachine.postValue(DataFetchState.<SignUpApiModel>loading());
 
-        SignUpRequestParams params = new SignUpRequestParams("","", "", "");
+        if (name.isEmpty() ) {
+            stateMachine.postValue(DataFetchState.error("Please enter Name", new SignUpApiModel()));
+            return;
+        }
+
+        if (mobile.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new SignUpApiModel()));
+            return;
+        }
+
+        if (email.isEmpty() ) {
+            stateMachine.postValue(DataFetchState.error("Please enter Email", new SignUpApiModel()));
+            return;
+        }
+
+        if (password.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter password", new SignUpApiModel()));
+            return;
+        }
+
+        SignUpRequestParams params = new SignUpRequestParams(name,mobile, email, password);
 
         repository.doUserSignUp(params, new ApiResponseCallback<SignUpApiModel>() {
             @Override

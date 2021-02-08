@@ -38,7 +38,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/primary_button_color" />
+                    android:button="@drawable/right_check_circle_drawable" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/primary_button_color" />
+                    android:button="@drawable/right_check_circle_drawable"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +92,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_3sdp"
             android:text="How should we handle substitutions?"
             android:fontFamily="@font/sf_ui_semibold"
             android:textColor="@color/primaryTextColor"/>
@@ -104,12 +103,13 @@
             android:orientation="horizontal"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_5sdp"
             >
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_button_color" />
+               android:button="@drawable/circle_check_drawable"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -117,7 +117,9 @@
                 android:text="Substitutions no -- refund all out of stock products."
                 android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/sf_ui_regular"
-                android:textColor="@color/primaryTextColor"/>
+                android:textColor="@color/primaryTextColor"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -125,12 +127,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_8sdp"
+
             >
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_button_color" />
+                android:button="@drawable/circle_check_drawable" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -138,7 +142,9 @@
                 android:text="Substitutions are okay"
                 android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/sf_ui_regular"
-                android:textColor="@color/primaryTextColor"/>
+                android:textColor="@color/primaryTextColor"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"/>
 
         </LinearLayout>
 

@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="5sp"
+    app:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/home_top_offers_item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/home_top_offers_item_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/top_offer_img"
-            android:scaleType="centerCrop"/>
-    </LinearLayout>
+        android:scaleType="fitXY"
+        android:src="@mipmap/top_offer_img" />
 
 </androidx.cardview.widget.CardView>

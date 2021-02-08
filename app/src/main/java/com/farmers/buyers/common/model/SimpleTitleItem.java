@@ -16,6 +16,7 @@ public class SimpleTitleItem implements RecyclerViewListItem {
     String title;
     int color = R.color.primaryTextColor;
 
+
     public SimpleTitleItem(String title, int color) {
         this.title = title;
         this.color = color;

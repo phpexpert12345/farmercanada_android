@@ -1,137 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_16sdp"
-    android:layout_marginRight="@dimen/_16sdp"
     android:layout_marginTop="@dimen/_5sdp"
-    app:cardCornerRadius="@dimen/_8sdp"
-    >
+    android:layout_marginRight="@dimen/_16sdp"
+    app:cardCornerRadius="@dimen/_8sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_8sdp"
         android:orientation="vertical"
-        >
+        android:padding="@dimen/_8sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_5sdp"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/ic_cash_on_delivery"
+                android:drawablePadding="@dimen/dp_8_px"
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Cash on delivery"
                 android:textColor="@color/primaryTextColor"
-                android:drawableLeft="@drawable/ic_cash_on_delivery"
-                android:drawablePadding="@dimen/dp_8_px"
-                android:textSize="@dimen/sp_12_px"
-                android:layout_centerVertical="true"/>
+                android:textSize="@dimen/sp_12_px" />
+
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_button_color"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                />
+                android:button="@drawable/payment_method_check" />
+
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/transparent_gray"
             android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"/>
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@color/transparent_gray" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_5sdp"
 
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/ic_credit_card"
+                android:drawablePadding="@dimen/dp_8_px"
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Credit/Debit"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_12_px"
-                android:drawableLeft="@drawable/ic_credit_card"
-                android:drawablePadding="@dimen/dp_8_px"
-                android:layout_centerVertical="true"/>
+                android:textSize="@dimen/sp_12_px" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_button_color"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:button="@drawable/payment_method_check" />
+
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/transparent_gray"
             android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"/>
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@color/transparent_gray" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_5sdp"
 
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/ic_wallet"
+                android:drawablePadding="@dimen/dp_8_px"
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Wallet"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_12_px"
-                android:layout_centerVertical="true"
-                android:drawableLeft="@drawable/ic_wallet"
-                android:drawablePadding="@dimen/dp_8_px"
-                />
+                android:textSize="@dimen/sp_12_px" />
+
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_button_color"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:button="@drawable/payment_method_check" />
+
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/transparent_gray"
             android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"/>
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@color/transparent_gray" />
 
     </LinearLayout>
 
