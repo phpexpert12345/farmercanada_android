@@ -17,11 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.verification.VerificationActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity" />
-        <activity android:name=".modules.seller.addProduct.AddProductActivity"></activity>
+        <activity android:name=".modules.seller.addProduct.AddProductActivity" />
         <activity android:name=".modules.seller.product.ProductListActivity" />
         <activity android:name=".modules.address.MyAddressActivity" />
         <activity android:name=".modules.support.list.SupportActivity" />
@@ -52,6 +53,9 @@
         <activity android:name=".modules.location.LocationAccessActivity" />
         <activity android:name=".modules.onBoarding.OnBoardingActivity" />
         <activity android:name=".modules.accountDetails.AccountDetailsActivity" />
+        <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity">
+
+        </activity>
         <activity android:name=".modules.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

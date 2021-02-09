@@ -134,6 +134,4 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void dismissLoader() {
         progressDialog.dismiss();
     }
-
-
 }
