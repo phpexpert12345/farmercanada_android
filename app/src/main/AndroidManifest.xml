@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.setupSellerAccount.verification.VerificationActivity" />
+        <activity android:name="com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity" />
+        <activity android:name="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity" />
         <activity android:name=".modules.seller.addProduct.AddProductActivity"></activity>
         <activity android:name=".modules.seller.product.ProductListActivity" />
         <activity android:name=".modules.address.MyAddressActivity" />
@@ -55,6 +59,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

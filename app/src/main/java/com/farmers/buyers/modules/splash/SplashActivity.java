@@ -28,8 +28,7 @@ public class SplashActivity extends AppCompatActivity {
                     Intent intent = new Intent(SplashActivity.this, ProductListActivity.class);
                     startActivity(intent);
                     finish();
-                }
-                else {
+                } else {
                     Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
                     startActivity(intent);
                     finish();

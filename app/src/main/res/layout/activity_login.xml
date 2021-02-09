@@ -78,7 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="9876540982" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,8 +102,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:singleLine="true"
-                android:inputType="textPassword"
-                />
+                android:text="password"
+                android:inputType="textPassword"/>
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
