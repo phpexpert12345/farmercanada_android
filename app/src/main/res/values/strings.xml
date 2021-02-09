@@ -2,7 +2,7 @@
     <string name="app_name">Farmers</string>
     <string name="skip">Skip</string>
 
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCuN5uP3haghpiKpoqlMFKARybQHE-C91o</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">google_key</string>
 
     <string name="onBoardingHeader">Lorem ipsum dolor</string>
     <string name="onBoardingContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
