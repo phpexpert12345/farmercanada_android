@@ -2,6 +2,8 @@ package com.farmers.buyers.app;
 
 import android.content.Context;
 
+import com.farmers.buyers.storage.SharedPreferenceManager;
+
 
 /**
  * created by Mohammad Sajjad
@@ -14,6 +16,7 @@ public class AppController implements AppControllerContract {
     private static AppController INSTANCE;
     private static String baseUrl ;
     private static Context context;
+    private SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance();
 
 
     public static AppController init(Context context, String baseUrl) {
@@ -26,12 +29,17 @@ public class AppController implements AppControllerContract {
         return INSTANCE;
     }
 
-    public static AppController get() throws AppContextException {
+    public static AppController get() {
         if (INSTANCE == null) {
-            throw new AppContextException();
+            return new AppController();
         }
         else {
             return INSTANCE;
         }
+    }
+
+    @Override
+    public Boolean getIsLoggedIn() {
+        return sharedPreferenceManager.getIsLoggedIn();
     }
 }

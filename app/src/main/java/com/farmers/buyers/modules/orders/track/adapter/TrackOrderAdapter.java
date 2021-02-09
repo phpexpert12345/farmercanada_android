@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.orders.track.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.orders.track.view.TackOrderHeaderDelegate;
+import com.farmers.buyers.modules.orders.track.view.TrackOrderCountDelegate;
 import com.farmers.buyers.modules.orders.track.view.TrackOrderItemDelegate;
 import com.farmers.buyers.storage.CardConstant;
 
@@ -22,5 +23,6 @@ public class TrackOrderAdapter extends BaseAdapter {
     public void initDelegate() {
         delegates.put(CardConstant.TRACK_ORDER_HEADER_ITEM, new TackOrderHeaderDelegate());
         delegates.put(CardConstant.TRACK_ORDER_ITEM_ADAPTER, new TrackOrderItemDelegate());
+        delegates.put(CardConstant.TRACK_ORDER_COUNT_ADAPTER, new TrackOrderCountDelegate());
     }
 }
