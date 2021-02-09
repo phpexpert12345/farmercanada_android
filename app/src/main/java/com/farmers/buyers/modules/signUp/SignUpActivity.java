@@ -18,8 +18,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
-import com.farmers.seller.modules.setupSellerAccont.storeDetails.StoreDetailsStepActivity;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
@@ -77,7 +78,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                        success();
+                       success();
                         break;
                     }
 
@@ -109,8 +110,8 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private void success() {
         dismissLoader();
-        Intent intent = new Intent(SignUpActivity.this, OtpActivity.class);
-        intent.putExtra("fromForgetPassword", false);
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        intent.putExtra("fromForgetPassword",false);
         startActivity(intent);
     }
 

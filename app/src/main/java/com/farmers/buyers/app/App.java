@@ -17,9 +17,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         appContext = getApplicationContext();
+        AppController.init(appContext, "https://farmercanada.com/public/api/");
+
     }
 
     public static Context getAppContext() {
         return appContext;
     }
+
+
 }

@@ -28,7 +28,7 @@ public class BaseRepository {
             @Override
             public void onResponse(Call<T> call, Response<T> response) {
                 if (response.isSuccessful()) {
-                    Log.e("response", response.body().toString());
+                    Log.e("response", response.toString());
                     responseCallback.onSuccess(response.body());
                 }
                 else  {
@@ -40,8 +40,6 @@ public class BaseRepository {
             public void onFailure(Call<T> call, Throwable t) {
 
                 if (t instanceof NoInternetConnectionException) {
-                    Log.e("response", t.getMessage());
-
                     responseCallback.onFailure(new StandardError(0, "",t.getMessage()));
                 }
                 else {

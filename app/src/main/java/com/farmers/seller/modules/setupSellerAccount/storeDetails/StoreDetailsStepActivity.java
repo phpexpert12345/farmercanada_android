@@ -1,4 +1,4 @@
-package com.farmers.seller.modules.setupSellerAccont.documentUpload;
+package com.farmers.seller.modules.setupSellerAccount.storeDetails;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,26 +10,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.farmers.buyers.R;
-import com.farmers.seller.modules.setupSellerAccont.verification.VerificationActivity;
+import com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity;
 
-public class DocumentUploadActivity extends AppCompatActivity implements View.OnClickListener {
+public class StoreDetailsStepActivity extends AppCompatActivity implements View.OnClickListener {
 
     public ImageView img_back;
     public TextView tv_toolbar_name;
-    public Button bt_next_document_upload;
+    public Button bt_next_store_details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_document_upload);
+        setContentView(R.layout.activity_store_details_step);
 
         img_back = findViewById(R.id.img_back);
         tv_toolbar_name = findViewById(R.id.tv_toolbar_name);
         tv_toolbar_name.setText("Setup Seller Account");
-        bt_next_document_upload = findViewById(R.id.bt_next_document_upload);
+        bt_next_store_details = findViewById(R.id.bt_next_store_details);
 
         img_back.setOnClickListener(this);
-        bt_next_document_upload.setOnClickListener(this);
+        bt_next_store_details.setOnClickListener(this);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class DocumentUploadActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
 
-            case R.id.bt_next_document_upload:
-                //  startActivity(new Intent(VerificationActivity.this, DocumentUploadActivity.class));
+            case R.id.bt_next_store_details:
+                startActivity(new Intent(StoreDetailsStepActivity.this, ServiceDetailsStepActivity.class));
                 break;
         }
     }

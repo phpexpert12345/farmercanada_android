@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.onBoarding.OnBoardingActivity;
+import com.farmers.buyers.modules.seller.addProduct.AddProductActivity;
+import com.farmers.buyers.modules.seller.product.ProductListActivity;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -20,9 +24,16 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
-                startActivity(intent);
-                finish();
+                if (SharedPreferenceManager.getInstance().getIsLoggedIn()) {
+                    Intent intent = new Intent(SplashActivity.this, ProductListActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         }, 5000);
     }

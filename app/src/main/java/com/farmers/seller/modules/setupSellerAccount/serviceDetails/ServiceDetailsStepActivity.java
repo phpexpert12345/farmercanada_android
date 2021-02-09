@@ -1,4 +1,4 @@
-package com.farmers.seller.modules.setupSellerAccont.serviceDetails;
+package com.farmers.seller.modules.setupSellerAccount.serviceDetails;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -13,8 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
-import com.farmers.seller.modules.setupSellerAccont.storeDetails.StoreDetailsStepActivity;
-import com.farmers.seller.modules.setupSellerAccont.verification.VerificationActivity;
+import com.farmers.seller.modules.setupSellerAccount.verification.VerificationActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

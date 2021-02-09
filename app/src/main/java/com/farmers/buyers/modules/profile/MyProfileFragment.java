@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.profile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.farmers.buyers.modules.address.MyAddressActivity;
 import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.inbox.NotificationsActivity;
+import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.orders.list.OrdersListActivity;
 import com.farmers.buyers.modules.orders.subOrderList.SubOrderListActivity;
 import com.farmers.buyers.modules.profile.adapter.MyProfileAdapter;
@@ -27,6 +29,7 @@ import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 import com.farmers.buyers.modules.support.list.SupportActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +120,13 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
             case SUPPORT: {
                 startActivity(new Intent(baseActivity, SupportActivity.class));
+                break;
+            }
+
+            case LOGOUT: {
+                SharedPreferenceManager.getInstance().clearUserInfo();
+                startActivity(new Intent(baseActivity, LoginActivity.class) );
+                baseActivity.finish();
                 break;
             }
 

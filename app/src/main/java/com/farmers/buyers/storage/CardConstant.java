@@ -63,6 +63,7 @@ public class CardConstant {
     public static final int REVIEWED_ITEMS_ADAPTER              = 39;
     public static final int REVIEW_ITEMS_ADAPTER                = 40;
     public static final int SUPPORT_ITEMS_ADAPTER               = 41;
+    public static final int PRODUCT_LIST_ADAPTER                = 42;
 
 
 

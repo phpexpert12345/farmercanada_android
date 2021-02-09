@@ -1,4 +1,4 @@
-package com.farmers.seller.modules.setupSellerAccont.storeDetails;
+package com.farmers.seller.modules.setupSellerAccount.verification;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,26 +10,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.farmers.buyers.R;
-import com.farmers.seller.modules.setupSellerAccont.serviceDetails.ServiceDetailsStepActivity;
+import com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity;
 
-public class StoreDetailsStepActivity extends AppCompatActivity implements View.OnClickListener {
+public class VerificationActivity extends AppCompatActivity implements View.OnClickListener {
 
     public ImageView img_back;
     public TextView tv_toolbar_name;
-    public Button bt_next_store_details;
+    public Button bt_next_verification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_details_step);
+        setContentView(R.layout.activity_verification);
 
         img_back = findViewById(R.id.img_back);
         tv_toolbar_name = findViewById(R.id.tv_toolbar_name);
         tv_toolbar_name.setText("Setup Seller Account");
-        bt_next_store_details = findViewById(R.id.bt_next_store_details);
+        bt_next_verification = findViewById(R.id.bt_next_verification);
 
         img_back.setOnClickListener(this);
-        bt_next_store_details.setOnClickListener(this);
+        bt_next_verification.setOnClickListener(this);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
                 finish();
                 break;
 
-            case R.id.bt_next_store_details:
-                startActivity(new Intent(StoreDetailsStepActivity.this, ServiceDetailsStepActivity.class));
+            case R.id.bt_next_verification:
+                startActivity(new Intent(VerificationActivity.this, DocumentUploadActivity.class));
                 break;
         }
     }

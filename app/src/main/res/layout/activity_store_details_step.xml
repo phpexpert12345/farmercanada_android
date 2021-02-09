@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context="com.farmers.seller.modules.setupSellerAccont.storeDetails.StoreDetailsStepActivity">
+    tools:context="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity">
 
     <include layout="@layout/common_toolbar" />
 
