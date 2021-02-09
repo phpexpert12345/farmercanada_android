@@ -2,6 +2,8 @@
     <string name="app_name">Farmers</string>
     <string name="skip">Skip</string>
 
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">google_key</string>
+
     <string name="onBoardingHeader">Lorem ipsum dolor</string>
     <string name="onBoardingContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
     <string name="location_required">Location Required</string>
@@ -41,6 +43,18 @@
     <string name="landmark">Landmark</string>
     <string name="write_about">Write About</string>
     <string name="become_a_seller">Become a Seller</string>
+    <string name="store_name">Store Name</string>
+    <string name="location">Location</string>
+    <string name="select_state">Select State</string>
+    <string name="select_city">Select City</string>
+    <string name="delivery_charges">Delivery Charges</string>
+    <string name="select_distance">Select Distance</string>
+    <string name="minimum_delivery_amount">Enter Minimum Delivery Amount</string>
+    <string name="minimum_pickup_amount">Enter Minimum Pickup Amount</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="social_media_link">Social Media Link</string>
+    <string name="select_document">Select Document</string>
 
     <string-array name="labels">
         <item>step 1</item>
@@ -53,5 +67,12 @@
         <item>Packed</item>
         <item>On the way</item>
         <item>Delivered</item>
+    </string-array>
+
+    <string-array name="seller_entries">
+        <item>Store\nDetails</item>
+        <item>Service\nDetails</item>
+        <item>Verification</item>
+        <item>Document\nUpload</item>
     </string-array>
 </resources>

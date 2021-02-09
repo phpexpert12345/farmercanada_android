@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/green_rectangle_bg"
+    android:minHeight="70dp"
+    local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:gravity="start|center">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/ic_white_back_arrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="start">
+
+            <TextView
+                android:id="@+id/tv_toolbar_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="Tollbar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp_16_px"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:gravity="start|center"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="@dimen/dp_30_px"
+                android:layout_height="@dimen/dp_30_px"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>
