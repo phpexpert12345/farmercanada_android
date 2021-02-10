@@ -2,7 +2,6 @@ package com.farmers.buyers.modules.seller.sellerProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,11 +35,12 @@ import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.seller.sellerProfile.adapter.SellerProfileAdapter;
-import com.farmers.buyers.modules.seller.sellerProfile.editProfile.SellerEditProfile;
+import com.farmers.buyers.modules.seller.sellerProfile.editProfile.SellerShopSetting;
 import com.farmers.buyers.modules.seller.sellerProfile.view.SellerProfileHeaderViewHolder;
 import com.farmers.buyers.modules.support.list.SupportActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+import com.farmers.seller.modules.editProfile.SellerEditProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +78,6 @@ public class SellerProfileActivity extends BaseActivity implements SellerProfile
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        prepareItems();
 
         adapter.updateData(items);
 
