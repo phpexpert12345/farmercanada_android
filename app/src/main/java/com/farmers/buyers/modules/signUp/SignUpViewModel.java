@@ -9,6 +9,7 @@ import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpRequestParams;
 import com.farmers.buyers.remote.StandardError;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 /**
  * created by Mohammad Sajjad
@@ -20,35 +21,37 @@ public class SignUpViewModel extends BaseViewModel {
 
     private SignUpRepository repository = new SignUpRepository();
 
-    public void doSignUp(final MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine, String name, String mobile, String email, String password) {
+
+    public void doSignUp(final MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine, SignUpRequestParams signUpRequestParams) {
 
         stateMachine.postValue(DataFetchState.<SignUpApiModel>loading());
 
-        if (name.isEmpty() ) {
+        if (signUpRequestParams.getName().isEmpty() ) {
             stateMachine.postValue(DataFetchState.error("Please enter Name", new SignUpApiModel()));
             return;
         }
 
-        if (mobile.isEmpty()) {
+       else if (signUpRequestParams.getMobile().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new SignUpApiModel()));
             return;
         }
 
-        if (email.isEmpty() ) {
+        if (signUpRequestParams.getEmail().isEmpty() ) {
             stateMachine.postValue(DataFetchState.error("Please enter Email", new SignUpApiModel()));
             return;
         }
 
-        if (password.isEmpty()) {
+        if (signUpRequestParams.getPassword().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new SignUpApiModel()));
             return;
         }
 
-        SignUpRequestParams params = new SignUpRequestParams(name,mobile, email, password);
 
-        repository.doUserSignUp(params, new ApiResponseCallback<SignUpApiModel>() {
+        repository.doUserRegis(signUpRequestParams, new ApiResponseCallback<SignUpApiModel>() {
             @Override
             public void onSuccess(SignUpApiModel response) {
+                SharedPreferenceManager.getInstance().setIsLoggedIn(true);
+                SharedPreferenceManager.getInstance().setToken(response.data.token);
                 stateMachine.postValue(DataFetchState.success(response, "Success"));
             }
 

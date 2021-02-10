@@ -22,7 +22,6 @@ public class LoginApiModel {
         private String mMessage;
         @SerializedName("token")
         private String mToken;
-
         public String getMessage() {
             return mMessage;
         }

@@ -11,9 +11,16 @@ public class LoginRequestParams {
     String mobile;
     String password;
 
-    public LoginRequestParams(String mobile, String password) {
+    public Integer getUser_type() {
+        return user_type;
+    }
+
+    Integer user_type;
+
+    public LoginRequestParams(String mobile, String password, Integer user_type) {
         this.mobile = mobile;
         this.password = password;
+        this.user_type=user_type;
     }
 
     public String getMobile() {
