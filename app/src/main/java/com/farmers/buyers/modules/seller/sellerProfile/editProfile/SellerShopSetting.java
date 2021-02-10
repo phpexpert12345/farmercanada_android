@@ -1,18 +1,16 @@
 package com.farmers.buyers.modules.seller.sellerProfile.editProfile;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 
-public class SellerEditProfile extends BaseActivity {
+public class SellerShopSetting extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_edit_profile);
+        setContentView(R.layout.activity_seller_shop_setting);
     }
 
     @Override

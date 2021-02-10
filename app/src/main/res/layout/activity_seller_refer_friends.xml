@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context="com.farmers.seller.modules.referFriends.SellerReferFriendsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_5sdp"
+                    app:cardUseCompatPadding="true">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_110sdp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/refer" />
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:gravity="center"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_15_px" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/_20sdp"
+                    android:paddingRight="@dimen/_20sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/light_green"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_7sdp">
+
+                        <LinearLayout
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_regular"
+                                android:text="89597828"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_15sdp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center|end"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:fontFamily="@font/sf_ui_regular"
+                                android:gravity="center"
+                                android:text="Copy"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_15_px" />
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@mipmap/copy_icon"
+                                app:tint="@color/green" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/_20sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:gravity="center"
+                        android:text="Top to Edit Code"
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/dp_15_px" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:gravity="center"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dp_15_px" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/bt_share"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_30sdp"
+                        android:background="@drawable/round_corner_green_gradient_bg"
+                        android:text="Share"
+                        android:textAllCaps="false"
+                        android:textColor="@color/secondaryTextColor" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1">
+
+                <ImageView
+                    android:id="@+id/nav_icon"
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/sidemenu_icon" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8">
+
+                <TextView
+                    android:id="@+id/tv_title_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:gravity="center"
+                    android:text="Our Order's"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/sidemenu_icon" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/content_main" />
+
+</LinearLayout>

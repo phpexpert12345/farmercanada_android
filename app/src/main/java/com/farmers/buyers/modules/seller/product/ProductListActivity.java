@@ -36,7 +36,7 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
         }, true, new ToolbarMenuConfig(R.mipmap.filter_icon, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProductListActivity.this, OurOrdersActivity.class));
+
             }
         })));
         prepareItems();

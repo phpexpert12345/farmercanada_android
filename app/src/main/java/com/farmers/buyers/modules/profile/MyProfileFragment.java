@@ -45,7 +45,8 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class MyProfileFragment extends BaseFragment implements MyProfileHeaderViewHolder.MyProfileItemClickListener, SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
+public class MyProfileFragment extends BaseFragment implements MyProfileHeaderViewHolder.MyProfileItemClickListener,
+        SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
 
     private MyProfileAdapter adapter;
     private RecyclerView recyclerView;
@@ -140,7 +141,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
             case LOGOUT: {
                 SharedPreferenceManager.getInstance().clearUserInfo();
-                startActivity(new Intent(baseActivity, LoginActivity.class) );
+                startActivity(new Intent(baseActivity, LoginActivity.class));
                 baseActivity.finish();
                 break;
             }
@@ -150,7 +151,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     @Override
     public void onGridMenuClicked(ProfileOptionsGridItem item) {
-        switch (item){
+        switch (item) {
             case ORDERS: {
                 baseActivity.startActivity(new Intent(baseActivity, SubOrderListActivity.class));
                 break;

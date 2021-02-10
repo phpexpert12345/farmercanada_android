@@ -7,10 +7,10 @@ package com.farmers.buyers.remote;
  */
 
 public class ApiConstants {
-
     public static final String BASE_URL = "https://farmercanada.com/public/api/";
 
-    public static final String LOGIN = "buyer/log-in";
+    public static final String LOGIN = "login";
     public static final String SIGN_UP = "buyer/sign-up";
+    public static final String REGIS = "register";
 
 }

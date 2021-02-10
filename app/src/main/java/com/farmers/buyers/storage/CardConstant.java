@@ -71,4 +71,6 @@ public class CardConstant {
     public static final int ONGOING_ORDER_LIST_ADAPTER          = 48;
     public static final int PAST_ORDER_LIST_ADAPTER             = 49;
     public static final int SIMPLE_DIVIDER_ITEM_ADAPTER         = 50;
+    public static final int BROAD_CAST_MESSAGE_LIST_ADAPTER     = 51;
+    public static final int SIDE_MENU_LIST_ADAPTER     = 52;
 }

@@ -20,22 +20,22 @@ public class LoginViewModel extends BaseViewModel {
 
     private LoginRepository repository = new LoginRepository();
 
-    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String mobile, String password) {
+    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, LoginRequestParams loginRequestParams) {
 
-        if (mobile.isEmpty() ) {
+        if (loginRequestParams.getMobile().isEmpty() ) {
             stateMachine.postValue(DataFetchState.error("Please enter mobile number", new LoginApiModel()));
             return;
         }
 
-        if (password.isEmpty()) {
+        if (loginRequestParams.getPassword().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
             return;
         }
 
         stateMachine.postValue(DataFetchState.<LoginApiModel>loading());
-        LoginRequestParams params = new LoginRequestParams(mobile, password);
 
-        repository.doLogin(params, new ApiResponseCallback<LoginApiModel>() {
+
+        repository.doLogin(loginRequestParams, new ApiResponseCallback<LoginApiModel>() {
             @Override
             public void onSuccess(LoginApiModel response) {
                 if (response.getData() != null) {

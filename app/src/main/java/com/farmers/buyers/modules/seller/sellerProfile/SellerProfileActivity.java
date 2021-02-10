@@ -51,7 +51,8 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class SellerProfileFragment extends BaseActivity implements SellerProfileHeaderViewHolder.SellerProfileItemClickListener, SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
+public class SellerProfileActivity extends BaseActivity implements SellerProfileHeaderViewHolder.SellerProfileItemClickListener,
+        SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
 
     private SellerProfileAdapter adapter;
     private RecyclerView recyclerView;
@@ -61,6 +62,7 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_profile_fragment);
+        prepareItems();
         init();
     }
 
@@ -93,7 +95,6 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
 
     }
 
-
     @Override
     public void onFollowersItemClicked() {
         startActivity(new Intent(this, FollowersActivity.class));
@@ -113,9 +114,10 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
     public void onSimpleRowItemClicked(ProfileItem item) {
         switch (item) {
             case EDIT_PROFILE: {
-                startActivity(new Intent(this, SellerEditProfile.class));
+                startActivity(new Intent(this, SellerEditProfileActivity.class));
                 break;
             }
+
             case CHANGE_PASSWORD: {
                 startActivity(new Intent(this, SellerChangePasswordActivity.class));
                 break;
@@ -133,13 +135,13 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
 
             case NOTIFICATION: {
                 NotificationBottomSheetDialogFragment notifyme = new NotificationBottomSheetDialogFragment();
-                notifyme.show(getSupportFragmentManager(),notifyme.getTag());
+                notifyme.show(getSupportFragmentManager(), notifyme.getTag());
                 break;
             }
 
             case LOGOUT: {
                 SharedPreferenceManager.getInstance().clearUserInfo();
-                startActivity(new Intent(this, LoginActivity.class) );
+                startActivity(new Intent(this, LoginActivity.class));
                 this.finish();
                 break;
             }
@@ -149,9 +151,13 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
 
     @Override
     public void onGridMenuClicked(ProfileOptionsGridItem item) {
-        switch (item){
+        switch (item) {
             case MyProduct: {
                 this.startActivity(new Intent(this, ProductListActivity.class));
+                break;
+            }
+            case ShopSetting: {
+                startActivity(new Intent(this, SellerShopSetting.class));
                 break;
             }
 //

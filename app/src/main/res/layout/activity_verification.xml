@@ -138,11 +138,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="3"
                                 android:layout_marginBottom="2sp"
+                                android:fontFamily="@font/sf_ui_semibold"
+                                android:text="3"
                                 android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:fontFamily="@font/sf_ui_semibold"/>
+                                android:textSize="15sp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -200,9 +200,9 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="3sp"
                                 android:gravity="start"
                                 android:text="Store\nDetails"
-                                android:layout_marginLeft="3sp"
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -278,79 +278,111 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_15sdp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.AppTheme.TextInputLayoutList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/phone_no"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.AppTheme.TextInputLayoutList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/email_address"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.AppTheme.TextInputLayoutList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/social_media_link"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_5sdp">
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/bt_next_verification"
-                        style="@style/Widget.AppCompat.Button.Borderless"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppTheme.TextInputLayoutList"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:background="@drawable/round_corner_green_gradient_bg"
-                        android:text="Next"
-                        android:textColor="@color/secondaryTextColor" />
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/phone_no"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppTheme.TextInputLayoutList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/email_address"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppTheme.TextInputLayoutList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/social_media_link"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppTheme.TextInputLayoutList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Linkedin Link"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppTheme.TextInputLayoutList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Instagram Link"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5sdp">
+
+                        <Button
+                            android:id="@+id/bt_next_verification"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/round_corner_green_gradient_bg"
+                            android:text="Next"
+                            android:textColor="@color/secondaryTextColor" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
     <LinearLayout
