@@ -57,18 +57,16 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
     private RecyclerView recyclerView;
     private List<RecyclerViewListItem> items = new ArrayList<>();
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_profile_fragment);
-        prepareItems();
         init();
     }
 
     @Override
     public Boolean showToolbar() {
-        return true;
+        return false;
     }
 
     public void init() {
@@ -78,6 +76,10 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        prepareItems();
+
+        adapter.updateData(items);
+
 
     }
 
@@ -88,7 +90,6 @@ public class SellerProfileFragment extends BaseActivity implements SellerProfile
         items.add(SellerProfileTransformer.getAccountSetting());
         items.add(new SimpleTitleItem("Referral & Credits", R.color.light_gray));
         items.add(SellerProfileTransformer.getReferralSetting());
-        adapter.updateData(items);
 
     }
 
