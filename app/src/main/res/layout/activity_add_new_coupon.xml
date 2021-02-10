@@ -71,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:button="@drawable/circle_check_drawable"
+            android:button="@drawable/green_circle_check_drawable"
             android:fontFamily="@font/sf_ui_regular"
             android:paddingLeft="@dimen/_5sdp"
             android:text="Percentage" />
@@ -80,7 +80,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:button="@drawable/circle_check_drawable"
+            android:button="@drawable/green_circle_check_drawable"
             android:fontFamily="@font/sf_ui_regular"
             android:paddingLeft="@dimen/_5sdp"
             android:text="Fixed " />
@@ -106,7 +106,7 @@
             android:layout_height="@dimen/_35sdp"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/_2sdp"
-            android:src="@drawable/ic_dollar" />
+            android:src="@drawable/ic_percent" />
 
         <TextView
             android:layout_width="0dp"
@@ -150,7 +150,7 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@drawable/circle_check_drawable"
+            android:button="@drawable/green_circle_check_drawable"
             android:fontFamily="@font/sf_ui_regular"
             android:paddingLeft="@dimen/_5sdp"
             android:text="Currently Active" />
@@ -159,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:button="@drawable/circle_check_drawable"
+            android:button="@drawable/green_circle_check_drawable"
             android:fontFamily="@font/sf_ui_regular"
             android:paddingLeft="@dimen/_5sdp"
             android:text="User for future purpose " />
