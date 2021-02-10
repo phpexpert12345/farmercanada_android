@@ -1,6 +1,8 @@
 package com.farmers.buyers.modules.home.view;
 
+import android.graphics.Rect;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.SpacesItemDecoration;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -33,17 +36,13 @@ public class HomeCategoriesViewHolder extends BaseViewHolder {
         adapter = new HomeCategoryAdapter();
         recyclerView = itemView.findViewById(R.id.home_category_view_holder_recyclerView);
         recyclerView.setAdapter(adapter);
-        int spacingInPixels = itemView.getContext().getResources().getDimensionPixelSize(R.dimen._8sdp);
-        recyclerView.addItemDecoration(new LinearSpacesItemDecoration(spacingInPixels));
+        recyclerView.addItemDecoration(new LinearSpacesItemDecoration(20));
         recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), HORIZONTAL, false));
 
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        if (adapter == null) {
-            Log.e("adapter", "null");
-        }
         this.adapter.updateData(((HomeCategoryListItem)items).homeCategoryItems);
     }
 }

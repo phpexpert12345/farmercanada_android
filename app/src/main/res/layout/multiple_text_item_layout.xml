@@ -3,10 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/_12sdp"
-    android:layout_marginEnd="@dimen/_12sdp"
-    android:layout_marginTop="@dimen/_8sdp"
-    android:layout_marginBottom="@dimen/_8sdp">
+ >
 
     <TextView
         android:id="@+id/multiple_text_item_name_tv"
@@ -17,10 +14,8 @@
         android:textColor="@color/primaryTextColor"
         android:paddingLeft="@dimen/_16sdp"
         android:paddingRight="@dimen/_16sdp"
-        android:paddingBottom="@dimen/_5sdp"
         android:paddingTop="@dimen/_5sdp"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/_5sdp"
         android:background="@drawable/gray_round_border_bg"/>
 
 </LinearLayout>

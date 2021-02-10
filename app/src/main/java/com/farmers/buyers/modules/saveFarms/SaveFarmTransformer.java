@@ -30,7 +30,6 @@ public class SaveFarmTransformer {
         listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
         listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
         listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
         return listItem;
     }
 }

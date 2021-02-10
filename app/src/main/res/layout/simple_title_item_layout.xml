@@ -2,16 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/_8sdp"
-    android:layout_marginRight="@dimen/_8sdp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/simple_title_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_ui_regular"
-        android:padding="@dimen/_5sdp"
         android:textColor="@color/primaryTextColor"
         tools:text="Title"
         android:textSize="@dimen/_12ssp"/>

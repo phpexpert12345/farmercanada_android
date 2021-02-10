@@ -25,6 +25,7 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.seller.coupon.list.ManageCouponActivity;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
+import com.farmers.buyers.modules.seller.sellerProfile.SellerProfileActivity;
 import com.farmers.seller.modules.broadcastMessage.BroadCastMessageTransformer;
 import com.farmers.seller.modules.broadcastMessage.activity.BroadcastMessageActivity;
 import com.farmers.seller.modules.broadcastMessage.adapter.BroadCastMessageListAdapter;
@@ -203,7 +204,7 @@ public class OurOrdersActivity extends BaseActivity implements NavigationView.On
         } else if (item.getId() == 6) {
 
         } else if (item.getId() == 7) {
-
+            startActivity(new Intent(OurOrdersActivity.this, SellerProfileActivity.class));
         }
     }
 }

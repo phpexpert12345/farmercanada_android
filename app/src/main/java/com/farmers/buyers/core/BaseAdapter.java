@@ -55,7 +55,6 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.e("items", items.toString());
         return items.size();
     }
 

@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/_8sdp"
-    android:layout_marginTop="@dimen/_5sdp"
-    android:layout_marginRight="@dimen/_8sdp"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
