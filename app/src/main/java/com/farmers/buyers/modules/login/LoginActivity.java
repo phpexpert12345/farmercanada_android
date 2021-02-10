@@ -36,8 +36,6 @@ public class LoginActivity extends BaseActivity {
             }
             return null;
         }
-
-
     };
 
     private LoginViewModel viewModel = factory.create(LoginViewModel.class);

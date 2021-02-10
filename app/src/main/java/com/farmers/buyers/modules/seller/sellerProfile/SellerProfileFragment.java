@@ -126,7 +126,7 @@ public class SellerProfileFragment extends BaseFragment implements SellerProfile
 
             case LOGOUT: {
                 SharedPreferenceManager.getInstance().clearUserInfo();
-                startActivity(new Intent(baseActivity, LoginActivity.class) );
+                startActivity(new Intent(baseActivity, LoginActivity.class));
                 baseActivity.finish();
                 break;
             }
@@ -136,7 +136,7 @@ public class SellerProfileFragment extends BaseFragment implements SellerProfile
 
     @Override
     public void onGridMenuClicked(ProfileOptionsGridItem item) {
-        switch (item){
+        switch (item) {
             case ORDERS: {
                 baseActivity.startActivity(new Intent(baseActivity, SubOrderListActivity.class));
                 break;

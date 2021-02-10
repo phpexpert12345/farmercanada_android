@@ -2,6 +2,8 @@
     <string name="app_name">Farmers</string>
     <string name="skip">Skip</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">google_key</string>
 
     <string name="onBoardingHeader">Lorem ipsum dolor</string>
@@ -53,7 +55,7 @@
     <string name="minimum_pickup_amount">Enter Minimum Pickup Amount</string>
     <string name="phone_no">Phone Number</string>
     <string name="email_address">Email Address</string>
-    <string name="social_media_link">Social Media Link</string>
+    <string name="social_media_link">Facebook Link</string>
     <string name="select_document">Select Document</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
 
@@ -76,6 +78,4 @@
         <item>Verification</item>
         <item>Document\nUpload</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
