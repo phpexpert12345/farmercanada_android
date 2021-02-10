@@ -18,17 +18,37 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/half_round_bg"
-            android:gravity="center"
+            android:layout_height="@dimen/_110sdp"
+            android:background="@mipmap/top_green_bg"
             android:orientation="vertical">
+
+            <!--  <params.com.stepview.StatusViewScroller
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:entries="@array/seller_entries"
+                app:circleColor="@android:color/transparent"
+                app:currentCount="1"
+                app:currentDrawable="@drawable/white_circle"
+                app:incompleteDrawable="@drawable/yellow_circle"
+                app:lineColor="@color/white"
+                app:lineColorCurrent="@color/white"
+                app:lineColorIncomplete="@color/white"
+                app:lineWidth="@dimen/_1sdp"
+                app:stepCount="4"
+                app:textColorLabels="@color/white"
+                app:textColorLabelsCurrent="@color/white"
+                app:textColorLabelsIncomplete="@color/white"
+                app:textSizeLabels="15sp" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="@dimen/dp_15_px">
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -39,22 +59,22 @@
                     <LinearLayout
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:gravity="center">
+                        android:layout_weight="0.2">
 
                         <LinearLayout
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:background="@mipmap/unselect_circle"
                             android:gravity="center">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_semibold"
+                                android:gravity="center"
                                 android:text="1"
                                 android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textSize="15sp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -77,18 +97,18 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:background="@mipmap/unselect_circle"
                             android:gravity="center">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_semibold"
                                 android:text="2"
                                 android:textColor="@color/white"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textSize="15sp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -110,18 +130,19 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:background="@drawable/white_circle"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:background="@mipmap/select_circle"
                             android:gravity="center">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="3"
+                                android:layout_marginBottom="2sp"
                                 android:textColor="@color/white"
                                 android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:fontFamily="@font/sf_ui_semibold"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -143,9 +164,9 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:background="@drawable/yellow_circle"
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:background="@mipmap/unselect_circle"
                             android:gravity="center">
 
                             <TextView
@@ -177,10 +198,11 @@
                             android:gravity="center">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/_25sdp"
+                                android:gravity="start"
                                 android:text="Store\nDetails"
+                                android:layout_marginLeft="3sp"
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
                         </LinearLayout>

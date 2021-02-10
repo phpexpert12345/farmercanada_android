@@ -21,7 +21,6 @@ public class CardConstant {
         }
         return cardConstant;
     }
-
     public static final int HOME_HEADER_ADAPTER                 = 1;
     public static final int HOME_FARM_LIST_ITEM_ADAPTER         = 2;
     public static final int HOME_CATEGORY_LIST_ITEM_ADAPTER     = 3;
@@ -68,7 +67,7 @@ public class CardConstant {
     public static final int SELLER_PROFILE_HEADER_ADAPTER       = 44;
     public static final int SELLER_PROFILE_ITEM_ADAPTER         = 45;
     public static final int MANAGE_COUPON_ITEM_ADAPTER          = 46;
-
-
-
+    public static final int OUR_ORDER_LIST_ADAPTER              = 47;
+    public static final int ONGOING_ORDER_LIST_ADAPTER          = 48;
+    public static final int PAST_ORDER_LIST_ADAPTER             = 49;
 }

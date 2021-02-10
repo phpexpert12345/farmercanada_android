@@ -12,9 +12,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/half_round_bg"
-        android:gravity="center"
+        android:layout_height="@dimen/_110sdp"
+        android:background="@mipmap/top_green_bg"
         android:orientation="vertical">
 
         <!--  <params.com.stepview.StatusViewScroller
@@ -39,9 +38,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/dp_15_px">
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,22 +53,23 @@
                 <LinearLayout
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="0.2">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:background="@drawable/white_circle"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@mipmap/select_circle"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="2sp"
+                            android:fontFamily="@font/sf_ui_semibold"
+                            android:gravity="center"
                             android:text="1"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -90,9 +92,9 @@
                     android:gravity="center">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:background="@drawable/yellow_circle"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:background="@mipmap/unselect_circle"
                         android:gravity="center">
 
                         <TextView
@@ -123,9 +125,9 @@
                     android:gravity="center">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:background="@drawable/yellow_circle"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:background="@mipmap/unselect_circle"
                         android:gravity="center">
 
                         <TextView
@@ -156,9 +158,9 @@
                     android:gravity="center">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:background="@drawable/yellow_circle"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:background="@mipmap/unselect_circle"
                         android:gravity="center">
 
                         <TextView
@@ -282,7 +284,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -405,8 +406,7 @@
                     <ImageView
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:rotation="-90"
-                        android:src="@drawable/ic_arrow_back" />
+                        android:src="@mipmap/dropdown_icon" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -444,8 +444,7 @@
                     <ImageView
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:rotation="-90"
-                        android:src="@drawable/ic_arrow_back" />
+                        android:src="@mipmap/dropdown_icon" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -478,12 +477,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/ic_camera"
+                        android:drawableRight="@mipmap/clock_icon"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
                         android:text="Start Time 10:00 Am"
                         android:textColor="@color/light_gray"
-                        android:textSize="14sp" />
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -499,12 +498,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/ic_camera"
+                        android:drawableRight="@mipmap/clock_icon"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
                         android:text="End Time 10:00 Am"
                         android:textColor="@color/light_gray"
-                        android:textSize="14sp" />
+                        android:textSize="13sp" />
 
                 </LinearLayout>
             </LinearLayout>
