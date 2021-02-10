@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".modules.seller.product.ProductListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_add_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:gravity="end">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@mipmap/plus_icon" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -10,7 +10,9 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.app.AppControllerContract;
 import com.farmers.buyers.common.SpacesItemDecoration;
+import com.farmers.buyers.common.model.SimpleDividerItem;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -43,7 +45,8 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class MyProfileFragment extends BaseFragment implements MyProfileHeaderViewHolder.MyProfileItemClickListener, SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
+public class MyProfileFragment extends BaseFragment implements MyProfileHeaderViewHolder.MyProfileItemClickListener,
+        SimpleRowViewHolder.OnSimpleRowItemClickedListener, MyProfileOptionItemViewHolder.OnProfileOptionsGridMenuClickedListener {
 
     private MyProfileAdapter adapter;
     private RecyclerView recyclerView;
@@ -68,7 +71,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.my_profile_recyclerView);
         adapter = new MyProfileAdapter(this, this, this);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 50, false));
+
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -78,11 +82,11 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     private void prepareItems() {
         items.add(MyProfileTransformer.getProfileHeader());
         items.add(MyProfileTransformer.getProfileMenuItems());
-        items.add(new SimpleTitleItem("Account Setting"));
+        items.add(new SimpleTitleItem("Account Setting", R.color.light_gray));
         items.add(MyProfileTransformer.getAccountSetting());
-        items.add(new SimpleTitleItem("Become a Vendor"));
+        items.add(new SimpleTitleItem("Become a Vendor", R.color.light_gray));
         items.add(MyProfileTransformer.getRoleSetting());
-        items.add(new SimpleTitleItem("Referral & Credits"));
+        items.add(new SimpleTitleItem("Referral & Credits", R.color.light_gray));
         items.add(MyProfileTransformer.getReferralSetting());
         adapter.updateData(items);
 
@@ -137,7 +141,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
             case LOGOUT: {
                 SharedPreferenceManager.getInstance().clearUserInfo();
-                startActivity(new Intent(baseActivity, LoginActivity.class) );
+                startActivity(new Intent(baseActivity, LoginActivity.class));
                 baseActivity.finish();
                 break;
             }
@@ -147,7 +151,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     @Override
     public void onGridMenuClicked(ProfileOptionsGridItem item) {
-        switch (item){
+        switch (item) {
             case ORDERS: {
                 baseActivity.startActivity(new Intent(baseActivity, SubOrderListActivity.class));
                 break;

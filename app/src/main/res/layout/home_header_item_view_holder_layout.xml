@@ -3,9 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/_10sdp"
-    android:layout_marginTop="@dimen/_10sdp"
-    android:layout_marginRight="@dimen/_10sdp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -29,7 +26,6 @@
             android:id="@+id/home_header_become_seller_ll"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_8sdp"
             android:layout_weight="0.6"
             android:gravity="end"
             android:orientation="horizontal"
@@ -64,7 +60,8 @@
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_notification_gray" />
+                android:src="@drawable/ic_notification_gray"
+                android:layout_marginRight="@dimen/_8sdp"/>
         </LinearLayout>
     </LinearLayout>
 

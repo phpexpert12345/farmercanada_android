@@ -97,36 +97,4 @@ public class AccountDetailsActivity extends BaseActivity implements View.OnClick
         dialog.getWindow().setAttributes(lp);
         dialog.show();
     }
-
-    public void order_track_dialog(Activity activity) {
-
-        final Dialog dialog = new Dialog(activity, R.style.NewDialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.order_track_dialog);
-
-        Button bt_order_track = dialog.findViewById(R.id.bt_order_track);
-        Button bt_continue = dialog.findViewById(R.id.bt_continue);
-
-        bt_continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        bt_order_track.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-    }
 }

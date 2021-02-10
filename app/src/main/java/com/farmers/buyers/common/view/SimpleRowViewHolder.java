@@ -28,6 +28,7 @@ public class SimpleRowViewHolder extends BaseViewHolder {
     private ImageView rightImage;
     private TextView titleTv;
     private LinearLayout rowItemLl;
+    private View dividerView;
     private RelativeLayout simpleLayout;
     OnSimpleRowItemClickedListener rowItemClickedListener;
 
@@ -49,9 +50,18 @@ public class SimpleRowViewHolder extends BaseViewHolder {
             rightImage = view.findViewById(R.id.simple_row_item_right_imageView);
             titleTv = view.findViewById(R.id.simple_row_item_title_tv);
             simpleLayout = view.findViewById(R.id.simple_row_layout);
+            dividerView = view.findViewById(R.id.simple_row_item_divider_item);
             leftImage.setImageResource(((SimpleRowListItem)items).getItem().get(i).getLeftImageUri());
             rightImage.setImageResource(((SimpleRowListItem)items).getItem().get(i).getRightImageUri());
             titleTv.setText(((SimpleRowListItem)items).getItem().get(i).getTitle());
+
+            if (item.getItem().size()-1 == i ){
+                dividerView.setVisibility(View.GONE);
+            }
+            else {
+                dividerView.setVisibility(View.VISIBLE);
+
+            }
             rowItemLl.addView(view);
 
             final int finalI = i;

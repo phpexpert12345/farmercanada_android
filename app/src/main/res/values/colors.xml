@@ -29,8 +29,9 @@
     <color name="light_green">#D6F6DB</color>
     <color name="middle_red">#FDEAEB</color>
     <color name="orange">#F47920</color>
-    <color name="green">#10A100</color>
-    <color name="green_light">#3DE32A</color>
+    <color name="green">#309245</color>
+    <color name="green_light">#0c7321</color>
+
     <color name="reset_bg">#DF5159</color>
 
     <color name="heading_text_color">#424242</color>

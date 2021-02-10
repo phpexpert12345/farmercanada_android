@@ -10,15 +10,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardUseCompatPadding="true">
+          >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,9 +48,9 @@
                             android:layout_height="wrap_content"
                             android:checked="false"
                             android:text="Notify me on the chat"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            android:textSize="@dimen/_12sdp" />
+                            android:background="@null"
+                            android:textSize="@dimen/_12sdp"
+                            />
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="match_parent"
