@@ -23,10 +23,10 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<LoginApiModel> getUserLogin(@Url String url, @Field("mobile") String mobile, @Field("password") String password);
+    Call<LoginApiModel> getUserLogin(@Url String url, @Field("mobile") String mobile, @Field("password") String password,@Field("user_type") Integer user_type);
 
 
     @FormUrlEncoded
     @POST
-    Call<SignUpApiModel> doUserSignUp(@Url String url, @Field("name") String name,@Field("mobile") String mobile,@Field("email") String email,@Field("password") String password);
+    Call<SignUpApiModel> doUserSignUp(@Url String url, @Field("account_name") String name,@Field("account_mobile") String mobile,@Field("account_email") String email,@Field("account_password") String password,@Field("account_type") Integer account_type,@Field("account_country") String account_country,@Field("account_state") String account_state,@Field("account_city") String account_city,@Field("account_address") String account_address,@Field("account_lat") String account_lat,@Field("account_long") String account_long,@Field("account_phone_code") String account_phone_code,@Field("device_id") String device_id,@Field("device_platform") String device_platform);
 }
