@@ -21,7 +21,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity"></activity>
+        <activity android:name=".modules.seller.sellerProfile.SellerProfileFragment"/>
+        <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity"/>
+
         <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />
         <activity android:name=".modules.seller.sellerProfile.editProfile.SellerShopSetting" />
         <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity" />
