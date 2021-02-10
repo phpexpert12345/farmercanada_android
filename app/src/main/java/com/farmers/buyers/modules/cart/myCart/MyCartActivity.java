@@ -53,6 +53,28 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
 
         prepareData();
         init();
+
+
+        SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
+            @Override
+            public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List buffer) {
+
+                buffer.add(new MyButton(MyCartActivity.this, R.drawable.ic_delete_round, Color.parseColor("#FFFFFFFF"),
+                        new SwipeControllerActions() {
+                            @Override
+                            public void onLeftClicked(int position) {
+                                super.onLeftClicked(position);
+                            }
+                        }
+                ));
+
+            }
+        };
+
+
+
+        ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
+        helper.attachToRecyclerView(recyclerView);
     }
 
     private void init() {

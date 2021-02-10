@@ -32,6 +32,7 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
     private FarmDetailHeaderAdapter adapter;
     private ImageView backImage;
     private LinearLayout indicatorLl;
+    private ViewPager2 viewPager;
     private Handler handler;
     private Runnable runnable;
     private int page = 0;
@@ -45,7 +46,7 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
 
     public FarmDetailHeaderViewHolder(@NonNull ViewGroup parent, final FarmHeaderClickListener listener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_header_layout));
-        ViewPager2 viewPager = itemView.findViewById(R.id.farm_Detail_viewPager);
+        viewPager = itemView.findViewById(R.id.farm_Detail_viewPager);
         backImage = itemView.findViewById(R.id.farm_detail_header_back_img);
         indicatorLl = itemView.findViewById(R.id.farm_detail_header_indicator_ll);
         handler = new Handler();
@@ -64,10 +65,32 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
+        final FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
         adapter.updateData(((FarmDetailHeaderListItem) items).getItem());
 
         addBottomDots(0, item.getItem().size());
+
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                addBottomDots(position, item.getItem().size());
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                addBottomDots(position, item.getItem().size());
+                super.onPageSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
+
+
 
         toggle = itemView.findViewById(R.id.toggleButton1);
         deliveryTv = itemView.findViewById(R.id.app_toggle_delivery_tv);

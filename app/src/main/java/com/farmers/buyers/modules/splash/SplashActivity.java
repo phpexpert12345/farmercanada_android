@@ -7,9 +7,18 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
+import com.farmers.buyers.app.AppController;
+import com.farmers.buyers.app.AppControllerContract;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.onBoarding.OnBoardingActivity;
+import com.farmers.buyers.modules.seller.addProduct.AddProductActivity;
+import com.farmers.buyers.modules.seller.product.ProductListActivity;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 public class SplashActivity extends AppCompatActivity {
+
+    private AppController appControllerContract = AppController.get();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +29,16 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
-                startActivity(intent);
-                finish();
+                if (appControllerContract.getIsLoggedIn()) {
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         }, 5000);
     }

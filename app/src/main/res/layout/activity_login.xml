@@ -46,7 +46,7 @@
                 android:text="Seller"
                 android:textSize="@dimen/_14ssp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:fontFamily="@font/sf_ui_semibold"
+                android:fontFamily="@font/sf_ui_regular"
                 android:button="@drawable/circle_check_drawable"
                 android:paddingLeft="@dimen/_5sdp"/>
             <RadioButton
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="Buyer"
                 android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/sf_ui_semibold"
+                android:fontFamily="@font/sf_ui_regular"
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:button="@drawable/circle_check_drawable"
                 android:paddingLeft="@dimen/_5sdp"/>
@@ -78,7 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="9876540982" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,14 +93,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="password"
+                android:inputType="textPassword"/>
+
 
         </com.google.android.material.textfield.TextInputLayout>
 

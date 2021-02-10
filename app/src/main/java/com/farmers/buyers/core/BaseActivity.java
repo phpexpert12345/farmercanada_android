@@ -56,6 +56,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void setupToolbar(ToolbarConfig toolbarConfig) {
         mTextViewScreenTitle.setText(toolbarConfig.title);
+        if (toolbarConfig.backButtonImg != 0) {
+            mImageButtonBack.setImageResource(toolbarConfig.backButtonImg);
+        }
         mImageButtonBack.setOnClickListener(toolbarConfig.onBackButtonClickListener);
         if (toolbarConfig.showBackButton) {
             mImageButtonBack.setVisibility(View.VISIBLE);
@@ -97,10 +100,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         View.OnClickListener onBackButtonClickListener;
         Boolean showMenuButton;
         ToolbarMenuConfig menuConfig;
+        int backButtonImg = 0;
 
         public ToolbarConfig(String title, Boolean showBackButton, View.OnClickListener backButtonClickListener,
                              Boolean showMenuButton, ToolbarMenuConfig toolbarMenuConfig) {
             this.title = title;
+            this.showBackButton = showBackButton;
+            this.onBackButtonClickListener = backButtonClickListener;
+            this.showMenuButton = showMenuButton;
+            this.menuConfig = toolbarMenuConfig;
+
+        }
+        public ToolbarConfig(String title, Boolean showBackButton, int backIcon, View.OnClickListener backButtonClickListener,
+                             Boolean showMenuButton, ToolbarMenuConfig toolbarMenuConfig) {
+            this.title = title;
+            this.backButtonImg = backIcon;
             this.showBackButton = showBackButton;
             this.onBackButtonClickListener = backButtonClickListener;
             this.showMenuButton = showMenuButton;

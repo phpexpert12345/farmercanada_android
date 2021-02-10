@@ -30,10 +30,16 @@
     <color name="middle_red">#FDEAEB</color>
     <color name="orange">#F47920</color>
     <color name="green">#10A100</color>
+    <color name="green_light">#3DE32A</color>
     <color name="reset_bg">#DF5159</color>
 
     <color name="heading_text_color">#424242</color>
 
     <color name="separator_color">#EEEEEE</color>
+
+    <color name="secondaryBtnColor">#429345</color>
+    <color name="greenTextColor">#10A100</color>
+
+
 
 </resources>

@@ -25,7 +25,6 @@ public class LinearSpacesItemDecoration extends RecyclerView.ItemDecoration {
         outRect.left = space;
         outRect.right = space;
         outRect.bottom = space;
-        outRect.top    = space;
-
+//        outRect.top    = space;
     }
 }
