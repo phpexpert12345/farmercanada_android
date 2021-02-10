@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ public class LoginActivity extends BaseActivity {
     private TextView registerTv, forgotPassword;
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
+    private RadioGroup radioGroup;
+    private int role;  //todo 0 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
     @Override
@@ -85,6 +88,7 @@ public class LoginActivity extends BaseActivity {
 
             }
         });
+
     }
 
     private void init() {
@@ -93,6 +97,7 @@ public class LoginActivity extends BaseActivity {
         loginBtn = findViewById(R.id.login_btn);
         mobileEt = findViewById(R.id.login_email_et);
         passwordEt = findViewById(R.id.login_password_et);
+        radioGroup = findViewById(R.id.login_radio_group);
 
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
@@ -110,9 +115,15 @@ public class LoginActivity extends BaseActivity {
                     }
                     case SUCCESS: {
                         dismissLoader();
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                        finish();
+                        if (role == 1) {
+                            startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
+                        }
+                        else {
+                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            finish();
+                        }
                         break;
+
 
                     }
                 }

@@ -11,6 +11,10 @@ public enum ProfileOptionsGridItem {
     ORDERS,
     RATING_REVIEW,
     ADDRESS,
-    PAYMENTS;
+    PAYMENTS,
+    MyProduct,
+    MyEarning,
+    MyOrder,
+    ShopSetting;
 
 }

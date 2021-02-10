@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.farmers.buyers" >
+    package="com.farmers.buyers">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,10 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
-        <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity"/>
-        <activity android:name=".modules.seller.coupon.addCoupon.AddNewCouponActivity" >
-        </activity>
+        <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity"></activity>
+        <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />
+        <activity android:name=".modules.seller.sellerProfile.editProfile.SellerEditProfile" />
+        <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity" />
+        <activity android:name=".modules.seller.coupon.addCoupon.AddNewCouponActivity" />
         <activity android:name=".modules.seller.coupon.list.ManageCouponActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.verification.VerificationActivity" />
@@ -57,11 +58,8 @@
         <activity android:name=".modules.location.LocationAccessActivity" />
         <activity android:name=".modules.onBoarding.OnBoardingActivity" />
         <activity android:name=".modules.accountDetails.AccountDetailsActivity" />
-        <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity">
-
-        </activity>
-
-        <activity android:name=".modules.splash.SplashActivity" >
+        <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity" />
+        <activity android:name=".modules.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

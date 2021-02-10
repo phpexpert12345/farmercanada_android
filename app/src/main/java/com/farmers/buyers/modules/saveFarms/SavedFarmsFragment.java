@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.SpacesItemDecoration;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.saveFarms.adapter.SavedFarmsAdapter;
@@ -44,7 +45,7 @@ public class SavedFarmsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.saved_farms_recyclerView);
         adapter = new SavedFarmsAdapter();
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 10, false));
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.GRID));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         items.addAll(SaveFarmTransformer.getFarmListItem());
         adapter.updateData(items);

@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.home.view;
 
+import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -36,6 +37,7 @@ public class HomeFilterItemViewHolder extends BaseViewHolder {
         recyclerView = itemView.findViewById(R.id.multiple_text_item_recyclerView);
         adapter = new HomeFilterTypeAdapter();
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new LinearSpacesItemDecoration(20));
         recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), HORIZONTAL, false));
 
     }

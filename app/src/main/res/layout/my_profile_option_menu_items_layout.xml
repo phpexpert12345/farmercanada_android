@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/my_profile_option_img_tv"
-        android:layout_width="@dimen/dp_20_px"
-        android:layout_height="@dimen/dp_20_px"
+        android:layout_width="@dimen/dp_30_px"
+        android:layout_height="@dimen/dp_30_px"
         android:layout_marginLeft="@dimen/_8sdp"
         android:layout_marginRight="@dimen/_8sdp"
         android:src="@drawable/ic_address" />

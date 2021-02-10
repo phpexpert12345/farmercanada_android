@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.SpacesItemDecoration;
+import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.profile.adapter.MyProfileOptionItemAdapter;
@@ -30,7 +31,7 @@ public class MyProfileOptionMenuHolder extends BaseViewHolder {
         recyclerView = itemView.findViewById(R.id.my_profile_option_item_recyclerView);
         adapter = new MyProfileOptionItemAdapter(profileOptionsGridMenuClicked);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 50, false));
+        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 40, false));
         recyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(), 2));
     }
 

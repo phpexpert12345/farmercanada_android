@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
@@ -55,9 +57,9 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
 
         adapter = new HomeAdapter(HomeFragment.this);
         recyclerView.setAdapter(adapter);
-
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -69,6 +71,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
                         adapter.getItemAt(position) instanceof HomeFilterListItems ||
                         adapter.getItemAt(position) instanceof DeliveryTypeItems ||
                         adapter.getItemAt(position) instanceof HomeFarmTypeItem) {
+
                     return 2;
                 } else {
                     return 1;

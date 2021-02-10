@@ -27,18 +27,18 @@ public class SellerProfileTransformer {
 
     public static MyProfileOptionItem getProfileMenuItems() {
         List<RecyclerViewListItem> itemList = new ArrayList<>();
-        itemList.add(new MyProfileOptionMenuItems("My Products", R.drawable.ic_orders, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.ORDERS));
-        itemList.add(new MyProfileOptionMenuItems("My Orders", R.drawable.ic_menu_item_dark_red_location, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.ADDRESS));
-        itemList.add(new MyProfileOptionMenuItems("My Earnings", R.drawable.ic_rating_review, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.RATING_REVIEW));
-        itemList.add(new MyProfileOptionMenuItems("Shop Setting", R.drawable.ic_payments, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.PAYMENTS));
+        itemList.add(new MyProfileOptionMenuItems("My Products", R.drawable.ic_my_products, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.MyProduct));
+        itemList.add(new MyProfileOptionMenuItems("My Orders", R.drawable.ic_my_orders, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.MyOrder));
+        itemList.add(new MyProfileOptionMenuItems("My Earnings", R.drawable.ic_my_earnings, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.MyEarning));
+        itemList.add(new MyProfileOptionMenuItems("Shop Setting", R.drawable.ic_shop_setting, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.ShopSetting));
         return new MyProfileOptionItem(itemList);
     }
 
     public static SimpleRowListItem getAccountSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
-        accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.edit_profile_icon, 0, ProfileItem.EDIT_PROFILE));
-        accountSettingItem.add(new SimpleRowItem("Change Password", R.drawable.ic_key, 0, ProfileItem.CHANGE_PASSWORD));
-        accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_notification_red, R.drawable.ic_forward, ProfileItem.NOTIFICATION));
+        accountSettingItem.add(new SimpleRowItem("Edit Profile", R.drawable.ic_edit_profile_green, 0, ProfileItem.EDIT_PROFILE));
+        accountSettingItem.add(new SimpleRowItem("Change Password", R.drawable.ic_key_green, 0, ProfileItem.CHANGE_PASSWORD));
+        accountSettingItem.add(new SimpleRowItem("Notifications", R.drawable.ic_notification_green, R.drawable.ic_forward, ProfileItem.NOTIFICATION));
         return new SimpleRowListItem(accountSettingItem);
     }
 

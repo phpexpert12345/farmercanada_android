@@ -2,10 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginLeft="@dimen/_8sdp"
-    android:layout_marginRight="@dimen/_8sdp"
-    android:layout_marginTop="@dimen/_8sdp">
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/multiple_text_item_recyclerView"

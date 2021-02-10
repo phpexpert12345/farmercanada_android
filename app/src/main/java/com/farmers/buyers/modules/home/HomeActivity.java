@@ -11,10 +11,10 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.modules.cart.myCart.MyCartFragment;
 import com.farmers.buyers.modules.profile.MyProfileFragment;
 import com.farmers.buyers.modules.saveFarms.SavedFarmsFragment;
+import com.farmers.buyers.modules.seller.sellerProfile.SellerProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

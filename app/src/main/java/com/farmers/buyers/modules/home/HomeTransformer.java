@@ -47,7 +47,6 @@ public class HomeTransformer {
         listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", false));
         listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", false));
         listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", false));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", false));
         return listItem;
     }
 
@@ -55,7 +54,7 @@ public class HomeTransformer {
         List<RecyclerViewListItem> categoryItems = new ArrayList<>();
         categoryItems.add(new HomeCategoryItems("vegetables", R.drawable.ic_category_one));
         categoryItems.add(new HomeCategoryItems("grocery", R.drawable.ic_category_two));
-        categoryItems.add(new HomeCategoryItems("meet", R.drawable.ic_category_three));
+        categoryItems.add(new HomeCategoryItems("meat", R.drawable.ic_category_three));
         categoryItems.add(new HomeCategoryItems("wine", R.drawable.ic_category_four));
         return new HomeCategoryListItem(categoryItems);
     }

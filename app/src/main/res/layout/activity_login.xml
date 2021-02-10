@@ -35,12 +35,14 @@
             android:textStyle="bold" />
 
         <RadioGroup
+            android:id="@+id/login_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal">
             <RadioButton
+                android:id="@+id/login_seller_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seller"
@@ -50,6 +52,7 @@
                 android:button="@drawable/circle_check_drawable"
                 android:paddingLeft="@dimen/_5sdp"/>
             <RadioButton
+                android:id="@+id/login_buyer_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buyer"
