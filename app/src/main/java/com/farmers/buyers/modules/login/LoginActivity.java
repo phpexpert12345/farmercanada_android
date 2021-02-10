@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
@@ -109,7 +110,7 @@ public class LoginActivity extends BaseActivity {
                     }
                     case SUCCESS: {
                         dismissLoader();
-                        startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         finish();
                         break;
 

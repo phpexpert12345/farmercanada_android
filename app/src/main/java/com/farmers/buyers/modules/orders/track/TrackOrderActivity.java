@@ -12,6 +12,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.orders.track.adapter.TrackOrderAdapter;
+import com.farmers.buyers.modules.orders.track.model.TrackOrderCountItem;
 import com.farmers.buyers.modules.orders.track.model.TrackOrderHeaderItems;
 
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class TrackOrderActivity extends BaseActivity {
 
     private void prepareItems() {
         items.add(TrackOrderTransformer.getTackOrderHeader());
+        items.add(new TrackOrderCountItem());
         items.addAll(TrackOrderTransformer.getTrackOrder());
     }
 
