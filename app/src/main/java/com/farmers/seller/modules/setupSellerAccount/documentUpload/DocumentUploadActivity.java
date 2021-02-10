@@ -2,6 +2,7 @@ package com.farmers.seller.modules.setupSellerAccount.documentUpload;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.modules.login.LoginActivity;
+import com.farmers.buyers.modules.seller.product.ProductListActivity;
 
 public class DocumentUploadActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,7 +41,8 @@ public class DocumentUploadActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.bt_next_document_upload:
-                //  startActivity(new Intent(VerificationActivity.this, DocumentUploadActivity.class));
+                startActivity(new Intent(DocumentUploadActivity.this, ProductListActivity.class));
+                // finish();
                 break;
         }
     }
