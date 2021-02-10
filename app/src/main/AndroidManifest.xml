@@ -16,10 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-
         android:usesCleartextTraffic="true">
-        <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity"></activity>
-        android:usesCleartextTraffic="true" >
+
+        <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity"/>
         <activity android:name=".modules.seller.coupon.addCoupon.AddNewCouponActivity" >
         </activity>
         <activity android:name=".modules.seller.coupon.list.ManageCouponActivity" />
@@ -61,7 +60,6 @@
         <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity">
 
         </activity>
-        <activity android:name=".modules.splash.SplashActivity">
 
         <activity android:name=".modules.splash.SplashActivity" >
             <intent-filter>
