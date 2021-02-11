@@ -8,19 +8,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.SpacesItemDecoration;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseActivity;
+import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.MyAddressActivity;
+import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.changePassword.sellerChangePassword.SellerChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.inbox.NotificationsActivity;
 import com.farmers.buyers.modules.login.LoginActivity;
+import com.farmers.buyers.modules.orders.subOrderList.SubOrderListActivity;
+import com.farmers.buyers.modules.profile.EditProfileActivity;
+import com.farmers.buyers.modules.profile.MyProfileTransformer;
 import com.farmers.buyers.modules.profile.NotificationBottomSheetDialogFragment;
+import com.farmers.buyers.modules.profile.adapter.MyProfileAdapter;
 import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
 import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
+import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
 import com.farmers.buyers.modules.profile.view.MyProfileOptionItemViewHolder;
+import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.seller.sellerProfile.adapter.SellerProfileAdapter;
@@ -59,16 +70,20 @@ public class SellerProfileActivity extends BaseActivity implements SellerProfile
 
     @Override
     public Boolean showToolbar() {
-        return true;
+        return false;
     }
 
     public void init() {
         recyclerView = findViewById(R.id.seller_profile_recyclerView);
         adapter = new SellerProfileAdapter(this, this, this);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         adapter.updateData(items);
+
+
     }
 
     private void prepareItems() {
@@ -78,6 +93,7 @@ public class SellerProfileActivity extends BaseActivity implements SellerProfile
         items.add(SellerProfileTransformer.getAccountSetting());
         items.add(new SimpleTitleItem("Referral & Credits", R.color.light_gray));
         items.add(SellerProfileTransformer.getReferralSetting());
+
     }
 
     @Override

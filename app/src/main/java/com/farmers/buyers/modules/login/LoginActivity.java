@@ -19,6 +19,7 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.login.model.LoginRequestParams;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
@@ -46,6 +47,7 @@ public class LoginActivity extends BaseActivity {
     private RadioGroup radioGroup;
     private int role;  //todo 0 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+    Integer user_type=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +83,8 @@ public class LoginActivity extends BaseActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                viewModel.doLogin(stateMachine, mobileEt.getText().toString(), passwordEt.getText().toString());
+                LoginRequestParams loginRequestParams=new LoginRequestParams(mobileEt.getText().toString(),passwordEt.getText().toString(),user_type);
+                viewModel.doLogin(stateMachine,loginRequestParams);
 
             }
         });
