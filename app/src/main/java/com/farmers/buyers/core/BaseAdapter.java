@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import kotlin.KotlinNullPointerException;
+
 /**
  * created by Mohammad Sajjad
  * on 25-01-2021 at 10:27
@@ -31,18 +33,19 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         viewGroup = parent;
-        BaseViewHolder viewHolder = null;
-
-        try {
-
-            DelegateInterface delegateInterface = (DelegateInterface) this.delegates.get(viewType);
-
-            viewHolder = delegateInterface != null ? delegateInterface.onCreateViewHolder(parent) : null;
-            throw new NoDelegateFoundException(viewType, this.getClass().getSimpleName());
-        } catch (NoDelegateFoundException e) {
-            e.printStackTrace();
+        DelegateInterface delegateInterface = this.delegates.get(viewType);
+        if (delegates != null) {
+            return delegateInterface.onCreateViewHolder(viewGroup);
         }
-        return viewHolder;
+        else {
+            try {
+                throw new NoDelegateFoundException(viewType, this.getClass().getSimpleName());
+            } catch (NoDelegateFoundException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
     }
 
     @Override
@@ -76,5 +79,10 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public abstract void initDelegate();
+
+    public void getNotifiedChange(int position){
+        notifyDataSetChanged();
+        notifyItemChanged(position);
+    }
 
 }
