@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.SwipeControllerActions;
 import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.BaseActivity;
@@ -82,6 +83,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         adapter = new MyCartAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         adapter.updateData(items);
 
         }
