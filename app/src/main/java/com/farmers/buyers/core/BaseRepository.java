@@ -32,7 +32,7 @@ public class BaseRepository {
                     responseCallback.onSuccess(response.body());
                 }
                 else  {
-                    responseCallback.onFailure(new StandardError(0, "","Something is wrong"));
+                    responseCallback.onFailure(new StandardError(0, "",response.message()));
                 }
             }
 

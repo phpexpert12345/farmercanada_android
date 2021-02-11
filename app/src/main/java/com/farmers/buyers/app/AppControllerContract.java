@@ -11,4 +11,6 @@ import org.jetbrains.annotations.NotNull;
 public interface AppControllerContract {
 
     Boolean getIsLoggedIn();
+
+    String getUserId();
 }

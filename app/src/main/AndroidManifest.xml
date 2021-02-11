@@ -21,14 +21,14 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".modules.seller.sellerProfile.SellerProfileFragment"/>
+        <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity"/>
         <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity"/>
 
         <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />
         <activity android:name=".modules.seller.sellerProfile.editProfile.SellerShopSetting" />
         <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity" />
         <activity android:name=".modules.seller.coupon.addCoupon.AddNewCouponActivity" />
-        <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.CreateMessageActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.CreateMessageActivity"/>
         <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.BroadcastMessageActivity" />
         <activity android:name="com.farmers.seller.modules.editProfile.SellerEditProfileActivity" />
         <activity android:name="com.farmers.seller.modules.referFriends.SellerReferFriendsActivity" />
@@ -76,7 +76,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

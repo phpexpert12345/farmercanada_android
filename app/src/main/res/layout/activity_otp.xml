@@ -56,9 +56,12 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/otp_number_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/phone_number" />
+                android:hint="@string/phone_number"
+                android:singleLine="true"
+                android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

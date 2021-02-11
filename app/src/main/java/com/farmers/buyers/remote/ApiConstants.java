@@ -12,5 +12,9 @@ public class ApiConstants {
     public static final String LOGIN = "login";
     public static final String SIGN_UP = "buyer/sign-up";
     public static final String REGIS = "register";
+    public static final String RESEND_OTP = "resendotp";
+    public static final String VERIFY_OTP = "verifyotp";
+
+
 
 }

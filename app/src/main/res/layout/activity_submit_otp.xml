@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/numberTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -48,6 +48,7 @@
             android:layout_gravity="center">
 
             <EditText
+                android:id="@+id/otp_edit_box1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -58,6 +59,7 @@
                 android:layout_margin="@dimen/dp_5_px"/>
 
             <EditText
+                android:id="@+id/otp_edit_box2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -68,6 +70,7 @@
                 android:layout_margin="@dimen/dp_5_px"/>
 
             <EditText
+                android:id="@+id/otp_edit_box3"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -78,6 +81,7 @@
                 android:layout_margin="@dimen/dp_5_px"/>
 
             <EditText
+                android:id="@+id/otp_edit_box4"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"

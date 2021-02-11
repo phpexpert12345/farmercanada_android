@@ -9,5 +9,7 @@ package com.farmers.buyers.storage;
 public enum StorageKey {
 
     isLoggedIn,
-    Token;
+    Token,
+    ComingFrom,
+    UserID;
 }

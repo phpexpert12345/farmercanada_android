@@ -66,4 +66,11 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+        ...
+        <!-- It helps change color when you press and slide on Switch -->
+        <style name="MyIOSSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">#F50000</item>
+            <item name="android:colorForeground">#888888</item>
+        </style>
+
 </resources>

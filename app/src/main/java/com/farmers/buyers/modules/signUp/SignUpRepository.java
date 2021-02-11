@@ -4,8 +4,12 @@ package com.farmers.buyers.modules.signUp;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
+import com.farmers.buyers.modules.signUp.model.SendOtpRequestParams;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpRequestParams;
+import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
+import com.farmers.buyers.modules.signUp.model.VerifyOtpRequestParams;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
 
@@ -47,6 +51,18 @@ public class SignUpRepository extends BaseRepository {
                 params.getDevice_id(),
                 params.getDevice_platform()
         );
+        makeRequest(call, responseCallback);
+    }
+
+
+    public void reSendOtp(SendOtpRequestParams params, ApiResponseCallback<SendOtpApiModel> responseCallback) {
+
+        Call<SendOtpApiModel> call = RetrofitBuilder.createServiceContract().requestOtp(ApiConstants.RESEND_OTP, params.getNumber());
+        makeRequest(call, responseCallback);
+    }
+
+    public void verifyOtp(VerifyOtpRequestParams params, ApiResponseCallback<VerifyOtpApiModel> responseCallback) {
+        Call<VerifyOtpApiModel> call = RetrofitBuilder.createServiceContract().doVerifyOtp(ApiConstants.VERIFY_OTP, params.getUserId(), params.getOtp());
         makeRequest(call, responseCallback);
     }
 

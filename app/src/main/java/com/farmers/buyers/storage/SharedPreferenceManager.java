@@ -43,6 +43,22 @@ public class SharedPreferenceManager {
         return (String) getSharedPreferences(StorageKey.Token.toString(), "");
     }
 
+    public void setIsComingFrom(int value) {
+        setSharedPreference(StorageKey.ComingFrom.toString(), value);
+    }
+
+    public int getIsComingFrom() {
+        return (int) getSharedPreferences(StorageKey.ComingFrom.toString(), 0);
+    }
+
+    public void setUserId(String value) {
+        setSharedPreference(StorageKey.UserID.toString(), value);
+    }
+
+    public String getUserId() {
+        return (String) getSharedPreferences(StorageKey.UserID.toString(), "");
+    }
+
 
 
     private void setSharedPreference(String key, Object value) {
