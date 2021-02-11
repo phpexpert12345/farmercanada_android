@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.cart.myCart;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.SwipeControllerActions;
+import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.checkout.CheckOutFromCartActivity;
@@ -49,7 +54,31 @@ public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder
         adapter = new MyCartAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         adapter.updateData(items);
+
+
+
+        SwipeHelper swipeHelper = new SwipeHelper(getContext(), recyclerView, 250) {
+            @Override
+            public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List buffer) {
+
+                buffer.add(new MyButton(getContext(), R.drawable.ic_delete_round, Color.parseColor("#FFFFFFFF"),
+                        new SwipeControllerActions() {
+                            @Override
+                            public void onLeftClicked(int position) {
+                                super.onLeftClicked(position);
+                            }
+                        }
+                ));
+
+            }
+        };
+
+
+
+        ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
+        helper.attachToRecyclerView(recyclerView);
     }
 
     private void prepareData() {

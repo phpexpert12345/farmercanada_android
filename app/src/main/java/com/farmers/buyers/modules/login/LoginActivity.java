@@ -83,8 +83,10 @@ public class LoginActivity extends BaseActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginRequestParams loginRequestParams=new LoginRequestParams(mobileEt.getText().toString(),passwordEt.getText().toString(),user_type);
-                viewModel.doLogin(stateMachine,loginRequestParams);
+//                LoginRequestParams loginRequestParams=new LoginRequestParams(mobileEt.getText().toString(),passwordEt.getText().toString(),user_type);
+//                viewModel.doLogin(stateMachine,loginRequestParams);
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                finish();
 
             }
         });
@@ -105,6 +107,7 @@ public class LoginActivity extends BaseActivity {
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
+
                         Toast.makeText(LoginActivity.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
                         break;
                     }

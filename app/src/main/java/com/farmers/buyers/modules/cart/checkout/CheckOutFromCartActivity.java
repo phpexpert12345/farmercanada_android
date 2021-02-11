@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.checkout.adapter.CheckOutCartItemAdapter;
@@ -52,6 +53,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         recyclerView = findViewById(R.id.check_out_from_cart_recyclerView);
         adapter = new CheckOutCartItemAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(50, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         adapter.updateData(items);
     }

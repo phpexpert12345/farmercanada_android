@@ -1,18 +1,24 @@
 package com.farmers.buyers.modules.address;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.SwipeControllerActions;
+import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.adapter.MyAddressAdapter;
 import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
+import com.farmers.buyers.modules.cart.myCart.MyCartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +57,40 @@ public class MyAddressActivity extends BaseActivity {
         adapter = new MyAddressAdapter();
 
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter.updateData(items);
+
+
+
+        SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
+            @Override
+            public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List buffer) {
+
+                buffer.add(new MyButton(MyAddressActivity.this, R.drawable.ic_delete_round, Color.parseColor("#FFFFFFFF"),
+                        new SwipeControllerActions() {
+                            @Override
+                            public void onLeftClicked(int position) {
+                                super.onLeftClicked(position);
+                            }
+                        }
+                ));
+
+                buffer.add(new MyButton(MyAddressActivity.this, R.drawable.ic_edit, Color.parseColor("#FFFFFFFF"), new SwipeControllerActions() {
+                    @Override
+                    public void onRightClicked(int position) {
+                        super.onRightClicked(position);
+                    }
+                }));
+
+            }
+        };
+
+
+
+        ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
+        helper.attachToRecyclerView(recyclerView);
 
     }
 
