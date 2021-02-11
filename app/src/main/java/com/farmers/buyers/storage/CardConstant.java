@@ -74,5 +74,6 @@ public class CardConstant {
     public static final int BROAD_CAST_MESSAGE_LIST_ADAPTER     = 51;
     public static final int SIDE_MENU_LIST_ADAPTER              = 52;
     public static final int CALENDER_ITEM_ADAPTER               = 53;
+    public static final int SINGLE_TEXT_ITEM_ADAPTER            = 54;
 
 }

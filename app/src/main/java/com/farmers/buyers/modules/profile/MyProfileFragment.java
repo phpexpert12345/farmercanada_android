@@ -139,6 +139,12 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
 
+            case NOTIFICATION: {
+                NotificationBottomSheetDialogFragment notifyme = new NotificationBottomSheetDialogFragment();
+                notifyme.show(baseActivity.getSupportFragmentManager(), notifyme.getTag());
+                break;
+            }
+
             case LOGOUT: {
                 SharedPreferenceManager.getInstance().clearUserInfo();
                 startActivity(new Intent(baseActivity, LoginActivity.class));

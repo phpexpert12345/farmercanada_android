@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
+import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.order.adapter.PlaceOrderSlotItemAdapter;
@@ -29,6 +30,7 @@ public class PlaceOrderSlotViewHolder extends BaseViewHolder {
         super(Extensions.inflate(parent, R.layout.place_order_slot_layout_holder));
         slotRecyclerView = itemView.findViewById(R.id.place_order_slot_recyclerView);
         adapter = new PlaceOrderSlotItemAdapter();
+        slotRecyclerView.addItemDecoration(new LinearSpacesItemDecoration(20));
         slotRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
         slotRecyclerView.setAdapter(adapter);
     }

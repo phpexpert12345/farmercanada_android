@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.model.SingleTextItem;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
@@ -56,6 +59,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
         adapter = new PlaceOrderAdapter();
         dialog = new OrderSuccessDialog(this, this, false);
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter.updateData(items);

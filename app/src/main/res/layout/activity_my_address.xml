@@ -15,8 +15,9 @@
         android:text="Add new Address"
         android:fontFamily="@font/sf_ui_semibold"
         android:gravity="end"
-        android:layout_margin="@dimen/_16sdp"
-        android:textColor="@color/primary_button_color"/>
+        android:textColor="@color/primary_button_color"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginRight="@dimen/_16sdp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_address_recyclerView"

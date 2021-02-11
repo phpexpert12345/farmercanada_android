@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.model.SingleTextItem;
+import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.adapter.FarmDetailsAdapter;
+import com.farmers.buyers.modules.farmDetail.model.FarmDetailsHeaderItems;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 
@@ -41,9 +44,9 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     private void prepareItems() {
         items.add(FarmDetailTransformer.getHeaderItems());
         items.add(FarmDetailTransformer.getFarmDetailItems());
-        items.add(new SimpleTitleItem("Vegetables"));
+        items.add(new SingleTextItem("Vegetables"));
         items.add(FarmDetailTransformer.getFarmDetailVegList());
-        items.add(new SimpleTitleItem("Fruits"));
+        items.add(new SingleTextItem("Fruits"));
         items.add(FarmDetailTransformer.getFarmDetailFruitList());
     }
 

@@ -41,7 +41,7 @@ public class AccountDetailsActivity extends BaseActivity implements View.OnClick
 
         init();
 
-        write_about_farm_dialog(this);
+//        write_about_farm_dialog(this);
 
     }
 
