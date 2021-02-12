@@ -10,17 +10,18 @@ public class LoginRequestParams {
 
     String mobile;
     String password;
+    String deviceId;
+    Integer role;
+    String platForm;
+    String authKey;
 
-    public Integer getUser_type() {
-        return user_type;
-    }
-
-    Integer user_type;
-
-    public LoginRequestParams(String mobile, String password, Integer user_type) {
+    public LoginRequestParams(String mobile, String password, String deviceId, Integer role, String platForm, String authKey) {
         this.mobile = mobile;
         this.password = password;
-        this.user_type=user_type;
+        this.deviceId = deviceId;
+        this.role = role;
+        this.platForm = platForm;
+        this.authKey = authKey;
     }
 
     public String getMobile() {
@@ -30,4 +31,27 @@ public class LoginRequestParams {
     public String getPassword() {
         return password;
     }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public String getPlatForm() {
+        return platForm;
+    }
+
+    public String getAuthKey() {
+        return authKey;
+    }
 }
+
+
+//    account_email:test@gmail.com
+//    account_password:123556
+//    account_type:1
+//    device_id:fdfd
+//    device_platform:android

@@ -49,7 +49,8 @@ public class SignUpRepository extends BaseRepository {
                 params.getAccount_long(),
                 params.getAccount_phone_code(),
                 params.getDevice_id(),
-                params.getDevice_platform()
+                params.getDevice_platform(),
+                params.getAuthKey()
         );
         makeRequest(call, responseCallback);
     }
@@ -57,7 +58,7 @@ public class SignUpRepository extends BaseRepository {
 
     public void reSendOtp(SendOtpRequestParams params, ApiResponseCallback<SendOtpApiModel> responseCallback) {
 
-        Call<SendOtpApiModel> call = RetrofitBuilder.createServiceContract().requestOtp(ApiConstants.RESEND_OTP, params.getNumber());
+        Call<SendOtpApiModel> call = RetrofitBuilder.createServiceContract().requestOtp(ApiConstants.RESEND_OTP, params.getNumber(), params.getAuthKey(), params.getLoginId());
         makeRequest(call, responseCallback);
     }
 

@@ -26,10 +26,10 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
-import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpRequestParams;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
@@ -114,7 +114,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                        success();
+                        success(signUpApiModelDataFetchState.message);
                         break;
                     }
 
@@ -145,13 +145,13 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         showLoader();
     }
 
-    private void success() {
+    private void success(String msg) {
         dismissLoader();
-        startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
+        intent.putExtra("fromSignUp",true);
+        startActivity(intent);
         finish();
-//        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-//        intent.putExtra("fromForgetPassword",false);
-//        startActivity(intent);
     }
 
     private void error(String error) {
@@ -169,7 +169,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     }
 
     private void doSignUp() {
-        SignUpRequestParams signUpRequestParams = new SignUpRequestParams(nameEt.getText().toString(), numberEt.getText().toString(), emailEt.getText().toString(), passwordEt.getText().toString(), account_type, account_country, account_state, account_city, account_address, account_lat, account_long, "91", "", "Android");
+        SignUpRequestParams signUpRequestParams = new SignUpRequestParams(nameEt.getText().toString(), numberEt.getText().toString(), emailEt.getText().toString(), passwordEt.getText().toString(), account_type, account_country, account_state, account_city, account_address, account_lat, account_long, "91", AppController.get().getDeviceId(), "Android", AppController.get().getAuthenticationKey());
         viewModel.doSignUp(stateMachine, signUpRequestParams);
     }
 

@@ -40,7 +40,7 @@ public class BaseRepository {
             public void onFailure(Call<T> call, Throwable t) {
 
                 if (t instanceof NoInternetConnectionException) {
-                    responseCallback.onFailure(new StandardError(0, "",t.getMessage()));
+                    responseCallback.onFailure(new StandardError(0, "",new NoInternetConnectionException().getMessage()));
                 }
                 else {
                     responseCallback.onFailure(new StandardError(0, "",t.getMessage()));

@@ -47,4 +47,21 @@ public class AppController implements AppControllerContract {
     public String getUserId() {
         return sharedPreferenceManager.getUserId();
     }
+
+    @Override
+    public String getAuthenticationKey() {
+        return sharedPreferenceManager.getAuthenticationKey();
+    }
+
+    @Override
+    public String getDeviceId() {
+        return sharedPreferenceManager.getDeviceId();
+    }
+
+    @Override
+    public String getLoginId() {
+        return sharedPreferenceManager.getLoginId();
+    }
+
+
 }

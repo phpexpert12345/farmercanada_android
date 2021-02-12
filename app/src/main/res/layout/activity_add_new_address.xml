@@ -24,7 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp">
+            android:layout_marginRight="@dimen/_16sdp"
+            android:textColorHint="@color/light_gray"
+            app:hintTextColor="@color/light_gray"
+            app:boxStrokeColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -44,48 +47,15 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/city"
-                android:textColor="@color/black" />
+                android:layout_height="@dimen/_70sdp"
+                android:gravity="start"
+                android:hint="@string/complete_address"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/dp_16_px">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/address_line"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:layout_weight="0.2"
-                android:gravity="end">
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:src="@drawable/location_icon" />
-            </LinearLayout>
-
-        </RelativeLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -94,32 +64,55 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_16sdp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
-                android:gravity="start"
-                android:hint="@string/complete_address"
-                android:textColor="@color/black" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.AppTheme.TextInputLayoutList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_16_px"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/dp_16_px">
+            android:layout_marginRight="@dimen/_16sdp"
+            android:textColorHint="@color/light_gray"
+            app:hintTextColor="@color/light_gray"
+            app:boxStrokeColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/landmark"
+                android:hint="@string/city"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:textColorHint="@color/light_gray"
+            app:hintTextColor="@color/light_gray"
+            app:boxStrokeColor="@color/light_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Postcode"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:textColorHint="@color/light_gray"
+            app:hintTextColor="@color/light_gray"
+            app:boxStrokeColor="@color/light_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
 
@@ -132,6 +125,9 @@
         android:layout_margin="@dimen/_30sdp"
         android:background="@drawable/round_corner_light_gradient_bg"
         android:text="Submit"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textSize="@dimen/_12ssp"
+        android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

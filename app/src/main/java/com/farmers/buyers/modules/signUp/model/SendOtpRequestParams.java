@@ -8,12 +8,24 @@ package com.farmers.buyers.modules.signUp.model;
 
 public class SendOtpRequestParams {
     String number;
+    String authKey;
+    String loginId;
 
-    public SendOtpRequestParams(String number) {
+    public SendOtpRequestParams(String number, String authKey, String loginId) {
         this.number = number;
+        this.authKey = authKey;
+        this.loginId = loginId;
     }
 
     public String getNumber() {
         return number;
+    }
+
+    public String getAuthKey() {
+        return authKey;
+    }
+
+    public String getLoginId() {
+        return loginId;
     }
 }

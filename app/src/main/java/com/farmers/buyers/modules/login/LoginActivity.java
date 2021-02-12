@@ -45,9 +45,8 @@ public class LoginActivity extends BaseActivity {
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private RadioGroup radioGroup;
-    private int role;  //todo 0 for buyer 1 for seller
+    private int role = 1;  //todo 0 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
-    Integer user_type=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +79,38 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.login_seller_radio : {
+                        role = 0;
+                        break;
+                    }
+                    case R.id.login_buyer_radio : {
+                        role = 1;
+                        break;
+                    }
+                }
+            }
+        });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                LoginRequestParams loginRequestParams=new LoginRequestParams(mobileEt.getText().toString(),passwordEt.getText().toString(),user_type);
-//                viewModel.doLogin(stateMachine,loginRequestParams);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
+                String email = mobileEt.getText().toString();
+                String password = passwordEt.getText().toString();
+
+//                viewModel.doLogin(stateMachine, email, password, role);
+                if (role == 1 ) {
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                }
+                else {
+                    startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
+                }
                 finish();
+
 
             }
         });
@@ -120,8 +144,7 @@ public class LoginActivity extends BaseActivity {
                         dismissLoader();
                         if (role == 1) {
                             startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
-                        }
-                        else {
+                        } else {
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             finish();
                         }

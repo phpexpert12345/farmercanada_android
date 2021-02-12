@@ -91,7 +91,13 @@ public class SubmitOtpActivity extends BaseActivity {
         submitOtp = findViewById(R.id.submit_otp_btn);
         headerNumberTv = findViewById(R.id.numberTv);
 
-        headerNumberTv.setText("Please enter the OTP code sent to " + getIntent().getStringExtra("number"));
+        if (getIntent().getStringExtra("fromSignUp") != null) {
+            headerNumberTv.setText("Please enter the OTP code sent to " + SharedPreferenceManager.getInstance().getSignUpPhoneNumber());
+        }
+        else {
+            headerNumberTv.setText("Please enter the OTP code sent to " + getIntent().getStringExtra("number"));
+        }
+
 
 
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
@@ -178,4 +184,14 @@ public class SubmitOtpActivity extends BaseActivity {
         viewModel.resendOtp(stateMachine, getIntent().getStringExtra("number"));
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getIntent().getBooleanExtra("fromSignUp", false) ) {
+            startActivity(new Intent(SubmitOtpActivity.this, SignUpActivity.class));
+            finish();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 }

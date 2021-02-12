@@ -11,5 +11,9 @@ public enum StorageKey {
     isLoggedIn,
     Token,
     ComingFrom,
-    UserID;
+    UserID,
+    AuthenticationKey,
+    DeviceId,
+    SignUpMobileNumber,
+    LoginId;
 }

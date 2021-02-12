@@ -13,4 +13,7 @@ public interface AppControllerContract {
     Boolean getIsLoggedIn();
 
     String getUserId();
+    String getAuthenticationKey();
+    String getDeviceId();
+    String getLoginId();
 }

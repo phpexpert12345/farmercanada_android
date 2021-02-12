@@ -60,6 +60,39 @@ public class SharedPreferenceManager {
     }
 
 
+    public void setLoginId(String value) {
+        setSharedPreference(StorageKey.LoginId.toString(), value);
+    }
+
+    public String getLoginId() {
+        return (String) getSharedPreferences(StorageKey.LoginId.toString(), "");
+    }
+
+    public String getAuthenticationKey() {
+        return (String) getSharedPreferences(StorageKey.AuthenticationKey.toString(), "");
+    }
+
+    public void setAuthenticationKey(String value) {
+        setSharedPreference(StorageKey.AuthenticationKey.toString(), value);
+    }
+
+    public String getDeviceId() {
+        return (String) getSharedPreferences(StorageKey.DeviceId.toString(), "");
+    }
+
+    public void setDeviceId(String value) {
+        setSharedPreference(StorageKey.DeviceId.toString(), value);
+    }
+
+    public void setSignUpMobileNumber(String value) {
+        setSharedPreference(StorageKey.SignUpMobileNumber.toString(), value);
+    }
+
+
+    public String getSignUpPhoneNumber() {
+        return (String) getSharedPreferences(StorageKey.SignUpMobileNumber.toString(), "");
+    }
+
 
     private void setSharedPreference(String key, Object value) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);

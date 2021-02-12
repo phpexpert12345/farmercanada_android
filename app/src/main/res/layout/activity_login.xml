@@ -65,7 +65,8 @@
                     android:fontFamily="@font/sf_ui_regular"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:button="@drawable/circle_check_drawable"
-                    android:paddingLeft="@dimen/_5sdp"/>
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:checked="true"/>
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -79,15 +80,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+               >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_email_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
+                    android:hint="Mobile Number"
                     android:singleLine="true"
-                    android:text="9876540982" />
+                    android:text="9876540982"
+                    android:inputType="number"
+                   />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +109,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_password_et"

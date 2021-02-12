@@ -1,9 +1,7 @@
 package com.farmers.buyers.modules.signUp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,7 +15,6 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
-import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.google.android.material.textfield.TextInputEditText;
 

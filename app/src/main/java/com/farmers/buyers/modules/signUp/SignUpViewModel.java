@@ -50,13 +50,19 @@ public class SignUpViewModel extends BaseViewModel {
             return;
         }
 
-
         repository.doUserRegis(signUpRequestParams, new ApiResponseCallback<SignUpApiModel>() {
             @Override
             public void onSuccess(SignUpApiModel response) {
-                SharedPreferenceManager.getInstance().setIsLoggedIn(true);
-                SharedPreferenceManager.getInstance().setToken(response.data.token);
-                stateMachine.postValue(DataFetchState.success(response, "Success"));
+                if (response.getStatusCode() == 0) {
+                    SharedPreferenceManager.getInstance().setSignUpMobileNumber(response.getData().get(0).getLoginPhone());
+                    SharedPreferenceManager.getInstance().setLoginId(response.getData().get(0).getLoginId());
+                    SharedPreferenceManager.getInstance().setIsComingFrom(1);
+//                    SharedPreferenceManager.getInstance().setIsLoggedIn(true);
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new SignUpApiModel()));
+                }
             }
 
             @Override
@@ -76,7 +82,7 @@ public class SignUpViewModel extends BaseViewModel {
             return;
         }
 
-        SendOtpRequestParams params = new SendOtpRequestParams(number);
+        SendOtpRequestParams params = new SendOtpRequestParams(number, controller.getAuthenticationKey(), controller.getLoginId());
 
         repository.reSendOtp(params, new ApiResponseCallback<SendOtpApiModel>() {
             @Override
