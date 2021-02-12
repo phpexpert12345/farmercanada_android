@@ -41,6 +41,8 @@ import com.farmers.buyers.modules.support.list.SupportActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.farmers.seller.modules.editProfile.SellerEditProfileActivity;
+import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.farmers.seller.modules.referFriends.SellerReferFriendsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,7 +146,6 @@ public class SellerProfileActivity extends BaseActivity implements SellerProfile
                 this.finish();
                 break;
             }
-
         }
     }
 
@@ -155,21 +156,18 @@ public class SellerProfileActivity extends BaseActivity implements SellerProfile
                 this.startActivity(new Intent(this, ProductListActivity.class));
                 break;
             }
+            case MyOrder: {
+                startActivity(new Intent(this, OurOrdersActivity.class));
+                break;
+            }
             case ShopSetting: {
                 startActivity(new Intent(this, SellerShopSetting.class));
                 break;
             }
-//
-//            case RATING_REVIEW: {
-//                this.startActivity(new Intent(this, RatingAndReviewActivity.class));
-//                break;
-//            }
-//
-//            case ADDRESS: {
-//                this.startActivity(new Intent(this, MyAddressActivity.class));
-//                break;
-//            }
-
+            case MyEarning: {
+                startActivity(new Intent(this, SellerReferFriendsActivity.class));
+                break;
+            }
         }
     }
 }

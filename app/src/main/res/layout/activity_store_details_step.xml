@@ -16,25 +16,6 @@
         android:background="@mipmap/top_green_bg"
         android:orientation="vertical">
 
-        <!--  <params.com.stepview.StatusViewScroller
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:entries="@array/seller_entries"
-            app:circleColor="@android:color/transparent"
-            app:currentCount="1"
-            app:currentDrawable="@drawable/white_circle"
-            app:incompleteDrawable="@drawable/yellow_circle"
-            app:lineColor="@color/white"
-            app:lineColorCurrent="@color/white"
-            app:lineColorIncomplete="@color/white"
-            app:lineWidth="@dimen/_1sdp"
-            app:stepCount="4"
-            app:textColorLabels="@color/white"
-            app:textColorLabelsCurrent="@color/white"
-            app:textColorLabelsIncomplete="@color/white"
-            app:textSizeLabels="15sp" />-->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,9 +32,8 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="@dimen/_35sdp"
@@ -79,16 +59,15 @@
                     android:layout_gravity="center">
 
                     <View
-                        android:layout_width="@dimen/_42sdp"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="1dp"
                         android:background="@color/white" />
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_width="0sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
                     android:gravity="center">
 
                     <LinearLayout
@@ -113,15 +92,14 @@
                     android:layout_gravity="center">
 
                     <View
-                        android:layout_width="@dimen/_42sdp"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="1sp"
                         android:background="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
                     android:gravity="center">
 
                     <LinearLayout
@@ -146,15 +124,14 @@
                     android:layout_gravity="center">
 
                     <View
-                        android:layout_width="@dimen/_42sdp"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="1sp"
                         android:background="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
                     android:gravity="center">
 
                     <LinearLayout
@@ -177,7 +154,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -188,14 +165,14 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:layout_height="wrap_content">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/_25sdp"
                             android:text="Store\nDetails"
+                            android:gravity="center"
                             android:textColor="@color/white"
                             android:textSize="12sp" />
                     </LinearLayout>

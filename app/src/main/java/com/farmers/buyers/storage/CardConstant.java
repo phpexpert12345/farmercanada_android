@@ -75,5 +75,11 @@ public class CardConstant {
     public static final int SIDE_MENU_LIST_ADAPTER              = 52;
     public static final int CALENDER_ITEM_ADAPTER               = 53;
     public static final int SINGLE_TEXT_ITEM_ADAPTER            = 54;
+    public static final int STORE_TIME_ITEM_ADAPTER            = 55;
+    public static final int WEEK_DAYS_ITEM_ADAPTER            = 56;
+    public static final int ORDER_LIMIT_ITEM_ADAPTER            = 57;
+    public static final int PICKUP_TIME_ITEM_ADAPTER            = 58;
+    public static final int PICKUP_ORDER_LIMIT_ITEM_ADAPTER            = 59;
+    public static final int PICKUP_WEEK_DAYS_ITEM_ADAPTER            = 60;
 
 }

@@ -55,6 +55,7 @@ public class OurOrdersTransformer {
         item.add(new SideMenuListItem("Manage Coupon", R.mipmap.coupon_icon, 5));
         item.add(new SideMenuListItem("Manage Calender", R.mipmap.calender_icon, 6));
         item.add(new SideMenuListItem("My Profile", R.mipmap.profile_icon, 7));
+        item.add(new SideMenuListItem("Working Hours", R.mipmap.profile_icon, 8));
         return item;
     }
 }
