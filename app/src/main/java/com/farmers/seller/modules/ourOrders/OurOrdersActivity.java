@@ -38,6 +38,7 @@ import com.farmers.seller.modules.ourOrders.pastOrder.PastOrderFragment;
 import com.farmers.seller.modules.ourOrders.view.SideMenuListViewHolder;
 import com.farmers.seller.modules.referFriends.SellerReferFriendsActivity;
 import com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity;
+import com.farmers.seller.modules.workingHour.WorkingHourActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -195,7 +196,6 @@ public class OurOrdersActivity extends BaseActivity implements NavigationView.On
         if (item.getId() == 1) {
             startActivity(new Intent(OurOrdersActivity.this, ProductListActivity.class));
         } else if (item.getId() == 2) {
-
         } else if (item.getId() == 3) {
             startActivity(new Intent(OurOrdersActivity.this, SellerReferFriendsActivity.class));
         } else if (item.getId() == 4) {
@@ -206,6 +206,8 @@ public class OurOrdersActivity extends BaseActivity implements NavigationView.On
             startActivity(new Intent(OurOrdersActivity.this, ManageCalenderActivity.class));
         } else if (item.getId() == 7) {
             startActivity(new Intent(OurOrdersActivity.this, SellerProfileActivity.class));
+        } else if (item.getId() == 8) {
+            startActivity(new Intent(OurOrdersActivity.this, WorkingHourActivity.class));
         }
     }
 }

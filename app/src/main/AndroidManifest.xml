@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".app.App"
@@ -20,15 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".modules.seller.sellerProfile.SellerProfileFragment"/>
-        <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity"/>
-
+        <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity"></activity>
+        <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
+        <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity" />
         <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />
         <activity android:name=".modules.seller.sellerProfile.editProfile.SellerShopSetting" />
         <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity" />
         <activity android:name=".modules.seller.coupon.addCoupon.AddNewCouponActivity" />
-        <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.CreateMessageActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.CreateMessageActivity" />
         <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.BroadcastMessageActivity" />
         <activity android:name="com.farmers.seller.modules.editProfile.SellerEditProfileActivity" />
         <activity android:name="com.farmers.seller.modules.referFriends.SellerReferFriendsActivity" />
@@ -36,7 +35,8 @@
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.verification.VerificationActivity" />
         <activity android:name="com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity" />
-        <activity android:name="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity" />
+        <activity android:name="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity">
+        </activity>
         <activity android:name=".modules.seller.addProduct.AddProductActivity" />
         <activity android:name=".modules.seller.product.ProductListActivity" />
         <activity android:name=".modules.address.MyAddressActivity" />
@@ -68,7 +68,8 @@
         <activity android:name=".modules.location.LocationAccessActivity" />
         <activity android:name=".modules.onBoarding.OnBoardingActivity" />
         <activity android:name=".modules.accountDetails.AccountDetailsActivity" />
-        <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity" />
+        <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity">
+        </activity>
         <activity android:name=".modules.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,7 +77,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

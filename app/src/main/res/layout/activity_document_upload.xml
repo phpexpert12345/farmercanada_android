@@ -57,9 +57,8 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="@dimen/_24sdp"
@@ -84,16 +83,15 @@
                         android:layout_gravity="center">
 
                         <View
-                            android:layout_width="@dimen/_42sdp"
+                            android:layout_width="@dimen/_53sdp"
                             android:layout_height="1dp"
                             android:background="@color/white" />
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_width="0sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
                         android:gravity="center">
 
                         <LinearLayout
@@ -118,15 +116,14 @@
                         android:layout_gravity="center">
 
                         <View
-                            android:layout_width="@dimen/_42sdp"
+                            android:layout_width="@dimen/_53sdp"
                             android:layout_height="1sp"
                             android:background="@color/white" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
                         android:gravity="center">
 
                         <LinearLayout
@@ -151,7 +148,7 @@
                         android:layout_gravity="center">
 
                         <View
-                            android:layout_width="@dimen/_42sdp"
+                            android:layout_width="@dimen/_55sdp"
                             android:layout_height="1sp"
                             android:background="@color/white" />
                     </LinearLayout>
@@ -222,6 +219,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/_5sdp"
                                 android:gravity="center"
                                 android:text="Service\nDetails"
                                 android:textColor="@color/white"
