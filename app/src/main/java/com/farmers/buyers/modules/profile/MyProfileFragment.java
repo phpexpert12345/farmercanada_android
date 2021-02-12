@@ -16,6 +16,7 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.aboutStore.AboutStoreActivity;
 import com.farmers.buyers.modules.address.MyAddressActivity;
 import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
@@ -130,12 +131,12 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
             case OPEN_STORE: {
-                startActivity(new Intent(baseActivity, ManageCouponActivity.class));
-                break;
+//                startActivity(new Intent(baseActivity, ManageCouponActivity.class));
+//                break;
             }
 
             case LEARN_ABOUT_STORE: {
-                startActivity(new Intent(baseActivity, AddNewCouponActivity.class));
+                startActivity(new Intent(baseActivity, AboutStoreActivity.class));
                 break;
             }
 

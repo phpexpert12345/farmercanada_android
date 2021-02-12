@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.login;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
@@ -19,20 +20,24 @@ import com.farmers.buyers.storage.SharedPreferenceManager;
 public class LoginViewModel extends BaseViewModel {
 
     private LoginRepository repository = new LoginRepository();
+    private AppController appController = AppController.get();
 
-    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, LoginRequestParams loginRequestParams) {
+    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String email, String password, int role) {
 
-        if (loginRequestParams.getMobile().isEmpty() ) {
+        if (email.isEmpty() ) {
             stateMachine.postValue(DataFetchState.error("Please enter mobile number", new LoginApiModel()));
             return;
         }
 
-        if (loginRequestParams.getPassword().isEmpty()) {
+        if (password.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
             return;
         }
 
         stateMachine.postValue(DataFetchState.<LoginApiModel>loading());
+
+        LoginRequestParams loginRequestParams = new LoginRequestParams(email, password, appController.getDeviceId(), role, "android", appController.getAuthenticationKey());
+
 
 
         repository.doLogin(loginRequestParams, new ApiResponseCallback<LoginApiModel>() {

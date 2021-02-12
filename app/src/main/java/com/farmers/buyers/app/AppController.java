@@ -42,4 +42,26 @@ public class AppController implements AppControllerContract {
     public Boolean getIsLoggedIn() {
         return sharedPreferenceManager.getIsLoggedIn();
     }
+
+    @Override
+    public String getUserId() {
+        return sharedPreferenceManager.getUserId();
+    }
+
+    @Override
+    public String getAuthenticationKey() {
+        return sharedPreferenceManager.getAuthenticationKey();
+    }
+
+    @Override
+    public String getDeviceId() {
+        return sharedPreferenceManager.getDeviceId();
+    }
+
+    @Override
+    public String getLoginId() {
+        return sharedPreferenceManager.getLoginId();
+    }
+
+
 }

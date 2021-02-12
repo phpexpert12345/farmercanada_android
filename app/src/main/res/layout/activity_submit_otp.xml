@@ -8,12 +8,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_60sdp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -27,27 +28,36 @@
 
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="@dimen/dp_8_px"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:gravity="center"
+            android:text="Enter OTP"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_18_px" />
+
+        <TextView
+            android:id="@+id/numberTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center"
             android:text="@string/submit_otp_text"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/sp_18_px" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16_px"
+            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginLeft="@dimen/dp_80_px"
             android:layout_marginRight="@dimen/dp_80_px"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
             <EditText
+                android:id="@+id/otp_edit_box1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -58,6 +68,7 @@
                 android:layout_margin="@dimen/dp_5_px"/>
 
             <EditText
+                android:id="@+id/otp_edit_box2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -68,6 +79,7 @@
                 android:layout_margin="@dimen/dp_5_px"/>
 
             <EditText
+                android:id="@+id/otp_edit_box3"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -78,6 +90,7 @@
                 android:layout_margin="@dimen/dp_5_px"/>
 
             <EditText
+                android:id="@+id/otp_edit_box4"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
                 android:layout_weight="1"
@@ -93,11 +106,13 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_30_px"
+            android:layout_margin="@dimen/_30sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
             android:text="@string/submit"
             android:textAllCaps="false"
+            android:fontFamily="@font/sf_ui_semibold"
             android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />

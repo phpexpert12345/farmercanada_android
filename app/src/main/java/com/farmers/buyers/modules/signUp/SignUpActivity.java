@@ -26,10 +26,10 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
-import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpRequestParams;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
@@ -48,9 +48,9 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     private String account_country = "";
     protected LocationManager locationManager;
     protected LocationListener locationListener;
-    private Integer account_type=0;
+    private Integer account_type = 0;
     protected Context context;
-    private String account_city,account_state,account_address,account_long,account_lat,device_id,device_platform,account_phone_code;
+    private String account_city, account_state, account_address, account_long, account_lat, device_id, device_platform, account_phone_code;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -100,8 +100,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             return;
-        }
-        else{
+        } else {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 3, this);
         }
 
@@ -115,7 +114,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                       success();
+                        success(signUpApiModelDataFetchState.message);
                         break;
                     }
 
@@ -136,7 +135,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                 break;
 
             case R.id.radio_buyer:
-                account_type=1;
+                account_type = 1;
                 Toast.makeText(this, "Buyer", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -146,13 +145,13 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         showLoader();
     }
 
-    private void success() {
+    private void success(String msg) {
         dismissLoader();
-        startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
+        intent.putExtra("fromSignUp",true);
+        startActivity(intent);
         finish();
-//        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-//        intent.putExtra("fromForgetPassword",false);
-//        startActivity(intent);
     }
 
     private void error(String error) {
@@ -170,8 +169,8 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     }
 
     private void doSignUp() {
-        SignUpRequestParams signUpRequestParams=new SignUpRequestParams(nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),passwordEt.getText().toString(),account_type,account_country,account_state,account_city,account_address,account_lat,account_long,"91","","Android");
-        viewModel.doSignUp(stateMachine,signUpRequestParams);
+        SignUpRequestParams signUpRequestParams = new SignUpRequestParams(nameEt.getText().toString(), numberEt.getText().toString(), emailEt.getText().toString(), passwordEt.getText().toString(), account_type, account_country, account_state, account_city, account_address, account_lat, account_long, "91", AppController.get().getDeviceId(), "Android", AppController.get().getAuthenticationKey());
+        viewModel.doSignUp(stateMachine, signUpRequestParams);
     }
 
     @Override
@@ -181,17 +180,18 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-if(location!=null){
-    account_lat= String.valueOf(location.getLatitude());
-    account_long= String.valueOf(location.getLongitude());
-    new AddressAsynck().execute(location);
-}
+        if (location != null) {
+            account_lat = String.valueOf(location.getLatitude());
+            account_long = String.valueOf(location.getLongitude());
+            new AddressAsynck().execute(location);
+        }
     }
-    private class AddressAsynck extends AsyncTask<Location,Integer,String>{
+
+    private class AddressAsynck extends AsyncTask<Location, Integer, String> {
 
         @Override
         protected String doInBackground(Location... locations) {
-            Geocoder geocoder=new Geocoder(SignUpActivity.this, Locale.getDefault());
+            Geocoder geocoder = new Geocoder(SignUpActivity.this, Locale.getDefault());
             List<Address> addresses = null;
             try {
                 addresses = geocoder.getFromLocation(locations[0].getLatitude(), locations[0].getLatitude(), 1);

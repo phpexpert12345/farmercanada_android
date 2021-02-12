@@ -18,6 +18,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
+import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
@@ -38,7 +39,7 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class HomeFragment extends Fragment implements HomeHeaderViewHolder.HeaderItemClickListener {
+public class HomeFragment extends Fragment implements HomeHeaderViewHolder.HeaderItemClickListener, MultipleTextItemViewHolder.FilterItemClickListener {
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
 
     private void init() {
 
-        adapter = new HomeAdapter(HomeFragment.this);
+        adapter = new HomeAdapter(HomeFragment.this, this);
         recyclerView.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
@@ -112,5 +113,11 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
+    }
+
+    @Override
+    public void onFilterItemClicked(int position) {
+        adapter.notifyDataSetChanged();
+        adapter.notifyItemChanged(position);
     }
 }

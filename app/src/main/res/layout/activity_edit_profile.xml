@@ -116,7 +116,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -130,7 +133,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -145,7 +151,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -169,6 +178,8 @@
         android:background="@drawable/round_corner_light_gradient_bg"
         android:text="Save"
         android:textColor="@color/secondaryTextColor"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

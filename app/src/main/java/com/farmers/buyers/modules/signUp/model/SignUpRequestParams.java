@@ -11,6 +11,11 @@ public class SignUpRequestParams {
     String mobile;
     String email;
     String password;
+    String authKey;
+
+    public String getAuthKey() {
+        return authKey;
+    }
 
     public Integer getAccount_type() {
         return account_type;
@@ -63,7 +68,7 @@ public class SignUpRequestParams {
     String device_id;
     String device_platform;
 
-    public SignUpRequestParams(String name, String mobile, String email, String password, Integer account_type, String  account_country, String account_state,String  account_city,String account_address,String account_lat,String account_long,String account_phone_code,String device_id,String device_platform) {
+    public SignUpRequestParams(String name, String mobile, String email, String password, Integer account_type, String  account_country, String account_state,String  account_city,String account_address,String account_lat,String account_long,String account_phone_code,String device_id,String device_platform, String authKey) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
@@ -78,6 +83,7 @@ public class SignUpRequestParams {
         this.account_state = account_state;
         this.device_platform = device_platform;
         this.account_type=account_type;
+        this.authKey = authKey;
     }
 
     public String getName() {
