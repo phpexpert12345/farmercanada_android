@@ -58,11 +58,6 @@
         <activity android:name=".modules.cart.myCart.MyCartActivity" />
         <activity android:name=".modules.farmDetail.FarmDetailActivity" />
         <activity android:name=".modules.home.HomeActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".modules.forgotPassword.ForgotPassword" />
         <activity android:name=".modules.signUp.SubmitOtpActivity" />
@@ -76,7 +71,11 @@
         <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity">
         </activity>
         <activity android:name=".modules.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
         <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity" />
