@@ -29,8 +29,36 @@ public interface ApiController {
     @POST
     Call<LoginApiModel> getUserLogin(@Url String url, @Field("account_email") String mobile, @Field("account_password") String password, @Field("account_type") Integer user_type, @Field("device_id") String deviceId, @Field("device_platform") String platform, @Field("auth_key") String authKey);
 
+    @FormUrlEncoded
+    @POST
+    Call<LoginApiModel> getForgotPassword(@Url String url, @Field("account_phone_code") String account_phone_code,
+                                          @Field("account_mobile") String account_mobile,
+                                          @Field("account_password") String password,
+                                          @Field("account_confirm_password") String account_confirm_password,
+                                          @Field("account_type") Integer user_type,
+                                          @Field("device_id") String deviceId,
+                                          @Field("device_platform") String platform,
+                                          @Field("auth_key") String authKey);
 
+    @FormUrlEncoded
+    @POST
+    Call<LoginApiModel> getCategoryList(@Url String url, @Field("auth_key") String authKey);
 
+    @FormUrlEncoded
+    @POST
+    Call<LoginApiModel> getOffersList(@Url String url, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<LoginApiModel> getAddressList(@Url String url, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<LoginApiModel> getChangePassword(@Url String url, @Field("new_password") String new_password,
+                                          @Field("confirm_password") String confirm_password,
+                                          @Field("LoginId") String LoginId,
+                                          @Field("Old_Password") String Old_Password,
+                                          @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST

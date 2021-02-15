@@ -66,7 +66,6 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     private SignUpViewModel viewModel = factory.create(SignUpViewModel.class);
     private MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine = new MutableLiveData<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +130,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_seller:
+                account_type = 0;
                 startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
                 break;
 
@@ -149,7 +149,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         dismissLoader();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
-        intent.putExtra("fromSignUp",true);
+        intent.putExtra("fromSignUp", true);
         startActivity(intent);
         finish();
     }

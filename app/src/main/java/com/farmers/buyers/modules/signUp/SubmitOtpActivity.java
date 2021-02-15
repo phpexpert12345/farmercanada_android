@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +36,8 @@ public class SubmitOtpActivity extends BaseActivity {
     private EditText otp_textbox_two;
     private EditText otp_textbox_three;
     private EditText otp_textbox_four;
-
+    private LinearLayout ll_resend_otp;
+    private TextView tv_otpReadRemainingTime;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -50,7 +53,6 @@ public class SubmitOtpActivity extends BaseActivity {
     private SignUpViewModel viewModel = factory.create(SignUpViewModel.class);
     private MutableLiveData<DataFetchState<SendOtpApiModel>> stateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<VerifyOtpApiModel>> verifyOtpStateMachine = new MutableLiveData<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,6 @@ public class SubmitOtpActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 String otp = otp_textbox_one.getText().toString() + otp_textbox_two.getText().toString() + otp_textbox_three.getText().toString() + otp_textbox_four.getText().toString();
-
                 viewModel.verifyOtp(verifyOtpStateMachine, otp);
 
             }
@@ -93,17 +94,17 @@ public class SubmitOtpActivity extends BaseActivity {
 
         if (getIntent().getStringExtra("fromSignUp") != null) {
             headerNumberTv.setText("Please enter the OTP code sent to " + SharedPreferenceManager.getInstance().getSignUpPhoneNumber());
-        }
-        else {
+        } else {
             headerNumberTv.setText("Please enter the OTP code sent to " + getIntent().getStringExtra("number"));
         }
-
 
 
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
         otp_textbox_two = findViewById(R.id.otp_edit_box2);
         otp_textbox_three = findViewById(R.id.otp_edit_box3);
         otp_textbox_four = findViewById(R.id.otp_edit_box4);
+        ll_resend_otp = findViewById(R.id.ll_resend_otp);
+        tv_otpReadRemainingTime = findViewById(R.id.tv_otpReadRemainingTime);
 
 
         EditText[] edit = {otp_textbox_one,
@@ -137,7 +138,7 @@ public class SubmitOtpActivity extends BaseActivity {
         });
         verifyOtpStateMachine.observe(this, new Observer<DataFetchState<VerifyOtpApiModel>>() {
             @Override
-            public void onChanged(DataFetchState<VerifyOtpApiModel> verifyOtpApiModelDataFetchState ) {
+            public void onChanged(DataFetchState<VerifyOtpApiModel> verifyOtpApiModelDataFetchState) {
                 switch (verifyOtpApiModelDataFetchState.status) {
                     case LOADING: {
                         loading();
@@ -162,8 +163,12 @@ public class SubmitOtpActivity extends BaseActivity {
             }
         });
 
+        startTimer();
+        if (extra) {
+            //resendOtp();
+        } else {
+        }
     }
-
 
     private void loading() {
         showLoader();
@@ -178,7 +183,6 @@ public class SubmitOtpActivity extends BaseActivity {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
-
     private void resendOtp() {
         SharedPreferenceManager.getInstance().setIsComingFrom(0);
         viewModel.resendOtp(stateMachine, getIntent().getStringExtra("number"));
@@ -186,12 +190,33 @@ public class SubmitOtpActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (getIntent().getBooleanExtra("fromSignUp", false) ) {
+        if (getIntent().getBooleanExtra("fromSignUp", false)) {
             startActivity(new Intent(SubmitOtpActivity.this, SignUpActivity.class));
             finish();
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
+
+    private void startTimer() {
+        ll_resend_otp.setVisibility(View.GONE);
+        tv_otpReadRemainingTime.setVisibility(View.VISIBLE);
+        countDownTimer.start();
+    }
+
+    CountDownTimer countDownTimer = new CountDownTimer(1 * 30000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            int seconds = (int) (millisUntilFinished / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+            tv_otpReadRemainingTime.setText("" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
+        }
+
+        @Override
+        public void onFinish() {
+            ll_resend_otp.setVisibility(View.VISIBLE);
+            tv_otpReadRemainingTime.setVisibility(View.GONE);
+        }
+    };
 }

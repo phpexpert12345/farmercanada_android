@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,15 +20,34 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.SwipeControllerActions;
 import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.BaseActivity;
+import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.adapter.MyAddressAdapter;
 import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
 import com.farmers.buyers.modules.cart.myCart.MyCartActivity;
+import com.farmers.buyers.modules.home.homeFragment.HomeFragmentViewModel;
+import com.farmers.buyers.modules.login.model.LoginApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAddressActivity extends BaseActivity {
+
+    private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (modelClass.isAssignableFrom(MyAddressViewModel.class)) {
+                return (T) new MyAddressViewModel();
+            }
+            return null;
+        }
+    };
+
+    public MyAddressViewModel viewModel = factory.create(MyAddressViewModel.class);
+    private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+
     private RecyclerView recyclerView;
     private MyAddressAdapter adapter;
     private TextView addNewAddress;
@@ -63,7 +87,6 @@ public class MyAddressActivity extends BaseActivity {
         adapter.updateData(items);
 
 
-
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
             @Override
             public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List buffer) {
@@ -87,11 +110,32 @@ public class MyAddressActivity extends BaseActivity {
             }
         };
 
-
-
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
 
+        stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
+            @Override
+            public void onChanged(DataFetchState dataFetchState) {
+                switch (dataFetchState.status) {
+                    case ERROR: {
+                        dismissLoader();
+                        // Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case LOADING: {
+                        showLoader();
+                        break;
+                    }
+                    case SUCCESS: {
+                        dismissLoader();
+                        // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
+                        //finish();
+                        break;
+                    }
+                }
+            }
+        });
+        //viewModel.getAddressList(stateMachine);
     }
 
     private void listener() {

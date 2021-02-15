@@ -1,25 +1,33 @@
-package com.farmers.buyers.modules.home;
+package com.farmers.buyers.modules.home.homeFragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
-import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
+import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
+import com.farmers.buyers.modules.forgotPassword.ForgotPasswordViewModel;
+import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
 import com.farmers.buyers.modules.home.models.HomeCategoryListItem;
@@ -29,6 +37,8 @@ import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+import com.farmers.buyers.modules.login.LoginActivity;
+import com.farmers.buyers.modules.login.model.LoginApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +49,24 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class HomeFragment extends Fragment implements HomeHeaderViewHolder.HeaderItemClickListener, MultipleTextItemViewHolder.FilterItemClickListener {
+public class HomeFragment extends Fragment implements HomeHeaderViewHolder.HeaderItemClickListener,
+        MultipleTextItemViewHolder.FilterItemClickListener {
+
+    private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (modelClass.isAssignableFrom(HomeFragmentViewModel.class)) {
+                return (T) new HomeFragmentViewModel();
+            }
+            return null;
+        }
+    };
+
+    public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
+    private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
@@ -82,6 +109,31 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
 
         recyclerView.setLayoutManager(manager);
         adapter.updateData(items);
+
+        stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
+            @Override
+            public void onChanged(DataFetchState dataFetchState) {
+                switch (dataFetchState.status) {
+                    case ERROR: {
+                        // dismissLoader();
+                        // Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case LOADING: {
+                        // showLoader();
+                        break;
+                    }
+                    case SUCCESS: {
+                        //dismissLoader();
+                        // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
+                        //finish();
+                        break;
+                    }
+                }
+            }
+        });
+        // viewModel.getCategoryList(stateMachine);
+        // viewModel.getOffersList(stateMachine);
     }
 
     private void prepareListItems() {
@@ -95,7 +147,6 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         items.add(new HomeFarmTypeItem());
         items.addAll(HomeTransformer.getHomeFarmListItem());
     }
-
 
     @Override
     public void onEditAddressClickListener(int position) {

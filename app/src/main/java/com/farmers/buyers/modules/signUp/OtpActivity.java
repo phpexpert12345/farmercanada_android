@@ -14,11 +14,13 @@ import android.widget.Toast;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.modules.login.LoginViewModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class OtpActivity extends BaseActivity {
+
     private Button requestOtpBtn;
     private TextInputEditText mobileNumberEt;
     private boolean extra = false;
