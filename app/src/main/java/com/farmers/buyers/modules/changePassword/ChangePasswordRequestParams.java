@@ -12,18 +12,27 @@ public class ChangePasswordRequestParams {
 
     String new_password;
     String confirm_password;
-    String LoginId;
     String Old_Password;
+    String LoginId;
+    String Mobile_OTP;
     String auth_key;
 
-    public ChangePasswordRequestParams(String new_password, String confirm_password, String LoginId, String Old_Password,
-                                       String auth_key) {
+    public ChangePasswordRequestParams(String new_password, String confirm_password, String Old_Password, String Mobile_OTP,
+                                       String LoginId,String auth_key) {
         this.new_password = new_password;
         this.confirm_password = confirm_password;
-        this.confirm_password = confirm_password;
-        this.LoginId = LoginId;
         this.Old_Password = Old_Password;
+        this.LoginId = LoginId;
+        this.Mobile_OTP = Mobile_OTP;
         this.auth_key = auth_key;
+    }
+
+    public String getMobile_OTP() {
+        return Mobile_OTP;
+    }
+
+    public void setMobile_OTP(String mobile_OTP) {
+        Mobile_OTP = mobile_OTP;
     }
 
     public String getNew_password() {

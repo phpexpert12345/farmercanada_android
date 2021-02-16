@@ -9,10 +9,17 @@ package com.farmers.buyers.modules.address;
 public class MyAddressRequestParams {
 
     String authKey;
+    String userId;
 
-    public MyAddressRequestParams(String authKey) {
+    public MyAddressRequestParams(String userId,String authKey) {
+        this.userId = userId;
         this.authKey = authKey;
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
     public String getAuthKey() {
         return authKey;
     }

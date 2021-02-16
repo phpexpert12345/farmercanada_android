@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -23,9 +24,8 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.adapter.MyAddressAdapter;
-import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
-import com.farmers.buyers.modules.cart.myCart.MyCartActivity;
-import com.farmers.buyers.modules.home.homeFragment.HomeFragmentViewModel;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.address.model.MyAddressViewModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class MyAddressActivity extends BaseActivity {
     };
 
     public MyAddressViewModel viewModel = factory.create(MyAddressViewModel.class);
-    private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
 
     private RecyclerView recyclerView;
     private MyAddressAdapter adapter;
@@ -70,7 +70,7 @@ public class MyAddressActivity extends BaseActivity {
             }
         })));
 
-        prepareItems();
+        //   prepareItems();
         init();
         listener();
     }
@@ -84,7 +84,7 @@ public class MyAddressActivity extends BaseActivity {
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.updateData(items);
+        // adapter.updateData(items);
 
 
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
@@ -113,38 +113,33 @@ public class MyAddressActivity extends BaseActivity {
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
 
-        stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
-            @Override
-            public void onChanged(DataFetchState dataFetchState) {
-                switch (dataFetchState.status) {
-                    case ERROR: {
-                        dismissLoader();
-                        // Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    case LOADING: {
-                        showLoader();
-                        break;
-                    }
-                    case SUCCESS: {
-                        dismissLoader();
-                        // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
-                        //finish();
-                        break;
-                    }
+        stateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    dismissLoader();
+                    items.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
+                    adapter.updateData(items);
+                    break;
                 }
             }
         });
-        //viewModel.getAddressList(stateMachine);
+
+        viewModel.getAddressList(stateMachine);
     }
 
     private void listener() {
-        addNewAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyAddressActivity.this, AddNewAddressActivity.class));
-            }
-        });
+        addNewAddress.setOnClickListener(view -> startActivity(new Intent(MyAddressActivity.this,
+                AddNewAddressActivity.class)));
     }
 
     private void prepareItems() {

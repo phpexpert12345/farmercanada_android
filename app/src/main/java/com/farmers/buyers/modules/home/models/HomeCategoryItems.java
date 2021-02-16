@@ -6,9 +6,20 @@ import com.farmers.buyers.storage.CardConstant;
 public class HomeCategoryItems implements RecyclerViewListItem {
     private String category;
     private int imgUri;
-    public HomeCategoryItems(String category, int imgUri) {
+    private String imgUrl;
+
+    public HomeCategoryItems(String category, String imgUrl, int imgUri) {
         this.category = category;
+        this.imgUrl = imgUrl;
         this.imgUri = imgUri;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getCategory() {

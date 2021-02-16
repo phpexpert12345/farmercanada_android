@@ -33,6 +33,7 @@ import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 import com.farmers.buyers.modules.seller.addProduct.AddProductActivity;
 import com.farmers.buyers.modules.seller.coupon.addCoupon.AddNewCouponActivity;
 import com.farmers.buyers.modules.seller.coupon.list.ManageCouponActivity;
+import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.support.list.SupportActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -117,7 +118,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
             case CHANGE_PASSWORD: {
-                startActivity(new Intent(baseActivity, ChangePasswordActivity.class));
+                startActivity(new Intent(baseActivity, OtpActivity.class).
+                        putExtra("FROM", "My Profile"));
                 break;
             }
 

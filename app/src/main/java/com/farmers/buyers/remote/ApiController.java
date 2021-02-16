@@ -1,5 +1,7 @@
 package com.farmers.buyers.remote;
 
+import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
@@ -31,33 +33,50 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<LoginApiModel> getForgotPassword(@Url String url, @Field("account_phone_code") String account_phone_code,
-                                          @Field("account_mobile") String account_mobile,
-                                          @Field("account_password") String password,
-                                          @Field("account_confirm_password") String account_confirm_password,
-                                          @Field("account_type") Integer user_type,
-                                          @Field("device_id") String deviceId,
-                                          @Field("device_platform") String platform,
+    Call<LoginApiModel> getVerifyForgotPassword(@Url String url, @Field("account_phone_code") String account_phone_code,
+                                                @Field("account_mobile") String account_mobile,
+                                                @Field("account_type") Integer user_type,
+                                                @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<LoginApiModel> getForgotPassword(@Url String url,
+                                          @Field("Mobile_OTP") String Mobile_OTP,
+                                          @Field("LoginId") String LoginId,
+                                          @Field("new_password") String new_password,
+                                          @Field("confirm_password") String confirm_password,
                                           @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
-    Call<LoginApiModel> getCategoryList(@Url String url, @Field("auth_key") String authKey);
+    Call<AllDataModel> getCategoryList(@Url String url, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
-    Call<LoginApiModel> getOffersList(@Url String url, @Field("auth_key") String authKey);
+    Call<AllDataModel> getOffersList(@Url String url, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
-    Call<LoginApiModel> getAddressList(@Url String url, @Field("auth_key") String authKey);
+    Call<AddressApiModel> getAddressList(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> addAddress(@Url String url, @Field("LoginId") String LoginId,
+                                     @Field("name_of_address") String name_of_address,
+                                     @Field("complete_address") String complete_address,
+                                     @Field("address_city") String address_city,
+                                     @Field("address_state") String address_state,
+                                     @Field("address_postcode") String address_postcode,
+                                     @Field("account_phone_number") String account_phone_number,
+                                     @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
     Call<LoginApiModel> getChangePassword(@Url String url, @Field("new_password") String new_password,
                                           @Field("confirm_password") String confirm_password,
-                                          @Field("LoginId") String LoginId,
                                           @Field("Old_Password") String Old_Password,
+                                          @Field("Mobile_OTP") String Mobile_OTP,
+                                          @Field("LoginId") String LoginId,
                                           @Field("auth_key") String authKey);
 
     @FormUrlEncoded
@@ -72,5 +91,10 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<VerifyOtpApiModel> doVerifyOtp(@Url String url, @Field("id") String userId, @Field("otp") String otp);
+
+    @FormUrlEncoded
+    @POST
+    Call<VerifyOtpApiModel> doVerifyRegisterOtp(@Url String url, @Field("LoginId") String userId, @Field("Mobile_OTP") String Mobile_OTP, @Field("auth_key") String authKey);
+
 
 }

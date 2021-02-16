@@ -16,8 +16,9 @@ public class ChangePasswordRepository extends BaseRepository {
         Call<LoginApiModel> call = RetrofitBuilder.createServiceContract().getChangePassword(ApiConstants.CHANGE_PASSWORD,
                 params.getNew_password(),
                 params.getConfirm_password(),
-                params.getLoginId(),
                 params.getOld_Password(),
+                params.getMobile_OTP(),
+                params.getLoginId(),
                 params.getAuth_key());
         makeRequest(call, responseCallback);
     }

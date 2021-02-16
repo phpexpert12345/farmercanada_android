@@ -72,7 +72,7 @@ public class ForgotPassword extends BaseActivity {
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
-                        Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgotPassword.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
@@ -81,6 +81,7 @@ public class ForgotPassword extends BaseActivity {
                     }
                     case SUCCESS: {
                         dismissLoader();
+                        Toast.makeText(ForgotPassword.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
                         finish();
                         break;
@@ -97,7 +98,10 @@ public class ForgotPassword extends BaseActivity {
                 String mobile_number = otp_number_et.getText().toString().trim();
                 String password = ed_forgot_password.getText().toString();
                 String confirm_password = ed_confirm_forgot_password.getText().toString();
-                viewModel.doForgotPassword(stateMachine, mobile_number, password, confirm_password, role);
+
+                viewModel.doForgotPassword(stateMachine, mobile_number,
+                        getIntent().getStringExtra("USER_ID"),
+                        password, confirm_password);
             }
         });
     }

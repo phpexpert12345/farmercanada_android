@@ -19,10 +19,9 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
-import com.farmers.buyers.modules.forgotPassword.ForgotPasswordViewModel;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
-import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 
 public class ChangePasswordActivity extends BaseActivity implements View.OnClickListener {
 
@@ -44,7 +43,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
 
     Button bt_save;
     ImageView image_back_button;
-    EditText ed_old_password, ed_new_password, ed_confirm_password;
+    EditText ed_otp, ed_old_password, ed_new_password, ed_confirm_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +57,11 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
         bt_save = findViewById(R.id.bt_save);
         image_back_button = findViewById(R.id.change_password_back_image);
 
+        ed_otp = findViewById(R.id.ed_otp);
+        ed_old_password = findViewById(R.id.ed_old_password);
+        ed_new_password = findViewById(R.id.ed_new_password);
+        ed_confirm_password = findViewById(R.id.ed_confirm_password);
+
         image_back_button.setOnClickListener(this);
         bt_save.setOnClickListener(this);
 
@@ -67,7 +71,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
-                        // Toast.makeText(ChangePasswordActivity.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
@@ -76,8 +80,9 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                     }
                     case SUCCESS: {
                         dismissLoader();
-                        //  startActivity(new Intent(ChangePasswordActivity.this, LoginActivity.class));
-                        //  finish();
+                        Toast.makeText(ChangePasswordActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ChangePasswordActivity.this, HomeActivity.class));
+                        finish();
                         break;
                     }
                 }
@@ -97,10 +102,15 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                 finish();
                 break;
             case R.id.bt_save:
-                String mobile_number = ed_old_password.getText().toString().trim();
-                String password = ed_new_password.getText().toString();
+
+                String otp = ed_otp.getText().toString().trim();
+                String old_password = ed_old_password.getText().toString().trim();
+                String newPassword = ed_new_password.getText().toString();
                 String confirm_password = ed_confirm_password.getText().toString();
-                viewModel.doChangePassword(stateMachine, mobile_number, password, confirm_password);
+
+                viewModel.doChangePassword(stateMachine, newPassword,
+                        confirm_password, old_password, otp,
+                        getIntent().getStringExtra("USER_ID"));
                 break;
         }
     }

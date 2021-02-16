@@ -10,11 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.models.HomeCategoryItems;
+
+import static com.farmers.buyers.app.App.getAppContext;
 
 
 /**
@@ -42,17 +45,23 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         HomeCategoryItems item = (HomeCategoryItems) items;
         categoryName.setText(item.getCategory());
-        imageView.setImageResource(item.getImgUri());
+
+        if (item.getImgUrl().equalsIgnoreCase("")) {
+            imageView.setImageResource(R.drawable.fruit_one);
+        } else {
+            Glide.with(getAppContext())
+                    .load(item.getImgUrl())
+                    .into(imageView);
+        }
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lastIndex = getAdapterPosition()-1;
+                lastIndex = getAdapterPosition() - 1;
                 Log.e("position", String.valueOf(getAdapterPosition()));
                 Log.e("index", String.valueOf(lastIndex));
                 cardView.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.select_rect_bg));
             }
         });
-
     }
 }

@@ -25,10 +25,9 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
-import com.farmers.buyers.modules.forgotPassword.ForgotPasswordViewModel;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
+import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
 import com.farmers.buyers.modules.home.models.HomeCategoryListItem;
 import com.farmers.buyers.modules.home.models.HomeFarmTypeItem;
@@ -37,8 +36,6 @@ import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
-import com.farmers.buyers.modules.login.LoginActivity;
-import com.farmers.buyers.modules.login.model.LoginApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +50,6 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         MultipleTextItemViewHolder.FilterItemClickListener {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
-
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -65,7 +61,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     };
 
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
-    private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> stateMachine = new MutableLiveData<>();
 
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -76,8 +72,10 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = view.findViewById(R.id.home_recyclerView);
-        prepareListItems();
+
+        //  prepareListItems();
         init();
+
         return view;
     }
 
@@ -88,6 +86,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
+
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -110,30 +109,38 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         recyclerView.setLayoutManager(manager);
         adapter.updateData(items);
 
-        stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
-            @Override
-            public void onChanged(DataFetchState dataFetchState) {
-                switch (dataFetchState.status) {
-                    case ERROR: {
-                        // dismissLoader();
-                        // Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    case LOADING: {
-                        // showLoader();
-                        break;
-                    }
-                    case SUCCESS: {
-                        //dismissLoader();
-                        // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
-                        //finish();
-                        break;
-                    }
+        stateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    // dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    // showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+
+                    items.add(HomeTransformer.getHeaderItems());
+                    items.add(HomeTransformer.getSearchItems());
+                    items.add(HomeTransformer.getFilterItems());
+                    items.add(HomeTransformer.getCategoryList(dataFetchState.data.getmData().CategoryList));
+                    items.add(new SimpleTitleItem("Top Offers"));
+                    items.add(HomeTransformer.getTopOffers());
+                    items.add(new DeliveryTypeItems());
+                    items.add(new HomeFarmTypeItem());
+                    items.addAll(HomeTransformer.getHomeFarmListItem());
+                    adapter.updateData(items);
+
+                    break;
                 }
             }
         });
-        // viewModel.getCategoryList(stateMachine);
-        // viewModel.getOffersList(stateMachine);
+
+        viewModel.getCategoryList(stateMachine);
+        //viewModel.getOffersList(stateMachine);
     }
 
     private void prepareListItems() {

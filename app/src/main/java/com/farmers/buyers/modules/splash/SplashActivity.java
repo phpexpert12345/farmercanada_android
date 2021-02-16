@@ -64,7 +64,7 @@ public class SplashActivity extends BaseActivity {
                         break;
                     }
                     case ERROR: {
-                        error(state.message);
+                        error(state.status_message);
                     }
 
                 }

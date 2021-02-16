@@ -33,6 +33,7 @@ public class SignUpRepository extends BaseRepository {
 //        );
 //        makeRequest(call, responseCallback);
     }
+
     public void doUserRegis(SignUpRequestParams params,ApiResponseCallback<SignUpApiModel> responseCallback){
         Call<SignUpApiModel> call = RetrofitBuilder.createServiceContract().doUserSignUp(
                 ApiConstants.REGIS,
@@ -64,6 +65,14 @@ public class SignUpRepository extends BaseRepository {
 
     public void verifyOtp(VerifyOtpRequestParams params, ApiResponseCallback<VerifyOtpApiModel> responseCallback) {
         Call<VerifyOtpApiModel> call = RetrofitBuilder.createServiceContract().doVerifyOtp(ApiConstants.VERIFY_OTP, params.getUserId(), params.getOtp());
+        makeRequest(call, responseCallback);
+    }
+
+    public void verifyRegistrationOtp(VerifyOtpRequestParams params, ApiResponseCallback<VerifyOtpApiModel> responseCallback) {
+        Call<VerifyOtpApiModel> call = RetrofitBuilder.createServiceContract().doVerifyRegisterOtp(ApiConstants.VERIFY_REGISTRATION_OTP,
+                params.getUserId(),
+                params.getOtp(),
+                params.getKey());
         makeRequest(call, responseCallback);
     }
 
