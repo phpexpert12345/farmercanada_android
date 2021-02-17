@@ -21,9 +21,9 @@ import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.address.model.AddAddressRequestParams;
 import com.farmers.buyers.modules.address.model.MyAddressViewModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
+import com.farmers.buyers.storage.GPSTracker;
 
 public class AddNewAddressActivity extends BaseActivity implements View.OnClickListener {
-
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
@@ -39,7 +39,7 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
 
     public MyAddressViewModel viewModel = factory.create(MyAddressViewModel.class);
     private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
-
+    public GPSTracker gpsTracker;
     private Button bt_submit;
     private EditText ed_name_of_address, ed_complete_address, ed_city, ed_state, ed_postal_code, ed_mobile_number;
 
@@ -47,6 +47,8 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_address);
+
+        gpsTracker = new GPSTracker(this);
 
         setupToolbar(new BaseActivity.ToolbarConfig("Add New Address", true, new View.OnClickListener() {
             @Override
@@ -71,6 +73,11 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
         ed_state = findViewById(R.id.ed_state);
         ed_postal_code = findViewById(R.id.ed_postal_code);
         ed_mobile_number = findViewById(R.id.ed_mobile_number);
+
+        ed_complete_address.setText(gpsTracker.getAddressLine(this));
+        ed_city.setText(gpsTracker.getLocality(this));
+        ed_state.setText(gpsTracker.getAdminArea(this));
+        ed_postal_code.setText(gpsTracker.getPostalCode(this));
 
         stateMachine.observe(this, new Observer<DataFetchState<AddressApiModel>>() {
             @Override

@@ -15,5 +15,7 @@ public enum StorageKey {
     AuthenticationKey,
     DeviceId,
     SignUpMobileNumber,
+    WalletAmount,
+    Profile_Pic,
     LoginId;
 }

@@ -11,12 +11,12 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class WalletHistoryItems implements RecyclerViewListItem {
     String shopName;
-    int status;
+    String status;
     String amount;
     String time;
     int icon;
 
-    public WalletHistoryItems(String shopName, int status, String amount, String time, int icon) {
+    public WalletHistoryItems(String shopName, String status, String amount, String time, int icon) {
         this.shopName = shopName;
         this.status = status;
         this.amount = amount;
@@ -28,7 +28,7 @@ public class WalletHistoryItems implements RecyclerViewListItem {
         return shopName;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 

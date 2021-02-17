@@ -12,13 +12,15 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class CheckOutCartAddressItems implements RecyclerViewListItem {
+    private String address_id;
     private String addressType;
     private String address;
     private String detail;
     Boolean isSelected;
     Boolean canChange;
 
-    public CheckOutCartAddressItems(String addressType, String address, String detail, Boolean isSelected, Boolean canChange) {
+    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, Boolean isSelected, Boolean canChange) {
+        this.address_id = address_id;
         this.addressType = addressType;
         this.address = address;
         this.detail = detail;
@@ -32,6 +34,14 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(String address_id) {
+        this.address_id = address_id;
     }
 
     public String getDetail() {

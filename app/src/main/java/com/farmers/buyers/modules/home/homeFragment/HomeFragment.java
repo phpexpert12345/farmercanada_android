@@ -1,19 +1,13 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
 import android.app.AlertDialog;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,9 +17,8 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
+import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
-import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
@@ -36,9 +29,11 @@ import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+import com.farmers.buyers.modules.signUp.SignUpActivity;
+import com.farmers.buyers.storage.GPSTracker;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.farmers.buyers.app.App.getAppContext;
 
 /**
  * created by Mohammad Sajjad
@@ -46,7 +41,7 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class HomeFragment extends Fragment implements HomeHeaderViewHolder.HeaderItemClickListener,
+public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.HeaderItemClickListener,
         MultipleTextItemViewHolder.FilterItemClickListener {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -61,26 +56,38 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     };
 
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
-    private MutableLiveData<DataFetchState<AllDataModel>> stateMachine = new MutableLiveData<>();
-
-    private List<RecyclerViewListItem> items = new ArrayList<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
+    public GPSTracker gpsTracker;
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_fragment, container, false);
+    public String getTitle() {
+        return "";
+    }
+
+    @Override
+    public int getResourceFile() {
+        return R.layout.home_fragment;
+    }
+
+    @Override
+    public void bindView(View view) {
         recyclerView = view.findViewById(R.id.home_recyclerView);
-
-        //  prepareListItems();
         init();
+    }
 
-        return view;
+    @Override
+    public void onViewCreated() {
+        super.onViewCreated();
+        getUserData();
     }
 
     private void init() {
-
+        gpsTracker = new GPSTracker(getAppContext());
+        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         adapter = new HomeAdapter(HomeFragment.this, this);
         recyclerView.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
@@ -98,7 +105,6 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
                         adapter.getItemAt(position) instanceof HomeFilterListItems ||
                         adapter.getItemAt(position) instanceof DeliveryTypeItems ||
                         adapter.getItemAt(position) instanceof HomeFarmTypeItem) {
-
                     return 2;
                 } else {
                     return 1;
@@ -107,13 +113,12 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         });
 
         recyclerView.setLayoutManager(manager);
-        adapter.updateData(items);
 
-        stateMachine.observe(this, dataFetchState -> {
-            switch (dataFetchState.status) {
+        getUserStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
                 case ERROR: {
-                    // dismissLoader();
-                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    dismissLoader();
+                    Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
@@ -121,38 +126,71 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
                     break;
                 }
                 case SUCCESS: {
-                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-
-                    items.add(HomeTransformer.getHeaderItems());
-                    items.add(HomeTransformer.getSearchItems());
-                    items.add(HomeTransformer.getFilterItems());
-                    items.add(HomeTransformer.getCategoryList(dataFetchState.data.getmData().CategoryList));
-                    items.add(new SimpleTitleItem("Top Offers"));
-                    items.add(HomeTransformer.getTopOffers());
-                    items.add(new DeliveryTypeItems());
-                    items.add(new HomeFarmTypeItem());
-                    items.addAll(HomeTransformer.getHomeFarmListItem());
-                    adapter.updateData(items);
-
+                    getCategoryData();
                     break;
                 }
             }
         });
 
-        viewModel.getCategoryList(stateMachine);
-        //viewModel.getOffersList(stateMachine);
+        categoryStateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    categorySuccess();
+                    break;
+                }
+            }
+        });
+
+        offerStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    break;
+                }
+                case LOADING: {
+                    //showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    getUserSuccess();
+                    break;
+                }
+            }
+        });
     }
 
-    private void prepareListItems() {
-        items.add(HomeTransformer.getHeaderItems());
-        items.add(HomeTransformer.getSearchItems());
-        items.add(HomeTransformer.getFilterItems());
-        items.add(HomeTransformer.getCategoryList());
-        items.add(new SimpleTitleItem("Top Offers"));
-        items.add(HomeTransformer.getTopOffers());
-        items.add(new DeliveryTypeItems());
-        items.add(new HomeFarmTypeItem());
-        items.addAll(HomeTransformer.getHomeFarmListItem());
+    private void getUserSuccess() {
+        dismissLoader();
+        bindAdapter();
+    }
+
+    public void categorySuccess() {
+        getOfferData();
+    }
+
+    private void bindAdapter() {
+        adapter.updateData(viewModel.items);
+    }
+
+    private void getCategoryData() {
+        viewModel.getCategoryList(categoryStateMachine);
+    }
+
+    private void getOfferData() {
+        viewModel.getOffersList(offerStateMachine);
+    }
+
+    private void getUserData() {
+        viewModel.getUserInformation(getUserStateMachine);
     }
 
     @Override

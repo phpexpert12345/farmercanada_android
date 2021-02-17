@@ -43,7 +43,6 @@ public class LoginViewModel extends BaseViewModel {
             public void onSuccess(LoginApiModel response) {
                 if (response.isStatus()) {
                     SharedPreferenceManager.getInstance().setIsLoggedIn(true);
-                    SharedPreferenceManager.getInstance().setToken(response.getData().getToken());
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {

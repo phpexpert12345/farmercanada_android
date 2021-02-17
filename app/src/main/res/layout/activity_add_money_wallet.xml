@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context=".modules.addMoney.AddMoneyWallet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@drawable/bottom_curve_red_bg">
+
+            <RelativeLayout
+                android:id="@+id/place_order_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:elevation="@dimen/_5sdp">
+
+                <ImageView
+                    android:id="@+id/wallet_back_image"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_white_back_arrow" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:text="Add Money"
+                    android:textColor="@color/secondaryTextColor"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/wallet_notification_image"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_notification"
+                    android:visibility="invisible"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="Secure Payment"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/tv_wallet_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:text="Add Money"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18sdp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="-50dp"
+            android:layout_marginRight="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_15sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@mipmap/dollor_red" />
+
+                <TextView
+                    android:id="@+id/tv_remain_wallet_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="10.00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16_px"
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Amount"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16_px"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_transaction_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Transaction Id"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16_px"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Status"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_add"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_30sdp"
+            android:background="@drawable/round_corner_light_gradient_bg"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:text="Add"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

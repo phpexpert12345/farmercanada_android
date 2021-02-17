@@ -8,11 +8,17 @@ import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
 
+import java.io.File;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Url;
 
 /**
@@ -57,7 +63,19 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AllDataModel> getUserInformation(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AllDataModel> getWalletHistory(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
     Call<AddressApiModel> getAddressList(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> deleteAddress(@Url String url, @Field("LoginId") String LoginId, @Field("address_id") String address_id, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
@@ -85,6 +103,24 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<SignUpApiModel> addMoney(@Url String url, @Field("LoginId") String LoginId,
+                                  @Field("wallet_amount") String wallet_amount,
+                                  @Field("wallet_transation_id") String wallet_transation_id,
+                                  @Field("wallet_transation_status") String wallet_transation_status,
+                                  @Field("auth_key") String authKey);
+
+    @Multipart
+    @POST
+    Call<SignUpApiModel> editProfile(@Url String url,
+                                     @Part("LoginId") RequestBody LoginId,
+                                     @Part("account_name") RequestBody account_name,
+                                     @Part("account_email") RequestBody account_email,
+                                     @Part MultipartBody.Part account_photo,
+                                     @Part("auth_key") RequestBody auth_key);
+
+
+    @FormUrlEncoded
+    @POST
     Call<SendOtpApiModel> requestOtp(@Url String url, @Field("Mobile") String mobile, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
 
 
@@ -95,6 +131,5 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<VerifyOtpApiModel> doVerifyRegisterOtp(@Url String url, @Field("LoginId") String userId, @Field("Mobile_OTP") String Mobile_OTP, @Field("auth_key") String authKey);
-
 
 }

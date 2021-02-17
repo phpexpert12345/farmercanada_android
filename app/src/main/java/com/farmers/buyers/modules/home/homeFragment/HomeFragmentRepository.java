@@ -23,4 +23,10 @@ public class HomeFragmentRepository extends BaseRepository {
                 params.getAuthKey());
         makeRequest(call, responseCallback);
     }
+
+    public void getUserInformation(CategoryListRequestParams params, ApiResponseCallback<AllDataModel> responseCallback) {
+        Call<AllDataModel> call = RetrofitBuilder.createServiceContract().getUserInformation(ApiConstants.USER_INFORMATION,
+                params.getUserId(), params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
 }

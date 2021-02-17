@@ -24,4 +24,10 @@ public class MyAddressRepository extends BaseRepository {
                 params.getUserId(),params.getAuthKey());
         makeRequest(call, responseCallback);
     }
+
+    public void deleteAddress(AddAddressRequestParams params, ApiResponseCallback<AddressApiModel> responseCallback) {
+        Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().deleteAddress(ApiConstants.DELETE_ADDRESS,
+                params.getLoginId(),params.getAddress_postcode(),params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
 }

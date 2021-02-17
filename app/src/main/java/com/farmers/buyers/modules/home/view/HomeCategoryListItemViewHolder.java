@@ -46,13 +46,10 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
         HomeCategoryItems item = (HomeCategoryItems) items;
         categoryName.setText(item.getCategory());
 
-        if (item.getImgUrl().equalsIgnoreCase("")) {
-            imageView.setImageResource(R.drawable.fruit_one);
-        } else {
-            Glide.with(getAppContext())
-                    .load(item.getImgUrl())
-                    .into(imageView);
-        }
+        Glide.with(itemView.getContext())
+                .load(item.getImgUrl())
+                .placeholder(R.drawable.fruit_one)
+                .into(imageView);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

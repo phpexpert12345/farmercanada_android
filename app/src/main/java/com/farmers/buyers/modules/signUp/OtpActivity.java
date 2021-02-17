@@ -18,14 +18,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
 import com.farmers.buyers.modules.forgotPassword.ForgotPasswordViewModel;
-import com.farmers.buyers.modules.home.HomeActivity;
-import com.farmers.buyers.modules.login.LoginActivity;
-import com.farmers.buyers.modules.login.LoginViewModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
-import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
-import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
-import com.farmers.buyers.storage.SharedPreferenceManager;
-import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class OtpActivity extends BaseActivity {

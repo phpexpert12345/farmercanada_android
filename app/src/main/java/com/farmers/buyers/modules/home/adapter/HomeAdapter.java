@@ -1,6 +1,5 @@
 package com.farmers.buyers.modules.home.adapter;
 
-
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
@@ -25,7 +24,8 @@ public class HomeAdapter extends BaseAdapter {
     private HomeHeaderViewHolder.HeaderItemClickListener headerListener;
     private MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener;
 
-    public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener) {
+    public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener
+            filterItemClickListener) {
         super();
         this.headerListener = headerListener;
         this.filterItemClickListener = filterItemClickListener;

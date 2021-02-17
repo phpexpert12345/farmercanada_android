@@ -52,30 +52,30 @@ public class AllDataModel {
         this.mData = mData;
     }
 
-    public static class Data implements RecyclerViewListItem {
+    public static class Data {
 
         @SerializedName("CategoryList")
         public List<Data> CategoryList;
 
-        private String offer_id;
-        private String offer_title;
-        private String banner_photo;
+        @SerializedName("TopBannerList")
+        public List<BannerData> getBannerList;
+
+        @SerializedName("WalletList")
+        public List<BannerData> WalletList;
 
         private String category_id;
         private String category_name;
         private String category_photo;
 
-        public String getOffer_id() {
-            return offer_id;
-        }
-
-        public String getOffer_title() {
-            return offer_title;
-        }
-
-        public String getBanner_photo() {
-            return banner_photo;
-        }
+        public String LoginId;
+        public String login_name;
+        public String login_email;
+        public String account_type_name;
+        public String wallet_amount;
+        public String login_photo;
+        public String account_type;
+        public String login_phone;
+        public String login_phone_code;
 
         public String getCategory_id() {
             return category_id;
@@ -88,15 +88,56 @@ public class AllDataModel {
         public String getCategory_photo() {
             return category_photo;
         }
+    }
 
-        @Override
-        public int getViewType() {
-            return CardConstant.HOME_CATEGORY_LIST_ITEM_ADAPTER;
+    public static class BannerData {
+
+        private String offer_id;
+        private String offer_title;
+        private String banner_photo;
+
+        private String wallet_amount;
+        private String transaction_status;
+        private String added_date;
+        private String wallet_added_time;
+        private String wallet_status;
+        private String wallet_message;
+
+        public String getWallet_amount() {
+            return wallet_amount;
         }
 
-        @Override
-        public Object getUnique() {
-            return this;
+        public String getWalletAddedTime() {
+            return wallet_added_time;
+        }
+
+
+        public String getTransaction_status() {
+            return transaction_status;
+        }
+
+        public String getAdded_date() {
+            return added_date;
+        }
+
+        public String getWallet_status() {
+            return wallet_status;
+        }
+
+        public String getWallet_message() {
+            return wallet_message;
+        }
+
+        public String getOffer_id() {
+            return offer_id;
+        }
+
+        public String getOffer_title() {
+            return offer_title;
+        }
+
+        public String getBanner_photo() {
+            return banner_photo;
         }
     }
 }

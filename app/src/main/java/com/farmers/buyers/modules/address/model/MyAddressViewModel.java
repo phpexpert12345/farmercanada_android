@@ -77,4 +77,23 @@ public class MyAddressViewModel extends BaseViewModel {
         });
     }
 
+    public void deleteAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine,AddAddressRequestParams addAddressRequestParams) {
+
+        stateMachine.postValue(DataFetchState.<AddressApiModel>loading());
+        repository.deleteAddress(addAddressRequestParams, new ApiResponseCallback<AddressApiModel>() {
+            @Override
+            public void onSuccess(AddressApiModel response) {
+                if (response.isStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else {
+                    stateMachine.postValue(DataFetchState.<AddressApiModel>error(response.getStatus_message(), null));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.<AddressApiModel>error(standardError.getDisplayError(), null));
+            }
+        });
+    }
 }

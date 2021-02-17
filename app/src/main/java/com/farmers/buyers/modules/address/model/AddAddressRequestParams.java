@@ -17,6 +17,12 @@ public class AddAddressRequestParams {
     String account_phone_number;
     String authKey;
 
+    public AddAddressRequestParams(String loginId,String addressId, String authKey) {
+        this.LoginId = loginId;
+        this.address_postcode = addressId;
+        this.authKey = authKey;
+    }
+
     public AddAddressRequestParams(String loginId, String name_of_address, String complete_address, String address_city, String address_state,
                                    String address_postcode, String account_phone_number, String authKey) {
         this.LoginId = loginId;
