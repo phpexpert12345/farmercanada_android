@@ -161,6 +161,7 @@
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/couponAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -205,6 +206,7 @@
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/totalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

@@ -52,6 +52,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/farm_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_semibold"
@@ -59,6 +60,7 @@
                     android:textSize="@dimen/sp_16_px" />
 
                 <TextView
+                    android:id="@+id/duration_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
@@ -66,6 +68,7 @@
                     android:textSize="@dimen/sp_14_px" />
 
                 <RatingBar
+
                     android:id="@+id/myRatingBar"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
@@ -75,6 +78,7 @@
                     android:rating="0" />
 
                 <TextView
+                    android:id="@+id/comment_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"

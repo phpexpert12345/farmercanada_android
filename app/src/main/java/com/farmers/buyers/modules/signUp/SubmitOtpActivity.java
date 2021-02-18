@@ -130,7 +130,7 @@ public class SubmitOtpActivity extends BaseActivity {
                     }
 
                     case ERROR: {
-                        error(sendOtpApiModelDataFetchState.message);
+                        error(sendOtpApiModelDataFetchState.status_message);
                     }
 
                 }
@@ -156,7 +156,7 @@ public class SubmitOtpActivity extends BaseActivity {
                     }
 
                     case ERROR: {
-                        error(verifyOtpApiModelDataFetchState.message);
+                        error(verifyOtpApiModelDataFetchState.status_message);
                     }
 
                 }

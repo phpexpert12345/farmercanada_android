@@ -113,12 +113,12 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                        success(signUpApiModelDataFetchState.message);
+                        success(signUpApiModelDataFetchState.status_message);
                         break;
                     }
 
                     case ERROR: {
-                        error(signUpApiModelDataFetchState.message);
+                        error(signUpApiModelDataFetchState.status_message);
                         break;
                     }
                 }

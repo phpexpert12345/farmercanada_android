@@ -21,7 +21,7 @@ public class DataFetchState<T> {
     public final Status status;
 
     @Nullable
-    public final String message;
+    public final String status_message;
 
     @Nullable
     public final T data;
@@ -29,7 +29,7 @@ public class DataFetchState<T> {
     public DataFetchState(@NonNull Status status, @Nullable T data, @Nullable String message) {
         this.status = status;
         this.data = data;
-        this.message = message;
+        this.status_message = message;
     }
 
 //    public static <T> DataFetchState success() {
@@ -74,7 +74,7 @@ public class DataFetchState<T> {
         if (status != resource.status) {
             return false;
         }
-        if (message != null ? !message.equals(resource.message) : resource.message != null) {
+        if (status_message != null ? !status_message.equals(resource.status_message) : resource.status_message != null) {
             return false;
         }
         return data != null ? data.equals(resource.data) : resource.data == null;
@@ -83,7 +83,7 @@ public class DataFetchState<T> {
     @Override
     public int hashCode() {
         int result = status.hashCode();
-        result = 31 * result + (message != null ? message.hashCode() : 0);
+        result = 31 * result + (status_message != null ? status_message.hashCode() : 0);
         result = 31 * result + (data != null ? data.hashCode() : 0);
         return result;
     }
@@ -92,7 +92,7 @@ public class DataFetchState<T> {
     public String toString() {
         return "Resource{" +
                 "status=" + status +
-                ", message='" + message + '\'' +
+                ", message='" + status_message + '\'' +
                 ", data=" + data +
                 '}';
     }

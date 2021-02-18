@@ -2,7 +2,9 @@ package com.farmers.buyers.modules.home.homeFragment;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
-import com.farmers.buyers.modules.forgotPassword.ForgotPasswordRequestParams;
+import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
+import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
@@ -22,4 +24,25 @@ public class HomeFragmentRepository extends BaseRepository {
                 params.getAuthKey());
         makeRequest(call, responseCallback);
     }
+
+    public void farmListRequest(FarmListRequest params, ApiResponseCallback<FarmListResponse> responseCallback) {
+        Call<FarmListResponse> call = RetrofitBuilder.createServiceContract().FARM_LIST_RESPONSE_CALL(ApiConstants.FARM_LIST_URL,
+                params.getAuthKey(),
+                params.getCustomer_lat(),
+                params.getCustomer_long(),
+                params.getCustomer_full_address()
+                , params.getCustomer_city(),
+                params.getFarm_type()
+                , params.getFarm_type_developer_information()
+                , params.getFarm_service_type(),
+                params.getOrder_type_developer_information(),
+                params.getFarm_category_id(),
+                params.getPageno(),
+                params.getLoginId());
+
+        makeRequest(call, responseCallback);
+    }
+
+
+
 }

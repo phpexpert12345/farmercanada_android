@@ -83,7 +83,6 @@ public class SignUpViewModel extends BaseViewModel {
         }
 
         SendOtpRequestParams params = new SendOtpRequestParams(number, controller.getAuthenticationKey(), controller.getLoginId());
-
         repository.reSendOtp(params, new ApiResponseCallback<SendOtpApiModel>() {
             @Override
             public void onSuccess(SendOtpApiModel response) {

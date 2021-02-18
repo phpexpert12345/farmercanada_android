@@ -39,19 +39,17 @@ public class LoginViewModel extends BaseViewModel {
         LoginRequestParams loginRequestParams = new LoginRequestParams(email, password, appController.getDeviceId(), role, "android", appController.getAuthenticationKey());
 
 
-
         repository.doLogin(loginRequestParams, new ApiResponseCallback<LoginApiModel>() {
             @Override
             public void onSuccess(LoginApiModel response) {
-                if (response.getData() != null) {
+                if (response.isStatus()) {
                     SharedPreferenceManager.getInstance().setIsLoggedIn(true);
                     SharedPreferenceManager.getInstance().setToken(response.getData().getToken());
-                    stateMachine.postValue(DataFetchState.success(response, response.getData().getMessage()));
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 }
                 else {
-                    stateMachine.postValue(DataFetchState.<LoginApiModel>error(response.getData().getMessage(), null));
+                    stateMachine.postValue(DataFetchState.<LoginApiModel>error(response.getStatus_message(), null));
                 }
-
             }
 
             @Override

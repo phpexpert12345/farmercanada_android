@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReviewTransfarmer {
 
-    public static List<ReviewListItem> getReviewList() {
+  /*  public static List<ReviewListItem> getReviewList() {
         List<ReviewListItem> item = new ArrayList<>();
         item.add(new ReviewListItem());
         item.add(new ReviewListItem());
@@ -28,5 +28,5 @@ public class ReviewTransfarmer {
         item.add(new ReviewedListItem("", "", "", 0, "", true));
         item.add(new ReviewedListItem("", "", "", 2, "", true));
         return item;
-    }
+    }*/
 }

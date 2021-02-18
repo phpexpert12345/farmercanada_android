@@ -1,7 +1,6 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +19,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
-import com.farmers.buyers.modules.forgotPassword.ForgotPasswordViewModel;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
@@ -36,8 +34,10 @@ import com.farmers.buyers.modules.home.models.HomeFilterListItems;
 import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
+import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
+import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
-import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 
 import java.util.ArrayList;
@@ -64,12 +64,16 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         }
     };
 
+    ArrayList<SubProductItemRecord> farmListData;
+
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
 
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
+    private AppController appController = AppController.get();
 
     @Nullable
     @Override
@@ -77,8 +81,20 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = view.findViewById(R.id.home_recyclerView);
         prepareListItems();
+        farmListData=new ArrayList<>();
+
+        farmListDataRequest();
         init();
         return view;
+    }
+
+    private void farmListDataRequest() {
+
+
+        FarmListRequest farmListRequest=new FarmListRequest(appController.getAuthenticationKey(),
+                "2333232","233232","D 242, Sector 63 Noida","Noida","","local=0,homemade=1","",
+                "pickup=0,delivery=1","","","");
+        viewModel.getFarmList(farmListStateMachine,farmListRequest);
     }
 
     private void init() {
@@ -99,7 +115,6 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
                         adapter.getItemAt(position) instanceof HomeFilterListItems ||
                         adapter.getItemAt(position) instanceof DeliveryTypeItems ||
                         adapter.getItemAt(position) instanceof HomeFarmTypeItem) {
-
                     return 2;
                 } else {
                     return 1;
@@ -109,6 +124,25 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
 
         recyclerView.setLayoutManager(manager);
         adapter.updateData(items);
+
+        farmListStateMachine.observe(this,new Observer<DataFetchState<FarmListResponse>>(){
+            @Override
+            public void onChanged(DataFetchState<FarmListResponse> farmListResponseDataFetchState) {
+                switch (farmListResponseDataFetchState.status){
+                    case ERROR:
+                         Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case SUCCESS:
+                      //  farmListData.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
+                        items.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
+                        adapter.updateData(items);
+                        Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+
+                        break;
+
+                }
+            }
+        });
 
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
@@ -132,8 +166,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
                 }
             }
         });
-        // viewModel.getCategoryList(stateMachine);
-        // viewModel.getOffersList(stateMachine);
+
     }
 
     private void prepareListItems() {
@@ -145,7 +178,7 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         items.add(HomeTransformer.getTopOffers());
         items.add(new DeliveryTypeItems());
         items.add(new HomeFarmTypeItem());
-        items.addAll(HomeTransformer.getHomeFarmListItem());
+       // items.addAll(HomeTransformer.getHomeFarmListItem());
     }
 
     @Override
@@ -160,7 +193,6 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         View promptsView = li.inflate(R.layout.buyer_seller_switch_dialog, null);
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.NewDialog);
         alertDialogBuilder.setView(promptsView);
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 

@@ -23,6 +23,7 @@ import com.farmers.buyers.modules.login.model.LoginRequestParams;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
+import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -131,7 +132,7 @@ public class LoginActivity extends BaseActivity {
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
-                        Toast.makeText(LoginActivity.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
@@ -144,16 +145,13 @@ public class LoginActivity extends BaseActivity {
                         if (role == 1) {
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         } else {
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
                             finish();
                         }
                         break;
-
-
                     }
                 }
             }
         });
     }
-
 }

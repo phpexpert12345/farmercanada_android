@@ -72,7 +72,7 @@ public class ForgotPassword extends BaseActivity {
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
-                        Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgotPassword.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
