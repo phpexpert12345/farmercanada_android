@@ -32,4 +32,11 @@ public class ApiConstants {
     public static final String ADD_MONEY = "phpexpert_customer_wallet_money_add.php";
     public static final String EDIT_PROFILE = "phpexpert_edit_customer_profile.php";
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
+
+    //Ganesh working
+    public static final String FARM_LIST_URL = "phpexpert_farm_list.php";
+    public static final String ALL_FARM_PRODUCT_LIST_URL = "phpexpert_all_farm_product_list.php";
+    public static final String APPLY_COUPON_URL = "phpexpert_coupon_apply.php";
+    public static final String REVIEW_AND_RATING_API = "phpexpert_customer_review_list.php";
+
 }

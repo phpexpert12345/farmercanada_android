@@ -46,6 +46,11 @@ public class LoginViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {
+                    SharedPreferenceManager.getInstance().setToken(response.getData().getToken());
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+                }
+                else {
+
                     stateMachine.postValue(DataFetchState.<LoginApiModel>error(response.getStatus_message(), null));
                 }
             }

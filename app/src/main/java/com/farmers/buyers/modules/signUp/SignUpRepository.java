@@ -4,6 +4,8 @@ package com.farmers.buyers.modules.signUp;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpRequestParams;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
@@ -75,5 +77,6 @@ public class SignUpRepository extends BaseRepository {
                 params.getKey());
         makeRequest(call, responseCallback);
     }
+
 
 }

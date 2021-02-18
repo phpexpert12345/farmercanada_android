@@ -2,7 +2,11 @@ package com.farmers.buyers.remote;
 
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.home.models.AllDataModel;
+import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
+import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewListResponse;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
@@ -131,5 +135,36 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<VerifyOtpApiModel> doVerifyRegisterOtp(@Url String url, @Field("LoginId") String userId, @Field("Mobile_OTP") String Mobile_OTP, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<FarmListResponse> FARM_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                                   @Field("customer_lat") String customer_lat,
+                                                   @Field("customer_long") String customer_long,
+                                                   @Field("customer_full_address") String customer_full_address,
+                                                   @Field("customer_city") String customer_city,
+                                                   @Field("farm_type") String farm_type,
+                                                   @Field("farm_type_developer_information") String farm_type_developer_information,
+                                                   @Field("farm_service_type") String farm_service_type,
+                                                   @Field("order_type_developer_information") String order_type_developer_information,
+                                                   @Field("farm_category_id") String farm_category_id,
+                                                   @Field("pageno") String pageno,
+                                                   @Field("LoginId") String LoginId);
+    @FormUrlEncoded
+    @POST
+    Call<FarmListProductResponse>FARM__PRODUCT_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("farm_id") String farmId);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<ApplyCouponResponse>APPLY_COUPON_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                                        @Field("farm_id") String farmId,
+                                                        @Field("coupon_code")String couponCode,
+                                                        @Field("subtotal_amount") int subTotalAmount);
+
+    @FormUrlEncoded
+    @POST
+    Call<ReviewListResponse> REVIEWD_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
+
 
 }

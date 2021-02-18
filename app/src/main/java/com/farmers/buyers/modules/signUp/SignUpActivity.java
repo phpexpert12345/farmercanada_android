@@ -108,6 +108,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
                     case SUCCESS: {
                         success(signUpApiModelDataFetchState.status_message, signUpApiModelDataFetchState.data.getData().getMobile_OTP(), signUpApiModelDataFetchState.data.getData().getLoginId());
+                        success(signUpApiModelDataFetchState.status_message);
                         break;
                     }
 
