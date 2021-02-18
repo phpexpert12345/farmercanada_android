@@ -76,6 +76,7 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
                 intent.putExtra("fromForgetPassword", true);
+                intent.putExtra("FROM", "Login");
                 startActivity(intent);
             }
         });
@@ -115,7 +116,6 @@ public class LoginActivity extends BaseActivity {
 
             }
         });
-
     }
 
     private void init() {

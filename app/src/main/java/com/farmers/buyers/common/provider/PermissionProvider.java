@@ -37,7 +37,7 @@ public class PermissionProvider {
         // PERMISSION_DENIED : Constant Value: -1
         int counter = 0;
 
-        for (int i = 0 ; i<list.size() ; i++) {
+        for (int i = 0; i < list.size(); i++) {
             counter += ContextCompat.checkSelfPermission(activity, list.get(i));
         }
         return counter;
@@ -55,8 +55,9 @@ public class PermissionProvider {
     }
 
     private String deniedPermission() {
-        for (String permission: list) {
-            if (ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_DENIED) return permission;
+        for (String permission : list) {
+            if (ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_DENIED)
+                return permission;
         }
         return "";
     }
@@ -77,27 +78,24 @@ public class PermissionProvider {
 
     public void requestPermissions() {
         String permissions = deniedPermission();
-
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permissions)) {
             ActivityCompat.requestPermissions(activity, (String[]) list.toArray(), code);
-        }
-        else {
+        } else {
             ActivityCompat.requestPermissions(activity, (String[]) list.toArray(), code);
         }
     }
 
-    public Boolean processPermissionResult(int requestCode, String [] permissions, int[] grantResult) {
+    public Boolean processPermissionResult(int requestCode, String[] permissions, int[] grantResult) {
         int result = 0;
         if (grantResult.length == 0) {
-            for (int item:grantResult) {
+            for (int item : grantResult) {
                 result += item;
 
             }
         }
-        if (result == PackageManager.PERMISSION_GRANTED)  {
-         return true;
-        }
-        else {
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
             return false;
         }
     }

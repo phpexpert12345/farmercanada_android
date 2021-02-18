@@ -43,6 +43,22 @@ public class SharedPreferenceManager {
         return (String) getSharedPreferences(StorageKey.Token.toString(), "");
     }
 
+    public void setProfilePic(String value) {
+        setSharedPreference(StorageKey.Token.toString(), value);
+    }
+
+    public String getProfilePic() {
+        return (String) getSharedPreferences(StorageKey.Profile_Pic.toString(), "");
+    }
+
+    public void setWalletAmount(String value) {
+        setSharedPreference(StorageKey.WalletAmount.toString(), value);
+    }
+
+    public String getWalletAmount() {
+        return (String) getSharedPreferences(StorageKey.WalletAmount.toString(), "");
+    }
+
     public void setIsComingFrom(int value) {
         setSharedPreference(StorageKey.ComingFrom.toString(), value);
     }
@@ -94,7 +110,7 @@ public class SharedPreferenceManager {
     }
 
 
-    private void setSharedPreference(String key, Object value) {
+    public void setSharedPreference(String key, Object value) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -132,29 +148,21 @@ public class SharedPreferenceManager {
     }
 
 
-    private Object getSharedPreferences(String key, @Nullable Object defaultValue) {
+    public Object getSharedPreferences(String key, @Nullable Object defaultValue) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);
         Object value;
 
         if (String.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getString(key, String.valueOf(defaultValue));
-        }
-        else if (Integer.class.equals(defaultValue.getClass())) {
+        } else if (Integer.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getInt(key, (Integer) defaultValue);
-        }
-
-        else if (Boolean.class.equals(defaultValue.getClass())) {
+        } else if (Boolean.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getBoolean(key, (Boolean) defaultValue);
-        }
-
-        else if (Float.class.equals(defaultValue.getClass())) {
+        } else if (Float.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getFloat(key, (Float) defaultValue);
-        }
-
-        else if (Long.class.equals(defaultValue.getClass())) {
+        } else if (Long.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getLong(key, (Long) defaultValue);
-        }
-        else {
+        } else {
             throw new UnsupportedOperationException("Not yet implemented");
         }
         return value;

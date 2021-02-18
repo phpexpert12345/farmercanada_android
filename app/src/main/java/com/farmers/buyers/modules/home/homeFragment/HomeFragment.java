@@ -2,17 +2,14 @@ package com.farmers.buyers.modules.home.homeFragment;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,10 +20,13 @@ import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
+import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
+
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
+import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
 import com.farmers.buyers.modules.home.models.HomeCategoryListItem;
 import com.farmers.buyers.modules.home.models.HomeFarmTypeItem;
@@ -38,10 +38,14 @@ import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+import com.farmers.buyers.modules.signUp.SignUpActivity;
+import com.farmers.buyers.storage.GPSTracker;
+import com.farmers.buyers.storage.SharedPreferenceManager;
+
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.farmers.buyers.app.App.getAppContext;
 
 /**
  * created by Mohammad Sajjad
@@ -49,11 +53,10 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class HomeFragment extends Fragment implements HomeHeaderViewHolder.HeaderItemClickListener,
+public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.HeaderItemClickListener,
         MultipleTextItemViewHolder.FilterItemClickListener {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
-
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -67,6 +70,11 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     ArrayList<SubProductItemRecord> farmListData;
 
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
+
+    private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
+
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
 
@@ -75,19 +83,32 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
     private HomeAdapter adapter;
     private AppController appController = AppController.get();
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_fragment, container, false);
+    public String getTitle() {
+        return "";
+    }
+
+    @Override
+    public int getResourceFile() {
+        return R.layout.home_fragment;
+    }
+
+    @Override
+    public void bindView(View view) {
         recyclerView = view.findViewById(R.id.home_recyclerView);
+
         prepareListItems();
         farmListData=new ArrayList<>();
 
         farmListDataRequest();
         init();
-        return view;
     }
 
+    @Override
+    public void onViewCreated() {
+        super.onViewCreated();
+        getUserData();
+    }
     private void farmListDataRequest() {
 
 
@@ -99,11 +120,15 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
 
     private void init() {
 
+    private void init() {
+        gpsTracker = new GPSTracker(getAppContext());
+        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         adapter = new HomeAdapter(HomeFragment.this, this);
         recyclerView.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
+
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -123,8 +148,21 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
         });
 
         recyclerView.setLayoutManager(manager);
-        adapter.updateData(items);
 
+       getUserStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    // showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    getCategoryData();
+                    break;
         farmListStateMachine.observe(this,new Observer<DataFetchState<FarmListResponse>>(){
             @Override
             public void onChanged(DataFetchState<FarmListResponse> farmListResponseDataFetchState) {
@@ -167,6 +205,65 @@ public class HomeFragment extends Fragment implements HomeHeaderViewHolder.Heade
             }
         });
 
+        categoryStateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    categorySuccess();
+                    break;
+                }
+            }
+        });
+
+        offerStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    break;
+                }
+                case LOADING: {
+                    //showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    getUserSuccess();
+                    break;
+                }
+            }
+        });
+    }
+
+    private void getUserSuccess() {
+        dismissLoader();
+        bindAdapter();
+    }
+
+    public void categorySuccess() {
+        getOfferData();
+    }
+
+    private void bindAdapter() {
+        adapter.updateData(viewModel.items);
+    }
+
+    private void getCategoryData() {
+        viewModel.getCategoryList(categoryStateMachine);
+    }
+
+    private void getOfferData() {
+        viewModel.getOffersList(offerStateMachine);
+    }
+
+    private void getUserData() {
+        viewModel.getUserInformation(getUserStateMachine);
     }
 
     private void prepareListItems() {

@@ -1,22 +1,15 @@
 package com.farmers.buyers.modules.accountDetails;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
-import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
-import com.farmers.buyers.modules.profile.EditProfileActivity;
 
 public class AccountDetailsActivity extends BaseActivity implements View.OnClickListener {
 

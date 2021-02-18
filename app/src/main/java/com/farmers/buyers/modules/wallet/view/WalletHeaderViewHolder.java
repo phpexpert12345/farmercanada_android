@@ -4,10 +4,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -20,13 +22,18 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 
 public class WalletHeaderViewHolder extends BaseViewHolder {
 
+    TextView tv_wallet_balance;
     ImageView backImage;
     Button withDrawBtn;
+    AppController appController = AppController.get();
 
     public WalletHeaderViewHolder(@NonNull ViewGroup parent, final WalletHeaderClickListener walletHeaderClickListener) {
         super(Extensions.inflate(parent, R.layout.wallet_header_layout));
         backImage = itemView.findViewById(R.id.wallet_back_image);
         withDrawBtn = itemView.findViewById(R.id.wallet_withdraw_btn);
+        tv_wallet_balance = itemView.findViewById(R.id.tv_wallet_balance);
+
+        tv_wallet_balance.setText("$ " + appController.getWalletAmount());
 
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +57,7 @@ public class WalletHeaderViewHolder extends BaseViewHolder {
 
     public interface WalletHeaderClickListener {
         void onBackClicked();
+
         void onWithdrawClicked();
     }
 }

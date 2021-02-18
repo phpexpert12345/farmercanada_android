@@ -2,6 +2,8 @@ package com.farmers.buyers.app;
 
 import android.content.Context;
 
+import androidx.annotation.Nullable;
+
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
 
@@ -14,7 +16,7 @@ import com.farmers.buyers.storage.SharedPreferenceManager;
 public class AppController implements AppControllerContract {
 
     private static AppController INSTANCE;
-    private static String baseUrl ;
+    private static String baseUrl;
     private static Context context;
     private SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance();
 
@@ -32,8 +34,7 @@ public class AppController implements AppControllerContract {
     public static AppController get() {
         if (INSTANCE == null) {
             return new AppController();
-        }
-        else {
+        } else {
             return INSTANCE;
         }
     }
@@ -63,5 +64,18 @@ public class AppController implements AppControllerContract {
         return sharedPreferenceManager.getLoginId();
     }
 
+    @Override
+    public String getWalletAmount() {
+        return sharedPreferenceManager.getWalletAmount();
+    }
 
+    @Override
+    public String getProfilePic() {
+        return null;
+    }
+
+    @Override
+    public String getSharedPreferences(String key, @Nullable Object defaultValue) {
+        return null;
+    }
 }

@@ -8,14 +8,26 @@ import java.io.Serializable;
 
 public class SignUpApiModel implements Serializable {
 
+
+    @SerializedName("status")
+    private boolean status;
+
     @SerializedName("status_code")
     private int statusCode;
 
     @SerializedName("status_message")
     private String statusMessage;
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     @SerializedName("data")
-    private List<SignUpData> data;
+    private SignUpData data;
 
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
@@ -33,11 +45,11 @@ public class SignUpApiModel implements Serializable {
         return statusMessage;
     }
 
-    public void setData(List<SignUpData> data) {
+    public void setData(SignUpData data) {
         this.data = data;
     }
 
-    public List<SignUpData> getData() {
+    public SignUpData getData() {
         return data;
     }
 
@@ -52,6 +64,9 @@ public class SignUpApiModel implements Serializable {
 
         @SerializedName("login_phone_code")
         private String loginPhoneCode;
+
+        @SerializedName("Mobile_OTP")
+        private String Mobile_OTP;
 
         public void setLoginId(String loginId) {
             this.loginId = loginId;
@@ -71,6 +86,14 @@ public class SignUpApiModel implements Serializable {
 
         public void setLoginPhoneCode(String loginPhoneCode) {
             this.loginPhoneCode = loginPhoneCode;
+        }
+
+        public String getMobile_OTP() {
+            return Mobile_OTP;
+        }
+
+        public void setMobile_OTP(String mobile_OTP) {
+            Mobile_OTP = mobile_OTP;
         }
 
         public String getLoginPhoneCode() {

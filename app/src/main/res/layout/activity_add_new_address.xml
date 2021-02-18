@@ -12,12 +12,12 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginRight="@dimen/_30sdp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -26,10 +26,11 @@
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:textColorHint="@color/light_gray"
-            app:hintTextColor="@color/light_gray"
-            app:boxStrokeColor="@color/light_gray">
+            app:boxStrokeColor="@color/light_gray"
+            app:hintTextColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_name_of_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name_of_address"
@@ -46,14 +47,15 @@
             android:layout_marginRight="@dimen/_16sdp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_complete_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_70sdp"
                 android:gravity="start"
                 android:hint="@string/complete_address"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray"/>
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,16 +68,18 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:textColorHint="@color/light_gray"
-            app:hintTextColor="@color/light_gray"
-            app:boxStrokeColor="@color/light_gray">
+            app:boxStrokeColor="@color/light_gray"
+            app:hintTextColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/city"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
@@ -84,16 +88,18 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:textColorHint="@color/light_gray"
-            app:hintTextColor="@color/light_gray"
-            app:boxStrokeColor="@color/light_gray">
+            app:boxStrokeColor="@color/light_gray"
+            app:hintTextColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Postcode"
+                android:hint="State"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
@@ -102,13 +108,37 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:textColorHint="@color/light_gray"
-            app:hintTextColor="@color/light_gray"
-            app:boxStrokeColor="@color/light_gray">
+            app:boxStrokeColor="@color/light_gray"
+            app:hintTextColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Postcode"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:textColorHint="@color/light_gray"
+            app:boxStrokeColor="@color/light_gray"
+            app:hintTextColor="@color/light_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone Number"
+                android:inputType="number"
+                android:maxLength="10"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -124,11 +154,11 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/_30sdp"
         android:background="@drawable/round_corner_light_gradient_bg"
-        android:text="Submit"
         android:fontFamily="@font/sf_ui_semibold"
-        android:textSize="@dimen/_12ssp"
+        android:text="Submit"
         android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

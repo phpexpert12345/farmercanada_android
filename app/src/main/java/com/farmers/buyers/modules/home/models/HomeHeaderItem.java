@@ -10,12 +10,12 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class HomeHeaderItem implements RecyclerViewListItem {
-    String userName, address;
+    String userName, address, user_type;
 
-    public HomeHeaderItem(String name, String address) {
+    public HomeHeaderItem(String name, String address, String user_type) {
         this.userName = name;
         this.address = address;
-
+        this.user_type = user_type;
     }
 
     public String getUserName() {
@@ -24,6 +24,10 @@ public class HomeHeaderItem implements RecyclerViewListItem {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getUser_type() {
+        return user_type;
     }
 
     @Override

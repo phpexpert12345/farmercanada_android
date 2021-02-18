@@ -22,6 +22,7 @@ import com.farmers.buyers.common.utils.GenericTextWatcher;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
@@ -73,8 +74,13 @@ public class SubmitOtpActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 String otp = otp_textbox_one.getText().toString() + otp_textbox_two.getText().toString() + otp_textbox_three.getText().toString() + otp_textbox_four.getText().toString();
-                viewModel.verifyOtp(verifyOtpStateMachine, otp);
-
+                if (extra){
+                    viewModel.verifyRegistrationOtp(verifyOtpStateMachine, otp,
+                            getIntent().getStringExtra("USER_ID"));
+                }else {
+                    viewModel.verifyRegistrationOtp(verifyOtpStateMachine, otp,
+                            getIntent().getStringExtra("USER_ID"));
+                }
             }
         });
 
@@ -97,7 +103,6 @@ public class SubmitOtpActivity extends BaseActivity {
         } else {
             headerNumberTv.setText("Please enter the OTP code sent to " + getIntent().getStringExtra("number"));
         }
-
 
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
         otp_textbox_two = findViewById(R.id.otp_edit_box2);
@@ -164,10 +169,6 @@ public class SubmitOtpActivity extends BaseActivity {
         });
 
         startTimer();
-        if (extra) {
-            //resendOtp();
-        } else {
-        }
     }
 
     private void loading() {
@@ -176,6 +177,7 @@ public class SubmitOtpActivity extends BaseActivity {
 
     private void success() {
         dismissLoader();
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     private void error(String error) {
