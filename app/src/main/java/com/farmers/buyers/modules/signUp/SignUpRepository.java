@@ -4,6 +4,8 @@ package com.farmers.buyers.modules.signUp;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpRequestParams;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
@@ -33,6 +35,7 @@ public class SignUpRepository extends BaseRepository {
 //        );
 //        makeRequest(call, responseCallback);
     }
+
     public void doUserRegis(SignUpRequestParams params,ApiResponseCallback<SignUpApiModel> responseCallback){
         Call<SignUpApiModel> call = RetrofitBuilder.createServiceContract().doUserSignUp(
                 ApiConstants.REGIS,
@@ -66,5 +69,14 @@ public class SignUpRepository extends BaseRepository {
         Call<VerifyOtpApiModel> call = RetrofitBuilder.createServiceContract().doVerifyOtp(ApiConstants.VERIFY_OTP, params.getUserId(), params.getOtp());
         makeRequest(call, responseCallback);
     }
+
+    public void verifyRegistrationOtp(VerifyOtpRequestParams params, ApiResponseCallback<VerifyOtpApiModel> responseCallback) {
+        Call<VerifyOtpApiModel> call = RetrofitBuilder.createServiceContract().doVerifyRegisterOtp(ApiConstants.VERIFY_REGISTRATION_OTP,
+                params.getUserId(),
+                params.getOtp(),
+                params.getKey());
+        makeRequest(call, responseCallback);
+    }
+
 
 }

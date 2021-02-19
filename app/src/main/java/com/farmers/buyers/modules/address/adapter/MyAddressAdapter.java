@@ -1,6 +1,8 @@
 package com.farmers.buyers.modules.address.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
+import com.farmers.buyers.modules.address.view.MyAddressDelegate;
+import com.farmers.buyers.modules.address.view.MyAddressListViewHolder;
 import com.farmers.buyers.modules.cart.checkout.view.CheckoutFromCartAddressDelegate;
 import com.farmers.buyers.storage.CardConstant;
 
@@ -12,13 +14,16 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class MyAddressAdapter extends BaseAdapter {
 
-    public MyAddressAdapter() {
+    MyAddressListViewHolder.AddressItemClickListener addressItemClickListener;
+
+    public MyAddressAdapter(MyAddressListViewHolder.AddressItemClickListener addressItemClickListener) {
         super();
+        this.addressItemClickListener = addressItemClickListener;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.MY_CART_ADDRESS_ADAPTER, new CheckoutFromCartAddressDelegate());
+        delegates.put(CardConstant.MY_CART_ADDRESS_ADAPTER, new MyAddressDelegate(addressItemClickListener));
     }
 }

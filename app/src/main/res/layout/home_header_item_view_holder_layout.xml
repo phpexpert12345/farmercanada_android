@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_user_name"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
@@ -45,6 +45,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_account_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_3sdp"
@@ -60,8 +61,8 @@
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_notification_gray"
-                android:layout_marginRight="@dimen/_8sdp"/>
+                android:layout_marginRight="@dimen/_8sdp"
+                android:src="@drawable/ic_notification_gray" />
         </LinearLayout>
     </LinearLayout>
 
@@ -93,16 +94,15 @@
                     android:src="@drawable/ic_address" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_15sdp"
                     android:ellipsize="end"
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="center_vertical"
-                    android:singleLine="true"
                     android:text="@string/address"
-                    android:textSize="@dimen/sp_12_px" />
+                    android:textSize="@dimen/sp_11_px" />
             </RelativeLayout>
 
             <ImageView

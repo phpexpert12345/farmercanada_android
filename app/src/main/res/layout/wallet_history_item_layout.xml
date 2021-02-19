@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,62 +13,57 @@
             android:id="@+id/wallet_history_item_status_image"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
-            android:src="@drawable/ic_withdraw"/>
+            android:src="@drawable/ic_withdraw" />
 
         <TextView
             android:id="@+id/wallet_history_item_name_tv"
-            android:layout_toRightOf="@id/wallet_history_item_status_image"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kin's Farm Market"
-            android:textSize="@dimen/sp_16_px"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_toRightOf="@id/wallet_history_item_status_image"
             android:fontFamily="@font/sf_ui_semibold"
-            android:textColor="@color/primaryTextColor"/>
+            android:text="Kin's Farm Market"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_14_px" />
 
         <TextView
             android:id="@+id/wallet_history_item_status_tv"
-            android:layout_below="@id/wallet_history_item_name_tv"
-            android:layout_toRightOf="@id/wallet_history_item_status_image"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paid"
-            android:textSize="@dimen/sp_12_px"
+            android:layout_below="@id/wallet_history_item_name_tv"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_toRightOf="@id/wallet_history_item_status_image"
             android:fontFamily="@font/sf_ui_regular"
-            android:textColor="@color/primaryTextColor"/>
+            android:text="Paid"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_12_px" />
 
         <TextView
             android:id="@+id/wallet_history_item_amount_tv"
-            android:layout_marginRight="@dimen/_8sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-$ 29.89"
-            android:textSize="@dimen/sp_16_px"
-            android:fontFamily="@font/sf_ui_bold"
-            android:textColor="@color/primary_button_color"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            />
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:fontFamily="@font/sf_ui_bold"
+            android:text="-$ 29.89"
+            android:textColor="@color/primary_button_color"
+            android:textSize="@dimen/sp_16_px" />
 
         <TextView
             android:id="@+id/wallet_history_item_time_tv"
-            android:layout_below="@id/wallet_history_item_amount_tv"
-            android:layout_marginRight="@dimen/_8sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="02:30 PM"
-            android:textSize="@dimen/sp_16_px"
-            android:fontFamily="@font/sf_ui_regular"
-            android:textColor="@color/primaryTextColor"
-            android:layout_alignParentRight="true"
+            android:layout_below="@id/wallet_history_item_amount_tv"
             android:layout_alignParentEnd="true"
-            />
-
-
-
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="02:30 PM"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_10_px" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

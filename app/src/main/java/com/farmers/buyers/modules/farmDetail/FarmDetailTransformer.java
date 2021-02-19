@@ -21,8 +21,8 @@ public class FarmDetailTransformer {
 
     public static FarmDetailHeaderListItem getHeaderItems() {
         List<RecyclerViewListItem> item = new ArrayList<>();
-        item.add(new FarmDetailsHeaderItems(0));
-        item.add(new FarmDetailsHeaderItems(0));
+        item.add(new FarmDetailsHeaderItems("https://meet.google.com/iyq-kict-oit"));
+        item.add(new FarmDetailsHeaderItems("https://meet.google.com/iyq-kict-oit"));
         return new FarmDetailHeaderListItem(item);
     }
 

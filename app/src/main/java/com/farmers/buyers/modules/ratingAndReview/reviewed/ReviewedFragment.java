@@ -49,7 +49,7 @@ public class ReviewedFragment extends BaseFragment implements ReviewedListViewHo
     }
 
     public void getReviewed() {
-        items.addAll(ReviewTransfarmer.getReviewedList());
+      //  items.addAll(ReviewTransfarmer.getReviewedList());
     }
 
     @Override

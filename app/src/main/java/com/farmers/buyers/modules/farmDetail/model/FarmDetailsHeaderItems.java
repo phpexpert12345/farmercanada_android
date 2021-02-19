@@ -10,14 +10,14 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class FarmDetailsHeaderItems implements RecyclerViewListItem {
-    public int imageUri;
+    public String imageURL;
 
-    public FarmDetailsHeaderItems(int imageUri) {
-        this.imageUri = imageUri;
+    public FarmDetailsHeaderItems(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public int getImageUri() {
-        return imageUri;
+    public String getImageUri() {
+        return imageURL;
     }
 
     @Override

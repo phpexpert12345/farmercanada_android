@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context=".modules.profile.EditProfileActivity">
+    tools:context=".modules.profile.editProfile.EditProfileActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context=".modules.profile.EditProfileActivity">
+        tools:context=".modules.profile.editProfile.EditProfileActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"

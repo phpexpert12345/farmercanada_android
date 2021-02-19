@@ -9,12 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_60sdp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/_60sdp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView"
@@ -25,7 +25,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,61 +43,83 @@
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center"
-            android:text="@string/submit_otp_text"
-            />
+            android:text="@string/submit_otp_text" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_gravity="center"
             android:layout_marginLeft="@dimen/dp_80_px"
+            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginRight="@dimen/dp_80_px"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/otp_edit_box1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
+                android:layout_margin="@dimen/dp_5_px"
                 android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:gravity="center"
                 android:background="@drawable/bottom_border_bg"
-                android:layout_margin="@dimen/dp_5_px"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
 
             <EditText
                 android:id="@+id/otp_edit_box2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
+                android:layout_margin="@dimen/dp_5_px"
                 android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:gravity="center"
                 android:background="@drawable/bottom_border_bg"
-                android:layout_margin="@dimen/dp_5_px"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
 
             <EditText
                 android:id="@+id/otp_edit_box3"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
+                android:layout_margin="@dimen/dp_5_px"
                 android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:gravity="center"
                 android:background="@drawable/bottom_border_bg"
-                android:layout_margin="@dimen/dp_5_px"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
 
             <EditText
                 android:id="@+id/otp_edit_box4"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50_px"
+                android:layout_margin="@dimen/dp_5_px"
                 android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:gravity="center"
                 android:background="@drawable/bottom_border_bg"
-                android:layout_margin="@dimen/dp_5_px"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_otpReadRemainingTime"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_bg"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <Button
@@ -106,41 +127,44 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
+            android:fontFamily="@font/sf_ui_semibold"
             android:text="@string/submit"
             android:textAllCaps="false"
-            android:fontFamily="@font/sf_ui_semibold"
             android:textColor="@color/secondaryTextColor"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
+            android:id="@+id/ll_resend_otp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_8_px"
             android:gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_8_px">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
                 android:text="Not yet received?"
-                android:textSize="@dimen/sp_18_px"
                 android:textColor="@color/primary_button_color"
-                android:fontFamily="@font/sf_ui_regular"/>
+                android:textSize="@dimen/sp_18_px" />
 
             <TextView
                 android:id="@+id/submit_otp_resend_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Resend"
-                android:textSize="@dimen/sp_18_px"
-                android:textColor="@color/primary_button_color"
                 android:layout_marginLeft="@dimen/dp_5_px"
-                android:fontFamily="@font/sf_ui_bold"/>
+                android:fontFamily="@font/sf_ui_bold"
+                android:text="Resend"
+                android:textColor="@color/primary_button_color"
+                android:textSize="@dimen/sp_18_px" />
         </LinearLayout>
 
     </LinearLayout>

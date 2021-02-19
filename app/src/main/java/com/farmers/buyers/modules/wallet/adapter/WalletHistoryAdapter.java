@@ -1,8 +1,5 @@
 package com.farmers.buyers.modules.wallet.adapter;
 
-
-import androidx.cardview.widget.CardView;
-
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.wallet.view.WalletHeaderDelegate;

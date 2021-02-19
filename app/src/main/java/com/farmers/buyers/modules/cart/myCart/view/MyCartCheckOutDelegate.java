@@ -14,12 +14,15 @@ import com.farmers.buyers.core.BaseViewHolder;
 public class MyCartCheckOutDelegate extends BaseDelegate {
     private MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners;
 
-    public MyCartCheckOutDelegate(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners listeners) {
+    private MyCartCheckoutViewHolder.MyCoupounClickListeners couponClicked;
+
+    public MyCartCheckOutDelegate(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners listeners, MyCartCheckoutViewHolder.MyCoupounClickListeners couponClicked1) {
         this.cartCheckOutClickListeners = listeners;
+        this.couponClicked=couponClicked1;
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new MyCartCheckoutViewHolder(parent, cartCheckOutClickListeners);
+        return new MyCartCheckoutViewHolder(parent, cartCheckOutClickListeners,couponClicked);
     }
 }

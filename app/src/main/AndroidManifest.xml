@@ -5,11 +5,13 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".app.App"
@@ -20,14 +22,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity"></activity>
-        <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
+        <activity android:name=".modules.addMoney.AddMoneyWallet"></activity>
         <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity" />
         <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />
         <activity android:name=".modules.seller.sellerProfile.editProfile.SellerShopSetting" />
         <activity android:name="com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity" />
         <activity android:name=".modules.seller.coupon.addCoupon.AddNewCouponActivity" />
-        <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.CreateMessageActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.CreateMessageActivity" />
         <activity android:name="com.farmers.seller.modules.broadcastMessage.activity.BroadcastMessageActivity" />
         <activity android:name="com.farmers.seller.modules.editProfile.SellerEditProfileActivity" />
         <activity android:name="com.farmers.seller.modules.referFriends.SellerReferFriendsActivity" />
@@ -50,7 +51,7 @@
         <activity android:name=".modules.chat.ChatActivity" />
         <activity android:name=".modules.inbox.NotificationsActivity" />
         <activity android:name=".modules.wallet.WalletActivity" />
-        <activity android:name=".modules.profile.EditProfileActivity" />
+        <activity android:name=".modules.profile.editProfile.EditProfileActivity" />
         <activity android:name=".modules.followers.FollowersActivity" />
         <activity android:name=".modules.cart.order.OrderSuccessDetailActivity" />
         <activity android:name=".modules.cart.order.PlaceOrderActivity" />
@@ -75,6 +76,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
+        <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

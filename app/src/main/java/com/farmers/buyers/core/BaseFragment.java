@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.widget.ProgressDialog;
 
 /**
  * created by Mohammad Sajjad
@@ -19,6 +20,8 @@ import com.farmers.buyers.R;
  */
 
 public abstract class BaseFragment extends Fragment {
+
+    ProgressDialog progressDialog = ProgressDialog.getInstance();
     public BaseActivity baseActivity;
 
     @Override
@@ -49,4 +52,16 @@ public abstract class BaseFragment extends Fragment {
     public void bindViewModel() {}
     public void bindBundle() {}
     public void onViewCreated() {}
+
+    public void showLoader(String title) {
+        progressDialog.init(baseActivity, title);
+    }
+
+    public void showLoader() {
+        progressDialog.init(baseActivity, null);
+    }
+
+    public void dismissLoader() {
+        progressDialog.dismiss();
+    }
 }

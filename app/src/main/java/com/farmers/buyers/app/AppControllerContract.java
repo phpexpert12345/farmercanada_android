@@ -1,5 +1,7 @@
 package com.farmers.buyers.app;
 
+import androidx.annotation.Nullable;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -11,9 +13,11 @@ import org.jetbrains.annotations.NotNull;
 public interface AppControllerContract {
 
     Boolean getIsLoggedIn();
-
     String getUserId();
     String getAuthenticationKey();
     String getDeviceId();
     String getLoginId();
+    String getWalletAmount();
+    String getProfilePic();
+    String getSharedPreferences(String key, @Nullable Object defaultValue);
 }

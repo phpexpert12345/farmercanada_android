@@ -22,7 +22,7 @@ import com.farmers.buyers.modules.cart.order.PlaceOrderActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckOutFromCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners {
+public class CheckOutFromCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners {
 
     private RecyclerView recyclerView;
     private CheckOutCartItemAdapter adapter;
@@ -51,7 +51,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private void init() {
         recyclerView = findViewById(R.id.check_out_from_cart_recyclerView);
-        adapter = new CheckOutCartItemAdapter(this);
+        adapter = new CheckOutCartItemAdapter(this,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(50, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
@@ -60,7 +60,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private void prepareItem() {
         items.add(new SimpleTitleItem("Delivery Address"));
-        items.add(new CheckOutCartAddressItems("My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true,true));
+        items.add(new CheckOutCartAddressItems("","My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true, true));
         items.add(new SimpleTitleItem("Payment Methods"));
         items.add(new PaymentMethodsItems());
         items.add(new MyCartCheckOutItem());
@@ -74,5 +74,10 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     @Override
     public void onCheckOutClicked() {
         startActivity(new Intent(this, PlaceOrderActivity.class));
+    }
+
+    @Override
+    public void onCouponClicked(String couponCode) {
+
     }
 }

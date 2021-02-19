@@ -68,7 +68,7 @@ public class HomeTopOffersViewHolder extends BaseViewHolder {
             }
         });
 
-       runnable = new Runnable() {
+        runnable = new Runnable() {
             public void run() {
                 if (item.getOffersItems().size() == page) {
                     page = 0;
@@ -80,7 +80,7 @@ public class HomeTopOffersViewHolder extends BaseViewHolder {
             }
         };
 
-       handler.postDelayed(runnable, 3000);
+        handler.postDelayed(runnable, 3000);
     }
 
 

@@ -27,7 +27,7 @@ public class SimpleTitleViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        SimpleTitleItem item = ((SimpleTitleItem)items);
+        SimpleTitleItem item = ((SimpleTitleItem) items);
         titleTv.setText(item.getTitle());
 
         titleTv.setTextColor(item.getColor() == 0 ? itemView.getContext().getResources().getColor(R.color.primaryTextColor) : itemView.getContext().getResources().getColor(item.getColor()));
