@@ -81,7 +81,7 @@ public class MyCartFragment extends BaseFragment implements MyCartCheckoutViewHo
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_my_cart, container,false);
+        View view = inflater.inflate(R.layout.activity_my_cart, container, false);
         prepareData();
         bindView(view);
         return view;
@@ -104,7 +104,10 @@ public class MyCartFragment extends BaseFragment implements MyCartCheckoutViewHo
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         adapter.updateData(items);
+
         getServicesAndTax();
+
+
 
         SwipeHelper swipeHelper = new SwipeHelper(getContext(), recyclerView, 250) {
             @Override
@@ -169,7 +172,6 @@ public class MyCartFragment extends BaseFragment implements MyCartCheckoutViewHo
 
             }
         });
-
 
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
