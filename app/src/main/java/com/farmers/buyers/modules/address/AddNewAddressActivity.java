@@ -2,12 +2,14 @@ package com.farmers.buyers.modules.address;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -20,8 +22,19 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.address.model.AddAddressRequestParams;
 import com.farmers.buyers.modules.address.model.MyAddressViewModel;
-import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
-import com.farmers.buyers.storage.GPSTracker;
+import com.farmers.buyers.storage.LatLngToGeoLocation;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AddNewAddressActivity extends BaseActivity implements View.OnClickListener {
 
@@ -37,18 +50,21 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
         }
     };
 
+    public int AUTOCOMPLETE_REQUEST_CODE = 100;
     public MyAddressViewModel viewModel = factory.create(MyAddressViewModel.class);
     private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
-    public GPSTracker gpsTracker;
+    public LatLngToGeoLocation latLngToGeoLocation = new LatLngToGeoLocation();
     private Button bt_submit;
     private EditText ed_name_of_address, ed_complete_address, ed_city, ed_state, ed_postal_code, ed_mobile_number;
+    public Place placeAddress;
+    private boolean SearchFlag = false;
+    private AutocompleteSupportFragment autocompleteFragment;
+    public PlacesClient placesClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_address);
-
-        gpsTracker = new GPSTracker(this);
 
         setupToolbar(new BaseActivity.ToolbarConfig("Add New Address", true, new View.OnClickListener() {
             @Override
@@ -74,34 +90,71 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
         ed_postal_code = findViewById(R.id.ed_postal_code);
         ed_mobile_number = findViewById(R.id.ed_mobile_number);
 
-        ed_complete_address.setText(gpsTracker.getAddressLine(this));
-        ed_city.setText(gpsTracker.getLocality(this));
-        ed_state.setText(gpsTracker.getAdminArea(this));
-        ed_postal_code.setText(gpsTracker.getPostalCode(this));
+      /*  Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        placesClient = Places.createClient(AddNewAddressActivity.this);
 
-        stateMachine.observe(this, new Observer<DataFetchState<AddressApiModel>>() {
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        }
+
+        autocompleteFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS,
+                Place.Field.ADDRESS_COMPONENTS));
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onChanged(DataFetchState<AddressApiModel> dataFetchState) {
-                switch (dataFetchState.status) {
-                    case ERROR: {
-                        dismissLoader();
-                        Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    case LOADING: {
-                        showLoader();
-                        break;
-                    }
-                    case SUCCESS: {
-                        dismissLoader();
-                        Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddNewAddressActivity.this, MyAddressActivity.class));
-                        finish();
-                        break;
-                    }
+            public void onPlaceSelected(@NonNull Place place) {
+                placeAddress = place;
+                // Log.d("TAG", String.valueOf(place));
+                SearchFlag = true;
+                double lat = placeAddress.getLatLng().latitude;
+                double lng = placeAddress.getLatLng().longitude;
+                try {
+                    ed_complete_address.setText(latLngToGeoLocation.getAddressLine(AddNewAddressActivity.this, lat, lng));
+                    ed_city.setText(latLngToGeoLocation.getLocality(AddNewAddressActivity.this, lat, lng));
+                    ed_state.setText(latLngToGeoLocation.getAdminArea(AddNewAddressActivity.this, lat, lng));
+                    ed_postal_code.setText(latLngToGeoLocation.getPostalCode(AddNewAddressActivity.this, lat, lng));
+                } catch (Exception e) {
+                    Log.i("TAG", "An error occurred: GeoCoder" + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.i("TAG", "An error occurred: " + status);
+            }
+        });
+*/
+
+        stateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                    Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddNewAddressActivity.this, MyAddressActivity.class));
+                    finish();
+                    break;
                 }
             }
         });
+
+        Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        placesClient = Places.createClient(AddNewAddressActivity.this);
+
+        if (!Places.isInitialized()) {//
+            Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        }
+
+        ed_complete_address.setOnClickListener(view -> searchPlace());
 
         bt_submit.setOnClickListener(this);
     }
@@ -120,5 +173,43 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
                 ed_mobile_number.getText().toString().trim(), AppController.get().getAuthenticationKey());
 
         viewModel.addAddress(stateMachine, addAddressRequestParams);
+    }
+
+    private void searchPlace() {
+        if (!Places.isInitialized()) {//
+            Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        }
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS, Place.Field.ADDRESS_COMPONENTS);
+        Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(AddNewAddressActivity.this);
+        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+
+                placeAddress = place;
+                SearchFlag = true;
+                double lat = placeAddress.getLatLng().latitude;
+                double lng = placeAddress.getLatLng().longitude;
+                try {
+                    ed_complete_address.setText(latLngToGeoLocation.getAddressLine(AddNewAddressActivity.this, lat, lng));
+                    ed_city.setText(latLngToGeoLocation.getLocality(AddNewAddressActivity.this, lat, lng));
+                    ed_state.setText(latLngToGeoLocation.getAdminArea(AddNewAddressActivity.this, lat, lng));
+                    ed_postal_code.setText(latLngToGeoLocation.getPostalCode(AddNewAddressActivity.this, lat, lng));
+                } catch (Exception e) {
+                    Log.i("TAG", "An error occurred: GeoCoder" + e.getMessage());
+                }
+                Log.d("TAG", place.getAddress());
+
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Toast.makeText(this, "Some went wrong. Search again", Toast.LENGTH_SHORT).show();
+                Log.i("TAG", status.getStatusMessage());
+            }
+        }
     }
 }

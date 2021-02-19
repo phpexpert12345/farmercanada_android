@@ -6,92 +6,101 @@
     android:orientation="vertical"
     tools:context=".modules.location.ManualLocationActivity">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/map"
-            android:scaleType="centerCrop"/>
+    <fragment
+        android:id="@+id/map_fragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+<!--
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/dp_16_px"
+        android:layout_marginTop="@dimen/dp_50_px"
+        android:layout_marginRight="@dimen/dp_16_px"/>-->
 
         <EditText
+            android:id="@+id/ed_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_16_px"
-            android:fontFamily="@font/sf_ui_regular"
-            android:hint="@string/address"
-            android:textColorHint="@color/header_color"
-            android:background="@drawable/round_corner_white_bg"
-            android:paddingLeft="@dimen/dp_10_px"
-            android:paddingRight="@dimen/dp_10_px"
-            android:paddingTop="@dimen/dp_16_px"
-            android:paddingBottom="@dimen/dp_16_px"
             android:layout_marginLeft="@dimen/dp_16_px"
-            android:layout_marginRight="@dimen/dp_16_px"
             android:layout_marginTop="@dimen/dp_50_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            android:background="@drawable/round_corner_white_bg"
+            android:drawableStart="@drawable/ic_search"
             android:drawableLeft="@drawable/ic_search"
+            android:drawableEnd="@drawable/ic_mic"
             android:drawableRight="@drawable/ic_mic"
             android:drawablePadding="@dimen/dp_16_px"
+            android:ellipsize="end"
+            android:enabled="true"
+            android:fontFamily="@font/sf_ui_regular"
+            android:hint="@string/address"
             android:paddingStart="@dimen/dp_10_px"
+            android:paddingLeft="@dimen/dp_10_px"
+            android:paddingTop="@dimen/dp_16_px"
             android:paddingEnd="@dimen/dp_10_px"
-            android:drawableStart="@drawable/ic_search"
-            android:drawableEnd="@drawable/ic_mic"
-            android:enabled="false"/>
-
+            android:paddingRight="@dimen/dp_10_px"
+            android:paddingBottom="@dimen/dp_16_px"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/header_color"
+            android:textSize="@dimen/sp_16_px"
+            android:visibility="visible" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/top_left_right_round_corner_white_bg">
+        android:background="@drawable/top_left_right_round_corner_white_bg"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/address_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dp_24_px"
             android:layout_marginTop="@dimen/dp_16_px"
-            android:layout_marginBottom="@dimen/dp_16_px"
             android:layout_marginRight="@dimen/dp_24_px"
-            android:layout_marginLeft="@dimen/dp_24_px">
+            android:layout_marginBottom="@dimen/dp_16_px"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="0dp"
-                android:layout_weight="1.9"
                 android:layout_height="wrap_content"
-                android:text="@string/address"
+                android:layout_weight="1.9"
                 android:fontFamily="@font/sf_ui_regular"
-                android:textSize="@dimen/sp_16_px"
+                android:padding="@dimen/dp_16_px"
+                android:text="@string/address"
                 android:textColor="@color/header_color"
-                android:singleLine="true"
-                android:padding="@dimen/dp_16_px"/>
+                android:textSize="@dimen/sp_13_px" />
 
             <ImageButton
                 android:layout_width="@dimen/dp_40_px"
                 android:layout_height="@dimen/dp_40_px"
-                android:src="@drawable/ic_edit"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/circle_bg"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/ic_edit" />
         </LinearLayout>
 
         <Button
             android:id="@+id/manual_location_confirm_btn"
-            android:layout_below="@+id/address_ll"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirm_location"
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="@dimen/sp_16_px"
-            android:textAllCaps="false"
+            android:layout_below="@+id/address_ll"
             android:layout_marginLeft="@dimen/dp_24_px"
             android:layout_marginRight="@dimen/dp_24_px"
             android:layout_marginBottom="@dimen/dp_16_px"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:background="@drawable/round_corner_light_gradient_bg"/>
+            android:background="@drawable/round_corner_light_gradient_bg"
+            android:text="@string/confirm_location"
+            android:textAllCaps="false"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/sp_16_px" />
 
     </RelativeLayout>
-
 
 </RelativeLayout>

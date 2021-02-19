@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.splash;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.multidex.MultiDex;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
