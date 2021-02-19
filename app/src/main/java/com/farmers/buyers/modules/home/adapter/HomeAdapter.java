@@ -11,6 +11,7 @@ import com.farmers.buyers.modules.home.view.HomeFilterItemDelegate;
 import com.farmers.buyers.modules.home.view.HomeHeaderDelegate;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.modules.home.view.HomeItemsDelegate;
+import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.home.view.HomeTopOffersDelegate;
 import com.farmers.buyers.storage.CardConstant;
 
@@ -23,12 +24,16 @@ import com.farmers.buyers.storage.CardConstant;
 public class HomeAdapter extends BaseAdapter {
     private HomeHeaderViewHolder.HeaderItemClickListener headerListener;
     private MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener;
+    private HomeItemsViewHolder.FarmItemClickListener farmItemClickListener;
+
 
     public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener
-            filterItemClickListener) {
+            filterItemClickListener, HomeItemsViewHolder.FarmItemClickListener farmItemClickListener
+    ) {
         super();
         this.headerListener = headerListener;
         this.filterItemClickListener = filterItemClickListener;
+        this.farmItemClickListener = farmItemClickListener;
         this.initDelegate();
     }
 
@@ -36,7 +41,7 @@ public class HomeAdapter extends BaseAdapter {
     public void initDelegate() {
         delegates.put(CardConstant.HOME_HEADER_ADAPTER, new HomeHeaderDelegate(headerListener));
         delegates.put(CardConstant.HOME_SEARCH_ITEM_ADAPTER, new HomeDelegate());
-        delegates.put(CardConstant.HOME_FARM_LIST_ITEM_ADAPTER, new HomeItemsDelegate());
+        delegates.put(CardConstant.HOME_FARM_LIST_ITEM_ADAPTER, new HomeItemsDelegate(farmItemClickListener));
         delegates.put(CardConstant.HOME_CATEGORY_ITEM_ADAPTER, new HomeCategoriesItemDelegate());
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
         delegates.put(CardConstant.HOME_TOP_OFFER_ADAPTER, new HomeTopOffersDelegate());
