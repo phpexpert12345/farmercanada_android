@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.orders;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.orders.model.OrderListItem;
 import com.farmers.buyers.modules.orders.model.SubOrdersListItem;
 
@@ -32,6 +33,19 @@ public class OrdersTransformer {
         return items;
     }
 
+    public static List<SubOrdersListItem> getPendingItems(List<AddressApiModel.AddressListData> allOrderList) {
+        List<SubOrdersListItem> item = new ArrayList<>();
+        for (int i = 0; i < allOrderList.size(); i++) {
+            item.add(new SubOrdersListItem(allOrderList.get(i).getFarm_name(),
+                    allOrderList.get(i).getOrder_number(),
+                    allOrderList.get(i).getOrder_date() + "," + allOrderList.get(i).getOrder_time(),
+                    "$ " + allOrderList.get(i).getTotal_amount(),
+                    allOrderList.get(i).getOrder_status_msg(),
+                    allOrderList.get(i).getFarm_logo()));
+        }
+        return item;
+    }
+/*
     public static List<SubOrdersListItem> getPendingItems() {
         List<SubOrdersListItem> item = new ArrayList<>();
         item.add(new SubOrdersListItem("Kin's Farm Market", "#7338937", "10:30 am", "$ 155.80", 0, R.drawable.farm_icon_image));
@@ -66,7 +80,6 @@ public class OrdersTransformer {
         item.add(new SubOrdersListItem("Kin's Farm Market", "#7338937", "10:30 am", "$ 155.80", 2, R.drawable.farm_icon_image));
         item.add(new SubOrdersListItem("Kin's Farm Market", "#7338937", "10:30 am", "$ 155.80", 2, R.drawable.farm_icon_image));
         return item;
-    }
-
+    }*/
 
 }

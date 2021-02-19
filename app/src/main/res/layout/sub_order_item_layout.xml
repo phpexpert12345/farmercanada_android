@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sub_ordet_item_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_8sdp"
     android:layout_margin="@dimen/_8sdp"
-    app:cardCornerRadius="@dimen/_8sdp"
-    android:id="@+id/sub_ordet_item_card">
+    android:padding="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_8sdp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="@dimen/_8sdp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/sub_order_item_farm_image"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/farm_image"/>
+            android:src="@drawable/farm_image" />
 
         <LinearLayout
             android:id="@+id/sub_order_item_ll"
-            android:layout_toRightOf="@id/sub_order_item_farm_image"
-            android:layout_width="wrap_content"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_5sdp">
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toRightOf="@id/sub_order_item_farm_image"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_order_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_semibold"
                 android:text="Kin's Farm Market"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/sf_ui_semibold"/>
+                android:textSize="@dimen/_12ssp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -53,16 +54,18 @@
 
 
                 <TextView
+                    android:id="@+id/tv_order_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="#7338937"
-                    android:textSize="@dimen/_12ssp"
-                    android:textColor="@color/primary_button_color"
-                    android:fontFamily="@font/sf_ui_regular"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"/>
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="#7338937"
+                    android:textColor="@color/primary_button_color"
+                    android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,55 +75,54 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_regular"
                     android:text="Status:"
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/sf_ui_regular"/>
+                    android:textSize="@dimen/_10ssp" />
 
 
                 <TextView
                     android:id="@+id/sub_order_item_status_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="pending"
-                    android:textSize="@dimen/_10ssp"
-                    android:textColor="@color/primary_button_color"
-                    android:fontFamily="@font/sf_ui_regular"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"/>
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="pending"
+                    android:textColor="@color/primary_button_color"
+                    android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/sub_order_item_time_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:text="10: 30 am"
-            android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/sf_ui_regular"
-            android:layout_alignParentRight="true" />
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/sub_order_item_time_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="end"
+                android:text="10: 30 am"
+                android:textSize="@dimen/_10ssp" />
 
+            <TextView
+                android:id="@+id/tv_order_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/sf_ui_bold"
+                android:gravity="end"
+                android:text="$ 150.80"
+                android:textColor="@color/primary_button_color"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_below="@+id/sub_order_item_time_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$ 150.80"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="@color/primary_button_color"
-            android:fontFamily="@font/sf_ui_bold"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/_16sdp"/>
-
-
-
-
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -44,8 +44,8 @@ public class SellerProfileTransformer {
 
     public static SimpleRowListItem getReferralSetting() {
         List<SimpleRowItem> accountSettingItem = new ArrayList<>();
-        accountSettingItem.add(new SimpleRowItem("Support", R.drawable.support_icon, 0, ProfileItem.SUPPORT));
-        accountSettingItem.add(new SimpleRowItem("Logout", R.drawable.ic_log_out, 0, ProfileItem.LOGOUT));
+        accountSettingItem.add(new SimpleRowItem("Support", R.drawable.ic_support_green, 0, ProfileItem.SUPPORT));
+        accountSettingItem.add(new SimpleRowItem("Logout", R.drawable.ic_logout_green, 0, ProfileItem.LOGOUT));
         return new SimpleRowListItem(accountSettingItem);
     }
 

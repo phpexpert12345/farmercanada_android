@@ -11,13 +11,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.storage.SharedPreferenceManager;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * created by Mohammad Sajjad
@@ -28,6 +34,9 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 public class MyProfileHeaderViewHolder extends BaseViewHolder {
 
     private LinearLayout followersLL, walletLL, inboxLL, ll_switch_user;
+    private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type, tv_followers, my_profile_header_inbox_msg_tv;
+    private AppController appController = AppController.get();
+    private CircleImageView profile_header_user_image;
 
     public MyProfileHeaderViewHolder(@NonNull ViewGroup parent, final MyProfileItemClickListener profileItemClickListener) {
         super(Extensions.inflate(parent, R.layout.my_profile_header_layout));
@@ -35,6 +44,25 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
         walletLL = itemView.findViewById(R.id.wallet_ll);
         inboxLL = itemView.findViewById(R.id.inbox_ll);
         ll_switch_user = itemView.findViewById(R.id.ll_switch_user);
+        tv_wallet_balance = itemView.findViewById(R.id.tv_wallet_balance);
+        profile_header_user_image = itemView.findViewById(R.id.profile_header_user_image);
+        tv_user_name = itemView.findViewById(R.id.tv_user_name);
+        tv_user_email = itemView.findViewById(R.id.tv_user_email);
+        tv_user_type = itemView.findViewById(R.id.tv_user_type);
+        tv_followers = itemView.findViewById(R.id.tv_followers);
+        my_profile_header_inbox_msg_tv = itemView.findViewById(R.id.my_profile_header_inbox_msg_tv);
+
+        tv_wallet_balance.setText("$ " + appController.getWalletAmount());
+        tv_user_name.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_NAME", "")));
+        tv_user_email.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_EMAIL", "")));
+        tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
+        tv_followers.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_FOLLOWERS", "")));
+        my_profile_header_inbox_msg_tv.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_MESSAGE_INBOX", "")));
+
+        Glide.with(itemView.getContext())
+                .load(appController.getProfilePic())
+                .placeholder(R.drawable.user_image)
+                .into(profile_header_user_image);
 
         followersLL.setOnClickListener(new View.OnClickListener() {
             @Override

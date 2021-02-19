@@ -15,8 +15,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_10sdp"
-          >
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="@dimen/_16sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -46,38 +45,50 @@
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:checked="false"
+                            android:checked="true"
                             android:text="Notify me on the chat"
-                            android:background="@null"
+                            android:fontFamily="@font/sf_ui_regular"
                             android:textSize="@dimen/_12sdp"
+                            android:theme="@style/MyIOSSwitch"
+                            android:thumb="@drawable/switch_thumb_selector"
+                            app:track="@drawable/switch_track_selector"
                             />
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:checked="false"
+                            android:checked="true"
                             android:text="Notify me on nearby added farm"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/sf_ui_regular"
+                            android:theme="@style/MyIOSSwitch"
+                            android:thumb="@drawable/switch_thumb_selector"
+                            app:track="@drawable/switch_track_selector"
+                            android:layout_marginTop="@dimen/_10sdp"/>
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="false"
                             android:text="Notify me on new product"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            android:textSize="@dimen/_12sdp" />
+                            android:fontFamily="@font/sf_ui_regular"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/MyIOSSwitch"
+                            android:thumb="@drawable/switch_thumb_selector"
+                            app:track="@drawable/switch_track_selector"
+                            android:layout_marginTop="@dimen/_10sdp"/>
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="Notify in stock product"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            android:textSize="@dimen/_12sdp" />
+                            android:fontFamily="@font/sf_ui_regular"
+                            android:textSize="@dimen/_12sdp"
+                            android:theme="@style/MyIOSSwitch"
+                            android:thumb="@drawable/switch_thumb_selector"
+                            app:track="@drawable/switch_track_selector"
+                            android:layout_marginTop="@dimen/_10sdp"/>
 
                     </LinearLayout>
 

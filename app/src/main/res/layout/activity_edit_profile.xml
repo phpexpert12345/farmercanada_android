@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context=".modules.profile.EditProfileActivity">
+    tools:context=".modules.profile.editProfile.EditProfileActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".modules.profile.EditProfileActivity">
+        tools:context=".modules.profile.editProfile.EditProfileActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -116,12 +116,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/name" />
+                    android:hint="@string/name"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,49 +135,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_profile_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/phone_number" />
+                    android:hint="@string/phone_no"
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email" />
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="@string/email_address"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
         </LinearLayout>
-
-
     </RelativeLayout>
-
 
     <Button
         android:id="@+id/edit_profile_save_btn"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
         android:background="@drawable/round_corner_light_gradient_bg"
+        android:fontFamily="@font/sf_ui_semibold"
         android:text="Save"
         android:textColor="@color/secondaryTextColor"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/_16sdp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

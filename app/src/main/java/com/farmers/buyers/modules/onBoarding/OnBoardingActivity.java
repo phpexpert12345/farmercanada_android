@@ -46,9 +46,9 @@ public class OnBoardingActivity extends AppCompatActivity {
         skipButton = findViewById(R.id.on_boarding_skip_btn);
         getStartButton = findViewById(R.id.on_boarding_get_start_btn);
         pageCount = findViewById(R.id.page_count);
-        PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION};
+        PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
         layouts = new int[]{R.layout.on_boarding_fragment_layout_one, R.layout.on_boarding_fragment_layout_two, R.layout.on_boarding_fragment_layout_three, R.layout.on_boarding_fragment_layout_four};
-        if(!Util.hasPermissions(this,PERMISSIONS)){
+        if (!Util.hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
         }
         adapter = new OnBoardingAdapter(this, layouts);
@@ -66,8 +66,6 @@ public class OnBoardingActivity extends AppCompatActivity {
                 handler.postDelayed(this, 5000);
             }
         };
-
-
     }
 
     private void listener() {
@@ -92,7 +90,7 @@ public class OnBoardingActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-                pageCount.setText(position+1 + "/"+ layouts.length);
+                pageCount.setText(position + 1 + "/" + layouts.length);
 
                 if (position == layouts.length - 1) {
                     getStartButton.setVisibility(View.VISIBLE);

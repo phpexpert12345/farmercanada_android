@@ -29,7 +29,6 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
     ConstraintLayout addressCard;
 
 
-
     public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.check_out_from_cart_address_holder_layout));
 
@@ -49,15 +48,13 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
 
         if (item.getSelected()) {
             addressCard.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
-        }
-        else {
+        } else {
             addressCard.setBackground(null);
         }
 
         if (item.getCanChange()) {
             changeAddress.setVisibility(View.VISIBLE);
-        }
-        else  {
+        } else {
             changeAddress.setVisibility(View.GONE);
         }
 

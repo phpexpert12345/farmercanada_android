@@ -7,31 +7,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
-import com.farmers.buyers.app.AppController;
-import com.farmers.buyers.app.AppControllerContract;
-import com.farmers.buyers.common.SpacesItemDecoration;
-import com.farmers.buyers.common.model.SimpleDividerItem;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.SimpleRowViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.aboutStore.AboutStoreActivity;
 import com.farmers.buyers.modules.address.MyAddressActivity;
-import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.inbox.NotificationsActivity;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.orders.subOrderList.SubOrderListActivity;
 import com.farmers.buyers.modules.profile.adapter.MyProfileAdapter;
+import com.farmers.buyers.modules.profile.editProfile.EditProfileActivity;
 import com.farmers.buyers.modules.profile.extraItems.ProfileItem;
 import com.farmers.buyers.modules.profile.extraItems.ProfileOptionsGridItem;
 import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
 import com.farmers.buyers.modules.profile.view.MyProfileOptionItemViewHolder;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
-import com.farmers.buyers.modules.seller.addProduct.AddProductActivity;
-import com.farmers.buyers.modules.seller.coupon.addCoupon.AddNewCouponActivity;
-import com.farmers.buyers.modules.seller.coupon.list.ManageCouponActivity;
+import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.support.list.SupportActivity;
 import com.farmers.buyers.modules.wallet.WalletActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -92,7 +87,6 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     }
 
-
     @Override
     public void onFollowersItemClicked() {
         startActivity(new Intent(baseActivity, FollowersActivity.class));
@@ -116,7 +110,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
             case CHANGE_PASSWORD: {
-                startActivity(new Intent(baseActivity, ChangePasswordActivity.class));
+                startActivity(new Intent(baseActivity, OtpActivity.class).
+                        putExtra("FROM", "My Profile"));
                 break;
             }
 
@@ -130,12 +125,12 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
             case OPEN_STORE: {
-                startActivity(new Intent(baseActivity, ManageCouponActivity.class));
-                break;
+//                startActivity(new Intent(baseActivity, ManageCouponActivity.class));
+//                break;
             }
 
             case LEARN_ABOUT_STORE: {
-                startActivity(new Intent(baseActivity, AddNewCouponActivity.class));
+                startActivity(new Intent(baseActivity, AboutStoreActivity.class));
                 break;
             }
 

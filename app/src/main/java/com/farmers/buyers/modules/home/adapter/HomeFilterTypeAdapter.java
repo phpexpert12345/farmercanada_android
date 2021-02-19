@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.home.adapter;
 
 import com.farmers.buyers.common.view.MultipleTextItemDelegate;
+import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.home.view.HomeFilterItemDelegate;
 import com.farmers.buyers.storage.CardConstant;
@@ -12,13 +13,14 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class HomeFilterTypeAdapter extends BaseAdapter {
-
-    public HomeFilterTypeAdapter() {
+private MultipleTextItemViewHolder.FilterItemClickListener listener;
+    public HomeFilterTypeAdapter(MultipleTextItemViewHolder.FilterItemClickListener listener) {
         super();
+        this.listener = listener;
         this.initDelegate();
     }
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.MULTIPLE_ITEM_ADAPTER, new MultipleTextItemDelegate());
+        delegates.put(CardConstant.MULTIPLE_ITEM_ADAPTER, new MultipleTextItemDelegate(listener));
     }
 }

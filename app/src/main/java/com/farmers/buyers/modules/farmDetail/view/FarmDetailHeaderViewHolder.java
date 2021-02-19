@@ -53,6 +53,8 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
 
         adapter = new FarmDetailHeaderAdapter();
         viewPager.setAdapter(adapter);
+        addBottomDots(0, adapter.getItemCount());
+
 
 
         backImage.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,6 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                addBottomDots(position, item.getItem().size());
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
 
@@ -109,6 +110,9 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
                 }
             }
         });
+
+        addBottomDots(0, item.getItem().size());
+
 
 
     }

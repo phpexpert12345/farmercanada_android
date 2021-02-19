@@ -78,7 +78,8 @@
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="Buyer"
                     android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/sp_16_px" />
+                    android:textSize="@dimen/sp_16_px"
+                    android:checked="true"/>
             </RadioGroup>
 
 
@@ -87,7 +88,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_name_et"
@@ -104,7 +108,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
-
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -122,7 +128,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
-
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -139,7 +147,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_password_et"

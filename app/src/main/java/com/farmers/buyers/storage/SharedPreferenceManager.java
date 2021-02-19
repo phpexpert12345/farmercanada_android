@@ -43,9 +43,74 @@ public class SharedPreferenceManager {
         return (String) getSharedPreferences(StorageKey.Token.toString(), "");
     }
 
+    public void setProfilePic(String value) {
+        setSharedPreference(StorageKey.Token.toString(), value);
+    }
+
+    public String getProfilePic() {
+        return (String) getSharedPreferences(StorageKey.Profile_Pic.toString(), "");
+    }
+
+    public void setWalletAmount(String value) {
+        setSharedPreference(StorageKey.WalletAmount.toString(), value);
+    }
+
+    public String getWalletAmount() {
+        return (String) getSharedPreferences(StorageKey.WalletAmount.toString(), "");
+    }
+
+    public void setIsComingFrom(int value) {
+        setSharedPreference(StorageKey.ComingFrom.toString(), value);
+    }
+
+    public int getIsComingFrom() {
+        return (int) getSharedPreferences(StorageKey.ComingFrom.toString(), 0);
+    }
+
+    public void setUserId(String value) {
+        setSharedPreference(StorageKey.UserID.toString(), value);
+    }
+
+    public String getUserId() {
+        return (String) getSharedPreferences(StorageKey.UserID.toString(), "");
+    }
 
 
-    private void setSharedPreference(String key, Object value) {
+    public void setLoginId(String value) {
+        setSharedPreference(StorageKey.LoginId.toString(), value);
+    }
+
+    public String getLoginId() {
+        return (String) getSharedPreferences(StorageKey.LoginId.toString(), "");
+    }
+
+    public String getAuthenticationKey() {
+        return (String) getSharedPreferences(StorageKey.AuthenticationKey.toString(), "");
+    }
+
+    public void setAuthenticationKey(String value) {
+        setSharedPreference(StorageKey.AuthenticationKey.toString(), value);
+    }
+
+    public String getDeviceId() {
+        return (String) getSharedPreferences(StorageKey.DeviceId.toString(), "");
+    }
+
+    public void setDeviceId(String value) {
+        setSharedPreference(StorageKey.DeviceId.toString(), value);
+    }
+
+    public void setSignUpMobileNumber(String value) {
+        setSharedPreference(StorageKey.SignUpMobileNumber.toString(), value);
+    }
+
+
+    public String getSignUpPhoneNumber() {
+        return (String) getSharedPreferences(StorageKey.SignUpMobileNumber.toString(), "");
+    }
+
+
+    public void setSharedPreference(String key, Object value) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -83,29 +148,21 @@ public class SharedPreferenceManager {
     }
 
 
-    private Object getSharedPreferences(String key, @Nullable Object defaultValue) {
+    public Object getSharedPreferences(String key, @Nullable Object defaultValue) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);
         Object value;
 
         if (String.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getString(key, String.valueOf(defaultValue));
-        }
-        else if (Integer.class.equals(defaultValue.getClass())) {
+        } else if (Integer.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getInt(key, (Integer) defaultValue);
-        }
-
-        else if (Boolean.class.equals(defaultValue.getClass())) {
+        } else if (Boolean.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getBoolean(key, (Boolean) defaultValue);
-        }
-
-        else if (Float.class.equals(defaultValue.getClass())) {
+        } else if (Float.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getFloat(key, (Float) defaultValue);
-        }
-
-        else if (Long.class.equals(defaultValue.getClass())) {
+        } else if (Long.class.equals(defaultValue.getClass())) {
             value = sharedPreferences.getLong(key, (Long) defaultValue);
-        }
-        else {
+        } else {
             throw new UnsupportedOperationException("Not yet implemented");
         }
         return value;

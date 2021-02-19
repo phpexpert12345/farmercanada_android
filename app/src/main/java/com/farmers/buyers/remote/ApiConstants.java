@@ -1,5 +1,7 @@
 package com.farmers.buyers.remote;
 
+import android.net.Uri;
+
 /**
  * created by Mohammad Sajjad
  * on 02-02-2021 at 18:40
@@ -7,10 +9,29 @@ package com.farmers.buyers.remote;
  */
 
 public class ApiConstants {
-    public static final String BASE_URL = "https://farmercanada.com/public/api/";
+    public static final String BASE_URL = "http://farmercanada.com/buyer_api/";
+    // Delete user from DataBase using MobileNumber http://farmercanada.com/buyer_api/phpexpert_customer_delete.php?mobile_number=9001262048
 
-    public static final String LOGIN = "login";
+    public static Uri IMAGE_PATH_USER;
+    public static final String LOGIN = "phpexpert_login.php";
     public static final String SIGN_UP = "buyer/sign-up";
-    public static final String REGIS = "register";
-
+    public static final String VERIFY_REGISTRATION_OTP = "phpexpert_account_mobile_verify.php";
+    public static final String REGIS = "phpexpert_account_register.php";
+    public static final String RESEND_OTP = "phpexpert_account_resned_otp.php";
+    public static final String VERIFY_OTP = "verifyotp";
+    public static final String FORGOT_PASSWORD = "phpexpert_account_forgot_password.php";
+    public static final String FORGOT_CHANGE_PASSWORD = "phpexpert_account_reset_password.php";
+    public static final String CATEGORY_LIST = "phpexpert_category_list.php";
+    public static final String OFFER_LIST = "phpexpert_offers_list.php";
+    public static final String ADDRESS_LIST = "phpexpert_customer_address_list.php";
+    public static final String DELETE_ADDRESS = "phpexpert_customer_address_delete.php";
+    public static final String ADD_ADDRESS = "phpexpert_customer_address_add.php";
+    public static final String CHANGE_PASSWORD = "phpexpert_change_password.php";
+    public static final String USER_INFORMATION = "phpexpert_customer_information.php";
+    public static final String WALLET_HISTORY = "phpexpert_customer_wallet_history.php";
+    public static final String ADD_MONEY = "phpexpert_customer_wallet_money_add.php";
+    public static final String EDIT_PROFILE = "phpexpert_edit_customer_profile.php";
+    public static final String SUB_ORDER_LIST = "phpexpert_customer_order_list.php";
+    public static final String ORDER_DETAILS = "phpexpert_customer_order_detail.php";
+    public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
 }

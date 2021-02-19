@@ -273,6 +273,7 @@
             android:layout_marginRight="@dimen/_24sdp">
 
             <Button
+                android:id="@+id/order_success_continue_go_to_order_btn"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -285,6 +286,7 @@
                 android:textColor="@color/primaryTextColor" />
 
             <Button
+                android:id="@+id/order_success_continue_shopping_btn"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

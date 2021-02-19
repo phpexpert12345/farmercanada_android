@@ -61,7 +61,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="Yash Singh"
                                 android:textColor="@color/black"
-                                android:textSize="17sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="Total: "
                                 android:textColor="@color/green"
-                                android:textSize="18sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="$107.95"
                                 android:textColor="@color/green"
-                                android:textSize="18sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                         </LinearLayout>
 
@@ -150,7 +150,7 @@
                         android:gravity="start"
                         android:text="Product Name"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -160,7 +160,7 @@
                         android:gravity="center"
                         android:text="Qty: 6kg"
                         android:textColor="@color/light_gray"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -170,7 +170,7 @@
                         android:gravity="end"
                         android:text="$ 23.99"
                         android:textColor="@color/green"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -188,7 +188,7 @@
                         android:gravity="start"
                         android:text="Product Name2"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -198,7 +198,7 @@
                         android:gravity="center"
                         android:text="Qty: 60 kg"
                         android:textColor="@color/light_gray"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -208,7 +208,7 @@
                         android:gravity="end"
                         android:text="$ 40.99"
                         android:textColor="@color/green"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -226,7 +226,7 @@
                         android:gravity="start"
                         android:text="Product Name3"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -236,7 +236,7 @@
                         android:gravity="center"
                         android:text="Qty: 160kg"
                         android:textColor="@color/light_gray"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -246,7 +246,7 @@
                         android:gravity="end"
                         android:text="$ 53.99"
                         android:textColor="@color/green"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -264,7 +264,7 @@
                         android:gravity="start"
                         android:text="Product Name"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -274,7 +274,7 @@
                         android:gravity="center"
                         android:text="Qty: 10kg"
                         android:textColor="@color/light_gray"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="0sp"
@@ -284,7 +284,7 @@
                         android:gravity="end"
                         android:text="$ 13.99"
                         android:textColor="@color/green"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

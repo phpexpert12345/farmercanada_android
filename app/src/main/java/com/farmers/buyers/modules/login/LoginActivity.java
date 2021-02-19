@@ -23,6 +23,7 @@ import com.farmers.buyers.modules.login.model.LoginRequestParams;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
+import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -45,9 +46,8 @@ public class LoginActivity extends BaseActivity {
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private RadioGroup radioGroup;
-    private int role;  //todo 0 for buyer 1 for seller
+    private int role = 1;  //todo 0 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
-    Integer user_type=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,21 +76,46 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
                 intent.putExtra("fromForgetPassword", true);
+                intent.putExtra("FROM", "Login");
                 startActivity(intent);
+            }
+        });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.login_seller_radio: {
+                        role = 0;
+                        break;
+                    }
+                    case R.id.login_buyer_radio: {
+                        role = 1;
+                        break;
+                    }
+                }
             }
         });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                LoginRequestParams loginRequestParams=new LoginRequestParams(mobileEt.getText().toString(),passwordEt.getText().toString(),user_type);
-//                viewModel.doLogin(stateMachine,loginRequestParams);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                finish();
+
+                String email = mobileEt.getText().toString();
+                String password = passwordEt.getText().toString();
+
+                viewModel.doLogin(stateMachine, email, password, role);
+
+             /*   if (role == 1 ) {
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                }
+                else {
+                    startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
+                }
+                finish();*/
 
             }
         });
-
     }
 
     private void init() {
@@ -107,8 +132,7 @@ public class LoginActivity extends BaseActivity {
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
-
-                        Toast.makeText(LoginActivity.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
@@ -119,19 +143,15 @@ public class LoginActivity extends BaseActivity {
                     case SUCCESS: {
                         dismissLoader();
                         if (role == 1) {
-                            startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
-                        }
-                        else {
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        } else {
+                            startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
                             finish();
                         }
                         break;
-
-
                     }
                 }
             }
         });
     }
-
 }

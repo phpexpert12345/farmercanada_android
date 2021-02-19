@@ -33,6 +33,7 @@ public class HomeCategoriesViewHolder extends BaseViewHolder {
 
     public HomeCategoriesViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.home_categories_view_holder_layout));
+
         adapter = new HomeCategoryAdapter();
         recyclerView = itemView.findViewById(R.id.home_category_view_holder_recyclerView);
         recyclerView.setAdapter(adapter);

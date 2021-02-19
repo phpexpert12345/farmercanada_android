@@ -15,6 +15,7 @@ import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.SpacesItemDecoration;
 import com.farmers.buyers.common.model.MultipleTextItems;
 import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
+import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.adapter.HomeFilterTypeAdapter;
@@ -31,14 +32,17 @@ import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
 public class HomeFilterItemViewHolder extends BaseViewHolder {
     private HomeFilterTypeAdapter adapter;
     private RecyclerView recyclerView;
+    private MultipleTextItemViewHolder.FilterItemClickListener listener;
 
-    public HomeFilterItemViewHolder(@NonNull ViewGroup parent) {
+    public HomeFilterItemViewHolder(@NonNull ViewGroup parent, MultipleTextItemViewHolder.FilterItemClickListener listener) {
         super(Extensions.inflate(parent, R.layout.multiple_text_view_holder_layout));
+        this.listener = listener;
         recyclerView = itemView.findViewById(R.id.multiple_text_item_recyclerView);
-        adapter = new HomeFilterTypeAdapter();
+        adapter = new HomeFilterTypeAdapter(listener);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new LinearSpacesItemDecoration(20));
         recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), HORIZONTAL, false));
+
 
     }
 
@@ -47,4 +51,5 @@ public class HomeFilterItemViewHolder extends BaseViewHolder {
 
         adapter.updateData(((HomeFilterListItems)items).getItem());
     }
+
 }

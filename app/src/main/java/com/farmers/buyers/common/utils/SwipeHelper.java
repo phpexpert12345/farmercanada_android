@@ -202,7 +202,7 @@ public abstract class SwipeHelper extends ItemTouchHelper.SimpleCallback {
         else
             buttonList.clear();
         buttonBuffer.clear();
-        swipeThreshold = 0.5f * buttonList.size() * buttonWidth;
+        swipeThreshold = 0.5f  * buttonWidth;
         recoverSwipedItem();
     }
 

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.modules.cart.myCart.MyCartFragment;
+import com.farmers.buyers.modules.home.homeFragment.HomeFragment;
 import com.farmers.buyers.modules.profile.MyProfileFragment;
 import com.farmers.buyers.modules.saveFarms.SavedFarmsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

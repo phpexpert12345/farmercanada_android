@@ -13,8 +13,14 @@ import com.farmers.buyers.core.BaseViewHolder;
 
 public class MultipleTextItemDelegate extends BaseDelegate {
 
+   private MultipleTextItemViewHolder.FilterItemClickListener listener;
+
+    public MultipleTextItemDelegate(MultipleTextItemViewHolder.FilterItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new MultipleTextItemViewHolder(parent);
+        return new MultipleTextItemViewHolder(parent, listener);
     }
 }

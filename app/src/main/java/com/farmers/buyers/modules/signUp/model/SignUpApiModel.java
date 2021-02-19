@@ -1,32 +1,103 @@
 package com.farmers.buyers.modules.signUp.model;
 
-/**
- * created by Mohammad Sajjad
- * on 05-02-2021 at 18:35
- * mohammadsajjad679@gmail.com
- */
+import java.util.List;
 
-public class SignUpApiModel {
-    public String status_message;
-    public SignUpData data;
-    public boolean status_code;
+import com.google.gson.annotations.SerializedName;
 
-//    {
-//        "status_code": true,
-//            "data": {
-//        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MmFlY2ZkNy1lMTZiLTQ0YWMtYWQ1OS03NDhhZjcxODdlNjMiLCJqdGkiOiIzYzUwZDQ0MWE3N2MyZTE0Y2Y1MWI4OTg5MjFmNzc3Y2EzMzkzODYzM2M2ZjlmMDJkYTllYjY4NzM2ZTM3M2FkNjg1ZGZmYzYwODEwOWU5ZSIsImlhdCI6IjE2MTI5NjIwMDUuOTMwMDk2IiwibmJmIjoiMTYxMjk2MjAwNS45MzAxMDEiLCJleHAiOiIxNjQ0NDk4MDA1LjkxNjM0OSIsInN1YiI6IjI5Iiwic2NvcGVzIjpbXX0.ugb3HsQaBSsUJcy4cxkhLJnaDUa539fieiJcwOoHylU-rbnALGR1jNg6OQ3FLAhl2mAEn4B3MxoSHk1QSAFvAxku3bjYQmip-IFmRMPcJOQNbsnfIx6rRxqzDXA1FFILUZ15ceHr9RMKJJJOEEyIaWTVZA05aYZt7XshpH7CIoRXb5tt2zkTRyMRdZ-5VZePU-hC6r0i7VclkXw084rReRa0tlkL333QdBd577wt5O1ZJYblr3o3WFysNSFZf_0mZ8RNF87rznL5efxGI750WwAlcCyxNOj0oV3FMYjkAKQt2F9ALKoi3sf7fB7IeS99gpYah8sDwPCC9KVkP_7xEyNGDKgGtIgBkYMZwRVhdglgTDE9Dr8oFD0SFfKnr0JXF2mLefDNp_Uzxg4mXEfOQYh3BHMSulwqUUhh4gZmJP6Iv1A8XXpqfO2n2OWlmiRUeYc6wiNs7YyFjfqMwsYV0PRsxGb2SaHKocBSHyX7xD_-NWLWjozTgk1fm7CDOQotk_KfFwcUan7d0oiaT1DNhYBq5nBd9hLxDqCwEl1UExT4APx2G2jHKN-ujvqCYGFjoRdokhgS0y6sLOocMw9nuaHetGZ28xSiQ8Q7TbsEZtFDW3AVUcdeEPvQlfagKD0-4dkjSsBP74tVqCt6aDYZm7Kdhr-SWNS-Up8ONjaBM60",
-//                "user": {
-//            "vendor_name": "test",
-//                    "vendor_email": "test@gmail.com",
-//                    "vendor_mobile_number": "9888887767",
-//                    "vendor_phone_code": "91",
-//                    "account_type": "1",
-//                    "updated_at": "2021-02-10T13:00:05.000000Z",
-//                    "created_at": "2021-02-10T13:00:05.000000Z",
-//                    "id": 29
-//        }
-//    },
-//        "status_message": "User register successfully."
-//    }
+import java.io.Serializable;
 
+public class SignUpApiModel implements Serializable {
+
+
+    @SerializedName("status")
+    private boolean status;
+
+    @SerializedName("status_code")
+    private int statusCode;
+
+    @SerializedName("status_message")
+    private String statusMessage;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @SerializedName("data")
+    private SignUpData data;
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setData(SignUpData data) {
+        this.data = data;
+    }
+
+    public SignUpData getData() {
+        return data;
+    }
+
+
+    public static class SignUpData {
+
+        @SerializedName("LoginId")
+        private String loginId;
+
+        @SerializedName("login_phone")
+        private String loginPhone;
+
+        @SerializedName("login_phone_code")
+        private String loginPhoneCode;
+
+        @SerializedName("Mobile_OTP")
+        private String Mobile_OTP;
+
+        public void setLoginId(String loginId) {
+            this.loginId = loginId;
+        }
+
+        public String getLoginId() {
+            return loginId;
+        }
+
+        public void setLoginPhone(String loginPhone) {
+            this.loginPhone = loginPhone;
+        }
+
+        public String getLoginPhone() {
+            return loginPhone;
+        }
+
+        public void setLoginPhoneCode(String loginPhoneCode) {
+            this.loginPhoneCode = loginPhoneCode;
+        }
+
+        public String getMobile_OTP() {
+            return Mobile_OTP;
+        }
+
+        public void setMobile_OTP(String mobile_OTP) {
+            Mobile_OTP = mobile_OTP;
+        }
+
+        public String getLoginPhoneCode() {
+            return loginPhoneCode;
+        }
+    }
 }

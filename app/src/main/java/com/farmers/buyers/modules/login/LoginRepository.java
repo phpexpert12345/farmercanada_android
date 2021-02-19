@@ -17,9 +17,8 @@ import retrofit2.Call;
 
 public class LoginRepository extends BaseRepository {
 
-
     public void doLogin(LoginRequestParams params, ApiResponseCallback<LoginApiModel> responseCallback) {
-        Call<LoginApiModel> call = RetrofitBuilder.createServiceContract().getUserLogin(ApiConstants.LOGIN, params.getMobile(), params.getPassword(),params.getUser_type());
+        Call<LoginApiModel> call = RetrofitBuilder.createServiceContract().getUserLogin(ApiConstants.LOGIN, params.getMobile(), params.getPassword(),params.getRole(), params.getDeviceId(), params.getPlatForm(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
 
