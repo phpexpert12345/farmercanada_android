@@ -58,16 +58,19 @@ public class AddressApiModel {
         @SerializedName("AddressList")
         private List<AddressListData> allDataModels;
 
+        @SerializedName("OrderList")
+        private List<AddressListData> allOrderList;
+
         public List<AddressListData> getAllDataModels() {
             return allDataModels;
         }
 
-        public void setAllDataModels(List<AddressListData> allDataModels) {
-            this.allDataModels = allDataModels;
+        public List<AddressListData> getAllOrderList() {
+            return allOrderList;
         }
     }
 
-    public static class AddressListData implements RecyclerViewListItem {
+    public static class AddressListData {
 
         private String address_id;
         private String vendor_country;
@@ -78,6 +81,126 @@ public class AddressApiModel {
         private String vendor_long;
         private String landmark;
         private String address_title;
+
+        private String order_id;
+        private String order_date;
+        private String order_time;
+        private String Total_amount;
+        private String order_status_msg;
+        private String farm_name;
+        private String farm_logo;
+        private String order_number;
+        private String order_type;
+        private String review_status;
+        private String order_status_close;
+        private String order_status_color_code;
+
+        @SerializedName("OrderRecordList")
+        private List<AllRecordsData> allRecordList;
+
+        public List<AllRecordsData> getAllRecordList() {
+            return allRecordList;
+        }
+
+        public void setAllRecordList(List<AllRecordsData> allRecordList) {
+            this.allRecordList = allRecordList;
+        }
+
+        public String getOrder_type() {
+            return order_type;
+        }
+
+        public void setOrder_type(String order_type) {
+            this.order_type = order_type;
+        }
+
+        public String getReview_status() {
+            return review_status;
+        }
+
+        public void setReview_status(String review_status) {
+            this.review_status = review_status;
+        }
+
+        public String getOrder_status_close() {
+            return order_status_close;
+        }
+
+        public void setOrder_status_close(String order_status_close) {
+            this.order_status_close = order_status_close;
+        }
+
+        public String getOrder_status_color_code() {
+            return order_status_color_code;
+        }
+
+        public void setOrder_status_color_code(String order_status_color_code) {
+            this.order_status_color_code = order_status_color_code;
+        }
+
+        public String getOrder_id() {
+            return order_id;
+        }
+
+        public void setOrder_id(String order_id) {
+            this.order_id = order_id;
+        }
+
+        public String getOrder_date() {
+            return order_date;
+        }
+
+        public void setOrder_date(String order_date) {
+            this.order_date = order_date;
+        }
+
+        public String getOrder_time() {
+            return order_time;
+        }
+
+        public void setOrder_time(String order_time) {
+            this.order_time = order_time;
+        }
+
+        public String getTotal_amount() {
+            return Total_amount;
+        }
+
+        public void setTotal_amount(String total_amount) {
+            Total_amount = total_amount;
+        }
+
+        public String getOrder_status_msg() {
+            return order_status_msg;
+        }
+
+        public void setOrder_status_msg(String order_status_msg) {
+            this.order_status_msg = order_status_msg;
+        }
+
+        public String getFarm_name() {
+            return farm_name;
+        }
+
+        public void setFarm_name(String farm_name) {
+            this.farm_name = farm_name;
+        }
+
+        public String getFarm_logo() {
+            return farm_logo;
+        }
+
+        public void setFarm_logo(String farm_logo) {
+            this.farm_logo = farm_logo;
+        }
+
+        public String getOrder_number() {
+            return order_number;
+        }
+
+        public void setOrder_number(String order_number) {
+            this.order_number = order_number;
+        }
 
         public String getAddress_id() {
             return address_id;
@@ -151,15 +274,101 @@ public class AddressApiModel {
             this.address_title = address_title;
         }
 
-        @Override
-        public int getViewType() {
-            return CardConstant.MY_CART_ADDRESS_ADAPTER;
+    }
+
+
+    public static class AllRecordsData {
+
+        private String item_id;
+        private String product_name;
+        private String product_code;
+        private String product_description;
+        private String product_images;
+        private String item_quantity;
+        private String item_price;
+        private String item_unit;
+        private String item_size;
+        private String item_note;
+
+        public String getItem_id() {
+            return item_id;
         }
 
-        @Override
-        public Object getUnique() {
-            return this;
+        public String getProduct_name() {
+            return product_name;
         }
 
+        public String getProduct_code() {
+            return product_code;
+        }
+
+        public String getProduct_description() {
+            return product_description;
+        }
+
+        public String getProduct_images() {
+            return product_images;
+        }
+
+        public String getItem_quantity() {
+            return item_quantity;
+        }
+
+        public String getItem_price() {
+            return item_price;
+        }
+
+        public String getItem_unit() {
+            return item_unit;
+        }
+
+        public String getItem_size() {
+            return item_size;
+        }
+
+        public String getItem_note() {
+            return item_note;
+        }
+
+        public void setItem_id(String item_id) {
+            this.item_id = item_id;
+        }
+
+        public void setProduct_name(String product_name) {
+            this.product_name = product_name;
+        }
+
+        public void setProduct_code(String product_code) {
+            this.product_code = product_code;
+        }
+
+        public void setProduct_description(String product_description) {
+            this.product_description = product_description;
+        }
+
+        public void setProduct_images(String product_images) {
+            this.product_images = product_images;
+        }
+
+        public void setItem_quantity(String item_quantity) {
+            this.item_quantity = item_quantity;
+        }
+
+        public void setItem_price(String item_price) {
+            this.item_price = item_price;
+        }
+
+        public void setItem_unit(String item_unit) {
+            this.item_unit = item_unit;
+        }
+
+        public void setItem_size(String item_size) {
+            this.item_size = item_size;
+        }
+
+        public void setItem_note(String item_note) {
+            this.item_note = item_note;
+        }
     }
 }
+

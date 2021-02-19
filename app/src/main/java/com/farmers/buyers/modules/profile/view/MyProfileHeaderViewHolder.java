@@ -34,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyProfileHeaderViewHolder extends BaseViewHolder {
 
     private LinearLayout followersLL, walletLL, inboxLL, ll_switch_user;
-    private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type;
+    private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type, tv_followers, my_profile_header_inbox_msg_tv;
     private AppController appController = AppController.get();
     private CircleImageView profile_header_user_image;
 
@@ -49,11 +49,15 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
         tv_user_name = itemView.findViewById(R.id.tv_user_name);
         tv_user_email = itemView.findViewById(R.id.tv_user_email);
         tv_user_type = itemView.findViewById(R.id.tv_user_type);
+        tv_followers = itemView.findViewById(R.id.tv_followers);
+        my_profile_header_inbox_msg_tv = itemView.findViewById(R.id.my_profile_header_inbox_msg_tv);
 
         tv_wallet_balance.setText("$ " + appController.getWalletAmount());
         tv_user_name.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_NAME", "")));
         tv_user_email.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_EMAIL", "")));
         tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
+        tv_followers.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_FOLLOWERS", "")));
+        my_profile_header_inbox_msg_tv.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_MESSAGE_INBOX", "")));
 
         Glide.with(itemView.getContext())
                 .load(appController.getProfilePic())

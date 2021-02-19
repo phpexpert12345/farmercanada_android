@@ -1,26 +1,62 @@
 package com.farmers.buyers.modules.orders.subOrderList;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.widget.AppPagerAdapter;
 import com.farmers.buyers.core.BaseActivity;
+import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.orders.OrdersTransformer;
 import com.farmers.buyers.modules.orders.SubOrderExtra;
+import com.farmers.buyers.modules.orders.adapter.SubOrderItemAdapter;
+import com.farmers.buyers.modules.orders.model.SubOrdersListItem;
+import com.farmers.buyers.modules.orders.track.TrackOrderActivity;
+import com.farmers.buyers.modules.orders.view.SubOrderItemViewHolder;
 import com.google.android.material.tabs.TabLayout;
 
-public class SubOrderListActivity extends BaseActivity {
-    TabLayout tabLayout;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SubOrderListActivity extends BaseActivity implements SubOrderItemViewHolder.SubOrderItemClickListener {
+   /* TabLayout tabLayout;
     ViewPager viewPager;
 
     SubOrderListFragment tab1;
     SubOrderListFragment tab2;
-    SubOrderListFragment tab3;
+    SubOrderListFragment tab3;*/
+
+    private List<RecyclerViewListItem> items = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private SubOrderItemAdapter adapter;
+
+    private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (modelClass.isAssignableFrom(SubOredrViewModel.class)) {
+                return (T) new SubOredrViewModel();
+            }
+            return null;
+        }
+    };
+    public SubOredrViewModel viewModel = factory.create(SubOredrViewModel.class);
+    private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +83,57 @@ public class SubOrderListActivity extends BaseActivity {
     }
 
     private void init() {
-        tabLayout = findViewById(R.id.sub_order_tab_layout);
+      /*  tabLayout = findViewById(R.id.sub_order_tab_layout);
         viewPager = findViewById(R.id.sub_order_viewPager);
 
-        setUpTabLayout();
+        setUpTabLayout();*/
+
+
+        recyclerView = findViewById(R.id.sub_order_recyclerView);
+        adapter = new SubOrderItemAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        getSubOrderApi();
+
+        stateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    // dismissLoader();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    callSetData(dataFetchState);
+                    break;
+                }
+            }
+        });
     }
 
+    private void callSetData(DataFetchState<AddressApiModel> dataFetchState) {
+        dismissLoader();
+        items.addAll(OrdersTransformer.getPendingItems(dataFetchState.data.getData().getAllOrderList()));
+        adapter.updateData(items);
+    }
+
+    private void getSubOrderApi() {
+        SubOrderRequestParams subOrderRequestParams = new SubOrderRequestParams(AppController.get().getLoginId(),
+                "1", AppController.get().getAuthenticationKey());
+
+        viewModel.getSubOrder(stateMachine, subOrderRequestParams);
+    }
+
+    @Override
+    public void onSubOrderItemClicked(SubOrdersListItem item) {
+        startActivity(new Intent(SubOrderListActivity.this, TrackOrderActivity.class).
+                putExtra("ORDER_NUMBER", item.getOrderId()));
+    }
+
+/*
     private void setUpTabLayout() {
 
         setUpViewPager();
@@ -102,5 +183,6 @@ public class SubOrderListActivity extends BaseActivity {
         viewPager.setAdapter(appPagerAdapter);
         tabLayout.setupWithViewPager(viewPager, true);
 
-    }
+    }*/
+
 }
