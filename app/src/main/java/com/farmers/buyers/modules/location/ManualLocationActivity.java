@@ -1,6 +1,5 @@
 package com.farmers.buyers.modules.location;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
-import com.farmers.buyers.modules.address.AddNewAddressActivity;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.google.android.gms.common.api.Status;
@@ -30,7 +28,6 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.util.Arrays;
@@ -162,7 +159,7 @@ public class ManualLocationActivity extends AppCompatActivity implements OnMapRe
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             if (SearchFlag) {
                 mMap.addMarker(new MarkerOptions().position(latLng).title(placeAddress.getName()));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
             } else {
                 mMap.addMarker(new MarkerOptions().position(latLng).title("India"));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
