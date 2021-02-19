@@ -3,12 +3,12 @@ package com.farmers.buyers.remote;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
-
-import java.io.File;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -132,4 +132,14 @@ public interface ApiController {
     @POST
     Call<VerifyOtpApiModel> doVerifyRegisterOtp(@Url String url, @Field("LoginId") String userId, @Field("Mobile_OTP") String Mobile_OTP, @Field("auth_key") String authKey);
 
+
+    @FormUrlEncoded
+    @POST
+    Call<SaveFarmListApiModel> getSavedFarmList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status);
+
 }
+

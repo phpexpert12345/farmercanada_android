@@ -25,20 +25,18 @@ import com.farmers.buyers.modules.home.models.HomeListItem;
 
 public class HomeItemsViewHolder extends BaseViewHolder {
     private CardView cardView;
-    private ImageView saveImage, savedImage;
+    private ImageView saveImage, savedImage, farmImage;
+    private FarmItemClickListener farmItemClickListener;
 
-    public HomeItemsViewHolder(@NonNull ViewGroup parent) {
+    public HomeItemsViewHolder(@NonNull ViewGroup parent, FarmItemClickListener farmItemClickListener) {
         super(Extensions.inflate(parent, R.layout.home_list_item_layout));
         cardView = itemView.findViewById(R.id.home_item_card);
         saveImage = itemView.findViewById(R.id.home_list_save_image);
         savedImage = itemView.findViewById(R.id.home_list_saved_image);
+        farmImage = itemView.findViewById(R.id.home_list_item_img);
+        this.farmItemClickListener = farmItemClickListener;
 
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemView.getContext().startActivity( new Intent(itemView.getContext(), FarmDetailActivity.class));
-            }
-        });
+        farmImage.setOnClickListener(view -> itemView.getContext().startActivity( new Intent(itemView.getContext(), FarmDetailActivity.class)));
 
     }
 
@@ -53,5 +51,28 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             saveImage.setVisibility(View.GONE);
             savedImage.setVisibility(View.VISIBLE);
         }
+
+        savedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveImage.setVisibility(View.VISIBLE);
+                savedImage.setVisibility(View.GONE);
+                farmItemClickListener.onSaveFarmClicked(item.getId(), 0);
+            }
+        });
+
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveImage.setVisibility(View.GONE);
+                savedImage.setVisibility(View.VISIBLE);
+                farmItemClickListener.onSaveFarmClicked(item.getId(), 1);
+            }
+        });
+
+    }
+
+    public interface FarmItemClickListener {
+        void onSaveFarmClicked(String id, int status);
     }
 }

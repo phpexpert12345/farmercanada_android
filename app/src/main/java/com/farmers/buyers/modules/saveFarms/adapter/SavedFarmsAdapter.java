@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.saveFarms.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.home.view.HomeItemsDelegate;
+import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -11,13 +12,15 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class SavedFarmsAdapter extends BaseAdapter {
+    private HomeItemsViewHolder.FarmItemClickListener farmItemClickListener;
 
-    public SavedFarmsAdapter() {
+    public SavedFarmsAdapter(HomeItemsViewHolder.FarmItemClickListener farmItemClickListener) {
+        this.farmItemClickListener = farmItemClickListener;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.HOME_FARM_LIST_ITEM_ADAPTER, new HomeItemsDelegate());
+        delegates.put(CardConstant.HOME_FARM_LIST_ITEM_ADAPTER, new HomeItemsDelegate(farmItemClickListener));
     }
 }

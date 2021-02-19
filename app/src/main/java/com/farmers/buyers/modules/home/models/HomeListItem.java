@@ -13,16 +13,18 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class HomeListItem implements RecyclerViewListItem {
 
+    String id;
     String farmName;
     String distance;
     String rating;
     Boolean isSaved;
 
-    public HomeListItem(String farmName, String distance, String rating, Boolean isSaved) {
+    public HomeListItem(String farmName, String distance, String rating, Boolean isSaved, String id) {
         this.farmName = farmName;
         this.distance = distance;
         this.rating = rating;
         this.isSaved = isSaved;
+        this.id = id;
     }
 
     public String getFarmName() {
@@ -39,6 +41,10 @@ public class HomeListItem implements RecyclerViewListItem {
 
     public Boolean getSaved() {
         return isSaved;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override

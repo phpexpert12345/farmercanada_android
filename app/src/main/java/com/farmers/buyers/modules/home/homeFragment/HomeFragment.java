@@ -29,6 +29,7 @@ import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -42,7 +43,7 @@ import static com.farmers.buyers.app.App.getAppContext;
  */
 
 public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.HeaderItemClickListener,
-        MultipleTextItemViewHolder.FilterItemClickListener {
+        MultipleTextItemViewHolder.FilterItemClickListener, HomeItemsViewHolder.FarmItemClickListener {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -88,7 +89,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private void init() {
         gpsTracker = new GPSTracker(getAppContext());
         SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
-        adapter = new HomeAdapter(HomeFragment.this, this);
+        adapter = new HomeAdapter(HomeFragment.this, this, this);
         recyclerView.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
@@ -215,5 +216,10 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onFilterItemClicked(int position) {
         adapter.notifyDataSetChanged();
         adapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void onSaveFarmClicked(String id, int status) {
+
     }
 }
