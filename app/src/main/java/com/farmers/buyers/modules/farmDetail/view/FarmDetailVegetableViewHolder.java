@@ -49,17 +49,8 @@ public class FarmDetailVegetableViewHolder extends BaseViewHolder {
     @Override
     public void bindView(RecyclerViewListItem items) {
 
-        SubProductItemsRecord subProductItemsRecord=(SubProductItemsRecord)items;
+        adapter1.updateData(((FarmDetailsVegetablesListItem) items).getItem());
 
-        List<RecyclerViewListItem> list=new ArrayList<>();
-        list.add(subProductItemsRecord);
-
-        //CategoryList categoryList=((CategoryList) items);
-       // adapter1.updateData(((FarmDetailsVegetablesListItem) items).getItem());
-       // adapter1.updateData(arrayList);
-        Log.d("GaneshASDF",new Gson().toJson(items));
-
-      // adapter1.updateData(list);
 
 
     }

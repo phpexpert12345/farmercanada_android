@@ -1,6 +1,8 @@
 package com.farmers.buyers.remote;
 
 import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -11,8 +13,6 @@ import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
-
-import java.io.File;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -165,6 +165,47 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<ReviewListResponse> REVIEWD_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
+
+    @FormUrlEncoded
+    @POST
+    Call<TaxResponse> TAX_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                        @Field("farm_id") String farmId,
+                                        @Field("delivery_distance")String deliveryDistance,
+                                        @Field("order_type")String orderType,
+                                        @Field("subtotal_amount")String subTotal);
+
+    @FormUrlEncoded
+    @POST
+    Call<SubmitResponse>SUBMIT_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                             @Field("customer_long") String customer_long,
+                                             @Field("customer_lat")String customer_lat,
+                                             @Field("customer_postcode")String postcode,
+                                             @Field("customer_city")String customer_city,
+                                             @Field("customer_address")String customer_address,
+                                             @Field("WalletPay")String WalletPay,
+                                             @Field("order_type")String order_type,
+                                             @Field("SpecialInstruction")String SpecialInstruction,
+                                             @Field("delivery_time")String delivery_time,
+                                             @Field("delivery_date")String delivery_date,
+                                             @Field("discount_amount")String discount_amount,
+                                             @Field("coupon_discount_amount")String coupon_discount_amount,
+                                             @Field("Total_amount")String Total_amount,
+                                             @Field("delivery_amount")String delivery_amount,
+                                             @Field("service_tax_amount")String service_tax_amount,
+                                             @Field("gst_tax_amount")String gst_tax_amount,
+                                             @Field("subtotal")String subtotal,
+                                             @Field("payment_type")String payment_type,
+                                             @Field("address_id")String address_id,
+                                             @Field("LoginId")String LoginId,
+                                             @Field("instructions")String instructions,
+                                             @Field("item_unit_type")String item_unit_type,
+                                             @Field("strsizeid")String strsizeid,
+                                             @Field("Price")String Price,
+                                             @Field("Quantity")String Quantity,
+                                             @Field("itemId")String itemId,
+                                             @Field("payment_transaction_id")String payment_transaction_id,
+                                             @Field("farm_id")String farm_id);
+
 
 
 }

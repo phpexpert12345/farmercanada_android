@@ -44,26 +44,17 @@ public class HomeFragmentViewModel extends BaseViewModel {
 
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
 
-
         //   items.add(HomeTransformer.getHeaderItems());
         items.add(HomeTransformer.getSearchItems());
         items.add(HomeTransformer.getFilterItems());
 
-
-    public void getCategoryList(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine) {
-        stateMachine.postValue(DataFetchState.<LoginApiModel>loading());
-
         CategoryListRequestParams loginRequestParams = new CategoryListRequestParams(appController.getAuthenticationKey());
         repository.getCategoryList(loginRequestParams, new ApiResponseCallback<AllDataModel>() {
             @Override
-
             public void onSuccess(AllDataModel response) {
                 if (response.isStatus()) {
                     items.add(HomeTransformer.getCategoryList(response.getmData().CategoryList));
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
-            public void onSuccess(LoginApiModel response) {
-                if (response.getData() != null) {
-                    stateMachine.postValue(DataFetchState.success(response, response.getData().getMessage()));
                 } else {
                     stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
                 }
@@ -127,9 +118,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
 
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
 
-            public void onSuccess(LoginApiModel response) {
-                if (response.getData() != null) {
-                    stateMachine.postValue(DataFetchState.success(response, response.getData().getMessage()));
                 } else {
                     stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
                 }
@@ -148,9 +136,9 @@ public class HomeFragmentViewModel extends BaseViewModel {
             @Override
             public void onSuccess(FarmListResponse response) {
                 if (response.getFarmData()!=null)
-                stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
+                    stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
                 else
-                stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new FarmListResponse()));
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new FarmListResponse()));
             }
             @Override
             public void onFailure(StandardError standardError) {

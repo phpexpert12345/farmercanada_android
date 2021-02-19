@@ -20,6 +20,7 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.adapter.FarmDetailsAdapter;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsHeaderItems;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
+import com.farmers.buyers.modules.farmDetail.model.farmList.response.CategoryList;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
 import com.farmers.buyers.modules.home.models.farmList.FarmData;
@@ -37,8 +38,6 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     private FarmDetailsAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private AppController appController = AppController.get();
-
-
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -69,14 +68,10 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     }
 
     private void prepareItems() {
-       // FarmDetailsHeaderItems h1=new FarmDetailsHeaderItems("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
         items.add(FarmDetailTransformer.getHeaderItems());
         items.add(FarmDetailTransformer.getFarmDetailItems());
 
-    /*    items.add(new SingleTextItem("Vegetables"));
-        items.add(FarmDetailTransformer.getFarmDetailVegList());
-        items.add(new SingleTextItem("Fruits"));
-        items.add(FarmDetailTransformer.getFarmDetailFruitList());*/
+
     }
     private void init() {
         recyclerView = findViewById(R.id.farmers_detail_recyclerView);
@@ -89,25 +84,31 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
             public void onChanged(DataFetchState<FarmListProductResponse> response) {
                 switch (response.status){
                     case SUCCESS:
-
-                        for (int i=0;i<response.data.getData().getCategoryList().size();i++){
-                            items.add(new SingleTextItem(response.data.getData().getCategoryList().get(i).getCategoryName()));
-                          //  items.addAll(response.data.getData().getCategoryList().get(i).getSubProductItemsRecord());
+                        dismissLoader();
+                        for (int i = 0; i < response.data.getData().getCategoryList().size(); i++) {
+                            CategoryList currentList = response.data.getData().getCategoryList().get(i);
+                            for (int j = 0; j < currentList.getSubProductItemsRecord().size(); j++) {
+                                if (!currentList.getSubProductItemsRecord().isEmpty()){
+                                    items.add(new SingleTextItem(currentList.getCategoryName()));
+                                    items.add(FarmDetailTransformer.getFarmDetailVegList(currentList.getSubProductItemsRecord()));
+                                }
+                            }
+                            adapter.updateData(items);
                         }
                         adapter.updateData(items);
 
                         break;
                     case LOADING:
-
+                    showLoader();
                         break;
                     case ERROR:
+                        dismissLoader();
 
                         break;
                 }
             }
         });
         adapter.updateData(items);
-
 
     }
 

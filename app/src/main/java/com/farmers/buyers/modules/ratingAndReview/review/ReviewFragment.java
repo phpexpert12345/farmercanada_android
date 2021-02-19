@@ -48,7 +48,6 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
     public RatingAndReviewViewModel viewModel = factory.create(RatingAndReviewViewModel.class);
     private MutableLiveData<DataFetchState<ReviewListResponse>> stateMachine = new MutableLiveData<>();
 
-
     public ReviewFragment get() {
         return new ReviewFragment();
     }
@@ -73,7 +72,7 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
         adapter = new ReviewListAdapter(this);
         rv_review_list.setAdapter(adapter);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
-       // prepareItems();
+        // prepareItems();
 
         ReviewdListParams reviewdListParams=new ReviewdListParams(appController.getAuthenticationKey(),"22");
         viewModel.getReview(stateMachine,reviewdListParams);
@@ -83,13 +82,17 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
             public void onChanged(DataFetchState<ReviewListResponse> response) {
                 switch (response.status){
                     case ERROR:
+                        dismissLoader();
                         Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     case SUCCESS:
+                        dismissLoader();
                         items.addAll(response.data.getData().getReviewData());
                         adapter.updateData(items);
                         Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
-
+                        break;
+                    case LOADING:
+                        //showLoader();
                         break;
 
                 }
@@ -98,7 +101,7 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
     }
 
     private void prepareItems() {
-      //  items.addAll(ReviewTransfarmer.getReviewList());
+        //  items.addAll(ReviewTransfarmer.getReviewList());
     }
 
     public void getReview() {

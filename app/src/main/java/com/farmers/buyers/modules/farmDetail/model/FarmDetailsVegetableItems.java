@@ -10,13 +10,13 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class FarmDetailsVegetableItems implements RecyclerViewListItem {
-    private int imageUri;
+    private String imageUri;
     private String title;
     private String price;
     private String quantity;
     private Boolean inStock;
 
-    public FarmDetailsVegetableItems(int imageUri, String title, String price, String quantity, Boolean inStock) {
+    public FarmDetailsVegetableItems(String imageUri, String title, String price, String quantity, Boolean inStock) {
         this.imageUri = imageUri;
         this.title = title;
         this.price = price;
@@ -24,7 +24,7 @@ public class FarmDetailsVegetableItems implements RecyclerViewListItem {
         this.inStock = inStock;
     }
 
-    public int getImageUri() {
+    public String getImageUri() {
         return imageUri;
     }
 

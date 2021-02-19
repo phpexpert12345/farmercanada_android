@@ -7,6 +7,8 @@ import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponReqParams;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxRequestParam;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.farmDetail.FarmDetailRepository;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -31,6 +33,25 @@ public class MyCartViewModel extends BaseViewModel {
             @Override
             public void onFailure(StandardError standardError) {
                 stateMutableLiveData.postValue(DataFetchState.<ApplyCouponResponse>error(standardError.getDisplayError(), null));
+
+            }
+        });
+
+    }
+
+    public void applyServiceAndTax(final MutableLiveData<DataFetchState<TaxResponse>> stateMutableLiveData, TaxRequestParam taxRequestParam){
+        stateMutableLiveData.postValue(DataFetchState.<TaxResponse>loading());
+        repository.applyServiceTax(taxRequestParam, new ApiResponseCallback<TaxResponse>() {
+            @Override
+            public void onSuccess(TaxResponse response) {
+                if (response.getTaxData()!=null)
+                    stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
+                else
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new TaxResponse()));
+            }
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMutableLiveData.postValue(DataFetchState.<TaxResponse>error(standardError.getDisplayError(), null));
 
             }
         });

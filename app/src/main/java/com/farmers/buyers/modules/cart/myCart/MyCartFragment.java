@@ -27,6 +27,7 @@ import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.SwipeControllerActions;
 import com.farmers.buyers.common.utils.SwipeHelper;
+import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
@@ -36,7 +37,11 @@ import com.farmers.buyers.modules.cart.myCart.model.MyCartCheckOutItem;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponData;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponReqParams;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxRequestParam;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
+import com.farmers.buyers.storage.Constant;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -48,7 +53,7 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,MyCartCheckoutViewHolder.MyCoupounClickListeners {
+public class MyCartFragment extends BaseFragment implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,MyCartCheckoutViewHolder.MyCoupounClickListeners {
 
     private RecyclerView recyclerView;
     private MyCartAdapter adapter;
@@ -69,7 +74,8 @@ public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder
 
     private MyCartViewModel viewModel = factory.create(MyCartViewModel.class);
     private AppController appController = AppController.get();
-    private MutableLiveData<DataFetchState<ApplyCouponResponse>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<ApplyCouponResponse>> applyCouponMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<TaxResponse>> taxServiceMachine = new MutableLiveData<>();
 
 
     @Nullable
@@ -81,13 +87,24 @@ public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder
         return view;
     }
 
-    private void bindView(View view) {
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Override
+    public int getResourceFile() {
+        return 0;
+    }
+
+    public void bindView(View view) {
         recyclerView = view.findViewById(R.id._my_cart_recyclerView);
         adapter = new MyCartAdapter(this,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         adapter.updateData(items);
+        getServicesAndTax();
 
         SwipeHelper swipeHelper = new SwipeHelper(getContext(), recyclerView, 250) {
             @Override
@@ -104,11 +121,12 @@ public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder
 
             }
         };
-        stateMachine.observe(this, new Observer<DataFetchState<ApplyCouponResponse>>() {
+        applyCouponMachine.observe(this, new Observer<DataFetchState<ApplyCouponResponse>>() {
             @Override
             public void onChanged(DataFetchState<ApplyCouponResponse> response) {
                 switch (response.status){
                     case SUCCESS:
+                        dismissLoader();
                         if (response.data!=null){
                             Intent intent = new Intent("CouponSubmit");
                             intent.putExtra("data",(ApplyCouponData)response.data.getData());
@@ -116,20 +134,46 @@ public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder
                         }
                         break;
                     case ERROR:
-
+                        dismissLoader();
                         break;
                     case LOADING:
+                        showLoader();
                         break;
 
                 }
             }
         });
 
+        taxServiceMachine.observe(this, new Observer<DataFetchState<TaxResponse>>() {
+            @Override
+            public void onChanged(DataFetchState<TaxResponse> taxRes) {
+
+                switch (taxRes.status){
+                    case SUCCESS:
+                        dismissLoader();
+                        if (taxRes.data!=null){
+                            Intent intent = new Intent(Constant.TAX_INTENT);
+                            intent.putExtra(Constant.DATA_INTENT,(TaxData)taxRes.data.getTaxData());
+                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+                        }
+                        break;
+                    case LOADING:
+                        showLoader();
+                        break;
+                    case ERROR:
+                        dismissLoader();
+
+                        break;
+
+                }
+
+            }
+        });
+
+
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
     }
-
-
 
 
     private void prepareData() {
@@ -145,10 +189,12 @@ public class MyCartFragment extends Fragment implements MyCartCheckoutViewHolder
 
     @Override
     public void onCouponClicked(String couponCode) {
-
         ApplyCouponReqParams applyCouponReqParams=new ApplyCouponReqParams(appController.getAuthenticationKey(), couponCode,"1","300");
-        viewModel.validateCoupon(stateMachine,applyCouponReqParams);
+        viewModel.validateCoupon(applyCouponMachine,applyCouponReqParams);
+    }
 
-
+    void getServicesAndTax(){
+        TaxRequestParam requestParam=new TaxRequestParam(appController.getAuthenticationKey(),"1","","1","300");
+        viewModel.applyServiceAndTax(taxServiceMachine,requestParam);
     }
 }
