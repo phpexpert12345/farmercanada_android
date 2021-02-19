@@ -10,10 +10,20 @@ public class VerifyOtpRequestParams {
 
     String userId;
     String otp;
+    String key;
 
-    public VerifyOtpRequestParams(String userId, String otp) {
+    public VerifyOtpRequestParams(String userId, String otp,String key) {
         this.userId = userId;
         this.otp = otp;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getUserId() {

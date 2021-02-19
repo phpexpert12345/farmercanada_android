@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -32,6 +33,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpRequestParams;
+import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -39,16 +41,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, LocationListener {
+public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private TextView termsConditionTv;
     private Button signUpBtn;
     private TextInputEditText nameEt, emailEt, numberEt, passwordEt;
     private RadioGroup user_type_radio_group;
+    public GPSTracker gpsTracker;
     private RadioButton radio_seller, radio_buyer;
     private String account_country = "";
-    protected LocationManager locationManager;
-    protected LocationListener locationListener;
-    private Integer account_type = 0;
+    private Integer account_type = 1;
     protected Context context;
     private String account_city, account_state, account_address, account_long, account_lat, device_id, device_platform, account_phone_code;
 
@@ -65,7 +66,6 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private SignUpViewModel viewModel = factory.create(SignUpViewModel.class);
     private MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine = new MutableLiveData<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,18 +90,11 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         passwordEt = findViewById(R.id.signUp_password_et);
         user_type_radio_group = findViewById(R.id.user_type_radio_group);
         user_type_radio_group.setOnCheckedChangeListener(this);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 3, this);
+
+        gpsTracker = new GPSTracker(SignUpActivity.this);
+
+        if (!checkPermissions()) {
+            requestPermissionsh();
         }
 
         stateMachine.observe(this, new Observer<DataFetchState<SignUpApiModel>>() {
@@ -114,12 +107,12 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                        success(signUpApiModelDataFetchState.message);
+                        success(signUpApiModelDataFetchState.status_message, signUpApiModelDataFetchState.data.getData().getMobile_OTP(), signUpApiModelDataFetchState.data.getData().getLoginId());
                         break;
                     }
 
                     case ERROR: {
-                        error(signUpApiModelDataFetchState.message);
+                        error(signUpApiModelDataFetchState.status_message);
                         break;
                     }
                 }
@@ -127,10 +120,27 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         });
     }
 
+    private boolean checkPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            requestPermissionsh();
+            return false;
+        }
+    }
+
+    public void requestPermissionsh() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                100);
+    }
+
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_seller:
+                account_type = 0;
                 startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
                 break;
 
@@ -145,11 +155,12 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         showLoader();
     }
 
-    private void success(String msg) {
+    private void success(String msg, String mobile_otp, String loginId) {
         dismissLoader();
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg + " -> " + mobile_otp, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
-        intent.putExtra("fromSignUp",true);
+        intent.putExtra("fromSignUp", true);
+        intent.putExtra("USER_ID", loginId);
         startActivity(intent);
         finish();
     }
@@ -169,41 +180,14 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     }
 
     private void doSignUp() {
-        SignUpRequestParams signUpRequestParams = new SignUpRequestParams(nameEt.getText().toString(), numberEt.getText().toString(), emailEt.getText().toString(), passwordEt.getText().toString(), account_type, account_country, account_state, account_city, account_address, account_lat, account_long, "91", AppController.get().getDeviceId(), "Android", AppController.get().getAuthenticationKey());
+        SignUpRequestParams signUpRequestParams = new SignUpRequestParams(nameEt.getText().toString(), numberEt.getText().toString(),
+                emailEt.getText().toString(), passwordEt.getText().toString(), account_type,
+                gpsTracker.getCountryName(this), gpsTracker.getAdminArea(this),
+                gpsTracker.getLocality(this), gpsTracker.getAddressLine(this),
+                String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()),
+                "91", AppController.get().getDeviceId(),
+                "Android", AppController.get().getAuthenticationKey());
+
         viewModel.doSignUp(stateMachine, signUpRequestParams);
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-        if (location != null) {
-            account_lat = String.valueOf(location.getLatitude());
-            account_long = String.valueOf(location.getLongitude());
-            new AddressAsynck().execute(location);
-        }
-    }
-
-    private class AddressAsynck extends AsyncTask<Location, Integer, String> {
-
-        @Override
-        protected String doInBackground(Location... locations) {
-            Geocoder geocoder = new Geocoder(SignUpActivity.this, Locale.getDefault());
-            List<Address> addresses = null;
-            try {
-                addresses = geocoder.getFromLocation(locations[0].getLatitude(), locations[0].getLatitude(), 1);
-                account_address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                account_city = addresses.get(0).getLocality();
-                account_state = addresses.get(0).getAdminArea();
-                account_country = addresses.get(0).getCountryName();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
     }
 }

@@ -4,7 +4,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">google_key</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDlP-29eruHAyokmet3SOwUKGQXECtvQ9A</string>
+    <string name="google_place_api">AIzaSyBDviyQvw9dr1Ygwudl4fFPG-dh0CmzOXg</string>
 
     <string name="onBoardingHeader">Lorem ipsum dolor</string>
     <string name="onBoardingContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
