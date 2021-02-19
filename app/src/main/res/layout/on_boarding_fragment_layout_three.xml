@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/on_boarding_icon_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-30dp"
+            >
+            <ImageView
+                android:layout_below="@id/on_bording_three_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/on_boarding_bg"
+                />
+
+            <ImageView
+                android:id="@+id/on_bording_three_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/on_boarding_third"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/on_boarding_three_header"
+            android:layout_below="@+id/on_boarding_icon_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16_px"
+            android:gravity="center"
+            android:text="@string/onBoardingHeader"
+            android:textColor="@color/on_boarding_header_color"
+            android:textSize="@dimen/sp_20_px"
+            android:fontFamily="@font/sf_ui_bold"/>
+
+        <TextView
+            android:id="@+id/on_boarding_three_content"
+            android:layout_below="@id/on_boarding_three_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp_24_px"
+            android:layout_marginRight="@dimen/dp_24_px"
+            android:paddingLeft="@dimen/dp_24_px"
+            android:paddingRight="@dimen/dp_24_px"
+            android:text="@string/onBoardingContent"
+            android:fontFamily="@font/sf_ui_regular"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:src="@drawable/ic_on_bording_bg_three"
+        android:scaleType="centerCrop"
+        android:layout_gravity="bottom"
+        />
+</LinearLayout>

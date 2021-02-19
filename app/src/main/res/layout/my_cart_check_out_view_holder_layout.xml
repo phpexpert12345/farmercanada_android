@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_below="@id/_my_cart_recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/my_cart_apply_coupon_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_gray_round_border_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_8sdp"
+        android:paddingRight="@dimen/_8sdp">
+
+
+        <EditText
+            android:id="@+id/home_header_item_search_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:background="@drawable/light_gray_round_border_bg"
+            android:fontFamily="@font/sf_ui_regular"
+            android:hint="Apply Coupon Code"
+            android:padding="@dimen/_8sdp" />
+
+        <TextView
+            android:id="@+id/my_cart_apply_coupon_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:background="@drawable/round_corner_light_gradient_bg"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:gravity="center"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingRight="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Apply"
+            android:textColor="@color/secondaryTextColor" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/round_coner_dash_border_ligh_gray_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Sub Total:"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+
+            <TextView
+                android:id="@+id/sub_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="280.00"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/sub_total"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/packedge_fee_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Package Fee (5 %):"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:id="@+id/packedge_fee_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="20.00"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/packedge_fee_amount"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/lable_gst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="GST   (5 %):"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:id="@+id/gst_tax_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="20.00"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/gst_tax_amount"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_8sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Shipping Fee :"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:id="@+id/shiping_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="1:00"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/shiping_fee"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/my_cart_applied_coupon_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingRight="@dimen/_5sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:visibility="gone"
+            android:background="@drawable/light_gray_round_border_bg">
+
+            <TextView
+                android:id="@+id/applied_coupon_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Applied Coupon"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:id="@+id/couponAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="-$ 50.00"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/my_cart_remove_coupon_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="Remove Coupon"
+            android:textColor="@color/primary_button_color"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:drawableLeft="@drawable/ic_remove"
+            android:drawableTint="@color/primary_button_color"
+            android:visibility="gone"
+            android:textSize="@dimen/sp_16_px" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_8sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Total:"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:id="@+id/totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_bold"
+                android:text="$ 300.00"
+                android:textColor="@color/primary_button_color"
+                android:textSize="@dimen/sp_18_px" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/my_cart_checkout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Checkout"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/round_corner_light_gradient_bg"
+        android:textAllCaps="false"
+        android:textColor="@color/secondaryTextColor"/>
+
+</LinearLayout>

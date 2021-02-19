@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_8sdp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_ui_regular"
+        android:gravity="end"
+        android:text="12-02-2020 10:30 AM"
+        android:textSize="@dimen/sp_12_px" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_8sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/sub_order_item_farm_image"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/farm_image" />
+
+        <LinearLayout
+            android:id="@+id/sub_order_item_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toRightOf="@id/sub_order_item_farm_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Kin's Farm Market"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="Order Id:"
+                    android:textSize="@dimen/sp_12_px" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="#7338937"
+                    android:textColor="@color/primary_button_color"
+                    android:textSize="@dimen/sp_14_px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/track_order_header_estimate_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="Estimate Delivery"
+            android:textSize="@dimen/sp_12_px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/track_order_header_estimate_tv"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="Tomorrow, 10 AM - 3 PM"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_14_px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/light_red_border_bg"
+            android:drawableRight="@drawable/ic_edit"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/sf_ui_regular"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:text="Change"
+            android:textColor="@color/primary_button_color"
+            android:textSize="@dimen/sp_12_px" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+           >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_step1"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/step_view_one"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_step2"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/step_view_two"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_step3"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/step_view_three"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_step4"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_gray_check" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/_5sdp"
+            >
+
+            <TextView
+                android:id="@+id/tv_placed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Placed"
+                android:fontFamily="@font/sf_ui_regular"
+                />
+            <TextView
+                android:id="@+id/tv_packed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Packed"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/sf_ui_regular"
+                />
+            <TextView
+                android:id="@+id/tv_onTheWay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="On the way"
+                android:gravity="end"
+                android:fontFamily="@font/sf_ui_regular"
+                />
+            <TextView
+                android:id="@+id/tv_delivery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delivery"
+                android:gravity="end"
+                android:fontFamily="@font/sf_ui_regular"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

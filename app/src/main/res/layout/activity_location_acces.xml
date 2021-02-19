@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/map"
+    tools:context=".modules.location.LocationAccessActivity">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".modules.location.LocationAccessActivity"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/top_left_right_round_corner_white_bg"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/dp_8_px"
+      >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_required"
+            android:textColor="@color/header_color"
+            android:textSize="@dimen/sp_16_px"
+            android:fontFamily="@font/sf_ui_bold"
+            android:padding="@dimen/dp_8_px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_12_px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location_required_content"
+            android:textSize="@dimen/sp_14_px"
+            android:fontFamily="@font/sf_ui_regular"
+            android:layout_marginLeft="@dimen/dp_16_px"
+            android:layout_marginRight="@dimen/dp_16_px"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_16_px"
+            android:layout_marginLeft="@dimen/dp_8_px"
+            android:layout_marginRight="@dimen/dp_8_px"
+            android:layout_marginBottom="@dimen/dp_16_px">
+
+            <Button
+                android:id="@+id/location_access_manual_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/manual_entry"
+                android:textColor="@color/secondaryTextColor"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:textSize="@dimen/sp_16_px"
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/round_corner_light_gradient_bg"
+                android:paddingLeft="@dimen/dp_20_px"
+                android:paddingRight="@dimen/dp_20_px"
+                android:layout_marginRight="@dimen/dp_8_px"
+                android:layout_marginEnd="@dimen/dp_8_px" />
+
+            <Button
+                android:id="@+id/location_access_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/allow_access"
+                android:textColor="@color/secondaryTextColor"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:textSize="@dimen/sp_16_px"
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/round_corner_light_gradient_bg"
+                android:layout_marginLeft="@dimen/dp_8_px"
+                android:paddingLeft="@dimen/dp_20_px"
+                android:paddingRight="@dimen/dp_20_px"
+                android:layout_marginStart="@dimen/dp_8_px" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

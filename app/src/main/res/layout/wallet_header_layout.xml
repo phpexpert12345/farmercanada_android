@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:background="@drawable/bottom_curve_red_bg">
+
+        <RelativeLayout
+            android:id="@+id/place_order_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            android:elevation="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/wallet_back_image"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_white_back_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Wallet"
+                android:textColor="@color/secondaryTextColor" />
+
+            <ImageView
+                android:id="@+id/wallet_notification_image"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_notification"
+                app:tint="@color/white" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="$205.00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Available Balance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/wallet_withdraw_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_layout"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_minus25sdp"
+        android:background="@drawable/round_corner_ligh_red_bg"
+        android:backgroundTint="@color/light_green"
+        android:drawableLeft="@drawable/ic_withdraw"
+        android:drawablePadding="@dimen/_8sdp"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:text="Withdrawal"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/sp_16_px" />
+</LinearLayout>

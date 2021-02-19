@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Farmers</string>
+    <string name="skip">Skip</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">google_key</string>
+
+    <string name="onBoardingHeader">Lorem ipsum dolor</string>
+    <string name="onBoardingContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
+    <string name="location_required">Location Required</string>
+    <string name="manual_entry">Manual Entry</string>
+    <string name="location_required_content">We need your location to curate near by stores for you</string>
+    <string name="allow_access">Allow access</string>
+    <string name="get_start">Get Start</string>
+    <string name="address">4623 William Head Rd, Victoria, BC V9C 3Y7, Canada</string>
+    <string name="confirm_location">Confirm location</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="do_yo_want_signup_as_a">Do yo want signup as a</string>
+    <string name="seller">Seller?</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="terms_amp_conditions"><![CDATA[Terms & conditions]]></string>
+    <string name="otp_text">We need your Phone number \n to reach you</string>
+    <string name="submit_otp_text">Please enter the OTP code sent to</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="delivery">Delivery</string>
+    <string name="pickup">Pickup</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_number">Account number</string>
+    <string name="re_account_number">Re-enter Account number</string>
+    <string name="ifsc">IFSC</string>
+    <string name="recipient">Recipient Name</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="name_of_address">Name of The Address</string>
+    <string name="city">City</string>
+    <string name="address_line">Address Line</string>
+    <string name="complete_address">Complete Address</string>
+    <string name="landmark">Landmark</string>
+    <string name="write_about">Write About</string>
+    <string name="become_a_seller">Become a Seller</string>
+    <string name="store_name">Store Name</string>
+    <string name="location">Location</string>
+    <string name="select_state">Select State</string>
+    <string name="select_city">Select City</string>
+    <string name="delivery_charges">Delivery Charges</string>
+    <string name="select_distance">Select Distance</string>
+    <string name="minimum_delivery_amount">Enter Minimum Delivery Amount</string>
+    <string name="minimum_pickup_amount">Enter Minimum Pickup Amount</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="social_media_link">Facebook Link</string>
+    <string name="select_document">Select Document</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+
+    <string-array name="labels">
+        <item>step 1</item>
+        <item>step 2</item>
+        <item>step 3</item>
+    </string-array>
+
+    <string-array name="labels2">
+        <item>Placed</item>
+        <item>Packed</item>
+        <item>On the way</item>
+        <item>Delivered</item>
+    </string-array>
+
+    <string-array name="seller_entries">
+        <item>Store\nDetails</item>
+        <item>Service\nDetails</item>
+        <item>Verification</item>
+        <item>Document\nUpload</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

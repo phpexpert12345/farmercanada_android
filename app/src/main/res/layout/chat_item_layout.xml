@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/chat_item_sender_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_item_sender_image"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/follow_image" />
+
+        <TextView
+            android:id="@+id/chat_my_msg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_toLeftOf="@+id/chat_item_sender_image"
+            android:background="@drawable/left_right_bottom_round_corner_red_bg"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="My Message"
+            android:textColor="@color/secondaryTextColor" />
+
+        <TextView
+            android:id="@+id/chat_my_msg_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/chat_item_sender_image"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_toLeftOf="@+id/chat_item_sender_image"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="2:50 PM"
+            android:textSize="@dimen/sp_11_px" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/chat_item_received_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chat_item_sender_relative_layout"
+        android:padding="@dimen/_5sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_item_received_image"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/follow_image" />
+
+        <TextView
+            android:id="@+id/chat_item_received_msg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_toRightOf="@+id/chat_item_received_image"
+            android:background="@drawable/top_left_right_bottom_corner_gray_bg"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="My Message"
+            android:textColor="@color/secondaryTextColor" />
+
+        <TextView
+            android:id="@+id/chat_item_received_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/chat_item_received_image"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/chat_item_received_image"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="2:50 PM"
+            android:textSize="@dimen/sp_11_px" />
+    </RelativeLayout>
+</RelativeLayout>

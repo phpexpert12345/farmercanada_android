@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context=".modules.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_bg_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_top_bg" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/login_bg_top"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_16_px">
+
+            <TextView
+                android:id="@+id/login_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_24_px"
+                android:fontFamily="@font/sf_ui_bold"
+                android:text="@string/login"
+                android:textColor="@color/primary_button_color"
+                android:textSize="@dimen/_24ssp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/login_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+                <RadioButton
+                    android:id="@+id/login_seller_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seller"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:button="@drawable/circle_check_drawable"
+                    android:paddingLeft="@dimen/_5sdp"/>
+                <RadioButton
+                    android:id="@+id/login_buyer_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buyer"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:button="@drawable/circle_check_drawable"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:checked="true"/>
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+               >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_email_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number"
+                    android:singleLine="true"
+                    android:text="8959782895"
+                    android:inputType="text"
+                   />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16_px"
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:passwordToggleEnabled="true"
+                android:textColorHint="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:singleLine="true"
+                    android:text="123556"
+                    android:inputType="textPassword"/>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/login_forgot_password_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="@string/forgot_password"
+                android:textColor="@color/primary_button_color"
+                android:textSize="@dimen/_12ssp" />
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16_px"
+                android:background="@drawable/round_corner_light_gradient_bg"
+                android:text="@string/login"
+                android:textColor="@color/secondaryTextColor" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20_px"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/dp_50_px"
+                    android:layout_height="@dimen/dp_50_px"
+                    android:layout_marginRight="@dimen/dp_8_px"
+                    android:elevation="@dimen/dp_5_px"
+                    android:padding="@dimen/dp_5_px">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_8_px">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/white"
+                            android:src="@drawable/ic_google" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/dp_50_px"
+                    android:layout_height="@dimen/dp_50_px"
+                    android:layout_marginLeft="@dimen/dp_5_px"
+                    android:elevation="@dimen/dp_5_px"
+
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_8_px">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_40_px"
+                            android:layout_height="@dimen/dp_40_px"
+                            android:layout_centerInParent="true"
+                            android:background="@color/white"
+                            android:src="@drawable/ic_facebook" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="New Here?"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/sp_16_px" />
+
+                <TextView
+                    android:id="@+id/login_register_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5_px"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:text="@string/register"
+                    android:textColor="@color/primary_button_color"
+                    android:textSize="@dimen/sp_16_px" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_bottom_bg" />
+
+</RelativeLayout>
