@@ -87,7 +87,6 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     }
 
-
     @Override
     public void onFollowersItemClicked() {
         startActivity(new Intent(baseActivity, FollowersActivity.class));

@@ -76,6 +76,9 @@ public class AllDataModel {
         public String account_type;
         public String login_phone;
         public String login_phone_code;
+        public String Total_following;
+        public String Total_followers;
+        public String Total_Inbox_Message;
 
         public String getCategory_id() {
             return category_id;
