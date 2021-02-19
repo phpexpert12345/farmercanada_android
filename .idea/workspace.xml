@@ -29,7 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,6 +390,10 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="339" y="160" width="728" height="482" key="MultipleFileMergeDialog/50.27.1316.741@50.27.1316.741" timestamp="1613138266348" />
+    <state x="303" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1613715236592">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="303" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/50.27.1316.741@50.27.1316.741" timestamp="1613715236592" />
     <state width="660" height="371" key="XDebugger.FullValuePopup" timestamp="1613652652850">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
