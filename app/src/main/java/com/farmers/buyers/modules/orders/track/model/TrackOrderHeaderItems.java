@@ -10,6 +10,7 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class TrackOrderHeaderItems implements RecyclerViewListItem {
+    String logo;
     String name;
     String date;
     String OrderId;
@@ -19,7 +20,8 @@ public class TrackOrderHeaderItems implements RecyclerViewListItem {
     Boolean canChange;
     int orderState;
 
-    public TrackOrderHeaderItems(String name, String date, String orderId, String deliveryTime, String totalItems, String totalAmount, Boolean canChange, int orderState) {
+    public TrackOrderHeaderItems(String logo,String name, String date, String orderId, String deliveryTime, String totalItems, String totalAmount, Boolean canChange, int orderState) {
+        this.logo = logo;
         this.name = name;
         this.date = date;
         OrderId = orderId;
@@ -28,6 +30,10 @@ public class TrackOrderHeaderItems implements RecyclerViewListItem {
         this.totalAmount = totalAmount;
         this.canChange = canChange;
         this.orderState = orderState;
+    }
+
+    public String getLogo() {
+        return logo;
     }
 
     public String getName() {

@@ -79,6 +79,15 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AddressApiModel> subOrderList(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String farm_followed_status, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> orderDetails(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String order_number,@Field("order_number") String farm_followed_status, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
     Call<AddressApiModel> addAddress(@Url String url, @Field("LoginId") String LoginId,
                                      @Field("name_of_address") String name_of_address,
                                      @Field("complete_address") String complete_address,

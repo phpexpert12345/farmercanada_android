@@ -31,5 +31,7 @@ public class ApiConstants {
     public static final String WALLET_HISTORY = "phpexpert_customer_wallet_history.php";
     public static final String ADD_MONEY = "phpexpert_customer_wallet_money_add.php";
     public static final String EDIT_PROFILE = "phpexpert_edit_customer_profile.php";
+    public static final String SUB_ORDER_LIST = "phpexpert_customer_order_list.php";
+    public static final String ORDER_DETAILS = "phpexpert_customer_order_detail.php";
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
 }
