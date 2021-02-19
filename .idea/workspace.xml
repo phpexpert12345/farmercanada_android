@@ -12,6 +12,10 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,9 +165,9 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog/50.27.1316.741@50.27.1316.741" timestamp="1613717201333" />
-    <state x="399" y="136" width="754" height="522" key="find.popup" timestamp="1613743171566">
+    <state x="399" y="136" width="754" height="522" key="find.popup" timestamp="1613744944520">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="399" y="136" width="754" height="522" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1613743171566" />
+    <state x="399" y="136" width="754" height="522" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1613744944520" />
   </component>
 </project>
