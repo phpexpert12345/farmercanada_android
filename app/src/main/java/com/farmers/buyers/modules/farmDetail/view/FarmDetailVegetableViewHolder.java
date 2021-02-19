@@ -41,7 +41,7 @@ public class FarmDetailVegetableViewHolder extends BaseViewHolder {
         super(Extensions.inflate(parent, R.layout.farm_detail_vegetables_holder_layout));
         RecyclerView recyclerView = itemView.findViewById(R.id.farm_detail_vegetables_recyclerView);
         adapter1 = new FarmDetailsVegetablesAdapter();
-//        recyclerView.addItemDecoration(new LinearSpacesItemDecoration(R.dimen._8sdp));
+      //  recyclerView.addItemDecoration(new LinearSpacesItemDecoration(R.dimen._8sdp));
         recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(adapter1);
     }
@@ -49,13 +49,8 @@ public class FarmDetailVegetableViewHolder extends BaseViewHolder {
     @Override
     public void bindView(RecyclerViewListItem items) {
 
-      //  SubProductItemsRecord subProductItemsRecord=(SubProductItemsRecord)items;
-     //   List<RecyclerViewListItem> list=new ArrayList<>();
-     //   list.add(subProductItemsRecord);
-        //CategoryList categoryList=((CategoryList) items);
         adapter1.updateData(((FarmDetailsVegetablesListItem) items).getItem());
-       // adapter1.updateData(arrayList);
-        Log.d("GaneshASDF",new Gson().toJson(items));
+
 
        //adapter1.updateData(list);
 

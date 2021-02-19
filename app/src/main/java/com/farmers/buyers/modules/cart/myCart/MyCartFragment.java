@@ -171,8 +171,6 @@ public class MyCartFragment extends BaseFragment implements MyCartCheckoutViewHo
         });
 
 
-
-
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
     }

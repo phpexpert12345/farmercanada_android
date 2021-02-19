@@ -77,7 +77,8 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         items.add(FarmDetailTransformer.getHeaderItems());
         items.add(FarmDetailTransformer.getFarmDetailItems());
 
-     /*   items.add(new SingleTextItem("Vegetables"));
+
+       /* items.add(new SingleTextItem("Vegetables"));
         items.add(FarmDetailTransformer.getFarmDetailVegList());
         items.add(new SingleTextItem("Fruits"));
         items.add(FarmDetailTransformer.getFarmDetailFruitList());*/
@@ -96,16 +97,12 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                     case SUCCESS:
                         for (int i = 0; i < response.data.getData().getCategoryList().size(); i++) {
                             CategoryList currentList = response.data.getData().getCategoryList().get(i);
-                            items.add(new SingleTextItem(currentList.getCategoryName()));
-                            items.add(FarmDetailTransformer.getFarmDetailVegList());
-
-
-                            for (int j=0;j<currentList.getSubProductItemsRecord().size();j++) {
-
-                              //  FarmDetailsVegetableItems temp=new FarmDetailsVegetableItems(currentList.getSubProductItemsRecord().get(j)));
-                            }
-
-                           // items.add((RecyclerViewListItem)currentList.getSubProductItemsRecord());
+                            for (int j = 0; j < currentList.getSubProductItemsRecord().size(); j++) {
+                                if (!currentList.getSubProductItemsRecord().isEmpty()){
+                                    items.add(new SingleTextItem(currentList.getCategoryName()));
+                                    items.add(FarmDetailTransformer.getFarmDetailVegList(currentList.getSubProductItemsRecord()));
+                                }
+                               }
 
                             adapter.updateData(items);
                         }
