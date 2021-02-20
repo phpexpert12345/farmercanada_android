@@ -3,6 +3,8 @@ package com.farmers.buyers.modules.cart;
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.FarmProductCartList;
+import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
 import com.farmers.buyers.modules.cart.order.model.PlaceOrderSlotItem;
 import com.farmers.buyers.modules.cart.order.model.PlaceOrderSlotListItems;
 
@@ -17,11 +19,18 @@ import java.util.List;
 
 public class MyCartTransformer {
 
-    public static List<MyCartItem> getMyCartItem() {
+    public static List<MyCartItem> getMyCartItem(List <FarmProductCartList> cartLists) {
         List<MyCartItem> items = new ArrayList<>();
-        items.add(new MyCartItem(R.drawable.cart_one, "", "", ""));
+        for (int i=0;cartLists.size()>i;i++){
+            items.add(new MyCartItem(cartLists.get(i).getFarmLogo(),cartLists.get(i).getFarmName(),cartLists.get(i).getItemPrice(),
+                    cartLists.get(i).getFarmAddress()));
+        }
+       /* items.add(new MyCartItem(R.drawable.cart_one, "", "", ""));
         items.add(new MyCartItem(R.drawable.cart_two, "", "", ""));
         items.add(new MyCartItem(R.drawable.cart_three, "", "", ""));
+        items.add(new MyCartItem(R.drawable.cart_three, "", "", ""));
+        items.add(new MyCartItem(R.drawable.cart_three, "", "", ""));
+        items.add(new MyCartItem(R.drawable.cart_one, "", "", ""));*/
         return items;
     }
 
@@ -35,5 +44,9 @@ public class MyCartTransformer {
         item.add(new PlaceOrderSlotItem("F", "6 Feb"));
         item.add(new PlaceOrderSlotItem("S", "7 Feb"));
         return new PlaceOrderSlotListItems(item);
+    }
+
+    public static TaxData getTaxDataItem(TaxData taxData){
+        return taxData;
     }
 }

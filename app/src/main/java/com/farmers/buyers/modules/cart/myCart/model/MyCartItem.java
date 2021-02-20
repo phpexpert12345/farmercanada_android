@@ -10,19 +10,19 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class MyCartItem implements RecyclerViewListItem {
-    int imgUri;
+    String imgUri;
     String name;
     String price;
     String address;
 
-    public MyCartItem(int imgUri, String name, String price, String address) {
+    public MyCartItem(String imgUri, String name, String price, String address) {
         this.imgUri = imgUri;
         this.name = name;
         this.price = price;
         this.address = address;
     }
 
-    public int getImgUri() {
+    public String getImgUri() {
         return imgUri;
     }
 

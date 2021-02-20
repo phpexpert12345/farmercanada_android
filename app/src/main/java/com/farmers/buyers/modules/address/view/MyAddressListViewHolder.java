@@ -42,11 +42,10 @@ public class MyAddressListViewHolder extends BaseViewHolder {
         addressTv.setText(item.getAddress());
         addressDetailTv.setText(item.getDetail());
         addressTypeTv.setText(item.getAddressType());
-
-        addressCard.setOnClickListener(view -> addressItemClickListener.onAddressItemClicked(item.getAddress_id()));
-
+        item.setSelected(true);
+        addressCard.setOnClickListener(view -> addressItemClickListener.onAddressItemClicked(item));
         addressCard.setOnTouchListener((arg0, arg1) -> {
-            addressItemClickListener.onAddressItemClicked(item.getAddress_id());
+            addressItemClickListener.onAddressItemClicked(item);
             return false;
         });
 
@@ -64,6 +63,6 @@ public class MyAddressListViewHolder extends BaseViewHolder {
     }
 
     public interface AddressItemClickListener {
-        void onAddressItemClicked(String addressId);
+        void onAddressItemClicked(CheckOutCartAddressItems addressId);
     }
 }

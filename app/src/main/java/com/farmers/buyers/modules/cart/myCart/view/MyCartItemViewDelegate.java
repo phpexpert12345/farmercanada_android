@@ -13,8 +13,17 @@ import com.farmers.buyers.core.BaseViewHolder;
 
 public class MyCartItemViewDelegate extends BaseDelegate {
 
+    MyCartItemViewHolder.decreaseCallback decreaseCallback;
+    MyCartItemViewHolder.increaseCallback increaseCallback;
+
+    public MyCartItemViewDelegate(MyCartItemViewHolder.decreaseCallback decreaseCallback1,MyCartItemViewHolder.increaseCallback increaseCallback1) {
+
+        decreaseCallback=decreaseCallback1;
+        increaseCallback=increaseCallback1;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new MyCartItemViewHolder(parent);
+        return new MyCartItemViewHolder(parent,increaseCallback,decreaseCallback);
     }
 }
