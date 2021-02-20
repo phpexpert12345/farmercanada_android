@@ -5,13 +5,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.storage.CardConstant;
 
+import java.io.Serializable;
+
 /**
  * created by Mohammad Sajjad
  * on 30-01-2021 at 11:58
  * mohammadsajjad679@gmail.com
  */
 
-public class CheckOutCartAddressItems implements RecyclerViewListItem {
+public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializable {
     private String address_id;
     private String addressType;
     private String address;
@@ -64,5 +66,9 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
     @Override
     public Object getUnique() {
         return this;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
     }
 }
