@@ -106,14 +106,6 @@ public class LoginActivity extends BaseActivity {
 
                 viewModel.doLogin(stateMachine, email, password, role);
 
-             /*   if (role == 1 ) {
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                }
-                else {
-                    startActivity(new Intent(LoginActivity.this, ProductListActivity.class));
-                }
-                finish();*/
-
             }
         });
     }

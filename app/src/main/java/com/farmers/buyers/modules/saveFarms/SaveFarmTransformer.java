@@ -16,20 +16,20 @@ public class SaveFarmTransformer {
 
     public static List<HomeListItem> getFarmListItem() {
         List<HomeListItem> listItem = new ArrayList<>();
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
+        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
         return listItem;
     }
 }

@@ -4,19 +4,32 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.common.SpacesItemDecoration;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.core.BaseFragment;
+import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.HomeTransformer;
+import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
+import com.farmers.buyers.modules.login.LoginViewModel;
 import com.farmers.buyers.modules.saveFarms.adapter.SavedFarmsAdapter;
+import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,27 +40,107 @@ import java.util.List;
  * mohammadsajjad679@gmail.com
  */
 
-public class SavedFarmsFragment extends Fragment {
+public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHolder.FarmItemClickListener {
     private RecyclerView recyclerView;
     private SavedFarmsAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
 
+    private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (modelClass.isAssignableFrom(SavedFarmListViewModel.class)) {
+                return (T) new SavedFarmListViewModel();
+            }
+            return null;
+        }
+    };
 
-    @Nullable
+    private SavedFarmListViewModel viewModel = factory.create(SavedFarmListViewModel.class);
+    private MutableLiveData<DataFetchState<SaveFarmListApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> saveUnSaveStateMachine = new MutableLiveData<>();
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.saved_farms_fragment, container,false);
-        bindView(view);
-        return view;
+    public String getTitle() {
+        return "";
     }
 
-    private void bindView(View view) {
+    @Override
+    public int getResourceFile() {
+        return R.layout.saved_farms_fragment;
+    }
+
+    @Override
+    public void bindView(View view) {
         recyclerView = view.findViewById(R.id.saved_farms_recyclerView);
-        adapter = new SavedFarmsAdapter();
-        recyclerView.setAdapter(adapter);
+        adapter = new SavedFarmsAdapter(this);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.GRID));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setAdapter(adapter);
+
+
+        stateMachine.observe(baseActivity, saveFarmListApiModelDataFetchState -> {
+            switch (saveFarmListApiModelDataFetchState.status) {
+                case LOADING: {
+                    loading();
+                }
+                case SUCCESS: {
+                    success();
+                }
+                case ERROR: {
+                    error(saveFarmListApiModelDataFetchState.status_message);
+                }
+            }
+        });
+
+        saveUnSaveStateMachine.observe(baseActivity, saveUnsaveFarmApiModelDataFetchState -> {
+
+            switch (saveUnsaveFarmApiModelDataFetchState.status) {
+                case LOADING: {
+                    loading();
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                }
+                case ERROR: {
+                    error(saveUnsaveFarmApiModelDataFetchState.status_message);
+                }
+            }
+        });
+
+        getSavedFarmList();
+
+    }
+
+    private void getSavedFarmList(){
+        viewModel.getSavedFarmList(stateMachine);
+
+    }
+
+    private void loading() {
+     showLoader();
+    }
+
+    private void success() {
+        dismissLoader();
         items.addAll(SaveFarmTransformer.getFarmListItem());
+        bindAdapter();
+
+    }
+
+    private void error(String error) {
+        dismissLoader();
+//        Toast.makeText(App.getAppContext(), error, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void bindAdapter() {
         adapter.updateData(items);
+    }
+
+
+    @Override
+    public void onSaveFarmClicked(String id, int status) {
+        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
     }
 }

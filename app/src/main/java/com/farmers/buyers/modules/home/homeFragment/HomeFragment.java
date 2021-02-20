@@ -1,24 +1,31 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
 import android.app.AlertDialog;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
@@ -28,10 +35,19 @@ import com.farmers.buyers.modules.home.models.HomeFilterListItems;
 import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
+import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
+import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+
+import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
+import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.farmers.buyers.app.App.getAppContext;
 
@@ -42,9 +58,10 @@ import static com.farmers.buyers.app.App.getAppContext;
  */
 
 public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.HeaderItemClickListener,
-        MultipleTextItemViewHolder.FilterItemClickListener {
+        MultipleTextItemViewHolder.FilterItemClickListener, HomeItemsViewHolder.FarmItemClickListener {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -55,45 +72,71 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         }
     };
 
+    ArrayList<SubProductItemRecord> farmListData;
+
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
-    private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
-    private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
-    private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
-    public GPSTracker gpsTracker;
+    private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
+
+    private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
+    private AppController appController = AppController.get();
+    private GPSTracker gpsTracker;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.home_fragment, container, false);
+        recyclerView = view.findViewById(R.id.home_recyclerView);
+        prepareListItems();
+        farmListData=new ArrayList<>();
+        init();
+        return view;
+    }
+
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        farmListDataRequest();
+    }
 
     @Override
     public String getTitle() {
-        return "";
+        return null;
     }
 
     @Override
     public int getResourceFile() {
-        return R.layout.home_fragment;
+        return 0;
     }
 
     @Override
     public void bindView(View view) {
-        recyclerView = view.findViewById(R.id.home_recyclerView);
-        init();
+
     }
 
-    @Override
-    public void onViewCreated() {
-        super.onViewCreated();
-        getUserData();
+    private void farmListDataRequest() {
+
+
+        FarmListRequest farmListRequest=new FarmListRequest(appController.getAuthenticationKey(),
+                "2333232","233232","D 242, Sector 63 Noida","Noida","","local=0,homemade=1","",
+                "pickup=0,delivery=1","","","");
+        viewModel.getFarmList(farmListStateMachine,farmListRequest);
     }
 
     private void init() {
+
+        adapter = new HomeAdapter(this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
         SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
-        adapter = new HomeAdapter(HomeFragment.this, this);
+        adapter = new HomeAdapter(HomeFragment.this, this, this);
         recyclerView.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
-
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -113,84 +156,67 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         });
 
         recyclerView.setLayoutManager(manager);
+        adapter.updateData(items);
 
-        getUserStateMachine.observe(this, allDataModelDataFetchState -> {
-            switch (allDataModelDataFetchState.status) {
-                case ERROR: {
-                    dismissLoader();
-                    Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                case LOADING: {
-                    // showLoader();
-                    break;
-                }
-                case SUCCESS: {
-                    getCategoryData();
-                    break;
-                }
-            }
-        });
+        farmListStateMachine.observe(this,new Observer<DataFetchState<FarmListResponse>>(){
+            @Override
+            public void onChanged(DataFetchState<FarmListResponse> farmListResponseDataFetchState) {
+                switch (farmListResponseDataFetchState.status){
+                    case ERROR:
+                        dismissLoader();
+                        Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case SUCCESS:
+                        dismissLoader();
+                        //  farmListData.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
+                        items.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
+                        adapter.updateData(items);
+                        Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
 
-        categoryStateMachine.observe(this, dataFetchState -> {
-            switch (dataFetchState.status) {
-                case ERROR: {
-                    dismissLoader();
-                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                case LOADING: {
-                    showLoader();
-                    break;
-                }
-                case SUCCESS: {
-                    categorySuccess();
-                    break;
+                        break;
+                    case LOADING:
+                        showLoader();
+                        break;
+
                 }
             }
         });
 
-        offerStateMachine.observe(this, allDataModelDataFetchState -> {
-            switch (allDataModelDataFetchState.status) {
-                case ERROR: {
-                    dismissLoader();
-                    break;
-                }
-                case LOADING: {
-                    //showLoader();
-                    break;
-                }
-                case SUCCESS: {
-                    getUserSuccess();
-                    break;
+        stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
+            @Override
+            public void onChanged(DataFetchState dataFetchState) {
+                switch (dataFetchState.status) {
+                    case ERROR: {
+                        //  dismissLoader();
+                        // Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case LOADING: {
+                        // showLoader();
+                        break;
+                    }
+                    case SUCCESS: {
+                        //dismissLoader();
+                        // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
+                        //finish();
+                        break;
+                    }
                 }
             }
         });
+
     }
 
-    private void getUserSuccess() {
-        dismissLoader();
-        bindAdapter();
-    }
-
-    public void categorySuccess() {
-        getOfferData();
-    }
-
-    private void bindAdapter() {
-        adapter.updateData(viewModel.items);
-    }
-
-    private void getCategoryData() {
-        viewModel.getCategoryList(categoryStateMachine);
-    }
-
-    private void getOfferData() {
-        viewModel.getOffersList(offerStateMachine);
-    }
-
-    private void getUserData() {
-        viewModel.getUserInformation(getUserStateMachine);
+    private void prepareListItems() {
+        items.add(HomeTransformer.getHeaderItems());
+        items.add(HomeTransformer.getSearchItems());
+        items.add(HomeTransformer.getFilterItems());
+        items.add(HomeTransformer.getCategoryList());
+        items.add(new SimpleTitleItem("Top Offers"));
+        items.add(HomeTransformer.getTopOffers());
+        items.add(new DeliveryTypeItems());
+        items.add(new HomeFarmTypeItem());
+        // items.addAll(HomeTransformer.getHomeFarmListItem());
     }
 
     @Override
@@ -200,20 +226,23 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onBecomeSellerClicked() {
-
         LayoutInflater li = LayoutInflater.from(getContext());
         View promptsView = li.inflate(R.layout.buyer_seller_switch_dialog, null);
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.NewDialog);
         alertDialogBuilder.setView(promptsView);
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-
     }
 
     @Override
     public void onFilterItemClicked(int position) {
         adapter.notifyDataSetChanged();
         adapter.notifyItemChanged(position);
+    }
+
+
+    @Override
+    public void onSaveFarmClicked(String id, int status) {
+
     }
 }

@@ -7,6 +7,7 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailItems;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsHeaderItems;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetablesListItem;
+import com.farmers.buyers.modules.farmDetail.model.farmList.response.SubProductItemsRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,8 @@ public class FarmDetailTransformer {
 
     public static FarmDetailHeaderListItem getHeaderItems() {
         List<RecyclerViewListItem> item = new ArrayList<>();
-        item.add(new FarmDetailsHeaderItems(0));
-        item.add(new FarmDetailsHeaderItems(0));
+        item.add(new FarmDetailsHeaderItems("https://meet.google.com/iyq-kict-oit"));
+        item.add(new FarmDetailsHeaderItems("https://meet.google.com/iyq-kict-oit"));
         return new FarmDetailHeaderListItem(item);
     }
 
@@ -30,21 +31,14 @@ public class FarmDetailTransformer {
         return new FarmDetailItems();
     }
 
-    public static FarmDetailsVegetablesListItem getFarmDetailVegList() {
+    public static FarmDetailsVegetablesListItem getFarmDetailVegList(List<SubProductItemsRecord> subProductItems) {
         List<RecyclerViewListItem> item = new ArrayList<>();
-        item.add(new FarmDetailsVegetableItems(R.drawable.veg_one, "Pomegranate", "100", "2kg", true));
-        item.add(new FarmDetailsVegetableItems(R.drawable.veg_two, "Pomegranate", "100", "2kg", true));
-        item.add(new FarmDetailsVegetableItems(R.drawable.fruit_one, "Pomegranate", "100", "2kg", true));
-        item.add(new FarmDetailsVegetableItems(R.drawable.fruit_two, "Pomegranate", "100", "2kg", true));
-        return new FarmDetailsVegetablesListItem(item);
-    }
 
-    public static FarmDetailsVegetablesListItem getFarmDetailFruitList() {
-        List<RecyclerViewListItem> item = new ArrayList<>();
-        item.add(new FarmDetailsVegetableItems(R.drawable.fruit_one, "Pomegranate", "100", "2kg", false));
-        item.add(new FarmDetailsVegetableItems(R.drawable.fruit_two, "Pomegranate", "100", "2kg", true));
-        item.add(new FarmDetailsVegetableItems(R.drawable.veg_one, "Pomegranate", "100", "2kg", true));
-        item.add(new FarmDetailsVegetableItems(R.drawable.veg_two, "Pomegranate", "100", "2kg", true));
+        for (int i = 0; subProductItems.size() > i; i++) {
+            item.add(new FarmDetailsVegetableItems(subProductItems.get(i).getProductImages(),
+                    subProductItems.get(i).getProductName(), subProductItems.get(i).getProductSalesPrice(),
+                    subProductItems.get(i).getPriceUnitType(), true));
+        }
         return new FarmDetailsVegetablesListItem(item);
     }
 }

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".modules.cart.order.PlaceOrderActivity"
-    >
+    tools:context=".modules.cart.order.PlaceOrderActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -132,9 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_8sdp"
-
-            >
+            android:layout_marginTop="@dimen/_8sdp">
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -166,7 +163,4 @@
         android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor"
         android:background="@drawable/round_corner_light_gradient_bg"/>
-
-
-
 </RelativeLayout>
