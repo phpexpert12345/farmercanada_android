@@ -240,7 +240,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status);
+    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("follower_id") String farmId, @Field("farm_followed_status") String status);
 
 
 }
