@@ -1,7 +1,5 @@
 package com.farmers.buyers.modules.cart.checkout.adapter;
 
-import androidx.cardview.widget.CardView;
-
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.cart.checkout.view.CheckoutFromCartAddressDelegate;
@@ -18,11 +16,14 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class CheckOutCartItemAdapter extends BaseAdapter {
     MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners;
+    MyCartCheckoutViewHolder.MyCoupounClickListeners coupounClickListeners;
 
 
-    public CheckOutCartItemAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners) {
+
+    public CheckOutCartItemAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners couponListener) {
         super();
         this.cartCheckOutClickListeners = cartCheckOutClickListeners;
+        this.coupounClickListeners=couponListener;
         this.initDelegate();
     }
 
@@ -31,6 +32,6 @@ public class CheckOutCartItemAdapter extends BaseAdapter {
         delegates.put(CardConstant.MY_CART_ADDRESS_ADAPTER, new CheckoutFromCartAddressDelegate());
         delegates.put(CardConstant.MY_CART_PAYMENT_METHODS, new PaymentMethodsDelegate());
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
-        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners));
+        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners,coupounClickListeners));
     }
 }

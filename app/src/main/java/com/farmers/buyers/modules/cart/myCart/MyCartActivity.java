@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
@@ -25,7 +26,7 @@ import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners {
+public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,MyCartCheckoutViewHolder.MyCoupounClickListeners {
 
     private RecyclerView recyclerView;
     private MyCartAdapter adapter;
@@ -80,7 +81,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
 
     private void init() {
         recyclerView = findViewById(R.id._my_cart_recyclerView);
-        adapter = new MyCartAdapter(this);
+        adapter = new MyCartAdapter(this,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
@@ -102,5 +103,10 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
     @Override
     public void onCheckOutClicked() {
         startActivity(new Intent(this, CheckOutFromCartActivity.class));
+    }
+
+    @Override
+    public void onCouponClicked(String couponCode) {
+      //  Toast.makeText(MyCartActivity.this,couponCode,Toast.LENGTH_SHORT).show();
     }
 }

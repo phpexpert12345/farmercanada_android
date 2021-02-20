@@ -35,9 +35,14 @@ public class ApiConstants {
     public static final String ORDER_DETAILS = "phpexpert_customer_order_detail.php";
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
 
+    //Ganesh working
+    public static final String FARM_LIST_URL = "phpexpert_farm_list.php";
+    public static final String ALL_FARM_PRODUCT_LIST_URL = "phpexpert_all_farm_product_list.php";
+    public static final String APPLY_COUPON_URL = "phpexpert_coupon_apply.php";
+    public static final String SERVICE_AND_TAX_URL = "phpexpert_service_charget_get.php";
+    public static final String REVIEW_AND_RATING_API = "phpexpert_customer_review_list.php";
+    public static final String SUBMIT_ORDER_URL = "phpexpert_payment_android_submit.php";
     public static final String SAVE_FARM_LIST        = "phpexpert_customer_favourite_list.php";
     public static final String SAVE_UN_SAVE_FARM     = "phpexpert_customer_favourite.php";
-
-
 
 }

@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,10 +18,15 @@ import com.farmers.buyers.common.model.SingleTextItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
+import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.OrderSuccessDialog;
 import com.farmers.buyers.modules.cart.order.adapter.PlaceOrderAdapter;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
+import com.farmers.buyers.modules.signUp.SignUpViewModel;
+import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +38,24 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private OrderSuccessDialog dialog ;
 
+    private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (modelClass.isAssignableFrom(SubmitOrderViewModel.class)) {
+                return (T) new SubmitOrderViewModel();
+            }
+            return null;
+        }
+    };
+
+    private SubmitOrderViewModel viewModel = factory.create(SubmitOrderViewModel.class);
+    private MutableLiveData<DataFetchState<SubmitResponse>> submitMachine = new MutableLiveData<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
-
         ToolbarConfig config = new ToolbarConfig("And Date & Time", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +91,10 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.showDialog();
+               // dialog.showDialog();
+                SubmitRequestParam param=new SubmitRequestParam();
+                viewModel.submitOrder(submitMachine,param);
+
             }
         });
     }
