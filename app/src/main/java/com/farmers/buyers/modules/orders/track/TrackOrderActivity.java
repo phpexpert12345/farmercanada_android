@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrackOrderActivity extends BaseActivity {
-
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -66,7 +65,6 @@ public class TrackOrderActivity extends BaseActivity {
             }
         })));
 
-        //   prepareItems();
         init();
     }
 

@@ -1,11 +1,20 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
-import android.app.AlertDialog;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +53,8 @@ import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
+import com.farmers.buyers.modules.login.LoginActivity;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -79,47 +90,38 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> saveUnSaveStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<FollowUnFollowApiModel>> followUnFollowStateMachine = new MutableLiveData<>();
-
-
-
-    private List<RecyclerViewListItem> items = new ArrayList<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> changeUserStateMachine = new MutableLiveData<>();
+    private AppController appController = AppController.get();
+    public GPSTracker gpsTracker;
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
-    private AppController appController = AppController.get();
-    private GPSTracker gpsTracker;
 
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_fragment, container, false);
-        recyclerView = view.findViewById(R.id.home_recyclerView);
-        prepareListItems();
-        init();
-        return view;
-    }
-
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        farmListDataRequest();
-    }
 
     @Override
     public String getTitle() {
-        return null;
+        return "";
     }
 
     @Override
     public int getResourceFile() {
-        return 0;
+        return R.layout.home_fragment;
     }
 
     @Override
     public void bindView(View view) {
+        recyclerView = view.findViewById(R.id.home_recyclerView);
 
+        init();
+    }
+
+    @Override
+    public void onViewCreated() {
+        super.onViewCreated();
+        getUserData();
     }
 
     private void farmListDataRequest() {
@@ -160,7 +162,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         });
 
         recyclerView.setLayoutManager(manager);
-        adapter.updateData(items);
 
         farmListStateMachine.observe(this,new Observer<DataFetchState<FarmListResponse>>(){
             @Override
@@ -171,40 +172,66 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     case SUCCESS:
-                        dismissLoader();
-//                        items.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
-                        items.addAll(HomeTransformer.getHomeFarmListItem(farmListResponseDataFetchState.data.farmData.subProductItemRecords));
-                        adapter.updateData(items);
-                        Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        getUserSuccess();
 
                         break;
                     case LOADING:
-                        showLoader();
+//                        showLoader();
                         break;
 
                 }
             }
         });
 
-        stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
-            @Override
-            public void onChanged(DataFetchState dataFetchState) {
-                switch (dataFetchState.status) {
-                    case ERROR: {
-                        //  dismissLoader();
-                        // Toast.makeText(ForgotPassword.this, dataFetchState.message, Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    case LOADING: {
-                        // showLoader();
-                        break;
-                    }
-                    case SUCCESS: {
-                        //dismissLoader();
-                        // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
-                        //finish();
-                        break;
-                    }
+        getUserStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    // showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    getCategoryData();
+                    break;
+                }
+            }
+        });
+
+        categoryStateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    categorySuccess();
+                    break;
+                }
+            }
+        });
+
+        offerStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    break;
+                }
+                case LOADING: {
+                    //showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    farmListDataRequest();
+                    break;
                 }
             }
         });
@@ -224,6 +251,30 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
             }
         });
 
+
+        changeUserStateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    SharedPreferenceManager.getInstance().clearUserInfo();
+                    startActivity(new Intent(baseActivity, LoginActivity.class));
+                    baseActivity.finish();
+                    break;
+                }
+            }
+        });
+
+
         followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
             @Override
             public void onChanged(DataFetchState<FollowUnFollowApiModel> followUnFollowApiModelDataFetchState) {
@@ -242,34 +293,92 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 }
             }
         });
-
     }
 
-    private void prepareListItems() {
-        items.add(HomeTransformer.getHeaderItems());
-        items.add(HomeTransformer.getSearchItems());
-        items.add(HomeTransformer.getFilterItems());
-        items.add(HomeTransformer.getCategoryList());
-        items.add(new SimpleTitleItem("Top Offers"));
-        items.add(HomeTransformer.getTopOffers());
-        items.add(new DeliveryTypeItems());
-        items.add(new HomeFarmTypeItem());
-        // items.addAll(HomeTransformer.getHomeFarmListItem());
+    private void getUserSuccess() {
+        dismissLoader();
+        bindAdapter();
     }
+
+    public void categorySuccess() {
+        getOfferData();
+    }
+
+    private void bindAdapter() {
+        adapter.updateData(viewModel.items);
+    }
+
+    private void getCategoryData() {
+        viewModel.getCategoryList(categoryStateMachine);
+    }
+
+    private void getOfferData() {
+        viewModel.getOffersList(offerStateMachine);
+    }
+
+    private void getUserData() {
+        viewModel.getUserInformation(getUserStateMachine);
+    }
+
 
     @Override
     public void onEditAddressClickListener(int position) {
         Log.e("position", String.valueOf(position));
     }
 
+
+    public void buyer_seller_switch_dialog(Context activity) {
+
+        final Dialog dialog = new Dialog(activity, R.style.NewDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.buyer_seller_switch_dialog);
+        RadioGroup radioGroup = dialog.findViewById(R.id.user_type_radio_group);
+        TextView tv_user_type = dialog.findViewById(R.id.tv_user_type);
+        RadioButton radio_seller, radio_buyer;
+        radio_seller = dialog.findViewById(R.id.radio_seller);
+        radio_buyer = dialog.findViewById(R.id.radio_buyer);
+        tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
+
+        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")).
+                equalsIgnoreCase("Seller")) {
+            radio_seller.setChecked(true);
+        } else {
+            radio_buyer.setChecked(true);
+        }
+
+        radioGroup.setOnCheckedChangeListener((radioGroup1, i) -> {
+            switch (radioGroup1.getCheckedRadioButtonId()) {
+                case R.id.radio_seller: {//Buyer = 1 & Seller = 2
+                    //  Toast.makeText(getContext(), "Seller", Toast.LENGTH_SHORT).show();
+                    ProfileRequestParams profileRequestParams = new ProfileRequestParams("2",
+                            appController.getLoginId(), appController.getAuthenticationKey());
+                    viewModel.changeUserType(changeUserStateMachine, profileRequestParams);
+
+                    dialog.dismiss();
+                    break;
+                }
+                case R.id.radio_buyer: {
+                    //   Toast.makeText(getContext(), "Buyer", Toast.LENGTH_SHORT).show();
+                    ProfileRequestParams profileRequestParams = new ProfileRequestParams("1",
+                            appController.getLoginId(), appController.getAuthenticationKey());
+                    viewModel.changeUserType(changeUserStateMachine, profileRequestParams);
+                    dialog.dismiss();
+                    break;
+                }
+            }
+        });
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
     @Override
     public void onBecomeSellerClicked() {
-        LayoutInflater li = LayoutInflater.from(getContext());
-        View promptsView = li.inflate(R.layout.buyer_seller_switch_dialog, null);
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.NewDialog);
-        alertDialogBuilder.setView(promptsView);
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        buyer_seller_switch_dialog(getContext());
     }
 
     @Override

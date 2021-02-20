@@ -34,6 +34,7 @@ public class ApiConstants {
     public static final String SUB_ORDER_LIST = "phpexpert_customer_order_list.php";
     public static final String ORDER_DETAILS = "phpexpert_customer_order_detail.php";
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
+    public static final String CHANGE_USER_TYPE = "phpexpert_account_change_buyer_seller.php";
 
     //Ganesh working
     public static final String FARM_LIST_URL = "phpexpert_farm_list.php";

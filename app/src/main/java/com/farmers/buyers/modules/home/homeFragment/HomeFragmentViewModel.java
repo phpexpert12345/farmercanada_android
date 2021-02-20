@@ -22,10 +22,12 @@ import com.farmers.buyers.modules.home.models.HomeFarmTypeItem;
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.modules.saveFarms.SaveFarmRepository;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnSaveFarmRequestModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
+
 import com.farmers.buyers.remote.StandardError;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
@@ -40,13 +42,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
     private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
 
-    private void prepareListItems() {
-        //  items.add(HomeTransformer.getCategoryList());
-        //  items.add(HomeTransformer.getTopOffers());
-        items.add(new DeliveryTypeItems());
-        items.add(new HomeFarmTypeItem());
-//        items.addAll(HomeTransformer.getHomeFarmListItem());
-    }
 
     public void getCategoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
 
@@ -89,7 +84,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
 
                     items.add(new DeliveryTypeItems());
                     items.add(new HomeFarmTypeItem());
-//                    items.addAll(HomeTransformer.getHomeFarmListItem();
 
                 } else {
                     stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
@@ -102,6 +96,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
             }
         });
     }
+
 
     public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
 
@@ -146,10 +141,14 @@ public class HomeFragmentViewModel extends BaseViewModel {
         repository.farmListRequest(farmListRequest, new ApiResponseCallback<FarmListResponse>() {
             @Override
             public void onSuccess(FarmListResponse response) {
-                if (response.getFarmData()!=null)
+                if (response.getFarmData()!=null) {
+                    items.addAll(HomeTransformer.getHomeFarmListItem(response.farmData.subProductItemRecords));
                     stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
-                else
+                }
+                else {
                     stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new FarmListResponse()));
+
+                }
             }
             @Override
             public void onFailure(StandardError standardError) {
@@ -193,6 +192,26 @@ public class HomeFragmentViewModel extends BaseViewModel {
             @Override
             public void onFailure(StandardError standardError) {
                 stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new FollowUnFollowApiModel()));
+
+            }
+        });
+    }
+
+    public void changeUserType(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, ProfileRequestParams profileRequestParams) {
+        stateMachine.postValue(DataFetchState.<AllDataModel>loading());
+        repository.changeUserType(profileRequestParams, new ApiResponseCallback<AllDataModel>() {
+            @Override
+            public void onSuccess(AllDataModel response) {
+//                if (response.isStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+//                } else {
+//                    stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
+//                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.<AllDataModel>error(standardError.getDisplayError(), null));
             }
         });
     }
