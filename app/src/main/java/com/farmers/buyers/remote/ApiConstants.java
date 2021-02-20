@@ -31,6 +31,8 @@ public class ApiConstants {
     public static final String WALLET_HISTORY = "phpexpert_customer_wallet_history.php";
     public static final String ADD_MONEY = "phpexpert_customer_wallet_money_add.php";
     public static final String EDIT_PROFILE = "phpexpert_edit_customer_profile.php";
+    public static final String SUB_ORDER_LIST = "phpexpert_customer_order_list.php";
+    public static final String ORDER_DETAILS = "phpexpert_customer_order_detail.php";
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
 
     //Ganesh working
@@ -40,5 +42,7 @@ public class ApiConstants {
     public static final String SERVICE_AND_TAX_URL = "phpexpert_service_charget_get.php";
     public static final String REVIEW_AND_RATING_API = "phpexpert_customer_review_list.php";
     public static final String SUBMIT_ORDER_URL = "phpexpert_payment_android_submit.php";
+    public static final String SAVE_FARM_LIST        = "phpexpert_customer_favourite_list.php";
+    public static final String SAVE_UN_SAVE_FARM     = "phpexpert_customer_favourite.php";
 
 }

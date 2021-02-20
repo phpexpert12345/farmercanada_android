@@ -134,6 +134,7 @@ public class ManualLocationActivity extends AppCompatActivity implements OnMapRe
                 try {
                     latLng = place.getLatLng();
                     mapFragment.getMapAsync(ManualLocationActivity.this);
+                    ed_search.setText(String.valueOf(placeAddress.getName()));
                     tv_address.setText(String.valueOf(placeAddress.getName() + ", " + String.valueOf(placeAddress.getAddress())));
                 } catch (Exception e) {
                     Log.i("TAG", "An error occurred: GeoCoder" + e.getMessage());

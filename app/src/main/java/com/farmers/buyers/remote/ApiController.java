@@ -9,6 +9,8 @@ import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListPro
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewListResponse;
+import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
@@ -80,6 +82,15 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<AddressApiModel> deleteAddress(@Url String url, @Field("LoginId") String LoginId, @Field("address_id") String address_id, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> subOrderList(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String farm_followed_status, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> orderDetails(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String order_number,@Field("order_number") String farm_followed_status, @Field("auth_key") String authKey);
+
 
     @FormUrlEncoded
     @POST
@@ -209,3 +220,14 @@ public interface ApiController {
 
 
 }
+
+    @FormUrlEncoded
+    @POST
+    Call<SaveFarmListApiModel> getSavedFarmList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status);
+
+}
+

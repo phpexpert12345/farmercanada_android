@@ -14,10 +14,10 @@ public class SubOrdersListItem implements RecyclerViewListItem {
     String orderId;
     String time;
     String amount;
-    int status;
-    int imageUri;
+    String status;
+    String imageUri;
 
-    public SubOrdersListItem(String title, String orderId, String time, String amount, int status, int imageUri) {
+    public SubOrdersListItem(String title, String orderId, String time, String amount, String status, String imageUri) {
         this.title = title;
         this.orderId = orderId;
         this.time = time;
@@ -42,10 +42,11 @@ public class SubOrdersListItem implements RecyclerViewListItem {
         return amount;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
-    public int getImageUri() {
+
+    public String getImageUri() {
         return imageUri;
     }
 

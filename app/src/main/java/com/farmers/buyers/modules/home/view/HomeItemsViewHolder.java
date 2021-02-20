@@ -27,20 +27,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class HomeItemsViewHolder extends BaseViewHolder {
-    private CardView cardView;
-    private ImageView saveImage, savedImage,home_list_item_img;
     private TextView home_list_item_layout_farmName,home_list_item_layout_distance_tv,customer_home_parlour_view_holder_rating_tv;
     private CircleImageView circleImageView;
-    public HomeItemsViewHolder(@NonNull ViewGroup parent) {
+    private ImageView saveImage, savedImage, farmImage;
+    private FarmItemClickListener farmItemClickListener;
+
+    public HomeItemsViewHolder(@NonNull ViewGroup parent, FarmItemClickListener farmItemClickListener) {
         super(Extensions.inflate(parent, R.layout.home_list_item_layout));
         cardView = itemView.findViewById(R.id.home_item_card);
         saveImage = itemView.findViewById(R.id.home_list_save_image);
         savedImage = itemView.findViewById(R.id.home_list_saved_image);
-        home_list_item_img = itemView.findViewById(R.id.home_list_item_img);
+        farmImage = itemView.findViewById(R.id.home_list_item_img);
         circleImageView = itemView.findViewById(R.id.home_list_item_layout_farm_img);
         home_list_item_layout_farmName = itemView.findViewById(R.id.home_list_item_layout_farmName);
         home_list_item_layout_distance_tv = itemView.findViewById(R.id.home_list_item_layout_distance_tv);
         customer_home_parlour_view_holder_rating_tv = itemView.findViewById(R.id.customer_home_parlour_view_holder_rating_tv);
+      this.farmItemClickListener = farmItemClickListener;
 
     }
 
@@ -50,9 +52,9 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         home_list_item_layout_farmName.setText(item.getFarmName());
         home_list_item_layout_distance_tv.setText(item.getFarmDeliveryRadiusText());
         customer_home_parlour_view_holder_rating_tv.setText(String.valueOf(item.getRatingAvg()));
-        Glide.with(itemView.getContext()).load(item.getFarmCoverPhoto()).into(home_list_item_img);
+        Glide.with(itemView.getContext()).load(item.getFarmCoverPhoto()).into(farmImage);
         Glide.with(itemView.getContext()).load(item.getFarmLogo()).into(circleImageView);
-        cardView.setOnClickListener(new View.OnClickListener() {
+        farmImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(itemView.getContext(), FarmDetailActivity.class);
@@ -61,5 +63,37 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             }
         });
 
+    }
+        farmImage.setOnClickListener(view -> itemView.getContext().startActivity( new Intent(itemView.getContext(), FarmDetailActivity.class)));
+
+    }
+
+    @Override
+    public void bindView(RecyclerViewListItem items) {
+        HomeListItem item = (HomeListItem) items;
+      
+
+        savedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveImage.setVisibility(View.VISIBLE);
+                savedImage.setVisibility(View.GONE);
+                farmItemClickListener.onSaveFarmClicked(item.getId(), 0);
+            }
+        });
+
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveImage.setVisibility(View.GONE);
+                savedImage.setVisibility(View.VISIBLE);
+                farmItemClickListener.onSaveFarmClicked(item.getId(), 1);
+            }
+        });
+
+    }
+
+    public interface FarmItemClickListener {
+        void onSaveFarmClicked(String id, int status);
     }
 }

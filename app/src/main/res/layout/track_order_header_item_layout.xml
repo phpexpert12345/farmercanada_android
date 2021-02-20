@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_product_date_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_ui_regular"
@@ -37,6 +38,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -58,6 +60,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_order_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -88,6 +91,7 @@
             android:textSize="@dimen/sp_12_px" />
 
         <TextView
+            android:id="@+id/tv_estimate_delivery_date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/track_order_header_estimate_tv"
@@ -97,6 +101,7 @@
             android:textSize="@dimen/sp_14_px" />
 
         <TextView
+            android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -120,20 +125,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
         android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_16sdp">
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-           >
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_step1"
@@ -188,46 +192,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
             android:layout_margin="@dimen/_5sdp"
-            >
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_placed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Placed"
                 android:fontFamily="@font/sf_ui_regular"
-                />
+                android:text="Placed" />
+
             <TextView
                 android:id="@+id/tv_packed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Packed"
-                android:gravity="center_horizontal"
                 android:fontFamily="@font/sf_ui_regular"
-                />
+                android:gravity="center_horizontal"
+                android:text="Packed" />
+
             <TextView
                 android:id="@+id/tv_onTheWay"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="On the way"
-                android:gravity="end"
                 android:fontFamily="@font/sf_ui_regular"
-                />
+                android:gravity="end"
+                android:text="On the way" />
+
             <TextView
                 android:id="@+id/tv_delivery"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Delivery"
-                android:gravity="end"
                 android:fontFamily="@font/sf_ui_regular"
-                />
+                android:gravity="end"
+                android:text="Delivery" />
 
         </LinearLayout>
 

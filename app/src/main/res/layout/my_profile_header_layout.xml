@@ -122,6 +122,7 @@
             android:padding="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/tv_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -146,7 +147,7 @@
             android:padding="@dimen/_8sdp">
 
             <TextView
-                android:id="@+id/my_profile_header_wallet_amount_tv"
+                android:id="@+id/my_profile_header_inbox_msg_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
