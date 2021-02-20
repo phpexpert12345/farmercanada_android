@@ -17,14 +17,18 @@ public class HomeListItem implements RecyclerViewListItem {
     String farmName;
     String distance;
     String rating;
-    Boolean isSaved;
+    String isSaved;
+    String coverImage;
+    String farmImage;
 
-    public HomeListItem(String farmName, String distance, String rating, Boolean isSaved, String id) {
+    public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage, String farmImage) {
         this.farmName = farmName;
         this.distance = distance;
         this.rating = rating;
         this.isSaved = isSaved;
         this.id = id;
+        this.coverImage = coverImage;
+        this.farmImage = farmImage;
     }
 
     public String getFarmName() {
@@ -39,12 +43,20 @@ public class HomeListItem implements RecyclerViewListItem {
         return rating;
     }
 
-    public Boolean getSaved() {
+    public String getSaved() {
         return isSaved;
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public String getFarmImage() {
+        return farmImage;
     }
 
     @Override

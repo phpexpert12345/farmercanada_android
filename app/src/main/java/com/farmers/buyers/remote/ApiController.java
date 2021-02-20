@@ -4,6 +4,8 @@ import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.followers.model.FollowersApiModel;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -66,6 +68,10 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AllDataModel> changeUserType(@Url String url, @Field("LoginId") String LoginId, @Field("account_type") String account_type, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
     Call<AllDataModel> getOffersList(@Url String url, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
@@ -90,7 +96,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<AddressApiModel> orderDetails(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String order_number,@Field("order_number") String farm_followed_status, @Field("auth_key") String authKey);
+    Call<AddressApiModel> orderDetails(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String order_number, @Field("order_number") String farm_followed_status, @Field("auth_key") String authKey);
 
 
     @FormUrlEncoded
@@ -231,6 +237,16 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<CartListResponse>CART_LIST_RESPONSE_CALL(@Url String url,@Field("auth_key") String authKey, @Field("LoginId") String userId,  @Field("farm_id") String farmId);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<FollowersApiModel> getFollowersList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status);
 
 
 }

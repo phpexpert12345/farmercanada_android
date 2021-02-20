@@ -28,6 +28,12 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
     View step1View, step2View, step3View;
     TextView tv_product_date_time, tv_product_name, tv_order_number, tv_estimate_delivery_date_time, tv_edit, placedTv, packedTv, onTheWayTv, deliveryTv;
 
+    /*Pickup
+    * Pending Accepted Processing Picked-up Cancelled*/
+
+    /*Delivery case
+    * Pending Accepted Processing Shipped Delivered Cancelled*/
+
     public TrackOrderHeaderViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.track_order_header_item_layout));
         step1Image = itemView.findViewById(R.id.image_step1);

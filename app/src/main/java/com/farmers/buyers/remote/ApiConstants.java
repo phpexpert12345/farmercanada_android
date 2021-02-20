@@ -34,6 +34,7 @@ public class ApiConstants {
     public static final String SUB_ORDER_LIST = "phpexpert_customer_order_list.php";
     public static final String ORDER_DETAILS = "phpexpert_customer_order_detail.php";
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
+    public static final String CHANGE_USER_TYPE = "phpexpert_account_change_buyer_seller.php";
 
     //Ganesh working
     public static final String FARM_LIST_URL = "phpexpert_farm_list.php";
@@ -45,5 +46,8 @@ public class ApiConstants {
     public static final String SAVE_FARM_LIST        = "phpexpert_customer_favourite_list.php";
     public static final String SAVE_UN_SAVE_FARM     = "phpexpert_customer_favourite.php";
     public static final String CUSTOMER_PRODUCT_CART_LIST_URL  = "phpexpert_customer_Product_Cart_list.php";
+    public static final String FOLLOWERS_LIST        = "phpexpert_customer_unfollow_follow_list.php";
+    public static final String FOLLOW_UNFOLLOW_USER  = "phpexpert_customer_follow_unfollow.php";
+
 
 }

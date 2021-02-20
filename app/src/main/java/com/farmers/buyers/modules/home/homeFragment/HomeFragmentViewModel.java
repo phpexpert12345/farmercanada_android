@@ -9,6 +9,9 @@ import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.followers.FollowersRepository;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowRequestParams;
 import com.farmers.buyers.modules.forgotPassword.ForgotPasswordRepository;
 import com.farmers.buyers.modules.forgotPassword.ForgotPasswordRequestParams;
 
@@ -19,7 +22,12 @@ import com.farmers.buyers.modules.home.models.HomeFarmTypeItem;
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
+import com.farmers.buyers.modules.saveFarms.SaveFarmRepository;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnSaveFarmRequestModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
+
 import com.farmers.buyers.remote.StandardError;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
@@ -29,16 +37,11 @@ import java.util.List;
 public class HomeFragmentViewModel extends BaseViewModel {
 
     private HomeFragmentRepository repository = new HomeFragmentRepository();
+    private SaveFarmRepository saveFarmRepository = new SaveFarmRepository();
+    private FollowersRepository followersRepository = new FollowersRepository();
     private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
 
-    private void prepareListItems() {
-        //  items.add(HomeTransformer.getCategoryList());
-        //  items.add(HomeTransformer.getTopOffers());
-        items.add(new DeliveryTypeItems());
-        items.add(new HomeFarmTypeItem());
-        items.addAll(HomeTransformer.getHomeFarmListItem());
-    }
 
     public void getCategoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
 
@@ -81,7 +84,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
 
                     items.add(new DeliveryTypeItems());
                     items.add(new HomeFarmTypeItem());
-                    items.addAll(HomeTransformer.getHomeFarmListItem());
 
                 } else {
                     stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
@@ -94,6 +96,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
             }
         });
     }
+
 
     public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
 
@@ -138,10 +141,14 @@ public class HomeFragmentViewModel extends BaseViewModel {
         repository.farmListRequest(farmListRequest, new ApiResponseCallback<FarmListResponse>() {
             @Override
             public void onSuccess(FarmListResponse response) {
-                if (response.getFarmData()!=null)
+                if (response.getFarmData()!=null) {
+                    items.addAll(HomeTransformer.getHomeFarmListItem(response.farmData.subProductItemRecords));
                     stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
-                else
+                }
+                else {
                     stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new FarmListResponse()));
+
+                }
             }
             @Override
             public void onFailure(StandardError standardError) {
@@ -151,4 +158,62 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
 
     }
+
+    public void saveUnSaveFarm(MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> stateMachine, String farmId, int status) {
+        stateMachine.postValue(DataFetchState.loading());
+
+        SaveUnSaveFarmRequestModel params = new SaveUnSaveFarmRequestModel(farmId, appController.getLoginId(), status, appController.getAuthenticationKey());
+
+        saveFarmRepository.saveUnSaveFarm(params, new ApiResponseCallback<SaveUnsaveFarmApiModel>() {
+            @Override
+            public void onSuccess(SaveUnsaveFarmApiModel response) {
+                stateMachine.postValue(DataFetchState.success(new SaveUnsaveFarmApiModel(), ""));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new SaveUnsaveFarmApiModel()));
+
+            }
+        });
+    }
+
+    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status) {
+        stateMachine.postValue(DataFetchState.loading());
+
+        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, appController.getLoginId(), appController.getAuthenticationKey(), status);
+
+        followersRepository.followUnFollowFarm(params, new ApiResponseCallback<FollowUnFollowApiModel>() {
+            @Override
+            public void onSuccess(FollowUnFollowApiModel response) {
+                stateMachine.postValue(DataFetchState.success(response, ""));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new FollowUnFollowApiModel()));
+
+            }
+        });
+    }
+
+    public void changeUserType(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, ProfileRequestParams profileRequestParams) {
+        stateMachine.postValue(DataFetchState.<AllDataModel>loading());
+        repository.changeUserType(profileRequestParams, new ApiResponseCallback<AllDataModel>() {
+            @Override
+            public void onSuccess(AllDataModel response) {
+//                if (response.isStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+//                } else {
+//                    stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
+//                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.<AllDataModel>error(standardError.getDisplayError(), null));
+            }
+        });
+    }
+
 }

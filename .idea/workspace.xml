@@ -2,42 +2,28 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config>
-        <device id="pixel_4" />
-        <device id="pixel" />
-        <device id="Nexus 6P" />
-        <device id="pixel_4_xl" />
-      </config>
+      <config />
     </shared>
   </component>
   <component name="AndroidLogFilters">
+<<<<<<< HEAD
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+=======
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-    <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_2_0_aar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_12_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_12_0.xml" afterDir="false" />
@@ -47,6 +33,20 @@
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/cartList/CartListResponse.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/cartList/CartReqParam.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/cartList/FarmProductCartList.java" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/FollowersRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/FollowersViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/model/FollowUnFollowApiModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/model/FollowUnFollowRequestParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/model/FollowersApiModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/model/FollowersRequestParams.java" afterDir="false" />
+=======
+    <list default="true" id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/model/ProfileRequestParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/view/ProfileFragmentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/view/ProfileFragmentViewModel.java" afterDir="false" />
+>>>>>>> 6f8987f4db68d9cbc8c2324406664d7fbb2f3f2b
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -57,6 +57,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
@@ -97,6 +98,50 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_cart_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_cart_item_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/FollowersActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/FollowersActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/FollowersTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/FollowersTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/adapter/FollowersAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/adapter/FollowersAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/model/FollowersItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/model/FollowersItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/view/FollowersDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/view/FollowersDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/view/FollowersViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/followers/view/FollowersViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/HomeTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/HomeTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/HomeListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/HomeListItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/farmList/SubProductItemRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/farmList/SubProductItemRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/view/HomeItemsViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/view/HomeItemsViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SaveFarmTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SaveFarmTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SavedFarmListViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SavedFarmListViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SavedFarmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SavedFarmsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/model/SaveFarmListApiModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/model/SaveFarmListApiModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_list_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_list_item_layout.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/location/LocationAccessActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/location/LocationAccessActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/orders/track/TrackOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/orders/track/TrackOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/orders/track/view/TrackOrderHeaderViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/orders/track/view/TrackOrderHeaderViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/MyProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/MyProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/view/MyProfileHeaderViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/view/MyProfileHeaderViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/signUp/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/signUp/SignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_location_acces.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_location_acces.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/buyer_seller_switch_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/buyer_seller_switch_dialog.xml" afterDir="false" />
+>>>>>>> 6f8987f4db68d9cbc8c2324406664d7fbb2f3f2b
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,25 +154,18 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="resourceFile" />
-        <option value="valueResourceFile" />
-        <option value="layoutResourceFile_vertical" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
+<<<<<<< HEAD
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+=======
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1nujfbn4rC4AExdpIL7cwLmHRLj" />
+  <component name="ProjectId" id="1ohBuPZNNXSav6nCGixTe98SI6a" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -136,6 +174,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_note_5_pro-1cddc404" />
     <property name="DEBUGGABLE_PROCESS" value="com.farmers.buyers" />
@@ -143,7 +182,10 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_4_API_30" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-02-20T06:19:38.055Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="MIPMAP" />
+=======
+>>>>>>> 6f8987f4db68d9cbc8c2324406664d7fbb2f3f2b
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+<<<<<<< HEAD
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -156,121 +198,22 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Google-Maps-Google-Places-master" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+=======
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
   </component>
   <component name="RecentsManager">
-    <key name="android.template.2005120231">
-      <recent name="com.farmers.seller.modules.broadcastMessage.activity" />
-      <recent name="com.farmers.seller.modules.broadcastMessage" />
-      <recent name="com.farmers.seller.modules.editProfile" />
-      <recent name="com.farmers.seller.modules.referFriends" />
-    </key>
-    <key name="android.template.-1212859877">
-      <recent name="com.farmers.seller.modules.workingHour" />
-    </key>
-    <key name="android.template.519319477">
-      <recent name="com.farmers.buyers.modules.support" />
-      <recent name="com.farmers.buyers.modules.addAddress" />
-    </key>
-    <key name="android.template.455521790">
-      <recent name="com.farmers.buyers.modules.ratingAndReview" />
-    </key>
-    <key name="android.template.-1346173778">
-      <recent name="com.farmers.seller.modules.setupSellerAccount" />
-    </key>
-    <key name="android.template.1933063556">
-      <recent name="com.farmers.seller.modules.setupSellerAccont.documentUpload" />
-      <recent name="com.farmers.seller.modules.setupSellerAccont.verification" />
-      <recent name="com.farmers.seller.modules.setupSellerAccont.serviceDetails" />
-      <recent name="com.farmers.seller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.farmers.buyers.storage" />
-      <recent name="com.farmers.buyers.modules.address.view" />
-      <recent name="com.farmers.buyers.modules.address.adapter" />
-      <recent name="com.farmers.buyers.modules.profile.editProfile" />
-      <recent name="com.farmers.buyers.modules.addMoney.model" />
-    </key>
-    <key name="android.template.-1221353561">
-      <recent name="com.farmers.buyers.modules.referFriends" />
-      <recent name="com.farmers.buyers.modules.resetPassword" />
-      <recent name="com.farmers.buyers.modules.accountDetails" />
-    </key>
-    <key name="android.template.109451052">
-      <recent name="com.farmers.buyers.modules.addMoney" />
-    </key>
-    <key name="android.template.-200602269">
-      <recent name="com.farmers.seller.modules.viewOrderDetails" />
-      <recent name="com.farmers.seller.modules.ourOrders" />
+      <recent name="com.farmers.buyers.modules.profile.model" />
+      <recent name="com.farmers.buyers.modules.profile.view" />
+      <recent name="com.farmers.buyers.modules.orders.track.model" />
+      <recent name="com.farmers.buyers.modules.orders.track.view" />
+      <recent name="com.farmers.buyers.modules.orders.subOrderList" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StoreDetailsStepActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
-      <module name="Farmers.app" />
-      <option name="DEPLOY" value="true" />
-      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
-      <option name="DEPLOY_AS_INSTANT" value="false" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="ALL_USERS" value="false" />
-      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
-      <option name="MODE" value="specific_activity" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-      </Profilers>
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity" />
-      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
-      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
@@ -283,6 +226,7 @@
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -332,23 +276,15 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Android App.StoreDetailsStepActivity" />
-      </list>
-    </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="" />
-      <created>1612246973562</created>
+      <changelist id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="" />
+      <created>1613729190738</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1612246973562</updated>
+      <updated>1613729190738</updated>
     </task>
     <servers />
   </component>
@@ -362,69 +298,69 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/design_pages" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="484" y="77" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1613828322207">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="484" y="77" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1613828322207" />
     <state x="544" y="87" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1613737845744" />
+=======
+<<<<<<< HEAD
+    <state x="544" y="87" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1613822309388">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="544" y="87" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1613822309388" />
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     <state x="516" y="105" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/50.27.1316.741@50.27.1316.741" timestamp="1613666657819" />
     <state x="145" y="322" width="1126" height="158" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1612935435185">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="145" y="322" width="1126" height="158" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/50.27.1316.741@50.27.1316.741" timestamp="1612935435185" />
     <state x="168" y="27" width="1021" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1613134035584">
+=======
+    <state x="516" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1613821552482">
+>>>>>>> 6f8987f4db68d9cbc8c2324406664d7fbb2f3f2b
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="168" y="27" width="1021" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/50.27.1316.741@50.27.1316.741" timestamp="1613134035584" />
-    <state x="466" y="142" key="#xdebugger.evaluate" timestamp="1613657711713">
+    <state x="516" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser/50.27.1316.741@50.27.1316.741" timestamp="1613821552482" />
+    <state width="1270" height="322" key="GridCell.Tab.0.bottom" timestamp="1613823812171">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="466" y="142" key="#xdebugger.evaluate/50.27.1316.741@50.27.1316.741" timestamp="1613657711713" />
-    <state x="291" y="155" width="824" height="491" key="AndroidCreateResourceFileDialog" timestamp="1613065365637">
+    <state width="1270" height="322" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1613823812171" />
+    <state width="1270" height="322" key="GridCell.Tab.0.center" timestamp="1613823812170">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="291" y="155" width="824" height="491" key="AndroidCreateResourceFileDialog/50.27.1316.741@50.27.1316.741" timestamp="1613065365637" />
-    <state x="525" y="207" width="356" height="388" key="AndroidCreateXmlResourceDialog" timestamp="1612779712099">
+    <state width="1270" height="322" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1613823812170" />
+    <state width="1270" height="322" key="GridCell.Tab.0.left" timestamp="1613823812169">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="525" y="207" width="356" height="388" key="AndroidCreateXmlResourceDialog/50.27.1316.741@50.27.1316.741" timestamp="1612779712099" />
-    <state x="455" y="145" width="529" height="519" key="AndroidProcessChooserDialog" timestamp="1613667908253">
+    <state width="1270" height="322" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1613823812169" />
+    <state width="1270" height="322" key="GridCell.Tab.0.right" timestamp="1613823812170">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state x="455" y="145" width="529" height="519" key="AndroidProcessChooserDialog/50.27.1316.741@50.27.1316.741" timestamp="1613667908253" />
-    <state width="524" height="478" key="DebuggerActiveHint" timestamp="1613657761228">
+    <state width="1270" height="322" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1613823812170" />
+    <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog" timestamp="1613717201333">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
+<<<<<<< HEAD
     <state width="524" height="478" key="DebuggerActiveHint/50.27.1316.741@50.27.1316.741" timestamp="1613657761228" />
     <state x="100" y="100" width="1166" height="528" key="DiffContextDialog" timestamp="1613807787109">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="100" y="100" width="1166" height="528" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1613807787109" />
     <state x="491" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1613650431506">
+=======
+    <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog/50.27.1316.741@50.27.1316.741" timestamp="1613717201333" />
+    <state x="399" y="136" width="754" height="522" key="find.popup" timestamp="1613822460437">
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
       <screen x="50" y="27" width="1316" height="741" />
     </state>
+<<<<<<< HEAD
     <state x="491" y="155" width="424" height="491" key="FileChooserDialogImpl/50.27.1316.741@50.27.1316.741" timestamp="1613650431506" />
+<<<<<<< HEAD
     <state width="1306" height="332" key="GridCell.Tab.0.bottom" timestamp="1613826227723">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -448,6 +384,27 @@
     </state>
     <state width="1306" height="332" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1613826227723" />
     <state width="1491" height="607" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613802736313" />
+=======
+    <state width="1491" height="392" key="GridCell.Tab.0.bottom" timestamp="1613823772236">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="392" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1613823772236" />
+    <state width="1270" height="172" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1613669934050" />
+    <state width="1491" height="392" key="GridCell.Tab.0.center" timestamp="1613823772236">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="392" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1613823772236" />
+    <state width="1270" height="172" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1613669934050" />
+    <state width="1491" height="392" key="GridCell.Tab.0.left" timestamp="1613823772236">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="392" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1613823772236" />
+    <state width="1270" height="172" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1613669934049" />
+    <state width="1491" height="392" key="GridCell.Tab.0.right" timestamp="1613823772236">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="392" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613823772236" />
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     <state width="1270" height="172" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1613669934050" />
     <state width="1270" height="172" key="GridCell.Tab.1.bottom" timestamp="1613669934051">
       <screen x="50" y="27" width="1316" height="741" />
@@ -478,10 +435,10 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="339" y="160" width="728" height="482" key="MultipleFileMergeDialog/50.27.1316.741@50.27.1316.741" timestamp="1613138266348" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1613731569958">
+    <state x="277" y="57" key="SettingsEditor" timestamp="1613815065789">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1613731569958" />
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1613815065789" />
     <state x="439" y="110" key="VCS.ChangeListViewerDialog" timestamp="1613802682734">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -510,19 +467,33 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="359" y="153" width="822" height="548" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1613653089243" />
+<<<<<<< HEAD
     <state x="453" y="77" key="git4idea.branch.GitSmartOperationDialog" timestamp="1613805012858">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="453" y="77" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1613805012858" />
+=======
+    <state x="611" y="170" key="refactoring.ChangeSignatureDialog" timestamp="1613816618104">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="611" y="170" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1613816618104" />
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     <state x="372" y="174" key="run.anything.popup" timestamp="1613583278406">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="372" y="174" key="run.anything.popup/50.27.1316.741@50.27.1316.741" timestamp="1613583278406" />
+<<<<<<< HEAD
     <state x="333" y="61" width="699" height="667" key="search.everywhere.popup" timestamp="1613824250393">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="333" y="61" width="699" height="667" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1613824250393" />
     <state x="375" y="69" width="785" height="754" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1613802662205" />
+=======
+    <state x="375" y="69" width="785" height="754" key="search.everywhere.popup" timestamp="1613823817241">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="375" y="69" width="785" height="754" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1613823817241" />
+>>>>>>> c5958192dea0de7922d4c12008015b4cd5338234
     <state x="371" y="89" width="672" height="678" key="search.everywhere.popup/50.27.1316.741@50.27.1316.741" timestamp="1613136533966" />
   </component>
   <component name="XDebuggerManager">
@@ -543,5 +514,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+=======
+    <state x="399" y="136" width="754" height="522" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1613822460437" />
+>>>>>>> 6f8987f4db68d9cbc8c2324406664d7fbb2f3f2b
   </component>
 </project>

@@ -8,6 +8,7 @@ import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductL
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
 
@@ -51,5 +52,9 @@ public class HomeFragmentRepository extends BaseRepository {
         makeRequest(call, responseCallback);
     }
 
-
+    public void changeUserType(ProfileRequestParams params, ApiResponseCallback<AllDataModel> responseCallback) {
+        Call<AllDataModel> call = RetrofitBuilder.createServiceContract().changeUserType(ApiConstants.CHANGE_USER_TYPE,
+                params.getLoginId(), params.getAccount_type(), params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
 }

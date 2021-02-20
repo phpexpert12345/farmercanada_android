@@ -49,7 +49,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     public GPSTracker gpsTracker;
     private RadioButton radio_seller, radio_buyer;
     private String account_country = "";
-    private Integer account_type = 1;
+    private Integer account_type = 1;//Buyer = 1 & Seller = 2
     protected Context context;
     private String account_city, account_state, account_address, account_long, account_lat, device_id, device_platform, account_phone_code;
 
@@ -140,7 +140,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_seller:
-                account_type = 0;
+                account_type = 2;
                 startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
                 break;
 

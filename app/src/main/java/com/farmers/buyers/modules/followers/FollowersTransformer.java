@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.followers;
 
+import com.farmers.buyers.modules.followers.model.FollowersApiModel;
 import com.farmers.buyers.modules.followers.model.FollowersItems;
 
 import java.util.ArrayList;
@@ -13,13 +14,14 @@ import java.util.List;
 
 public class FollowersTransformer {
 
-    public static List<FollowersItems> getFollowersItems() {
+    public static List<FollowersItems> getFollowersItems(List<FollowersApiModel.FarmFollowedList> listItem) {
         List<FollowersItems> item  = new ArrayList<>();
-        item.add(new FollowersItems(0, "","", false));
-        item.add(new FollowersItems(0, "","", false));
-        item.add(new FollowersItems(0, "","", false));
-        item.add(new FollowersItems(0, "","", false));
-        item.add(new FollowersItems(0, "","", false));
+        for (int i = 0 ; i< listItem.size() ; i++) {
+            FollowersApiModel.FarmFollowedList data = listItem.get(i);
+            if (data.getFarmFollowedStatus().equals("Yes")) {
+                item.add(new FollowersItems(data.getFarmLogo(), data.getFarmName(), "", data.getFarmFollowedStatus(), data.getFavouriteId()));
+            }
+        }
         return item;
     }
 }
