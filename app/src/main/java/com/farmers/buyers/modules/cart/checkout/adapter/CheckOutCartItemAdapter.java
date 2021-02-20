@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.cart.checkout.adapter;
 
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
+import com.farmers.buyers.modules.cart.checkout.view.CheckOutFromCartAddressViewHolder;
 import com.farmers.buyers.modules.cart.checkout.view.CheckoutFromCartAddressDelegate;
 import com.farmers.buyers.modules.cart.checkout.view.PaymentMethodsDelegate;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckOutDelegate;
@@ -17,19 +18,21 @@ import com.farmers.buyers.storage.CardConstant;
 public class CheckOutCartItemAdapter extends BaseAdapter {
     MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners;
     MyCartCheckoutViewHolder.MyCoupounClickListeners coupounClickListeners;
+    CheckOutFromCartAddressViewHolder.ChangeAddressCallback addressCallback;
 
 
 
-    public CheckOutCartItemAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners couponListener) {
+    public CheckOutCartItemAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners couponListener, CheckOutFromCartAddressViewHolder.ChangeAddressCallback addressListener) {
         super();
         this.cartCheckOutClickListeners = cartCheckOutClickListeners;
         this.coupounClickListeners=couponListener;
+       this. addressCallback=addressListener;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.MY_CART_ADDRESS_ADAPTER, new CheckoutFromCartAddressDelegate());
+        delegates.put(CardConstant.MY_CART_ADDRESS_ADAPTER, new CheckoutFromCartAddressDelegate(addressCallback));
         delegates.put(CardConstant.MY_CART_PAYMENT_METHODS, new PaymentMethodsDelegate());
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
         delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners,coupounClickListeners));

@@ -27,16 +27,17 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
     TextView addressTypeTv;
     TextView changeAddress;
     ConstraintLayout addressCard;
+    ChangeAddressCallback addressCallback;
 
 
-    public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent) {
+    public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent,final ChangeAddressCallback addressCallback1) {
         super(Extensions.inflate(parent, R.layout.check_out_from_cart_address_holder_layout));
-
         addressTv = itemView.findViewById(R.id.my_address_tv);
         addressDetailTv = itemView.findViewById(R.id.my_address_detail_tv);
         addressTypeTv = itemView.findViewById(R.id.my_address_type_tv);
         addressCard = itemView.findViewById(R.id.my_address_layout);
         changeAddress = itemView.findViewById(R.id.address_change_tv);
+        addressCallback=addressCallback1;
     }
 
     @Override
@@ -52,11 +53,21 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
             addressCard.setBackground(null);
         }
 
-        if (item.getCanChange()) {
+       /* if (item.getCanChange()) {
             changeAddress.setVisibility(View.VISIBLE);
         } else {
             changeAddress.setVisibility(View.GONE);
-        }
+        }*/
 
+        changeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addressCallback.onEditAddressClicked(item);
+            }
+        });
+    }
+
+    public interface ChangeAddressCallback{
+        void onEditAddressClicked(CheckOutCartAddressItems addressDetail);
     }
 }

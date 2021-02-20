@@ -81,6 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
+                android:id="@+id/ic_decrease"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:src="@drawable/ic_remove_white" />
@@ -93,9 +94,11 @@
                 android:paddingRight="@dimen/_8sdp"
                 android:fontFamily="@font/sf_ui_bold"
                 android:text="1"
+                android:id="@+id/txt_quantity"
                 android:textColor="@color/secondaryTextColor" />
 
             <ImageView
+                android:id="@+id/ic_increase"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:src="@drawable/ic_add_white" />

@@ -6,6 +6,8 @@ import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponReqParams;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartReqParam;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxRequestParam;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
@@ -32,6 +34,13 @@ public class MyCartRepository extends BaseRepository {
         Call<TaxResponse> call = RetrofitBuilder.createServiceContract().TAX_RESPONSE_CALL(ApiConstants.SERVICE_AND_TAX_URL,
                 params.getAuth_key(),params.getFarm_id(),params.getDelivery_distance(),params.getOrder_type(),params.getSubtotal_amount());
         makeRequest(call, responseCallback);
+
+    }
+
+ public void cartItemLists(CartReqParam params, ApiResponseCallback<CartListResponse> cartResponse) {
+        Call<CartListResponse> call = RetrofitBuilder.createServiceContract().CART_LIST_RESPONSE_CALL(ApiConstants.CUSTOMER_PRODUCT_CART_LIST_URL,
+                params.getAuth_key(),params.getLoginId(),params.getFarm_id());
+        makeRequest(call, cartResponse);
 
     }
 

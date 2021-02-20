@@ -1,5 +1,7 @@
 package com.farmers.buyers.modules.cart.myCart.model.chargeTax;
 
+import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.storage.CardConstant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/18/2021.
  */
-public class TaxData implements Serializable {
+public class TaxData implements Serializable, RecyclerViewListItem {
 
     @SerializedName("GST_Tax_Amount")
     @Expose
@@ -44,6 +46,43 @@ public class TaxData implements Serializable {
     @Expose
     private String minimumOrderAmount;
 
+    private boolean isApplyCouponButton;
+    private boolean isDiscountTextView;
+    private boolean isRemoveDiscountButton;
+
+    public boolean isApplyCouponButton() {
+        return isApplyCouponButton;
+    }
+
+    public void setApplyCouponButton(boolean applyCouponButton) {
+        isApplyCouponButton = applyCouponButton;
+    }
+
+    public boolean isDiscountTextView() {
+        return isDiscountTextView;
+    }
+
+    public void setDiscountTextView(boolean discountTextView) {
+        isDiscountTextView = discountTextView;
+    }
+
+    public boolean isRemoveDiscountButton() {
+        return isRemoveDiscountButton;
+    }
+
+    public void setRemoveDiscountButton(boolean removeDiscountButton) {
+        isRemoveDiscountButton = removeDiscountButton;
+    }
+
+    public float discountAmount;
+
+    public float getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(float discountAmount) {
+        this.discountAmount = discountAmount;
+    }
 
     public String getgSTTaxAmount() {
         return gSTTaxAmount;
@@ -87,5 +126,15 @@ public class TaxData implements Serializable {
 
     public String getMinimumOrderAmount() {
         return minimumOrderAmount;
+    }
+
+    @Override
+    public int getViewType() {
+        return CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER;
+    }
+
+    @Override
+    public Object getUnique() {
+        return this;
     }
 }
