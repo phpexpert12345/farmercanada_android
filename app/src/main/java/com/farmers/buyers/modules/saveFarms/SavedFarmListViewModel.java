@@ -22,7 +22,7 @@ public class SavedFarmListViewModel extends BaseViewModel {
 
         stateMachine.postValue(DataFetchState.loading());
 
-        SaveFarmListRequestParams params = new SaveFarmListRequestParams(appController.getUserId(), appController.getAuthenticationKey());
+        SaveFarmListRequestParams params = new SaveFarmListRequestParams(appController.getLoginId(), appController.getAuthenticationKey());
 
 
         repository.getSavedFarmList(params, new ApiResponseCallback<SaveFarmListApiModel>() {

@@ -2,14 +2,8 @@ package com.farmers.buyers.core;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import com.farmers.buyers.app.NoInternetConnectionException;
-import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.remote.StandardError;
-
-import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
