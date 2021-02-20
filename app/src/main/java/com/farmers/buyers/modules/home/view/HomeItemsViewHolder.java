@@ -15,6 +15,7 @@ import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.FarmDetailActivity;
+import com.farmers.buyers.modules.home.models.HomeListItem;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.storage.Constant;
 
@@ -34,7 +35,6 @@ public class HomeItemsViewHolder extends BaseViewHolder {
 
     public HomeItemsViewHolder(@NonNull ViewGroup parent, FarmItemClickListener farmItemClickListener) {
         super(Extensions.inflate(parent, R.layout.home_list_item_layout));
-        cardView = itemView.findViewById(R.id.home_item_card);
         saveImage = itemView.findViewById(R.id.home_list_save_image);
         savedImage = itemView.findViewById(R.id.home_list_saved_image);
         farmImage = itemView.findViewById(R.id.home_list_item_img);
@@ -42,7 +42,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         home_list_item_layout_farmName = itemView.findViewById(R.id.home_list_item_layout_farmName);
         home_list_item_layout_distance_tv = itemView.findViewById(R.id.home_list_item_layout_distance_tv);
         customer_home_parlour_view_holder_rating_tv = itemView.findViewById(R.id.customer_home_parlour_view_holder_rating_tv);
-      this.farmItemClickListener = farmItemClickListener;
+        this.farmItemClickListener = farmItemClickListener;
 
     }
 
@@ -63,22 +63,16 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             }
         });
 
-    }
+
         farmImage.setOnClickListener(view -> itemView.getContext().startActivity( new Intent(itemView.getContext(), FarmDetailActivity.class)));
 
-    }
-
-    @Override
-    public void bindView(RecyclerViewListItem items) {
-        HomeListItem item = (HomeListItem) items;
-      
 
         savedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveImage.setVisibility(View.VISIBLE);
                 savedImage.setVisibility(View.GONE);
-                farmItemClickListener.onSaveFarmClicked(item.getId(), 0);
+                farmItemClickListener.onSaveFarmClicked(item.getFarmId(), 0);
             }
         });
 
@@ -87,9 +81,10 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             public void onClick(View v) {
                 saveImage.setVisibility(View.GONE);
                 savedImage.setVisibility(View.VISIBLE);
-                farmItemClickListener.onSaveFarmClicked(item.getId(), 1);
+                farmItemClickListener.onSaveFarmClicked(item.getFarmId(), 1);
             }
         });
+
 
     }
 
@@ -97,3 +92,4 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         void onSaveFarmClicked(String id, int status);
     }
 }
+

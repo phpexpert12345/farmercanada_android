@@ -219,8 +219,6 @@ public interface ApiController {
 
 
 
-}
-
     @FormUrlEncoded
     @POST
     Call<SaveFarmListApiModel> getSavedFarmList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);

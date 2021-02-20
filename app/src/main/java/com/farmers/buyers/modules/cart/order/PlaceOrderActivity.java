@@ -92,8 +92,8 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
             @Override
             public void onClick(View view) {
                // dialog.showDialog();
-                SubmitRequestParam param=new SubmitRequestParam();
-                viewModel.submitOrder(submitMachine,param);
+//                SubmitRequestParam param=new SubmitRequestParam();
+//                viewModel.submitOrder(submitMachine,param);
 
             }
         });

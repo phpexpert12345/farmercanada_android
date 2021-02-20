@@ -41,6 +41,7 @@ import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
+import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -81,6 +82,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
     private AppController appController = AppController.get();
+    private GPSTracker gpsTracker;
 
     @Nullable
     @Override
@@ -127,7 +129,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     private void init() {
 
-        adapter = new HomeAdapter(HomeFragment.this, this);
+        adapter = new HomeAdapter(this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
         SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         adapter = new HomeAdapter(HomeFragment.this, this, this);
