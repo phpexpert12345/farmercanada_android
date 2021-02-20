@@ -25,6 +25,7 @@ import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.AllDataModel;
@@ -42,6 +43,7 @@ import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -72,11 +74,13 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         }
     };
 
-    ArrayList<SubProductItemRecord> farmListData;
-
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> saveUnSaveStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FollowUnFollowApiModel>> followUnFollowStateMachine = new MutableLiveData<>();
+
+
 
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -84,13 +88,13 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private AppController appController = AppController.get();
     private GPSTracker gpsTracker;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = view.findViewById(R.id.home_recyclerView);
         prepareListItems();
-        farmListData=new ArrayList<>();
         init();
         return view;
     }
@@ -168,8 +172,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         break;
                     case SUCCESS:
                         dismissLoader();
-                        //  farmListData.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
-                        items.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
+//                        items.addAll(farmListResponseDataFetchState.data.farmData.subProductItemRecords);
+                        items.addAll(HomeTransformer.getHomeFarmListItem(farmListResponseDataFetchState.data.farmData.subProductItemRecords));
                         adapter.updateData(items);
                         Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
 
@@ -200,6 +204,40 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         // startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
                         //finish();
                         break;
+                    }
+                }
+            }
+        });
+
+        saveUnSaveStateMachine.observe(baseActivity, saveUnsaveFarmApiModelDataFetchState -> {
+
+            switch (saveUnsaveFarmApiModelDataFetchState.status) {
+                case LOADING: {
+                    showLoader();
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                }
+                case ERROR: {
+                    dismissLoader();
+                }
+            }
+        });
+
+        followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
+            @Override
+            public void onChanged(DataFetchState<FollowUnFollowApiModel> followUnFollowApiModelDataFetchState) {
+                switch (followUnFollowApiModelDataFetchState.status) {
+                    case LOADING: {
+                        showLoader();
+                        break;
+                    }
+                    case SUCCESS: {
+                        dismissLoader();
+                    }
+                    case ERROR: {
+                        dismissLoader();
+                        Toast.makeText(baseActivity, followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -243,6 +281,12 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onSaveFarmClicked(String id, int status) {
+        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
+    }
+
+    @Override
+    public void onFollowFarmClicked(String id, String status) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
 
     }
 }

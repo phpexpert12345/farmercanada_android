@@ -3,6 +3,8 @@ package com.farmers.buyers.remote;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.followers.model.FollowersApiModel;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -226,6 +228,16 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status);
+
+    @FormUrlEncoded
+    @POST
+    Call<FollowersApiModel> getFollowersList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status);
+
 
 }
 

@@ -44,5 +44,8 @@ public class ApiConstants {
     public static final String SUBMIT_ORDER_URL = "phpexpert_payment_android_submit.php";
     public static final String SAVE_FARM_LIST        = "phpexpert_customer_favourite_list.php";
     public static final String SAVE_UN_SAVE_FARM     = "phpexpert_customer_favourite.php";
+    public static final String FOLLOWERS_LIST        = "phpexpert_customer_unfollow_follow_list.php";
+    public static final String FOLLOW_UNFOLLOW_USER  = "phpexpert_customer_follow_unfollow.php";
+
 
 }

@@ -24,6 +24,7 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.login.LoginViewModel;
@@ -43,7 +44,6 @@ import java.util.List;
 public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHolder.FarmItemClickListener {
     private RecyclerView recyclerView;
     private SavedFarmsAdapter adapter;
-    private List<RecyclerViewListItem> items = new ArrayList<>();
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -59,6 +59,8 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     private SavedFarmListViewModel viewModel = factory.create(SavedFarmListViewModel.class);
     private MutableLiveData<DataFetchState<SaveFarmListApiModel>> stateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> saveUnSaveStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FollowUnFollowApiModel>> followUnFollowStateMachine = new MutableLiveData<>();
+
 
     @Override
     public String getTitle() {
@@ -108,6 +110,27 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
             }
         });
 
+
+        followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
+            @Override
+            public void onChanged(DataFetchState<FollowUnFollowApiModel> followUnFollowApiModelDataFetchState) {
+                switch (followUnFollowApiModelDataFetchState.status) {
+                    case LOADING: {
+                        loading();
+                        break;
+                    }
+                    case SUCCESS: {
+                        dismissLoader();
+                        getSavedFarmList();
+                    }
+                    case ERROR: {
+                        error(followUnFollowApiModelDataFetchState.status_message);
+                    }
+                }
+            }
+        });
+
+
         getSavedFarmList();
 
     }
@@ -123,24 +146,29 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
     private void success() {
         dismissLoader();
-        items.addAll(SaveFarmTransformer.getFarmListItem());
         bindAdapter();
 
     }
 
     private void error(String error) {
         dismissLoader();
-//        Toast.makeText(App.getAppContext(), error, Toast.LENGTH_SHORT).show();
 
     }
 
     private void bindAdapter() {
-        adapter.updateData(items);
+        adapter.updateData(viewModel.items);
     }
 
 
     @Override
     public void onSaveFarmClicked(String id, int status) {
         viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
+        getSavedFarmList();
+    }
+
+    @Override
+    public void onFollowFarmClicked(String id, String status) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
+
     }
 }

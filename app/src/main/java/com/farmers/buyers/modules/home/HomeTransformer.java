@@ -12,9 +12,11 @@ import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
+import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * created by Mohammad Sajjad
@@ -32,23 +34,14 @@ public class HomeTransformer {
         return new HomeSearchListItem("Mohammad sajjad", "Noida");
     }
 
-    public static List<HomeListItem> getHomeFarmListItem() {
-        List<HomeListItem> listItem = new ArrayList<>();
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        listItem.add(new HomeListItem("Farm name", "2 KM away from you", "4.9", false, "1"));
-        return listItem;
+    public static List<HomeListItem> getHomeFarmListItem(List<SubProductItemRecord> listItem) {
+        List<HomeListItem> items = new ArrayList<>();
+        for (int i =0 ; i< listItem.size() ; i++) {
+            SubProductItemRecord data = listItem.get(i);
+                    items.add(new HomeListItem(data.getFarmName(), data.getFarmDeliveryRadiusText(), data.getRatingAvg().toString(), data.getFarmFavouriteStatus(), data.getFarmId(), data.getFarmCoverPhoto(), data.getFarmLogo()));
+        }
+
+        return items;
     }
 
     public static HomeCategoryListItem getCategoryList(List<AllDataModel.Data> data) {

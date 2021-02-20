@@ -10,19 +10,21 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class FollowersItems implements RecyclerViewListItem {
-    private int imageUri;
+    private String imageUri;
     private String name;
     private String distance;
-    private Boolean isFollowing;
+    private String isFollowing;
+    private String farmId;
 
-    public FollowersItems(int imageUri, String name, String distance, Boolean isFollowing) {
+    public FollowersItems(String imageUri, String name, String distance, String isFollowing, String farmId) {
         this.imageUri = imageUri;
         this.name = name;
         this.distance = distance;
         this.isFollowing = isFollowing;
+        this.farmId = farmId;
     }
 
-    public int getImageUri() {
+    public String getImageUri() {
         return imageUri;
     }
 
@@ -34,8 +36,12 @@ public class FollowersItems implements RecyclerViewListItem {
         return distance;
     }
 
-    public Boolean getFollowing() {
+    public String getFollowing() {
         return isFollowing;
+    }
+
+    public String getFarmId() {
+        return farmId;
     }
 
     @Override

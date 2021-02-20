@@ -112,6 +112,9 @@ public class SubProductItemRecord implements Serializable, RecyclerViewListItem 
     @SerializedName("service_type_name")
     @Expose
     private String serviceTypeName;
+    @SerializedName("farm_favourite_status")
+    @Expose
+    private String farmFavouriteStatus;
 
 
     public String getFarmId() {
@@ -244,6 +247,10 @@ public class SubProductItemRecord implements Serializable, RecyclerViewListItem 
 
     public String getServiceTypeName() {
         return serviceTypeName;
+    }
+
+    public String getFarmFavouriteStatus() {
+        return farmFavouriteStatus;
     }
 
 
