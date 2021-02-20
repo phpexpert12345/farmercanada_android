@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.saveFarms;
 
 import com.farmers.buyers.modules.home.models.HomeListItem;
+import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,22 +15,13 @@ import java.util.List;
 public class SaveFarmTransformer {
 
 
-    public static List<HomeListItem> getFarmListItem() {
-        List<HomeListItem> listItem = new ArrayList<>();
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        listItem.add(new HomeListItem("Farm name","2 KM away from you","4.9", true, "1"));
-        return listItem;
+    public static List<HomeListItem> getFarmListItem(List<SaveFarmListApiModel.FarmFavouriteList> listItems) {
+        List<HomeListItem> farmItems = new ArrayList<>();
+        for (int i = 0 ; i< listItems.size() ; i++) {
+            SaveFarmListApiModel.FarmFavouriteList item = listItems.get(i);
+
+            farmItems.add(new HomeListItem(item.getFarmName(), item.getFarmDeliveryRadiusText(), item.getRatingAvg().toString(), item.getFarmFavouriteStatus(), item.getFarmId(), item.getFarmCoverPhoto(), item.getFarmLogo()));
+        }
+        return farmItems;
     }
 }

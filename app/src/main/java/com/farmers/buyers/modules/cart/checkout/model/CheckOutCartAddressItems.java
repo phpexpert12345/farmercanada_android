@@ -16,6 +16,8 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
     private String addressType;
     private String address;
     private String detail;
+    private String addressTitle;
+    private String phoneNumber;
     Boolean isSelected;
     Boolean canChange;
 
@@ -26,6 +28,15 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
         this.detail = detail;
         this.isSelected = isSelected;
         this.canChange = canChange;
+    }
+
+    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle, String phoneNumber) {
+        this.address_id = address_id;
+        this.addressType = addressType;
+        this.address = address;
+        this.detail = detail;
+        this.addressTitle = addressTitle;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddressType() {
@@ -54,6 +65,22 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem {
 
     public Boolean getCanChange() {
         return canChange;
+    }
+
+    public String getAddressTitle() {
+        return addressTitle;
+    }
+
+    public void setAddressTitle(String addressTitle) {
+        this.addressTitle = addressTitle;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

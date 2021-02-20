@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
@@ -24,12 +25,13 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
     private ImageView imageView;
     private TextView addToCartTv;
+    private TextView farmName;
 
     public FarmDetailsVegetableItemsViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.farm_details_vegetables_item_layout));
         imageView = itemView.findViewById(R.id.farm_detail_vegetables_img);
         addToCartTv = itemView.findViewById(R.id.farm_details_vegetables_add_to_cart_tv);
-
+        farmName=itemView.findViewById(R.id.home_list_item_layout_farmName);
         addToCartTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,8 +42,8 @@ public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        imageView.setImageResource(((FarmDetailsVegetableItems)items).getImageUri());
 
+        FarmDetailsVegetableItems item=(FarmDetailsVegetableItems)items;
         if (((FarmDetailsVegetableItems)items).getInStock()) {
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_shopping_cart, 0, 0, 0);
         }
@@ -52,6 +54,9 @@ public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_info, 0, 0, 0);
 
         }
+
+        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
+        farmName.setText(item.getTitle());
 
     }
 }

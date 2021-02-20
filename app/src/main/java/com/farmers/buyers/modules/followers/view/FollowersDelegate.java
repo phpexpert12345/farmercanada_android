@@ -12,9 +12,14 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class FollowersDelegate extends BaseDelegate {
+    private FollowersViewHolder.FollowerListener listener;
+
+    public FollowersDelegate(FollowersViewHolder.FollowerListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new FollowersViewHolder(parent);
+        return new FollowersViewHolder(parent, listener);
     }
 }

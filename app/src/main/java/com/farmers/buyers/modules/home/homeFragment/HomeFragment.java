@@ -1,12 +1,15 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
+
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
@@ -15,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,6 +33,9 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
@@ -37,13 +45,22 @@ import com.farmers.buyers.modules.home.models.HomeFilterListItems;
 import com.farmers.buyers.modules.home.models.HomeHeaderItem;
 import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
+import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
+import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
+import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
+import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.farmers.buyers.app.App.getAppContext;
 
@@ -57,6 +74,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         MultipleTextItemViewHolder.FilterItemClickListener, HomeItemsViewHolder.FarmItemClickListener {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -68,6 +86,10 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     };
 
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
+    private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> saveUnSaveStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FollowUnFollowApiModel>> followUnFollowStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
@@ -76,6 +98,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public GPSTracker gpsTracker;
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
+
+
 
     @Override
     public String getTitle() {
@@ -90,6 +114,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     @Override
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.home_recyclerView);
+
         init();
     }
 
@@ -99,7 +124,18 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         getUserData();
     }
 
+    private void farmListDataRequest() {
+
+
+        FarmListRequest farmListRequest=new FarmListRequest(appController.getAuthenticationKey(),
+                "2333232","233232","D 242, Sector 63 Noida","Noida","","local=0,homemade=1","",
+                "pickup=0,delivery=1","","","");
+        viewModel.getFarmList(farmListStateMachine,farmListRequest);
+    }
+
     private void init() {
+
+        adapter = new HomeAdapter(this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
         SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         adapter = new HomeAdapter(HomeFragment.this, this, this);
@@ -107,7 +143,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
-
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -127,6 +162,26 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         });
 
         recyclerView.setLayoutManager(manager);
+
+        farmListStateMachine.observe(this,new Observer<DataFetchState<FarmListResponse>>(){
+            @Override
+            public void onChanged(DataFetchState<FarmListResponse> farmListResponseDataFetchState) {
+                switch (farmListResponseDataFetchState.status){
+                    case ERROR:
+                        dismissLoader();
+                        Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        break;
+                    case SUCCESS:
+                        getUserSuccess();
+
+                        break;
+                    case LOADING:
+//                        showLoader();
+                        break;
+
+                }
+            }
+        });
 
         getUserStateMachine.observe(this, allDataModelDataFetchState -> {
             switch (allDataModelDataFetchState.status) {
@@ -175,11 +230,27 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case SUCCESS: {
-                    getUserSuccess();
+                    farmListDataRequest();
                     break;
                 }
             }
         });
+
+        saveUnSaveStateMachine.observe(baseActivity, saveUnsaveFarmApiModelDataFetchState -> {
+
+            switch (saveUnsaveFarmApiModelDataFetchState.status) {
+                case LOADING: {
+                    showLoader();
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                }
+                case ERROR: {
+                    dismissLoader();
+                }
+            }
+        });
+
 
         changeUserStateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
@@ -199,6 +270,26 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     startActivity(new Intent(baseActivity, LoginActivity.class));
                     baseActivity.finish();
                     break;
+                }
+            }
+        });
+
+
+        followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
+            @Override
+            public void onChanged(DataFetchState<FollowUnFollowApiModel> followUnFollowApiModelDataFetchState) {
+                switch (followUnFollowApiModelDataFetchState.status) {
+                    case LOADING: {
+                        showLoader();
+                        break;
+                    }
+                    case SUCCESS: {
+                        dismissLoader();
+                    }
+                    case ERROR: {
+                        dismissLoader();
+                        Toast.makeText(baseActivity, followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -229,10 +320,12 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         viewModel.getUserInformation(getUserStateMachine);
     }
 
+
     @Override
     public void onEditAddressClickListener(int position) {
         Log.e("position", String.valueOf(position));
     }
+
 
     public void buyer_seller_switch_dialog(Context activity) {
 
@@ -294,8 +387,15 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         adapter.notifyItemChanged(position);
     }
 
+
     @Override
     public void onSaveFarmClicked(String id, int status) {
+        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
+    }
+
+    @Override
+    public void onFollowFarmClicked(String id, String status) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
 
     }
 }

@@ -68,15 +68,25 @@
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
+
             <TextView
+                android:id="@+id/sub_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ 280.00"
+                android:text="280.00"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/sub_total"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
         </RelativeLayout>
@@ -89,6 +99,7 @@
             android:layout_marginBottom="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/packedge_fee_lable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -97,14 +108,62 @@
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/packedge_fee_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ 20.00"
+                android:text="20.00"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/packedge_fee_amount"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/lable_gst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="GST   (5 %):"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:id="@+id/gst_tax_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="20.00"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px" />
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/gst_tax_amount"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
         </RelativeLayout>
@@ -121,19 +180,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="Shipping Fee ($1):"
+                android:text="Shipping Fee :"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/shiping_fee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ 1.00"
+                android:text="1:00"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
+
+            <TextView
+                android:textColor="@color/primaryTextColor"
+                android:textSize="@dimen/sp_16_px"
+                android:layout_toLeftOf="@id/shiping_fee"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="$ "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
         </RelativeLayout>
@@ -161,6 +230,7 @@
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/couponAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -193,8 +263,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            >
+            android:layout_marginBottom="@dimen/_8sdp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,6 +274,7 @@
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/totalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

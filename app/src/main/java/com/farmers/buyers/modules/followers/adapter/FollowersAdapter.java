@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.followers.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.followers.view.FollowersDelegate;
+import com.farmers.buyers.modules.followers.view.FollowersViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -11,13 +12,16 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class FollowersAdapter extends BaseAdapter {
+    private FollowersViewHolder.FollowerListener listener;
 
-    public FollowersAdapter() {
+
+    public FollowersAdapter(FollowersViewHolder.FollowerListener listener) {
         super();
+        this.listener = listener;
         initDelegate();
     }
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.FOLLOWERS_ITEM_ADAPTER, new FollowersDelegate());
+        delegates.put(CardConstant.FOLLOWERS_ITEM_ADAPTER, new FollowersDelegate(listener));
     }
 }

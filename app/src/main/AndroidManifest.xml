@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".modules.addMoney.AddMoneyWallet"></activity>
+        <activity android:name=".app.ApplicationActivity"></activity>
+        <activity android:name=".modules.addMoney.AddMoneyWallet" />
         <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity" />
         <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />
         <activity android:name=".modules.seller.sellerProfile.editProfile.SellerShopSetting" />

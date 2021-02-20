@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ public class MyAddressListViewHolder extends BaseViewHolder {
     TextView addressDetailTv;
     TextView addressTypeTv;
     TextView changeAddress;
-    ConstraintLayout addressCard;
+    LinearLayout addressCard;
     AddressItemClickListener addressItemClickListener;
 
     public MyAddressListViewHolder(@NonNull ViewGroup parent, final AddressItemClickListener addressItemClickListener) {
@@ -41,7 +42,7 @@ public class MyAddressListViewHolder extends BaseViewHolder {
         CheckOutCartAddressItems item = (CheckOutCartAddressItems) items;
         addressTv.setText(item.getAddress());
         addressDetailTv.setText(item.getDetail());
-        addressTypeTv.setText(item.getAddressType());
+        addressTypeTv.setText(item.getAddressTitle());
 
         addressCard.setOnClickListener(view -> addressItemClickListener.onAddressItemClicked(item.getAddress_id()));
 
@@ -50,7 +51,7 @@ public class MyAddressListViewHolder extends BaseViewHolder {
             return false;
         });
 
-        if (item.getSelected()) {
+     /*   if (item.getSelected()) {
             addressCard.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
         } else {
             addressCard.setBackground(null);
@@ -60,7 +61,7 @@ public class MyAddressListViewHolder extends BaseViewHolder {
             changeAddress.setVisibility(View.VISIBLE);
         } else {
             changeAddress.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     public interface AddressItemClickListener {
