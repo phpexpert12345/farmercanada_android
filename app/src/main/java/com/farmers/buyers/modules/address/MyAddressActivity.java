@@ -30,7 +30,9 @@ import com.farmers.buyers.modules.address.model.AddAddressRequestParams;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.address.model.MyAddressViewModel;
 import com.farmers.buyers.modules.address.view.MyAddressListViewHolder;
+import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.GPSTracker;
 
 import java.util.ArrayList;
@@ -202,7 +204,15 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     }
 
     @Override
-    public void onAddressItemClicked(String addressId) {
-        this.addressId = addressId;
+    public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
+        this.addressId = addressObj.getAddress_id();
+
+        if (addressObj.getSelected()){
+            Intent intent=new Intent();
+            intent.putExtra(Constant.DATA_INTENT,addressObj);
+            setResult(1254,intent);
+            finish();
+        }
+
     }
 }

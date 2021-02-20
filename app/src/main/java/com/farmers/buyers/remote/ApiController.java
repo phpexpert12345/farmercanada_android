@@ -1,6 +1,7 @@
 package com.farmers.buyers.remote;
 
 import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
@@ -232,6 +233,11 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status);
+
+    @FormUrlEncoded
+    @POST
+    Call<CartListResponse>CART_LIST_RESPONSE_CALL(@Url String url,@Field("auth_key") String authKey, @Field("LoginId") String userId,  @Field("farm_id") String farmId);
+
 
     @FormUrlEncoded
     @POST

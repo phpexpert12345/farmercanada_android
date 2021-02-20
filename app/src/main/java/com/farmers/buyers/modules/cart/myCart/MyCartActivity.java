@@ -22,11 +22,12 @@ import com.farmers.buyers.modules.cart.checkout.CheckOutFromCartActivity;
 import com.farmers.buyers.modules.cart.myCart.adapter.MyCartAdapter;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartCheckOutItem;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
+import com.farmers.buyers.modules.cart.myCart.view.MyCartItemViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,MyCartCheckoutViewHolder.MyCoupounClickListeners {
+public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,MyCartCheckoutViewHolder.MyCoupounClickListeners, MyCartItemViewHolder.decreaseCallback,MyCartItemViewHolder.increaseCallback  {
 
     private RecyclerView recyclerView;
     private MyCartAdapter adapter;
@@ -81,7 +82,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
 
     private void init() {
         recyclerView = findViewById(R.id._my_cart_recyclerView);
-        adapter = new MyCartAdapter(this,this);
+        adapter = new MyCartAdapter(this,this,this,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
@@ -90,8 +91,8 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         }
 
     private void prepareData() {
-        items.addAll(MyCartTransformer.getMyCartItem());
-        items.add(new MyCartCheckOutItem());
+       // items.addAll(MyCartTransformer.getMyCartItem());
+       // items.add(new MyCartCheckOutItem());
     }
 
 
@@ -108,5 +109,15 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
     @Override
     public void onCouponClicked(String couponCode) {
       //  Toast.makeText(MyCartActivity.this,couponCode,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void increaseCallback() {
+
+    }
+
+    @Override
+    public void decreseCallback() {
+
     }
 }
