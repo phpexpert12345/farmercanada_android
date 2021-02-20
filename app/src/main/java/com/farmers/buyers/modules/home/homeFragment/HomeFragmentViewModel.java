@@ -16,6 +16,7 @@ import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.DeliveryTypeItems;
 import com.farmers.buyers.modules.home.models.HomeFarmTypeItem;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.remote.StandardError;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
@@ -128,4 +129,24 @@ public class HomeFragmentViewModel extends BaseViewModel {
             }
         });
     }
+
+    public void changeUserType(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, ProfileRequestParams profileRequestParams) {
+        stateMachine.postValue(DataFetchState.<AllDataModel>loading());
+        repository.changeUserType(profileRequestParams, new ApiResponseCallback<AllDataModel>() {
+            @Override
+            public void onSuccess(AllDataModel response) {
+                if (response.isStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else {
+                    stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.<AllDataModel>error(standardError.getDisplayError(), null));
+            }
+        });
+    }
+
 }

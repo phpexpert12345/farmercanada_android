@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.modules.login.LoginActivity;
@@ -31,6 +32,7 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
     Marker mCurrLocationMarker;
     private GPSTracker gpsTracker;
     private Button manualLocationButton, allowLocationAccess;
+    private TextView tv_current_location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
     private void init() {
         manualLocationButton = findViewById(R.id.location_access_manual_btn);
         allowLocationAccess = findViewById(R.id.location_access_button);
-
+        tv_current_location = findViewById(R.id.tv_current_location);
         Latitude = gpsTracker.getLatitude();
         Longitude = gpsTracker.getLongitude();
 
@@ -87,6 +89,7 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
                 return;
             }
         }
+        tv_current_location.setText(gpsTracker.getAddressLine(this));
     }
 
     private boolean checkPermissions() {

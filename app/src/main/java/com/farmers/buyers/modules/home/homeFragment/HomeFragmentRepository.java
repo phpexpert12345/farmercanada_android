@@ -5,6 +5,7 @@ import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.forgotPassword.ForgotPasswordRequestParams;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
 
@@ -27,6 +28,12 @@ public class HomeFragmentRepository extends BaseRepository {
     public void getUserInformation(CategoryListRequestParams params, ApiResponseCallback<AllDataModel> responseCallback) {
         Call<AllDataModel> call = RetrofitBuilder.createServiceContract().getUserInformation(ApiConstants.USER_INFORMATION,
                 params.getUserId(), params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
+
+    public void changeUserType(ProfileRequestParams params, ApiResponseCallback<AllDataModel> responseCallback) {
+        Call<AllDataModel> call = RetrofitBuilder.createServiceContract().changeUserType(ApiConstants.CHANGE_USER_TYPE,
+                params.getLoginId(), params.getAccount_type(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
 }

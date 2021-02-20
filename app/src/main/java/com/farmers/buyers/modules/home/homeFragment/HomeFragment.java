@@ -1,9 +1,17 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +22,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
@@ -30,6 +39,8 @@ import com.farmers.buyers.modules.home.models.HomeSearchListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
+import com.farmers.buyers.modules.login.LoginActivity;
+import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -60,6 +71,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AllDataModel>> changeUserStateMachine = new MutableLiveData<>();
+    private AppController appController = AppController.get();
     public GPSTracker gpsTracker;
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
@@ -167,6 +180,28 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 }
             }
         });
+
+        changeUserStateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                    Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    SharedPreferenceManager.getInstance().clearUserInfo();
+                    startActivity(new Intent(baseActivity, LoginActivity.class));
+                    baseActivity.finish();
+                    break;
+                }
+            }
+        });
     }
 
     private void getUserSuccess() {
@@ -199,17 +234,58 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         Log.e("position", String.valueOf(position));
     }
 
+    public void buyer_seller_switch_dialog(Context activity) {
+
+        final Dialog dialog = new Dialog(activity, R.style.NewDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.buyer_seller_switch_dialog);
+        RadioGroup radioGroup = dialog.findViewById(R.id.user_type_radio_group);
+        TextView tv_user_type = dialog.findViewById(R.id.tv_user_type);
+        RadioButton radio_seller, radio_buyer;
+        radio_seller = dialog.findViewById(R.id.radio_seller);
+        radio_buyer = dialog.findViewById(R.id.radio_buyer);
+        tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
+
+        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")).
+                equalsIgnoreCase("Seller")) {
+            radio_seller.setChecked(true);
+        } else {
+            radio_buyer.setChecked(true);
+        }
+
+        radioGroup.setOnCheckedChangeListener((radioGroup1, i) -> {
+            switch (radioGroup1.getCheckedRadioButtonId()) {
+                case R.id.radio_seller: {//Buyer = 1 & Seller = 2
+                    //  Toast.makeText(getContext(), "Seller", Toast.LENGTH_SHORT).show();
+                    ProfileRequestParams profileRequestParams = new ProfileRequestParams("2",
+                            appController.getLoginId(), appController.getAuthenticationKey());
+                    viewModel.changeUserType(changeUserStateMachine, profileRequestParams);
+
+                    dialog.dismiss();
+                    break;
+                }
+                case R.id.radio_buyer: {
+                    //   Toast.makeText(getContext(), "Buyer", Toast.LENGTH_SHORT).show();
+                    ProfileRequestParams profileRequestParams = new ProfileRequestParams("1",
+                            appController.getLoginId(), appController.getAuthenticationKey());
+                    viewModel.changeUserType(changeUserStateMachine, profileRequestParams);
+                    dialog.dismiss();
+                    break;
+                }
+            }
+        });
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
     @Override
     public void onBecomeSellerClicked() {
-
-        LayoutInflater li = LayoutInflater.from(getContext());
-        View promptsView = li.inflate(R.layout.buyer_seller_switch_dialog, null);
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.NewDialog);
-        alertDialogBuilder.setView(promptsView);
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-
+        buyer_seller_switch_dialog(getContext());
     }
 
     @Override

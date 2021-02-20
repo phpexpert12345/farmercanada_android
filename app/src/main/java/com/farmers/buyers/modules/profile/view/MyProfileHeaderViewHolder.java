@@ -34,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyProfileHeaderViewHolder extends BaseViewHolder {
 
     private LinearLayout followersLL, walletLL, inboxLL, ll_switch_user;
-    private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type, tv_followers, my_profile_header_inbox_msg_tv;
+    private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type, tv_followers, tv_account_type, my_profile_header_inbox_msg_tv;
     private AppController appController = AppController.get();
     private CircleImageView profile_header_user_image;
 
@@ -51,6 +51,7 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
         tv_user_type = itemView.findViewById(R.id.tv_user_type);
         tv_followers = itemView.findViewById(R.id.tv_followers);
         my_profile_header_inbox_msg_tv = itemView.findViewById(R.id.my_profile_header_inbox_msg_tv);
+        tv_account_type = itemView.findViewById(R.id.tv_account_type);
 
         tv_wallet_balance.setText("$ " + appController.getWalletAmount());
         tv_user_name.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_NAME", "")));
@@ -88,7 +89,7 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
         ll_switch_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buyer_seller_switch_dialog(itemView.getContext());
+                profileItemClickListener.onUserChangeClicked();
             }
         });
 
@@ -99,25 +100,12 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
 
     }
 
-    public void buyer_seller_switch_dialog(Context activity) {
-
-        final Dialog dialog = new Dialog(activity, R.style.NewDialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setContentView(R.layout.buyer_seller_switch_dialog);
-
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-    }
-
     public interface MyProfileItemClickListener {
         void onFollowersItemClicked();
 
         void onWalletClicked();
+
+        void onUserChangeClicked();
 
         void onInboxClicked();
     }

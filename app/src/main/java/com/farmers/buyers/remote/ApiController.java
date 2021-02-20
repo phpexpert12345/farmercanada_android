@@ -59,6 +59,10 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AllDataModel> changeUserType(@Url String url, @Field("LoginId") String LoginId, @Field("account_type") String account_type, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
     Call<AllDataModel> getOffersList(@Url String url, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
@@ -83,7 +87,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<AddressApiModel> orderDetails(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String order_number,@Field("order_number") String farm_followed_status, @Field("auth_key") String authKey);
+    Call<AddressApiModel> orderDetails(@Url String url, @Field("LoginId") String LoginId, @Field("farm_followed_status") String order_number, @Field("order_number") String farm_followed_status, @Field("auth_key") String authKey);
 
 
     @FormUrlEncoded
