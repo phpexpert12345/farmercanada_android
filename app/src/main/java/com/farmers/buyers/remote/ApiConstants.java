@@ -13,6 +13,7 @@ public class ApiConstants {
     // Delete user from DataBase using MobileNumber http://farmercanada.com/buyer_api/phpexpert_customer_delete.php?mobile_number=9001262048
 
     public static Uri IMAGE_PATH_USER;
+    public static Uri IMAGE_PATH_COVER;
     public static final String LOGIN = "phpexpert_login.php";
     public static final String SIGN_UP = "buyer/sign-up";
     public static final String VERIFY_REGISTRATION_OTP = "phpexpert_account_mobile_verify.php";
