@@ -13,21 +13,29 @@ public class MyAddressRepository extends BaseRepository {
 
     public void addAddress(AddAddressRequestParams params, ApiResponseCallback<AddressApiModel> responseCallback) {
         Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().addAddress(ApiConstants.ADD_ADDRESS,
-                params.getLoginId(),params.getName_of_address(),params.getComplete_address(),
-                params.getAddress_city(),params.getAddress_state(),params.getAddress_postcode(),
-                params.getAccount_phone_number(),params.getAuthKey());
+                params.getLoginId(), params.getName_of_address(), params.getComplete_address(),
+                params.getAddress_city(), params.getAddress_state(), params.getAddress_postcode(),
+                params.getAccount_phone_number(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
 
     public void getAddressList(MyAddressRequestParams params, ApiResponseCallback<AddressApiModel> responseCallback) {
         Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().getAddressList(ApiConstants.ADDRESS_LIST,
-                params.getUserId(),params.getAuthKey());
+                params.getUserId(), params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
+
+    public void editAddress(AddAddressRequestParams params, ApiResponseCallback<AddressApiModel> responseCallback) {
+        Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().editAddress(ApiConstants.EDIT_ADDRESS,
+                params.getLoginId(), params.getAddressId(), params.getName_of_address(), params.getComplete_address(),
+                params.getAddress_city(), params.getAddress_state(), params.getAddress_postcode(),
+                params.getAccount_phone_number(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
 
     public void deleteAddress(AddAddressRequestParams params, ApiResponseCallback<AddressApiModel> responseCallback) {
         Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().deleteAddress(ApiConstants.DELETE_ADDRESS,
-                params.getLoginId(),params.getAddress_postcode(),params.getAuthKey());
+                params.getLoginId(), params.getAddress_postcode(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
 }

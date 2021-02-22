@@ -21,6 +21,9 @@
         android:layout_marginTop="@dimen/dp_50_px"
         android:layout_marginRight="@dimen/dp_16_px"/>-->
 
+    <!--
+            android:drawableEnd="@drawable/ic_mic"
+            android:drawableRight="@drawable/ic_mic"-->
         <EditText
             android:id="@+id/ed_search"
             android:layout_width="match_parent"
@@ -31,13 +34,11 @@
             android:background="@drawable/round_corner_white_bg"
             android:drawableStart="@drawable/ic_search"
             android:drawableLeft="@drawable/ic_search"
-            android:drawableEnd="@drawable/ic_mic"
-            android:drawableRight="@drawable/ic_mic"
             android:drawablePadding="@dimen/dp_16_px"
             android:ellipsize="end"
             android:enabled="true"
             android:fontFamily="@font/sf_ui_regular"
-            android:hint="@string/address"
+            android:hint="Enter your address"
             android:paddingStart="@dimen/dp_10_px"
             android:paddingLeft="@dimen/dp_10_px"
             android:paddingTop="@dimen/dp_16_px"
@@ -76,7 +77,7 @@
                 android:padding="@dimen/dp_16_px"
                 android:text="@string/address"
                 android:textColor="@color/header_color"
-                android:textSize="@dimen/sp_13_px" />
+                android:textSize="@dimen/dp_15_px" />
 
             <ImageButton
                 android:layout_width="@dimen/dp_40_px"

@@ -92,8 +92,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number"
                     android:singleLine="true"
-                    android:text="8959782829"
-                    android:inputType="text"
+                    android:maxLength="10"
+                    android:inputType="number"
                    />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -120,7 +120,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
                     android:singleLine="true"
-                    android:text="123456"
                     android:inputType="textPassword"/>
 
 
