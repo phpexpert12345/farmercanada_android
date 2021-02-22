@@ -105,13 +105,13 @@ public class SplashActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }
-    }
+            }
         }, 5000);
 
     }
 
     private void error(String error) {
         dismissLoader();
-        Toast.makeText(this, error, Toast.LENGTH_SHORT ).show();
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 }

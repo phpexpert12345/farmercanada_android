@@ -24,7 +24,7 @@ public class LoginViewModel extends BaseViewModel {
 
     public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String email, String password, int role) {
 
-        if (email.isEmpty()) {
+        if (email.isEmpty() || email.length() < 10) {
             stateMachine.postValue(DataFetchState.error("Please enter mobile number", new LoginApiModel()));
             return;
         }
@@ -44,12 +44,13 @@ public class LoginViewModel extends BaseViewModel {
                 if (response.isStatus()) {
                     SharedPreferenceManager.getInstance().setIsLoggedIn(true);
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
-                    SharedPreferenceManager.getInstance().setSharedPreference("",response.getData().getLoginId());
+                    SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {
                     stateMachine.postValue(DataFetchState.<LoginApiModel>error(response.getStatus_message(), null));
                 }
             }
+
             @Override
             public void onFailure(StandardError standardError) {
                 stateMachine.postValue(DataFetchState.<LoginApiModel>error(standardError.getDisplayError(), null));

@@ -83,7 +83,7 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
                         break;
                     }
                     case SUCCESS: {
-                        success();
+                        success(followersApiModelDataFetchState.status_message);
                     }
                     case ERROR: {
                         error(followersApiModelDataFetchState.status_message);
@@ -118,7 +118,8 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
         showToolbar();
     }
 
-    private void success() {
+    private void success(String msg) {
+       // Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         dismissLoader();
         bindAdapter();
     }

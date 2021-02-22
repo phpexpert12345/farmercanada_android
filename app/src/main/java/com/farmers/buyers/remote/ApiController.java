@@ -110,6 +110,18 @@ public interface ApiController {
                                      @Field("account_phone_number") String account_phone_number,
                                      @Field("auth_key") String authKey);
 
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> editAddress(@Url String url, @Field("LoginId") String LoginId, @Field("address_id") String address_id,
+                                     @Field("name_of_address") String name_of_address,
+                                     @Field("complete_address") String complete_address,
+                                     @Field("address_city") String address_city,
+                                     @Field("address_state") String address_state,
+                                     @Field("address_postcode") String address_postcode,
+                                     @Field("account_phone_number") String account_phone_number,
+                                     @Field("auth_key") String authKey);
+
     @FormUrlEncoded
     @POST
     Call<LoginApiModel> getChangePassword(@Url String url, @Field("new_password") String new_password,
@@ -121,7 +133,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<SignUpApiModel> doUserSignUp(@Url String url, @Field("account_name") String name, @Field("account_mobile") String mobile, @Field("account_email") String email, @Field("account_password") String password, @Field("account_type") Integer account_type, @Field("account_country") String account_country, @Field("account_state") String account_state, @Field("account_city") String account_city, @Field("account_address") String account_address, @Field("account_lat") String account_lat, @Field("account_long") String account_long, @Field("account_phone_code") String account_phone_code, @Field("device_id") String device_id, @Field("device_platform") String device_platform, @Field("auth_key") String authKey);
+    Call<SignUpApiModel> doUserSignUp(@Url String url, @Field("account_name") String name, @Field("account_mobile") String mobile, @Field("account_email") String email, @Field("account_password") String password,@Field("referral_code") String referral_code, @Field("account_type") Integer account_type, @Field("account_country") String account_country, @Field("account_state") String account_state, @Field("account_city") String account_city, @Field("account_address") String account_address, @Field("account_lat") String account_lat, @Field("account_long") String account_long, @Field("account_phone_code") String account_phone_code, @Field("device_id") String device_id, @Field("device_platform") String device_platform, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
@@ -168,17 +180,18 @@ public interface ApiController {
                                                    @Field("farm_category_id") String farm_category_id,
                                                    @Field("pageno") String pageno,
                                                    @Field("LoginId") String LoginId);
+
     @FormUrlEncoded
     @POST
-    Call<FarmListProductResponse>FARM__PRODUCT_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("farm_id") String farmId);
+    Call<FarmListProductResponse> FARM__PRODUCT_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("farm_id") String farmId);
 
 
     @FormUrlEncoded
     @POST
-    Call<ApplyCouponResponse>APPLY_COUPON_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
-                                                        @Field("farm_id") String farmId,
-                                                        @Field("coupon_code")String couponCode,
-                                                        @Field("subtotal_amount") int subTotalAmount);
+    Call<ApplyCouponResponse> APPLY_COUPON_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                                         @Field("farm_id") String farmId,
+                                                         @Field("coupon_code") String couponCode,
+                                                         @Field("subtotal_amount") int subTotalAmount);
 
     @FormUrlEncoded
     @POST
@@ -188,42 +201,41 @@ public interface ApiController {
     @POST
     Call<TaxResponse> TAX_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
                                         @Field("farm_id") String farmId,
-                                        @Field("delivery_distance")String deliveryDistance,
-                                        @Field("order_type")String orderType,
-                                        @Field("subtotal_amount")String subTotal);
+                                        @Field("delivery_distance") String deliveryDistance,
+                                        @Field("order_type") String orderType,
+                                        @Field("subtotal_amount") String subTotal);
 
     @FormUrlEncoded
     @POST
-    Call<SubmitResponse>SUBMIT_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
-                                             @Field("customer_long") String customer_long,
-                                             @Field("customer_lat")String customer_lat,
-                                             @Field("customer_postcode")String postcode,
-                                             @Field("customer_city")String customer_city,
-                                             @Field("customer_address")String customer_address,
-                                             @Field("WalletPay")String WalletPay,
-                                             @Field("order_type")String order_type,
-                                             @Field("SpecialInstruction")String SpecialInstruction,
-                                             @Field("delivery_time")String delivery_time,
-                                             @Field("delivery_date")String delivery_date,
-                                             @Field("discount_amount")String discount_amount,
-                                             @Field("coupon_discount_amount")String coupon_discount_amount,
-                                             @Field("Total_amount")String Total_amount,
-                                             @Field("delivery_amount")String delivery_amount,
-                                             @Field("service_tax_amount")String service_tax_amount,
-                                             @Field("gst_tax_amount")String gst_tax_amount,
-                                             @Field("subtotal")String subtotal,
-                                             @Field("payment_type")String payment_type,
-                                             @Field("address_id")String address_id,
-                                             @Field("LoginId")String LoginId,
-                                             @Field("instructions")String instructions,
-                                             @Field("item_unit_type")String item_unit_type,
-                                             @Field("strsizeid")String strsizeid,
-                                             @Field("Price")String Price,
-                                             @Field("Quantity")String Quantity,
-                                             @Field("itemId")String itemId,
-                                             @Field("payment_transaction_id")String payment_transaction_id,
-                                             @Field("farm_id")String farm_id);
-
+    Call<SubmitResponse> SUBMIT_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                              @Field("customer_long") String customer_long,
+                                              @Field("customer_lat") String customer_lat,
+                                              @Field("customer_postcode") String postcode,
+                                              @Field("customer_city") String customer_city,
+                                              @Field("customer_address") String customer_address,
+                                              @Field("WalletPay") String WalletPay,
+                                              @Field("order_type") String order_type,
+                                              @Field("SpecialInstruction") String SpecialInstruction,
+                                              @Field("delivery_time") String delivery_time,
+                                              @Field("delivery_date") String delivery_date,
+                                              @Field("discount_amount") String discount_amount,
+                                              @Field("coupon_discount_amount") String coupon_discount_amount,
+                                              @Field("Total_amount") String Total_amount,
+                                              @Field("delivery_amount") String delivery_amount,
+                                              @Field("service_tax_amount") String service_tax_amount,
+                                              @Field("gst_tax_amount") String gst_tax_amount,
+                                              @Field("subtotal") String subtotal,
+                                              @Field("payment_type") String payment_type,
+                                              @Field("address_id") String address_id,
+                                              @Field("LoginId") String LoginId,
+                                              @Field("instructions") String instructions,
+                                              @Field("item_unit_type") String item_unit_type,
+                                              @Field("strsizeid") String strsizeid,
+                                              @Field("Price") String Price,
+                                              @Field("Quantity") String Quantity,
+                                              @Field("itemId") String itemId,
+                                              @Field("payment_transaction_id") String payment_transaction_id,
+                                              @Field("farm_id") String farm_id);
 
 
     @FormUrlEncoded
@@ -236,7 +248,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<CartListResponse>CART_LIST_RESPONSE_CALL(@Url String url,@Field("auth_key") String authKey, @Field("LoginId") String userId,  @Field("farm_id") String farmId);
+    Call<CartListResponse> CART_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String userId, @Field("farm_id") String farmId);
 
 
     @FormUrlEncoded

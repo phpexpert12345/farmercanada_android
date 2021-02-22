@@ -1,39 +1,24 @@
 package com.farmers.buyers.modules.saveFarms;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
-import com.farmers.buyers.app.App;
-import com.farmers.buyers.common.SpacesItemDecoration;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
-import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
-import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
-import com.farmers.buyers.modules.login.LoginViewModel;
 import com.farmers.buyers.modules.saveFarms.adapter.SavedFarmsAdapter;
 import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * created by Mohammad Sajjad
@@ -103,6 +88,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
                 }
                 case SUCCESS: {
                     dismissLoader();
+                    getSavedFarmList();
                 }
                 case ERROR: {
                     error(saveUnsaveFarmApiModelDataFetchState.status_message);
@@ -163,7 +149,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     @Override
     public void onSaveFarmClicked(String id, int status) {
         viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
-        getSavedFarmList();
+//        getSavedFarmList();
     }
 
     @Override

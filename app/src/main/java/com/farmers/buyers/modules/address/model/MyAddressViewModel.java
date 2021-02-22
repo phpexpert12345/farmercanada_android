@@ -77,6 +77,47 @@ public class MyAddressViewModel extends BaseViewModel {
         });
     }
 
+    public void editAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine, AddAddressRequestParams addAddressRequestParams) {
+
+        if (addAddressRequestParams.getName_of_address().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Address Type", new AddressApiModel()));
+            return;
+        }
+        if (addAddressRequestParams.getComplete_address().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Complete Address", new AddressApiModel()));
+            return;
+        }
+        if (addAddressRequestParams.getAddress_city().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter City name", new AddressApiModel()));
+            return;
+        }
+        if (addAddressRequestParams.getAddress_state().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter City State", new AddressApiModel()));
+            return;
+        }
+        if (addAddressRequestParams.getAddress_postcode().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Postcode", new AddressApiModel()));
+            return;
+        }
+
+        stateMachine.postValue(DataFetchState.<AddressApiModel>loading());
+        repository.editAddress(addAddressRequestParams, new ApiResponseCallback<AddressApiModel>() {
+            @Override
+            public void onSuccess(AddressApiModel response) {
+                if (response.isStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else {
+                    stateMachine.postValue(DataFetchState.<AddressApiModel>error(response.getStatus_message(), null));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.<AddressApiModel>error(standardError.getDisplayError(), null));
+            }
+        });
+    }
+
     public void deleteAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine,AddAddressRequestParams addAddressRequestParams) {
 
         stateMachine.postValue(DataFetchState.<AddressApiModel>loading());

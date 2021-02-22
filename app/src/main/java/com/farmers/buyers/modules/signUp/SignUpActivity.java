@@ -44,7 +44,7 @@ import java.util.Locale;
 public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private TextView termsConditionTv;
     private Button signUpBtn;
-    private TextInputEditText nameEt, emailEt, numberEt, passwordEt;
+    private TextInputEditText nameEt, emailEt, numberEt, passwordEt, signUp_referral_et;
     private RadioGroup user_type_radio_group;
     public GPSTracker gpsTracker;
     private RadioButton radio_seller, radio_buyer;
@@ -88,6 +88,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         emailEt = findViewById(R.id.signUp_email_et);
         numberEt = findViewById(R.id.signUp_mobile_et);
         passwordEt = findViewById(R.id.signUp_password_et);
+        signUp_referral_et = findViewById(R.id.signUp_referral_et);
         user_type_radio_group = findViewById(R.id.user_type_radio_group);
         user_type_radio_group.setOnCheckedChangeListener(this);
 
@@ -181,7 +182,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private void doSignUp() {
         SignUpRequestParams signUpRequestParams = new SignUpRequestParams(nameEt.getText().toString(), numberEt.getText().toString(),
-                emailEt.getText().toString(), passwordEt.getText().toString(), account_type,
+                emailEt.getText().toString(), passwordEt.getText().toString(), signUp_referral_et.getText().toString().trim(), account_type,
                 gpsTracker.getCountryName(this), gpsTracker.getAdminArea(this),
                 gpsTracker.getLocality(this), gpsTracker.getAddressLine(this),
                 String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()),
