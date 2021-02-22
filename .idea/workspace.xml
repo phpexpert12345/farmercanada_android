@@ -17,7 +17,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="" />
+    <list default="true" id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,6 +170,10 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog/50.27.1316.741@50.27.1316.741" timestamp="1613831835600" />
+    <state x="339" y="160" width="728" height="482" key="MultipleFileMergeDialog" timestamp="1613970149250">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="339" y="160" width="728" height="482" key="MultipleFileMergeDialog/50.27.1316.741@50.27.1316.741" timestamp="1613970149250" />
     <state x="399" y="136" width="754" height="522" key="find.popup" timestamp="1613894720685">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
