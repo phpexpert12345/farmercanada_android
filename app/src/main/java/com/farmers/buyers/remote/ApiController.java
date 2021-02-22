@@ -3,6 +3,7 @@ package com.farmers.buyers.remote;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
+import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.followers.model.FollowersApiModel;
@@ -251,15 +252,18 @@ public interface ApiController {
     @POST
     Call<CartListResponse> CART_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String userId, @Field("farm_id") String farmId);
 
-
     @FormUrlEncoded
     @POST
     Call<FollowersApiModel> getFollowersList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);
 
-
     @FormUrlEncoded
     @POST
     Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status);
+
+    @FormUrlEncoded
+    @POST
+    Call<IncreaseDecreaseApiModel>INCREASE_DECREASE_API_MODEL_CALL(@Url String url, @Field("auth_key") String authKey, @Field("cart_id") String cartid, @Field("option_type") String optionType);
+
 
 
 }

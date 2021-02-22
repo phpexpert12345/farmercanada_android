@@ -17,14 +17,14 @@ import com.farmers.buyers.storage.CardConstant;
 public class MyCartAdapter extends BaseAdapter {
     MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners;
     MyCartCheckoutViewHolder.MyCoupounClickListeners myCoupounClickListeners;
-    MyCartItemViewHolder.increaseCallback increaseCallback;
-    MyCartItemViewHolder.decreaseCallback decreaseCallback;
+    MyCartItemViewHolder.IncreaseCallback increaseCallback;
+    MyCartItemViewHolder.DecreaseCallback decreaseCallback;
 
 
     public MyCartAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners,
                          MyCartCheckoutViewHolder.MyCoupounClickListeners myCoupounClickListeners1,
-                         MyCartItemViewHolder.increaseCallback increaseCallback1,
-                         MyCartItemViewHolder.decreaseCallback decreaseCallback1) {
+                         MyCartItemViewHolder.IncreaseCallback increaseCallback1,
+                         MyCartItemViewHolder.DecreaseCallback decreaseCallback1) {
         super();
         this.cartCheckOutClickListeners = cartCheckOutClickListeners;
         this.myCoupounClickListeners=myCoupounClickListeners1;

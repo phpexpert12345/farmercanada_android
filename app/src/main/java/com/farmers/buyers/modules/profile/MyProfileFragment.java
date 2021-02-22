@@ -274,7 +274,9 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case ADDRESS: {
-                baseActivity.startActivity(new Intent(baseActivity, MyAddressActivity.class));
+                Intent intentAddress=new Intent(baseActivity,MyAddressActivity.class);
+                intentAddress.putExtra("ComeFrom",1);
+                startActivity(intentAddress);
                 break;
             }
             case PAYMENTS: {

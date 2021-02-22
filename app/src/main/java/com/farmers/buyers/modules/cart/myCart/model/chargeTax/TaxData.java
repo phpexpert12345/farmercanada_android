@@ -49,6 +49,26 @@ public class TaxData implements Serializable, RecyclerViewListItem {
     private boolean isApplyCouponButton;
     private boolean isDiscountTextView;
     private boolean isRemoveDiscountButton;
+    private boolean isCouponApplied;
+
+
+    public boolean isCouponApplied() {
+        return isCouponApplied;
+    }
+
+    public void setCouponApplied(boolean couponApplied) {
+        isCouponApplied = couponApplied;
+    }
+
+    private String subTotal;
+
+    public String getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(String subTotal) {
+        this.subTotal = subTotal;
+    }
 
     public boolean isApplyCouponButton() {
         return isApplyCouponButton;
