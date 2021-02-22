@@ -196,7 +196,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
 
         new AlertDialog.Builder(MyAddressActivity.this)
                 .setTitle("Farmer Alert")
-                .setMessage("Are you sure !\nYou want to delete ?")
+                .setMessage("Are you sure ! You want to delete ?")
                 .setCancelable(false)
                 .setNegativeButton("Cancel", (dialog, which) -> {
                     dialog.dismiss();
@@ -213,12 +213,16 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
 
-        if (addressObj.getSelected()) {
-            Intent intent = new Intent();
-            intent.putExtra(Constant.DATA_INTENT, addressObj);
-            setResult(1254, intent);
-            finish();
-        }
+       try {
+           if (addressObj.getSelected()) {
+               Intent intent = new Intent();
+               intent.putExtra(Constant.DATA_INTENT, addressObj);
+               setResult(1254, intent);
+               finish();
+           }
+       }catch (Exception e){
+           e.getMessage();
+       }
 
     }
 }

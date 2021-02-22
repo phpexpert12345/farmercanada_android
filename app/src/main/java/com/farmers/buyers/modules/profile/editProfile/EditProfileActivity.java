@@ -54,6 +54,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.farmers.buyers.remote.ApiConstants.IMAGE_PATH_COVER;
 import static com.farmers.buyers.remote.ApiConstants.IMAGE_PATH_USER;
 
 public class EditProfileActivity extends BaseActivity {
@@ -78,9 +79,10 @@ public class EditProfileActivity extends BaseActivity {
     private TextView changeProfileImageTv;
     private EditText edit_profile_user_name, ed_profile_phone, ed_profile_email;
     private CircleImageView edit_profile_user_image;
+    private ImageView edit_profile_cover_image;
     public AppController appController = AppController.get();
-    private static final int USER_IMAGE = 3;
-    public boolean User = false;
+    private static final int USER_IMAGE = 3, COVER_IMAGE = 2;
+    public boolean User = false, Cover = false;
     public File extStore = null;
     public String docFileName;
     public Uri uriAll;
@@ -107,6 +109,7 @@ public class EditProfileActivity extends BaseActivity {
         ed_profile_email = findViewById(R.id.ed_profile_email);
         ed_profile_phone = findViewById(R.id.ed_profile_phone);
         edit_profile_user_image = findViewById(R.id.edit_profile_user_image);
+        edit_profile_cover_image = findViewById(R.id.edit_profile_cover_image);
 
         edit_profile_user_name.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_NAME", "")));
         ed_profile_email.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_EMAIL", "")));
@@ -153,6 +156,9 @@ public class EditProfileActivity extends BaseActivity {
         saveBtn.setOnClickListener(view -> {
             if (!User) {
                 Toast.makeText(EditProfileActivity.this, "Please Choose profile picture", Toast.LENGTH_SHORT).show();
+            }
+            if (!Cover) {
+                Toast.makeText(EditProfileActivity.this, "Please Choose cover picture", Toast.LENGTH_SHORT).show();
             } else {
                 editProfile();
             }
@@ -166,6 +172,11 @@ public class EditProfileActivity extends BaseActivity {
         });
 
         changeCoverImageTv.setOnClickListener(view -> {
+            if (checkCameraPermission()) {
+                selectImage(COVER_IMAGE);
+            } else {
+                requestPermission();
+            }
         });
     }
 
@@ -174,6 +185,7 @@ public class EditProfileActivity extends BaseActivity {
                 edit_profile_user_name.getText().toString().trim(),
                 ed_profile_email.getText().toString().trim(),
                 new File(IMAGE_PATH_USER.getPath()),
+                new File(IMAGE_PATH_COVER.getPath()),
                 AppController.get().getAuthenticationKey());
 
         viewModel.editProfile(stateMachine, addMoneyRequestParams);
@@ -238,12 +250,15 @@ public class EditProfileActivity extends BaseActivity {
                     }
 
                     if (imageType == USER_IMAGE) {
-                       /* Intent intent2 = new Intent(KycUpdate2.this, KycForProfile.class);
-                        startActivityForResult(intent2, USER_IMAGE);*/
                         IMAGE_PATH_USER = Uri.fromFile(extStore);
                         startActivityForResult(intent, USER_IMAGE);
                     } else {
-                        Log.v("er1", "Camera Permission error");
+                        Toast.makeText(EditProfileActivity.this, "Camera Permission error", Toast.LENGTH_SHORT).show();
+                    }
+                    if (imageType == COVER_IMAGE) {
+                        IMAGE_PATH_COVER = Uri.fromFile(extStore);
+                        startActivityForResult(intent, COVER_IMAGE);
+                    } else {
                         Toast.makeText(EditProfileActivity.this, "Camera Permission error", Toast.LENGTH_SHORT).show();
                     }
 
@@ -271,10 +286,23 @@ public class EditProfileActivity extends BaseActivity {
                 } catch (Exception e) {
                     Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                //  civ_user.setBackgroundColor(Color.WHITE);
                 edit_profile_user_image.setImageBitmap(resizedBitmap);
                 // civ_user.setRotation(-90);
                 User = true;
+            }
+            if (requestCode == COVER_IMAGE) {
+                File file = new File(IMAGE_PATH_COVER.getPath());
+                try {
+                    Bitmap bmap = BitmapFactory.decodeFile(file.getPath());
+                    resizedBitmap = getResizedBitmap(bmap, 500);
+                    resizedBitmap.compress(Bitmap.CompressFormat.PNG, 25, new FileOutputStream(file));
+
+                } catch (Exception e) {
+                    Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                edit_profile_cover_image.setImageBitmap(resizedBitmap);
+                // civ_user.setRotation(-90);
+                Cover = true;
             }
         } catch (Exception e) {
         }

@@ -18,7 +18,7 @@ public class MyAddressViewModel extends BaseViewModel {
     public void getAddressList(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine) {
 
         stateMachine.postValue(DataFetchState.<AddressApiModel>loading());
-        MyAddressRequestParams myAddressRequestParams = new MyAddressRequestParams(appController.getLoginId(),appController.getAuthenticationKey());
+        MyAddressRequestParams myAddressRequestParams = new MyAddressRequestParams(appController.getLoginId(), appController.getAuthenticationKey());
         repository.getAddressList(myAddressRequestParams, new ApiResponseCallback<AddressApiModel>() {
             @Override
             public void onSuccess(AddressApiModel response) {
@@ -56,6 +56,10 @@ public class MyAddressViewModel extends BaseViewModel {
         }
         if (addAddressRequestParams.getAddress_postcode().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Postcode", new AddressApiModel()));
+            return;
+        }
+        if (addAddressRequestParams.getAccount_phone_number().isEmpty() || addAddressRequestParams.getAccount_phone_number().length() < 10) {
+            stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new AddressApiModel()));
             return;
         }
 
@@ -99,6 +103,10 @@ public class MyAddressViewModel extends BaseViewModel {
             stateMachine.postValue(DataFetchState.error("Please enter Postcode", new AddressApiModel()));
             return;
         }
+        if (addAddressRequestParams.getAccount_phone_number().isEmpty() || addAddressRequestParams.getAccount_phone_number().length() < 10) {
+            stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new AddressApiModel()));
+            return;
+        }
 
         stateMachine.postValue(DataFetchState.<AddressApiModel>loading());
         repository.editAddress(addAddressRequestParams, new ApiResponseCallback<AddressApiModel>() {
@@ -118,7 +126,7 @@ public class MyAddressViewModel extends BaseViewModel {
         });
     }
 
-    public void deleteAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine,AddAddressRequestParams addAddressRequestParams) {
+    public void deleteAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine, AddAddressRequestParams addAddressRequestParams) {
 
         stateMachine.postValue(DataFetchState.<AddressApiModel>loading());
         repository.deleteAddress(addAddressRequestParams, new ApiResponseCallback<AddressApiModel>() {

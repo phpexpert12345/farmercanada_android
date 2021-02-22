@@ -107,10 +107,14 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                 String old_password = ed_old_password.getText().toString().trim();
                 String newPassword = ed_new_password.getText().toString();
                 String confirm_password = ed_confirm_password.getText().toString();
+                if (ed_new_password.getText().toString().trim().equalsIgnoreCase(ed_confirm_password.getText().toString().trim())) {
+                    viewModel.doChangePassword(stateMachine, newPassword,
+                            confirm_password, old_password, otp,
+                            getIntent().getStringExtra("USER_ID"));
+                } else {
+                    Toast.makeText(ChangePasswordActivity.this, "Please check your new password and confirm password", Toast.LENGTH_SHORT).show();
+                }
 
-                viewModel.doChangePassword(stateMachine, newPassword,
-                        confirm_password, old_password, otp,
-                        getIntent().getStringExtra("USER_ID"));
                 break;
         }
     }
