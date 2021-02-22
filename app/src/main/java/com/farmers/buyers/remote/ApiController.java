@@ -239,11 +239,9 @@ public interface ApiController {
     @POST
     Call<CartListResponse>CART_LIST_RESPONSE_CALL(@Url String url,@Field("auth_key") String authKey, @Field("LoginId") String userId,  @Field("farm_id") String farmId);
 
-
     @FormUrlEncoded
     @POST
     Call<FollowersApiModel> getFollowersList(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey);
-
 
     @FormUrlEncoded
     @POST

@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.cart.checkout.view;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,9 +27,8 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
     TextView addressDetailTv;
     TextView addressTypeTv;
     TextView changeAddress;
-    ConstraintLayout addressCard;
+    LinearLayout addressCard;
     ChangeAddressCallback addressCallback;
-
 
     public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent,final ChangeAddressCallback addressCallback1) {
         super(Extensions.inflate(parent, R.layout.check_out_from_cart_address_holder_layout));
@@ -46,18 +46,14 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
         addressTv.setText(item.getAddress());
         addressDetailTv.setText(item.getDetail());
         addressTypeTv.setText(item.getAddressType());
+        changeAddress.setVisibility(View.VISIBLE);
 
-        if (item.getSelected()) {
+       /* if (item.getSelected()) {
             addressCard.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
         } else {
             addressCard.setBackground(null);
         }
-
-       /* if (item.getCanChange()) {
-            changeAddress.setVisibility(View.VISIBLE);
-        } else {
-            changeAddress.setVisibility(View.GONE);
-        }*/
+*/
 
         changeAddress.setOnClickListener(new View.OnClickListener() {
             @Override

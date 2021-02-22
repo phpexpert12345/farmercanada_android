@@ -6,8 +6,9 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
@@ -17,29 +18,48 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9fd272-5630-4563-b82c-4489eb39e415" name="Default Changelist" comment="">
+    <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_baoyachi_StepView_1_9_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_baoyachi_StepView_1_9_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_12_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_12_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_params_stepview_stepview_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_params_stepview_stepview_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Farmers.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Farmers.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22-02-2021_11_36__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22-02-2021_11_36__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/AddressTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/AddressTransformer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/view/MyAddressListViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/view/MyAddressListViewHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SavedFarmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/saveFarms/SavedFarmsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/MyCartTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/MyCartTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/CheckOutFromCartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/CheckOutFromCartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/view/CheckOutFromCartAddressViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/view/CheckOutFromCartAddressViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/adapter/MyCartAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/adapter/MyCartAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/MyCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/MyCartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/chargeTax/TaxData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/model/chargeTax/TaxData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/view/MyCartCheckoutViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/view/MyCartCheckoutViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/view/MyCartItemViewDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/view/MyCartItemViewDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/view/MyCartItemViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/view/MyCartItemViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/MyProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/profile/MyProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_cart.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/check_out_from_cart_address_holder_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/check_out_from_cart_address_holder_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_cart_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_cart_item_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,11 +67,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_4_API_30]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,10 +93,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="oneplus-ac2001-de245444" />
+    <property name="DEBUGGABLE_PROCESS" value="com.farmers.buyers" />
+    <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_4_API_30" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-02-22T06:04:12.178Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -230,41 +262,63 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="516" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1613830048733">
-      <screen x="50" y="27" width="1316" height="741" />
+    <state x="403" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613987321608">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="403" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1613987321608" />
+    <state x="484" y="56" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1614004101093">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="484" y="56" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1614004101093" />
     <state x="516" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser/50.27.1316.741@50.27.1316.741" timestamp="1613830048733" />
-    <state width="1482" height="448" key="GridCell.Tab.0.bottom" timestamp="1613975246269">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="481" y="110" key="AndroidProcessChooserDialog" timestamp="1613984103535">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="481" y="110" key="AndroidProcessChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1613984103535" />
+    <state width="1306" height="123" key="GridCell.Tab.0.bottom" timestamp="1614006812954">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1306" height="123" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614006812954" />
     <state width="1482" height="448" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
     <state width="1270" height="322" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1613831956413" />
-    <state width="1482" height="448" key="GridCell.Tab.0.center" timestamp="1613975246269">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1306" height="123" key="GridCell.Tab.0.center" timestamp="1614006812954">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1306" height="123" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614006812954" />
     <state width="1482" height="448" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
     <state width="1270" height="322" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1613831956412" />
-    <state width="1482" height="448" key="GridCell.Tab.0.left" timestamp="1613975246268">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1306" height="123" key="GridCell.Tab.0.left" timestamp="1614006812954">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1306" height="123" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614006812954" />
     <state width="1482" height="448" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1613975246268" />
     <state width="1270" height="322" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1613831956411" />
-    <state width="1482" height="448" key="GridCell.Tab.0.right" timestamp="1613975246269">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1306" height="123" key="GridCell.Tab.0.right" timestamp="1614006812954">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1306" height="123" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614006812954" />
     <state width="1482" height="448" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
     <state width="1270" height="322" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1613831956412" />
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog" timestamp="1613831835600">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog/50.27.1316.741@50.27.1316.741" timestamp="1613831835600" />
-    <state x="403" y="176" key="MultipleFileMergeDialog" timestamp="1613973683819">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="166" y="85" key="MergeDialog" timestamp="1613976587972">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="166" y="85" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1613976587972" />
+    <state x="358" y="155" key="MultipleFileMergeDialog" timestamp="1613976587982">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="358" y="155" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1613976587982" />
     <state x="403" y="176" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1613973683819" />
     <state x="399" y="136" width="754" height="522" key="find.popup" timestamp="1613894720685">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="399" y="136" width="754" height="522" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1613894720685" />
+    <state x="339" y="21" width="672" height="676" key="search.everywhere.popup" timestamp="1614007527207">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="21" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1614007527207" />
   </component>
 </project>

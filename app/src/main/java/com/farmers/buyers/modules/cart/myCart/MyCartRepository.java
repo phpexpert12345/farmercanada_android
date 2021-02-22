@@ -43,7 +43,6 @@ public class MyCartRepository extends BaseRepository {
         Call<CartListResponse> call = RetrofitBuilder.createServiceContract().CART_LIST_RESPONSE_CALL(ApiConstants.CUSTOMER_PRODUCT_CART_LIST_URL,
                 params.getAuth_key(),params.getLoginId(),params.getFarm_id());
         makeRequest(call, cartResponse);
-
     }
 
     public void increaseDecrease(IncreaseDecreaseParams params, ApiResponseCallback<IncreaseDecreaseApiModel> apiResponseCallback){

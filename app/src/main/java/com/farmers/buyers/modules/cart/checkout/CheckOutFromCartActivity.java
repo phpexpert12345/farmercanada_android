@@ -73,7 +73,6 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         })));
 
@@ -87,7 +86,6 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             taxData.setDiscountTextView(false);
         }
         taxData.setDiscountAmount(OrderSingleton.getInstance().getCoupon_discount_amount());
-
         CheckOutCartAddressItems addressItems=new CheckOutCartAddressItems("","My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true, true);
         prepareItem(taxData,addressItems);
         init();
@@ -149,9 +147,12 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1254)
         {
-            CheckOutCartAddressItems address=(CheckOutCartAddressItems)data.getSerializableExtra(Constant.DATA_INTENT);
-            prepareItem(taxData,address);
-            adapter.updateData(items);
+            if (data!=null){
+                CheckOutCartAddressItems address=(CheckOutCartAddressItems)data.getSerializableExtra(Constant.DATA_INTENT);
+                prepareItem(taxData,address);
+                adapter.updateData(items);
+            }
+
         }
     }
 }

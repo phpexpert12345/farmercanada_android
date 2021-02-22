@@ -27,7 +27,7 @@ import com.farmers.buyers.modules.cart.myCart.view.MyCartItemViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,MyCartCheckoutViewHolder.MyCoupounClickListeners, MyCartItemViewHolder.decreaseCallback,MyCartItemViewHolder.increaseCallback  {
+public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners, MyCartItemViewHolder.IncreaseCallback, MyCartItemViewHolder.DecreaseCallback {
 
     private RecyclerView recyclerView;
     private MyCartAdapter adapter;
@@ -67,6 +67,8 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
+
+
                             }
                         }
                 ));
@@ -111,13 +113,14 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
       //  Toast.makeText(MyCartActivity.this,couponCode,Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
-    public void increaseCallback() {
+    public void increaseCallback(String cartId) {
 
     }
 
     @Override
-    public void decreseCallback() {
+    public void decreseCallback(String cartId) {
 
     }
 }

@@ -1,5 +1,7 @@
 package com.farmers.buyers.modules.cart;
 
+import android.util.Log;
+
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
@@ -21,16 +23,13 @@ public class MyCartTransformer {
 
     public static List<MyCartItem> getMyCartItem(List <FarmProductCartList> cartLists) {
         List<MyCartItem> items = new ArrayList<>();
+
         for (int i=0;cartLists.size()>i;i++){
+            int itemSubPrice=Integer.parseInt(cartLists.get(i).getItemQuantity())*(Integer.parseInt(cartLists.get(i).getItemPrice()));
             items.add(new MyCartItem(cartLists.get(i).getFarmLogo(),cartLists.get(i).getFarmName(),cartLists.get(i).getItemPrice(),
-                    cartLists.get(i).getFarmAddress()));
+                    cartLists.get(i).getFarmAddress(),cartLists.get(i).getCartId(),Integer.parseInt(cartLists.get(i).getItemQuantity()),itemSubPrice));
+
         }
-       /* items.add(new MyCartItem(R.drawable.cart_one, "", "", ""));
-        items.add(new MyCartItem(R.drawable.cart_two, "", "", ""));
-        items.add(new MyCartItem(R.drawable.cart_three, "", "", ""));
-        items.add(new MyCartItem(R.drawable.cart_three, "", "", ""));
-        items.add(new MyCartItem(R.drawable.cart_three, "", "", ""));
-        items.add(new MyCartItem(R.drawable.cart_one, "", "", ""));*/
         return items;
     }
 
