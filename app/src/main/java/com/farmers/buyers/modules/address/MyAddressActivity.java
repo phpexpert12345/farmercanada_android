@@ -78,7 +78,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
             }
         })));
 
-        //   prepareItems();
         init();
         listener();
     }
@@ -91,7 +90,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // adapter.updateData(items);
 
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
             @Override
@@ -109,7 +107,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                 buffer.add(new MyButton(MyAddressActivity.this, R.drawable.ic_edit, Color.parseColor("#FFFFFFFF"),
                         new SwipeControllerActions() {
                             @Override
-                            public void onRightClicked(int position) {
+                            public void onLeftClicked(int position) {
                                 super.onRightClicked(position);
                                 Toast.makeText(MyAddressActivity.this, "Click- 2", Toast.LENGTH_SHORT).show();
                             }

@@ -103,6 +103,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
                 }
                 case SUCCESS: {
                     dismissLoader();
+                    getSavedFarmList();
                 }
                 case ERROR: {
                     error(saveUnsaveFarmApiModelDataFetchState.status_message);
@@ -163,7 +164,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     @Override
     public void onSaveFarmClicked(String id, int status) {
         viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
-        getSavedFarmList();
+//        getSavedFarmList();
     }
 
     @Override
