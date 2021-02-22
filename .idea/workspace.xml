@@ -17,13 +17,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="" />
+    <list default="true" id="10dc1c80-56af-49c7-a145-711283e45f2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/view/MyAddressListViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/view/MyAddressListViewHolder.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@c14ec2547d43]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -147,22 +155,22 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="516" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser/50.27.1316.741@50.27.1316.741" timestamp="1613830048733" />
-    <state width="1270" height="322" key="GridCell.Tab.0.bottom" timestamp="1613831956413">
+    <state width="1270" height="322" key="GridCell.Tab.0.bottom" timestamp="1613974848566">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state width="1270" height="322" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1613831956413" />
-    <state width="1270" height="322" key="GridCell.Tab.0.center" timestamp="1613831956412">
+    <state width="1270" height="322" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1613974848566" />
+    <state width="1270" height="322" key="GridCell.Tab.0.center" timestamp="1613974848564">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state width="1270" height="322" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1613831956412" />
-    <state width="1270" height="322" key="GridCell.Tab.0.left" timestamp="1613831956411">
+    <state width="1270" height="322" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1613974848564" />
+    <state width="1270" height="322" key="GridCell.Tab.0.left" timestamp="1613974848564">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state width="1270" height="322" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1613831956411" />
-    <state width="1270" height="322" key="GridCell.Tab.0.right" timestamp="1613831956412">
+    <state width="1270" height="322" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1613974848564" />
+    <state width="1270" height="322" key="GridCell.Tab.0.right" timestamp="1613974848565">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
-    <state width="1270" height="322" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1613831956412" />
+    <state width="1270" height="322" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1613974848565" />
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog" timestamp="1613831835600">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
