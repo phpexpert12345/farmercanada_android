@@ -328,6 +328,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         final Dialog dialog = new Dialog(activity, R.style.NewDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.buyer_seller_switch_dialog);
         RadioGroup radioGroup = dialog.findViewById(R.id.user_type_radio_group);
         TextView tv_user_type = dialog.findViewById(R.id.tv_user_type);

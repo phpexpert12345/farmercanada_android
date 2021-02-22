@@ -26,6 +26,7 @@ public class ApiConstants {
     public static final String ADDRESS_LIST = "phpexpert_customer_address_list.php";
     public static final String DELETE_ADDRESS = "phpexpert_customer_address_delete.php";
     public static final String ADD_ADDRESS = "phpexpert_customer_address_add.php";
+    public static final String EDIT_ADDRESS = "phpexpert_customer_address_edit.php";
     public static final String CHANGE_PASSWORD = "phpexpert_change_password.php";
     public static final String USER_INFORMATION = "phpexpert_customer_information.php";
     public static final String WALLET_HISTORY = "phpexpert_customer_wallet_history.php";

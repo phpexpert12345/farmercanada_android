@@ -162,6 +162,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         final Dialog dialog = new Dialog(activity, R.style.NewDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.buyer_seller_switch_dialog);
         RadioGroup radioGroup = dialog.findViewById(R.id.user_type_radio_group);
         TextView tv_user_type = dialog.findViewById(R.id.tv_user_type);
@@ -235,7 +236,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
             case OPEN_STORE: {
 //                startActivity(new Intent(baseActivity, ManageCouponActivity.class));
-//                break;
+                break;
             }
 
             case LEARN_ABOUT_STORE: {
@@ -278,7 +279,10 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 startActivity(intentAddress);
                 break;
             }
-
+            case PAYMENTS: {
+                Toast.makeText(baseActivity, "In-progress", Toast.LENGTH_SHORT).show();
+                break;
+            }
         }
     }
 }

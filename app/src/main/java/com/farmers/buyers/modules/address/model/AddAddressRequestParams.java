@@ -16,10 +16,24 @@ public class AddAddressRequestParams {
     String address_postcode;
     String account_phone_number;
     String authKey;
+    String addressId;
 
-    public AddAddressRequestParams(String loginId,String addressId, String authKey) {
+    public AddAddressRequestParams(String loginId, String addressId, String authKey) {
         this.LoginId = loginId;
         this.address_postcode = addressId;
+        this.authKey = authKey;
+    }
+
+    public AddAddressRequestParams(String loginId, String addressId, String name_of_address, String complete_address, String address_city, String address_state,
+                                   String address_postcode, String account_phone_number, String authKey) {
+        this.LoginId = loginId;
+        this.addressId = addressId;
+        this.name_of_address = name_of_address;
+        this.complete_address = complete_address;
+        this.address_city = address_city;
+        this.address_state = address_state;
+        this.address_postcode = address_postcode;
+        this.account_phone_number = account_phone_number;
         this.authKey = authKey;
     }
 
@@ -33,6 +47,14 @@ public class AddAddressRequestParams {
         this.address_postcode = address_postcode;
         this.account_phone_number = account_phone_number;
         this.authKey = authKey;
+    }
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
     }
 
     public String getLoginId() {

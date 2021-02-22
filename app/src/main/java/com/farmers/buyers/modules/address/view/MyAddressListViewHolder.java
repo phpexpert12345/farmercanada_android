@@ -62,6 +62,7 @@ public class MyAddressListViewHolder extends BaseViewHolder {
         } else {
             changeAddress.setVisibility(View.GONE);
         }*/
+
     }
 
     public interface AddressItemClickListener {

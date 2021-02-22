@@ -64,7 +64,7 @@ public class ManualLocationActivity extends AppCompatActivity implements OnMapRe
         confirmLocation = findViewById(R.id.manual_location_confirm_btn);
         tv_address = findViewById(R.id.tv_address);
         ed_search = findViewById(R.id.ed_search);
-
+        tv_address.setText(gpsTracker.getAddressLine(this));
         Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
         placesClient = Places.createClient(ManualLocationActivity.this);
 
