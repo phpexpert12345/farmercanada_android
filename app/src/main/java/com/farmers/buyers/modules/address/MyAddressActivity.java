@@ -132,7 +132,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                     break;
                 }
                 case SUCCESS: {
-                  //  Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     dismissLoader();
                     items.clear();
                     items.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
@@ -169,7 +169,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     }
 
     private void prepareItems() {
-        items.addAll(AddressTransformer.getAddress());
+        // items.addAll(AddressTransformer.getAddress());
     }
 
     @Override

@@ -157,13 +157,15 @@ public class EditProfileActivity extends BaseActivity {
                 editProfile();
             }
         });
-
-        changeCoverImageTv.setOnClickListener(view -> {
+        changeProfileImageTv.setOnClickListener(view -> {
             if (checkCameraPermission()) {
                 selectImage(USER_IMAGE);
             } else {
                 requestPermission();
             }
+        });
+
+        changeCoverImageTv.setOnClickListener(view -> {
         });
     }
 
