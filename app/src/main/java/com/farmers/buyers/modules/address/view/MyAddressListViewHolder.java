@@ -46,10 +46,10 @@ public class MyAddressListViewHolder extends BaseViewHolder {
 
         addressCard.setOnClickListener(view -> addressItemClickListener.onAddressItemClicked(item));
 
-        addressCard.setOnTouchListener((arg0, arg1) -> {
-            addressItemClickListener.onAddressItemClicked(item);
-            return false;
-        });
+//        addressCard.setOnTouchListener((arg0, arg1) -> {
+//            addressItemClickListener.onAddressItemClicked(item);
+//            return false;
+//        });
 
      /*   if (item.getSelected()) {
             addressCard.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));

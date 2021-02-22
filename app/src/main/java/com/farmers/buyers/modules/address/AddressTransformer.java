@@ -24,20 +24,15 @@ public class AddressTransformer {
                     allDataModels.get(i).getAddress_title(), ""));
         }
 
-      /*  items.add(new CheckOutCartAddressItems("My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true, false));
-        items.add(new CheckOutCartAddressItems("Daddy Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
-        items.add(new CheckOutCartAddressItems("Daddy Home Addres2", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
-        items.add(new CheckOutCartAddressItems("Daddy Home Addres3", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
-       */
         return items;
     }
 
-    public static List<CheckOutCartAddressItems> getAddress() {
-        List<CheckOutCartAddressItems> items = new ArrayList<>();
-        items.add(new CheckOutCartAddressItems("", "My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true, false));
-        items.add(new CheckOutCartAddressItems("", "Daddy Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
-        items.add(new CheckOutCartAddressItems("", "Daddy Home Addres2", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
-        items.add(new CheckOutCartAddressItems("", "Daddy Home Addres3", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
-        return items;
-    }
+//    public static List<CheckOutCartAddressItems> getAddress() {
+//        List<CheckOutCartAddressItems> items = new ArrayList<>();
+//        items.add(new CheckOutCartAddressItems("", "My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true, false));
+//        items.add(new CheckOutCartAddressItems("", "Daddy Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
+//        items.add(new CheckOutCartAddressItems("", "Daddy Home Addres2", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
+//        items.add(new CheckOutCartAddressItems("", "Daddy Home Addres3", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", false, false));
+//        return items;
+//    }
 }
