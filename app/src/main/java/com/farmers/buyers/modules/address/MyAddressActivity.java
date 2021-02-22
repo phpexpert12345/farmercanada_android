@@ -206,7 +206,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     @Override
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
-
         if (addressObj.getSelected()){
             Intent intent=new Intent();
             intent.putExtra(Constant.DATA_INTENT,addressObj);

@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
@@ -99,11 +100,14 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
         stateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
-                    // dismissLoader();
+                     dismissLoader();
+                    Toast.makeText(SubOrderListActivity.this,dataFetchState.status_message,Toast.LENGTH_SHORT).show();
+
                     break;
                 }
                 case LOADING: {
                     showLoader();
+
                     break;
                 }
                 case SUCCESS: {

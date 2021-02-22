@@ -11,6 +11,8 @@ import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartReqParam;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxRequestParam;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
+import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
+import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.FarmDetailRepository;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -76,6 +78,21 @@ public class MyCartViewModel extends BaseViewModel {
             }
         });
 
+    }
+
+    public void increaseDecrease(final MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>>  stateMutableLiveData, IncreaseDecreaseParams param){
+        stateMutableLiveData.postValue(DataFetchState.<IncreaseDecreaseApiModel>loading());
+        repository.increaseDecrease(param, new ApiResponseCallback<IncreaseDecreaseApiModel>() {
+            @Override
+            public void onSuccess(IncreaseDecreaseApiModel response) {
+
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+
+            }
+        });
     }
 
 }
