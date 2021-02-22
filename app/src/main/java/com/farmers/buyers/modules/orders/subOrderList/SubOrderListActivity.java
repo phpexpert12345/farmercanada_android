@@ -100,9 +100,7 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
         stateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
-                     dismissLoader();
-                    Toast.makeText(SubOrderListActivity.this,dataFetchState.status_message,Toast.LENGTH_SHORT).show();
-
+                    dismissLoader();
                     break;
                 }
                 case LOADING: {

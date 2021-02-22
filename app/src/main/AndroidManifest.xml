@@ -21,6 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
 
         <activity android:name=".modules.addMoney.AddMoneyWallet" />
@@ -79,10 +80,12 @@
         </activity>
         <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
         <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity" />
+        <activity android:name=".modules.aboutStore.AboutStoreActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
     </application>
 
 </manifest>

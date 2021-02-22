@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     private TextView addNewAddress;
     private String addressId;
     private List<RecyclerViewListItem> items = new ArrayList<>();
+    private List<CheckOutCartAddressItems> addressItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
             }
         })));
 
-        //   prepareItems();
         init();
         listener();
     }
@@ -91,7 +92,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // adapter.updateData(items);
 
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
             @Override
@@ -109,8 +109,8 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                 buffer.add(new MyButton(MyAddressActivity.this, R.drawable.ic_edit, Color.parseColor("#FFFFFFFF"),
                         new SwipeControllerActions() {
                             @Override
-                            public void onRightClicked(int position) {
-                                super.onRightClicked(position);
+                            public void onLeftClicked(int position) {
+                                super.onLeftClicked(position);
                                 Toast.makeText(MyAddressActivity.this, "Click- 2", Toast.LENGTH_SHORT).show();
                             }
                         }));
@@ -132,10 +132,12 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                     break;
                 }
                 case SUCCESS: {
-                  //  Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     dismissLoader();
                     items.clear();
+                    addressItems.clear();
                     items.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
+                    addressItems.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
                     adapter.updateData(items);
                     break;
                 }
@@ -166,10 +168,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     private void listener() {
         addNewAddress.setOnClickListener(view -> startActivity(new Intent(MyAddressActivity.this,
                 AddNewAddressActivity.class)));
-    }
-
-    private void prepareItems() {
-        items.addAll(AddressTransformer.getAddress());
     }
 
     @Override
