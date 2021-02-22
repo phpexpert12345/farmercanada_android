@@ -80,6 +80,7 @@
         </activity>
         <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
         <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity" />
+        <activity android:name=".modules.aboutStore.AboutStoreActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
