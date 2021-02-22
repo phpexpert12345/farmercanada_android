@@ -43,6 +43,7 @@ public class SignUpRepository extends BaseRepository {
                 params.getMobile(),
                 params.getEmail(),
                 params.getPassword(),
+                params.getReferralCode(),
                 params.getAccount_type(),
                 params.getAccount_country(),
                 params.getAccount_state(),

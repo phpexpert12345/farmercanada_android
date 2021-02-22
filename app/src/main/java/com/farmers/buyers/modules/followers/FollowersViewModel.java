@@ -33,7 +33,7 @@ public class FollowersViewModel extends BaseViewModel {
             public void onSuccess(FollowersApiModel response) {
                 if (response.getStatus()) {
                     items.addAll(FollowersTransformer.getFollowersItems(response.getData().getFarmFollowedList()));
-                    stateMachine.postValue(DataFetchState.success(response, ""));
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 }
                 else {
                     stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new FollowersApiModel()));
@@ -56,7 +56,7 @@ public class FollowersViewModel extends BaseViewModel {
         repository.followUnFollowFarm(params, new ApiResponseCallback<FollowUnFollowApiModel>() {
             @Override
             public void onSuccess(FollowUnFollowApiModel response) {
-                stateMachine.postValue(DataFetchState.success(response, ""));
+                stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
             }
 
             @Override

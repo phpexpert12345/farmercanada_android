@@ -101,7 +101,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
-                                showConfirmMessage(position);
+                                showConfirmMessage(addressItems.get(position).getAddress_id());
                             }
                         }
                 ));
@@ -111,7 +111,12 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
-                                Toast.makeText(MyAddressActivity.this, "Click- 2", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MyAddressActivity.this,
+                                        AddNewAddressActivity.class).
+                                        putExtra("KEY_FROM", "EDIT_ADDRESS").
+                                        putExtra("ADDRESS_ID", addressItems.get(position).getAddress_id()).
+                                        putExtra("ADDRESS", addressItems.get(position).getAddress()).
+                                        putExtra("ADDRESS_TITLE", addressItems.get(position).getAddressTitle()));
                             }
                         }));
             }
@@ -132,13 +137,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                     break;
                 }
                 case SUCCESS: {
-                    //  Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                    dismissLoader();
-                    items.clear();
-                    addressItems.clear();
-                    items.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
-                    addressItems.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
-                    adapter.updateData(items);
+                    addressListSuccess(dataFetchState);
                     break;
                 }
             }
@@ -156,8 +155,8 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                     break;
                 }
                 case SUCCESS: {
-                    Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     dismissLoader();
+                    Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     viewModel.getAddressList(stateMachine);
                     break;
                 }
@@ -165,9 +164,18 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         });
     }
 
+    private void addressListSuccess(DataFetchState<AddressApiModel> dataFetchState) {
+        dismissLoader();
+        items.clear();
+        addressItems.clear();
+        items.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
+        addressItems.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
+        adapter.updateData(items);
+    }
+
     private void listener() {
         addNewAddress.setOnClickListener(view -> startActivity(new Intent(MyAddressActivity.this,
-                AddNewAddressActivity.class)));
+                AddNewAddressActivity.class).putExtra("KEY_FROM", "ADD_ADDRESS")));
     }
 
     @Override
@@ -181,7 +189,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         return true;
     }
 
-    public void showConfirmMessage(int pos) {
+    public void showConfirmMessage(String addressId) {
         AddAddressRequestParams addAddressRequestParams = new AddAddressRequestParams(AppController.get().getLoginId(),
                 addressId,
                 AppController.get().getAuthenticationKey());
@@ -205,10 +213,10 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
 
-        if (addressObj.getSelected()){
-            Intent intent=new Intent();
-            intent.putExtra(Constant.DATA_INTENT,addressObj);
-            setResult(1254,intent);
+        if (addressObj.getSelected()) {
+            Intent intent = new Intent();
+            intent.putExtra(Constant.DATA_INTENT, addressObj);
+            setResult(1254, intent);
             finish();
         }
 

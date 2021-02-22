@@ -53,6 +53,8 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
     public int AUTOCOMPLETE_REQUEST_CODE = 100;
     public MyAddressViewModel viewModel = factory.create(MyAddressViewModel.class);
     private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AddressApiModel>> editStateMachine = new MutableLiveData<>();
+
     public LatLngToGeoLocation latLngToGeoLocation = new LatLngToGeoLocation();
     private Button bt_submit;
     private EditText ed_name_of_address, ed_complete_address, ed_city, ed_state, ed_postal_code, ed_mobile_number;
@@ -90,43 +92,38 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
         ed_postal_code = findViewById(R.id.ed_postal_code);
         ed_mobile_number = findViewById(R.id.ed_mobile_number);
 
-      /*  Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
-        placesClient = Places.createClient(AddNewAddressActivity.this);
-
-        if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        if (getIntent().getStringExtra("KEY_FROM").equalsIgnoreCase("EDIT_ADDRESS")) {
+            ed_name_of_address.setText(getIntent().getStringExtra("ADDRESS_TITLE"));
+            ed_complete_address.setText(getIntent().getStringExtra("ADDRESS"));
+            ed_city.setText("");
+            ed_state.setText("");
+            ed_postal_code.setText("");
+            ed_mobile_number.setText("");
+        } else {
         }
 
-        autocompleteFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS,
-                Place.Field.ADDRESS_COMPONENTS));
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                placeAddress = place;
-                // Log.d("TAG", String.valueOf(place));
-                SearchFlag = true;
-                double lat = placeAddress.getLatLng().latitude;
-                double lng = placeAddress.getLatLng().longitude;
-                try {
-                    ed_complete_address.setText(latLngToGeoLocation.getAddressLine(AddNewAddressActivity.this, lat, lng));
-                    ed_city.setText(latLngToGeoLocation.getLocality(AddNewAddressActivity.this, lat, lng));
-                    ed_state.setText(latLngToGeoLocation.getAdminArea(AddNewAddressActivity.this, lat, lng));
-                    ed_postal_code.setText(latLngToGeoLocation.getPostalCode(AddNewAddressActivity.this, lat, lng));
-                } catch (Exception e) {
-                    Log.i("TAG", "An error occurred: GeoCoder" + e.getMessage());
+        stateMachine.observe(this, dataFetchState -> {
+            switch (dataFetchState.status) {
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                    Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddNewAddressActivity.this, MyAddressActivity.class));
+                    finish();
+                    break;
                 }
             }
-
-            @Override
-            public void onError(Status status) {
-                Log.i("TAG", "An error occurred: " + status);
-            }
         });
-*/
 
-        stateMachine.observe(this, dataFetchState -> {
+        editStateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
                     dismissLoader();
@@ -166,13 +163,22 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
+        if (getIntent().getStringExtra("KEY_FROM").equalsIgnoreCase("EDIT_ADDRESS")) {
+            AddAddressRequestParams addAddressRequestParams = new AddAddressRequestParams(AppController.get().getLoginId(),
+                    getIntent().getStringExtra("ADDRESS_ID"), ed_name_of_address.getText().toString().trim(),
+                    ed_complete_address.getText().toString().trim(), ed_city.getText().toString().trim(),
+                    ed_state.getText().toString().trim(), ed_postal_code.getText().toString().trim(),
+                    ed_mobile_number.getText().toString().trim(), AppController.get().getAuthenticationKey());
 
-        AddAddressRequestParams addAddressRequestParams = new AddAddressRequestParams(AppController.get().getLoginId(), ed_name_of_address.getText().toString().trim(),
-                ed_complete_address.getText().toString().trim(), ed_city.getText().toString().trim(),
-                ed_state.getText().toString().trim(), ed_postal_code.getText().toString().trim(),
-                ed_mobile_number.getText().toString().trim(), AppController.get().getAuthenticationKey());
+            viewModel.editAddress(stateMachine, addAddressRequestParams);
+        } else {
+            AddAddressRequestParams addAddressRequestParams = new AddAddressRequestParams(AppController.get().getLoginId(), ed_name_of_address.getText().toString().trim(),
+                    ed_complete_address.getText().toString().trim(), ed_city.getText().toString().trim(),
+                    ed_state.getText().toString().trim(), ed_postal_code.getText().toString().trim(),
+                    ed_mobile_number.getText().toString().trim(), AppController.get().getAuthenticationKey());
 
-        viewModel.addAddress(stateMachine, addAddressRequestParams);
+            viewModel.addAddress(stateMachine, addAddressRequestParams);
+        }
     }
 
     private void searchPlace() {

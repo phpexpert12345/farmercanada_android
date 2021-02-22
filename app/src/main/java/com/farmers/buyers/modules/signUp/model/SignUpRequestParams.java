@@ -58,21 +58,23 @@ public class SignUpRequestParams {
     }
 
     Integer account_type;
-    String  account_country;
+    String account_country;
     String account_state;
-    String  account_city;
+    String account_city;
     String account_address;
     String account_lat;
     String account_long;
     String account_phone_code;
     String device_id;
     String device_platform;
+    String referralCode;
 
-    public SignUpRequestParams(String name, String mobile, String email, String password, Integer account_type, String  account_country, String account_state,String  account_city,String account_address,String account_lat,String account_long,String account_phone_code,String device_id,String device_platform, String authKey) {
+    public SignUpRequestParams(String name, String mobile, String email, String password, String referralCode, Integer account_type, String account_country, String account_state, String account_city, String account_address, String account_lat, String account_long, String account_phone_code, String device_id, String device_platform, String authKey) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
         this.password = password;
+        this.referralCode = referralCode;
         this.account_country = account_country;
         this.account_city = account_city;
         this.account_address = account_address;
@@ -82,8 +84,16 @@ public class SignUpRequestParams {
         this.device_id = device_id;
         this.account_state = account_state;
         this.device_platform = device_platform;
-        this.account_type=account_type;
+        this.account_type = account_type;
         this.authKey = authKey;
+    }
+
+    public String getReferralCode() {
+        return referralCode;
+    }
+
+    public void setReferralCode(String referralCode) {
+        this.referralCode = referralCode;
     }
 
     public String getName() {
