@@ -21,7 +21,7 @@ public class AddressTransformer {
         for (int i = 0; i < allDataModels.size(); i++) {
             items.add(new CheckOutCartAddressItems(allDataModels.get(i).getAddress_id(), allDataModels.get(i).getVendor_city(),
                     allDataModels.get(i).getVendor_address(), allDataModels.get(i).getVendor_country(),
-                    allDataModels.get(i).getAddress_title(), ""));
+                    allDataModels.get(i).getAddress_title(), allDataModels.get(i).getAccount_phone_number()));
         }
 
         return items;

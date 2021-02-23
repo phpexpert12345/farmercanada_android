@@ -88,17 +88,13 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     @Override
     public void bindView(final RecyclerViewListItem items) {
         TaxData taxData = (TaxData) items;
-        subTotal.setText("300.00");
-
-
+        subTotal.setText(taxData.getSubTotal());
         if (taxData.isApplyCouponButton()){
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
             couponEditText.setError(null);
         }else {
-
             applyCouponButtonLayout.setVisibility(View.GONE);
         }
-
         if (taxData.isRemoveDiscountButton()){
             removeCouponTextView.setVisibility(View.VISIBLE);
         }else {
@@ -109,26 +105,32 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         }else {
             appliedCouponAmountLayout.setVisibility(View.GONE);
         }
+        if (taxData.isCouponApplied()){
+            couponEditText.setText("");
+            couponEditText.setError("Invalid Coupon");
+        }else {
+            couponEditText.setError(null);
+            couponEditText.setText("");
+        }
 
         shipingFee.setText(taxData.getDeliveryCharge());
         packageFeeAmount.setText(taxData.getPackageFeeAmount());
         lableGst.setText("GST   (" + taxData.getgSTTax() + "%):");
         gstTaxAmount.setText(taxData.getgSTTaxAmount());
         packageFeeLabel.setText("Package Fee (" + taxData.getPackageFeeTax() + "):");
-        totalAmountf = 300 + Float.parseFloat(taxData.getgSTTaxAmount()) + Float.parseFloat(taxData.getPackageFeeAmount()) +
+        totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) + Float.parseFloat(taxData.getPackageFeeAmount()) +
                 Float.parseFloat(taxData.getDeliveryCharge().toString());
-        totalAmount.setText("-$ " + String.valueOf(totalAmountf));
+        totalAmount.setText("$ " + String.valueOf(totalAmountf));
         OrderSingleton.getInstance().setTaxData(taxData);
         OrderSingleton.getInstance().setTotal_amount(totalAmountf);
 
         if (taxData.getDiscountAmount() > 0) {
             OrderSingleton.getInstance().setCoupon_discount_amount(taxData.getDiscountAmount());
             couponAmount.setText("-$ " + taxData.getDiscountAmount());
-            totalAmount.setText("-$ " + (totalAmountf - taxData.getDiscountAmount()));
+            totalAmount.setText("$ " + (totalAmountf - taxData.getDiscountAmount()));
             OrderSingleton.getInstance().setTotal_amount(totalAmountf);
         } else {
-            couponEditText.setText("");
-            couponEditText.setError("Invalid Coupon");
+
         }
         removeCouponTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,9 +143,10 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
                 removeCouponTextView.setVisibility(View.GONE);
                 applyCouponButtonLayout.setVisibility(View.VISIBLE);
                 appliedCouponAmountLayout.setVisibility(View.GONE);
-                OrderSingleton.getInstance().setTotal_amount(totalAmountf);
             }
         });
+
+       // Log.d("SUBTOTAL", "bindView: "+taxData.getSubTotal());
     }
 
 

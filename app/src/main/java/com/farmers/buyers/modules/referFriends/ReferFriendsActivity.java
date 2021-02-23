@@ -7,7 +7,6 @@ import android.widget.Button;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.BaseActivity;
-import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 
 public class ReferFriendsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -44,6 +43,14 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(ReferFriendsActivity.this, RatingAndReviewActivity.class));
+        sendToWhatsapp();
+    }
+
+    private void sendToWhatsapp() {
+        Intent waIntent = new Intent(Intent.ACTION_SEND);
+        waIntent.setType("text/plain");
+        waIntent.putExtra(Intent.EXTRA_SUBJECT, "Farmer Android App");
+        waIntent.putExtra(Intent.EXTRA_TEXT, "Share message");
+        startActivity(Intent.createChooser(waIntent, "Share via"));
     }
 }

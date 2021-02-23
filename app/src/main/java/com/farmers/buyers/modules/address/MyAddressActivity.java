@@ -62,11 +62,18 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     private String addressId;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<CheckOutCartAddressItems> addressItems = new ArrayList<>();
+    Integer comeFrom=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_address);
+        Intent intent=getIntent();
+        if (intent!=null){
+            comeFrom=intent.getIntExtra("ComeFrom",0);
+        }
+
 
         setupToolbar(new ToolbarConfig("Address", true, new View.OnClickListener() {
             @Override
@@ -196,7 +203,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
 
         new AlertDialog.Builder(MyAddressActivity.this)
                 .setTitle("Farmer Alert")
-                .setMessage("Are you sure !\nYou want to delete ?")
+                .setMessage("Are you sure ! You want to delete ?")
                 .setCancelable(false)
                 .setNegativeButton("Cancel", (dialog, which) -> {
                     dialog.dismiss();
@@ -213,12 +220,13 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
 
-        if (addressObj.getSelected()) {
-            Intent intent = new Intent();
-            intent.putExtra(Constant.DATA_INTENT, addressObj);
-            setResult(1254, intent);
-            finish();
+        if (comeFrom==0){
+                Intent intent=new Intent();
+                intent.putExtra(Constant.DATA_INTENT,addressObj);
+                setResult(1254,intent);
+                finish();
         }
+
 
     }
 }

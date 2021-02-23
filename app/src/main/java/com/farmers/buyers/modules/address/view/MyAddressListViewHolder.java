@@ -41,7 +41,7 @@ public class MyAddressListViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         CheckOutCartAddressItems item = (CheckOutCartAddressItems) items;
         addressTv.setText(item.getAddress());
-        addressDetailTv.setText(item.getDetail());
+        addressDetailTv.setText(item.getPhoneNumber());
         addressTypeTv.setText(item.getAddressTitle());
 
         addressCard.setOnClickListener(view -> addressItemClickListener.onAddressItemClicked(item));

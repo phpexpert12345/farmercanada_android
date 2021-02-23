@@ -72,9 +72,7 @@ import static com.farmers.buyers.app.App.getAppContext;
 
 public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.HeaderItemClickListener,
         MultipleTextItemViewHolder.FilterItemClickListener, HomeItemsViewHolder.FarmItemClickListener {
-
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
-
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -125,8 +123,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     }
 
     private void farmListDataRequest() {
-
-
         FarmListRequest farmListRequest=new FarmListRequest(appController.getAuthenticationKey(),
                 "2333232","233232","D 242, Sector 63 Noida","Noida","","local=0,homemade=1","",
                 "pickup=0,delivery=1","","","");
