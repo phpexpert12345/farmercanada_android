@@ -12,8 +12,15 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class HomeFarmTypeDelegate extends BaseDelegate {
+
+    private HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener;
+
+    public HomeFarmTypeDelegate(HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener) {
+        this.farmTypeCheckedChangeListener = farmTypeCheckedChangeListener;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new HomeFarmTypeViewHolder(parent);
+        return new HomeFarmTypeViewHolder(parent, farmTypeCheckedChangeListener);
     }
 }

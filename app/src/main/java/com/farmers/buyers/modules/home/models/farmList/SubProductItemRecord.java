@@ -30,10 +30,10 @@ public class SubProductItemRecord implements Serializable, RecyclerViewListItem 
     private String storeCityName;
     @SerializedName("farm_latitude")
     @Expose
-    private String farmLatitude;
+    private Double farmLatitude;
     @SerializedName("farm_longitude")
     @Expose
-    private String farmLongitude;
+    private Double farmLongitude;
     @SerializedName("farm_postcode")
     @Expose
     private String farmPostcode;
@@ -137,11 +137,11 @@ public class SubProductItemRecord implements Serializable, RecyclerViewListItem 
         return storeCityName;
     }
 
-    public String getFarmLatitude() {
+    public Double getFarmLatitude() {
         return farmLatitude;
     }
 
-    public String getFarmLongitude() {
+    public Double getFarmLongitude() {
         return farmLongitude;
     }
 

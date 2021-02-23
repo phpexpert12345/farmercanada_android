@@ -169,14 +169,12 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<FarmListResponse> FARM_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
-                                                   @Field("customer_lat") String customer_lat,
-                                                   @Field("customer_long") String customer_long,
+                                                   @Field("customer_lat") Double customer_lat,
+                                                   @Field("customer_long") Double customer_long,
                                                    @Field("customer_full_address") String customer_full_address,
                                                    @Field("customer_city") String customer_city,
                                                    @Field("farm_type") String farm_type,
-                                                   @Field("farm_type_developer_information") String farm_type_developer_information,
                                                    @Field("farm_service_type") String farm_service_type,
-                                                   @Field("order_type_developer_information") String order_type_developer_information,
                                                    @Field("farm_category_id") String farm_category_id,
                                                    @Field("pageno") String pageno,
                                                    @Field("LoginId") String LoginId);

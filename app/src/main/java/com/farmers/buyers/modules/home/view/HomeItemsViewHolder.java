@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.home.view;
 
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,12 +14,14 @@ import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
+import com.farmers.buyers.common.utils.Helper;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.FarmDetailActivity;
 import com.farmers.buyers.modules.home.models.HomeListItem;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.storage.Constant;
+import com.farmers.buyers.storage.GPSTracker;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,6 +37,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
     private ImageView saveImage, savedImage, farmImage;
     private FarmItemClickListener farmItemClickListener;
     private RelativeLayout followFarmLayout;
+    private GPSTracker gpsTracker = new GPSTracker(itemView.getContext());
 
     public HomeItemsViewHolder(@NonNull ViewGroup parent, FarmItemClickListener farmItemClickListener) {
         super(Extensions.inflate(parent, R.layout.home_list_item_layout));
@@ -53,7 +57,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         final HomeListItem item = (HomeListItem) items;
         home_list_item_layout_farmName.setText(item.getFarmName());
-        home_list_item_layout_distance_tv.setText(item.getDistance());
+        home_list_item_layout_distance_tv.setText(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong())+ " km away");
         customer_home_parlour_view_holder_rating_tv.setText(String.valueOf(item.getRating()));
         Glide.with(itemView.getContext()).load(item.getCoverImage()).into(farmImage);
         Glide.with(itemView.getContext()).load(item.getFarmImage()).into(circleImageView);
@@ -76,33 +80,23 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         }
 
 
-        farmImage.setOnClickListener(view -> itemView.getContext().startActivity( new Intent(itemView.getContext(), FarmDetailActivity.class)));
+
+        farmImage.setOnClickListener(v -> farmItemClickListener.onFarmItemClicked(getAdapterPosition()));
 
 
-        savedImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveImage.setVisibility(View.VISIBLE);
-                savedImage.setVisibility(View.GONE);
-                farmItemClickListener.onSaveFarmClicked(item.getId(), 0);
-            }
+        savedImage.setOnClickListener(v -> {
+            saveImage.setVisibility(View.VISIBLE);
+            savedImage.setVisibility(View.GONE);
+            farmItemClickListener.onSaveFarmClicked(item.getId(), 0);
         });
 
-        saveImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveImage.setVisibility(View.GONE);
-                savedImage.setVisibility(View.VISIBLE);
-                farmItemClickListener.onSaveFarmClicked(item.getId(), 1);
-            }
+        saveImage.setOnClickListener(v -> {
+            saveImage.setVisibility(View.GONE);
+            savedImage.setVisibility(View.VISIBLE);
+            farmItemClickListener.onSaveFarmClicked(item.getId(), 1);
         });
 
-        followFarmLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                farmItemClickListener.onFollowFarmClicked(item.getId(), "1");
-            }
-        });
+        followFarmLayout.setOnClickListener(v -> farmItemClickListener.onFollowFarmClicked(item.getId(), "1"));
 
 
     }
@@ -110,6 +104,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
     public interface FarmItemClickListener {
         void onSaveFarmClicked(String id, int status);
         void onFollowFarmClicked(String id, String status);
+        void onFarmItemClicked(int position);
     }
 }
 

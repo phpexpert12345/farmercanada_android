@@ -13,8 +13,14 @@ import com.farmers.buyers.core.BaseViewHolder;
 
 public class HomeDeliveryTypeDelegate extends BaseDelegate {
 
+    private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
+
+    public HomeDeliveryTypeDelegate(HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
+        this.deliveryTypeCheckedChangeListener = deliveryTypeCheckedChangeListener;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new HomeDeliveryTypeViewHolder(parent);
+        return new HomeDeliveryTypeViewHolder(parent, deliveryTypeCheckedChangeListener);
     }
 }

@@ -30,11 +30,14 @@ import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
 public class HomeCategoriesViewHolder extends BaseViewHolder {
     private HomeCategoryAdapter adapter ;
     private RecyclerView recyclerView;
+    private HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener;
 
-    public HomeCategoriesViewHolder(@NonNull ViewGroup parent) {
+
+
+    public HomeCategoriesViewHolder(@NonNull ViewGroup parent, HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener) {
         super(Extensions.inflate(parent, R.layout.home_categories_view_holder_layout));
 
-        adapter = new HomeCategoryAdapter();
+        adapter = new HomeCategoryAdapter(categoryItemClickListener);
         recyclerView = itemView.findViewById(R.id.home_category_view_holder_recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new LinearSpacesItemDecoration(20));

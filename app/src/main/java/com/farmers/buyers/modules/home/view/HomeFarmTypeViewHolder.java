@@ -19,11 +19,13 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 
 public class HomeFarmTypeViewHolder extends BaseViewHolder {
     private TextView localFarmTv, homeMadeTv;
+    private FarmTypeCheckedChangeListener farmTypeCheckedChangeListener;
 
-    public HomeFarmTypeViewHolder(@NonNull ViewGroup parent) {
+    public HomeFarmTypeViewHolder(@NonNull ViewGroup parent, FarmTypeCheckedChangeListener farmTypeCheckedChangeListener) {
         super(Extensions.inflate(parent, R.layout.home_farm_type_item_layout));
         localFarmTv = itemView.findViewById(R.id.home_farm_type_local_farm_tv);
         homeMadeTv = itemView.findViewById(R.id.home_farm_type_home_made_tv);
+        this.farmTypeCheckedChangeListener = farmTypeCheckedChangeListener;
     }
 
     @Override
@@ -38,6 +40,7 @@ public class HomeFarmTypeViewHolder extends BaseViewHolder {
                 homeMadeTv.setElevation(0f);
                 localFarmTv.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
                 homeMadeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+                farmTypeCheckedChangeListener.onFarmTypeCheckedChangeListener(0);
             }
         });
 
@@ -50,7 +53,13 @@ public class HomeFarmTypeViewHolder extends BaseViewHolder {
                 localFarmTv.setElevation(0f);
                 localFarmTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
                 homeMadeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
+                farmTypeCheckedChangeListener.onFarmTypeCheckedChangeListener(1);
+
             }
         });
+    }
+
+    public interface FarmTypeCheckedChangeListener {
+        void onFarmTypeCheckedChangeListener(int farmType);
     }
 }
