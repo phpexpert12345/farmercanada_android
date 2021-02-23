@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
@@ -19,7 +19,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +202,7 @@
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -242,30 +246,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="481" y="110" key="AndroidProcessChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1613984103535" />
-    <state width="1306" height="176" key="GridCell.Tab.0.bottom" timestamp="1614010485167">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1270" height="322" key="GridCell.Tab.0.bottom" timestamp="1614012798665">
+      <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state width="1306" height="176" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614010485167" />
     <state width="1482" height="448" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
-    <state width="1270" height="322" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1613831956413" />
-    <state width="1306" height="176" key="GridCell.Tab.0.center" timestamp="1614010485167">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1270" height="322" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1614012798665" />
+    <state width="1270" height="322" key="GridCell.Tab.0.center" timestamp="1614012798664">
+      <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state width="1306" height="176" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614010485167" />
     <state width="1482" height="448" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
-    <state width="1270" height="322" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1613831956412" />
-    <state width="1306" height="176" key="GridCell.Tab.0.left" timestamp="1614010485166">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1270" height="322" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1614012798664" />
+    <state width="1270" height="322" key="GridCell.Tab.0.left" timestamp="1614012798663">
+      <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state width="1306" height="176" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614010485166" />
     <state width="1482" height="448" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1613975246268" />
-    <state width="1270" height="322" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1613831956411" />
-    <state width="1306" height="176" key="GridCell.Tab.0.right" timestamp="1614010485167">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1270" height="322" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1614012798663" />
+    <state width="1270" height="322" key="GridCell.Tab.0.right" timestamp="1614012798665">
+      <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state width="1306" height="176" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614010485167" />
     <state width="1482" height="448" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
-    <state width="1270" height="322" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1613831956412" />
+    <state width="1270" height="322" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1614012798665" />
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog" timestamp="1613831835600">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
