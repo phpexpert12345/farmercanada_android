@@ -3,6 +3,7 @@ package com.farmers.buyers.modules.cart.order.adapter;
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotDelegate;
+import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotItemViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -12,16 +13,18 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class PlaceOrderAdapter extends BaseAdapter {
+    private PlaceOrderSlotItemViewHolder.SlotCheckedListener listener;
 
 
-    public PlaceOrderAdapter() {
-        super();
+
+    public PlaceOrderAdapter(PlaceOrderSlotItemViewHolder.SlotCheckedListener listener) {
+        this.listener = listener;
         initDelegate();
     }
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
-        delegates.put(CardConstant.PLACE_ORDER_ADAPTER, new PlaceOrderSlotDelegate());
+        delegates.put(CardConstant.PLACE_ORDER_ADAPTER, new PlaceOrderSlotDelegate(listener));
 
     }
 }

@@ -21,6 +21,7 @@ import com.farmers.buyers.modules.cart.checkout.adapter.CheckOutCartItemAdapter;
 import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
 import com.farmers.buyers.modules.cart.checkout.model.PaymentMethodsItems;
 import com.farmers.buyers.modules.cart.checkout.view.CheckOutFromCartAddressViewHolder;
+import com.farmers.buyers.modules.cart.checkout.view.PaymentMethodsViewHolder;
 import com.farmers.buyers.modules.cart.myCart.MyCartViewModel;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
@@ -31,7 +32,7 @@ import com.farmers.buyers.storage.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckOutFromCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners, CheckOutFromCartAddressViewHolder.ChangeAddressCallback {
+public class CheckOutFromCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners, CheckOutFromCartAddressViewHolder.ChangeAddressCallback, PaymentMethodsViewHolder.PaymentMethodListener {
 
     private RecyclerView recyclerView;
     TaxData taxData;
@@ -47,6 +48,8 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             return null;
         }
     };
+
+    private int paymentType;
 
 
     @Override
@@ -82,7 +85,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private void init() {
         recyclerView = findViewById(R.id.check_out_from_cart_recyclerView);
-        adapter = new CheckOutCartItemAdapter(this,this,this);
+        adapter = new CheckOutCartItemAdapter(this,this,this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(50, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
@@ -92,7 +95,6 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     private void prepareItem(TaxData taxData,CheckOutCartAddressItems addressItems) {
         items.clear();
         items.add(new SimpleTitleItem("Delivery Address"));
-       // items.add(new CheckOutCartAddressItems("","My Home Addres", "4623 William Head Rd", "Victoria, BC V9C 3Y7, Canada", true, true));
         items.add(addressItems);
         items.add(new SimpleTitleItem("Payment Methods"));
         items.add(new PaymentMethodsItems());
@@ -142,5 +144,10 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             }
 
         }
+    }
+
+    @Override
+    public void onPaymentMethodCheckChangeListener(int type) {
+     this.paymentType = paymentType;
     }
 }

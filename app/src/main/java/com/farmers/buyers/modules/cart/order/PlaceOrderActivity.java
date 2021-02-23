@@ -29,6 +29,7 @@ import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
 import com.farmers.buyers.modules.cart.order.adapter.PlaceOrderAdapter;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
+import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotItemViewHolder;
 import com.farmers.buyers.modules.signUp.SignUpViewModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.storage.Constant;
@@ -36,7 +37,7 @@ import com.farmers.buyers.storage.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDialog.OnDialogClickListeners {
+public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDialog.OnDialogClickListeners, PlaceOrderSlotItemViewHolder.SlotCheckedListener {
     private RecyclerView recyclerView;
     private Button paymentButton;
     private PlaceOrderAdapter adapter;
@@ -102,7 +103,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     private void init() {
         recyclerView = findViewById(R.id.place_order_recyclerView);
         paymentButton = findViewById(R.id.place_order_btn);
-        adapter = new PlaceOrderAdapter();
+        adapter = new PlaceOrderAdapter(this);
         dialog = new OrderSuccessDialog(this, this, false);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
@@ -146,5 +147,11 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     public void onSubmitClicked() {
         dialog.dismissDialog();
         startActivity(new Intent(this, OrderSuccessDetailActivity.class));
+    }
+
+    @Override
+    public void onSlotSelected(String slot, int position) {
+        adapter.notifyDataSetChanged();
+        adapter.notifyItemChanged(position);
     }
 }

@@ -12,9 +12,14 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class PaymentMethodsDelegate extends BaseDelegate {
+    private PaymentMethodsViewHolder.PaymentMethodListener paymentMethodListener;
+
+    public PaymentMethodsDelegate(PaymentMethodsViewHolder.PaymentMethodListener paymentMethodListener) {
+        this.paymentMethodListener = paymentMethodListener;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new PaymentMethodsViewHolder(parent);
+        return new PaymentMethodsViewHolder(parent, paymentMethodListener);
     }
 }
