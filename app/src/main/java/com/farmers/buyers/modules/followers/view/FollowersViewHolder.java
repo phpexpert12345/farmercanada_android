@@ -45,12 +45,12 @@ public class FollowersViewHolder extends BaseViewHolder {
         followTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onFollowUnFollowFarmListener(item.getFarmId(), "0");
+                listener.onFollowUnFollowFarmListener(item.getFarmId(), "0", item.getFollowId());
             }
         });
     }
 
     public interface FollowerListener {
-        void onFollowUnFollowFarmListener(String farmId, String Status);
+        void onFollowUnFollowFarmListener(String farmId, String Status, String followId);
     }
 }

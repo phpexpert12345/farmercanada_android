@@ -38,7 +38,7 @@ public class HomeTransformer {
         List<HomeListItem> items = new ArrayList<>();
         for (int i =0 ; i< listItem.size() ; i++) {
             SubProductItemRecord data = listItem.get(i);
-                    items.add(new HomeListItem(data.getFarmName(), data.getFarmDeliveryRadiusText(), data.getRatingAvg().toString(), data.getFarmFavouriteStatus(), data.getFarmId(), data.getFarmCoverPhoto(), data.getFarmLogo(), data.getFarmLatitude(), data.getFarmLongitude()));
+                    items.add(new HomeListItem(data.getFarmName(), data.getFarmDeliveryRadiusText(), data.getRatingAvg().toString(), data.getFarmFavouriteStatus(), data.getFarmId(), data.getFarmCoverPhoto(), data.getFarmLogo(), data.getFarmLatitude(), data.getFarmLongitude(), data.getFavouriteId(), data.getFarmFollowedStatus(), data.getFollowedId()));
         }
 
         return items;

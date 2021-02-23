@@ -244,7 +244,9 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status);
+    Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status, @Field("favourite_id") String favoriteId);
+
+
 
     @FormUrlEncoded
     @POST
@@ -256,7 +258,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status);
+    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status, @Field("followed_id") String followId);
 
     @FormUrlEncoded
     @POST

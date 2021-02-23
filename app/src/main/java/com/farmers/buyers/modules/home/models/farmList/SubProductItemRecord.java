@@ -116,6 +116,14 @@ public class SubProductItemRecord implements Serializable, RecyclerViewListItem 
     @Expose
     private String farmFavouriteStatus;
 
+    @SerializedName("favourite_id")
+    @Expose
+    private String favouriteId;
+
+    @SerializedName("followed_id")
+    @Expose
+    private String followedId;
+
 
     public String getFarmId() {
         return farmId;
@@ -253,6 +261,13 @@ public class SubProductItemRecord implements Serializable, RecyclerViewListItem 
         return farmFavouriteStatus;
     }
 
+    public String getFavouriteId() {
+        return favouriteId;
+    }
+
+    public String getFollowedId() {
+        return followedId;
+    }
 
     @Override
     public int getViewType() {

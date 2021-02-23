@@ -15,13 +15,15 @@ public class FollowersItems implements RecyclerViewListItem {
     private String distance;
     private String isFollowing;
     private String farmId;
+    private String followId;
 
-    public FollowersItems(String imageUri, String name, String distance, String isFollowing, String farmId) {
+    public FollowersItems(String imageUri, String name, String distance, String isFollowing, String farmId, String followId) {
         this.imageUri = imageUri;
         this.name = name;
         this.distance = distance;
         this.isFollowing = isFollowing;
         this.farmId = farmId;
+        this.followId = followId;
     }
 
     public String getImageUri() {
@@ -42,6 +44,10 @@ public class FollowersItems implements RecyclerViewListItem {
 
     public String getFarmId() {
         return farmId;
+    }
+
+    public String getFollowId() {
+        return followId;
     }
 
     @Override

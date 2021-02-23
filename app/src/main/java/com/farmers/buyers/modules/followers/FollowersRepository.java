@@ -20,7 +20,7 @@ public class FollowersRepository extends BaseRepository {
 
 
     public void followUnFollowFarm(FollowUnFollowRequestParams params, ApiResponseCallback<FollowUnFollowApiModel> responseCallback) {
-        Call<FollowUnFollowApiModel> call = RetrofitBuilder.createServiceContract().followUnFollowFarm(ApiConstants.FOLLOW_UNFOLLOW_USER, params.getLoginId(), params.getAuthKey(), params.getFarmId(), params.getStatus());
+        Call<FollowUnFollowApiModel> call = RetrofitBuilder.createServiceContract().followUnFollowFarm(ApiConstants.FOLLOW_UNFOLLOW_USER, params.getLoginId(), params.getAuthKey(), params.getFarmId(), params.getStatus(), params.getFollowId());
         makeRequest(call, responseCallback);
 
     }

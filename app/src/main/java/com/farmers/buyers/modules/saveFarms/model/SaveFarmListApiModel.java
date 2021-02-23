@@ -178,6 +178,7 @@ public class SaveFarmListApiModel {
         @Expose
         private String farmCoverPhoto;
 
+
         public Integer getFavouriteId() {
             return favouriteId;
         }

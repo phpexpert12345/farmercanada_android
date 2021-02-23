@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.saveFarms;
 
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -70,12 +71,15 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
             switch (saveFarmListApiModelDataFetchState.status) {
                 case LOADING: {
                     loading();
+                    break;
                 }
                 case SUCCESS: {
                     success();
+                    break;
                 }
                 case ERROR: {
                     error(saveFarmListApiModelDataFetchState.status_message);
+                    break;
                 }
             }
         });
@@ -85,33 +89,36 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
             switch (saveUnsaveFarmApiModelDataFetchState.status) {
                 case LOADING: {
                     loading();
+                    break;
                 }
                 case SUCCESS: {
                     dismissLoader();
+                    Toast.makeText(baseActivity, "", Toast.LENGTH_SHORT).show();
                     getSavedFarmList();
+                    break;
                 }
                 case ERROR: {
                     error(saveUnsaveFarmApiModelDataFetchState.status_message);
+                    break;
                 }
             }
         });
 
 
-        followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
-            @Override
-            public void onChanged(DataFetchState<FollowUnFollowApiModel> followUnFollowApiModelDataFetchState) {
-                switch (followUnFollowApiModelDataFetchState.status) {
-                    case LOADING: {
-                        loading();
-                        break;
-                    }
-                    case SUCCESS: {
-                        dismissLoader();
-                        getSavedFarmList();
-                    }
-                    case ERROR: {
-                        error(followUnFollowApiModelDataFetchState.status_message);
-                    }
+        followUnFollowStateMachine.observe(this, followUnFollowApiModelDataFetchState -> {
+            switch (followUnFollowApiModelDataFetchState.status) {
+                case LOADING: {
+                    loading();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                    getSavedFarmList();
+                    break;
+                }
+                case ERROR: {
+                    error(followUnFollowApiModelDataFetchState.status_message);
+                    break;
                 }
             }
         });
@@ -147,13 +154,13 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
 
     @Override
-    public void onSaveFarmClicked(String id, int status) {
-        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
+    public void onSaveFarmClicked(String id, int status, String favoriteId) {
+        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status, favoriteId);
     }
 
     @Override
-    public void onFollowFarmClicked(String id, String status) {
-        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
+    public void onFollowFarmClicked(String id, String status, String followId) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status, followId);
 
     }
 

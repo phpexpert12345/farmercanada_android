@@ -68,15 +68,11 @@
                 android:textSize="@dimen/sp_11_px"/>
 
 
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/_my_cart_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/my_cart_instruction_tv" />
-
-
-
 
 
         </RelativeLayout>

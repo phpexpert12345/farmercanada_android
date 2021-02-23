@@ -19,8 +19,8 @@ import com.farmers.buyers.common.widget.ProgressDialog;
 
 public abstract class BaseFragment extends Fragment {
 
-    ProgressDialog progressDialog = ProgressDialog.getInstance();
     public BaseActivity baseActivity;
+    ProgressDialog progressDialog = ProgressDialog.getInstance();
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -56,7 +56,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showLoader() {
-        progressDialog.init(baseActivity, null);
+        progressDialog.init(baseActivity, "");
     }
 
     public void dismissLoader() {

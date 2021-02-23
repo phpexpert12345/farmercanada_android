@@ -21,7 +21,7 @@ public class SaveFarmRepository extends BaseRepository {
     }
 
     public void saveUnSaveFarm(SaveUnSaveFarmRequestModel params, ApiResponseCallback<SaveUnsaveFarmApiModel> responseCallback) {
-        Call<SaveUnsaveFarmApiModel> call = RetrofitBuilder.createServiceContract().saveUnSaveFarm(ApiConstants.SAVE_UN_SAVE_FARM, params.getLoginId(), params.getAuth_key(), params.getFarm_id(), params.getFarm_favourite_status());
+        Call<SaveUnsaveFarmApiModel> call = RetrofitBuilder.createServiceContract().saveUnSaveFarm(ApiConstants.SAVE_UN_SAVE_FARM, params.getLoginId(), params.getAuth_key(), params.getFarm_id(), params.getFarm_favourite_status(), params.getFarm_id());
         makeRequest(call, responseCallback);
 
     }

@@ -48,15 +48,21 @@ public class FollowersViewModel extends BaseViewModel {
         });
     }
 
-    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status) {
+    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status, String followId) {
         stateMachine.postValue(DataFetchState.loading());
 
-        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, userId, authKey, status);
+        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, userId, authKey, status, followId);
 
         repository.followUnFollowFarm(params, new ApiResponseCallback<FollowUnFollowApiModel>() {
             @Override
             public void onSuccess(FollowUnFollowApiModel response) {
-                stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                if (response.getStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else  {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new FollowUnFollowApiModel()));
+
+                }
             }
 
             @Override

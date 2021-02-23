@@ -54,7 +54,6 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         setContentView(R.layout.activity_my_cart);
         setupToolbar(config);
 
-        prepareData();
         init();
 
 
@@ -92,11 +91,6 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
 
         }
 
-    private void prepareData() {
-       // items.addAll(MyCartTransformer.getMyCartItem());
-       // items.add(new MyCartCheckOutItem());
-    }
-
 
     @Override
     public Boolean showToolbar() {
@@ -110,7 +104,6 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
 
     @Override
     public void onCouponClicked(String couponCode) {
-      //  Toast.makeText(MyCartActivity.this,couponCode,Toast.LENGTH_SHORT).show();
     }
 
 

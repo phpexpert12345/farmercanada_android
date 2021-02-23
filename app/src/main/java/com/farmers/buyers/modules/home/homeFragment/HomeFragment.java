@@ -251,12 +251,17 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
             switch (saveUnsaveFarmApiModelDataFetchState.status) {
                 case LOADING: {
                     showLoader();
+                    break;
                 }
                 case SUCCESS: {
                     dismissLoader();
+                    break;
+
                 }
                 case ERROR: {
                     dismissLoader();
+                    break;
+
                 }
             }
         });
@@ -295,10 +300,14 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     }
                     case SUCCESS: {
                         dismissLoader();
+                        break;
+
                     }
                     case ERROR: {
                         dismissLoader();
                         Toast.makeText(baseActivity, followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        break;
+
                     }
                 }
             }
@@ -399,13 +408,13 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
 
     @Override
-    public void onSaveFarmClicked(String id, int status) {
-        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
+    public void onSaveFarmClicked(String id, int status, String favoriteId) {
+        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status, favoriteId);
     }
 
     @Override
-    public void onFollowFarmClicked(String id, String status) {
-        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
+    public void onFollowFarmClicked(String id, String status, String followId) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status, followId);
 
     }
 
