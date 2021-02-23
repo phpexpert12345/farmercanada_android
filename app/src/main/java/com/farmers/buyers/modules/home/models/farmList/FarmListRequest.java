@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class FarmListRequest implements Serializable {
 
     private String authKey;
-    private String customer_lat;
-    private String customer_long;
+    private Double customer_lat;
+    private Double customer_long;
     private String customer_full_address;
     private String customer_city;
     private String farm_type;
@@ -20,20 +20,14 @@ public class FarmListRequest implements Serializable {
     private String pageno;
     private String LoginId;
 
-    public FarmListRequest() {
-
-    }
-
-    public FarmListRequest(String authKey, String customer_lat, String customer_long, String customer_full_address, String customer_city, String farm_type, String farm_type_developer_information, String farm_service_type, String order_type_developer_information, String farm_category_id, String pageno, String loginId) {
+    public FarmListRequest(String authKey, Double customer_lat, Double customer_long, String customer_full_address, String customer_city, String farm_type, String farm_service_type, String farm_category_id, String pageno, String loginId) {
         this.authKey = authKey;
         this.customer_lat = customer_lat;
         this.customer_long = customer_long;
         this.customer_full_address = customer_full_address;
         this.customer_city = customer_city;
         this.farm_type = farm_type;
-        this.farm_type_developer_information = farm_type_developer_information;
         this.farm_service_type = farm_service_type;
-        this.order_type_developer_information = order_type_developer_information;
         this.farm_category_id = farm_category_id;
         this.pageno = pageno;
         LoginId = loginId;
@@ -44,11 +38,11 @@ public class FarmListRequest implements Serializable {
         return authKey;
     }
 
-    public String getCustomer_lat() {
+    public Double getCustomer_lat() {
         return customer_lat;
     }
 
-    public String getCustomer_long() {
+    public Double getCustomer_long() {
         return customer_long;
     }
 

@@ -149,12 +149,16 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     @Override
     public void onSaveFarmClicked(String id, int status) {
         viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
-//        getSavedFarmList();
     }
 
     @Override
     public void onFollowFarmClicked(String id, String status) {
         viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
+
+    }
+
+    @Override
+    public void onFarmItemClicked(int position) {
 
     }
 }

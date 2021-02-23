@@ -7,11 +7,13 @@ public class HomeCategoryItems implements RecyclerViewListItem {
     private String category;
     private int imgUri;
     private String imgUrl;
+    private String catId;
 
-    public HomeCategoryItems(String category, String imgUrl, int imgUri) {
+    public HomeCategoryItems(String category, String imgUrl, int imgUri, String catId) {
         this.category = category;
         this.imgUrl = imgUrl;
         this.imgUri = imgUri;
+        this.catId = catId;
     }
 
     public String getImgUrl() {
@@ -28,6 +30,10 @@ public class HomeCategoryItems implements RecyclerViewListItem {
 
     public int getImgUri() {
         return imgUri;
+    }
+
+    public String getCatId() {
+        return catId;
     }
 
     @Override

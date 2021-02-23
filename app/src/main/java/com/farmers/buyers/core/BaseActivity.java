@@ -128,7 +128,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showLoader() {
-        progressDialog.init(this, null);
+        progressDialog.init(this, "");
     }
 
     public void dismissLoader() {

@@ -25,38 +25,47 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
     private ImageView imageView;
     private TextView addToCartTv;
-    private TextView farmName;
+    private TextView farmName, tv_sub_cat_price, tv_sub_cat_quantity;
+    private FarmDetailVegetableListener listener;
+    private FarmDetailsVegetableItems item;
 
-    public FarmDetailsVegetableItemsViewHolder(@NonNull ViewGroup parent) {
+    public FarmDetailsVegetableItemsViewHolder(@NonNull ViewGroup parent, FarmDetailVegetableListener listener) {
         super(Extensions.inflate(parent, R.layout.farm_details_vegetables_item_layout));
         imageView = itemView.findViewById(R.id.farm_detail_vegetables_img);
         addToCartTv = itemView.findViewById(R.id.farm_details_vegetables_add_to_cart_tv);
-        farmName=itemView.findViewById(R.id.home_list_item_layout_farmName);
+        farmName = itemView.findViewById(R.id.home_list_item_layout_farmName);
+        tv_sub_cat_price = itemView.findViewById(R.id.tv_sub_cat_price);
+        tv_sub_cat_quantity = itemView.findViewById(R.id.tv_sub_cat_quantity);
+        this.listener = listener;
         addToCartTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                itemView.getContext().startActivity(new Intent(itemView.getContext(), MyCartActivity.class));
+                listener.onClickFarmDetailVegetableListener(item);
+                //itemView.getContext().startActivity(new Intent(itemView.getContext(), MyCartActivity.class));
             }
         });
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
+        FarmDetailsVegetableItems item = (FarmDetailsVegetableItems) items;
+        this.item = item;
+        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
+        farmName.setText(item.getTitle());
+        tv_sub_cat_price.setText(item.getPrice());
+        tv_sub_cat_quantity.setText(item.getQuantity());
 
-        FarmDetailsVegetableItems item=(FarmDetailsVegetableItems)items;
-        if (((FarmDetailsVegetableItems)items).getInStock()) {
+        if (((FarmDetailsVegetableItems) items).getInStock()) {
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_shopping_cart, 0, 0, 0);
-        }
-        else {
+        } else {
             addToCartTv.setText("Out of stock");
             addToCartTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
             addToCartTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_info, 0, 0, 0);
-
         }
+    }
 
-        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
-        farmName.setText(item.getTitle());
-
+    public interface FarmDetailVegetableListener {
+        void onClickFarmDetailVegetableListener(FarmDetailsVegetableItems item);
     }
 }

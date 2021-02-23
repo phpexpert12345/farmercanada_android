@@ -1,12 +1,12 @@
 package com.farmers.buyers.modules.farmDetail.adapter;
 
-import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.common.view.SingleItemDelegate;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailDelegate;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderDelegate;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailVegetablesDelegate;
+import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -17,20 +17,20 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class FarmDetailsAdapter extends BaseAdapter {
     final FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener;
+    private FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener farmDetailVegetableListener;
 
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.FARM_DETAIL_HEADER_ADAPTER, new FarmDetailHeaderDelegate(headerClickListener));
         delegates.put(CardConstant.FARM_DETAIL_ADAPTER, new FarmDetailDelegate());
         delegates.put(CardConstant.SINGLE_TEXT_ITEM_ADAPTER, new SingleItemDelegate());
-        delegates.put(CardConstant.FARM_DETAIL_VEGETABLE_ADAPTER, new FarmDetailVegetablesDelegate());
+        delegates.put(CardConstant.FARM_DETAIL_VEGETABLE_ADAPTER, new FarmDetailVegetablesDelegate(farmDetailVegetableListener));
     }
 
-
-    public FarmDetailsAdapter(FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener) {
+    public FarmDetailsAdapter(FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener farmDetailVegetableListener) {
         super();
+        this.farmDetailVegetableListener = farmDetailVegetableListener;
         this.headerClickListener = headerClickListener;
         this.initDelegate();
     }
-
 }

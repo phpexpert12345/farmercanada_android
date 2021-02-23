@@ -4,9 +4,12 @@ import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.common.view.SimpleTitleDelegate;
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.home.view.HomeCategoriesItemDelegate;
+import com.farmers.buyers.modules.home.view.HomeCategoryListItemViewHolder;
 import com.farmers.buyers.modules.home.view.HomeDelegate;
 import com.farmers.buyers.modules.home.view.HomeDeliveryTypeDelegate;
+import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeFarmTypeDelegate;
+import com.farmers.buyers.modules.home.view.HomeFarmTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeFilterItemDelegate;
 import com.farmers.buyers.modules.home.view.HomeHeaderDelegate;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
@@ -24,16 +27,19 @@ import com.farmers.buyers.storage.CardConstant;
 public class HomeAdapter extends BaseAdapter {
     private HomeHeaderViewHolder.HeaderItemClickListener headerListener;
     private MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener;
-    private HomeItemsViewHolder.FarmItemClickListener farmItemClickListener;
+    private HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener;
+    private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
+    private HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener;
 
 
-    public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener
-            filterItemClickListener, HomeItemsViewHolder.FarmItemClickListener farmItemClickListener
-    ) {
+
+    public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener, HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener) {
         super();
         this.headerListener = headerListener;
         this.filterItemClickListener = filterItemClickListener;
-        this.farmItemClickListener = farmItemClickListener;
+        this.categoryItemClickListener = categoryItemClickListener;
+        this.deliveryTypeCheckedChangeListener = deliveryTypeCheckedChangeListener;
+        this.farmTypeCheckedChangeListener  = farmTypeCheckedChangeListener;
         this.initDelegate();
     }
 
@@ -41,12 +47,11 @@ public class HomeAdapter extends BaseAdapter {
     public void initDelegate() {
         delegates.put(CardConstant.HOME_HEADER_ADAPTER, new HomeHeaderDelegate(headerListener));
         delegates.put(CardConstant.HOME_SEARCH_ITEM_ADAPTER, new HomeDelegate());
-        delegates.put(CardConstant.HOME_FARM_LIST_ITEM_ADAPTER, new HomeItemsDelegate(farmItemClickListener));
-        delegates.put(CardConstant.HOME_CATEGORY_ITEM_ADAPTER, new HomeCategoriesItemDelegate());
+        delegates.put(CardConstant.HOME_CATEGORY_ITEM_ADAPTER, new HomeCategoriesItemDelegate(categoryItemClickListener));
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
         delegates.put(CardConstant.HOME_TOP_OFFER_ADAPTER, new HomeTopOffersDelegate());
         delegates.put(CardConstant.MULTIPLE_ITEM_TYPE_ADAPTER, new HomeFilterItemDelegate(filterItemClickListener));
-        delegates.put(CardConstant.DELIVERY_TYPE_ADAPTER, new HomeDeliveryTypeDelegate());
-        delegates.put(CardConstant.HOME_FARM_TYPE_ADAPTER, new HomeFarmTypeDelegate());
+        delegates.put(CardConstant.DELIVERY_TYPE_ADAPTER, new HomeDeliveryTypeDelegate(deliveryTypeCheckedChangeListener));
+        delegates.put(CardConstant.HOME_FARM_TYPE_ADAPTER, new HomeFarmTypeDelegate(farmTypeCheckedChangeListener));
     }
 }

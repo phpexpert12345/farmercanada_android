@@ -39,12 +39,10 @@ public class HomeFragmentRepository extends BaseRepository {
                 params.getAuthKey(),
                 params.getCustomer_lat(),
                 params.getCustomer_long(),
-                params.getCustomer_full_address()
-                , params.getCustomer_city(),
-                params.getFarm_type()
-                , params.getFarm_type_developer_information()
-                , params.getFarm_service_type(),
-                params.getOrder_type_developer_information(),
+                params.getCustomer_full_address(),
+                params.getCustomer_city(),
+                params.getFarm_type(),
+                params.getFarm_service_type(),
                 params.getFarm_category_id(),
                 params.getPageno(),
                 params.getLoginId());

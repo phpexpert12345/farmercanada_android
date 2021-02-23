@@ -32,13 +32,16 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
     private CardView cardView;
     private LinearLayout linearLayout;
     private int lastIndex = 0;
+    private CategoryItemClickListener listener;
+    private int selectedPosition = -1;
 
-    public HomeCategoryListItemViewHolder(@NonNull ViewGroup parent) {
+    public HomeCategoryListItemViewHolder(@NonNull ViewGroup parent, CategoryItemClickListener listener) {
         super(Extensions.inflate(parent, R.layout.home_category_item_view_holder));
         categoryName = itemView.findViewById(R.id.home_category_name_tv);
         imageView = itemView.findViewById(R.id.home_category_img);
         cardView = itemView.findViewById(R.id.category_item_card);
         linearLayout = itemView.findViewById(R.id.home_category_ll);
+        this.listener = listener;
     }
 
     @Override
@@ -48,17 +51,29 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
 
         Glide.with(itemView.getContext())
                 .load(item.getImgUrl())
-                .placeholder(R.drawable.fruit_one)
+                .placeholder(R.drawable.ic_sign_up_logo)
                 .into(imageView);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lastIndex = getAdapterPosition() - 1;
-                Log.e("position", String.valueOf(getAdapterPosition()));
-                Log.e("index", String.valueOf(lastIndex));
+                selectedPosition = getAdapterPosition();
                 cardView.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.select_rect_bg));
+                listener.onCategoryItemClicked(item.getCatId(), getAdapterPosition());
             }
         });
+
+
+        if (selectedPosition == getAdapterPosition()) {
+            selectedPosition = getOldPosition();
+            cardView.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.select_rect_bg));
+        }
+        else {
+            cardView.setBackground(null);
+        }
+    }
+
+    public interface CategoryItemClickListener {
+        void onCategoryItemClicked(String id, int position);
     }
 }

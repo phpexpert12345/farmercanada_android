@@ -15,6 +15,8 @@ public class FarmDetailsVegetableItems implements RecyclerViewListItem {
     private String price;
     private String quantity;
     private Boolean inStock;
+    public String shopping_item_quantity;
+    public String product_code;
 
     public FarmDetailsVegetableItems(String imageUri, String title, String price, String quantity, Boolean inStock) {
         this.imageUri = imageUri;
@@ -22,6 +24,16 @@ public class FarmDetailsVegetableItems implements RecyclerViewListItem {
         this.price = price;
         this.quantity = quantity;
         this.inStock = inStock;
+    }
+
+    public FarmDetailsVegetableItems(String imageUri, String title, String price, String quantity, Boolean inStock, String shopping_item_quantity, String product_code) {
+        this.imageUri = imageUri;
+        this.title = title;
+        this.price = price;
+        this.quantity = quantity;
+        this.inStock = inStock;
+        this.shopping_item_quantity = shopping_item_quantity;
+        this.product_code = product_code;
     }
 
     public String getImageUri() {

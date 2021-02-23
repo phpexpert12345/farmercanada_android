@@ -19,14 +19,13 @@
             android:orientation="vertical"
             tools:context=".modules.cart.myCart.MyCartActivity">
 
-
             <RelativeLayout
                 android:id="@+id/cart_item_count_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_8sdp">
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_16sdp">
 
                 <TextView
                     android:id="@+id/itemCount"
@@ -44,13 +43,13 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:drawableRight="@drawable/ic_add_white"
-                    android:drawableTint="@color/primary_button_color"
                     android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/primary_button_color"
                     android:fontFamily="@font/sf_ui_semibold"
+                    android:gravity="center_vertical"
                     android:text="Add items"
                     android:textColor="@color/primary_button_color"
-                    android:textSize="@dimen/sp_12_px"
-                    android:gravity="center_vertical"/>
+                    android:textSize="@dimen/sp_12_px" />
             </RelativeLayout>
 
             <TextView
@@ -65,40 +64,31 @@
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Swipe on an item to delete"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_11_px"/>
+                android:textSize="@dimen/sp_11_px" />
 
 
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/_my_cart_recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/my_cart_instruction_tv" />
-
-
-
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/_my_cart_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/my_cart_instruction_tv" />
 
         </RelativeLayout>
 
-
     </androidx.core.widget.NestedScrollView>
 
-
     <TextView
-        android:textSize="@dimen/_12sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_gravity="center"
-        android:text="Loading.."
-        android:textAlignment="center"
-        android:gravity="center"
         android:id="@+id/nodata_label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="Loading.."
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp">
 
     </TextView>
-
-
 </RelativeLayout>
 
 

@@ -25,7 +25,7 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
     private TextView deliveryTv, pickUpTv;
 
 
-    public HomeDeliveryTypeViewHolder(@NonNull ViewGroup parent) {
+    public HomeDeliveryTypeViewHolder(@NonNull ViewGroup parent, DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
         super(Extensions.inflate(parent, R.layout.app_toggle_layout));
         toggle = itemView.findViewById(R.id.toggleButton1);
         deliveryTv = itemView.findViewById(R.id.app_toggle_delivery_tv);
@@ -37,10 +37,13 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
                 if (b) {
                     pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
                     deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+                    deliveryTypeCheckedChangeListener.onDeliveryTypeCheckedChangeListener(1);
                 }
                 else {
                     deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
                     pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+                    deliveryTypeCheckedChangeListener.onDeliveryTypeCheckedChangeListener(0);
+
                 }
             }
         });
@@ -49,5 +52,9 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
     @Override
     public void bindView(RecyclerViewListItem items) {
 
+    }
+
+    public interface DeliveryTypeCheckedChangeListener {
+        void onDeliveryTypeCheckedChangeListener(int type);
     }
 }

@@ -21,13 +21,19 @@ import java.util.List;
 
 public class MyCartTransformer {
 
-    public static List<MyCartItem> getMyCartItem(List <FarmProductCartList> cartLists) {
+    public static List<MyCartItem> getMyCartItem(List<FarmProductCartList> cartLists) {
         List<MyCartItem> items = new ArrayList<>();
 
-        for (int i=0;cartLists.size()>i;i++){
-            int itemSubPrice=Integer.parseInt(cartLists.get(i).getItemQuantity())*(Integer.parseInt(cartLists.get(i).getItemPrice()));
-            items.add(new MyCartItem(cartLists.get(i).getFarmLogo(),cartLists.get(i).getFarmName(),cartLists.get(i).getItemPrice(),
-                    cartLists.get(i).getFarmAddress(),cartLists.get(i).getCartId(),Integer.parseInt(cartLists.get(i).getItemQuantity()),itemSubPrice));
+        for (int i = 0; cartLists.size() > i; i++) {
+            double itemSubPrice = Integer.parseInt(cartLists.get(i).getItemQuantity()) * (Double.parseDouble(cartLists.get(i).getItemPrice()));
+
+            items.add(new MyCartItem(cartLists.get(i).getFarmLogo(),
+                    cartLists.get(i).getFarmName(),
+                    cartLists.get(i).getItemPrice(),
+                    cartLists.get(i).getFarmAddress(),
+                    cartLists.get(i).getCartId(),
+                    Integer.parseInt(cartLists.get(i).getItemQuantity()),
+                    Integer.parseInt(String.valueOf(itemSubPrice))));
 
         }
         return items;
@@ -45,7 +51,7 @@ public class MyCartTransformer {
         return new PlaceOrderSlotListItems(item);
     }
 
-    public static TaxData getTaxDataItem(TaxData taxData){
+    public static TaxData getTaxDataItem(TaxData taxData) {
         return taxData;
     }
 }

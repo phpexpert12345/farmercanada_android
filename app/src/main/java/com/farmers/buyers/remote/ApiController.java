@@ -171,22 +171,33 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<FarmListResponse> FARM_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
-                                                   @Field("customer_lat") String customer_lat,
-                                                   @Field("customer_long") String customer_long,
+                                                   @Field("customer_lat") Double customer_lat,
+                                                   @Field("customer_long") Double customer_long,
                                                    @Field("customer_full_address") String customer_full_address,
                                                    @Field("customer_city") String customer_city,
                                                    @Field("farm_type") String farm_type,
-                                                   @Field("farm_type_developer_information") String farm_type_developer_information,
                                                    @Field("farm_service_type") String farm_service_type,
-                                                   @Field("order_type_developer_information") String order_type_developer_information,
                                                    @Field("farm_category_id") String farm_category_id,
                                                    @Field("pageno") String pageno,
                                                    @Field("LoginId") String LoginId);
 
     @FormUrlEncoded
     @POST
-    Call<FarmListProductResponse> FARM__PRODUCT_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("farm_id") String farmId);
+    Call<FarmListProductResponse> getFarmProductList(@Url String url, @Field("auth_key") String authKey,
+                                                                   @Field("farm_id") String farmId);
 
+
+    @FormUrlEncoded
+    @POST
+    Call<FarmListProductResponse> addToCart(@Url String url, @Field("auth_key") String authKey,
+                                            @Field("farm_id") String farmId,
+                                            @Field("LoginId") String LoginId,
+                                            @Field("item_id") String item_id,
+                                            @Field("item_quantity") String item_quantity,
+                                            @Field("item_price") String item_price,
+                                            @Field("item_size") String item_size,
+                                            @Field("item_unit") String item_unit,
+                                            @Field("order_type") String order_type);
 
     @FormUrlEncoded
     @POST

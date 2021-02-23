@@ -38,6 +38,8 @@
         android:gravity="center"
         android:fontFamily="@font/sf_ui_regular"
         android:textColor="@color/primaryTextColor"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:textSize="@dimen/sp_14_px"/>
 
 </LinearLayout>

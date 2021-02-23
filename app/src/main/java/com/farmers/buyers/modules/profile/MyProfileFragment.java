@@ -1,7 +1,9 @@
 package com.farmers.buyers.modules.profile;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.Window;
@@ -251,9 +253,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case LOGOUT: {
-                SharedPreferenceManager.getInstance().clearUserInfo();
-                startActivity(new Intent(baseActivity, LoginActivity.class));
-                baseActivity.finish();
+                showLogoutAlert();
                 break;
             }
 
@@ -274,8 +274,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case ADDRESS: {
-                Intent intentAddress=new Intent(baseActivity,MyAddressActivity.class);
-                intentAddress.putExtra("ComeFrom",1);
+                Intent intentAddress = new Intent(baseActivity, MyAddressActivity.class);
+                intentAddress.putExtra("ComeFrom", 1);
                 startActivity(intentAddress);
                 break;
             }
@@ -285,4 +285,19 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
         }
     }
+
+    private void showLogoutAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Farmer Alert");
+        builder.setMessage("Are you sure! You want to logout ?");
+        builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+            SharedPreferenceManager.getInstance().clearUserInfo();
+            startActivity(new Intent(baseActivity, LoginActivity.class));
+            baseActivity.finish();
+        });
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        });
+    }
+
 }

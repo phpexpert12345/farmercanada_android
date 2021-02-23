@@ -69,11 +69,11 @@ public class MyCartFragment extends BaseFragment implements
 
     TaxData taxData = null;
     private RecyclerView recyclerView;
-    private TextView noDataLabel,myCartInstruction,itemCount,addItem;
+    private TextView noDataLabel, myCartInstruction, itemCount, addItem;
     private MyCartAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<MyCartItem> cartData = new ArrayList<>();
-    private String subTotal="";
+    private String subTotal = "";
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -113,10 +113,10 @@ public class MyCartFragment extends BaseFragment implements
 
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id._my_cart_recyclerView);
-        noDataLabel=view.findViewById(R.id.nodata_label);
-        myCartInstruction=view.findViewById(R.id.my_cart_instruction_tv);
-        itemCount=view.findViewById(R.id.itemCount);
-        addItem=view.findViewById(R.id.add_item);
+        noDataLabel = view.findViewById(R.id.nodata_label);
+        myCartInstruction = view.findViewById(R.id.my_cart_instruction_tv);
+        itemCount = view.findViewById(R.id.itemCount);
+        addItem = view.findViewById(R.id.add_item);
 
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -127,10 +127,10 @@ public class MyCartFragment extends BaseFragment implements
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-           // startActivity(new Intent(getActivity(),FarmList));
+                // startActivity(new Intent(getActivity(),FarmList));
             }
         });
-       // getServicesAndTax();
+        // getServicesAndTax();
         cartDataListRequest();
         SwipeHelper swipeHelper = new SwipeHelper(getContext(), recyclerView, 250) {
             @Override
@@ -140,7 +140,7 @@ public class MyCartFragment extends BaseFragment implements
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
-                                showDialog( cartData.get(position).getCartId());
+                                showDialog(cartData.get(position).getCartId());
 
                             }
                         }
@@ -221,14 +221,14 @@ public class MyCartFragment extends BaseFragment implements
                 switch (data.status) {
                     case SUCCESS:
                         dismissLoader();
-                        if (data.data.getStatus()){
+                        if (data.data.getStatus()) {
                             recyclerView.setVisibility(View.VISIBLE);
                             myCartInstruction.setVisibility(View.VISIBLE);
                             noDataLabel.setVisibility(View.GONE);
-                            itemCount.setText(data.data.getData().getFarmProductCartList().size()+ "Items");
+                            itemCount.setText(data.data.getData().getFarmProductCartList().size() + "Items");
                             cartListData(data.data.getData().getFarmProductCartList());
                             adapter.updateData(items);
-                        }else {
+                        } else {
                             items.clear();
                             recyclerView.setVisibility(View.GONE);
                             noDataLabel.setText(data.data.getStatusMessage());
@@ -273,18 +273,15 @@ public class MyCartFragment extends BaseFragment implements
         helper.attachToRecyclerView(recyclerView);
     }
 
-
     private void cartListData(List<FarmProductCartList> farmProductCartList) {
         items.clear();
         cartData.clear();
-        int subTotalAmount=0;
-        for (int i=0;MyCartTransformer.getMyCartItem(farmProductCartList).size()>i;i++){
-            subTotalAmount=subTotalAmount+MyCartTransformer.getMyCartItem(farmProductCartList).get(i).getItemSubPrice();
+        int subTotalAmount = 0;
+        for (int i = 0; MyCartTransformer.getMyCartItem(farmProductCartList).size() > i; i++) {
+            subTotalAmount = subTotalAmount + MyCartTransformer.getMyCartItem(farmProductCartList).get(i).getItemSubPrice();
         }
 
-
-
-        subTotal=String.valueOf(subTotalAmount);
+        subTotal = String.valueOf(subTotalAmount);
         TaxRequestParam requestParam = new TaxRequestParam(appController.getAuthenticationKey(), "1", "", "1", String.valueOf(subTotalAmount));
         cartData.addAll(MyCartTransformer.getMyCartItem(farmProductCartList));
         items.addAll(MyCartTransformer.getMyCartItem(farmProductCartList));
@@ -292,7 +289,6 @@ public class MyCartFragment extends BaseFragment implements
         getServicesAndTax(requestParam);
 
     }
-
 
     @Override
     public void onCheckOutClicked() {
@@ -308,17 +304,13 @@ public class MyCartFragment extends BaseFragment implements
     }
 
     void getServicesAndTax(TaxRequestParam requestParam) {
-
         viewModel.applyServiceAndTax(taxServiceMachine, requestParam);
-
     }
 
     void cartDataListRequest() {
         CartReqParam cartReqParam = new CartReqParam(appController.getAuthenticationKey(), appController.getLoginId(), "1");
         viewModel.getCartListItems(cartListMachine, cartReqParam);
-
     }
-
 
     void showDialog(String cartId) {
         new AlertDialog.Builder(getActivity())

@@ -57,7 +57,6 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         prepareData();
         init();
 
-
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
             @Override
             public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List buffer) {
@@ -67,8 +66,6 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
-
-
                             }
                         }
                 ));
@@ -76,27 +73,24 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
             }
         };
 
-
-
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
     }
 
     private void init() {
         recyclerView = findViewById(R.id._my_cart_recyclerView);
-        adapter = new MyCartAdapter(this,this,this,this);
+        adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         adapter.updateData(items);
 
-        }
-
-    private void prepareData() {
-       // items.addAll(MyCartTransformer.getMyCartItem());
-       // items.add(new MyCartCheckOutItem());
     }
 
+    private void prepareData() {
+        // items.addAll(MyCartTransformer.getMyCartItem());
+        // items.add(new MyCartCheckOutItem());
+    }
 
     @Override
     public Boolean showToolbar() {
@@ -110,7 +104,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
 
     @Override
     public void onCouponClicked(String couponCode) {
-      //  Toast.makeText(MyCartActivity.this,couponCode,Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(MyCartActivity.this,couponCode,Toast.LENGTH_SHORT).show();
     }
 
 

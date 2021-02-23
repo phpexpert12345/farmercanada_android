@@ -36,11 +36,21 @@ public class HomeTransformer {
 
     public static List<HomeListItem> getHomeFarmListItem(List<SubProductItemRecord> listItem) {
         List<HomeListItem> items = new ArrayList<>();
-        for (int i =0 ; i< listItem.size() ; i++) {
+        for (int i = 0; i < listItem.size(); i++) {
             SubProductItemRecord data = listItem.get(i);
-                    items.add(new HomeListItem(data.getFarmName(), data.getFarmDeliveryRadiusText(), data.getRatingAvg().toString(), data.getFarmFavouriteStatus(), data.getFarmId(), data.getFarmCoverPhoto(), data.getFarmLogo()));
+            items.add(new HomeListItem(data.getFarmName(),
+                    data.getFarmDeliveryRadiusText(),
+                    data.getRatingAvg().toString(),
+                    data.getFarmFavouriteStatus(),
+                    data.getFarmId(),
+                    data.getFarmCoverPhoto(),
+                    data.getFarmLogo(),
+                    data.getFarmLatitude(),
+                    data.getFarmLongitude(), data.getFarmAddress(), data.getFarmOpeningHours(),
+                    data.farm_estimate_delivery_time, data.getFarmHostedBy(), data.getFarmOpeningStatus(),
+                    data.getFarmFavouriteStatus(), data.favourite_id, data.getFarmFollowedStatus(),
+                    data.getFormTypeName()));
         }
-
         return items;
     }
 
@@ -48,7 +58,7 @@ public class HomeTransformer {
         List<RecyclerViewListItem> categoryItems = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             categoryItems.add(new HomeCategoryItems(data.get(i).getCategory_name(), data.get(i).getCategory_photo(),
-                    R.drawable.ic_category_one));
+                    R.drawable.ic_category_one, data.get(i).getCategory_id()));
         }
         return new HomeCategoryListItem(categoryItems);
     }
@@ -63,15 +73,6 @@ public class HomeTransformer {
 
     public static HomeHeaderItem getHeaderItems() {
         return new HomeHeaderItem("Aman kumar", "address", "Type");
-    }
-
-    public static HomeCategoryListItem getCategoryList() {
-        List<RecyclerViewListItem> categoryItems = new ArrayList<>();
-        categoryItems.add(new HomeCategoryItems("vegetables", "", R.drawable.ic_category_one));
-        categoryItems.add(new HomeCategoryItems("grocery", "", R.drawable.ic_category_two));
-        categoryItems.add(new HomeCategoryItems("meat", "", R.drawable.ic_category_three));
-        categoryItems.add(new HomeCategoryItems("wine", "", R.drawable.ic_category_four));
-        return new HomeCategoryListItem(categoryItems);
     }
 
     public static HomeTopOffersListItems getTopOffers() {
