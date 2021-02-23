@@ -81,6 +81,8 @@ public class AddressApiModel {
         private String vendor_long;
         private String landmark;
         private String address_title;
+        private String address_postcode;
+        private String account_phone_number;
 
         private String order_id;
         private String order_date;
@@ -104,6 +106,22 @@ public class AddressApiModel {
 
         public void setAllRecordList(List<AllRecordsData> allRecordList) {
             this.allRecordList = allRecordList;
+        }
+
+        public String getAddress_postcode() {
+            return address_postcode;
+        }
+
+        public void setAddress_postcode(String address_postcode) {
+            this.address_postcode = address_postcode;
+        }
+
+        public String getAccount_phone_number() {
+            return account_phone_number;
+        }
+
+        public void setAccount_phone_number(String account_phone_number) {
+            this.account_phone_number = account_phone_number;
         }
 
         public String getOrder_type() {

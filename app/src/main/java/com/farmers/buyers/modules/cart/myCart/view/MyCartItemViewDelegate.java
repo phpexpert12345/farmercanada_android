@@ -13,10 +13,10 @@ import com.farmers.buyers.core.BaseViewHolder;
 
 public class MyCartItemViewDelegate extends BaseDelegate {
 
-    MyCartItemViewHolder.decreaseCallback decreaseCallback;
-    MyCartItemViewHolder.increaseCallback increaseCallback;
+    MyCartItemViewHolder.DecreaseCallback decreaseCallback;
+    MyCartItemViewHolder.IncreaseCallback increaseCallback;
 
-    public MyCartItemViewDelegate(MyCartItemViewHolder.decreaseCallback decreaseCallback1,MyCartItemViewHolder.increaseCallback increaseCallback1) {
+    public MyCartItemViewDelegate(MyCartItemViewHolder.DecreaseCallback decreaseCallback1,MyCartItemViewHolder.IncreaseCallback increaseCallback1) {
 
         decreaseCallback=decreaseCallback1;
         increaseCallback=increaseCallback1;

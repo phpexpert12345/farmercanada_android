@@ -19,12 +19,16 @@ public class EditProfileRepository extends BaseRepository {
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), params.getFile());
         MultipartBody.Part body = MultipartBody.Part.createFormData("account_photo", params.getFile().getName(), requestBody);
 
+        RequestBody requestBodyCover = RequestBody.create(MediaType.parse("multipart/form-data"), params.getCoverFile());
+        MultipartBody.Part bodyCover = MultipartBody.Part.createFormData("user_cover_image", params.getFile().getName(), requestBodyCover);
+
         Call<SignUpApiModel> call = RetrofitBuilder.createServiceContract().editProfile(
                 ApiConstants.EDIT_PROFILE,
                 RequestBody.create(MediaType.parse("text/plain"), params.getLoginId()),
                 RequestBody.create(MediaType.parse("text/plain"), params.getAccount_name()),
                 RequestBody.create(MediaType.parse("text/plain"), params.getAccount_email()),
                 body,
+                bodyCover,
                 RequestBody.create(MediaType.parse("text/plain"), params.getAuthKey()));
         makeRequest(call, responseCallback);
     }
