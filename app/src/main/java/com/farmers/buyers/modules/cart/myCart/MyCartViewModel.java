@@ -72,9 +72,9 @@ public class MyCartViewModel extends BaseViewModel {
         repository.cartItemLists(taxRequestParam, new ApiResponseCallback<CartListResponse>() {
             @Override
             public void onSuccess(CartListResponse response) {
-                if (response!=null) {
-                        stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                }else {
+                if (response.getStatus()) {
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                } else {
                     stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), null));
                 }
             }
@@ -82,19 +82,17 @@ public class MyCartViewModel extends BaseViewModel {
             @Override
             public void onFailure(StandardError standardError) {
                 stateMutableLiveData.postValue(DataFetchState.<CartListResponse>error(standardError.getDisplayError(), null));
-
             }
         });
-
     }
 
     public void increaseDecrease(final MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> stateMutableLiveData, IncreaseDecreaseParams param) {
         stateMutableLiveData.postValue(DataFetchState.<IncreaseDecreaseApiModel>loading());
-        Log.d("MyCartRequest : ",new Gson().toJson(param));
+        Log.d("MyCartRequest : ", new Gson().toJson(param));
         repository.increaseDecrease(param, new ApiResponseCallback<IncreaseDecreaseApiModel>() {
             @Override
             public void onSuccess(IncreaseDecreaseApiModel response) {
-                Log.d("MyCartResponse : ",new Gson().toJson(response));
+                Log.d("MyCartResponse : ", new Gson().toJson(response));
                 if (response.getStatus())
                     stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatus_message()));
                 else

@@ -10,9 +10,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_ui_regular"
         android:textColor="@color/primaryTextColor"
-        tools:text="Title"
-        android:textSize="@dimen/_12ssp"/>
-
-
-
+        android:textSize="@dimen/_12ssp"
+        tools:text="Title" />
 </LinearLayout>

@@ -16,13 +16,9 @@ public class CheckoutFromCartAddressDelegate extends BaseDelegate {
 
     CheckOutFromCartAddressViewHolder.ChangeAddressCallback cartAddress;
 
-
     public CheckoutFromCartAddressDelegate(CheckOutFromCartAddressViewHolder.ChangeAddressCallback listeners) {
         this.cartAddress = listeners;
     }
-
-
-
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {

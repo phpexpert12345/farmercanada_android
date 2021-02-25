@@ -9,6 +9,7 @@ import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.followers.FollowersRepository;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowRequestParams;
@@ -103,7 +104,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-
     public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
 
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
@@ -142,38 +142,38 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void getFarmList(final MutableLiveData<DataFetchState<FarmListResponse>> stateMutableLiveData,FarmListRequest farmListRequest){
+    public void getFarmList(final MutableLiveData<DataFetchState<AddressApiModel>> stateMutableLiveData,FarmListRequest farmListRequest){
         farmListItems.clear();
         homeFarmListItem.clear();
 
-        stateMutableLiveData.postValue(DataFetchState.<FarmListResponse>loading());
+        stateMutableLiveData.postValue(DataFetchState.<AddressApiModel>loading());
 
-        repository.farmListRequest(farmListRequest, new ApiResponseCallback<FarmListResponse>() {
+        repository.farmListRequest(farmListRequest, new ApiResponseCallback<AddressApiModel>() {
             @Override
-            public void onSuccess(FarmListResponse response) {
-                if (response.getFarmData()!=null) {
-                    farmListItems.addAll(HomeTransformer.getHomeFarmListItem(response.farmData.subProductItemRecords));
-                    homeFarmListItem.addAll(HomeTransformer.getHomeFarmListItem(response.farmData.subProductItemRecords));
-                    stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
+            public void onSuccess(AddressApiModel response) {
+                if (response.isStatus()) {
+                    farmListItems.addAll(HomeTransformer.getHomeFarmListItem(response.getData().getSubProductItemRecords()));
+                    homeFarmListItem.addAll(HomeTransformer.getHomeFarmListItem(response.getData().getSubProductItemRecords()));
+                    stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatus_message()));
                 }
                 else {
-                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new FarmListResponse()));
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatus_message(), new AddressApiModel()));
 
                 }
             }
             @Override
             public void onFailure(StandardError standardError) {
-                stateMutableLiveData.postValue(DataFetchState.<FarmListResponse>error(standardError.getDisplayError(), null));
+                stateMutableLiveData.postValue(DataFetchState.<AddressApiModel>error(standardError.getDisplayError(), null));
 
             }
         });
 
     }
 
-    public void saveUnSaveFarm(MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> stateMachine, String farmId, int status) {
+    public void saveUnSaveFarm(MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> stateMachine, String farmId, int status, String favoriteId) {
         stateMachine.postValue(DataFetchState.loading());
 
-        SaveUnSaveFarmRequestModel params = new SaveUnSaveFarmRequestModel(farmId, appController.getLoginId(), status, appController.getAuthenticationKey());
+        SaveUnSaveFarmRequestModel params = new SaveUnSaveFarmRequestModel(farmId, appController.getLoginId(), status, appController.getAuthenticationKey(), favoriteId);
 
         saveFarmRepository.saveUnSaveFarm(params, new ApiResponseCallback<SaveUnsaveFarmApiModel>() {
             @Override
@@ -189,10 +189,10 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status) {
+    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status, String followId) {
         stateMachine.postValue(DataFetchState.loading());
 
-        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, appController.getLoginId(), appController.getAuthenticationKey(), status);
+        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, appController.getLoginId(), appController.getAuthenticationKey(), status, followId);
 
         followersRepository.followUnFollowFarm(params, new ApiResponseCallback<FollowUnFollowApiModel>() {
             @Override

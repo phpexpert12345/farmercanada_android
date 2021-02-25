@@ -35,6 +35,7 @@
 
 
             <RadioButton
+                android:id="@+id/payment_method_cod_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -75,6 +76,7 @@
                 android:textSize="@dimen/sp_12_px" />
 
             <RadioButton
+                android:id="@+id/payment_method_card_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -116,6 +118,7 @@
 
 
             <RadioButton
+                android:id="@+id/payment_method_wallet_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

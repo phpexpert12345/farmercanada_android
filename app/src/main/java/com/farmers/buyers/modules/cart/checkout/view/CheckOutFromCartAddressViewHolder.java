@@ -30,40 +30,29 @@ public class CheckOutFromCartAddressViewHolder extends BaseViewHolder {
     LinearLayout addressCard;
     ChangeAddressCallback addressCallback;
 
-    public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent,final ChangeAddressCallback addressCallback1) {
+    //String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", ""))
+    public CheckOutFromCartAddressViewHolder(@NonNull ViewGroup parent, final ChangeAddressCallback addressCallback1) {
         super(Extensions.inflate(parent, R.layout.check_out_from_cart_address_holder_layout));
         addressTv = itemView.findViewById(R.id.my_address_tv);
         addressDetailTv = itemView.findViewById(R.id.my_address_detail_tv);
         addressTypeTv = itemView.findViewById(R.id.my_address_type_tv);
         addressCard = itemView.findViewById(R.id.my_address_layout);
         changeAddress = itemView.findViewById(R.id.address_change_tv);
-        addressCallback=addressCallback1;
+        addressCallback = addressCallback1;
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
         CheckOutCartAddressItems item = (CheckOutCartAddressItems) items;
         addressTv.setText(item.getAddress());
-        addressDetailTv.setText(item.getDetail());
-        addressTypeTv.setText(item.getAddressType());
+        addressDetailTv.setText(item.getPhoneNumber());
+        addressTypeTv.setText(item.getAddressTitle());
         changeAddress.setVisibility(View.VISIBLE);
 
-       /* if (item.getSelected()) {
-            addressCard.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
-        } else {
-            addressCard.setBackground(null);
-        }
-*/
-
-        changeAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addressCallback.onEditAddressClicked(item);
-            }
-        });
+        changeAddress.setOnClickListener(view -> addressCallback.onEditAddressClicked(item));
     }
 
-    public interface ChangeAddressCallback{
+    public interface ChangeAddressCallback {
         void onEditAddressClicked(CheckOutCartAddressItems addressDetail);
     }
 }

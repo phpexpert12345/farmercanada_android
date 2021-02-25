@@ -21,6 +21,11 @@ public class FarmProductListReq implements Serializable {
     public String item_unit;
     public String order_type;
     public Activity context;
+    public String product_stock;
+    public String shopping_item_available;
+    public String category_id;
+    public String cart_id;
+    public String productId;
 
     public FarmProductListReq(String auth_key, String farm_id, String loginId, String item_id, String item_quantity,
                               String item_price, String item_size, String item_unit, String order_type) {
@@ -103,8 +108,9 @@ public class FarmProductListReq implements Serializable {
         this.context = context;
     }
 
-    public FarmProductListReq(Activity context, String auth_key, String farm_id) {
-        this.context=context;
+    public FarmProductListReq(Activity context, String auth_key, String loginId, String farm_id) {
+        this.context = context;
+        this.LoginId = loginId;
         this.auth_key = auth_key;
         this.farm_id = farm_id;
     }

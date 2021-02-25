@@ -16,14 +16,14 @@ public class MyCartItemViewDelegate extends BaseDelegate {
     MyCartItemViewHolder.DecreaseCallback decreaseCallback;
     MyCartItemViewHolder.IncreaseCallback increaseCallback;
 
-    public MyCartItemViewDelegate(MyCartItemViewHolder.DecreaseCallback decreaseCallback1,MyCartItemViewHolder.IncreaseCallback increaseCallback1) {
-
-        decreaseCallback=decreaseCallback1;
-        increaseCallback=increaseCallback1;
+    public MyCartItemViewDelegate(MyCartItemViewHolder.DecreaseCallback decreaseCallback1,
+                                  MyCartItemViewHolder.IncreaseCallback increaseCallback1) {
+        decreaseCallback = decreaseCallback1;
+        increaseCallback = increaseCallback1;
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new MyCartItemViewHolder(parent,increaseCallback,decreaseCallback);
+        return new MyCartItemViewHolder(parent, increaseCallback, decreaseCallback);
     }
 }

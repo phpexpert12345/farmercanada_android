@@ -47,7 +47,6 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     TextView gstTaxAmount, subTotal, packageFeeLabel;
     float totalAmountf = 0f;
 
-
     public MyCartCheckoutViewHolder(@NonNull ViewGroup parent, final MyCartCheckOutClickListeners listeners1, final MyCoupounClickListeners couponListener) {
         super(Extensions.inflate(parent, R.layout.my_cart_check_out_view_holder_layout));
         applyCouponButtonLayout = itemView.findViewById(R.id.my_cart_apply_coupon_ll);
@@ -65,50 +64,45 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         subTotal = itemView.findViewById(R.id.sub_total);
         packageFeeLabel = itemView.findViewById(R.id.packedge_fee_lable);
 
-
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listeners1.onCheckOutClicked();
             }
         });
-        myCartApplyCouponTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!couponEditText.getText().toString().isEmpty())
+
+        myCartApplyCouponTv.setOnClickListener(view -> {
+            if (!couponEditText.getText().toString().trim().isEmpty())
                 couponListener.onCouponClicked(couponEditText.getText().toString());
-                else
-                    couponEditText.setError("Enter the Coupon code");
-
-            }
+            else
+                Toast.makeText(itemView.getContext(), "Enter the Coupon code", Toast.LENGTH_SHORT).show();
         });
-
     }
 
     @Override
     public void bindView(final RecyclerViewListItem items) {
         TaxData taxData = (TaxData) items;
         subTotal.setText(taxData.getSubTotal());
-        if (taxData.isApplyCouponButton()){
+        if (taxData.isApplyCouponButton()) {
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
-            couponEditText.setError(null);
-        }else {
+            couponEditText.setText("");
+        } else {
             applyCouponButtonLayout.setVisibility(View.GONE);
         }
-        if (taxData.isRemoveDiscountButton()){
+        if (taxData.isRemoveDiscountButton()) {
             removeCouponTextView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             removeCouponTextView.setVisibility(View.GONE);
         }
-        if (taxData.isDiscountTextView()){
+        if (taxData.isDiscountTextView()) {
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             appliedCouponAmountLayout.setVisibility(View.GONE);
         }
-        if (taxData.isCouponApplied()){
+        if (taxData.isCouponApplied()) {
             couponEditText.setText("");
             couponEditText.setError("Invalid Coupon");
-        }else {
+        } else {
             couponEditText.setError(null);
             couponEditText.setText("");
         }
@@ -146,9 +140,8 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
             }
         });
 
-       // Log.d("SUBTOTAL", "bindView: "+taxData.getSubTotal());
+        // Log.d("SUBTOTAL", "bindView: "+taxData.getSubTotal());
     }
-
 
     public interface MyCartCheckOutClickListeners {
         public void onCheckOutClicked();

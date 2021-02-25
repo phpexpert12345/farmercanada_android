@@ -47,9 +47,11 @@ public class HomeTransformer {
                     data.getFarmLogo(),
                     data.getFarmLatitude(),
                     data.getFarmLongitude(), data.getFarmAddress(), data.getFarmOpeningHours(),
-                    data.farm_estimate_delivery_time, data.getFarmHostedBy(), data.getFarmOpeningStatus(),
-                    data.getFarmFavouriteStatus(), data.favourite_id, data.getFarmFollowedStatus(),
-                    data.getFormTypeName()));
+                    data.farm_estimate_delivery_time, data.getFarmHostedBy(),
+                    data.getFarmOpeningStatus(),
+                    data.getFarmFavouriteStatus(),
+                    data.getFavouriteId(), data.getFarmFollowedStatus(),
+                    data.getFormTypeName(),data.getFollowedId()));
         }
         return items;
     }

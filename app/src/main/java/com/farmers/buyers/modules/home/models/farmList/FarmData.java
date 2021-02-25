@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/16/2021.
  */
-public class FarmData implements Serializable ,RecyclerViewListItem{
+public class FarmData{
 
     @SerializedName("subProductItemsRecord")
 
@@ -19,16 +19,5 @@ public class FarmData implements Serializable ,RecyclerViewListItem{
 
     public ArrayList<SubProductItemRecord> getSubProductItemRecords() {
         return subProductItemRecords;
-    }
-
-
-    @Override
-    public int getViewType() {
-        return CardConstant.HOME_FARM_LIST_ITEM_ADAPTER;
-    }
-
-    @Override
-    public Object getUnique() {
-        return this;
     }
 }

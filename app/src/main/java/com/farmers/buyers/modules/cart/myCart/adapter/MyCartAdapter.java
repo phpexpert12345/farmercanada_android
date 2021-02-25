@@ -27,15 +27,17 @@ public class MyCartAdapter extends BaseAdapter {
                          MyCartItemViewHolder.DecreaseCallback decreaseCallback1) {
         super();
         this.cartCheckOutClickListeners = cartCheckOutClickListeners;
-        this.myCoupounClickListeners=myCoupounClickListeners1;
-        this.increaseCallback=increaseCallback1;
-        this.decreaseCallback=decreaseCallback1;
+        this.myCoupounClickListeners = myCoupounClickListeners1;
+        this.increaseCallback = increaseCallback1;
+        this.decreaseCallback = decreaseCallback1;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.MY_CART_ITEM_ADAPTER, new MyCartItemViewDelegate(decreaseCallback, increaseCallback));
-        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners,myCoupounClickListeners));
+        delegates.put(CardConstant.MY_CART_ITEM_ADAPTER, new MyCartItemViewDelegate(decreaseCallback,
+                increaseCallback));
+        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners,
+                myCoupounClickListeners));
     }
 }

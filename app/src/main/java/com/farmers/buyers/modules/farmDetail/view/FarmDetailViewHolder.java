@@ -6,11 +6,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailItems;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * created by Mohammad Sajjad
@@ -20,6 +23,7 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailItems;
 
 public class FarmDetailViewHolder extends BaseViewHolder {
     TextView farm_detail_item_farm_name_tv, tv_distance, tv_opening_time, tv_rating, tv_open_status, tv_hosted_by, tv_hosted_by_name;
+    CircleImageView civ_farm_image;
 
     public FarmDetailViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.farm_detail_item_layout));
@@ -31,11 +35,18 @@ public class FarmDetailViewHolder extends BaseViewHolder {
         tv_open_status = itemView.findViewById(R.id.tv_open_status);
         tv_hosted_by = itemView.findViewById(R.id.tv_hosted_by);
         tv_hosted_by_name = itemView.findViewById(R.id.tv_hosted_by_name);
+        civ_farm_image = itemView.findViewById(R.id.civ_farm_image);
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
         FarmDetailItems item = (FarmDetailItems) items;
+
+        Glide.with(itemView.getContext())
+                .load(item.getFarmImage())
+                .centerCrop()
+                .placeholder(R.drawable.ic_sign_up_logo)
+                .into(civ_farm_image);
 
         farm_detail_item_farm_name_tv.setText(item.getFarmName());
         tv_distance.setText(item.getFarm_delivery_radius_text());

@@ -25,15 +25,19 @@ public class MyCartTransformer {
         List<MyCartItem> items = new ArrayList<>();
 
         for (int i = 0; cartLists.size() > i; i++) {
-            double itemSubPrice = Integer.parseInt(cartLists.get(i).getItemQuantity()) * (Double.parseDouble(cartLists.get(i).getItemPrice()));
+            Double item_quantity, item_price;
+            item_quantity = Double.parseDouble(cartLists.get(i).getItemQuantity());
+            item_price = Double.parseDouble(cartLists.get(i).getItemPrice());
 
-            items.add(new MyCartItem(cartLists.get(i).getFarmLogo(),
-                    cartLists.get(i).getFarmName(),
+            Double itemSubPrice = item_price * item_quantity;
+
+            items.add(new MyCartItem(cartLists.get(i).product_images,
+                    cartLists.get(i).product_name,
                     cartLists.get(i).getItemPrice(),
                     cartLists.get(i).getFarmAddress(),
                     cartLists.get(i).getCartId(),
                     Integer.parseInt(cartLists.get(i).getItemQuantity()),
-                    Integer.parseInt(String.valueOf(itemSubPrice))));
+                    String.valueOf(itemSubPrice)));
 
         }
         return items;

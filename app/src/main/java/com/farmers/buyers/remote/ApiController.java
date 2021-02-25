@@ -115,13 +115,13 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<AddressApiModel> editAddress(@Url String url, @Field("LoginId") String LoginId, @Field("address_id") String address_id,
-                                     @Field("name_of_address") String name_of_address,
-                                     @Field("complete_address") String complete_address,
-                                     @Field("address_city") String address_city,
-                                     @Field("address_state") String address_state,
-                                     @Field("address_postcode") String address_postcode,
-                                     @Field("account_phone_number") String account_phone_number,
-                                     @Field("auth_key") String authKey);
+                                      @Field("name_of_address") String name_of_address,
+                                      @Field("complete_address") String complete_address,
+                                      @Field("address_city") String address_city,
+                                      @Field("address_state") String address_state,
+                                      @Field("address_postcode") String address_postcode,
+                                      @Field("account_phone_number") String account_phone_number,
+                                      @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
@@ -134,7 +134,7 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<SignUpApiModel> doUserSignUp(@Url String url, @Field("account_name") String name, @Field("account_mobile") String mobile, @Field("account_email") String email, @Field("account_password") String password,@Field("referral_code") String referral_code, @Field("account_type") Integer account_type, @Field("account_country") String account_country, @Field("account_state") String account_state, @Field("account_city") String account_city, @Field("account_address") String account_address, @Field("account_lat") String account_lat, @Field("account_long") String account_long, @Field("account_phone_code") String account_phone_code, @Field("device_id") String device_id, @Field("device_platform") String device_platform, @Field("auth_key") String authKey);
+    Call<SignUpApiModel> doUserSignUp(@Url String url, @Field("account_name") String name, @Field("account_mobile") String mobile, @Field("account_email") String email, @Field("account_password") String password, @Field("referral_code") String referral_code, @Field("account_type") Integer account_type, @Field("account_country") String account_country, @Field("account_state") String account_state, @Field("account_city") String account_city, @Field("account_address") String account_address, @Field("account_lat") String account_lat, @Field("account_long") String account_long, @Field("account_phone_code") String account_phone_code, @Field("device_id") String device_id, @Field("device_platform") String device_platform, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
@@ -170,21 +170,21 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<FarmListResponse> FARM_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
-                                                   @Field("customer_lat") Double customer_lat,
-                                                   @Field("customer_long") Double customer_long,
-                                                   @Field("customer_full_address") String customer_full_address,
-                                                   @Field("customer_city") String customer_city,
-                                                   @Field("farm_type") String farm_type,
-                                                   @Field("farm_service_type") String farm_service_type,
-                                                   @Field("farm_category_id") String farm_category_id,
-                                                   @Field("pageno") String pageno,
-                                                   @Field("LoginId") String LoginId);
+    Call<AddressApiModel> FARM_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
+                                                  @Field("customer_lat") Double customer_lat,
+                                                  @Field("customer_long") Double customer_long,
+                                                  @Field("customer_full_address") String customer_full_address,
+                                                  @Field("customer_city") String customer_city,
+                                                  @Field("farm_type") String farm_type,
+                                                  @Field("farm_service_type") String farm_service_type,
+                                                  @Field("farm_category_id") String farm_category_id,
+                                                  @Field("pageno") String pageno,
+                                                  @Field("LoginId") String LoginId);
 
     @FormUrlEncoded
     @POST
-    Call<FarmListProductResponse> getFarmProductList(@Url String url, @Field("auth_key") String authKey,
-                                                                   @Field("farm_id") String farmId);
+    Call<FarmListProductResponse> getFarmProductList(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String LoginId,
+                                                     @Field("farm_id") String farmId);
 
 
     @FormUrlEncoded
@@ -257,11 +257,13 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status);
+    Call<SaveUnsaveFarmApiModel> saveUnSaveFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_favourite_status") int status, @Field("favourite_id") String favoriteId);
 
     @FormUrlEncoded
     @POST
-    Call<CartListResponse> CART_LIST_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String userId, @Field("farm_id") String farmId);
+    Call<CartListResponse> CART_LIST_RESPONSE_CALL(@Url String url,
+                                                   @Field("auth_key") String authKey,
+                                                   @Field("LoginId") String userId);
 
     @FormUrlEncoded
     @POST
@@ -269,13 +271,16 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status);
+    Call<IncreaseDecreaseApiModel> clearAllCartItems(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String userId);
 
     @FormUrlEncoded
     @POST
-    Call<IncreaseDecreaseApiModel>INCREASE_DECREASE_API_MODEL_CALL(@Url String url, @Field("auth_key") String authKey, @Field("cart_id") String cartid, @Field("option_type") String optionType);
+    Call<FollowUnFollowApiModel> followUnFollowFarm(@Url String url, @Field("LoginId") String userId, @Field("auth_key") String authKey, @Field("farm_id") String farmId, @Field("farm_followed_status") String status, @Field("followed_id") String followId);
 
-
-
+    @FormUrlEncoded
+    @POST
+    Call<IncreaseDecreaseApiModel> INCREASE_DECREASE_API_MODEL_CALL(@Url String url, @Field("auth_key") String authKey,
+                                                                    @Field("cart_id") String cart_id,
+                                                                    @Field("option_type") String optionType);
 }
 

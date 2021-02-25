@@ -128,7 +128,7 @@ public class SaveFarmListApiModel {
         private String farmFavouriteStatus;
         @SerializedName("farm_followed_status")
         @Expose
-        private String farmFollowedStatus;
+        private String farmFollowedStatus="";
         @SerializedName("followed_id")
         @Expose
         private String followedId;
@@ -177,6 +177,7 @@ public class SaveFarmListApiModel {
         @SerializedName("farm_cover_photo")
         @Expose
         private String farmCoverPhoto;
+
 
         public Integer getFavouriteId() {
             return favouriteId;

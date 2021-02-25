@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.cart.order.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotItemDelegate;
+import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotItemViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -12,13 +13,17 @@ import com.farmers.buyers.storage.CardConstant;
 
 public class PlaceOrderSlotItemAdapter extends BaseAdapter {
 
-    public PlaceOrderSlotItemAdapter() {
+    private PlaceOrderSlotItemViewHolder.SlotCheckedListener listener;
+
+
+    public PlaceOrderSlotItemAdapter(PlaceOrderSlotItemViewHolder.SlotCheckedListener listener) {
         super();
+        this.listener  = listener;
         initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.PLACE_ORDER_ITEM_ADAPTER, new PlaceOrderSlotItemDelegate());
+        delegates.put(CardConstant.PLACE_ORDER_ITEM_ADAPTER, new PlaceOrderSlotItemDelegate(listener));
     }
 }

@@ -5,12 +5,15 @@ public class SaveUnSaveFarmRequestModel {
     String loginId;
     int farm_favourite_status;
     String auth_key;
+    String favoriteId;
 
-    public SaveUnSaveFarmRequestModel(String farm_id, String loginId, int farm_favourite_status, String auth_key) {
+
+    public SaveUnSaveFarmRequestModel(String farm_id, String loginId, int farm_favourite_status, String auth_key, String favoriteId) {
         this.farm_id = farm_id;
         this.loginId = loginId;
         this.farm_favourite_status = farm_favourite_status;
         this.auth_key = auth_key;
+        this.favoriteId = favoriteId;
     }
 
     public String getFarm_id() {
@@ -27,5 +30,9 @@ public class SaveUnSaveFarmRequestModel {
 
     public String getAuth_key() {
         return auth_key;
+    }
+
+    public String getFavoriteId() {
+        return favoriteId;
     }
 }

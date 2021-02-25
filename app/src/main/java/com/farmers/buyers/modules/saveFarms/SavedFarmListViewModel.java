@@ -28,12 +28,12 @@ public class SavedFarmListViewModel extends BaseViewModel {
 
 
     void getSavedFarmList(MutableLiveData<DataFetchState<SaveFarmListApiModel>> stateMachine) {
-
         items.clear();
         stateMachine.postValue(DataFetchState.loading());
 
         SaveFarmListRequestParams params = new SaveFarmListRequestParams(appController.getLoginId(), appController.getAuthenticationKey());
 
+        items.clear();
 
         repository.getSavedFarmList(params, new ApiResponseCallback<SaveFarmListApiModel>() {
             @Override
@@ -55,15 +55,22 @@ public class SavedFarmListViewModel extends BaseViewModel {
         });
     }
 
-    public void saveUnSaveFarm(MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> stateMachine, String farmId, int status) {
+    public void saveUnSaveFarm(MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> stateMachine, String farmId, int status, String favoriteId) {
         stateMachine.postValue(DataFetchState.loading());
 
-        SaveUnSaveFarmRequestModel params = new SaveUnSaveFarmRequestModel(farmId, appController.getLoginId(), status, appController.getAuthenticationKey());
+        SaveUnSaveFarmRequestModel params = new SaveUnSaveFarmRequestModel(farmId, appController.getLoginId(), status, appController.getAuthenticationKey(), favoriteId);
 
         repository.saveUnSaveFarm(params, new ApiResponseCallback<SaveUnsaveFarmApiModel>() {
             @Override
             public void onSuccess(SaveUnsaveFarmApiModel response) {
-                stateMachine.postValue(DataFetchState.success(new SaveUnsaveFarmApiModel(), ""));
+                if (response.getStatus())
+                {
+                    stateMachine.postValue(DataFetchState.success(new SaveUnsaveFarmApiModel(), ""));
+                }
+                else  {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new SaveUnsaveFarmApiModel()));
+
+                }
             }
 
             @Override
@@ -74,10 +81,10 @@ public class SavedFarmListViewModel extends BaseViewModel {
         });
     }
 
-    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status) {
+    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId, String status, String followId) {
         stateMachine.postValue(DataFetchState.loading());
 
-        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, appController.getLoginId(), appController.getAuthenticationKey(), status);
+        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(farmId, appController.getLoginId(), appController.getAuthenticationKey(), status, followId);
 
         followersRepository.followUnFollowFarm(params, new ApiResponseCallback<FollowUnFollowApiModel>() {
             @Override

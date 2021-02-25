@@ -65,6 +65,4 @@ public class OrderSuccessDialog {
         void onCancelClicked();
         void onSubmitClicked();
     }
-
-
 }

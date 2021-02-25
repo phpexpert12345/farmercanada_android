@@ -43,6 +43,9 @@ public class SubProductItemsRecord {
     private String priceUnitType;
     public String product_code;
     public String shopping_item_quantity;
+    public String product_stock;
+    public String shopping_item_available;
+    public String cart_id;
 
     public Integer getProductID() {
         return productID;

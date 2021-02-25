@@ -38,6 +38,7 @@ public class ApiConstants {
     public static final String AUTHENTICATION = "phpexpert_account_auth_key.php";
     public static final String CHANGE_USER_TYPE = "phpexpert_account_change_buyer_seller.php";
     public static final String ADD_TO_CART = "phpexpert_product_cart_add.php";
+    public static final String CLEAR_CART_ITEMS = "phpexpert_delete_product_cart.php";
 
     //Ganesh working
     public static final String FARM_LIST_URL = "phpexpert_farm_list.php";
@@ -46,10 +47,10 @@ public class ApiConstants {
     public static final String SERVICE_AND_TAX_URL = "phpexpert_service_charget_get.php";
     public static final String REVIEW_AND_RATING_API = "phpexpert_customer_review_list.php";
     public static final String SUBMIT_ORDER_URL = "phpexpert_payment_android_submit.php";
-    public static final String SAVE_FARM_LIST        = "phpexpert_customer_favourite_list.php";
-    public static final String SAVE_UN_SAVE_FARM     = "phpexpert_customer_favourite.php";
-    public static final String CUSTOMER_PRODUCT_CART_LIST_URL  = "phpexpert_customer_Product_Cart_list.php";
-    public static final String FOLLOWERS_LIST        = "phpexpert_customer_unfollow_follow_list.php";
-    public static final String FOLLOW_UNFOLLOW_USER  = "phpexpert_customer_follow_unfollow.php";
-    public static final String INCREADE_DECREASE_API_URL  = "phpexpert_product_cart_increase_decrease.php";
+    public static final String SAVE_FARM_LIST = "phpexpert_customer_favourite_list.php";
+    public static final String SAVE_UN_SAVE_FARM = "phpexpert_customer_favourite.php";
+    public static final String CUSTOMER_PRODUCT_CART_LIST_URL = "phpexpert_customer_Product_Cart_list.php";
+    public static final String FOLLOWERS_LIST = "phpexpert_customer_unfollow_follow_list.php";
+    public static final String FOLLOW_UNFOLLOW_USER = "phpexpert_customer_follow_unfollow.php";
+    public static final String INCREADE_DECREASE_API_URL = "phpexpert_product_cart_increase_decrease.php";
 }

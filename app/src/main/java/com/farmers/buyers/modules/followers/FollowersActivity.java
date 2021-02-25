@@ -84,29 +84,30 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
                     }
                     case SUCCESS: {
                         success(followersApiModelDataFetchState.status_message);
+                        break;
                     }
                     case ERROR: {
                         error(followersApiModelDataFetchState.status_message);
+                        break;
                     }
                 }
             }
         });
 
-        followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
-            @Override
-            public void onChanged(DataFetchState<FollowUnFollowApiModel> followUnFollowApiModelDataFetchState) {
-                switch (followUnFollowApiModelDataFetchState.status) {
-                    case LOADING: {
-                        loading();
-                        break;
-                    }
-                    case SUCCESS: {
-                        dismissLoader();
-                        getFollowersList();
-                    }
-                    case ERROR: {
-                        error(followUnFollowApiModelDataFetchState.status_message);
-                    }
+        followUnFollowStateMachine.observe(this, followUnFollowApiModelDataFetchState -> {
+            switch (followUnFollowApiModelDataFetchState.status) {
+                case LOADING: {
+                    loading();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+                    getFollowersList();
+                    break;
+                }
+                case ERROR: {
+                    error(followUnFollowApiModelDataFetchState.status_message);
+                    break;
                 }
             }
         });
@@ -115,11 +116,11 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
     }
 
     private void loading() {
-        showToolbar();
+        showLoader();
     }
 
     private void success(String msg) {
-       // Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         dismissLoader();
         bindAdapter();
     }
@@ -143,7 +144,7 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
     }
 
     @Override
-    public void onFollowUnFollowFarmListener(String farmId, String Status) {
-        viewModel.followUnFollowFarm(followUnFollowStateMachine, farmId, Status);
+    public void onFollowUnFollowFarmListener(String farmId, String Status, String followId) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, farmId, Status, followId);
     }
 }

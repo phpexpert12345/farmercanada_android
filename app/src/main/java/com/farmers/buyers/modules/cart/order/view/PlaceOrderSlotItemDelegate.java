@@ -13,8 +13,14 @@ import com.farmers.buyers.core.BaseViewHolder;
 
 public class PlaceOrderSlotItemDelegate extends BaseDelegate {
 
+    private PlaceOrderSlotItemViewHolder.SlotCheckedListener listener;
+
+    public PlaceOrderSlotItemDelegate(PlaceOrderSlotItemViewHolder.SlotCheckedListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new PlaceOrderSlotItemViewHolder(parent);
+        return new PlaceOrderSlotItemViewHolder(parent, listener);
     }
 }

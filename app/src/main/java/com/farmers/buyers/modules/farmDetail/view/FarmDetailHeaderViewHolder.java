@@ -33,10 +33,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FarmDetailHeaderViewHolder extends BaseViewHolder {
     private ImageView backImage;
-    private TextView tv_address;
+    private TextView tv_address, tv_follow_status;
     private ImageView farm_Detail_image;
     private CircleImageView img_logo;
     private LinearLayout ll_follow;
+    private FarmDetailHeaderListItem item;
 
     public FarmDetailHeaderViewHolder(@NonNull ViewGroup parent, final FarmHeaderClickListener listener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_header_layout));
@@ -45,6 +46,7 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
         farm_Detail_image = itemView.findViewById(R.id.farm_Detail_image);
         img_logo = itemView.findViewById(R.id.img_logo);
         ll_follow = itemView.findViewById(R.id.ll_follow);
+        tv_follow_status = itemView.findViewById(R.id.tv_follow_status);
 
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,17 +57,16 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
         ll_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onFollowClickListener("");
+                listener.onFollowClickListener(item.getFollowStatus(), item.getFollowed_id());
             }
         });
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        final FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
-
+        FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
+        this.item = item;
         tv_address.setText(item.getAddress());
-
         Glide.with(itemView.getContext())
                 .load(item.getImage())
                 .placeholder(R.drawable.ic_sign_up_logo)
@@ -75,11 +76,17 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
                 .load(item.getCoverImage())
                 .placeholder(R.drawable.ic_sign_up_logo)
                 .into(farm_Detail_image);
+
+        if (item.getFollowStatus().equals("No")) {
+            tv_follow_status.setText("Follow this farm");
+        } else {
+            tv_follow_status.setText("Unfollow this farm");
+        }
     }
 
     public interface FarmHeaderClickListener {
         void onOnBackClickListener();
 
-        void onFollowClickListener(String id);
+        void onFollowClickListener(String followStatus, String id);
     }
 }

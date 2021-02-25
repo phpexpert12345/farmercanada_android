@@ -2,9 +2,11 @@ package com.farmers.buyers.modules.address.model;
 
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.models.AllDataModel;
+import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.storage.CardConstant;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddressApiModel {
@@ -60,6 +62,13 @@ public class AddressApiModel {
 
         @SerializedName("OrderList")
         private List<AddressListData> allOrderList;
+
+        @SerializedName("subProductItemsRecord")
+        private ArrayList<SubProductItemRecord> subProductItemRecords;
+
+        public ArrayList<SubProductItemRecord> getSubProductItemRecords() {
+            return subProductItemRecords;
+        }
 
         public List<AddressListData> getAllDataModels() {
             return allDataModels;

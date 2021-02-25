@@ -23,6 +23,8 @@ import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.GPSTracker;
 
+import java.text.DecimalFormat;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -33,10 +35,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeItemsViewHolder extends BaseViewHolder {
     private TextView home_list_item_layout_farmName,home_list_item_layout_distance_tv,customer_home_parlour_view_holder_rating_tv;
-    private CircleImageView circleImageView;
+    private CircleImageView circleImageView, circleImageView2;
     private ImageView saveImage, savedImage, farmImage;
     private FarmItemClickListener farmItemClickListener;
-    private RelativeLayout followFarmLayout;
+    private RelativeLayout followFarmLayout, unFollowFarmLayout;
     private GPSTracker gpsTracker = new GPSTracker(itemView.getContext());
 
     public HomeItemsViewHolder(@NonNull ViewGroup parent, FarmItemClickListener farmItemClickListener) {
@@ -45,10 +47,12 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         savedImage = itemView.findViewById(R.id.home_list_saved_image);
         farmImage = itemView.findViewById(R.id.home_list_item_img);
         circleImageView = itemView.findViewById(R.id.home_list_item_layout_farm_img);
+        circleImageView2 = itemView.findViewById(R.id.home_list_item_layout_farm_img2);
         home_list_item_layout_farmName = itemView.findViewById(R.id.home_list_item_layout_farmName);
         home_list_item_layout_distance_tv = itemView.findViewById(R.id.home_list_item_layout_distance_tv);
         customer_home_parlour_view_holder_rating_tv = itemView.findViewById(R.id.customer_home_parlour_view_holder_rating_tv);
         followFarmLayout = itemView.findViewById(R.id.follow_layout);
+        unFollowFarmLayout = itemView.findViewById(R.id.unFollow_layout);
         this.farmItemClickListener = farmItemClickListener;
 
     }
@@ -57,17 +61,14 @@ public class HomeItemsViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         final HomeListItem item = (HomeListItem) items;
         home_list_item_layout_farmName.setText(item.getFarmName());
-        home_list_item_layout_distance_tv.setText(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong())+ " km away");
+        home_list_item_layout_distance_tv.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong()))+ " km away from you");
         customer_home_parlour_view_holder_rating_tv.setText(String.valueOf(item.getRating()));
         Glide.with(itemView.getContext()).load(item.getCoverImage()).into(farmImage);
         Glide.with(itemView.getContext()).load(item.getFarmImage()).into(circleImageView);
-        farmImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(itemView.getContext(), FarmDetailActivity.class);
+        farmImage.setOnClickListener(view -> {
+            Intent intent= new Intent(itemView.getContext(), FarmDetailActivity.class);
 //                intent.putExtra(Constant.SERIALIZABLE_INTENT,item);
-                itemView.getContext().startActivity(intent);
-            }
+            itemView.getContext().startActivity(intent);
         });
 
         if (item.getSaved().equals("Yes")) {
@@ -80,6 +81,20 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         }
 
 
+        try {//todo Please check sajjad
+            if (item.getIsFollowing().equals("Yes")) {
+                unFollowFarmLayout.setVisibility(View.VISIBLE);
+                followFarmLayout.setVisibility(View.GONE);
+            }
+            else {
+                unFollowFarmLayout.setVisibility(View.GONE);
+                followFarmLayout.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            unFollowFarmLayout.setVisibility(View.GONE);
+            followFarmLayout.setVisibility(View.VISIBLE);
+        }
+
 
         farmImage.setOnClickListener(v -> farmItemClickListener.onFarmItemClicked(getAdapterPosition()));
 
@@ -87,23 +102,40 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         savedImage.setOnClickListener(v -> {
             saveImage.setVisibility(View.VISIBLE);
             savedImage.setVisibility(View.GONE);
-            farmItemClickListener.onSaveFarmClicked(item.getId(), 0);
+            farmItemClickListener.onSaveFarmClicked(item.getId(), 0, item.getFavoriteId());
         });
 
         saveImage.setOnClickListener(v -> {
             saveImage.setVisibility(View.GONE);
             savedImage.setVisibility(View.VISIBLE);
-            farmItemClickListener.onSaveFarmClicked(item.getId(), 1);
+            farmItemClickListener.onSaveFarmClicked(item.getId(), 1, item.getFavoriteId());
         });
 
-        followFarmLayout.setOnClickListener(v -> farmItemClickListener.onFollowFarmClicked(item.getId(), "1"));
+        followFarmLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unFollowFarmLayout.setVisibility(View.VISIBLE);
+                followFarmLayout.setVisibility(View.GONE);
+                farmItemClickListener.onFollowFarmClicked(item.getId(), "1", item.getFollowId());
+            }
+        });
+
+        unFollowFarmLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unFollowFarmLayout.setVisibility(View.GONE);
+                followFarmLayout.setVisibility(View.VISIBLE);
+                farmItemClickListener.onFollowFarmClicked(item.getId(), "0", item.getFollowId());
+            }
+        });
+
 
 
     }
 
     public interface FarmItemClickListener {
-        void onSaveFarmClicked(String id, int status);
-        void onFollowFarmClicked(String id, String status);
+        void onSaveFarmClicked(String id, int status, String favoriteId);
+        void onFollowFarmClicked(String id, String status, String followId);
         void onFarmItemClicked(int position);
     }
 }

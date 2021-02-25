@@ -54,7 +54,6 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         setContentView(R.layout.activity_my_cart);
         setupToolbar(config);
 
-        prepareData();
         init();
 
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
@@ -66,6 +65,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
+
                             }
                         }
                 ));
@@ -91,6 +91,7 @@ public class MyCartActivity extends BaseActivity implements MyCartCheckoutViewHo
         // items.addAll(MyCartTransformer.getMyCartItem());
         // items.add(new MyCartCheckOutItem());
     }
+
 
     @Override
     public Boolean showToolbar() {

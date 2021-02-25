@@ -27,7 +27,9 @@ public class FarmDetailsAdapter extends BaseAdapter {
         delegates.put(CardConstant.FARM_DETAIL_VEGETABLE_ADAPTER, new FarmDetailVegetablesDelegate(farmDetailVegetableListener));
     }
 
-    public FarmDetailsAdapter(FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener farmDetailVegetableListener) {
+    public FarmDetailsAdapter(FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener,
+                              FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener
+                                      farmDetailVegetableListener) {
         super();
         this.farmDetailVegetableListener = farmDetailVegetableListener;
         this.headerClickListener = headerClickListener;

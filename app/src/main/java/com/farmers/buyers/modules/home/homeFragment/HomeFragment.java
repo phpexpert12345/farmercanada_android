@@ -34,6 +34,7 @@ import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.farmDetail.FarmDetailActivity;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.home.HomeTransformer;
@@ -92,7 +93,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     public HomeFragmentViewModel viewModel = factory.create(HomeFragmentViewModel.class);
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
-    private MutableLiveData<DataFetchState<FarmListResponse>> farmListStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AddressApiModel>> farmListStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> saveUnSaveStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<FollowUnFollowApiModel>> followUnFollowStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
@@ -104,7 +105,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private RecyclerView recyclerView, farmRecyclerView;
     private HomeAdapter adapter;
     private HomeFarmListAdapter homeFarmListAdapter;
-
 
     @Override
     public String getTitle() {
@@ -133,12 +133,24 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private void farmListDataRequest(String farmType, String serviceType, String categoryId, int page) {
 
 
-        FarmListRequest farmListRequest = new FarmListRequest(appController.getAuthenticationKey(), gpsTracker.getLatitude(), gpsTracker.getLongitude(), gpsTracker.getAddressLine(baseActivity), gpsTracker.getAdminArea(baseActivity), farmType, serviceType, categoryId, String.valueOf(page), AppController.get().getLoginId());
+        FarmListRequest farmListRequest = new FarmListRequest(
+                appController.getAuthenticationKey(),
+                gpsTracker.getLatitude(),
+                gpsTracker.getLongitude(),
+                gpsTracker.getAddressLine(baseActivity),
+                gpsTracker.getAdminArea(baseActivity),
+                farmType,
+                serviceType,
+                categoryId,
+                String.valueOf(page),
+                AppController.get().getLoginId());
+
         viewModel.getFarmList(farmListStateMachine, farmListRequest);
     }
 
     private void init() {
 
+        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", "0");
         adapter = new HomeAdapter(this, this, this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
         SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
@@ -170,9 +182,9 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
         recyclerView.setLayoutManager(manager);
 
-        farmListStateMachine.observe(this, new Observer<DataFetchState<FarmListResponse>>() {
+        farmListStateMachine.observe(this, new Observer<DataFetchState<AddressApiModel>>() {
             @Override
-            public void onChanged(DataFetchState<FarmListResponse> farmListResponseDataFetchState) {
+            public void onChanged(DataFetchState<AddressApiModel> farmListResponseDataFetchState) {
                 switch (farmListResponseDataFetchState.status) {
                     case ERROR:
                         dismissLoader();
@@ -249,12 +261,17 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
             switch (saveUnsaveFarmApiModelDataFetchState.status) {
                 case LOADING: {
                     showLoader();
+                    break;
                 }
                 case SUCCESS: {
                     dismissLoader();
+                    break;
+
                 }
                 case ERROR: {
                     dismissLoader();
+                    break;
+
                 }
             }
         });
@@ -293,10 +310,14 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     }
                     case SUCCESS: {
                         dismissLoader();
+                        break;
+
                     }
                     case ERROR: {
                         dismissLoader();
                         Toast.makeText(baseActivity, followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        break;
+
                     }
                 }
             }
@@ -327,7 +348,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private void getUserData() {
         viewModel.getUserInformation(getUserStateMachine);
     }
-
 
     @Override
     public void onEditAddressClickListener(int position) {
@@ -395,21 +415,21 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         adapter.notifyItemChanged(position);
     }
 
-
     @Override
-    public void onSaveFarmClicked(String id, int status) {
-        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status);
+    public void onSaveFarmClicked(String id, int status, String favoriteId) {
+        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status, favoriteId);
     }
 
     @Override
-    public void onFollowFarmClicked(String id, String status) {
-        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status);
+    public void onFollowFarmClicked(String id, String status, String followId) {
+        viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status, followId);
 
     }
 
     @Override
     public void onFarmItemClicked(int position) {
         Intent intent = new Intent(baseActivity, FarmDetailActivity.class);
+        SharedPreferenceManager.getInstance().setSharedPreference("FARM_ID", viewModel.homeFarmListItem.get(position).getId());
         intent.putExtra("FARM_ID", viewModel.homeFarmListItem.get(position).getId());
         intent.putExtra("FARM_NAME", viewModel.homeFarmListItem.get(position).getFarmName());
         intent.putExtra("FARM_ADDRESS", viewModel.homeFarmListItem.get(position).getFarm_address());
@@ -419,8 +439,9 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         intent.putExtra("farm_followed_status", viewModel.homeFarmListItem.get(position).getFarm_followed_status());
         intent.putExtra("farm_delivery_radius_text", viewModel.homeFarmListItem.get(position).getDistance());
         intent.putExtra("farm_hosted_by", viewModel.homeFarmListItem.get(position).getFarm_hosted_by());
-        intent.putExtra("farm_cover_image", viewModel.homeFarmListItem.get(position).getFarm_cover_photo());
-        intent.putExtra("farm_image", viewModel.homeFarmListItem.get(position).getFarm_logo());
+        intent.putExtra("farm_cover_image", viewModel.homeFarmListItem.get(position).getCoverImage());
+        intent.putExtra("farm_image", viewModel.homeFarmListItem.get(position).getFarmImage());
+        intent.putExtra("followed_id", viewModel.homeFarmListItem.get(position).followed_id);
         startActivity(intent);
     }
 
@@ -434,6 +455,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     @Override
     public void onDeliveryTypeCheckedChangeListener(int type) {
         farmListDataRequest("", String.valueOf(type), "", 0);
+        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
     }
 
     @Override
