@@ -114,6 +114,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         } else {
             // couponEditText.setError(null);
             couponEditText.setText("");
+
         }
 
         shipingFee.setText(taxData.getDeliveryCharge());
