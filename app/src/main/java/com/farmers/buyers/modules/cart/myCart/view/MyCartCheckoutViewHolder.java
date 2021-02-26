@@ -27,6 +27,7 @@ import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponData;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
 import com.farmers.buyers.modules.orders.OrderSingleton;
 import com.farmers.buyers.storage.Constant;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 /**
  * created by Mohammad Sajjad
@@ -46,6 +47,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     TextView shipingFee, packageFeeAmount, lableGst;
     TextView gstTaxAmount, subTotal, packageFeeLabel;
     float totalAmountf = 0f;
+    RelativeLayout rl_shipping_fee;
 
     public MyCartCheckoutViewHolder(@NonNull ViewGroup parent, final MyCartCheckOutClickListeners listeners1, final MyCoupounClickListeners couponListener) {
         super(Extensions.inflate(parent, R.layout.my_cart_check_out_view_holder_layout));
@@ -63,6 +65,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         gstTaxAmount = itemView.findViewById(R.id.gst_tax_amount);
         subTotal = itemView.findViewById(R.id.sub_total);
         packageFeeLabel = itemView.findViewById(R.id.packedge_fee_lable);
+        rl_shipping_fee = itemView.findViewById(R.id.rl_shipping_fee);
 
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +78,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
             if (!couponEditText.getText().toString().trim().isEmpty())
                 couponListener.onCouponClicked(couponEditText.getText().toString());
             else
-                Toast.makeText(itemView.getContext(), "Enter the Coupon code", Toast.LENGTH_SHORT).show();
+                couponEditText.setError("Enter the Coupon code");
         });
     }
 
@@ -85,7 +88,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         subTotal.setText(taxData.getSubTotal());
         if (taxData.isApplyCouponButton()) {
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
-            couponEditText.setText("");
+            couponEditText.setError(null);
         } else {
             applyCouponButtonLayout.setVisibility(View.GONE);
         }
@@ -101,19 +104,27 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         }
         if (taxData.isCouponApplied()) {
             couponEditText.setText("");
-            couponEditText.setError("Invalid Coupon");
+            // couponEditText.setError("Invalid Coupon");
         } else {
-            couponEditText.setError(null);
+            // couponEditText.setError(null);
             couponEditText.setText("");
         }
 
         shipingFee.setText(taxData.getDeliveryCharge());
+        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
+            rl_shipping_fee.setVisibility(View.GONE);
+        } else {
+            rl_shipping_fee.setVisibility(View.VISIBLE);
+        }
         packageFeeAmount.setText(taxData.getPackageFeeAmount());
         lableGst.setText("GST   (" + taxData.getgSTTax() + "%):");
         gstTaxAmount.setText(taxData.getgSTTaxAmount());
         packageFeeLabel.setText("Package Fee (" + taxData.getPackageFeeTax() + "):");
-        totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) + Float.parseFloat(taxData.getPackageFeeAmount()) +
-                Float.parseFloat(taxData.getDeliveryCharge().toString());
+
+        totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) +
+                Float.parseFloat(taxData.getPackageFeeAmount()) +
+                Float.parseFloat(taxData.getDeliveryCharge());
+
         totalAmount.setText("$ " + String.valueOf(totalAmountf));
         OrderSingleton.getInstance().setTaxData(taxData);
         OrderSingleton.getInstance().setTotal_amount(totalAmountf);
@@ -139,7 +150,6 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
                 appliedCouponAmountLayout.setVisibility(View.GONE);
             }
         });
-
         // Log.d("SUBTOTAL", "bindView: "+taxData.getSubTotal());
     }
 

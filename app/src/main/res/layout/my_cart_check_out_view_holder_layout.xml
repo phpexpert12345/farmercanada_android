@@ -173,6 +173,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_shipping_fee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_16sdp"
