@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.cart.order;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
@@ -25,6 +28,11 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.OrderSuccessDialog;
+import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
+import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartReqParam;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.FarmProductCartList;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
 import com.farmers.buyers.modules.cart.order.adapter.PlaceOrderAdapter;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
@@ -33,8 +41,11 @@ import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotItemViewHolder;
 import com.farmers.buyers.modules.signUp.SignUpViewModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.storage.Constant;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDialog.OnDialogClickListeners,
@@ -43,8 +54,12 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     private RecyclerView recyclerView;
     private Button paymentButton;
     private PlaceOrderAdapter adapter;
+    CheckOutCartAddressItems address;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private OrderSuccessDialog dialog;
+    String price,quantity,itemid,item_unit_type,str_sizeid,extraitemid;
+    Double subTotalAmount = 0.0;
+    int pay_type;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -58,6 +73,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     };
     private SubmitOrderViewModel viewModel = factory.create(SubmitOrderViewModel.class);
     private MutableLiveData<DataFetchState<SubmitResponse>> submitMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<CartListResponse>> cartListMachine = new MutableLiveData<>();
     private AppController appController = AppController.get();
 
     @Override
@@ -80,6 +96,8 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
         prepareItems();
         init();
         listener();
+
+
 
         submitMachine.observe(this, response -> {
             switch (response.status) {
@@ -111,40 +129,115 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     }
 
     private void listener() {
+        CartReqParam cartReqParam = new CartReqParam(
+                appController.getAuthenticationKey(),
+                appController.getLoginId(),
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "")));
+        viewModel.getCartListItems(cartListMachine,cartReqParam);
+        cartListMachine.observe(this, data -> {
+            switch (data.status) {
+                case SUCCESS:
+                    dismissLoader();
+                    if (data.data.getStatus()) {
+                       if(data.data.getData().getFarmProductCartList().size()>0){
+                           List<FarmProductCartList>farmProductCartLists=data.data.getData().getFarmProductCartList();
+                           StringBuilder price_=new StringBuilder();
+                           StringBuilder quat=new StringBuilder();
+                           StringBuilder item_id=new StringBuilder();
+                           StringBuilder size_id=new StringBuilder();
+                           StringBuilder extra=new StringBuilder();
+                           StringBuilder unit=new StringBuilder();
+                           subTotalAmount=0.0;
+                           for(FarmProductCartList farmProductCartList:farmProductCartLists){
+                               if(price_.length()>0){
+                                   price_.append(",");
+                               }
+                               if(quat.length()>0){
+                                   quat.append(",");
+                               }
+                               if(item_id.length()>0){
+                                   item_id.append(",");
+                               }
+                               if(size_id.length()>0){
+                                   size_id.append(",");
+                               }
+                               if(extra.length()>0){
+                                   extra.append(",");
+                               }
+                               price_.append(farmProductCartList.getItemPrice());
+                              quat.append(farmProductCartList.getItemQuantity());
+                              item_id.append(farmProductCartList.getItemId());
+                              unit.append(farmProductCartList.getItemUnit());
+                              size_id.append(farmProductCartList.getItemSize());
+                              extra.append(farmProductCartList.getItemSize());
+                               subTotalAmount = subTotalAmount + Double.parseDouble(farmProductCartList.getItemPrice())*Integer.parseInt(farmProductCartList.getItemQuantity());
+                           }
+                           price=price_.toString();
+                           itemid=item_id.toString();
+                           quantity=quat.toString();
+                           item_unit_type=unit.toString();
+                           str_sizeid=size_id.toString();
+                           extraitemid=extra.toString();
+                           Log.i("order",price+"_"+itemid+"_"+quantity+"_"+item_unit_type+"_"+str_sizeid+"_"+extraitemid);
+                       }
+                       else{
+
+                       }
+
+//                        cartListData(data.data.getData().getFarmProductCartList());
+
+                    } else {
+
+                    }
+                    break;
+                case LOADING:
+                    showLoader();
+                    break;
+                case ERROR:
+                    break;
+            }
+        });
         paymentButton.setOnClickListener(view -> {
             Intent intent = getIntent();
+            address= (CheckOutCartAddressItems) intent.getSerializableExtra("address");
+            pay_type=intent.getIntExtra("pay_type",0);
             TaxData taxData = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
+            Calendar calendar=Calendar.getInstance();
+            SimpleDateFormat time_format=new SimpleDateFormat("HH:mm a");
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+            String date=simpleDateFormat.format(calendar.getTime());
+            String time=time_format.format(calendar.getTime());
 
             SubmitRequestParam param = new SubmitRequestParam(appController.getAuthenticationKey(),
                     "0",
                     "0",
-                    "201301",
-                    "Noida",
-                    "Sectore -62, Noida",
+                    "",
+                    "",
+                    address.getAddress(),
                     "",
                     "0",
                     "",
-                    "10:00 PM",
-                    "2021-02-20",
+                    time,
+                    date,
                     "0",
                     String.valueOf(taxData.getDiscountAmount()),
-                    "335",
+                    taxData.getSubTotal(),
                     taxData.getDeliveryCharge(),
                     taxData.getDeliveryCharge(),
                     taxData.getPackageFeeAmount(),
                     taxData.getgSTTaxAmount(),
-                    "300",
-                    "Paypal",
-                    "2",
+                    subTotalAmount.toString(),
+                    String.valueOf(pay_type),
+                    address.getAddress_id(),
                     appController.getLoginId(),
-                    "0,0",
-                    "kg,gram",
-                    "123_1,124_0",
-                    "10.00,14.00",
-                    "1,1",
-                    "123,124",
-                    "132323646545",
-                    "2");
+                    "",
+                    item_unit_type,
+                    str_sizeid,
+                    price,
+                    quantity,
+                    itemid,
+                    "",
+                    SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString());
 
             viewModel.submitOrder(submitMachine, param);
         });

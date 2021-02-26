@@ -22,7 +22,7 @@ public class OrderSingleton {
 
     private float discount_amount;
     private float coupon_discount_amount;
-    private float Total_amount;
+    private double Total_amount;
     private float delivery_amount;
     private float gst_tax_amount;
     private float subtotal;
@@ -44,11 +44,11 @@ public class OrderSingleton {
         this.coupon_discount_amount = coupon_discount_amount;
     }
 
-    public float getTotal_amount() {
+    public double getTotal_amount() {
         return Total_amount;
     }
 
-    public void setTotal_amount(float total_amount) {
+    public void setTotal_amount(double total_amount) {
         Total_amount = total_amount;
     }
 

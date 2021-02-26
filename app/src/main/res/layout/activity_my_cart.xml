@@ -48,6 +48,7 @@
                     android:fontFamily="@font/sf_ui_semibold"
                     android:gravity="center_vertical"
                     android:text="Add items"
+                    android:visibility="gone"
                     android:textColor="@color/primary_button_color"
                     android:textSize="@dimen/sp_12_px" />
             </RelativeLayout>

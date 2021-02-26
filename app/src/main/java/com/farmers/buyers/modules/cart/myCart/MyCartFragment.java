@@ -214,6 +214,9 @@ public class MyCartFragment extends BaseFragment implements
                 case ERROR:
                     itemCount.setText("No Items");
                     items.clear();
+                    myCartInstruction.setVisibility(View.GONE);
+                    itemCount.setVisibility(View.GONE);
+                    noDataLabel.setVisibility(View.VISIBLE);
                     noDataLabel.setText(data.status_message);
                     adapter.updateData(items);
                     dismissLoader();
@@ -246,7 +249,7 @@ public class MyCartFragment extends BaseFragment implements
         Double subTotalAmount = 0.0;
         for (int i = 0; MyCartTransformer.getMyCartItem(farmProductCartList).size() > i; i++) {
             subTotalAmount = subTotalAmount + Double.parseDouble(MyCartTransformer.getMyCartItem(
-                    farmProductCartList).get(i).getItemSubPrice());
+                    farmProductCartList).get(i).getItemSubPrice())*MyCartTransformer.getMyCartItem(farmProductCartList).get(i).getCartItemQuantity();
         }
 
         subTotal = String.valueOf(subTotalAmount);

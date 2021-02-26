@@ -20,6 +20,25 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
     private String detail;
     private String addressTitle;
     private String phoneNumber;
+
+    public double getAddress_lat() {
+        return address_lat;
+    }
+
+    public void setAddress_lat(double address_lat) {
+        this.address_lat = address_lat;
+    }
+
+    public double getAddress_long() {
+        return address_long;
+    }
+
+    public void setAddress_long(double address_long) {
+        this.address_long = address_long;
+    }
+
+    private double address_lat;
+    private double address_long;
     Boolean isSelected;
     Boolean canChange;
 
@@ -32,13 +51,15 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
         this.canChange = canChange;
     }
 
-    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle, String phoneNumber) {
+    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle, String phoneNumber,String add_lat,String add_long) {
         this.address_id = address_id;
         this.addressType = addressType;
         this.address = address;
         this.detail = detail;
         this.addressTitle = addressTitle;
         this.phoneNumber = phoneNumber;
+        this.address_lat=Double.parseDouble(add_lat);
+        this.address_long=Double.parseDouble(add_long);
     }
 
     public String getAddressType() {

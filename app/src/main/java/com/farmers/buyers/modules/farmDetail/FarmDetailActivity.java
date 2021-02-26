@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.address.MyAddressActivity;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.adapter.FarmDetailsAdapter;
+import com.farmers.buyers.modules.farmDetail.model.FarmDeliveryStatus;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -28,11 +30,13 @@ import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewH
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
-public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
+public  class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
         FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener {
     private RecyclerView recyclerView;
     private FarmDetailsAdapter adapter;
     public String farm_id;
+    int farm_delivery_radius;
+    double farm_lat,farm_long;
     private AppController appController = AppController.get();
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -144,12 +148,16 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                             appController.getLoginId());
                     viewModel.clearAllCartItems(clearAllCartItemsMachine, params);
                     dialog.dismiss();
+                    DroidPrefs.getDefaultInstance(getApplicationContext()).clearkey("delivery_radius");
                 })
                 .setIcon(getResources().getDrawable(R.drawable.logo))
                 .show();
     }
 
     private void getFarmProductDetail() {
+        farm_delivery_radius=getIntent().getIntExtra("farm_delivery_radius",0);
+        farm_lat=getIntent().getDoubleExtra("farm_lat",0.0);
+        farm_long=getIntent().getDoubleExtra("farm_long",0.0);
         FarmProductListReq farmProductListReq = new FarmProductListReq(FarmDetailActivity.this,
                 appController.getAuthenticationKey(),
                 appController.getLoginId(),
@@ -192,6 +200,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                 "1",
                 item.price_unit_type,
                 String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")));
+        FarmDeliveryStatus farmDeliveryStatus=new FarmDeliveryStatus();
+        farmDeliveryStatus.farm_delivery_status=farm_delivery_radius;
+        farmDeliveryStatus.farm_lat=farm_lat;
+        farmDeliveryStatus.farm_long=farm_long;
+        DroidPrefs.apply(getApplicationContext(),"delivery_radius",farmDeliveryStatus);
         viewModel.addToCartItems(addToCartStateMachine, farmProductListReq);
     }
 

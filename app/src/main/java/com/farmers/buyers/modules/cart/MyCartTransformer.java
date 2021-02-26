@@ -29,15 +29,13 @@ public class MyCartTransformer {
             item_quantity = Double.parseDouble(cartLists.get(i).getItemQuantity());
             item_price = Double.parseDouble(cartLists.get(i).getItemPrice());
 
-            Double itemSubPrice = item_price * item_quantity;
-
             items.add(new MyCartItem(cartLists.get(i).product_images,
                     cartLists.get(i).product_name,
                     cartLists.get(i).getItemPrice(),
-                    cartLists.get(i).getFarmAddress(),
+                    cartLists.get(i).getProduct_description(),
                     cartLists.get(i).getCartId(),
                     Integer.parseInt(cartLists.get(i).getItemQuantity()),
-                    String.valueOf(itemSubPrice)));
+                    String.valueOf(item_price),cartLists.get(i).getItemUnit()));
 
         }
         return items;

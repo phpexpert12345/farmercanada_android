@@ -3,6 +3,8 @@ package com.farmers.buyers.modules.cart.order;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartReqParam;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.remote.ApiConstants;
@@ -27,5 +29,12 @@ public class SubmitOrderRepository extends BaseRepository {
 
         makeRequest(call, responseCallback);
 
+    }
+    public void cartItemLists(CartReqParam params, ApiResponseCallback<CartListResponse> cartResponse) {
+        Call<CartListResponse> call = RetrofitBuilder.createServiceContract().CART_LIST_RESPONSE_CALL(
+                ApiConstants.CUSTOMER_PRODUCT_CART_LIST_URL,
+                params.getAuth_key(),
+                params.getLoginId());
+        makeRequest(call, cartResponse);
     }
 }
