@@ -84,6 +84,30 @@ public class FollowersApiModel {
         @Expose
         private String farmLogo;
 
+        public String getFarm_id() {
+            return farm_id;
+        }
+
+        public void setFarm_id(String farm_id) {
+            this.farm_id = farm_id;
+        }
+
+        @SerializedName("farm_id")
+        @Expose
+        private String farm_id;
+
+        public int getFollowed_id() {
+            return followed_id;
+        }
+
+        public void setFollowed_id(int followed_id) {
+            this.followed_id = followed_id;
+        }
+
+        @SerializedName("followed_id")
+        @Expose
+        private int followed_id;
+
         public String getFavouriteId() {
             return favouriteId;
         }

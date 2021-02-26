@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -30,6 +31,7 @@ import java.util.List;
 public class FollowersActivity extends BaseActivity implements FollowersViewHolder.FollowerListener {
     private RecyclerView recyclerView;
     private FollowersAdapter adapter;
+    private TextView txt_no_followers;
     private List<RecyclerViewListItem> items = new ArrayList<>();
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -70,6 +72,7 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
 
     private void init() {
         recyclerView = findViewById(R.id.followers_transformer);
+        txt_no_followers=findViewById(R.id.txt_no_followers);
         adapter = new FollowersAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -83,7 +86,7 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
                         break;
                     }
                     case SUCCESS: {
-                        success(followersApiModelDataFetchState.status_message);
+                        success(followersApiModelDataFetchState.data);
                         break;
                     }
                     case ERROR: {
@@ -119,15 +122,26 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
         showLoader();
     }
 
-    private void success(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    private void success(FollowersApiModel msg) {
         dismissLoader();
-        bindAdapter();
+        if(!msg.getStatus()){
+            txt_no_followers.setVisibility(View.VISIBLE);
+            txt_no_followers.setText(msg.getStatusMessage());
+            recyclerView.setVisibility(View.GONE);
+        }
+        else {
+            txt_no_followers.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            bindAdapter();
+        }
     }
 
     private void error(String error) {
         dismissLoader();
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        txt_no_followers.setVisibility(View.VISIBLE);
+        txt_no_followers.setText(error);
+        recyclerView.setVisibility(View.GONE);
+
     }
 
     private void bindAdapter() {

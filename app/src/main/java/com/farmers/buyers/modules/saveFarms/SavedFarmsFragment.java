@@ -1,17 +1,23 @@
 package com.farmers.buyers.modules.saveFarms;
 
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
@@ -20,6 +26,7 @@ import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.saveFarms.adapter.SavedFarmsAdapter;
 import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
+import com.farmers.buyers.remote.ApiConstants;
 
 /**
  * created by Mohammad Sajjad
@@ -30,6 +37,8 @@ import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHolder.FarmItemClickListener {
     private RecyclerView recyclerView;
     private SavedFarmsAdapter adapter;
+    private TextView txt_no_saved_farms;
+    private AppController appController = AppController.get();
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -61,6 +70,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     @Override
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.saved_farms_recyclerView);
+        txt_no_saved_farms=view.findViewById(R.id.txt_no_saved_farms);
         adapter = new SavedFarmsAdapter(this);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.GRID));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -93,7 +103,6 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
                 }
                 case SUCCESS: {
                     dismissLoader();
-                    Toast.makeText(baseActivity, "", Toast.LENGTH_SHORT).show();
                     getSavedFarmList();
                     break;
                 }
@@ -139,13 +148,17 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
     private void success() {
         dismissLoader();
+        txt_no_saved_farms.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
         bindAdapter();
 
     }
 
     private void error(String error) {
         dismissLoader();
-
+        txt_no_saved_farms.setVisibility(View.VISIBLE);
+        txt_no_saved_farms.setText(error);
+        recyclerView.setVisibility(View.GONE);
     }
 
     private void bindAdapter() {
@@ -155,7 +168,24 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
     @Override
     public void onSaveFarmClicked(String id, int status, String favoriteId) {
-        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status, favoriteId);
+        stateMachine.postValue(DataFetchState.loading());
+        String url= ApiConstants.BASE_URL+ ApiConstants.SAVE_UN_SAVE_FARM+"?LoginId="+appController.getLoginId()+"&auth_key="+appController.getAuthenticationKey()+"&farm_id="+id+"&farm_favourite_status="+status+"&favourite_id="+favoriteId;
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+if(response!=null){
+    saveUnSaveStateMachine.postValue(DataFetchState.success(new SaveUnsaveFarmApiModel(), ""));
+}
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                saveUnSaveStateMachine.postValue(DataFetchState.error("", new SaveUnsaveFarmApiModel()));
+            }
+        });
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+//        viewModel.saveUnSaveFarm(saveUnSaveStateMachine, id, status, favoriteId);
     }
 
     @Override
