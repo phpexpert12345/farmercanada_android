@@ -113,7 +113,6 @@ public class MyCartFragment extends BaseFragment implements
             }
         });
         // getServicesAndTax();
-        cartDataListRequest();
         SwipeHelper swipeHelper = new SwipeHelper(getContext(), recyclerView, 250) {
             @Override
             public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List buffer) {
@@ -237,6 +236,8 @@ public class MyCartFragment extends BaseFragment implements
 
         ItemTouchHelper helper = new ItemTouchHelper(swipeHelper);
         helper.attachToRecyclerView(recyclerView);
+
+        cartDataListRequest();
     }
 
     private void cartListData(List<FarmProductCartList> farmProductCartList) {
@@ -269,7 +270,11 @@ public class MyCartFragment extends BaseFragment implements
 
     @Override
     public void onCouponClicked(String couponCode) {
-        ApplyCouponReqParams applyCouponReqParams = new ApplyCouponReqParams(appController.getAuthenticationKey(), couponCode, "1", "300");
+        ApplyCouponReqParams applyCouponReqParams = new ApplyCouponReqParams(
+                appController.getAuthenticationKey(),
+                couponCode,
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "")),
+                subTotal);
         viewModel.validateCoupon(applyCouponMachine, applyCouponReqParams);
     }
 
@@ -281,7 +286,7 @@ public class MyCartFragment extends BaseFragment implements
         CartReqParam cartReqParam = new CartReqParam(
                 appController.getAuthenticationKey(),
                 appController.getLoginId(),
-                "");
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "")));
         viewModel.getCartListItems(cartListMachine, cartReqParam);
     }
 

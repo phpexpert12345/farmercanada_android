@@ -26,6 +26,7 @@ import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListPro
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewHolder;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
         FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener {
@@ -190,14 +191,16 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                 item.getPrice(),
                 "1",
                 item.price_unit_type,
-                "0");
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")));
         viewModel.addToCartItems(addToCartStateMachine, farmProductListReq);
     }
 
     @Override
     public void onClickIncreaseCartListener(FarmDetailsVegetableItems item, int cnt) {
-        IncreaseDecreaseParams params = new IncreaseDecreaseParams(appController.getAuthenticationKey(),
-                item.cart_id, "0");
+        IncreaseDecreaseParams params = new IncreaseDecreaseParams(
+                appController.getAuthenticationKey(),
+                item.cart_id,
+                "0");
         viewModel.increaseDecrease(increaseDecreaseMachine, params);
     }
 
