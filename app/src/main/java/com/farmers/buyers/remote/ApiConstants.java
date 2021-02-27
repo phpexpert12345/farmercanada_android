@@ -41,6 +41,10 @@ public class ApiConstants {
     public static final String CLEAR_CART_ITEMS = "phpexpert_delete_product_cart.php";
     public static final String GET_DATE_DATA = "phpexpert_checkout_date_list.php";
     public static final String GET_TIME_BY_DATE_DATA = "phpexpert_checkout_time_list.php";
+    public static final String GET_CUSTOMER_REVIEW_LIST = "phpexpert_customer_review_list.php";
+    public static final String GET_FARM_REVIEW_LIST = "phpexpert_farm_review_list.php";
+    public static final String GET_FARM_REVIEWED_LIST = "phpexpert_farm_review_customer_list.php";
+
 
     //Ganesh working
     public static final String FARM_LIST_URL = "phpexpert_farm_list.php";

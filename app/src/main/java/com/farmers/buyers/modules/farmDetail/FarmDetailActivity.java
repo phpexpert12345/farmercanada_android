@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.farmDetail;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -25,15 +26,17 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
+import com.farmers.buyers.modules.farmDetail.view.FarmDetailViewHolder;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewHolder;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
+import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
 public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
-        FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener {
+        FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener, FarmDetailViewHolder.FarmDetailItemClickListener {
     private RecyclerView recyclerView;
     private FarmDetailsAdapter adapter;
     public String farm_id;
@@ -67,7 +70,7 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     private void init() {
         recyclerView = findViewById(R.id.farmers_detail_recyclerView);
-        adapter = new FarmDetailsAdapter(this, this, this);
+        adapter = new FarmDetailsAdapter(this, this, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -247,6 +250,14 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     public void onDeliveryTypeCheckedChangeListener(int type) {
         getFarmProductDetail();
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+    }
+
+    @Override
+    public void onFarmDetailItemClicked(String id) {
+        Intent intent = new Intent(this, RatingAndReviewActivity.class);
+        intent.putExtra("farmId", id);
+        SharedPreferenceManager.getInstance().setFarmId(id);
+        startActivity(intent);
     }
 
     @Override

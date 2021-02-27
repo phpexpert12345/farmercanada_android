@@ -15,6 +15,7 @@ import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.inbox.model.NotificationListItems;
+import com.farmers.buyers.modules.ratingAndReview.model.ReviewListItem;
 import com.farmers.buyers.modules.ratingAndReview.model.ReviewedListItem;
 import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewList;
 
@@ -24,20 +25,18 @@ public class ReviewedListViewHolder extends BaseViewHolder {
 
     CardView reviewed_item_card;
     TextView commentTextView;
-    TextView farmName,duration_tv;
+    TextView farmName, duration_tv;
     RatingBar ratingBar;
     CircleImageView message_list_item_image;
-
-
 
     public ReviewedListViewHolder(@NonNull ViewGroup parent, final ReviewedListViewHolder.ReviewedItemClickListener reviewedItemClickListener) {
         super(Extensions.inflate(parent, R.layout.reviewed_list_item_layout));
         reviewed_item_card = itemView.findViewById(R.id.reviewed_item_card);
         message_list_item_image = itemView.findViewById(R.id.message_list_item_image);
-        commentTextView=itemView.findViewById(R.id.comment_tv);
-        farmName=itemView.findViewById(R.id.farm_name_tv);
-        duration_tv=itemView.findViewById(R.id.duration_tv);
-        ratingBar=itemView.findViewById(R.id.rating_view);
+        commentTextView = itemView.findViewById(R.id.comment_tv);
+        farmName = itemView.findViewById(R.id.farm_name_tv);
+        duration_tv = itemView.findViewById(R.id.duration_tv);
+        ratingBar = itemView.findViewById(R.id.rating_view);
 
         reviewed_item_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +49,12 @@ public class ReviewedListViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        ReviewList item = (ReviewList) items;
-        duration_tv.setText(item.getCreatedDate());
-        farmName.setText(item.getFarmName());
+        ReviewListItem item = (ReviewListItem) items;
+        duration_tv.setText(item.getDate());
+        farmName.setText(item.getName());
         commentTextView.setText(item.getComment());
-        ratingBar.setRating(Float.parseFloat(item.getTotalRating()));
-        Glide.with(itemView.getContext()).load(item.getFarmLogo()).into(message_list_item_image);
+        ratingBar.setRating(Float.parseFloat(String.valueOf(item.getGetRating())));
+        Glide.with(itemView.getContext()).load(item.getImage()).into(message_list_item_image);
 
 
        /* switch (item.getOrderStatus()) {
