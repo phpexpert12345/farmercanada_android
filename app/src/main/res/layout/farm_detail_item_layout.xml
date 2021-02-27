@@ -143,6 +143,16 @@
                         android:textSize="@dimen/sp_10_px" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/farm_detail_item_review_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_blue"
+                    android:text="Reviews"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:textSize="@dimen/_8ssp"/>
+
 
             </LinearLayout>
         </LinearLayout>

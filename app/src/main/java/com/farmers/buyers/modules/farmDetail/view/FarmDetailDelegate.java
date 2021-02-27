@@ -15,13 +15,15 @@ import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 public class FarmDetailDelegate extends BaseDelegate {
 
     private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
+    private FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener;
 
-    public FarmDetailDelegate(HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
+    public FarmDetailDelegate(HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener) {
         this.deliveryTypeCheckedChangeListener = deliveryTypeCheckedChangeListener;
+        this.farmDetailItemClickListener = farmDetailItemClickListener;
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new FarmDetailViewHolder(parent, deliveryTypeCheckedChangeListener);
+        return new FarmDetailViewHolder(parent, deliveryTypeCheckedChangeListener,farmDetailItemClickListener);
     }
 }

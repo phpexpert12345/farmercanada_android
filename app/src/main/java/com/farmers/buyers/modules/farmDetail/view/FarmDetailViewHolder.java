@@ -26,12 +26,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class FarmDetailViewHolder extends BaseViewHolder {
-    TextView farm_detail_item_farm_name_tv, tv_distance, tv_opening_time, tv_rating, tv_open_status, tv_hosted_by, tv_hosted_by_name;
+    TextView farm_detail_item_farm_name_tv, tv_distance, tv_opening_time, tv_rating, tv_open_status, tv_hosted_by, tv_hosted_by_name, reviewTv;
     CircleImageView civ_farm_image;
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
+    private FarmDetailItemClickListener farmDetailItemClickListener;
 
-    public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
+    public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailItemClickListener farmDetailItemClickListener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_item_layout));
 
         farm_detail_item_farm_name_tv = itemView.findViewById(R.id.farm_detail_item_farm_name_tv);
@@ -47,6 +48,8 @@ public class FarmDetailViewHolder extends BaseViewHolder {
         pickUpTv = itemView.findViewById(R.id.app_toggle_pickup_tv);
         deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
         civ_farm_image = itemView.findViewById(R.id.civ_farm_image);
+        reviewTv = itemView.findViewById(R.id.farm_detail_item_review_tv);
+        this.farmDetailItemClickListener = farmDetailItemClickListener;
 
         if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("0")) {
             toggle.setChecked(false);
@@ -65,6 +68,7 @@ public class FarmDetailViewHolder extends BaseViewHolder {
                 deliveryTypeCheckedChangeListener.onDeliveryTypeCheckedChangeListener(0);
             }
         });
+
     }
 
     @Override
@@ -84,9 +88,16 @@ public class FarmDetailViewHolder extends BaseViewHolder {
         //  tv_open_status.setText(item.getFarm_followed_status());
         tv_hosted_by.setText(item.getFarm_opening_hours());
         tv_hosted_by_name.setText("Hosted By " + item.getHostedBy());
+
+        reviewTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                farmDetailItemClickListener.onFarmDetailItemClicked(item.getFarmId());
+            }
+        });
     }
 
-    public interface DeliveryTypeCheckedChangeListener {
-        void onDeliveryTypeCheckedChangeListener(int type);
+    public interface FarmDetailItemClickListener {
+        void onFarmDetailItemClicked(String id);
     }
 }

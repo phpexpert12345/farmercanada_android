@@ -20,9 +20,10 @@ public class FarmDetailItems implements RecyclerViewListItem {
     String farm_delivery_radius_text;
     String farm_hosted_by;
     String farmImage;
+    String farmId;
 
     public FarmDetailItems(String farmName, String farmAddress, String rating, String hostedBy, String farm_opening_hours, String
-            farm_estimate_delivery_time, String farm_followed_status, String farm_delivery_radius_text, String farm_hosted_by, String farmImage) {
+            farm_estimate_delivery_time, String farm_followed_status, String farm_delivery_radius_text, String farm_hosted_by, String farmImage, String farmId) {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
         this.rating = rating;
@@ -33,6 +34,7 @@ public class FarmDetailItems implements RecyclerViewListItem {
         this.farm_delivery_radius_text = farm_delivery_radius_text;
         this.farm_hosted_by = farm_hosted_by;
         this.farmImage = farmImage;
+        this.farmId = farmId;
     }
 
     public FarmDetailItems() {
@@ -118,6 +120,10 @@ public class FarmDetailItems implements RecyclerViewListItem {
 
     public void setFarm_hosted_by(String farm_hosted_by) {
         this.farm_hosted_by = farm_hosted_by;
+    }
+
+    public String getFarmId() {
+        return farmId;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.farmers.buyers.modules.ratingAndReview;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
@@ -20,6 +22,8 @@ public class RatingAndReviewActivity extends BaseActivity {
     public ViewPager viewPager;
     public ReviewFragment tab1;
     public ReviewedFragment tab2;
+    private Intent intent = new Intent();
+    private String farmId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class RatingAndReviewActivity extends BaseActivity {
     }
 
     private void init() {
+        farmId = intent.getStringExtra("farmId");
+        Log.e("farmId", getIntent().getStringExtra("farmId"));
         tabLayout = findViewById(R.id.notification_tab_layout);
         viewPager = findViewById(R.id.notification_viewPager);
         setUpTabLayout();
@@ -91,7 +97,7 @@ public class RatingAndReviewActivity extends BaseActivity {
     }
 
     private void setUpStateAdapter() {
-        tab1 = new ReviewFragment().get();
+        tab1 = new ReviewFragment(getIntent().getStringExtra(farmId)).get(getIntent().getStringExtra(farmId));
         tab2 = new ReviewedFragment().get();
 
         AppPagerAdapter adapter = new AppPagerAdapter(getSupportFragmentManager());
@@ -107,7 +113,7 @@ public class RatingAndReviewActivity extends BaseActivity {
     private void getNotificationList(int position) {
         switch (position) {
             case 0: {
-                tab1.getReview();
+                tab1.getFarmReviewList();
                 break;
             }
 
