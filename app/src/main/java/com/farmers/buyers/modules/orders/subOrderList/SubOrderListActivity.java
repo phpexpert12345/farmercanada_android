@@ -132,6 +132,8 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
     @Override
     public void onSubOrderItemClicked(SubOrdersListItem item) {
         startActivity(new Intent(SubOrderListActivity.this, TrackOrderActivity.class).
+                putExtra("ORDER_STATUS_MSG", item.getStatus()).
+                putExtra("ORDER_TYPE",item.getOrderId()).
                 putExtra("ORDER_NUMBER", item.getOrderId()));
     }
 
