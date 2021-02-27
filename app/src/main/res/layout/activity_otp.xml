@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.signUp.OtpActivity"
     android:background="@color/white"
-    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context=".modules.signUp.OtpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_30sdp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginRight="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_50sdp"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="@dimen/dp_200_px"
@@ -35,37 +35,35 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/_24sdp"
             android:layout_marginRight="@dimen/_24sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center_horizontal"
             android:text="@string/otp_text"
-            android:textColor="@color/primaryTextColor"
-            android:layout_gravity="center_horizontal"
-           />
+            android:textColor="@color/primaryTextColor" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_30_px"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/dp_30_px"
-            style="@style/Widget.AppTheme.TextInputLayoutList"
             android:textColorHint="@color/light_gray"
-            app:hintTextColor="@color/light_gray"
             app:boxStrokeColor="@color/light_gray"
-            >
+            app:hintTextColor="@color/light_gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp_number_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
-                android:singleLine="true"
                 android:inputType="number"
-                android:maxLength="10"/>
+                android:maxLength="10"
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,11 +75,11 @@
             android:layout_marginLeft="@dimen/dp_10_px"
             android:layout_marginTop="@dimen/_40sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
+            android:fontFamily="@font/sf_ui_semibold"
             android:text="Request OTP"
             android:textAllCaps="false"
-            android:fontFamily="@font/sf_ui_semibold"
-            android:textSize="@dimen/_12ssp"
             android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />

@@ -30,6 +30,8 @@ public class SimpleTitleViewHolder extends BaseViewHolder {
         SimpleTitleItem item = ((SimpleTitleItem) items);
         titleTv.setText(item.getTitle());
 
-        titleTv.setTextColor(item.getColor() == 0 ? itemView.getContext().getResources().getColor(R.color.primaryTextColor) : itemView.getContext().getResources().getColor(item.getColor()));
+        titleTv.setTextColor(item.getColor() == 0 ?
+                itemView.getContext().getResources().getColor(R.color.primaryTextColor) :
+                itemView.getContext().getResources().getColor(item.getColor()));
     }
 }

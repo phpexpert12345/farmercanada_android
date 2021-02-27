@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class SubmitRequestParam implements Serializable {
 
-   String  auth_key;
+    String auth_key;
     String customer_long;
     String customer_lat;
     String customer_postcode;
@@ -37,6 +37,20 @@ public class SubmitRequestParam implements Serializable {
     String itemId;
     String payment_transaction_id;
     String farm_id;
+    String current_date;
+
+
+    public SubmitRequestParam(String auth_key, String loginId) {
+        this.auth_key = auth_key;
+        this.itemId = loginId;
+    }
+
+    public SubmitRequestParam(String auth_key, String loginId, String farm_id, String current_date) {
+        this.auth_key = auth_key;
+        this.itemId = loginId;
+        this.farm_id = farm_id;
+        this.current_date = current_date;
+    }
 
     public SubmitRequestParam(String auth_key, String customer_long, String customer_lat, String customer_postcode, String customer_city, String customer_address, String walletPay, String order_type, String specialInstruction, String delivery_time, String delivery_date, String discount_amount, String coupon_discount_amount, String total_amount, String delivery_amount, String package_fee_amount, String service_tax_amount, String gst_tax_amount, String subtotal, String payment_type, String address_id, String loginId, String instructions, String item_unit_type, String strsizeid, String price, String quantity, String itemId, String payment_transaction_id, String farm_id) {
         this.auth_key = auth_key;
@@ -69,6 +83,14 @@ public class SubmitRequestParam implements Serializable {
         this.itemId = itemId;
         this.payment_transaction_id = payment_transaction_id;
         this.farm_id = farm_id;
+    }
+
+    public String getCurrent_date() {
+        return current_date;
+    }
+
+    public void setCurrent_date(String current_date) {
+        this.current_date = current_date;
     }
 
     public String getAuth_key() {

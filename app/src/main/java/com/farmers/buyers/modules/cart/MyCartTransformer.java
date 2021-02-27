@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.FarmProductCartList;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
@@ -43,15 +44,32 @@ public class MyCartTransformer {
         return items;
     }
 
-    public static PlaceOrderSlotListItems getPlaceOrderSlot() {
+    public static PlaceOrderSlotListItems getPlaceOrderSlot(List<AddressApiModel.AddressListData> allDateList) {
         List<RecyclerViewListItem> item = new ArrayList<>();
-        item.add(new PlaceOrderSlotItem("S", "31 Jan"));
-        item.add(new PlaceOrderSlotItem("M", "2 Feb"));
+        for (int i = 0; i < allDateList.size(); i++) {
+            item.add(new PlaceOrderSlotItem(allDateList.get(i).day_name,
+                    allDateList.get(i).current_date,
+                    allDateList.get(i).month_name));
+        }
+
+       /* item.add(new PlaceOrderSlotItem("M", "2 Feb"));
         item.add(new PlaceOrderSlotItem("T", "3 Feb"));
         item.add(new PlaceOrderSlotItem("W", "4 Feb"));
         item.add(new PlaceOrderSlotItem("T", "5 Feb"));
         item.add(new PlaceOrderSlotItem("F", "6 Feb"));
-        item.add(new PlaceOrderSlotItem("S", "7 Feb"));
+        item.add(new PlaceOrderSlotItem("S", "7 Feb"));*/
+        return new PlaceOrderSlotListItems(item);
+    }
+
+    public static PlaceOrderSlotListItems getPlaceOrderSlot() {
+        List<RecyclerViewListItem> item = new ArrayList<>();
+        item.add(new PlaceOrderSlotItem("S", "31 Jan", ""));
+        item.add(new PlaceOrderSlotItem("M", "2 Feb", ""));
+        item.add(new PlaceOrderSlotItem("T", "3 Feb", ""));
+        item.add(new PlaceOrderSlotItem("W", "4 Feb", ""));
+        item.add(new PlaceOrderSlotItem("T", "5 Feb", ""));
+        item.add(new PlaceOrderSlotItem("F", "6 Feb", ""));
+        item.add(new PlaceOrderSlotItem("S", "7 Feb", ""));
         return new PlaceOrderSlotListItems(item);
     }
 

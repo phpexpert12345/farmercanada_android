@@ -14,7 +14,8 @@ public class ChangePasswordViewModel extends BaseViewModel {
     private ChangePasswordRepository repository = new ChangePasswordRepository();
     private AppController appController = AppController.get();
 
-    public void doChangePassword(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String new_password, String confirm_password, String Old_Password, String Mobile_OTP, String LoginId) {
+    public void doChangePassword(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine,
+                                 String new_password, String confirm_password, String Old_Password, String Mobile_OTP, String LoginId) {
 
         if (new_password.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
@@ -26,6 +27,10 @@ public class ChangePasswordViewModel extends BaseViewModel {
         }
         if (Old_Password.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter old password", new LoginApiModel()));
+            return;
+        }
+        if (Mobile_OTP.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Otp", new LoginApiModel()));
             return;
         }
 

@@ -108,8 +108,11 @@ public class TrackOrderActivity extends BaseActivity {
     }
 
     private void getOrderDetails() {
-        OrderTrackRequestParams orderTrackRequestParams = new OrderTrackRequestParams(AppController.get().getLoginId(),
-                "1", getIntent().getStringExtra("ORDER_NUMBER"), AppController.get().getAuthenticationKey());
+        OrderTrackRequestParams orderTrackRequestParams = new OrderTrackRequestParams(
+                AppController.get().getLoginId(),
+                "1",
+                getIntent().getStringExtra("ORDER_NUMBER"),
+                AppController.get().getAuthenticationKey());
 
         viewModel.getOrderDetails(stateMachine, orderTrackRequestParams);
     }

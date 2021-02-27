@@ -35,7 +35,6 @@ public class HomeTopOffersViewHolder extends BaseViewHolder {
     private int page = 0;
     private TextView[] dots;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public HomeTopOffersViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.home_top_offers_holder_layout));
         viewPager = itemView.findViewById(R.id.home_top_offers_view_pager);
@@ -76,13 +75,12 @@ public class HomeTopOffersViewHolder extends BaseViewHolder {
                     page++;
                 }
                 viewPager.setCurrentItem(page, true);
-                handler.postDelayed(runnable, 3000);
+                handler.postDelayed(runnable, 6000);
             }
         };
 
-        handler.postDelayed(runnable, 3000);
+        handler.postDelayed(runnable, 6000);
     }
-
 
     private void addBottomDots(int currentPage, int size) {
         dots = new TextView[size];

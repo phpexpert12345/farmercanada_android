@@ -89,6 +89,18 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AddressApiModel> getDateData(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String LoginId);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> getOrderTimeByDate(@Url String url,
+                                             @Field("auth_key") String authKey,
+                                             @Field("LoginId") String LoginId,
+                                             @Field("farm_id") String farm_id,
+                                             @Field("current_date") String current_date);
+
+    @FormUrlEncoded
+    @POST
     Call<AddressApiModel> deleteAddress(@Url String url, @Field("LoginId") String LoginId, @Field("address_id") String address_id, @Field("auth_key") String authKey);
 
     @FormUrlEncoded

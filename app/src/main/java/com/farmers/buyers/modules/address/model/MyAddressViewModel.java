@@ -6,23 +6,33 @@ import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.AddressTransformer;
 import com.farmers.buyers.modules.address.MyAddressRepository;
 import com.farmers.buyers.modules.address.MyAddressRequestParams;
+import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
 import com.farmers.buyers.remote.StandardError;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyAddressViewModel extends BaseViewModel {
 
     private MyAddressRepository repository = new MyAddressRepository();
     private AppController appController = AppController.get();
+    public List<RecyclerViewListItem> items = new ArrayList<>();
+    public List<CheckOutCartAddressItems> addressItems = new ArrayList<>();
 
     public void getAddressList(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine) {
-
         stateMachine.postValue(DataFetchState.<AddressApiModel>loading());
         MyAddressRequestParams myAddressRequestParams = new MyAddressRequestParams(appController.getLoginId(), appController.getAuthenticationKey());
         repository.getAddressList(myAddressRequestParams, new ApiResponseCallback<AddressApiModel>() {
             @Override
             public void onSuccess(AddressApiModel response) {
+                items.clear();
                 if (response.isStatus()) {
+                    items.addAll(AddressTransformer.getAddress(response.getData().getAllDataModels()));
+                    addressItems.addAll(AddressTransformer.getAddress(response.getData().getAllDataModels()));
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {
                     stateMachine.postValue(DataFetchState.<AddressApiModel>error(response.getStatus_message(), null));

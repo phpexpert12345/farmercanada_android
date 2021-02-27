@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ import java.util.List;
 public class ReviewedFragment extends BaseFragment implements ReviewedListViewHolder.ReviewedItemClickListener {
 
     private RecyclerView rv_reviewed_list;
-    private TextView responseMessage;
+    private LinearLayout responseMessage;
     private ReviewedListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<RecyclerViewListItem> filteredItem = new ArrayList<>();
@@ -78,37 +79,36 @@ public class ReviewedFragment extends BaseFragment implements ReviewedListViewHo
         rv_reviewed_list.setLayoutManager(new LinearLayoutManager(baseActivity));
         //getReviewed();
 
-        ReviewdListParams reviewdListParams=new ReviewdListParams(appController.getAuthenticationKey(),"22");
-        viewModel.getReview(reviewMachine,reviewdListParams);
+        ReviewdListParams reviewdListParams = new ReviewdListParams(appController.getAuthenticationKey(), "22");
+        viewModel.getReview(reviewMachine, reviewdListParams);
 
-        reviewMachine.observe(this,new Observer<DataFetchState<ReviewListResponse>>(){
+        reviewMachine.observe(this, new Observer<DataFetchState<ReviewListResponse>>() {
             @Override
             public void onChanged(DataFetchState<ReviewListResponse> response) {
-                switch (response.status){
+                switch (response.status) {
 
                     case ERROR:
                         dismissLoader();
                         rv_reviewed_list.setVisibility(View.GONE);
-                        responseMessage.setText(response.status_message);
+                        responseMessage.setVisibility(View.VISIBLE);
                         //  Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     case SUCCESS:
-
-                        responseMessage.setText(response.status_message);
+                        responseMessage.setVisibility(View.VISIBLE);
                         rv_reviewed_list.setVisibility(View.GONE);
-                        responseMessage.setText(response.status_message);
+                        responseMessage.setVisibility(View.VISIBLE);
                         dismissLoader();
-                        for (int i=0;response.data.getData().getReviewData().size()>i;i++){
-                            if (response.data.getData().getReviewData().get(i).getReviewId().equals(appController.getLoginId())){
+                        for (int i = 0; response.data.getData().getReviewData().size() > i; i++) {
+                            if (response.data.getData().getReviewData().get(i).getReviewId().equals(appController.getLoginId())) {
                                 filteredItem.add(response.data.getData().getReviewData().get(i));
                             }
                         }
 
-                        if (filteredItem.size()>0){
+                        if (filteredItem.size() > 0) {
                             rv_reviewed_list.setVisibility(View.VISIBLE);
                             responseMessage.setVisibility(View.GONE);
-                        }else {
-                            responseMessage.setText("No Data Found !");
+                        } else {
+                            responseMessage.setVisibility(View.VISIBLE);
                         }
 
                         items.addAll(filteredItem);

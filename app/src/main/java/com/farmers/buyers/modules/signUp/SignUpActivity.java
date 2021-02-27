@@ -108,7 +108,9 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                        success(signUpApiModelDataFetchState.status_message, signUpApiModelDataFetchState.data.getData().getMobile_OTP(), signUpApiModelDataFetchState.data.getData().getLoginId());
+                        success(signUpApiModelDataFetchState.status_message,
+                                signUpApiModelDataFetchState.data.getData().getMobile_OTP(),
+                                signUpApiModelDataFetchState.data.getData().getLoginId());
                         break;
                     }
 
@@ -158,7 +160,8 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private void success(String msg, String mobile_otp, String loginId) {
         dismissLoader();
-        Toast.makeText(this, msg + " -> " + mobile_otp, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, msg + " -> " + mobile_otp, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
         intent.putExtra("fromSignUp", true);
         intent.putExtra("USER_ID", loginId);

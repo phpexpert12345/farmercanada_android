@@ -6,6 +6,8 @@ import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDec
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowRequestParams;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
@@ -49,5 +51,11 @@ public class FarmDetailRepository extends BaseRepository {
                 params.getAuth_key(),
                 params.getLoginId());
         makeRequest(call, apiResponseCallback);
+    }
+
+    public void followUnFollowFarm(FollowUnFollowRequestParams params, ApiResponseCallback<FollowUnFollowApiModel> responseCallback) {
+        Call<FollowUnFollowApiModel> call = RetrofitBuilder.createServiceContract().followUnFollowFarm(ApiConstants.FOLLOW_UNFOLLOW_USER, params.getLoginId(), params.getAuthKey(), params.getFarmId(), params.getStatus(), params.getFollowId());
+        makeRequest(call, responseCallback);
+
     }
 }

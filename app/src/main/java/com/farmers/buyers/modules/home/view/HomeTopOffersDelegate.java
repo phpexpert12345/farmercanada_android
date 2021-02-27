@@ -12,6 +12,7 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class HomeTopOffersDelegate extends BaseDelegate {
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
         return new HomeTopOffersViewHolder(parent);

@@ -39,6 +39,8 @@ public class ApiConstants {
     public static final String CHANGE_USER_TYPE = "phpexpert_account_change_buyer_seller.php";
     public static final String ADD_TO_CART = "phpexpert_product_cart_add.php";
     public static final String CLEAR_CART_ITEMS = "phpexpert_delete_product_cart.php";
+    public static final String GET_DATE_DATA = "phpexpert_checkout_date_list.php";
+    public static final String GET_TIME_BY_DATE_DATA = "phpexpert_checkout_time_list.php";
 
     //Ganesh working
     public static final String FARM_LIST_URL = "phpexpert_farm_list.php";

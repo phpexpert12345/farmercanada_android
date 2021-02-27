@@ -14,17 +14,19 @@ import com.farmers.buyers.remote.StandardError;
  */
 public class RatingAndReviewViewModel extends BaseViewModel {
 
-    RatingAndReviewRepository repository=new RatingAndReviewRepository();
-    public void getReview(final MutableLiveData<DataFetchState<ReviewListResponse>> stateMutableLiveData, ReviewdListParams reviewdListParams){
+    RatingAndReviewRepository repository = new RatingAndReviewRepository();
+
+    public void getReview(final MutableLiveData<DataFetchState<ReviewListResponse>> stateMutableLiveData, ReviewdListParams reviewdListParams) {
         stateMutableLiveData.postValue(DataFetchState.<ReviewListResponse>loading());
         repository.ratingAndReview(reviewdListParams, new ApiResponseCallback<ReviewListResponse>() {
             @Override
             public void onSuccess(ReviewListResponse response) {
-                if (response.getData()!=null)
-                    stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatusMessage()));
+                if (response.getData() != null)
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 else
                     stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new ReviewListResponse()));
             }
+
             @Override
             public void onFailure(StandardError standardError) {
                 stateMutableLiveData.postValue(DataFetchState.<ReviewListResponse>error(standardError.getDisplayError(), null));

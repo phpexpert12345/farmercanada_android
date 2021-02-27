@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
@@ -25,6 +27,7 @@ import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 
 public class LoginActivity extends BaseActivity {
@@ -97,16 +100,13 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        loginBtn.setOnClickListener(view -> {
 
-                String email = mobileEt.getText().toString();
-                String password = passwordEt.getText().toString();
+            String email = mobileEt.getText().toString();
+            String password = passwordEt.getText().toString();
 
-                viewModel.doLogin(stateMachine, email, password, role);
+            viewModel.doLogin(stateMachine, email, password, role, AppController.get().getDeviceId());
 
-            }
         });
     }
 
@@ -130,12 +130,13 @@ public class LoginActivity extends BaseActivity {
                     case LOADING: {
                         showLoader();
                         break;
-
                     }
                     case SUCCESS: {
                         dismissLoader();
+                        Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         if (role == 1) {
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            finish();
                         } else {
                             startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
                             finish();

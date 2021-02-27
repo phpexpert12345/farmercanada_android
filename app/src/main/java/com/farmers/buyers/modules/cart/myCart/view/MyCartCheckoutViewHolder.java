@@ -112,18 +112,21 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
 
         shipingFee.setText(taxData.getDeliveryCharge());
         if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
-            rl_shipping_fee.setVisibility(View.GONE);
-        } else {
             rl_shipping_fee.setVisibility(View.VISIBLE);
+
+            totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) +
+                    Float.parseFloat(taxData.getPackageFeeAmount()) +
+                    Float.parseFloat(taxData.getDeliveryCharge());
+        } else {
+            rl_shipping_fee.setVisibility(View.GONE);
+            totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) +
+                    Float.parseFloat(taxData.getPackageFeeAmount());
         }
         packageFeeAmount.setText(taxData.getPackageFeeAmount());
         lableGst.setText("GST   (" + taxData.getgSTTax() + "%):");
         gstTaxAmount.setText(taxData.getgSTTaxAmount());
         packageFeeLabel.setText("Package Fee (" + taxData.getPackageFeeTax() + "):");
 
-        totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) +
-                Float.parseFloat(taxData.getPackageFeeAmount()) +
-                Float.parseFloat(taxData.getDeliveryCharge());
 
         totalAmount.setText("$ " + String.valueOf(totalAmountf));
         OrderSingleton.getInstance().setTaxData(taxData);

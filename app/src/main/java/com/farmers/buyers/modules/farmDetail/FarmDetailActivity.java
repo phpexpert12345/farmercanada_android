@@ -25,11 +25,13 @@ import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductL
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewHolder;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
 public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
-        FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener {
+        FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener {
     private RecyclerView recyclerView;
     private FarmDetailsAdapter adapter;
     public String farm_id;
@@ -51,6 +53,7 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     private MutableLiveData<DataFetchState<FarmListProductResponse>> addToCartStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> increaseDecreaseMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> clearAllCartItemsMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FollowUnFollowApiModel>> followUnFollowStateMachine = new MutableLiveData<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     private void init() {
         recyclerView = findViewById(R.id.farmers_detail_recyclerView);
-        adapter = new FarmDetailsAdapter(this, this);
+        adapter = new FarmDetailsAdapter(this, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -128,6 +131,29 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
             }
         });
 
+        followUnFollowStateMachine.observe(this, followUnFollowApiModelDataFetchState -> {
+            switch (followUnFollowApiModelDataFetchState.status) {
+                case LOADING: {
+                    showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    dismissLoader();
+               /*     Toast.makeText(FarmDetailActivity.this,
+                            followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();*/
+                    getFarmProductDetail();
+                    break;
+
+                }
+                case ERROR: {
+                    dismissLoader();
+                    Toast.makeText(getBaseContext(), followUnFollowApiModelDataFetchState.status_message,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+            }
+        });
+
         getFarmProductDetail();
     }
 
@@ -178,7 +204,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     @Override
     public void onFollowClickListener(String followStatus, String id) {
-        Toast.makeText(FarmDetailActivity.this, "Clicked " + followStatus + id, Toast.LENGTH_SHORT).show();
+        if (followStatus.equals("No")) {
+            viewModel.followUnFollowFarm(followUnFollowStateMachine, getIntent().getStringExtra("FARM_ID"), "1", id);
+        } else {
+            viewModel.followUnFollowFarm(followUnFollowStateMachine, getIntent().getStringExtra("FARM_ID"), "0", id);
+        }
     }
 
     @Override
@@ -209,5 +239,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         IncreaseDecreaseParams params = new IncreaseDecreaseParams(appController.getAuthenticationKey(),
                 item.cart_id, "1");
         viewModel.increaseDecrease(increaseDecreaseMachine, params);
+    }
+
+    @Override
+    public void onDeliveryTypeCheckedChangeListener(int type) {
+        getFarmProductDetail();
+        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
     }
 }

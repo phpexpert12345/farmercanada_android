@@ -141,7 +141,6 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
         txt_no_followers.setVisibility(View.VISIBLE);
         txt_no_followers.setText(error);
         recyclerView.setVisibility(View.GONE);
-
     }
 
     private void bindAdapter() {

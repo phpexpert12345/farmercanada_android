@@ -31,8 +31,6 @@ public class HomeAdapter extends BaseAdapter {
     private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
     private HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener;
 
-
-
     public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener, HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener) {
         super();
         this.headerListener = headerListener;

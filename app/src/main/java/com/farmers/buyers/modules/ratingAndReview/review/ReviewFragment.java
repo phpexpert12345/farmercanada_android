@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -32,7 +33,7 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
     private ReviewListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private AppController appController = AppController.get();
-
+    private LinearLayout ll_data_not_available;
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
         @NonNull
@@ -69,27 +70,32 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
     public void bindView(View view) {
 
         rv_review_list = view.findViewById(R.id.rv_review_list);
+        ll_data_not_available = view.findViewById(R.id.ll_data_not_available);
         adapter = new ReviewListAdapter(this);
         rv_review_list.setAdapter(adapter);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
         // prepareItems();
 
-        ReviewdListParams reviewdListParams=new ReviewdListParams(appController.getAuthenticationKey(),"22");
-        viewModel.getReview(stateMachine,reviewdListParams);
+        ReviewdListParams reviewdListParams = new ReviewdListParams(appController.getAuthenticationKey(), "22");
+        viewModel.getReview(stateMachine, reviewdListParams);
 
-        stateMachine.observe(this,new Observer<DataFetchState<ReviewListResponse>>(){
+        stateMachine.observe(this, new Observer<DataFetchState<ReviewListResponse>>() {
             @Override
             public void onChanged(DataFetchState<ReviewListResponse> response) {
-                switch (response.status){
+                switch (response.status) {
                     case ERROR:
                         dismissLoader();
                         Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
+                        ll_data_not_available.setVisibility(View.VISIBLE);
+                        rv_review_list.setVisibility(View.GONE);
                         break;
                     case SUCCESS:
                         dismissLoader();
                         items.addAll(response.data.getData().getReviewData());
                         adapter.updateData(items);
                         Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
+                        ll_data_not_available.setVisibility(View.GONE);
+                        rv_review_list.setVisibility(View.VISIBLE);
                         break;
                     case LOADING:
                         //showLoader();

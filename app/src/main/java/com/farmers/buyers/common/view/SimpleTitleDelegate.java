@@ -12,6 +12,7 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class SimpleTitleDelegate extends BaseDelegate {
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
         return new SimpleTitleViewHolder(parent);

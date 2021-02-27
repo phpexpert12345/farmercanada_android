@@ -19,6 +19,9 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
     private String address;
     private String detail;
     private String addressTitle;
+    private String city;
+    private String state;
+    private String pin_code;
     private String phoneNumber;
     Boolean isSelected;
     Boolean canChange;
@@ -32,13 +35,41 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
         this.canChange = canChange;
     }
 
-    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle, String phoneNumber) {
+    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle,
+                                    String phoneNumber, String city, String state, String pin_code) {
         this.address_id = address_id;
         this.addressType = addressType;
         this.address = address;
         this.detail = detail;
         this.addressTitle = addressTitle;
         this.phoneNumber = phoneNumber;
+        this.state = state;
+        this.city = city;
+        this.pin_code = pin_code;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getPin_code() {
+        return pin_code;
+    }
+
+    public void setPin_code(String pin_code) {
+        this.pin_code = pin_code;
     }
 
     public String getAddressType() {
