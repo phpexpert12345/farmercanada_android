@@ -116,13 +116,24 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
             couponEditText.setText("");
 
         }
-
+if(!taxData.getDeliveryCharge().equalsIgnoreCase("")){
+    if(!taxData.getDeliveryCharge().equalsIgnoreCase("0.00")){
+        rl_shipping_fee.setVisibility(View.VISIBLE);
         shipingFee.setText(taxData.getDeliveryCharge());
-        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
-            rl_shipping_fee.setVisibility(View.GONE);
-        } else {
-            rl_shipping_fee.setVisibility(View.VISIBLE);
-        }
+    }
+    else{
+        rl_shipping_fee.setVisibility(View.GONE);
+    }
+}
+else{
+    rl_shipping_fee.setVisibility(View.GONE);
+}
+//        shipingFee.setText(taxData.getDeliveryCharge());
+//        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
+//            rl_shipping_fee.setVisibility(View.GONE);
+//        } else {
+//            rl_shipping_fee.setVisibility(View.VISIBLE);
+//        }
         packageFeeAmount.setText(taxData.getPackageFeeAmount()+".00");
         lableGst.setText("GST   (" + taxData.getgSTTax() + "%):");
         double gst=Double.parseDouble(taxData.getgSTTaxAmount());

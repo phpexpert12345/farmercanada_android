@@ -2,6 +2,8 @@ package com.farmers.buyers.modules.farmDetail;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
+import com.farmers.buyers.modules.cart.myCart.model.cartList.CartReqParam;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
@@ -49,5 +51,12 @@ public class FarmDetailRepository extends BaseRepository {
                 params.getAuth_key(),
                 params.getLoginId());
         makeRequest(call, apiResponseCallback);
+    }
+    public void cartItemLists(CartReqParam params, ApiResponseCallback<CartListResponse> cartResponse) {
+        Call<CartListResponse> call = RetrofitBuilder.createServiceContract().CART_LIST_RESPONSE_CALL(
+                ApiConstants.CUSTOMER_PRODUCT_CART_LIST_URL,
+                params.getAuth_key(),
+                params.getLoginId());
+        makeRequest(call, cartResponse);
     }
 }

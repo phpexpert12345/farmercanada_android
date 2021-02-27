@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -63,6 +65,10 @@ public class MyCartFragment extends BaseFragment implements
     private MyCartAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<MyCartItem> cartData = new ArrayList<>();
+    LinearLayout linear_order;
+    CardView cardViewDelivery, cardViewPickUp;
+    TextView  textViewDelivery, textViewPickUp;
+    String order_type="";
     private String subTotal = "";
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -99,7 +105,19 @@ public class MyCartFragment extends BaseFragment implements
         myCartInstruction = view.findViewById(R.id.my_cart_instruction_tv);
         itemCount = view.findViewById(R.id.itemCount);
         addItem = view.findViewById(R.id.add_item);
-
+        linear_order=view.findViewById(R.id.linear_order);
+        textViewDelivery=view.findViewById(R.id.textViewDelivery);
+        textViewPickUp=view.findViewById(R.id.textViewPickUp);
+        textViewDelivery.setOnClickListener(v->{
+            order_type="Delivery";
+            textViewDelivery.setBackgroundColor(getContext().getColor(R.color.red));
+            textViewPickUp.setBackgroundColor(getContext().getColor(R.color.light_gray));
+        });
+        textViewPickUp.setOnClickListener(v->{
+            order_type="Pickup";
+            textViewPickUp.setBackgroundColor(getContext().getColor(R.color.red));
+            textViewDelivery.setBackgroundColor(getContext().getColor(R.color.light_gray));
+        });
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -196,6 +214,7 @@ public class MyCartFragment extends BaseFragment implements
                         recyclerView.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.VISIBLE);
                         noDataLabel.setVisibility(View.GONE);
+                        linear_order.setVisibility(View.VISIBLE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
                         cartListData(data.data.getData().getFarmProductCartList());
                         adapter.updateData(items);
@@ -203,6 +222,7 @@ public class MyCartFragment extends BaseFragment implements
                         items.clear();
                         recyclerView.setVisibility(View.GONE);
                         noDataLabel.setText(data.status_message);
+                        linear_order.setVisibility(View.GONE);
                         noDataLabel.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.GONE);
                         itemCount.setText("0 Items");
@@ -216,6 +236,7 @@ public class MyCartFragment extends BaseFragment implements
                     items.clear();
                     myCartInstruction.setVisibility(View.GONE);
                     itemCount.setVisibility(View.GONE);
+                    linear_order.setVisibility(View.GONE);
                     noDataLabel.setVisibility(View.VISIBLE);
                     noDataLabel.setText(data.status_message);
                     adapter.updateData(items);
