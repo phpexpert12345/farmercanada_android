@@ -57,7 +57,8 @@ public class FarmDetailViewModel extends BaseViewModel {
                         intent.getStringExtra("farm_followed_status"),
                         intent.getStringExtra("farm_delivery_radius_text"),
                         intent.getStringExtra("farm_hosted_by"),
-                        intent.getStringExtra("farm_image")));
+                        intent.getStringExtra("farm_image"),
+                        intent.getStringExtra("FARM_ID")));
 
                 if (response.getStatus()) {
                     if (!response.getData().getCategoryList().isEmpty()) {

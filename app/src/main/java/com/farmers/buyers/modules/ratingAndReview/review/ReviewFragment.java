@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -20,19 +21,20 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewViewModel;
 import com.farmers.buyers.modules.ratingAndReview.ReviewTransfarmer;
 import com.farmers.buyers.modules.ratingAndReview.adapter.ReviewListAdapter;
+import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewListApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewListResponse;
 import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewdListParams;
 import com.farmers.buyers.modules.ratingAndReview.view.ReviewListViewHolder;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewFragment extends BaseFragment implements ReviewListViewHolder.ReviewItemClickListener {
+public class ReviewFragment extends BaseFragment {
 
     private RecyclerView rv_review_list;
     private ReviewListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
-    private AppController appController = AppController.get();
     private LinearLayout ll_data_not_available;
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
@@ -47,13 +49,16 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
     };
 
     public RatingAndReviewViewModel viewModel = factory.create(RatingAndReviewViewModel.class);
-    private MutableLiveData<DataFetchState<ReviewListResponse>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<FarmReviewListApiModel>> stateMachine = new MutableLiveData<>();
+    private String farmId;
 
-    public ReviewFragment get() {
-        return new ReviewFragment();
+    public ReviewFragment(String farmId) {
+        this.farmId = farmId;
     }
 
-    public ReviewFragment() {
+
+    public ReviewFragment get(String farmId) {
+        return new ReviewFragment(farmId);
     }
 
     @Override
@@ -68,53 +73,44 @@ public class ReviewFragment extends BaseFragment implements ReviewListViewHolder
 
     @Override
     public void bindView(View view) {
-
         rv_review_list = view.findViewById(R.id.rv_review_list);
         ll_data_not_available = view.findViewById(R.id.ll_data_not_available);
-        adapter = new ReviewListAdapter(this);
-        rv_review_list.setAdapter(adapter);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
-        // prepareItems();
+        adapter = new ReviewListAdapter();
+        rv_review_list.setAdapter(adapter);
 
-        ReviewdListParams reviewdListParams = new ReviewdListParams(appController.getAuthenticationKey(), "22");
-        viewModel.getReview(stateMachine, reviewdListParams);
-
-        stateMachine.observe(this, new Observer<DataFetchState<ReviewListResponse>>() {
+        stateMachine.observe(this, new Observer<DataFetchState<FarmReviewListApiModel>>() {
             @Override
-            public void onChanged(DataFetchState<ReviewListResponse> response) {
-                switch (response.status) {
-                    case ERROR:
-                        dismissLoader();
-                        Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
-                        ll_data_not_available.setVisibility(View.VISIBLE);
-                        rv_review_list.setVisibility(View.GONE);
-                        break;
-                    case SUCCESS:
-                        dismissLoader();
-                        items.addAll(response.data.getData().getReviewData());
-                        adapter.updateData(items);
-                        Toast.makeText(getActivity(), response.status_message, Toast.LENGTH_SHORT).show();
-                        ll_data_not_available.setVisibility(View.GONE);
-                        rv_review_list.setVisibility(View.VISIBLE);
-                        break;
-                    case LOADING:
-                        //showLoader();
-                        break;
-
+            public void onChanged(DataFetchState<FarmReviewListApiModel> farmReviewListApiModelDataFetchState) {
+                switch (farmReviewListApiModelDataFetchState.status) {
+                    case LOADING: loading(); break;
+                    case SUCCESS: success(); break;
+                    case ERROR:  error(farmReviewListApiModelDataFetchState.status_message);
                 }
             }
         });
+
     }
 
-    private void prepareItems() {
-        //  items.addAll(ReviewTransfarmer.getReviewList());
+    private void loading() {
+        showLoader();
     }
 
-    public void getReview() {
-        //items.addAll(ReviewTransfarmer.getReviewList());
+    private void success() {
+        dismissLoader();
+        bindAdapter();
     }
 
-    @Override
-    public void onReviewItemClicked(int position) {
+    private void error(String error) {
+        dismissLoader();
     }
+
+    private void bindAdapter() {
+        adapter.updateData(viewModel.items);
+    }
+
+    public void getFarmReviewList() {
+        viewModel.getFarmReviewList(stateMachine, SharedPreferenceManager.getInstance().getFarmId());
+    }
+
 }

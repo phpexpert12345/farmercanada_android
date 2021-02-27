@@ -109,6 +109,15 @@ public class SharedPreferenceManager {
         return (String) getSharedPreferences(StorageKey.SignUpMobileNumber.toString(), "");
     }
 
+    public void setFarmId(String value) {
+        setSharedPreference(StorageKey.FarmId.toString(), value);
+    }
+
+    public String getFarmId() {
+        return (String) getSharedPreferences(StorageKey.FarmId.toString(), "");
+    }
+
+
 
     public void setSharedPreference(String key, Object value) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);
