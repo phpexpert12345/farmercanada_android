@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/16/2021.
  */
-public class BaseResponse implements Serializable {
+public class BaseResponse {
     @SerializedName("status_code")
     @Expose
     private String statusCode;

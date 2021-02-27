@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by Ganesh on 2/16/2021.
  */
-public class FarmListResponse extends BaseResponse implements Serializable  {
+public class FarmListResponse extends BaseResponse  {
 
     @SerializedName("data")
    public FarmData farmData;

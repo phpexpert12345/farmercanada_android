@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
+        android:layout_height="@dimen/_130sdp"
         android:background="@drawable/bottom_curve_red_bg">
 
         <RelativeLayout
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -90,5 +90,6 @@
         android:text="Withdrawal"
         android:textAllCaps="false"
         android:textColor="@color/primaryTextColor"
-        android:textSize="@dimen/sp_16_px" />
+        android:textSize="@dimen/sp_16_px"
+        android:visibility="gone" />
 </LinearLayout>

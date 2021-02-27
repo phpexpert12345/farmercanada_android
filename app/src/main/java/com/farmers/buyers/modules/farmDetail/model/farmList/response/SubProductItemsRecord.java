@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/17/2021.
  */
-public class SubProductItemsRecord implements Serializable, RecyclerViewListItem {
+public class SubProductItemsRecord {
     @SerializedName("ProductID")
     @Expose
     private Integer productID;
@@ -23,9 +23,6 @@ public class SubProductItemsRecord implements Serializable, RecyclerViewListItem
     @SerializedName("product_name")
     @Expose
     private String productName;
-    @SerializedName("product_code")
-    @Expose
-    private String productCode;
     @SerializedName("product_description")
     @Expose
     private String productDescription;
@@ -44,7 +41,11 @@ public class SubProductItemsRecord implements Serializable, RecyclerViewListItem
     @SerializedName("price_unit_type")
     @Expose
     private String priceUnitType;
-
+    public String product_code;
+    public String shopping_item_quantity;
+    public String product_stock;
+    public String shopping_item_available;
+    public String cart_id;
 
     public Integer getProductID() {
         return productID;
@@ -60,10 +61,6 @@ public class SubProductItemsRecord implements Serializable, RecyclerViewListItem
 
     public String getProductName() {
         return productName;
-    }
-
-    public String getProductCode() {
-        return productCode;
     }
 
     public String getProductDescription() {
@@ -88,15 +85,5 @@ public class SubProductItemsRecord implements Serializable, RecyclerViewListItem
 
     public String getPriceUnitType() {
         return priceUnitType;
-    }
-
-    @Override
-    public int getViewType() {
-        return CardConstant.FARM_DETAIL_VEGETABLE_ADAPTER;
-    }
-
-    @Override
-    public Object getUnique() {
-        return this;
     }
 }

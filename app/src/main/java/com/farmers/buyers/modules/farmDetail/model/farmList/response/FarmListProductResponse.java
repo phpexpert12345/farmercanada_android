@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/17/2021.
  */
-public class FarmListProductResponse implements Serializable {
+public class FarmListProductResponse{
 
     @SerializedName("status_code")
     @Expose
@@ -23,7 +23,6 @@ public class FarmListProductResponse implements Serializable {
     @SerializedName("data")
     @Expose
     private FarmListData data;
-
 
     public String getStatusCode() {
         return statusCode;

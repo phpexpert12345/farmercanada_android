@@ -81,11 +81,16 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         }
 
 
-        if (item.getIsFollowing().equals("Yes")) {
-            unFollowFarmLayout.setVisibility(View.VISIBLE);
-            followFarmLayout.setVisibility(View.GONE);
-        }
-        else {
+        try {//todo Please check sajjad
+            if (item.getIsFollowing().equals("Yes")) {
+                unFollowFarmLayout.setVisibility(View.VISIBLE);
+                followFarmLayout.setVisibility(View.GONE);
+            }
+            else {
+                unFollowFarmLayout.setVisibility(View.GONE);
+                followFarmLayout.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
             unFollowFarmLayout.setVisibility(View.GONE);
             followFarmLayout.setVisibility(View.VISIBLE);
         }

@@ -18,24 +18,24 @@ public class MyCartItem implements RecyclerViewListItem {
     String address;
     String cartId;
     int cartItemQuantity;
-    int itemSubPrice;
+    String itemSubPrice;
 
-    public MyCartItem(String imgUri, String name, String price, String address,String cartId,int cartItemQuantity1,int itemSubPrice1) {
+    public MyCartItem(String imgUri, String name, String price, String address, String cartId, int cartItemQuantity1, String itemSubPrice1) {
         this.imgUri = imgUri;
         this.name = name;
         this.price = price;
         this.address = address;
-        this.cartId=cartId;
-        this.cartItemQuantity=cartItemQuantity1;
-        this.itemSubPrice=itemSubPrice1;
+        this.cartId = cartId;
+        this.cartItemQuantity = cartItemQuantity1;
+        this.itemSubPrice = itemSubPrice1;
     }
 
 
-    public int getItemSubPrice() {
+    public String getItemSubPrice() {
         return itemSubPrice;
     }
 
-    public void setItemSubPrice(int itemSubPrice) {
+    public void setItemSubPrice(String itemSubPrice) {
         this.itemSubPrice = itemSubPrice;
     }
 

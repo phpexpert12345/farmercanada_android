@@ -14,10 +14,20 @@ import java.util.List;
 public class PlaceOrderSlotItem implements RecyclerViewListItem {
     String day;
     String date;
+    String monthName;
 
-    public PlaceOrderSlotItem(String day, String date) {
+    public PlaceOrderSlotItem(String day, String date,String monthName) {
         this.day = day;
         this.date = date;
+        this.monthName=monthName;
+    }
+
+    public String getMonthName() {
+        return monthName;
+    }
+
+    public void setMonthName(String monthName) {
+        this.monthName = monthName;
     }
 
     public String getDay() {

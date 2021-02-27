@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/17/2021.
  */
-public class CategoryList implements Serializable, RecyclerViewListItem {
+public class CategoryList{
 
     @SerializedName("category_name")
     @Expose
@@ -40,15 +40,5 @@ public class CategoryList implements Serializable, RecyclerViewListItem {
 
     public List<SubProductItemsRecord> getSubProductItemsRecord() {
         return subProductItemsRecord;
-    }
-
-    @Override
-    public int getViewType() {
-        return CardConstant.FARM_DETAIL_VEGETABLE_ADAPTER;
-    }
-
-    @Override
-    public Object getUnique() {
-        return this;
     }
 }

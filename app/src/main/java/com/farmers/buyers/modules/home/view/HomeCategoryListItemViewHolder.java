@@ -51,7 +51,7 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
 
         Glide.with(itemView.getContext())
                 .load(item.getImgUrl())
-                .placeholder(R.drawable.fruit_one)
+                .placeholder(R.drawable.ic_sign_up_logo)
                 .into(imageView);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +67,7 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
         if (selectedPosition == getAdapterPosition()) {
             selectedPosition = getOldPosition();
             cardView.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.select_rect_bg));
-        }
-        else {
+        } else {
             cardView.setBackground(null);
         }
     }

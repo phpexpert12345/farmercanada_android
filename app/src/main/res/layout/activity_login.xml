@@ -18,10 +18,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/login_bg_top"
+        android:layout_centerInParent="true">
 
-        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,30 +42,32 @@
                 android:id="@+id/login_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/login_seller_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Seller"
-                    android:textSize="@dimen/_14ssp"
                     android:layout_marginRight="@dimen/_8sdp"
-                    android:fontFamily="@font/sf_ui_regular"
                     android:button="@drawable/circle_check_drawable"
-                    android:paddingLeft="@dimen/_5sdp"/>
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:text="Seller"
+                    android:textSize="@dimen/_14ssp" />
+
                 <RadioButton
                     android:id="@+id/login_buyer_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Buyer"
-                    android:textSize="@dimen/_14ssp"
-                    android:fontFamily="@font/sf_ui_regular"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:button="@drawable/circle_check_drawable"
+                    android:checked="true"
+                    android:fontFamily="@font/sf_ui_regular"
                     android:paddingLeft="@dimen/_5sdp"
-                    android:checked="true"/>
+                    android:text="Buyer"
+                    android:textSize="@dimen/_14ssp" />
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -74,27 +75,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginRight="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_16sdp"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray"
-               >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_email_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number"
-                    android:singleLine="true"
-                    android:maxLength="10"
                     android:inputType="number"
-                   />
+                    android:maxLength="10"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,22 +104,22 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:layout_marginBottom="16dp"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:passwordToggleEnabled="true"
-                android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray">
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
-                    android:singleLine="true"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
 
 
             </com.google.android.material.textfield.TextInputLayout>

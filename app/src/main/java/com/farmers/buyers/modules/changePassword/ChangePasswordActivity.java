@@ -114,7 +114,6 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                 } else {
                     Toast.makeText(ChangePasswordActivity.this, "Please check your new password and confirm password", Toast.LENGTH_SHORT).show();
                 }
-
                 break;
         }
     }

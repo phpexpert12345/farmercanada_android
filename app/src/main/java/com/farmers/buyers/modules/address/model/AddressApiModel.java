@@ -2,9 +2,11 @@ package com.farmers.buyers.modules.address.model;
 
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.models.AllDataModel;
+import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.storage.CardConstant;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddressApiModel {
@@ -61,12 +63,41 @@ public class AddressApiModel {
         @SerializedName("OrderList")
         private List<AddressListData> allOrderList;
 
+        @SerializedName("subProductItemsRecord")
+        private ArrayList<SubProductItemRecord> subProductItemRecords;
+
+        public ArrayList<SubProductItemRecord> getSubProductItemRecords() {
+            return subProductItemRecords;
+        }
+
         public List<AddressListData> getAllDataModels() {
             return allDataModels;
         }
 
         public List<AddressListData> getAllOrderList() {
             return allOrderList;
+        }
+
+        @SerializedName("DateList")
+        private List<AddressListData> allDateList;
+
+        public List<AddressListData> getAllDateList() {
+            return allDateList;
+        }
+
+        public void setAllDateList(List<AddressListData> allDateList) {
+            this.allDateList = allDateList;
+        }
+
+        @SerializedName("TimeList")
+        private List<AddressListData> allTimeList;
+
+        public List<AddressListData> getAllTimeList() {
+            return allTimeList;
+        }
+
+        public void setAllTimeList(List<AddressListData> allTimeList) {
+            this.allTimeList = allTimeList;
         }
     }
 
@@ -83,7 +114,9 @@ public class AddressApiModel {
         private String address_title;
         private String address_postcode;
         private String account_phone_number;
-
+        public String current_date;
+        public String month_name;
+        public String day_name;
         private String order_id;
         private String order_date;
         private String order_time;
@@ -96,6 +129,7 @@ public class AddressApiModel {
         private String review_status;
         private String order_status_close;
         private String order_status_color_code;
+        public String current_time;
 
         @SerializedName("OrderRecordList")
         private List<AllRecordsData> allRecordList;
@@ -293,7 +327,6 @@ public class AddressApiModel {
         }
 
     }
-
 
     public static class AllRecordsData {
 

@@ -46,7 +46,11 @@ public class HomeHeaderViewHolder extends BaseViewHolder {
 
         tv_user_name.setText(item.getUserName());
         tv_address.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("Current_Location", "")));
-        tv_account_type.setText(item.getUser_type());
+        if (item.getAccount_type().equals("1")) {
+            tv_account_type.setText("Seller");
+        } else {
+            tv_account_type.setText("Buyer");
+        }
 
         itemView.findViewById(R.id.home_header_edit_image).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +72,6 @@ public class HomeHeaderViewHolder extends BaseViewHolder {
 
         void onBecomeSellerClicked();
     }
-
 }
 
 

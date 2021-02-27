@@ -82,19 +82,18 @@ public class OtpActivity extends BaseActivity {
                 switch (dataFetchState.status) {
                     case ERROR: {
                         dismissLoader();
+                        Toast.makeText(OtpActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case LOADING: {
                         showLoader();
                         break;
-
                     }
                     case SUCCESS: {
                         dismissLoader();
-                        Toast.makeText(OtpActivity.this, dataFetchState.data.getStatus_message() + " -> " + dataFetchState.data.getData().getMobile_OTP(),
-                                Toast.LENGTH_LONG).show();
+                        //Toast.makeText(OtpActivity.this, dataFetchState.data.getStatus_message() + " -> " + dataFetchState.data.getData().getMobile_OTP(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(OtpActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         if (getIntent().getStringExtra("FROM").equalsIgnoreCase("Login")) {
-
                             Intent intent = new Intent(OtpActivity.this, ForgotPassword.class);
                             if (getIntent().getBooleanExtra("fromForgetPassword", false)) {
                                 intent.putExtra("fromForgetPassword", true);

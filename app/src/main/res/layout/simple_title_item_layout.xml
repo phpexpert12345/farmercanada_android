@@ -8,11 +8,8 @@
         android:id="@+id/simple_title_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_ui_regular"
+        android:fontFamily="@font/sf_ui_bold"
         android:textColor="@color/primaryTextColor"
-        tools:text="Title"
-        android:textSize="@dimen/_12ssp"/>
-
-
-
+        android:textSize="@dimen/_12ssp"
+        tools:text="Title" />
 </LinearLayout>

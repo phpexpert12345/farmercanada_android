@@ -25,14 +25,13 @@ public class FarmDetailHeaderItemViewHolder extends BaseViewHolder {
     public FarmDetailHeaderItemViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.farm_details_header_item_layout));
 
-        home_top_offers_item_image=itemView.findViewById(R.id.home_top_offers_item_image);
+        home_top_offers_item_image = itemView.findViewById(R.id.home_top_offers_item_image);
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
 
-     //   Glide.with(itemView.getContext()).load(item.getFarmLogo()).into(circleImageView);
-
+        //   Glide.with(itemView.getContext()).load(item.getFarmLogo()).into(circleImageView);
 
 
     }

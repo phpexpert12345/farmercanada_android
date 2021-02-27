@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,38 +26,94 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
     private ImageView imageView;
     private TextView addToCartTv;
-    private TextView farmName;
+    private TextView farmName, tv_sub_cat_price, tv_sub_cat_quantity, txt_quantity;
+    private FarmDetailVegetableListener listener;
+    private FarmDetailsVegetableItems item;
+    private LinearLayout ll_increase_decrease, ll_decrease, ll_increase;
+    private int cnt = 0;
 
-    public FarmDetailsVegetableItemsViewHolder(@NonNull ViewGroup parent) {
+    public FarmDetailsVegetableItemsViewHolder(@NonNull ViewGroup parent, FarmDetailVegetableListener listener) {
         super(Extensions.inflate(parent, R.layout.farm_details_vegetables_item_layout));
         imageView = itemView.findViewById(R.id.farm_detail_vegetables_img);
         addToCartTv = itemView.findViewById(R.id.farm_details_vegetables_add_to_cart_tv);
-        farmName=itemView.findViewById(R.id.home_list_item_layout_farmName);
-        addToCartTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemView.getContext().startActivity(new Intent(itemView.getContext(), MyCartActivity.class));
+        farmName = itemView.findViewById(R.id.home_list_item_layout_farmName);
+        tv_sub_cat_price = itemView.findViewById(R.id.tv_sub_cat_price);
+        tv_sub_cat_quantity = itemView.findViewById(R.id.tv_sub_cat_quantity);
+        txt_quantity = itemView.findViewById(R.id.txt_quantity);
+        ll_increase_decrease = itemView.findViewById(R.id.ll_increase_decrease);
+        ll_decrease = itemView.findViewById(R.id.ll_decrease);
+        ll_increase = itemView.findViewById(R.id.ll_increase);
+
+        this.listener = listener;
+
+        addToCartTv.setOnClickListener(view -> {
+            cnt = 1;
+         //   addToCartTv.setVisibility(View.GONE);
+           // ll_increase_decrease.setVisibility(View.VISIBLE);
+            listener.onClickFarmDetailVegetableListener(item, cnt);
+            //itemView.getContext().startActivity(new Intent(itemView.getContext(), MyCartActivity.class));
+        });
+
+        ll_increase.setOnClickListener(view -> {
+            cnt++;
+            listener.onClickIncreaseCartListener(item, cnt);
+            //txt_quantity.setText(String.valueOf(cnt));
+        });
+
+        ll_decrease.setOnClickListener(view -> {
+            if (cnt <= 0) {
+
+            } else {
+                cnt--;
+                listener.onClickDecreaseCartListener(item, cnt);
+                txt_quantity.setText(String.valueOf(cnt));
             }
         });
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
+        FarmDetailsVegetableItems item = (FarmDetailsVegetableItems) items;
+        this.item = item;
+        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
+        farmName.setText(item.getTitle());
+        tv_sub_cat_price.setText(item.getPrice());
+        tv_sub_cat_quantity.setText(item.getQuantity());
 
-        FarmDetailsVegetableItems item=(FarmDetailsVegetableItems)items;
-        if (((FarmDetailsVegetableItems)items).getInStock()) {
+        if (item.product_stock.equals("Yes")) {
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_shopping_cart, 0, 0, 0);
-        }
-        else {
+        } else {
             addToCartTv.setText("Out of stock");
             addToCartTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
             addToCartTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
             addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_info, 0, 0, 0);
-
         }
 
-        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
-        farmName.setText(item.getTitle());
+        if (item.shopping_item_available.equals("No")) {
+            addToCartTv.setVisibility(View.VISIBLE);
+            ll_increase_decrease.setVisibility(View.GONE);
+        } else {
+            cnt = Integer.parseInt(item.shopping_item_quantity);
+            addToCartTv.setVisibility(View.GONE);
+            txt_quantity.setText(item.shopping_item_quantity);
+            ll_increase_decrease.setVisibility(View.VISIBLE);
+        }
 
+       /* if (((FarmDetailsVegetableItems) items).getInStock()) {
+            addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_shopping_cart, 0, 0, 0);
+        } else {
+            addToCartTv.setText("Out of stock");
+            addToCartTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+            addToCartTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.light_red_border_bg));
+            addToCartTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_info, 0, 0, 0);
+        }*/
+    }
+
+    public interface FarmDetailVegetableListener {
+        void onClickFarmDetailVegetableListener(FarmDetailsVegetableItems item, int cnt);
+
+        void onClickIncreaseCartListener(FarmDetailsVegetableItems item, int cnt);
+
+        void onClickDecreaseCartListener(FarmDetailsVegetableItems item, int cnt);
     }
 }

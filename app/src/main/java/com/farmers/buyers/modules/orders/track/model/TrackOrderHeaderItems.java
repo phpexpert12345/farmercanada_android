@@ -19,8 +19,11 @@ public class TrackOrderHeaderItems implements RecyclerViewListItem {
     String totalAmount;
     Boolean canChange;
     int orderState;
+    public String order_type;
+    public String order_status_msg;
 
-    public TrackOrderHeaderItems(String logo,String name, String date, String orderId, String deliveryTime, String totalItems, String totalAmount, Boolean canChange, int orderState) {
+    public TrackOrderHeaderItems(String logo, String name, String date, String orderId, String deliveryTime, String totalItems,
+                                 String totalAmount, Boolean canChange, int orderState, String order_type, String order_status_msg) {
         this.logo = logo;
         this.name = name;
         this.date = date;
@@ -30,6 +33,24 @@ public class TrackOrderHeaderItems implements RecyclerViewListItem {
         this.totalAmount = totalAmount;
         this.canChange = canChange;
         this.orderState = orderState;
+        this.order_type = order_type;
+        this.order_status_msg = order_status_msg;
+    }
+
+    public String getOrder_type() {
+        return order_type;
+    }
+
+    public void setOrder_type(String order_type) {
+        this.order_type = order_type;
+    }
+
+    public String getOrder_status_msg() {
+        return order_status_msg;
+    }
+
+    public void setOrder_status_msg(String order_status_msg) {
+        this.order_status_msg = order_status_msg;
     }
 
     public String getLogo() {

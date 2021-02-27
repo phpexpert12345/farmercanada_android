@@ -12,16 +12,60 @@ import java.util.List;
  */
 
 public class FarmDetailHeaderListItem implements RecyclerViewListItem {
-    public List<RecyclerViewListItem> item;
 
-    public FarmDetailHeaderListItem(List<RecyclerViewListItem> item) {
-        this.item = item;
+    public String address;
+    public String image;
+    public String coverImage;
+    public String followStatus;
+    public String followed_id;
+
+    public FarmDetailHeaderListItem(String address, String image, String coverImage, String followStatus, String followed_id) {
+        this.address = address;
+        this.image = image;
+        this.coverImage = coverImage;
+        this.followStatus = followStatus;
+        this.followed_id = followed_id;
     }
 
-    public List<RecyclerViewListItem> getItem() {
-        return item;
+    public String getFollowed_id() {
+        return followed_id;
     }
 
+    public void setFollowed_id(String followed_id) {
+        this.followed_id = followed_id;
+    }
+
+    public String getFollowStatus() {
+        return followStatus;
+    }
+
+    public void setFollowStatus(String followStatus) {
+        this.followStatus = followStatus;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public int getViewType() {

@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/_120sdp"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="@dimen/_5sdp"
     android:layout_marginLeft="@dimen/_10sdp"
     android:layout_marginRight="@dimen/_8sdp"
     android:layout_marginBottom="@dimen/_5sdp"
-    >
+    app:cardCornerRadius="@dimen/_5sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_90sdp"
-            android:gravity="center"
             android:background="@color/transparent_gray"
-            >
+            android:gravity="center">
+
             <ImageView
                 android:id="@+id/farm_detail_vegetables_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/farm_image"
                 android:scaleType="centerCrop"
-                />
+                android:src="@drawable/farm_image" />
 
         </LinearLayout>
-
-
 
         <TextView
             android:id="@+id/home_list_item_layout_farmName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:layout_marginLeft="@dimen/_3sdp"
             android:fontFamily="@font/sf_ui_semibold"
-            android:textSize="@dimen/sp_14_px"
-            android:textColor="@color/primaryTextColor"
+            android:singleLine="true"
             android:text="Farm name"
-            android:layout_marginLeft="@dimen/_3sdp"/>
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_14_px" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,25 +46,28 @@
             android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:padding="@dimen/_3sdp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$12.00"
-                android:layout_centerVertical="true"/>
 
             <TextView
-                android:layout_alignParentEnd="true"
+                android:id="@+id/tv_sub_cat_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 kg"
+                android:layout_centerVertical="true"
+                android:text="$12.00" />
+            <!--
+                            android:drawableRight="@drawable/ic_drop_arror"-->
+            <TextView
+                android:id="@+id/tv_sub_cat_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:paddingTop="@dimen/_2sdp"
-                android:paddingBottom="@dimen/_2sdp"
+                android:background="@drawable/gray_border_white_bg"
                 android:gravity="center"
-                android:drawableRight="@drawable/ic_drop_arror"
-                android:background="@drawable/gray_border_white_bg"/>
+                android:paddingLeft="@dimen/_7sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingRight="@dimen/_7sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:text="2 kg" />
 
         </RelativeLayout>
 
@@ -77,16 +75,72 @@
             android:id="@+id/farm_details_vegetables_add_to_cart_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:fontFamily="@font/sf_ui_semibold"
-            android:textSize="@dimen/sp_14_px"
-            android:textColor="@color/secondaryTextColor"
-            android:text="Add to cart"
+            android:background="@color/primary_button_color"
             android:drawableLeft="@drawable/ic_info"
             android:drawablePadding="@dimen/_5sdp"
-            android:background="@color/primary_button_color"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:gravity="center_vertical"
             android:padding="@dimen/_5sdp"
-            android:gravity="center_vertical"/>
+            android:singleLine="true"
+            android:text="Add to cart"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/sp_14_px"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/ll_increase_decrease"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+            android:background="@drawable/top_left_right_round_corner_white_red_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingRight="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/ll_decrease"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/ic_remove_white"
+                    app:tint="@color/red" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_quantity"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/ll_increase"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/ic_add_white"
+                    app:tint="@color/red" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

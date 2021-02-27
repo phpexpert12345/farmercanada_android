@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
@@ -22,6 +23,8 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailHeaderListItem;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * created by Mohammad Sajjad
  * on 28-01-2021 at 14:40
@@ -29,33 +32,21 @@ import java.util.List;
  */
 
 public class FarmDetailHeaderViewHolder extends BaseViewHolder {
-    private FarmDetailHeaderAdapter adapter;
     private ImageView backImage;
-    private LinearLayout indicatorLl;
-    private ViewPager2 viewPager;
-    private Handler handler;
-    private Runnable runnable;
-    private int page = 0;
-    private TextView[] dots;
-
-    private SwitchCompat toggle;
-    private TextView deliveryTv, pickUpTv;
-
-
-
+    private TextView tv_address, tv_follow_status;
+    private ImageView farm_Detail_image;
+    private CircleImageView img_logo;
+    private LinearLayout ll_follow;
+    private FarmDetailHeaderListItem item;
 
     public FarmDetailHeaderViewHolder(@NonNull ViewGroup parent, final FarmHeaderClickListener listener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_header_layout));
-        viewPager = itemView.findViewById(R.id.farm_Detail_viewPager);
+        tv_address = itemView.findViewById(R.id.tv_address);
         backImage = itemView.findViewById(R.id.farm_detail_header_back_img);
-        indicatorLl = itemView.findViewById(R.id.farm_detail_header_indicator_ll);
-        handler = new Handler();
-
-        adapter = new FarmDetailHeaderAdapter();
-        viewPager.setAdapter(adapter);
-        addBottomDots(0, adapter.getItemCount());
-
-
+        farm_Detail_image = itemView.findViewById(R.id.farm_Detail_image);
+        img_logo = itemView.findViewById(R.id.img_logo);
+        ll_follow = itemView.findViewById(R.id.ll_follow);
+        tv_follow_status = itemView.findViewById(R.id.tv_follow_status);
 
         backImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,78 +54,39 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
                 listener.onOnBackClickListener();
             }
         });
+        ll_follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onFollowClickListener(item.getFollowStatus(), item.getFollowed_id());
+            }
+        });
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        final FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
-        adapter.updateData(((FarmDetailHeaderListItem) items).getItem());
+        FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
+        this.item = item;
+        tv_address.setText(item.getAddress());
+        Glide.with(itemView.getContext())
+                .load(item.getImage())
+                .placeholder(R.drawable.ic_sign_up_logo)
+                .into(img_logo);
 
-        addBottomDots(0, item.getItem().size());
+        Glide.with(itemView.getContext())
+                .load(item.getCoverImage())
+                .placeholder(R.drawable.ic_sign_up_logo)
+                .into(farm_Detail_image);
 
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                addBottomDots(position, item.getItem().size());
-                super.onPageSelected(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                super.onPageScrollStateChanged(state);
-            }
-        });
-
-
-
-        toggle = itemView.findViewById(R.id.toggleButton1);
-        deliveryTv = itemView.findViewById(R.id.app_toggle_delivery_tv);
-        pickUpTv = itemView.findViewById(R.id.app_toggle_pickup_tv);
-        deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
-                    deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
-                }
-                else {
-                    deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
-                    pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.secondaryTextColor));
-                }
-            }
-        });
-
-        addBottomDots(0, item.getItem().size());
-
-
-
-    }
-
-    private void addBottomDots(int currentPage, int size) {
-        dots = new TextView[size];
-
-        indicatorLl.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(itemView.getContext());
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(25);
-            dots[i].setTextColor(itemView.getContext().getResources().getColor(R.color.in_active_indicator_color));
-            indicatorLl.addView(dots[i]);
+        if (item.getFollowStatus().equals("No")) {
+            tv_follow_status.setText("Follow this farm");
+        } else {
+            tv_follow_status.setText("Unfollow this farm");
         }
-
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(itemView.getContext().getResources().getColor(R.color.indicator_color));
     }
-
 
     public interface FarmHeaderClickListener {
         void onOnBackClickListener();
+
+        void onFollowClickListener(String followStatus, String id);
     }
 }

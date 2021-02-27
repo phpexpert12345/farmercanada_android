@@ -23,8 +23,8 @@
         android:gravity="end">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:background="@mipmap/plus_icon" />
 
     </LinearLayout>

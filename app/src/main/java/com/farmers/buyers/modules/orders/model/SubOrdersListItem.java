@@ -16,14 +16,24 @@ public class SubOrdersListItem implements RecyclerViewListItem {
     String amount;
     String status;
     String imageUri;
+    String orderType;
 
-    public SubOrdersListItem(String title, String orderId, String time, String amount, String status, String imageUri) {
+    public SubOrdersListItem(String title, String orderId, String time, String amount, String status, String imageUri, String orderType) {
         this.title = title;
         this.orderId = orderId;
         this.time = time;
         this.amount = amount;
         this.status = status;
         this.imageUri = imageUri;
+        this.orderType = orderType;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 
     public String getTitle() {

@@ -27,14 +27,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyCartItemViewHolder extends BaseViewHolder {
     private CircleImageView cartImage;
     private ImageView iconIncrease, iconDecrease;
-    private TextView textQuantity,itemName,itemAddress,itemPrice;
+    private TextView textQuantity, itemName, itemAddress, itemPrice;
     IncreaseCallback increaseCallback;
     DecreaseCallback decreaseCallback;
 
     int quantity = 0;
 
-    public MyCartItemViewHolder(@NonNull ViewGroup parent,IncreaseCallback increaseCallback1,DecreaseCallback decreaseCallback1) {
+    public MyCartItemViewHolder(@NonNull ViewGroup parent, IncreaseCallback increaseCallback1, DecreaseCallback decreaseCallback1) {
         super(Extensions.inflate(parent, R.layout.my_cart_item_layout));
+
         cartImage = itemView.findViewById(R.id.my_cart_item_image);
         iconIncrease = itemView.findViewById(R.id.ic_increase);
         iconDecrease = itemView.findViewById(R.id.ic_decrease);
@@ -42,8 +43,9 @@ public class MyCartItemViewHolder extends BaseViewHolder {
         itemName = itemView.findViewById(R.id.item_name);
         itemPrice = itemView.findViewById(R.id.item_price);
         itemAddress = itemView.findViewById(R.id.item_address);
-        decreaseCallback=decreaseCallback1;
-        increaseCallback=increaseCallback1;
+
+        decreaseCallback = decreaseCallback1;
+        increaseCallback = increaseCallback1;
     }
 
     @Override
@@ -54,45 +56,34 @@ public class MyCartItemViewHolder extends BaseViewHolder {
                 .centerCrop()
                 .placeholder(R.drawable.cart_one)
                 .into(cartImage);
+
         textQuantity.setText(String.valueOf(item.getCartItemQuantity()));
         itemName.setText(item.getName());
-
-        quantity=item.getCartItemQuantity();
+        quantity = item.getCartItemQuantity();
         itemAddress.setText(item.getAddress());
 
+        itemPrice.setText("$ " + String.valueOf(item.getItemSubPrice()));
 
+        iconIncrease.setOnClickListener(view -> {
+            quantity++;
+            textQuantity.setText(String.valueOf(quantity));
+            itemPrice.setText("$ " + String.valueOf(Double.parseDouble(item.getPrice()) * quantity));
 
-        itemPrice.setText("$ "+String.valueOf(item.getItemSubPrice()));
-
-        iconIncrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                quantity = quantity + 1;
-                textQuantity.setText(String.valueOf(quantity));
-                itemPrice.setText("$ "+String.valueOf(Integer.parseInt(item.getPrice())*quantity));
-
-                increaseCallback.increaseCallback(item.getCartId());
-            }
+            increaseCallback.increaseCallback(item.getCartId());
         });
-        iconDecrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                quantity = quantity - 1;
-                textQuantity.setText(String.valueOf(quantity));
-                itemPrice.setText("$ "+String.valueOf(Integer.parseInt(item.getPrice())*quantity));
-                decreaseCallback.decreseCallback(item.getCartId());
-            }
+        iconDecrease.setOnClickListener(view -> {
+            quantity--;
+            textQuantity.setText(String.valueOf(quantity));
+            itemPrice.setText("$ " + String.valueOf(Double.parseDouble(item.getPrice()) * quantity));
+            decreaseCallback.decreseCallback(item.getCartId());
         });
-
-
-
     }
 
-
-    public interface IncreaseCallback{
+    public interface IncreaseCallback {
         void increaseCallback(String cartId);
     }
-    public interface DecreaseCallback{
+
+    public interface DecreaseCallback {
         void decreseCallback(String cartId);
     }
 }

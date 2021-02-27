@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.home.homeFragment;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.forgotPassword.ForgotPasswordRequestParams;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
@@ -28,14 +29,14 @@ public class HomeFragmentRepository extends BaseRepository {
         makeRequest(call, responseCallback);
     }
 
-
     public void getUserInformation(CategoryListRequestParams params, ApiResponseCallback<AllDataModel> responseCallback) {
         Call<AllDataModel> call = RetrofitBuilder.createServiceContract().getUserInformation(ApiConstants.USER_INFORMATION,
                 params.getUserId(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
-    public void farmListRequest(FarmListRequest params, ApiResponseCallback<FarmListResponse> responseCallback) {
-        Call<FarmListResponse> call = RetrofitBuilder.createServiceContract().FARM_LIST_RESPONSE_CALL(ApiConstants.FARM_LIST_URL,
+
+    public void farmListRequest(FarmListRequest params, ApiResponseCallback<AddressApiModel> responseCallback) {
+        Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().FARM_LIST_RESPONSE_CALL(ApiConstants.FARM_LIST_URL,
                 params.getAuthKey(),
                 params.getCustomer_lat(),
                 params.getCustomer_long(),

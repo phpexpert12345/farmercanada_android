@@ -95,10 +95,10 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
         if (getIntent().getStringExtra("KEY_FROM").equalsIgnoreCase("EDIT_ADDRESS")) {
             ed_name_of_address.setText(getIntent().getStringExtra("ADDRESS_TITLE"));
             ed_complete_address.setText(getIntent().getStringExtra("ADDRESS"));
-            ed_city.setText("");
-            ed_state.setText("");
-            ed_postal_code.setText("");
-            ed_mobile_number.setText("");
+            ed_city.setText(getIntent().getStringExtra("CITY"));
+            ed_state.setText(getIntent().getStringExtra("STATE"));
+            ed_postal_code.setText(getIntent().getStringExtra("PINCODE"));
+            ed_mobile_number.setText(getIntent().getStringExtra("MOBILE_NUMBER"));
         } else {
         }
 
@@ -137,7 +137,6 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
                 case SUCCESS: {
                     dismissLoader();
                     Toast.makeText(AddNewAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddNewAddressActivity.this, MyAddressActivity.class));
                     finish();
                     break;
                 }
@@ -170,7 +169,7 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
                     ed_state.getText().toString().trim(), ed_postal_code.getText().toString().trim(),
                     ed_mobile_number.getText().toString().trim(), AppController.get().getAuthenticationKey());
 
-            viewModel.editAddress(stateMachine, addAddressRequestParams);
+            viewModel.editAddress(editStateMachine, addAddressRequestParams);
         } else {
             AddAddressRequestParams addAddressRequestParams = new AddAddressRequestParams(AppController.get().getLoginId(), ed_name_of_address.getText().toString().trim(),
                     ed_complete_address.getText().toString().trim(), ed_city.getText().toString().trim(),

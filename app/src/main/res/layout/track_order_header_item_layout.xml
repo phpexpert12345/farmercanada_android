@@ -111,14 +111,14 @@
             android:drawableRight="@drawable/ic_edit"
             android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/sf_ui_regular"
-            android:visibility="gone"
             android:paddingLeft="@dimen/_8sdp"
             android:paddingTop="@dimen/_3sdp"
             android:paddingRight="@dimen/_8sdp"
             android:paddingBottom="@dimen/_3sdp"
             android:text="Change"
             android:textColor="@color/primary_button_color"
-            android:textSize="@dimen/sp_12_px" />
+            android:textSize="@dimen/sp_12_px"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -132,64 +132,78 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_pickup_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_step1"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:id="@+id/pickup_image_step1"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_gray_check" />
 
             <View
-                android:id="@+id/step_view_one"
-                android:layout_width="@dimen/_50sdp"
+                android:id="@+id/pickup_step_view_one"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_step2"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:id="@+id/pickup_image_step2"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:src="@drawable/ic_gray_check" />
 
             <View
-                android:id="@+id/step_view_two"
-                android:layout_width="@dimen/_50sdp"
+                android:id="@+id/pickup_step_view_two"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_step3"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:id="@+id/pickup_image_step3"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:src="@drawable/ic_gray_check" />
 
             <View
-                android:id="@+id/step_view_three"
-                android:layout_width="@dimen/_50sdp"
+                android:id="@+id/pickup_step_view_three"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_step4"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:id="@+id/pickup_image_step4"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:src="@drawable/ic_gray_check" />
 
+            <View
+                android:id="@+id/pickup_step_view_four"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pickup_image_step5"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_gray_check" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_pickup_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -198,39 +212,196 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_placed"
+                android:id="@+id/tv_pickup_pending"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="Placed" />
+                android:text="Pending" />
 
             <TextView
-                android:id="@+id/tv_packed"
+                android:id="@+id/tv_pickup_accepted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="center_horizontal"
-                android:text="Packed" />
+                android:text="Accepted" />
 
             <TextView
-                android:id="@+id/tv_onTheWay"
+                android:id="@+id/tv_pickup_processing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="Processing" />
+
+            <TextView
+                android:id="@+id/tv_pickup_picked"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="Picked-up" />
+
+            <TextView
+                android:id="@+id/tv_pickup_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="end"
-                android:text="On the way" />
+                android:text="Cancelled" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_delivery_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/delivery_image_step1"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/delivery_step_view_one"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/delivery_image_step2"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/delivery_step_view_two"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/delivery_image_step3"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/delivery_step_view_three"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/delivery_image_step4"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/delivery_step_view_four"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/delivery_image_step5"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_gray_check" />
+
+            <View
+                android:id="@+id/delivery_step_view_five"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/light_gray" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/delivery_image_step6"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_gray_check" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_delivery_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/_5sdp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_delivery"
+                android:id="@+id/tv_delivery_pending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Pending" />
+
+            <TextView
+                android:id="@+id/tv_delivery_accepted"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center_horizontal"
+                android:text="Accepted" />
+
+            <TextView
+                android:id="@+id/tv_delivery_processing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="Processing" />
+
+            <TextView
+                android:id="@+id/tv_delivery_shipped"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="Shipped" />
+
+            <TextView
+                android:id="@+id/tv_delivery_delivery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_ui_regular"
+                android:gravity="center"
+                android:text="Delivered" />
+
+            <TextView
+                android:id="@+id/tv_delivery_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="end"
-                android:text="Delivery" />
+                android:text="Cancelled" />
 
         </LinearLayout>
 

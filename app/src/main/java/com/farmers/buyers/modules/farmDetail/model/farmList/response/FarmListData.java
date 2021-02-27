@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/17/2021.
  */
-public class FarmListData implements Serializable {
+public class FarmListData {
 
     @SerializedName("CategoryList")
     @Expose

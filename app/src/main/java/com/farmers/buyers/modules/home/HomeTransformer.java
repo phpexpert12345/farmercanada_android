@@ -26,8 +26,8 @@ import java.util.ListIterator;
 
 public class HomeTransformer {
 
-    public static HomeHeaderItem getHeaderItems(String name, String address, String account_type) {
-        return new HomeHeaderItem(name, address, account_type);
+    public static HomeHeaderItem getHeaderItems(String name, String address, String account_type_name, String account_type) {
+        return new HomeHeaderItem(name, address, account_type_name, account_type);
     }
 
     public static HomeSearchListItem getSearchItems() {
@@ -36,11 +36,23 @@ public class HomeTransformer {
 
     public static List<HomeListItem> getHomeFarmListItem(List<SubProductItemRecord> listItem) {
         List<HomeListItem> items = new ArrayList<>();
-        for (int i =0 ; i< listItem.size() ; i++) {
+        for (int i = 0; i < listItem.size(); i++) {
             SubProductItemRecord data = listItem.get(i);
-                    items.add(new HomeListItem(data.getFarmName(), data.getFarmDeliveryRadiusText(), data.getRatingAvg().toString(), data.getFarmFavouriteStatus(), data.getFarmId(), data.getFarmCoverPhoto(), data.getFarmLogo(), data.getFarmLatitude(), data.getFarmLongitude(), data.getFavouriteId(), data.getFarmFollowedStatus(), data.getFollowedId()));
+            items.add(new HomeListItem(data.getFarmName(),
+                    data.getFarmDeliveryRadiusText(),
+                    data.getRatingAvg().toString(),
+                    data.getFarmFavouriteStatus(),
+                    data.getFarmId(),
+                    data.getFarmCoverPhoto(),
+                    data.getFarmLogo(),
+                    data.getFarmLatitude(),
+                    data.getFarmLongitude(), data.getFarmAddress(), data.getFarmOpeningHours(),
+                    data.farm_estimate_delivery_time, data.getFarmHostedBy(),
+                    data.getFarmOpeningStatus(),
+                    data.getFarmFavouriteStatus(),
+                    data.getFavouriteId(), data.getFarmFollowedStatus(),
+                    data.getFormTypeName(), data.getFollowedId()));
         }
-
         return items;
     }
 
@@ -62,7 +74,7 @@ public class HomeTransformer {
     }
 
     public static HomeHeaderItem getHeaderItems() {
-        return new HomeHeaderItem("Aman kumar", "address", "Type");
+        return new HomeHeaderItem("Aman kumar", "address", "Type", "");
     }
 
     public static HomeTopOffersListItems getTopOffers() {

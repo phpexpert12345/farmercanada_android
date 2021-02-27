@@ -32,12 +32,13 @@ public class PlaceOrderSlotViewHolder extends BaseViewHolder {
         slotRecyclerView = itemView.findViewById(R.id.place_order_slot_recyclerView);
         adapter = new PlaceOrderSlotItemAdapter(listener);
         slotRecyclerView.addItemDecoration(new LinearSpacesItemDecoration(20));
-        slotRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
+        slotRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL,
+                false));
         slotRecyclerView.setAdapter(adapter);
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-        adapter.updateData(((PlaceOrderSlotListItems)items).getItem());
+        adapter.updateData(((PlaceOrderSlotListItems) items).getItem());
     }
 }

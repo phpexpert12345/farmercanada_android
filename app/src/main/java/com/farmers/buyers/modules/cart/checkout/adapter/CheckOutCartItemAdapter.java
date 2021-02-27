@@ -22,14 +22,15 @@ public class CheckOutCartItemAdapter extends BaseAdapter {
     private CheckOutFromCartAddressViewHolder.ChangeAddressCallback addressCallback;
     private PaymentMethodsViewHolder.PaymentMethodListener paymentMethodListener;
 
-
-
-    public CheckOutCartItemAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners, MyCartCheckoutViewHolder.MyCoupounClickListeners couponListener, CheckOutFromCartAddressViewHolder.ChangeAddressCallback addressListener, PaymentMethodsViewHolder.PaymentMethodListener paymentMethodListener) {
+    public CheckOutCartItemAdapter(MyCartCheckoutViewHolder.MyCartCheckOutClickListeners cartCheckOutClickListeners,
+                                   MyCartCheckoutViewHolder.MyCoupounClickListeners couponListener,
+                                   CheckOutFromCartAddressViewHolder.ChangeAddressCallback addressListener,
+                                   PaymentMethodsViewHolder.PaymentMethodListener paymentMethodListener) {
         super();
         this.cartCheckOutClickListeners = cartCheckOutClickListeners;
-        this.coupounClickListeners=couponListener;
-       this. addressCallback=addressListener;
-       this. paymentMethodListener = paymentMethodListener;
+        this.coupounClickListeners = couponListener;
+        this.addressCallback = addressListener;
+        this.paymentMethodListener = paymentMethodListener;
         this.initDelegate();
     }
 
@@ -38,6 +39,6 @@ public class CheckOutCartItemAdapter extends BaseAdapter {
         delegates.put(CardConstant.MY_CART_ADDRESS_ADAPTER, new CheckoutFromCartAddressDelegate(addressCallback));
         delegates.put(CardConstant.MY_CART_PAYMENT_METHODS, new PaymentMethodsDelegate(paymentMethodListener));
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
-        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners,coupounClickListeners));
+        delegates.put(CardConstant.MY_CART_CHECKOUT_ITEM_ADAPTER, new MyCartCheckOutDelegate(cartCheckOutClickListeners, coupounClickListeners));
     }
 }

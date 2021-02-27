@@ -15,8 +15,10 @@ import retrofit2.Call;
 public class RatingAndReviewRepository extends BaseRepository {
 
     public void ratingAndReview(ReviewdListParams params, ApiResponseCallback<ReviewListResponse> responseCallback) {
-        Call<ReviewListResponse> call = RetrofitBuilder.createServiceContract().REVIEWD_LIST_RESPONSE_CALL(ApiConstants.REVIEW_AND_RATING_API,
-                params.getAuth_key(),params.getLoginId());
+        Call<ReviewListResponse> call = RetrofitBuilder.createServiceContract().REVIEWD_LIST_RESPONSE_CALL(
+                ApiConstants.REVIEW_AND_RATING_API,
+                params.getAuth_key(),
+                params.getLoginId());
         makeRequest(call, responseCallback);
     }
 

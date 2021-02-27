@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.FarmProductCartList;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
@@ -21,31 +22,58 @@ import java.util.List;
 
 public class MyCartTransformer {
 
-    public static List<MyCartItem> getMyCartItem(List <FarmProductCartList> cartLists) {
+    public static List<MyCartItem> getMyCartItem(List<FarmProductCartList> cartLists) {
         List<MyCartItem> items = new ArrayList<>();
 
-        for (int i=0;cartLists.size()>i;i++){
-            int itemSubPrice=Integer.parseInt(cartLists.get(i).getItemQuantity())*(Integer.parseInt(cartLists.get(i).getItemPrice()));
-            items.add(new MyCartItem(cartLists.get(i).getFarmLogo(),cartLists.get(i).getFarmName(),cartLists.get(i).getItemPrice(),
-                    cartLists.get(i).getFarmAddress(),cartLists.get(i).getCartId(),Integer.parseInt(cartLists.get(i).getItemQuantity()),itemSubPrice));
+        for (int i = 0; cartLists.size() > i; i++) {
+            Double item_quantity, item_price;
+            item_quantity = Double.parseDouble(cartLists.get(i).getItemQuantity());
+            item_price = Double.parseDouble(cartLists.get(i).getItemPrice());
+
+            Double itemSubPrice = item_price * item_quantity;
+
+            items.add(new MyCartItem(cartLists.get(i).product_images,
+                    cartLists.get(i).product_name,
+                    cartLists.get(i).getItemPrice(),
+                    cartLists.get(i).getFarmAddress(),
+                    cartLists.get(i).getCartId(),
+                    Integer.parseInt(cartLists.get(i).getItemQuantity()),
+                    String.valueOf(itemSubPrice)));
 
         }
         return items;
     }
 
-    public static PlaceOrderSlotListItems getPlaceOrderSlot() {
+    public static PlaceOrderSlotListItems getPlaceOrderSlot(List<AddressApiModel.AddressListData> allDateList) {
         List<RecyclerViewListItem> item = new ArrayList<>();
-        item.add(new PlaceOrderSlotItem("S", "31 Jan"));
-        item.add(new PlaceOrderSlotItem("M", "2 Feb"));
+        for (int i = 0; i < allDateList.size(); i++) {
+            item.add(new PlaceOrderSlotItem(allDateList.get(i).day_name,
+                    allDateList.get(i).current_date,
+                    allDateList.get(i).month_name));
+        }
+
+       /* item.add(new PlaceOrderSlotItem("M", "2 Feb"));
         item.add(new PlaceOrderSlotItem("T", "3 Feb"));
         item.add(new PlaceOrderSlotItem("W", "4 Feb"));
         item.add(new PlaceOrderSlotItem("T", "5 Feb"));
         item.add(new PlaceOrderSlotItem("F", "6 Feb"));
-        item.add(new PlaceOrderSlotItem("S", "7 Feb"));
+        item.add(new PlaceOrderSlotItem("S", "7 Feb"));*/
         return new PlaceOrderSlotListItems(item);
     }
 
-    public static TaxData getTaxDataItem(TaxData taxData){
+    public static PlaceOrderSlotListItems getPlaceOrderSlot() {
+        List<RecyclerViewListItem> item = new ArrayList<>();
+        item.add(new PlaceOrderSlotItem("S", "31 Jan", ""));
+        item.add(new PlaceOrderSlotItem("M", "2 Feb", ""));
+        item.add(new PlaceOrderSlotItem("T", "3 Feb", ""));
+        item.add(new PlaceOrderSlotItem("W", "4 Feb", ""));
+        item.add(new PlaceOrderSlotItem("T", "5 Feb", ""));
+        item.add(new PlaceOrderSlotItem("F", "6 Feb", ""));
+        item.add(new PlaceOrderSlotItem("S", "7 Feb", ""));
+        return new PlaceOrderSlotListItems(item);
+    }
+
+    public static TaxData getTaxDataItem(TaxData taxData) {
         return taxData;
     }
 }

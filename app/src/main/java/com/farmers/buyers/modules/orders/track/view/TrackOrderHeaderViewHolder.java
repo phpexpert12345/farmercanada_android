@@ -3,6 +3,7 @@ package com.farmers.buyers.modules.orders.track.view;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,29 +25,65 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TrackOrderHeaderViewHolder extends BaseViewHolder {
     CircleImageView sub_order_item_farm_image;
-    ImageView step1Image, step2Image, step3Image, step4Image;
-    View step1View, step2View, step3View;
-    TextView tv_product_date_time, tv_product_name, tv_order_number, tv_estimate_delivery_date_time, tv_edit, placedTv, packedTv, onTheWayTv, deliveryTv;
+    ImageView pickup_image_step1, pickup_image_step2, pickup_image_step3, pickup_image_step4, pickup_image_step5,
+            delivery_image_step1, delivery_image_step2, delivery_image_step3, delivery_image_step4, delivery_image_step5, delivery_image_step6;
+    View pickup_step_view_one, pickup_step_view_two, pickup_step_view_three, pickup_step_view_four,
+            delivery_step_view_one, delivery_step_view_two, delivery_step_view_three, delivery_step_view_four, delivery_step_view_five;
+    TextView tv_product_date_time, tv_product_name, tv_order_number, tv_estimate_delivery_date_time, tv_edit,
+            tv_pickup_pending, tv_pickup_accepted, tv_pickup_processing, tv_pickup_picked, tv_pickup_cancel,
+            tv_delivery_pending, tv_delivery_accepted, tv_delivery_processing, tv_delivery_shipped, tv_delivery_delivery, tv_delivery_cancel;
+    LinearLayout ll_pickup_text, ll_pickup_img, ll_delivery_text, ll_delivery_img;
 
     /*Pickup
-    * Pending Accepted Processing Picked-up Cancelled*/
+     * Pending Accepted Processing Picked-up Cancelled*/
 
     /*Delivery case
-    * Pending Accepted Processing Shipped Delivered Cancelled*/
+     * Pending Accepted Processing Shipped Delivered Cancelled*/
 
     public TrackOrderHeaderViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.track_order_header_item_layout));
-        step1Image = itemView.findViewById(R.id.image_step1);
-        step2Image = itemView.findViewById(R.id.image_step2);
-        step3Image = itemView.findViewById(R.id.image_step3);
-        step4Image = itemView.findViewById(R.id.image_step4);
-        step1View = itemView.findViewById(R.id.step_view_one);
-        step2View = itemView.findViewById(R.id.step_view_two);
-        step3View = itemView.findViewById(R.id.step_view_three);
-        placedTv = itemView.findViewById(R.id.tv_placed);
-        packedTv = itemView.findViewById(R.id.tv_packed);
-        onTheWayTv = itemView.findViewById(R.id.tv_onTheWay);
-        deliveryTv = itemView.findViewById(R.id.tv_delivery);
+        pickup_image_step1 = itemView.findViewById(R.id.pickup_image_step1);
+        pickup_image_step2 = itemView.findViewById(R.id.pickup_image_step2);
+        pickup_image_step3 = itemView.findViewById(R.id.pickup_image_step3);
+        pickup_image_step4 = itemView.findViewById(R.id.pickup_image_step4);
+        pickup_image_step5 = itemView.findViewById(R.id.pickup_image_step5);
+
+        delivery_image_step1 = itemView.findViewById(R.id.delivery_image_step1);
+        delivery_image_step2 = itemView.findViewById(R.id.delivery_image_step2);
+        delivery_image_step3 = itemView.findViewById(R.id.delivery_image_step3);
+        delivery_image_step4 = itemView.findViewById(R.id.delivery_image_step4);
+        delivery_image_step5 = itemView.findViewById(R.id.delivery_image_step5);
+        delivery_image_step6 = itemView.findViewById(R.id.delivery_image_step6);
+
+        pickup_step_view_one = itemView.findViewById(R.id.pickup_step_view_one);
+        pickup_step_view_two = itemView.findViewById(R.id.pickup_step_view_two);
+        pickup_step_view_three = itemView.findViewById(R.id.pickup_step_view_three);
+        pickup_step_view_four = itemView.findViewById(R.id.pickup_step_view_four);
+
+        delivery_step_view_one = itemView.findViewById(R.id.delivery_step_view_one);
+        delivery_step_view_two = itemView.findViewById(R.id.delivery_step_view_two);
+        delivery_step_view_three = itemView.findViewById(R.id.delivery_step_view_three);
+        delivery_step_view_four = itemView.findViewById(R.id.delivery_step_view_four);
+        delivery_step_view_five = itemView.findViewById(R.id.delivery_step_view_five);
+
+        tv_pickup_pending = itemView.findViewById(R.id.tv_pickup_pending);
+        tv_pickup_accepted = itemView.findViewById(R.id.tv_pickup_accepted);
+        tv_pickup_processing = itemView.findViewById(R.id.tv_pickup_processing);
+        tv_pickup_picked = itemView.findViewById(R.id.tv_pickup_picked);
+        tv_pickup_cancel = itemView.findViewById(R.id.tv_pickup_cancel);
+
+        tv_delivery_pending = itemView.findViewById(R.id.tv_delivery_pending);
+        tv_delivery_accepted = itemView.findViewById(R.id.tv_delivery_accepted);
+        tv_delivery_processing = itemView.findViewById(R.id.tv_delivery_processing);
+        tv_delivery_shipped = itemView.findViewById(R.id.tv_delivery_shipped);
+        tv_delivery_delivery = itemView.findViewById(R.id.tv_delivery_delivery);
+        tv_delivery_cancel = itemView.findViewById(R.id.tv_delivery_cancel);
+
+        ll_pickup_text = itemView.findViewById(R.id.ll_pickup_text);
+        ll_pickup_img = itemView.findViewById(R.id.ll_pickup_img);
+        ll_delivery_text = itemView.findViewById(R.id.ll_delivery_text);
+        ll_delivery_img = itemView.findViewById(R.id.ll_delivery_img);
+
         sub_order_item_farm_image = itemView.findViewById(R.id.sub_order_item_farm_image);
 
         tv_product_date_time = itemView.findViewById(R.id.tv_product_date_time);
@@ -71,49 +108,160 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
                 .placeholder(R.drawable.farm_image)
                 .into(sub_order_item_farm_image);
 
-        switch (item.getOrderState()) {
-            case 1: {
-                step1Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step1View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                placedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+        if (item.order_type.equalsIgnoreCase("Pickup")) {
+            ll_pickup_text.setVisibility(View.VISIBLE);
+            ll_pickup_img.setVisibility(View.VISIBLE);
+            ll_delivery_text.setVisibility(View.GONE);
+            ll_delivery_img.setVisibility(View.GONE);
+        } else {
+            ll_pickup_text.setVisibility(View.GONE);
+            ll_pickup_img.setVisibility(View.GONE);
+            ll_delivery_text.setVisibility(View.VISIBLE);
+            ll_delivery_img.setVisibility(View.VISIBLE);
+        }
+
+        switch (item.order_status_msg) {
+            case "Pending": {
+                pickup_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+
+                delivery_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
                 break;
             }
-            case 2: {
-                step1Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step1View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                step2Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step2View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                placedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                packedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+            case "Accepted": {
+                pickup_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+
+                delivery_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
                 break;
             }
-            case 3: {
-                step1Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step1View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                step2Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step2View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                step3Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step3View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                placedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                packedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                onTheWayTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+            case "Processing": {
+                pickup_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+
+                delivery_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
                 break;
             }
-            case 4: {
-                step1Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step1View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                step2Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step2View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                step3Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                step3View.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                step4Image.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
-                placedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                packedTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                onTheWayTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
-                deliveryTv.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+            case "Picked-up": {
+                pickup_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_picked.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                break;
+            }
+            case "Cancelled": {
+                pickup_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                pickup_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_image_step5.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                pickup_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_picked.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_pickup_cancel.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+
+
+                delivery_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_image_step5.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_shipped.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_cancel.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+
+                break;
+            }
+            case "Shipped": {
+
+                delivery_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_image_step5.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_shipped.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_cancel.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_shipped.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                break;
+            }
+            case "Delivered": {
+                delivery_image_step1.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_one.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step2.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_two.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step3.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_three.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_image_step5.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_pending.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_accepted.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_processing.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_shipped.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_cancel.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step4.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                delivery_step_view_four.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_image_step6.setImageDrawable(itemView.getResources().getDrawable(R.drawable.ic_green_check));
+                tv_delivery_shipped.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                delivery_step_view_five.setBackgroundColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
+                tv_delivery_delivery.setTextColor(itemView.getResources().getColor(R.color.secondaryBtnColor));
                 break;
             }
         }
-
     }
 }

@@ -66,7 +66,8 @@ public class FarmProductCartList implements Serializable , RecyclerViewListItem 
     @SerializedName("farm_cover_photo")
     @Expose
     private String farmCoverPhoto;
-
+    public String product_name;
+    public String product_images;
 
     public String getCartId() {
         return cartId;

@@ -10,274 +10,188 @@ import java.io.Serializable;
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/16/2021.
  */
-public class SubProductItemRecord implements Serializable, RecyclerViewListItem {
+public class SubProductItemRecord {
 
-
-    @SerializedName("farm_id")
-    @Expose
-    private String farmId;
-    @SerializedName("farm_name")
-    @Expose
-    private String farmName;
-    @SerializedName("farm_address")
-    @Expose
-    private String farmAddress;
-    @SerializedName("store_state_name")
-    @Expose
-    private String storeStateName;
-    @SerializedName("store_city_name")
-    @Expose
-    private String storeCityName;
-    @SerializedName("farm_latitude")
-    @Expose
-    private Double farmLatitude;
-    @SerializedName("farm_longitude")
-    @Expose
-    private Double farmLongitude;
-    @SerializedName("farm_postcode")
-    @Expose
-    private String farmPostcode;
-    @SerializedName("rating_avg")
-    @Expose
-    private Integer ratingAvg;
-    @SerializedName("farm_type")
-    @Expose
-    private String farmType;
-    @SerializedName("farm_service_type")
-    @Expose
-    private String farmServiceType;
-    @SerializedName("farm_opening_hours")
-    @Expose
-    private String farmOpeningHours;
-    @SerializedName("farm_opening_status")
-    @Expose
-    private String farmOpeningStatus;
-    @SerializedName("farm_hosted_by")
-    @Expose
-    private String farmHostedBy;
-    @SerializedName("farm_hosted_phone_code_by")
-    @Expose
-    private Integer farmHostedPhoneCodeBy;
-    @SerializedName("farm_hosted_mobile_number_by")
-    @Expose
-    private String farmHostedMobileNumberBy;
-    @SerializedName("farm_hosted_email_by")
-    @Expose
-    private String farmHostedEmailBy;
-    @SerializedName("farm_followed_status")
-    @Expose
-    private String farmFollowedStatus;
-    @SerializedName("farm_payment_cash_allow")
-    @Expose
-    private String farmPaymentCashAllow;
-    @SerializedName("farm_payment_credit_debit_allow")
-    @Expose
-    private String farmPaymentCreditDebitAllow;
-    @SerializedName("farm_payment_paypal_allow")
-    @Expose
-    private String farmPaymentPaypalAllow;
-    @SerializedName("farm_payment_wallet_allow")
-    @Expose
-    private String farmPaymentWalletAllow;
-    @SerializedName("farm_delivery_charge")
-    @Expose
-    private String farmDeliveryCharge;
-    @SerializedName("farm_minimum_delivery_charge")
-    @Expose
-    private String farmMinimumDeliveryCharge;
-    @SerializedName("farm_minimum_pickup_charge")
-    @Expose
-    private Object farmMinimumPickupCharge;
-    @SerializedName("farm_additional_delivery_charge")
-    @Expose
-    private String farmAdditionalDeliveryCharge;
-    @SerializedName("farm_delivery_radius")
-    @Expose
-    private Integer farmDeliveryRadius;
-    @SerializedName("farm_delivery_radius_text")
-    @Expose
-    private String farmDeliveryRadiusText;
-    @SerializedName("farm_about_us")
-    @Expose
-    private String farmAboutUs;
-    @SerializedName("form_type_name")
-    @Expose
-    private String formTypeName;
-    @SerializedName("farm_logo")
-    @Expose
-    private String farmLogo;
-    @SerializedName("farm_cover_photo")
-    @Expose
-    private String farmCoverPhoto;
-    @SerializedName("service_type_name")
-    @Expose
-    private String serviceTypeName;
-    @SerializedName("farm_favourite_status")
-    @Expose
-    private String farmFavouriteStatus;
-
-    @SerializedName("favourite_id")
-    @Expose
-    private String favouriteId;
-
-    @SerializedName("followed_id")
-    @Expose
-    private String followedId;
+    private String farm_id;
+    private String farm_name;
+    private String farm_address;
+    private String store_state_name;
+    private String store_city_name;
+    private Double farm_latitude;
+    private Double farm_longitude;
+    private String farm_postcode;
+    private Integer rating_avg;
+    private String farm_type;
+    private String farm_service_type;
+    private String farm_opening_hours;
+    private String farm_opening_status;
+    private String farm_hosted_by;
+    private Integer farm_hosted_phone_code_by;
+    private String farm_hosted_mobile_number_by;
+    private String farm_hosted_email_by;
+    private String farm_followed_status;
+    private String farm_payment_cash_allow;
+    private String farm_payment_credit_debit_allow;
+    private String farm_payment_paypal_allow;
+    private String farm_payment_wallet_allow;
+    private String farm_delivery_charge;
+    private String farm_minimum_delivery_charge;
+    private Object farm_minimum_pickup_charge;
+    private String farm_additional_delivery_charge;
+    private Integer farm_delivery_radius;
+    private String farm_delivery_radius_text;
+    private String farm_about_us;
+    private String form_type_name;
+    private String farm_logo;
+    private String farm_cover_photo;
+    private String service_type_name;
+    private String farm_favourite_status;
+    public String farm_estimate_delivery_time;
+    private String favourite_id;
+    private String followed_id;
 
 
     public String getFarmId() {
-        return farmId;
+        return farm_id;
     }
 
     public String getFarmName() {
-        return farmName;
+        return farm_name;
     }
 
     public String getFarmAddress() {
-        return farmAddress;
+        return farm_address;
     }
 
     public String getStoreStateName() {
-        return storeStateName;
+        return store_state_name;
     }
 
     public String getStoreCityName() {
-        return storeCityName;
+        return store_city_name;
     }
 
     public Double getFarmLatitude() {
-        return farmLatitude;
+        return farm_latitude;
     }
 
     public Double getFarmLongitude() {
-        return farmLongitude;
+        return farm_longitude;
     }
 
     public String getFarmPostcode() {
-        return farmPostcode;
+        return farm_postcode;
     }
 
     public Integer getRatingAvg() {
-        return ratingAvg;
+        return rating_avg;
     }
 
     public String getFarmType() {
-        return farmType;
+        return farm_type;
     }
 
     public String getFarmServiceType() {
-        return farmServiceType;
+        return farm_service_type;
     }
 
     public String getFarmOpeningHours() {
-        return farmOpeningHours;
+        return farm_opening_hours;
     }
 
     public String getFarmOpeningStatus() {
-        return farmOpeningStatus;
+        return farm_opening_status;
     }
 
     public String getFarmHostedBy() {
-        return farmHostedBy;
+        return farm_hosted_by;
     }
 
     public Integer getFarmHostedPhoneCodeBy() {
-        return farmHostedPhoneCodeBy;
+        return farm_hosted_phone_code_by;
     }
 
     public String getFarmHostedMobileNumberBy() {
-        return farmHostedMobileNumberBy;
+        return farm_hosted_mobile_number_by;
     }
 
     public String getFarmHostedEmailBy() {
-        return farmHostedEmailBy;
+        return farm_hosted_email_by;
     }
 
     public String getFarmFollowedStatus() {
-        return farmFollowedStatus;
+        return farm_followed_status;
     }
 
     public String getFarmPaymentCashAllow() {
-        return farmPaymentCashAllow;
+        return farm_payment_cash_allow;
     }
 
     public String getFarmPaymentCreditDebitAllow() {
-        return farmPaymentCreditDebitAllow;
+        return farm_payment_credit_debit_allow;
     }
 
     public String getFarmPaymentPaypalAllow() {
-        return farmPaymentPaypalAllow;
+        return farm_payment_paypal_allow;
     }
 
     public String getFarmPaymentWalletAllow() {
-        return farmPaymentWalletAllow;
+        return farm_payment_wallet_allow;
     }
 
     public String getFarmDeliveryCharge() {
-        return farmDeliveryCharge;
+        return farm_delivery_charge;
     }
 
     public String getFarmMinimumDeliveryCharge() {
-        return farmMinimumDeliveryCharge;
+        return farm_minimum_delivery_charge;
     }
 
     public Object getFarmMinimumPickupCharge() {
-        return farmMinimumPickupCharge;
+        return farm_minimum_pickup_charge;
     }
 
     public String getFarmAdditionalDeliveryCharge() {
-        return farmAdditionalDeliveryCharge;
+        return farm_additional_delivery_charge;
     }
 
     public Integer getFarmDeliveryRadius() {
-        return farmDeliveryRadius;
+        return farm_delivery_radius;
     }
 
     public String getFarmDeliveryRadiusText() {
-        return farmDeliveryRadiusText;
+        return farm_delivery_radius_text;
     }
 
     public String getFarmAboutUs() {
-        return farmAboutUs;
+        return farm_about_us;
     }
 
     public String getFormTypeName() {
-        return formTypeName;
+        return farm_type;
     }
 
     public String getFarmLogo() {
-        return farmLogo;
+        return farm_logo;
     }
 
     public String getFarmCoverPhoto() {
-        return farmCoverPhoto;
+        return farm_cover_photo;
     }
 
     public String getServiceTypeName() {
-        return serviceTypeName;
+        return service_type_name;
     }
 
     public String getFarmFavouriteStatus() {
-        return farmFavouriteStatus;
+        return farm_favourite_status;
     }
 
     public String getFavouriteId() {
-        return favouriteId;
+        return favourite_id;
     }
 
     public String getFollowedId() {
-        return followedId;
+        return followed_id;
     }
-
-    @Override
-    public int getViewType() {
-        return CardConstant.HOME_FARM_LIST_ITEM_ADAPTER;
-    }
-
-    @Override
-    public Object getUnique() {
-        return this;
-    }
-
-
 }

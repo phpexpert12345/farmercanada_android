@@ -15,16 +15,14 @@ import com.farmers.buyers.storage.CardConstant;
 public class PlaceOrderAdapter extends BaseAdapter {
     private PlaceOrderSlotItemViewHolder.SlotCheckedListener listener;
 
-
-
     public PlaceOrderAdapter(PlaceOrderSlotItemViewHolder.SlotCheckedListener listener) {
         this.listener = listener;
         initDelegate();
     }
+
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
         delegates.put(CardConstant.PLACE_ORDER_ADAPTER, new PlaceOrderSlotDelegate(listener));
-
     }
 }

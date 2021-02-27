@@ -33,14 +33,14 @@ import java.util.List;
  */
 
 public class FarmDetailVegetableViewHolder extends BaseViewHolder {
+
     private FarmDetailsVegetablesAdapter adapter1;
 
-    List<SubProductItemsRecord>arrayList;
-
-    public FarmDetailVegetableViewHolder(@NonNull ViewGroup parent) {
+    public FarmDetailVegetableViewHolder(@NonNull ViewGroup parent, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener farmDetailVegetableListener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_vegetables_holder_layout));
+
         RecyclerView recyclerView = itemView.findViewById(R.id.farm_detail_vegetables_recyclerView);
-        adapter1 = new FarmDetailsVegetablesAdapter();
+        adapter1 = new FarmDetailsVegetablesAdapter(farmDetailVegetableListener);
 //        recyclerView.addItemDecoration(new LinearSpacesItemDecoration(R.dimen._8sdp));
         recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(adapter1);
@@ -48,10 +48,7 @@ public class FarmDetailVegetableViewHolder extends BaseViewHolder {
 
     @Override
     public void bindView(RecyclerViewListItem items) {
-
         adapter1.updateData(((FarmDetailsVegetablesListItem) items).getItem());
-
-
-
     }
+
 }

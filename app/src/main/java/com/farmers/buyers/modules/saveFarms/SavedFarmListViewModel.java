@@ -30,11 +30,7 @@ public class SavedFarmListViewModel extends BaseViewModel {
     void getSavedFarmList(MutableLiveData<DataFetchState<SaveFarmListApiModel>> stateMachine) {
         items.clear();
         stateMachine.postValue(DataFetchState.loading());
-
         SaveFarmListRequestParams params = new SaveFarmListRequestParams(appController.getLoginId(), appController.getAuthenticationKey());
-
-        items.clear();
-
         repository.getSavedFarmList(params, new ApiResponseCallback<SaveFarmListApiModel>() {
             @Override
             public void onSuccess(SaveFarmListApiModel response) {
@@ -57,7 +53,6 @@ public class SavedFarmListViewModel extends BaseViewModel {
 
     public void saveUnSaveFarm(MutableLiveData<DataFetchState<SaveUnsaveFarmApiModel>> stateMachine, String farmId, int status, String favoriteId) {
         stateMachine.postValue(DataFetchState.loading());
-
         SaveUnSaveFarmRequestModel params = new SaveUnSaveFarmRequestModel(farmId, appController.getLoginId(), status, appController.getAuthenticationKey(), favoriteId);
 
         repository.saveUnSaveFarm(params, new ApiResponseCallback<SaveUnsaveFarmApiModel>() {

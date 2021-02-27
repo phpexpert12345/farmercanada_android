@@ -19,7 +19,7 @@ public class FollowersTransformer {
         for (int i = 0 ; i< listItem.size() ; i++) {
             FollowersApiModel.FarmFollowedList data = listItem.get(i);
             if (data.getFarmFollowedStatus().equals("Yes")) {
-                item.add(new FollowersItems(data.getFarmLogo(), data.getFarmName(), "", data.getFarmFollowedStatus(), data.getFavouriteId(), data.getFavouriteId()));
+                item.add(new FollowersItems(data.getFarmLogo(), data.getFarmName(), "", data.getFarmFollowedStatus(), data.getFarm_id(), String.valueOf(data.getFollowed_id())));
             }
         }
         return item;

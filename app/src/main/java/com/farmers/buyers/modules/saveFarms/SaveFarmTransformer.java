@@ -20,7 +20,18 @@ public class SaveFarmTransformer {
         for (int i = 0 ; i< listItems.size() ; i++) {
             SaveFarmListApiModel.FarmFavouriteList item = listItems.get(i);
 
-            farmItems.add(new HomeListItem(item.getFarmName(), item.getFarmDeliveryRadiusText(), item.getRatingAvg().toString(), item.getFarmFavouriteStatus(), item.getFarmId(), item.getFarmCoverPhoto(), item.getFarmLogo(), item.getFarmLatitude(), item.getFarmLongitude(), item.getFavouriteId().toString(), item.getFarmFollowedStatus(), item.getFollowedId()));
+            farmItems.add(new HomeListItem(item.getFarmName(),
+                    item.getFarmDeliveryRadiusText(),
+                    item.getRatingAvg().toString(),
+                    item.getFarmFavouriteStatus(),
+                    item.getFarmId(),
+                    item.getFarmCoverPhoto(),
+                    item.getFarmLogo(),
+                    item.getFarmLatitude(),
+                    item.getFarmLongitude(),
+                    item.getFavouriteId().toString(),
+                    item.getFarmFollowedStatus(),
+                    item.getFollowedId()));
         }
         return farmItems;
     }

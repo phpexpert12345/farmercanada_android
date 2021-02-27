@@ -37,8 +37,6 @@ public class OrdersItemViewHolder extends BaseViewHolder {
     @Override
     public void bindView(RecyclerViewListItem items) {
         OrderListItem item = (OrderListItem) items;
-
-
     }
 
     public interface OrdersItemClickListener {
