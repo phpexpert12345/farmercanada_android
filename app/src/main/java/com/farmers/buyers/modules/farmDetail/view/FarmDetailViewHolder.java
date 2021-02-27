@@ -31,7 +31,8 @@ public class FarmDetailViewHolder extends BaseViewHolder {
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
 
-    public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
+    public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener
+            deliveryTypeCheckedChangeListener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_item_layout));
 
         farm_detail_item_farm_name_tv = itemView.findViewById(R.id.farm_detail_item_farm_name_tv);

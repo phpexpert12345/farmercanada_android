@@ -29,14 +29,16 @@ public class ChangePasswordViewModel extends BaseViewModel {
             stateMachine.postValue(DataFetchState.error("Please enter old password", new LoginApiModel()));
             return;
         }
-        if (Mobile_OTP.isEmpty()) {
-            stateMachine.postValue(DataFetchState.error("Please enter Otp", new LoginApiModel()));
-            return;
-        }
 
         stateMachine.postValue(DataFetchState.<LoginApiModel>loading());
 
-        ChangePasswordRequestParams changePasswordRequestParams = new ChangePasswordRequestParams(new_password, confirm_password, Old_Password, Mobile_OTP, LoginId, appController.getAuthenticationKey());
+        ChangePasswordRequestParams changePasswordRequestParams = new ChangePasswordRequestParams(
+                new_password,
+                confirm_password,
+                Old_Password,
+                Mobile_OTP,
+                LoginId,
+                appController.getAuthenticationKey());
 
         repository.doChangePassword(changePasswordRequestParams, new ApiResponseCallback<LoginApiModel>() {
             @Override

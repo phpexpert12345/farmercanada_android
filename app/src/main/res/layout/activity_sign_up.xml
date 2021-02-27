@@ -75,11 +75,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_8_px"
                     android:buttonTint="@color/primary_button_color"
+                    android:checked="true"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="Buyer"
                     android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/sp_16_px"
-                    android:checked="true"/>
+                    android:textSize="@dimen/sp_16_px" />
             </RadioGroup>
 
 
@@ -90,8 +90,8 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray">
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_name_et"
@@ -109,17 +109,16 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
                 app:boxStrokeColor="@color/light_gray"
-                >
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_mobile_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/phone_number"
                     android:inputType="number"
                     android:maxLength="12"
-                    android:hint="@string/phone_number"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -131,9 +130,8 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
                 app:boxStrokeColor="@color/light_gray"
-                >
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_email_et"
@@ -152,15 +150,15 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray">
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
                     android:hint="@string/password"
+                    android:inputType="textPassword"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -172,8 +170,8 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:textColorHint="@color/light_gray"
-                app:hintTextColor="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray">
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_referral_et"
@@ -194,17 +192,18 @@
                 android:text="@string/submit"
                 android:textColor="@color/secondaryTextColor" />
 
-
-            <TextView
+            <CheckBox
                 android:id="@+id/sign_up_terms_condition_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:layout_marginRight="@dimen/_24sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:buttonTint="@color/primary_button_color"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:text="@string/terms_amp_conditions"
+                android:text="@string/terms_conditions"
                 android:textColor="@color/primary_button_color"
                 android:textSize="@dimen/sp_16_px" />
-
 
         </LinearLayout>
 
@@ -218,4 +217,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

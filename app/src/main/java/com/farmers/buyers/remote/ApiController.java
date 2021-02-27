@@ -224,6 +224,10 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AddressApiModel> farm_review_data(@Url String url, @Field("auth_key") String authKey, @Field("farm_id") String farm_id);
+
+    @FormUrlEncoded
+    @POST
     Call<TaxResponse> TAX_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
                                         @Field("farm_id") String farmId,
                                         @Field("delivery_distance") String deliveryDistance,

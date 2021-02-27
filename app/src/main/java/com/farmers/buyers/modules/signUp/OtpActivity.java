@@ -112,7 +112,6 @@ public class OtpActivity extends BaseActivity {
                             startActivity(intent);
                             finish();
                         }
-
                         break;
                     }
                 }

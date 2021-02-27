@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.forgotPassword.ForgotPassword;
@@ -108,9 +109,13 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                 String newPassword = ed_new_password.getText().toString();
                 String confirm_password = ed_confirm_password.getText().toString();
                 if (ed_new_password.getText().toString().trim().equalsIgnoreCase(ed_confirm_password.getText().toString().trim())) {
-                    viewModel.doChangePassword(stateMachine, newPassword,
-                            confirm_password, old_password, otp,
-                            getIntent().getStringExtra("USER_ID"));
+                    viewModel.doChangePassword(
+                            stateMachine,
+                            newPassword,
+                            confirm_password,
+                            old_password,
+                            otp,
+                            AppController.get().getLoginId());
                 } else {
                     Toast.makeText(ChangePasswordActivity.this, "Please check your new password and confirm password", Toast.LENGTH_SHORT).show();
                 }
