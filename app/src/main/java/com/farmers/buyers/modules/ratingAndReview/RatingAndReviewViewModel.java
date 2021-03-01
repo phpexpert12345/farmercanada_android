@@ -60,6 +60,7 @@ public class RatingAndReviewViewModel extends BaseViewModel {
     public void getFarmReviewedList(MutableLiveData<DataFetchState<FarmReviewedListApiModel>> stateMachine) {
         items.clear();
         stateMachine.postValue(DataFetchState.loading());
+
         FarmReviewedListRequestParams params = new FarmReviewedListRequestParams(appController.getLoginId(), appController.getAuthenticationKey(), SharedPreferenceManager.getInstance().getFarmId());
         repository.getFarmReviewedList(params, new ApiResponseCallback<FarmReviewedListApiModel>() {
             @Override
