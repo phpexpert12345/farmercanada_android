@@ -15,6 +15,8 @@ import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxRequestParam;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.farmDetail.FarmDetailRepository;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -84,6 +86,26 @@ public class MyCartViewModel extends BaseViewModel {
                 stateMutableLiveData.postValue(DataFetchState.<CartListResponse>error(standardError.getDisplayError(), null));
             }
         });
+    }
+    public void submitOrder(final MutableLiveData<DataFetchState<SubmitResponse>> stateMutableLiveData,
+                            SubmitRequestParam requestParam) {
+        stateMutableLiveData.postValue(DataFetchState.loading());
+        repository.submitOrder(requestParam, new ApiResponseCallback<SubmitResponse>() {
+            @Override
+            public void onSuccess(SubmitResponse response) {
+                if (response.getData() != null)
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                else
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new SubmitResponse()));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMutableLiveData.postValue(DataFetchState.<SubmitResponse>error(standardError.getDisplayError(), null));
+
+            }
+        });
+
     }
 
     public void increaseDecrease(final MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> stateMutableLiveData, IncreaseDecreaseParams param) {

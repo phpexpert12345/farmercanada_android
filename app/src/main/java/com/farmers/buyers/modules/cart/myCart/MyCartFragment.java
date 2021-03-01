@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -61,11 +62,14 @@ public class MyCartFragment extends BaseFragment implements
 
     TaxData taxData = null;
     private RecyclerView recyclerView;
-    private LinearLayout ll_data_not_available;
-    private TextView tv_error_msg, myCartInstruction, itemCount, addItem;
+    private TextView noDataLabel, myCartInstruction, itemCount, addItem;
     private MyCartAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<MyCartItem> cartData = new ArrayList<>();
+    LinearLayout linear_order;
+    CardView cardViewDelivery, cardViewPickUp;
+    TextView  textViewDelivery, textViewPickUp;
+    String order_type="";
     private String subTotal = "";
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -97,12 +101,23 @@ public class MyCartFragment extends BaseFragment implements
 
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id._my_cart_recyclerView);
-        tv_error_msg = view.findViewById(R.id.tv_error_msg);
-        ll_data_not_available = view.findViewById(R.id.ll_data_not_available);
+        noDataLabel = view.findViewById(R.id.nodata_label);
         myCartInstruction = view.findViewById(R.id.my_cart_instruction_tv);
         itemCount = view.findViewById(R.id.itemCount);
         addItem = view.findViewById(R.id.add_item);
-
+        linear_order=view.findViewById(R.id.linear_order);
+        textViewDelivery=view.findViewById(R.id.textViewDelivery);
+        textViewPickUp=view.findViewById(R.id.textViewPickUp);
+        textViewDelivery.setOnClickListener(v->{
+            order_type="Delivery";
+            textViewDelivery.setBackgroundColor(getContext().getColor(R.color.red));
+            textViewPickUp.setBackgroundColor(getContext().getColor(R.color.light_gray));
+        });
+        textViewPickUp.setOnClickListener(v->{
+            order_type="Pickup";
+            textViewPickUp.setBackgroundColor(getContext().getColor(R.color.red));
+            textViewDelivery.setBackgroundColor(getContext().getColor(R.color.light_gray));
+        });
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -198,7 +213,8 @@ public class MyCartFragment extends BaseFragment implements
                     if (data.data.getStatus()) {
                         recyclerView.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.VISIBLE);
-                        ll_data_not_available.setVisibility(View.GONE);
+                        noDataLabel.setVisibility(View.GONE);
+                        linear_order.setVisibility(View.VISIBLE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
                         if(data.data.getData().getFarmProductCartList().size()>0) {
                             cartListData(data.data.getData().getFarmProductCartList());
@@ -208,8 +224,9 @@ public class MyCartFragment extends BaseFragment implements
                     } else {
                         items.clear();
                         recyclerView.setVisibility(View.GONE);
-                        tv_error_msg.setText(data.status_message);
-                        ll_data_not_available.setVisibility(View.VISIBLE);
+                        noDataLabel.setText(data.status_message);
+                        linear_order.setVisibility(View.GONE);
+                        noDataLabel.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.GONE);
                         itemCount.setText("0 Items");
                     }
@@ -220,8 +237,11 @@ public class MyCartFragment extends BaseFragment implements
                 case ERROR:
                     itemCount.setText("No Items");
                     items.clear();
-                    ll_data_not_available.setVisibility(View.VISIBLE);
-                    tv_error_msg.setText(data.status_message);
+                    myCartInstruction.setVisibility(View.GONE);
+                    itemCount.setVisibility(View.GONE);
+                    linear_order.setVisibility(View.GONE);
+                    noDataLabel.setVisibility(View.VISIBLE);
+                    noDataLabel.setText(data.status_message);
                     adapter.updateData(items);
                     dismissLoader();
                     break;
@@ -253,7 +273,7 @@ public class MyCartFragment extends BaseFragment implements
         Double subTotalAmount = 0.0;
         for (int i = 0; MyCartTransformer.getMyCartItem(farmProductCartList).size() > i; i++) {
             subTotalAmount = subTotalAmount + Double.parseDouble(MyCartTransformer.getMyCartItem(
-                    farmProductCartList).get(i).getItemSubPrice());
+                    farmProductCartList).get(i).getItemSubPrice())*MyCartTransformer.getMyCartItem(farmProductCartList).get(i).getCartItemQuantity();
         }
 
         subTotal = String.valueOf(subTotalAmount);
@@ -271,8 +291,15 @@ public class MyCartFragment extends BaseFragment implements
     @Override
     public void onCheckOutClicked() {
         Intent checkOutIntent = new Intent(getActivity(), CheckOutFromCartActivity.class);
-        checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
-        startActivity(checkOutIntent);
+        if(!order_type.equalsIgnoreCase("")){
+            checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
+            checkOutIntent.putExtra("order_type",order_type);
+            startActivity(checkOutIntent);
+        }
+        else{
+            Toast.makeText(baseActivity, "Please select Order type", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

@@ -116,7 +116,7 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/_16sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
-            android:text="Proceed to Payment"
+            android:text="Continue"
             android:textAllCaps="false"
             android:textColor="@color/secondaryTextColor" />
     </LinearLayout>
