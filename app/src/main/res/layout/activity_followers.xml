@@ -7,20 +7,40 @@
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".modules.followers.FollowersActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:id="@+id/txt_no_followers"
-        android:visibility="gone"
-        android:gravity="center"
-        android:textSize="@dimen/_16sdp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/followers_transformer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/followers_error_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/no_followers_found"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"/>
+
+        <TextView
+            android:id="@+id/followers_error_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No Data Found"
+            android:fontFamily="@font/sf_ui_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/primaryTextColor"/>
+
+
+    </LinearLayout>
 
 </RelativeLayout>

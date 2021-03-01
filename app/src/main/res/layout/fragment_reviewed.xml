@@ -10,16 +10,32 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:id="@+id/responseMessage"
+        android:id="@+id/reviewed_error_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        >
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/no_review_found"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"/>
+
+        <TextView
+            android:id="@+id/reviewed_error_tv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/no_data_found"
-            android:visibility="gone" />
+            android:text="No Data Found"
+            android:fontFamily="@font/sf_ui_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/primaryTextColor"/>
+
+
     </LinearLayout>
 
 </LinearLayout>

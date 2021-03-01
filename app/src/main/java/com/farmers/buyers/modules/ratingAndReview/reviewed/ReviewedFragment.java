@@ -35,7 +35,8 @@ import java.util.List;
 public class ReviewedFragment extends BaseFragment implements ReviewedListViewHolder.ReviewedItemClickListener {
 
     private RecyclerView rv_reviewed_list;
-    private LinearLayout responseMessage;
+    private LinearLayout errorLl;
+    private TextView errorTv;
     private ReviewListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<RecyclerViewListItem> filteredItem = new ArrayList<>();
@@ -73,7 +74,8 @@ public class ReviewedFragment extends BaseFragment implements ReviewedListViewHo
     @Override
     public void bindView(View view) {
         rv_reviewed_list = view.findViewById(R.id.rv_reviewed_list);
-        responseMessage = view.findViewById(R.id.responseMessage);
+        errorLl = view.findViewById(R.id.reviewed_error_ll);
+        errorTv = view.findViewById(R.id.reviewed_error_tv);
         adapter = new ReviewListAdapter();
         rv_reviewed_list.setAdapter(adapter);
         rv_reviewed_list.setLayoutManager(new LinearLayoutManager(baseActivity));
@@ -95,11 +97,17 @@ public class ReviewedFragment extends BaseFragment implements ReviewedListViewHo
 
     private void success() {
         dismissLoader();
+        errorLl.setVisibility(View.GONE);
+        rv_reviewed_list.setVisibility(View.VISIBLE);
         bindAdapter();
     }
 
     private void error(String error) {
         dismissLoader();
+        errorLl.setVisibility(View.VISIBLE);
+        rv_reviewed_list.setVisibility(View.GONE);
+        errorTv.setText(error);
+
     }
 
     private void bindAdapter() {

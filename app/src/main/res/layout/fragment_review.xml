@@ -17,20 +17,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <ImageView
             android:layout_width="@dimen/_200sdp"
             android:layout_height="@dimen/_200sdp"
             android:src="@drawable/no_review_found"
-            android:layout_margin="@dimen/_30sdp"/>
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"/>
 
         <TextView
             android:id="@+id/review_error_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="No Data Found"
-            android:fontFamily="@font/sf_ui_bold"
+            android:fontFamily="@font/sf_ui_regular"
             android:textSize="@dimen/_12ssp"
             android:gravity="center_horizontal"
             android:textColor="@color/primaryTextColor"/>

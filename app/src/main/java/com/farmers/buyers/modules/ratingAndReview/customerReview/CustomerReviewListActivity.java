@@ -96,6 +96,7 @@ public class CustomerReviewListActivity extends BaseActivity {
         dismissLoader();
         recyclerView.setVisibility(View.GONE);
         reviewErrorLL.setVisibility(View.VISIBLE);
+        errorTv.setText(error);
     }
 
     private void bindAdapter(){
