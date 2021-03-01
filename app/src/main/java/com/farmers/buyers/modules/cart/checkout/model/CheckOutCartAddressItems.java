@@ -55,19 +55,21 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
     }
 
     public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle, String phoneNumber,String add_lat,String add_long) {
-    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle,
-                                    String phoneNumber, String city, String state, String pin_code) {
-        this.address_id = address_id;
-        this.addressType = addressType;
-        this.address = address;
-        this.detail = detail;
-        this.addressTitle = addressTitle;
-        this.phoneNumber = phoneNumber;
-        this.address_lat=Double.parseDouble(add_lat);
-        this.address_long=Double.parseDouble(add_long);
-        this.state = state;
-        this.city = city;
-        this.pin_code = pin_code;
+    public
+        CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle,
+                String phoneNumber, String city, String state, String pin_code) {
+            this.address_id = address_id;
+            this.addressType = addressType;
+            this.address = address;
+            this.detail = detail;
+            this.addressTitle = addressTitle;
+            this.phoneNumber = phoneNumber;
+            this.address_lat = Double.parseDouble(add_lat);
+            this.address_long = Double.parseDouble(add_long);
+            this.state = state;
+            this.city = city;
+            this.pin_code = pin_code;
+        }
     }
 
     public String getCity() {
