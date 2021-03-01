@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,9 +22,11 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.onBoarding.OnBoardingActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class SplashActivity extends BaseActivity {
 
+    private String FirebaseToken;
     private AppController appControllerContract = AppController.get();
     private ViewModelProvider.Factory factory = new androidx.lifecycle.ViewModelProvider.Factory() {
 
@@ -49,9 +52,21 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void init() {
+        try {
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(task -> {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        FirebaseToken = task.getResult().getToken();
+                         SharedPreferenceManager.getInstance().setDeviceId(FirebaseToken);
+                        Log.d("HomeActivity ", "FCM TOKEN " + FirebaseToken);
+                    });
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
-        SharedPreferenceManager.getInstance().setDeviceId(Settings.Secure.getString(this.getContentResolver(),
-                Settings.Secure.ANDROID_ID));
+      //  SharedPreferenceManager.getInstance().setDeviceId(Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID));
 
         stateMachine.observe(this, new Observer<DataFetchState<AuthenticationApiModel>>() {
             @Override

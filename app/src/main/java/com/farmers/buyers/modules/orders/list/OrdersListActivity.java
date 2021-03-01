@@ -33,7 +33,7 @@ public class OrdersListActivity extends BaseActivity implements OrdersItemViewHo
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener(){
+        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

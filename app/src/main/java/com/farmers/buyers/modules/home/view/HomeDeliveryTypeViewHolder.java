@@ -13,6 +13,7 @@ import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.widget.FarmersToggle;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 
 /**
  * created by Mohammad Sajjad
@@ -24,13 +25,19 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
 
-
     public HomeDeliveryTypeViewHolder(@NonNull ViewGroup parent, DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
         super(Extensions.inflate(parent, R.layout.app_toggle_layout));
         toggle = itemView.findViewById(R.id.toggleButton1);
         deliveryTv = itemView.findViewById(R.id.app_toggle_delivery_tv);
         pickUpTv = itemView.findViewById(R.id.app_toggle_pickup_tv);
         deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+
+        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("0")) {
+            toggle.setChecked(false);
+        } else {
+            toggle.setChecked(true);
+        }
+
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -38,12 +45,10 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
                     pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
                     deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
                     deliveryTypeCheckedChangeListener.onDeliveryTypeCheckedChangeListener(1);
-                }
-                else {
+                } else {
                     deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
                     pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
                     deliveryTypeCheckedChangeListener.onDeliveryTypeCheckedChangeListener(0);
-
                 }
             }
         });
@@ -56,5 +61,6 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
 
     public interface DeliveryTypeCheckedChangeListener {
         void onDeliveryTypeCheckedChangeListener(int type);
+        void onCallReviewChangeListener();
     }
 }

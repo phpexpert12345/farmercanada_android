@@ -10,12 +10,21 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class HomeHeaderItem implements RecyclerViewListItem {
-    String userName, address, user_type;
+    String userName, address, user_type, account_type;
 
-    public HomeHeaderItem(String name, String address, String user_type) {
+    public HomeHeaderItem(String name, String address, String user_type, String account_type) {
         this.userName = name;
         this.address = address;
         this.user_type = user_type;
+        this.account_type = account_type;
+    }
+
+    public String getAccount_type() {
+        return account_type;
+    }
+
+    public void setAccount_type(String account_type) {
+        this.account_type = account_type;
     }
 
     public String getUserName() {

@@ -19,9 +19,15 @@ public class AddressTransformer {
         List<CheckOutCartAddressItems> items = new ArrayList<>();
 
         for (int i = 0; i < allDataModels.size(); i++) {
-            items.add(new CheckOutCartAddressItems(allDataModels.get(i).getAddress_id(), allDataModels.get(i).getVendor_city(),
-                    allDataModels.get(i).getVendor_address(), allDataModels.get(i).getVendor_country(),
-                    allDataModels.get(i).getAddress_title(), allDataModels.get(i).getAccount_phone_number(),allDataModels.get(i).getVendor_lat(),allDataModels.get(i).getVendor_long()));
+            items.add(new CheckOutCartAddressItems(allDataModels.get(i).getAddress_id(),
+                    allDataModels.get(i).getVendor_city(),
+                    allDataModels.get(i).getVendor_address(),
+                    allDataModels.get(i).getVendor_country(),
+                    allDataModels.get(i).getAddress_title(),
+                    allDataModels.get(i).getAccount_phone_number(),
+                    allDataModels.get(i).getVendor_city(),
+                    allDataModels.get(i).getVendor_state(),
+                    allDataModels.get(i).getAddress_postcode()));
         }
 
         return items;

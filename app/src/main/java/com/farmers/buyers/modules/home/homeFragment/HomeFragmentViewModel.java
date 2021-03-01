@@ -48,8 +48,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
     public List<RecyclerViewListItem> farmListItems = new ArrayList<>();
     public List<HomeListItem> homeFarmListItem = new ArrayList<>();
 
-
-
     public void getCategoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
 
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
@@ -119,6 +117,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_NAME", response.getmData().login_name);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_EMAIL", response.getmData().login_email);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE", response.getmData().account_type_name);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_ACCOUNT_TYPE", response.getmData().account_type);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_MOBILE", response.getmData().login_phone);
                     SharedPreferenceManager.getInstance().setSharedPreference("MOBILE_CODE", response.getmData().login_phone_code);
                     SharedPreferenceManager.getInstance().setSharedPreference("TOTAL_FOLLOWERS", response.getmData().Total_followers);
@@ -126,7 +125,8 @@ public class HomeFragmentViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setSharedPreference("TOTAL_MESSAGE_INBOX", response.getmData().Total_Inbox_Message);
 
                     items.add(HomeTransformer.getHeaderItems(response.getmData().login_name,
-                            response.getmData().login_email, response.getmData().account_type_name));
+                            response.getmData().login_email, response.getmData().account_type_name,
+                            response.getmData().account_type));
 
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
 
@@ -142,7 +142,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void getFarmList(final MutableLiveData<DataFetchState<AddressApiModel>> stateMutableLiveData,FarmListRequest farmListRequest){
+    public void getFarmList(final MutableLiveData<DataFetchState<AddressApiModel>> stateMutableLiveData, FarmListRequest farmListRequest) {
         farmListItems.clear();
         homeFarmListItem.clear();
 
@@ -154,13 +154,13 @@ public class HomeFragmentViewModel extends BaseViewModel {
                 if (response.isStatus()) {
                     farmListItems.addAll(HomeTransformer.getHomeFarmListItem(response.getData().getSubProductItemRecords()));
                     homeFarmListItem.addAll(HomeTransformer.getHomeFarmListItem(response.getData().getSubProductItemRecords()));
-                    stateMutableLiveData.postValue(DataFetchState.success(response,response.getStatus_message()));
-                }
-                else {
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else {
                     stateMutableLiveData.postValue(DataFetchState.error(response.getStatus_message(), new AddressApiModel()));
 
                 }
             }
+
             @Override
             public void onFailure(StandardError standardError) {
                 stateMutableLiveData.postValue(DataFetchState.<AddressApiModel>error(standardError.getDisplayError(), null));
@@ -214,7 +214,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
             @Override
             public void onSuccess(AllDataModel response) {
 //                if (response.isStatus()) {
-                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+                stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
 //                } else {
 //                    stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
 //                }
@@ -226,5 +226,4 @@ public class HomeFragmentViewModel extends BaseViewModel {
             }
         });
     }
-
 }

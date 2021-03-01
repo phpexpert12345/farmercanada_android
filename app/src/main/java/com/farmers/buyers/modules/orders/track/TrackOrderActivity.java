@@ -103,13 +103,17 @@ public class TrackOrderActivity extends BaseActivity {
 
         items.add(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()));
         items.add(new TrackOrderCountItem());
-        items.addAll(TrackOrderTransformer.getTrackOrder(dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList()));
+        items.addAll(TrackOrderTransformer.getTrackOrder(
+                dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList()));
         adapter.updateData(items);
     }
 
     private void getOrderDetails() {
-        OrderTrackRequestParams orderTrackRequestParams = new OrderTrackRequestParams(AppController.get().getLoginId(),
-                "1", getIntent().getStringExtra("ORDER_NUMBER"), AppController.get().getAuthenticationKey());
+        OrderTrackRequestParams orderTrackRequestParams = new OrderTrackRequestParams(
+                AppController.get().getLoginId(),
+                "1",
+                getIntent().getStringExtra("ORDER_NUMBER"),//ORDER_STATUS_MSG
+                AppController.get().getAuthenticationKey());
 
         viewModel.getOrderDetails(stateMachine, orderTrackRequestParams);
     }

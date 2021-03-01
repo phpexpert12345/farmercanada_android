@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dp_8_px"
@@ -9,6 +10,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/app_toggle_delivery_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:text="@string/delivery"
+            android:textColor="@color/primaryTextColor" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/toggleButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            app:thumbTint="@color/red"
+            app:trackTint="@color/light_gray" />
+
+
+        <TextView
+            android:id="@+id/app_toggle_pickup_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:text="@string/pickup"
+            android:textColor="@color/primaryTextColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="top|center"
         android:orientation="horizontal">
 
@@ -37,7 +79,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:singleLine="true"
                 android:text="Farm Name"
                 android:textColor="@color/primary_button_color"
                 android:textSize="@dimen/sp_18_px" />
@@ -101,6 +142,16 @@
                         android:text="4.8 (200 review)"
                         android:textSize="@dimen/sp_10_px" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/farm_detail_item_review_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_blue"
+                    android:text="Reviews"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:textSize="@dimen/_8ssp"/>
 
 
             </LinearLayout>

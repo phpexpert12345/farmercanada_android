@@ -8,14 +8,12 @@ import com.farmers.buyers.modules.inbox.view.MessageListViewHolder;
 
 public class ReviewListDelegate extends BaseDelegate {
 
-    ReviewListViewHolder.ReviewItemClickListener reviewItemClickListener;
 
-    public ReviewListDelegate(ReviewListViewHolder.ReviewItemClickListener reviewItemClickListener) {
-        this.reviewItemClickListener = reviewItemClickListener;
+    public ReviewListDelegate() {
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new ReviewListViewHolder(parent, reviewItemClickListener);
+        return new ReviewListViewHolder(parent);
     }
 }

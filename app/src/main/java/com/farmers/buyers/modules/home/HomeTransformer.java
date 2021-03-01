@@ -26,8 +26,8 @@ import java.util.ListIterator;
 
 public class HomeTransformer {
 
-    public static HomeHeaderItem getHeaderItems(String name, String address, String account_type) {
-        return new HomeHeaderItem(name, address, account_type);
+    public static HomeHeaderItem getHeaderItems(String name, String address, String account_type_name, String account_type) {
+        return new HomeHeaderItem(name, address, account_type_name, account_type);
     }
 
     public static HomeSearchListItem getSearchItems() {
@@ -74,7 +74,7 @@ public class HomeTransformer {
     }
 
     public static HomeHeaderItem getHeaderItems() {
-        return new HomeHeaderItem("Aman kumar", "address", "Type");
+        return new HomeHeaderItem("Aman kumar", "address", "Type", "");
     }
 
     public static HomeTopOffersListItems getTopOffers() {

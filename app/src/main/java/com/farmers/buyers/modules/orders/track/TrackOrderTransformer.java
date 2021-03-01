@@ -16,13 +16,17 @@ import java.util.List;
 public class TrackOrderTransformer {
 
     public static TrackOrderHeaderItems getTackOrderHeader(List<AddressApiModel.AddressListData> allOrderList) {
-        return new TrackOrderHeaderItems(allOrderList.get(0).getFarm_logo(), allOrderList.get(0).getFarm_name(),
+        return new TrackOrderHeaderItems(
+                allOrderList.get(0).getFarm_logo(),
+                allOrderList.get(0).getFarm_name(),
                 allOrderList.get(0).getOrder_date() + "," + allOrderList.get(0).getOrder_time(),
                 allOrderList.get(0).getOrder_number(),
                 allOrderList.get(0).getOrder_time(),
                 "10 items",
                 "$ " + allOrderList.get(0).getTotal_amount(),
-                true, 1);
+                true, 1,
+                allOrderList.get(0).getOrder_type(),
+                allOrderList.get(0).getOrder_status_msg());
     }
 
     public static List<TrackOrderItemList> getTrackOrder(List<AddressApiModel.AllRecordsData> allRecordList) {
@@ -33,7 +37,8 @@ public class TrackOrderTransformer {
                     allRecordList.get(i).getProduct_images(),
                     allRecordList.get(i).getItem_quantity(),
                     allRecordList.get(i).getItem_price(), allRecordList.get(i).getItem_unit(),
-                    allRecordList.get(i).getItem_size(), allRecordList.get(i).getItem_note()));
+                    allRecordList.get(i).getItem_size(),
+                    allRecordList.get(i).getItem_note()));
         }
         return item;
     }
@@ -45,7 +50,7 @@ public class TrackOrderTransformer {
                 "Tomorrow, 10 AM - 3 PM",
                 "10 items",
                 "$ 155.80",
-                true, 1);
+                true, 1, "", "");
     }
 
     public static List<TrackOrderItemList> getTrackOrder() {

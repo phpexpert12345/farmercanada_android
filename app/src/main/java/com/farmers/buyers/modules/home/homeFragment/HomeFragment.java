@@ -107,6 +107,22 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private HomeFarmListAdapter homeFarmListAdapter;
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE",
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0")));
+    }
+
+    @Override
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE",
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0")));
+    }
+
+    @Override
     public String getTitle() {
         return "";
     }
@@ -150,7 +166,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     private void init() {
 
-        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", "0");
         adapter = new HomeAdapter(this, this, this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
         SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
@@ -250,7 +265,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 }
                 case SUCCESS: {
                     getUserSuccess();
-                    farmListDataRequest("", "", "", 0);
+                    farmListDataRequest("", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
+                            , "", 0);
                     break;
                 }
             }
@@ -276,7 +292,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
             }
         });
 
-
         changeUserStateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
@@ -298,7 +313,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 }
             }
         });
-
 
         followUnFollowStateMachine.observe(this, new Observer<DataFetchState<FollowUnFollowApiModel>>() {
             @Override
@@ -353,7 +367,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onEditAddressClickListener(int position) {
         Log.e("position", String.valueOf(position));
     }
-
 
     public void buyer_seller_switch_dialog(Context activity) {
 
@@ -423,7 +436,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     @Override
     public void onFollowFarmClicked(String id, String status, String followId) {
         viewModel.followUnFollowFarm(followUnFollowStateMachine, id, status, followId);
-
     }
 
     @Override
@@ -459,6 +471,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onDeliveryTypeCheckedChangeListener(int type) {
         farmListDataRequest("", String.valueOf(type), "", 0);
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+    }
+
+    @Override
+    public void onCallReviewChangeListener() {
+
     }
 
     @Override

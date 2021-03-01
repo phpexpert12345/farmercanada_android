@@ -6,7 +6,9 @@ import com.farmers.buyers.modules.farmDetail.view.FarmDetailDelegate;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderDelegate;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailHeaderViewHolder;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailVegetablesDelegate;
+import com.farmers.buyers.modules.farmDetail.view.FarmDetailViewHolder;
 import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewHolder;
+import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -18,21 +20,26 @@ import com.farmers.buyers.storage.CardConstant;
 public class FarmDetailsAdapter extends BaseAdapter {
     final FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener;
     private FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener farmDetailVegetableListener;
+    private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
+    private FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener;
 
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.FARM_DETAIL_HEADER_ADAPTER, new FarmDetailHeaderDelegate(headerClickListener));
-        delegates.put(CardConstant.FARM_DETAIL_ADAPTER, new FarmDetailDelegate());
+        delegates.put(CardConstant.FARM_DETAIL_ADAPTER, new FarmDetailDelegate(deliveryTypeCheckedChangeListener, farmDetailItemClickListener));
         delegates.put(CardConstant.SINGLE_TEXT_ITEM_ADAPTER, new SingleItemDelegate());
         delegates.put(CardConstant.FARM_DETAIL_VEGETABLE_ADAPTER, new FarmDetailVegetablesDelegate(farmDetailVegetableListener));
     }
 
     public FarmDetailsAdapter(FarmDetailHeaderViewHolder.FarmHeaderClickListener headerClickListener,
                               FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener
-                                      farmDetailVegetableListener) {
+                                      farmDetailVegetableListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener,
+                              FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener) {
         super();
         this.farmDetailVegetableListener = farmDetailVegetableListener;
+        this.deliveryTypeCheckedChangeListener = deliveryTypeCheckedChangeListener;
         this.headerClickListener = headerClickListener;
+        this.farmDetailItemClickListener = farmDetailItemClickListener;
         this.initDelegate();
     }
 }

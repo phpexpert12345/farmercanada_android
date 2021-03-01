@@ -39,8 +39,12 @@ public class ApiConstants {
     public static final String CHANGE_USER_TYPE = "phpexpert_account_change_buyer_seller.php";
     public static final String ADD_TO_CART = "phpexpert_product_cart_add.php";
     public static final String CLEAR_CART_ITEMS = "phpexpert_delete_product_cart.php";
-    public static final String DATE_LIST="phpexpert_checkout_date_list.php";
-    public static final String TIME_LIST="phpexpert_checkout_time_list.php";
+    public static final String GET_DATE_DATA = "phpexpert_checkout_date_list.php";
+    public static final String GET_TIME_BY_DATE_DATA = "phpexpert_checkout_time_list.php";
+    public static final String GET_CUSTOMER_REVIEW_LIST = "phpexpert_customer_review_list.php";
+    public static final String GET_FARM_REVIEW_LIST = "phpexpert_farm_review_list.php";
+    public static final String GET_FARM_REVIEWED_LIST = "phpexpert_farm_review_customer_list.php";
+
 
     //Ganesh working
     public static final String FARM_LIST_URL = "phpexpert_farm_list.php";
@@ -48,6 +52,7 @@ public class ApiConstants {
     public static final String APPLY_COUPON_URL = "phpexpert_coupon_apply.php";
     public static final String SERVICE_AND_TAX_URL = "phpexpert_service_charget_get.php";
     public static final String REVIEW_AND_RATING_API = "phpexpert_customer_review_list.php";
+    public static final String FARM_REVIEW = "phpexpert_farm_review_list.php";
     public static final String SUBMIT_ORDER_URL = "phpexpert_payment_android_submit.php";
     public static final String SAVE_FARM_LIST = "phpexpert_customer_favourite_list.php";
     public static final String SAVE_UN_SAVE_FARM = "phpexpert_customer_favourite.php";

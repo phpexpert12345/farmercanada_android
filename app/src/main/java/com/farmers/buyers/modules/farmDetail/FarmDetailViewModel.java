@@ -18,6 +18,8 @@ import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDec
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.CategoryList;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.followers.model.FollowUnFollowRequestParams;
 import com.farmers.buyers.modules.home.homeFragment.HomeFragmentRepository;
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
@@ -33,6 +35,7 @@ import java.util.List;
 public class FarmDetailViewModel extends BaseViewModel {
 
     private FarmDetailRepository repository = new FarmDetailRepository();
+    private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
 
     public void getFarmProductList(MutableLiveData<DataFetchState<FarmListProductResponse>> stateMutableLiveData,
@@ -56,7 +59,8 @@ public class FarmDetailViewModel extends BaseViewModel {
                         intent.getStringExtra("farm_followed_status"),
                         intent.getStringExtra("farm_delivery_radius_text"),
                         intent.getStringExtra("farm_hosted_by"),
-                        intent.getStringExtra("farm_image")));
+                        intent.getStringExtra("farm_image"),
+                        intent.getStringExtra("FARM_ID")));
 
                 if (response.getStatus()) {
                     if (!response.getData().getCategoryList().isEmpty()) {
@@ -157,4 +161,29 @@ public class FarmDetailViewModel extends BaseViewModel {
             }
         });
     }
+
+    public void followUnFollowFarm(MutableLiveData<DataFetchState<FollowUnFollowApiModel>> stateMachine, String farmId,
+                                   String status, String followId) {
+        stateMachine.postValue(DataFetchState.loading());
+
+        FollowUnFollowRequestParams params = new FollowUnFollowRequestParams(
+                farmId,
+                appController.getLoginId(),
+                appController.getAuthenticationKey(),
+                status, followId);
+
+        repository.followUnFollowFarm(params, new ApiResponseCallback<FollowUnFollowApiModel>() {
+            @Override
+            public void onSuccess(FollowUnFollowApiModel response) {
+                stateMachine.postValue(DataFetchState.success(response, ""));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new FollowUnFollowApiModel()));
+
+            }
+        });
+    }
+
 }

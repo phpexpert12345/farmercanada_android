@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.farmers.buyers.R;
@@ -16,6 +18,7 @@ import com.farmers.buyers.modules.home.homeFragment.HomeFragment;
 import com.farmers.buyers.modules.profile.MyProfileFragment;
 import com.farmers.buyers.modules.saveFarms.SavedFarmsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -64,26 +67,26 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
         Fragment fragment = null;
         switch (item.getItemId()) {
 
-            case R.id.navigation_home : {
+            case R.id.navigation_home: {
                 fragment = new HomeFragment();
                 loadFragment(fragment);
                 break;
             }
 
-            case R.id.navigation_profile : {
+            case R.id.navigation_profile: {
                 fragment = new MyProfileFragment();
                 loadFragment(fragment);
                 break;
             }
 
-            case R.id.navigation_save : {
+            case R.id.navigation_save: {
                 fragment = new SavedFarmsFragment();
                 loadFragment(fragment);
                 break;
 
             }
 
-            case R.id.navigation_cart : {
+            case R.id.navigation_cart: {
                 fragment = new MyCartFragment();
                 loadFragment(fragment);
                 break;

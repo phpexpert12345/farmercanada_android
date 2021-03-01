@@ -13,6 +13,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -42,7 +44,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
-    private TextView termsConditionTv;
+    private CheckBox termsConditionTv;
     private Button signUpBtn;
     private TextInputEditText nameEt, emailEt, numberEt, passwordEt, signUp_referral_et;
     private RadioGroup user_type_radio_group;
@@ -51,6 +53,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     private String account_country = "";
     private Integer account_type = 1;//Buyer = 1 & Seller = 2
     protected Context context;
+    private boolean check = false;
     private String account_city, account_state, account_address, account_long, account_lat, device_id, device_platform, account_phone_code;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -108,7 +111,9 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                     }
 
                     case SUCCESS: {
-                        success(signUpApiModelDataFetchState.status_message, signUpApiModelDataFetchState.data.getData().getMobile_OTP(), signUpApiModelDataFetchState.data.getData().getLoginId());
+                        success(signUpApiModelDataFetchState.status_message,
+                                signUpApiModelDataFetchState.data.getData().getMobile_OTP(),
+                                signUpApiModelDataFetchState.data.getData().getLoginId());
                         break;
                     }
 
@@ -119,6 +124,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
                 }
             }
         });
+        termsConditionTv.setOnCheckedChangeListener((compoundButton, b) -> check = b);
     }
 
     private boolean checkPermissions() {
@@ -158,7 +164,8 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private void success(String msg, String mobile_otp, String loginId) {
         dismissLoader();
-        Toast.makeText(this, msg + " -> " + mobile_otp, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, msg + " -> " + mobile_otp, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
         intent.putExtra("fromSignUp", true);
         intent.putExtra("USER_ID", loginId);
@@ -172,10 +179,11 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     }
 
     private void listener() {
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        signUpBtn.setOnClickListener(view -> {
+            if (check) {
                 doSignUp();
+            } else {
+                Toast.makeText(SignUpActivity.this, "Please check T&C", Toast.LENGTH_SHORT).show();
             }
         });
     }

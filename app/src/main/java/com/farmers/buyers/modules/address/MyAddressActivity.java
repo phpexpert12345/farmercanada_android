@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,25 +56,21 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     public MyAddressViewModel viewModel = factory.create(MyAddressViewModel.class);
     private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AddressApiModel>> deleteStateMachine = new MutableLiveData<>();
-
+    private LinearLayout ll_data_not_available;
     private RecyclerView recyclerView;
     private MyAddressAdapter adapter;
     private TextView addNewAddress;
     private String addressId;
-    private List<RecyclerViewListItem> items = new ArrayList<>();
-    private List<CheckOutCartAddressItems> addressItems = new ArrayList<>();
-    Integer comeFrom=0;
-
+    Integer comeFrom = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_address);
-        Intent intent=getIntent();
-        if (intent!=null){
-            comeFrom=intent.getIntExtra("ComeFrom",0);
+        Intent intent = getIntent();
+        if (intent != null) {
+            comeFrom = intent.getIntExtra("ComeFrom", 0);
         }
-
 
         setupToolbar(new ToolbarConfig("Address", true, new View.OnClickListener() {
             @Override
@@ -93,6 +90,8 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
 
     private void init() {
         recyclerView = findViewById(R.id.my_address_recyclerView);
+        ll_data_not_available = findViewById(R.id.ll_data_not_available);
+
         addNewAddress = findViewById(R.id.add_new_address);
         adapter = new MyAddressAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -108,7 +107,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                             @Override
                             public void onLeftClicked(int position) {
                                 super.onLeftClicked(position);
-                                showConfirmMessage(addressItems.get(position).getAddress_id());
+                                showConfirmMessage(viewModel.addressItems.get(position).getAddress_id());
                             }
                         }
                 ));
@@ -121,9 +120,13 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                                 startActivity(new Intent(MyAddressActivity.this,
                                         AddNewAddressActivity.class).
                                         putExtra("KEY_FROM", "EDIT_ADDRESS").
-                                        putExtra("ADDRESS_ID", addressItems.get(position).getAddress_id()).
-                                        putExtra("ADDRESS", addressItems.get(position).getAddress()).
-                                        putExtra("ADDRESS_TITLE", addressItems.get(position).getAddressTitle()));
+                                        putExtra("ADDRESS_ID", viewModel.addressItems.get(position).getAddress_id()).
+                                        putExtra("CITY", viewModel.addressItems.get(position).getCity()).
+                                        putExtra("STATE", viewModel.addressItems.get(position).getState()).
+                                        putExtra("PINCODE", viewModel.addressItems.get(position).getPin_code()).
+                                        putExtra("MOBILE_NUMBER", viewModel.addressItems.get(position).getPhoneNumber()).
+                                        putExtra("ADDRESS", viewModel.addressItems.get(position).getAddress()).
+                                        putExtra("ADDRESS_TITLE", viewModel.addressItems.get(position).getAddressTitle()));
                             }
                         }));
             }
@@ -135,8 +138,11 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         stateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
+                    adapter.updateData(viewModel.items);
                     dismissLoader();
                     Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    recyclerView.setVisibility(View.GONE);
+                    ll_data_not_available.setVisibility(View.VISIBLE);
                     break;
                 }
                 case LOADING: {
@@ -173,16 +179,17 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
 
     private void addressListSuccess(DataFetchState<AddressApiModel> dataFetchState) {
         dismissLoader();
-        items.clear();
-        addressItems.clear();
-        items.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
-        addressItems.addAll(AddressTransformer.getAddress(dataFetchState.data.getData().getAllDataModels()));
-        adapter.updateData(items);
+        recyclerView.setVisibility(View.VISIBLE);
+        ll_data_not_available.setVisibility(View.GONE);
+        adapter.updateData(viewModel.items);
     }
 
     private void listener() {
-        addNewAddress.setOnClickListener(view -> startActivity(new Intent(MyAddressActivity.this,
-                AddNewAddressActivity.class).putExtra("KEY_FROM", "ADD_ADDRESS")));
+        addNewAddress.setOnClickListener(view -> {
+            startActivity(new Intent(MyAddressActivity.this,
+                    AddNewAddressActivity.class).putExtra("KEY_FROM", "ADD_ADDRESS"));
+            finish();
+        });
     }
 
     @Override
@@ -220,13 +227,11 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
 
-        if (comeFrom==0){
-                Intent intent=new Intent();
-                intent.putExtra(Constant.DATA_INTENT,addressObj);
-                setResult(1254,intent);
-                finish();
+        if (comeFrom == 0) {
+            Intent intent = new Intent();
+            intent.putExtra(Constant.DATA_INTENT, addressObj);
+            setResult(1254, intent);
+            finish();
         }
-
-
     }
 }

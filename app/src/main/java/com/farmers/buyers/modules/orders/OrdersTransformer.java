@@ -41,7 +41,8 @@ public class OrdersTransformer {
                     allOrderList.get(i).getOrder_date() + "," + allOrderList.get(i).getOrder_time(),
                     "$ " + allOrderList.get(i).getTotal_amount(),
                     allOrderList.get(i).getOrder_status_msg(),
-                    allOrderList.get(i).getFarm_logo()));
+                    allOrderList.get(i).getFarm_logo(),
+                    allOrderList.get(i).getOrder_type()));
         }
         return item;
     }

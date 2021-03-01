@@ -12,6 +12,9 @@ import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponRespo
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
+import com.farmers.buyers.modules.ratingAndReview.customerReview.model.CustomerReviewListApiModel;
+import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewListApiModel;
+import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewedListApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewListResponse;
 import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
@@ -86,6 +89,18 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<AddressApiModel> getAddressList(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> getDateData(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String LoginId);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> getOrderTimeByDate(@Url String url,
+                                             @Field("auth_key") String authKey,
+                                             @Field("LoginId") String LoginId,
+                                             @Field("farm_id") String farm_id,
+                                             @Field("current_date") String current_date);
 
     @FormUrlEncoded
     @POST
@@ -212,6 +227,10 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AddressApiModel> farm_review_data(@Url String url, @Field("auth_key") String authKey, @Field("farm_id") String farm_id);
+
+    @FormUrlEncoded
+    @POST
     Call<TaxResponse> TAX_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
                                         @Field("farm_id") String farmId,
                                         @Field("delivery_distance") String deliveryDistance,
@@ -282,5 +301,19 @@ public interface ApiController {
     Call<IncreaseDecreaseApiModel> INCREASE_DECREASE_API_MODEL_CALL(@Url String url, @Field("auth_key") String authKey,
                                                                     @Field("cart_id") String cart_id,
                                                                     @Field("option_type") String optionType);
+
+    @FormUrlEncoded
+    @POST
+    Call<CustomerReviewListApiModel> customer_review_list(@Url String url, @Field("LoginId") String loginId, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<FarmReviewListApiModel> getFarmReviewList(@Url String url, @Field("farm_id") String loginId, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<FarmReviewedListApiModel> getFarmReviewedList(@Url String url, @Field("farm_id") String farmId, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
 }
 

@@ -30,6 +30,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.aboutStore.AboutStoreActivity;
 import com.farmers.buyers.modules.address.MyAddressActivity;
+import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.home.homeFragment.HomeFragmentViewModel;
 import com.farmers.buyers.modules.home.models.AllDataModel;
@@ -45,6 +46,7 @@ import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
 import com.farmers.buyers.modules.profile.view.MyProfileOptionItemViewHolder;
 import com.farmers.buyers.modules.profile.view.ProfileFragmentViewModel;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
+import com.farmers.buyers.modules.ratingAndReview.customerReview.CustomerReviewListActivity;
 import com.farmers.buyers.modules.referFriends.ReferFriendsActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.support.list.SupportActivity;
@@ -222,8 +224,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
             case CHANGE_PASSWORD: {
-                startActivity(new Intent(baseActivity, OtpActivity.class).
-                        putExtra("FROM", "My Profile"));
+                startActivity(new Intent(baseActivity, ChangePasswordActivity.class));
                 break;
             }
 
@@ -269,7 +270,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case RATING_REVIEW: {
-                baseActivity.startActivity(new Intent(baseActivity, RatingAndReviewActivity.class));
+                baseActivity.startActivity(new Intent(baseActivity, CustomerReviewListActivity.class));
                 break;
             }
 
@@ -298,6 +299,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
             dialogInterface.dismiss();
         });
+        builder.show();
     }
 
 }
