@@ -10,11 +10,12 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_30sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
             tools:context=".modules.cart.myCart.MyCartActivity">
@@ -153,6 +154,7 @@
                 android:id="@+id/_my_cart_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_20sdp"
                 android:layout_below="@+id/my_cart_instruction_tv" />
 
         </RelativeLayout>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
@@ -43,6 +44,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private RecyclerView recyclerView;
     TaxData taxData;
+    String order_type;
     private CheckOutCartItemAdapter adapter;
     CheckOutCartAddressItems address;
     private FarmDeliveryStatus farmDeliveryStatus;
@@ -65,6 +67,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out_from_cart);
+        App.finish_activity=false;
         gpsTracker = new GPSTracker(this);
         farmDeliveryStatus= DroidPrefs.get(this,"delivery_radius",FarmDeliveryStatus.class);
 
@@ -81,6 +84,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
         Intent intent = getIntent();
         taxData = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
+        order_type=intent.getStringExtra("order_type");
         taxData.setApplyCouponButton(false);
         taxData.setRemoveDiscountButton(false);
         if (taxData.getDiscountAmount() > 1) {
@@ -140,6 +144,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             intent.putExtra(Constant.DATA_INTENT, taxData);
             intent.putExtra("address",address);
             intent.putExtra("payment_type",paymentType);
+            intent.putExtra("delivery_type",order_type);
             startActivity(intent);
         }
     }
@@ -193,4 +198,12 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     }
     private double deg2rad(double deg) {
         return (deg * Math.PI / 180.0); }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(App.finish_activity){
+            finish();
+        }
+    }
 }

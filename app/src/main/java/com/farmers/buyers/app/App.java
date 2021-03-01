@@ -14,6 +14,7 @@ import com.farmers.buyers.modules.orders.OrderSingleton;
 public class App extends Application {
 
     public static Context appContext;
+    public static  boolean finish_activity=false;
 
     @Override
     public void onCreate() {
