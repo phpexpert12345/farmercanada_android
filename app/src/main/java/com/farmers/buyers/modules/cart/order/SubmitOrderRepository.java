@@ -12,6 +12,8 @@ import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 
 /**

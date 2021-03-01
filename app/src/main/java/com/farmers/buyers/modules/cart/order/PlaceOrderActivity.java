@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.model.SingleTextItem;
@@ -62,6 +63,8 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     String price,quantity,itemid,item_unit_type,str_sizeid,extraitemid;
     Double subTotalAmount = 0.0;
     int pay_type;
+    String date;
+    String time;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -86,6 +89,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
+        App.finish_activity=false;
         ToolbarConfig config = new ToolbarConfig("Add Date & Time", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +118,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     dismissLoader();
                     Toast.makeText(PlaceOrderActivity.this, response.data.getStatus_message(), Toast.LENGTH_SHORT).show();
                     adapter.updateData(viewModel.items);
+                    date=response.data.getData().getAllDateList().get(0).current_date;
                     callTimeSlot(response.data.getData().getAllDateList().get(0).current_date);
                     break;
                 case ERROR:
@@ -147,6 +152,8 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
+                    dialog.showDialog();
+                    App.finish_activity=true;
                     Toast.makeText(PlaceOrderActivity.this, response.data.getStatusMessage(), Toast.LENGTH_SHORT).show();
                     break;
                 case ERROR:
@@ -258,12 +265,6 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
             address= (CheckOutCartAddressItems) intent.getSerializableExtra("address");
             pay_type=intent.getIntExtra("pay_type",0);
             TaxData taxData = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-            Calendar calendar=Calendar.getInstance();
-            SimpleDateFormat time_format=new SimpleDateFormat("HH:mm a");
-            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-            String date=simpleDateFormat.format(calendar.getTime());
-            String time=time_format.format(calendar.getTime());
-
             SubmitRequestParam param = new SubmitRequestParam(appController.getAuthenticationKey(),
                     "0",
                     "0",
@@ -325,7 +326,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 
         adapter.notifyDataSetChanged();
         adapter.notifyItemChanged(position);
-
+date=slot;
         SubmitRequestParam requestParam = new SubmitRequestParam(
                 AppController.get().getAuthenticationKey(),
                 AppController.get().getLoginId(),
@@ -336,6 +337,15 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 
     @Override
     public void onTimeItemClicked(String timeSlot) {
+        time=timeSlot;
         Toast.makeText(PlaceOrderActivity.this, timeSlot, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(App.finish_activity){
+            finish();
+        }
     }
 }

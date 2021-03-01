@@ -20,7 +20,7 @@ public class SubmitResponse implements Serializable {
     private String statusMessage;
     @SerializedName("data")
     @Expose
-    private List<Object> data = null;
+    private Object data = null;
 
     public String getStatusCode() {
         return statusCode;
@@ -30,7 +30,7 @@ public class SubmitResponse implements Serializable {
         return statusMessage;
     }
 
-    public List<Object> getData() {
+    public Object getData() {
         return data;
     }
 }

@@ -289,6 +289,7 @@ public class MyCartFragment extends BaseFragment implements
     public void onCheckOutClicked() {
         Intent checkOutIntent = new Intent(getActivity(), CheckOutFromCartActivity.class);
         checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
+        checkOutIntent.putExtra("order_type",order_type);
         startActivity(checkOutIntent);
     }
 
