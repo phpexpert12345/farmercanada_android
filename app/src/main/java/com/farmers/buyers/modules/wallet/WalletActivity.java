@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,8 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
     private RecyclerView recyclerView;
     private WalletHistoryAdapter adapter;
     private LinearLayout ll_add_money;
+    private LinearLayout ll_data_not_available;
+    private TextView tv_error_msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
     }
 
     private void init() {
+        ll_data_not_available = findViewById(R.id.ll_data_not_available);
+        tv_error_msg = findViewById(R.id.tv_error_msg);
         ll_add_money = findViewById(R.id.ll_add_money);
         recyclerView = findViewById(R.id.wallet_recyclerView);
         adapter = new WalletHistoryAdapter(this);
@@ -68,6 +73,9 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
                 case ERROR: {
                     dismissLoader();
                     Toast.makeText(this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    recyclerView.setVisibility(View.GONE);
+                    tv_error_msg.setText(dataFetchState.status_message);
+                    ll_data_not_available.setVisibility(View.VISIBLE);
                     break;
                 }
                 case LOADING: {

@@ -13,6 +13,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -44,6 +46,8 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private RecyclerView recyclerView;
     private SubOrderItemAdapter adapter;
+    private LinearLayout ll_data_not_available;
+    private TextView tv_error_msg;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -57,7 +61,6 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
     };
     public SubOredrViewModel viewModel = factory.create(SubOredrViewModel.class);
     private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,8 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
 
         setUpTabLayout();*/
 
-
+        ll_data_not_available = findViewById(R.id.ll_data_not_available);
+        tv_error_msg = findViewById(R.id.tv_error_msg);
         recyclerView = findViewById(R.id.sub_order_recyclerView);
         adapter = new SubOrderItemAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -101,6 +105,9 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
             switch (dataFetchState.status) {
                 case ERROR: {
                     dismissLoader();
+                    recyclerView.setVisibility(View.GONE);
+                    tv_error_msg.setText(dataFetchState.status_message);
+                    ll_data_not_available.setVisibility(View.VISIBLE);
                     break;
                 }
                 case LOADING: {
@@ -133,7 +140,7 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
     public void onSubOrderItemClicked(SubOrdersListItem item) {
         startActivity(new Intent(SubOrderListActivity.this, TrackOrderActivity.class).
                 putExtra("ORDER_STATUS_MSG", item.getStatus()).
-                putExtra("ORDER_TYPE",item.getOrderId()).
+                putExtra("ORDER_TYPE", item.getOrderId()).
                 putExtra("ORDER_NUMBER", item.getOrderId()));
     }
 
@@ -188,5 +195,4 @@ public class SubOrderListActivity extends BaseActivity implements SubOrderItemVi
         tabLayout.setupWithViewPager(viewPager, true);
 
     }*/
-
 }
