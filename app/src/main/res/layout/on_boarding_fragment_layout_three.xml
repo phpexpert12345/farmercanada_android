@@ -42,7 +42,7 @@
             android:layout_marginTop="@dimen/dp_16_px"
             android:fontFamily="@font/sf_ui_bold"
             android:gravity="center"
-            android:text="@string/onBoardingHeader"
+            android:text="@string/onBoardingHeader3"
             android:textColor="@color/on_boarding_header_color"
             android:textSize="@dimen/sp_20_px" />
 
@@ -57,7 +57,7 @@
             android:gravity="center"
             android:paddingLeft="@dimen/dp_24_px"
             android:paddingRight="@dimen/dp_24_px"
-            android:text="@string/onBoardingContent" />
+            android:text="@string/onBoardingContent3" />
 
     </RelativeLayout>
 

@@ -127,6 +127,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
+                    dialog.showDialog();
                     Toast.makeText(PlaceOrderActivity.this, response.data.getStatusMessage(), Toast.LENGTH_SHORT).show();
                     break;
                 case ERROR:
