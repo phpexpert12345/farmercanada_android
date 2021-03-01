@@ -30,6 +30,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.aboutStore.AboutStoreActivity;
 import com.farmers.buyers.modules.address.MyAddressActivity;
+import com.farmers.buyers.modules.changePassword.ChangePasswordActivity;
 import com.farmers.buyers.modules.followers.FollowersActivity;
 import com.farmers.buyers.modules.home.homeFragment.HomeFragmentViewModel;
 import com.farmers.buyers.modules.home.models.AllDataModel;
@@ -223,8 +224,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
                 break;
             }
             case CHANGE_PASSWORD: {
-                startActivity(new Intent(baseActivity, OtpActivity.class).
-                        putExtra("FROM", "My Profile"));
+                startActivity(new Intent(baseActivity, ChangePasswordActivity.class));
                 break;
             }
 

@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.farmDetail;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewH
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
+import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
@@ -256,5 +258,10 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         intent.putExtra("farmId", id);
         SharedPreferenceManager.getInstance().setFarmId(id);
         startActivity(intent);
+    }
+
+    @Override
+    public void onCallReviewChangeListener() {
+        startActivity(new Intent(FarmDetailActivity.this, RatingAndReviewActivity.class));
     }
 }

@@ -43,8 +43,10 @@ public class ReviewListViewHolder extends BaseViewHolder {
         ReviewListItem item = (ReviewListItem) items;
         farm_name_tv.setText(item.getName());
         message_list_time_tv.setText(item.getDate());
+        comment_tv.setText(item.getComment());
         order_number.setText(item.getOrderNumber());
         myRatingBar.setRating(item.getGetRating());
+        comment_tv.setText(item.getComment());
         Glide.with(itemView.getContext()).load(item.getImage()).into(message_list_item_image);
 
     }

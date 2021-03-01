@@ -471,6 +471,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     }
 
     @Override
+    public void onCallReviewChangeListener() {
+
+    }
+
+    @Override
     public void onFarmTypeCheckedChangeListener(int farmType) {
         farmListDataRequest(String.valueOf(farmType), "", "", 0);
     }

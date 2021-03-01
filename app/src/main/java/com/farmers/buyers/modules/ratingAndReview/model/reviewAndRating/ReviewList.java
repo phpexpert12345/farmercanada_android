@@ -33,6 +33,15 @@ public class ReviewList implements Serializable, RecyclerViewListItem {
     @SerializedName("farm_logo")
     @Expose
     private String farmLogo;
+
+    public String review_id;
+    public String total_rating;
+    public String created_date;
+    public String order_number;
+    public String farm_name;
+    public String login_name;
+    public String farm_logo;
+
     @Override
     public int getViewType() {
         return CardConstant.REVIEW_ITEMS_ADAPTER;

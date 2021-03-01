@@ -85,7 +85,7 @@ public class ReviewFragment extends BaseFragment {
                 switch (farmReviewListApiModelDataFetchState.status) {
                     case LOADING: loading(); break;
                     case SUCCESS: success(); break;
-                    case ERROR:  error(farmReviewListApiModelDataFetchState.status_message);
+                    case ERROR:  error(farmReviewListApiModelDataFetchState.status_message);break;
                 }
             }
         });

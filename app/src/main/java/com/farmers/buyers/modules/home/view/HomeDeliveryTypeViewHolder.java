@@ -61,5 +61,6 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
 
     public interface DeliveryTypeCheckedChangeListener {
         void onDeliveryTypeCheckedChangeListener(int type);
+        void onCallReviewChangeListener();
     }
 }

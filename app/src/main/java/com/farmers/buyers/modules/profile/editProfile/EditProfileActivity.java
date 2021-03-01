@@ -275,38 +275,36 @@ public class EditProfileActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap resizedBitmap = null;
-        if (data != null) {
-            try {
-                if (requestCode == USER_IMAGE) {
-                    File file = new File(IMAGE_PATH_USER.getPath());
-                    try {
-                        Bitmap bmap = BitmapFactory.decodeFile(file.getPath());
-                        resizedBitmap = getResizedBitmap(bmap, 500);
-                        resizedBitmap.compress(Bitmap.CompressFormat.PNG, 25, new FileOutputStream(file));
+        try {
+            if (requestCode == USER_IMAGE) {
+                File file = new File(IMAGE_PATH_USER.getPath());
+                try {
+                    Bitmap bmap = BitmapFactory.decodeFile(file.getPath());
+                    resizedBitmap = getResizedBitmap(bmap, 500);
+                    resizedBitmap.compress(Bitmap.CompressFormat.PNG, 25, new FileOutputStream(file));
 
-                    } catch (Exception e) {
-                        Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                    edit_profile_user_image.setImageBitmap(resizedBitmap);
-                    // civ_user.setRotation(-90);
-                    User = true;
+                } catch (Exception e) {
+                    Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                if (requestCode == COVER_IMAGE) {
-                    File file = new File(IMAGE_PATH_COVER.getPath());
-                    try {
-                        Bitmap bmap = BitmapFactory.decodeFile(file.getPath());
-                        resizedBitmap = getResizedBitmap(bmap, 500);
-                        resizedBitmap.compress(Bitmap.CompressFormat.PNG, 25, new FileOutputStream(file));
-
-                    } catch (Exception e) {
-                        Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                    edit_profile_cover_image.setImageBitmap(resizedBitmap);
-                    // civ_user.setRotation(-90);
-                    Cover = true;
-                }
-            } catch (Exception e) {
+                edit_profile_user_image.setImageBitmap(resizedBitmap);
+                // civ_user.setRotation(-90);
+                User = true;
             }
+            if (requestCode == COVER_IMAGE) {
+                File file = new File(IMAGE_PATH_COVER.getPath());
+                try {
+                    Bitmap bmap = BitmapFactory.decodeFile(file.getPath());
+                    resizedBitmap = getResizedBitmap(bmap, 500);
+                    resizedBitmap.compress(Bitmap.CompressFormat.PNG, 25, new FileOutputStream(file));
+
+                } catch (Exception e) {
+                    Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                edit_profile_cover_image.setImageBitmap(resizedBitmap);
+                // civ_user.setRotation(-90);
+                Cover = true;
+            }
+        } catch (Exception e) {
         }
     }
 

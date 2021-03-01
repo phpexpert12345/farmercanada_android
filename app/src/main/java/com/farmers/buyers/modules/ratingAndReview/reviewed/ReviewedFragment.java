@@ -80,9 +80,9 @@ public class ReviewedFragment extends BaseFragment implements ReviewedListViewHo
 
         stateMachine.observe(this, reviewListResponseDataFetchState -> {
             switch (reviewListResponseDataFetchState.status) {
-                case LOADING: loading();
-                case SUCCESS: success();
-                case ERROR:   error(reviewListResponseDataFetchState.status_message);
+                case LOADING: loading();break;
+                case SUCCESS: success();break;
+                case ERROR:   error(reviewListResponseDataFetchState.status_message);break;
             }
         });
 
