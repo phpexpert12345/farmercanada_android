@@ -20,7 +20,17 @@ public class MyCartItem implements RecyclerViewListItem {
     int cartItemQuantity;
     String itemSubPrice;
 
-    public MyCartItem(String imgUri, String name, String price, String address, String cartId, int cartItemQuantity1, String itemSubPrice1) {
+    public String getItem_unit() {
+        return item_unit;
+    }
+
+    public void setItem_unit(String item_unit) {
+        this.item_unit = item_unit;
+    }
+
+    String item_unit;
+
+    public MyCartItem(String imgUri, String name, String price, String address, String cartId, int cartItemQuantity1, String itemSubPrice1,String item_unit) {
         this.imgUri = imgUri;
         this.name = name;
         this.price = price;
@@ -28,6 +38,7 @@ public class MyCartItem implements RecyclerViewListItem {
         this.cartId = cartId;
         this.cartItemQuantity = cartItemQuantity1;
         this.itemSubPrice = itemSubPrice1;
+        this.item_unit=item_unit;
     }
 
 

@@ -11,8 +11,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/category_item_card"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        app:cardBackgroundColor="@color/transparent_gray"
+        android:layout_height="88dp"
+        app:cardBackgroundColor="@color/primaryTextColor"
         app:cardCornerRadius="@dimen/_5sdp">
 
         <LinearLayout

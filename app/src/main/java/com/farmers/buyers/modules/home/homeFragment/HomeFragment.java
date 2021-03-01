@@ -454,7 +454,10 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         intent.putExtra("farm_cover_image", viewModel.homeFarmListItem.get(position).getCoverImage());
         intent.putExtra("farm_image", viewModel.homeFarmListItem.get(position).getFarmImage());
         intent.putExtra("followed_id", viewModel.homeFarmListItem.get(position).followed_id);
-        startActivity(intent);
+        intent.putExtra("farm_delivery_radius",viewModel.homeFarmListItem.get(position).getFarm_delivery_radius());
+        intent.putExtra("farm_lat",viewModel.homeFarmListItem.get(position).getFarmLat());
+        intent.putExtra("farm_long",viewModel.homeFarmListItem.get(position).getFarmLong());
+        startActivityForResult(intent,2);
     }
 
     @Override

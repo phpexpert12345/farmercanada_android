@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/sub_total"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ "
+                android:text="$"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/packedge_fee_amount"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ "
+                android:text="$"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/gst_tax_amount"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ "
+                android:text="$"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/shiping_fee"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="$ "
+                android:text="$"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
