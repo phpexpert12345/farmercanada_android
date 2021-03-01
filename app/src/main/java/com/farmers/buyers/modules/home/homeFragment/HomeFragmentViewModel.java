@@ -213,11 +213,11 @@ public class HomeFragmentViewModel extends BaseViewModel {
         repository.changeUserType(profileRequestParams, new ApiResponseCallback<AllDataModel>() {
             @Override
             public void onSuccess(AllDataModel response) {
-//                if (response.isStatus()) {
-                stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
-//                } else {
-//                    stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
-//                }
+                if (response.isStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatus_message(), null));
+                }
             }
 
             @Override

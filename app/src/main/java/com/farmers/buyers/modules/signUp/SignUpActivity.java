@@ -35,6 +35,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpRequestParams;
+import com.farmers.buyers.modules.webview.WebViewActivity;
 import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
@@ -45,6 +46,7 @@ import java.util.Locale;
 
 public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private CheckBox termsConditionTv;
+    private TextView tv_sign_up_terms_condition;
     private Button signUpBtn;
     private TextInputEditText nameEt, emailEt, numberEt, passwordEt, signUp_referral_et;
     private RadioGroup user_type_radio_group;
@@ -86,6 +88,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private void init() {
         termsConditionTv = findViewById(R.id.sign_up_terms_condition_tv);
+        tv_sign_up_terms_condition = findViewById(R.id.tv_sign_up_terms_condition);
         signUpBtn = findViewById(R.id.sign_up_submit_btn);
         nameEt = findViewById(R.id.signUp_name_et);
         emailEt = findViewById(R.id.signUp_email_et);
@@ -125,6 +128,9 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
             }
         });
         termsConditionTv.setOnCheckedChangeListener((compoundButton, b) -> check = b);
+
+        tv_sign_up_terms_condition.setOnClickListener(view -> startActivity(new Intent(SignUpActivity.this, WebViewActivity.class)));
+
     }
 
     private boolean checkPermissions() {
@@ -167,6 +173,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         // Toast.makeText(this, msg + " -> " + mobile_otp, Toast.LENGTH_LONG).show();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignUpActivity.this, SubmitOtpActivity.class);
+        intent.putExtra("number", numberEt.getText().toString().trim());
         intent.putExtra("fromSignUp", true);
         intent.putExtra("USER_ID", loginId);
         startActivity(intent);

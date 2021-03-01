@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".modules.ratingAndReview.customerReview.CustomerReviewListActivity"></activity>
+        <activity android:name=".modules.webview.WebViewActivity"></activity>
+        <activity android:name=".modules.ratingAndReview.customerReview.CustomerReviewListActivity" />
         <activity android:name=".modules.addMoney.AddMoneyWallet" />
         <activity android:name=".modules.seller.manageCalender.ManageCalenderActivity" />
         <activity android:name=".modules.changePassword.sellerChangePassword.SellerChangePasswordActivity" />

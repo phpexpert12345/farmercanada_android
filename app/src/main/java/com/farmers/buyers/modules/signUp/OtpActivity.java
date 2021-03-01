@@ -57,14 +57,11 @@ public class OtpActivity extends BaseActivity {
     }
 
     private void listener() {
-        requestOtpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mobileNumberEt.getText().toString().isEmpty()) {
-                    Toast.makeText(OtpActivity.this, "Please enter mobile number", Toast.LENGTH_SHORT).show();
-                } else {
-                    viewModel.doVerifyMobileForgotPassword(stateMachine, mobileNumberEt.getText().toString(), 1);
-                }
+        requestOtpBtn.setOnClickListener(view -> {
+            if (mobileNumberEt.getText().toString().isEmpty()) {
+                Toast.makeText(OtpActivity.this, "Please enter mobile number", Toast.LENGTH_SHORT).show();
+            } else {
+                viewModel.doVerifyMobileForgotPassword(stateMachine, mobileNumberEt.getText().toString(), 1);
             }
         });
 

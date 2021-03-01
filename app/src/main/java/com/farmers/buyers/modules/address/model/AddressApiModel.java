@@ -57,6 +57,13 @@ public class AddressApiModel {
 
     public static class Data {
 
+        public String LoginId;
+        public String referral_code;
+        public String refer_a_friend_heading;
+        public String refer_a_friend_heading_description;
+        public String refer_a_friend_sharing;
+        public String referral_photo;
+
         @SerializedName("AddressList")
         private List<AddressListData> allDataModels;
 

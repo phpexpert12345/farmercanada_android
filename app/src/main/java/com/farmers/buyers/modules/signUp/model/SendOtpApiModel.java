@@ -12,6 +12,7 @@ import java.util.List;
 
 public class SendOtpApiModel {
 
+    public boolean status;
     @SerializedName("status_code")
     private boolean statusCode;
 
@@ -19,29 +20,29 @@ public class SendOtpApiModel {
     private String statusMessage;
 
     @SerializedName("data")
-    private List<Object> data;
+    private VerifyOtpApiModel.OtpData data;
 
-    public void setStatusCode(boolean statusCode){
+    public void setStatusCode(boolean statusCode) {
         this.statusCode = statusCode;
     }
 
-    public boolean isStatusCode(){
+    public boolean isStatusCode() {
         return statusCode;
     }
 
-    public void setStatusMessage(String statusMessage){
+    public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
     }
 
-    public String getStatusMessage(){
+    public String getStatusMessage() {
         return statusMessage;
     }
 
-    public void setData(List<Object> data){
+    public void setData(VerifyOtpApiModel.OtpData data) {
         this.data = data;
     }
 
-    public List<Object> getData(){
+    public VerifyOtpApiModel.OtpData getData() {
         return data;
     }
 }

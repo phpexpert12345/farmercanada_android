@@ -99,9 +99,14 @@ public class ForgotPassword extends BaseActivity {
                 String password = ed_forgot_password.getText().toString();
                 String confirm_password = ed_confirm_forgot_password.getText().toString();
 
-                viewModel.doForgotPassword(stateMachine, mobile_number,
-                        getIntent().getStringExtra("USER_ID"),
-                        password, confirm_password);
+                if (ed_forgot_password.getText().toString().trim().equalsIgnoreCase(ed_confirm_forgot_password.getText().toString().trim())){
+                    viewModel.doForgotPassword(stateMachine, mobile_number,
+                            getIntent().getStringExtra("USER_ID"),
+                            password, confirm_password);
+                }else {
+                    Toast.makeText(ForgotPassword.this,"Please check password and confirm password",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

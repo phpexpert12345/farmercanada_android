@@ -42,7 +42,7 @@
         <ImageView
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            android:src="@mipmap/ic_address_not" />
+            android:src="@mipmap/ic_order_not" />
 
         <TextView
             android:id="@+id/tv_error_msg"

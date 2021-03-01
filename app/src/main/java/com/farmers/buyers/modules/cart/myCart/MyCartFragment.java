@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDec
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartItemViewHolder;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
@@ -59,7 +61,8 @@ public class MyCartFragment extends BaseFragment implements
 
     TaxData taxData = null;
     private RecyclerView recyclerView;
-    private TextView noDataLabel, myCartInstruction, itemCount, addItem;
+    private LinearLayout ll_data_not_available;
+    private TextView tv_error_msg, myCartInstruction, itemCount, addItem;
     private MyCartAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private List<MyCartItem> cartData = new ArrayList<>();
@@ -95,7 +98,8 @@ public class MyCartFragment extends BaseFragment implements
 
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id._my_cart_recyclerView);
-        noDataLabel = view.findViewById(R.id.nodata_label);
+        tv_error_msg = view.findViewById(R.id.tv_error_msg);
+        ll_data_not_available = view.findViewById(R.id.ll_data_not_available);
         myCartInstruction = view.findViewById(R.id.my_cart_instruction_tv);
         itemCount = view.findViewById(R.id.itemCount);
         addItem = view.findViewById(R.id.add_item);
@@ -109,7 +113,7 @@ public class MyCartFragment extends BaseFragment implements
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // startActivity(new Intent(getActivity(),FarmList));
+                startActivity(new Intent(getActivity(), HomeActivity.class));
             }
         });
         // getServicesAndTax();
@@ -195,15 +199,15 @@ public class MyCartFragment extends BaseFragment implements
                     if (data.data.getStatus()) {
                         recyclerView.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.VISIBLE);
-                        noDataLabel.setVisibility(View.GONE);
+                        ll_data_not_available.setVisibility(View.GONE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
                         cartListData(data.data.getData().getFarmProductCartList());
                         adapter.updateData(items);
                     } else {
                         items.clear();
                         recyclerView.setVisibility(View.GONE);
-                        noDataLabel.setText(data.status_message);
-                        noDataLabel.setVisibility(View.VISIBLE);
+                        tv_error_msg.setText(data.status_message);
+                        ll_data_not_available.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.GONE);
                         itemCount.setText("0 Items");
                     }
@@ -214,7 +218,8 @@ public class MyCartFragment extends BaseFragment implements
                 case ERROR:
                     itemCount.setText("No Items");
                     items.clear();
-                    noDataLabel.setText(data.status_message);
+                    ll_data_not_available.setVisibility(View.VISIBLE);
+                    tv_error_msg.setText(data.status_message);
                     adapter.updateData(items);
                     dismissLoader();
                     break;

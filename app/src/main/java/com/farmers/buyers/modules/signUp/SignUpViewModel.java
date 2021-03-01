@@ -159,7 +159,11 @@ public class SignUpViewModel extends BaseViewModel {
         repository.verifyRegistrationOtp(params, new ApiResponseCallback<VerifyOtpApiModel>() {
             @Override
             public void onSuccess(VerifyOtpApiModel response) {
-                stateMachine.postValue(DataFetchState.success(response, response.status_message));
+                if (response.status) {
+                    stateMachine.postValue(DataFetchState.success(response, response.status_message));
+                } else {
+                    stateMachine.postValue(DataFetchState.error(response.status_message, response));
+                }
             }
 
             @Override

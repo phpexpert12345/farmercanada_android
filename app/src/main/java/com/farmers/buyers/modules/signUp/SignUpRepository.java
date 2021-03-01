@@ -1,7 +1,5 @@
 package com.farmers.buyers.modules.signUp;
 
-
-
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
@@ -59,7 +57,6 @@ public class SignUpRepository extends BaseRepository {
         makeRequest(call, responseCallback);
     }
 
-
     public void reSendOtp(SendOtpRequestParams params, ApiResponseCallback<SendOtpApiModel> responseCallback) {
 
         Call<SendOtpApiModel> call = RetrofitBuilder.createServiceContract().requestOtp(ApiConstants.RESEND_OTP, params.getNumber(), params.getAuthKey(), params.getLoginId());
@@ -78,6 +75,4 @@ public class SignUpRepository extends BaseRepository {
                 params.getKey());
         makeRequest(call, responseCallback);
     }
-
-
 }

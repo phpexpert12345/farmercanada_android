@@ -76,15 +76,29 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:id="@+id/nodata_label"
+    <LinearLayout
+        android:id="@+id/ll_data_not_available"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/_10sdp"
         android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="@dimen/_12sdp"></TextView>
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@mipmap/ic_cart_not" />
+
+        <TextView
+            android:id="@+id/tv_error_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="No address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
 </RelativeLayout>
 
 

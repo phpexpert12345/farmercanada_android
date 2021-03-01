@@ -92,6 +92,10 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AddressApiModel> getReferAndEarn(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
     Call<AddressApiModel> getDateData(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String LoginId);
 
     @FormUrlEncoded
