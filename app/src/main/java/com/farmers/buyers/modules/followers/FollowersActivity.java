@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,8 @@ import java.util.List;
 public class FollowersActivity extends BaseActivity implements FollowersViewHolder.FollowerListener {
     private RecyclerView recyclerView;
     private FollowersAdapter adapter;
-    private TextView txt_no_followers;
+    private LinearLayout followersErrorLL;
+    private TextView errorTv;
     private List<RecyclerViewListItem> items = new ArrayList<>();
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -72,7 +74,8 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
 
     private void init() {
         recyclerView = findViewById(R.id.followers_transformer);
-        txt_no_followers=findViewById(R.id.txt_no_followers);
+        followersErrorLL = findViewById(R.id.followers_error_ll);
+        errorTv = findViewById(R.id.followers_error_tv);
         adapter = new FollowersAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -125,12 +128,13 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
     private void success(FollowersApiModel msg) {
         dismissLoader();
         if(!msg.getStatus()){
-            txt_no_followers.setVisibility(View.VISIBLE);
-            txt_no_followers.setText(msg.getStatusMessage());
+            followersErrorLL.setVisibility(View.VISIBLE);
+            errorTv.setText(msg.getStatusMessage());
             recyclerView.setVisibility(View.GONE);
         }
         else {
-            txt_no_followers.setVisibility(View.GONE);
+            followersErrorLL.setVisibility(View.GONE);
+            errorTv.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             bindAdapter();
         }
@@ -138,8 +142,9 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
 
     private void error(String error) {
         dismissLoader();
-        txt_no_followers.setVisibility(View.VISIBLE);
-        txt_no_followers.setText(error);
+        followersErrorLL.setVisibility(View.VISIBLE);
+        errorTv.setVisibility(View.VISIBLE);
+        errorTv.setText(error);
         recyclerView.setVisibility(View.GONE);
     }
 

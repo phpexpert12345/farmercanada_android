@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -33,6 +34,8 @@ import java.util.List;
 public class ReviewFragment extends BaseFragment {
 
     private RecyclerView rv_review_list;
+    private LinearLayout errorLl;
+    private TextView errorTv;
     private ReviewListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -73,6 +76,8 @@ public class ReviewFragment extends BaseFragment {
     @Override
     public void bindView(View view) {
         rv_review_list = view.findViewById(R.id.rv_review_list);
+        errorLl = view.findViewById(R.id.review_error_ll);
+        errorTv = view.findViewById(R.id.review_error_tv);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
         adapter = new ReviewListAdapter();
         rv_review_list.setAdapter(adapter);
@@ -96,11 +101,16 @@ public class ReviewFragment extends BaseFragment {
 
     private void success() {
         dismissLoader();
+        errorLl.setVisibility(View.GONE);
+        rv_review_list.setVisibility(View.VISIBLE);
         bindAdapter();
     }
 
     private void error(String error) {
         dismissLoader();
+        errorLl.setVisibility(View.VISIBLE);
+        rv_review_list.setVisibility(View.GONE);
+        errorTv.setText(error);
     }
 
     private void bindAdapter() {
