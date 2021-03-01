@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/on_boarding_icon_relative"
             android:layout_marginTop="@dimen/dp_16_px"
+            android:visibility="gone"
             android:fontFamily="@font/sf_ui_bold"
             android:gravity="center"
             android:text="@string/onBoardingHeader3"
@@ -56,6 +57,7 @@
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center"
             android:paddingLeft="@dimen/dp_24_px"
+            android:textSize="@dimen/_12ssp"
             android:paddingRight="@dimen/dp_24_px"
             android:text="@string/onBoardingContent3" />
 

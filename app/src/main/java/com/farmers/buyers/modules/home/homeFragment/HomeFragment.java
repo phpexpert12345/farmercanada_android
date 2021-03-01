@@ -174,7 +174,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         farmRecyclerView.setAdapter(homeFarmListAdapter);
         farmRecyclerView.setLayoutManager(new GridLayoutManager(baseActivity, 2));
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
-
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
         farmRecyclerView.addItemDecoration(new EqualSpacingItemDecoration(40));
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
