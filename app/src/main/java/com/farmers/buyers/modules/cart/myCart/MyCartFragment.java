@@ -80,10 +80,9 @@ public class MyCartFragment extends BaseFragment implements
 
     private MyCartViewModel viewModel = factory.create(MyCartViewModel.class);
     private AppController appController = AppController.get();
-
     private MutableLiveData<DataFetchState<ApplyCouponResponse>> applyCouponMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<TaxResponse>> taxServiceMachine = new MutableLiveData<>();
-    private MutableLiveData<DataFetchState<CartListResponse>> cartListMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<CartListResponse>>cartListMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> increaseDecreaseMachine = new MutableLiveData<>();
 
     @Override
@@ -201,8 +200,11 @@ public class MyCartFragment extends BaseFragment implements
                         myCartInstruction.setVisibility(View.VISIBLE);
                         ll_data_not_available.setVisibility(View.GONE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
-                        cartListData(data.data.getData().getFarmProductCartList());
-                        adapter.updateData(items);
+                        if(data.data.getData().getFarmProductCartList().size()>0) {
+                            cartListData(data.data.getData().getFarmProductCartList());
+                            adapter.updateData(items);
+                        }
+//                        adapter.updateData(items);
                     } else {
                         items.clear();
                         recyclerView.setVisibility(View.GONE);

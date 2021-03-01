@@ -27,6 +27,7 @@ import com.farmers.buyers.modules.cart.myCart.MyCartViewModel;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxData;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
 import com.farmers.buyers.modules.cart.order.PlaceOrderActivity;
+import com.farmers.buyers.modules.farmDetail.model.FarmDeliveryStatus;
 import com.farmers.buyers.modules.orders.OrderSingleton;
 import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.GPSTracker;
@@ -41,7 +42,10 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private RecyclerView recyclerView;
     TaxData taxData;
+    String order_type;
     private CheckOutCartItemAdapter adapter;
+    CheckOutCartAddressItems address;
+    private FarmDeliveryStatus farmDeliveryStatus;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -55,12 +59,15 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     };
     private GPSTracker gpsTracker;
     private int paymentType = -1;
+    private String pay_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out_from_cart);
+        App.finish_activity=false;
         gpsTracker = new GPSTracker(this);
+        farmDeliveryStatus= DroidPrefs.get(this,"delivery_radius",FarmDeliveryStatus.class);
 
         setupToolbar(new ToolbarConfig("CheckOut", true, new View.OnClickListener() {
             @Override
@@ -75,6 +82,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
         Intent intent = getIntent();
         taxData = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
+        order_type=intent.getStringExtra("order_type");
         taxData.setApplyCouponButton(false);
         taxData.setRemoveDiscountButton(false);
         if (taxData.getDiscountAmount() > 1) {
@@ -129,9 +137,16 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
         if (paymentType == -1) {
             Toast.makeText(CheckOutFromCartActivity.this, "Please choose payment method", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else if(address==null){
+            Toast.makeText(CheckOutFromCartActivity.this, "Please select address", Toast.LENGTH_SHORT).show();
+        }
+        else {
             Intent intent = new Intent(CheckOutFromCartActivity.this, PlaceOrderActivity.class);
             intent.putExtra(Constant.DATA_INTENT, taxData);
+            intent.putExtra("address",address);
+            intent.putExtra("pay_type",pay_type);
+            intent.putExtra("order_type",order_type);
             startActivity(intent);
         }
     }
@@ -152,7 +167,18 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1254) {
             if (data != null) {
-                CheckOutCartAddressItems address = (CheckOutCartAddressItems) data.getSerializableExtra(Constant.DATA_INTENT);
+                 address = (CheckOutCartAddressItems) data.getSerializableExtra(Constant.DATA_INTENT);
+                 if(address!=null){
+                     double dis=distance(farmDeliveryStatus.farm_lat,farmDeliveryStatus.farm_long,address.getAddress_lat(),address.getAddress_long());
+                     dis=dis*1.609;
+                     if(dis>=farmDeliveryStatus.farm_delivery_status){
+                         Toast.makeText(this, "We Don't Deliver here...", Toast.LENGTH_SHORT).show();
+                     }
+                     else{
+                         Toast.makeText(this, "We Deliver here...", Toast.LENGTH_SHORT).show();
+                     }
+                 }
+
                 prepareItem(taxData, address);
                 adapter.updateData(items);
             }
@@ -160,7 +186,26 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     }
 
     @Override
-    public void onPaymentMethodCheckChangeListener(int type) { //Cash 0, Card 1, Wallet 2
+    public void onPaymentMethodCheckChangeListener(int type,String pay_type) { //Cash 0, Card 1, Wallet 2
         this.paymentType = type;
+        this.pay_type=pay_type;
+    }
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = deg2rad(dist);
+        dist = dist * 60 * 1.1515;
+        return (dist);
+    }
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0); }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(App.finish_activity){
+            finish();
+        }
     }
 }
