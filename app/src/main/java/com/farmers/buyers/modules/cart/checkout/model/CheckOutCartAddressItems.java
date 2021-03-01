@@ -44,6 +44,7 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
     private double address_long;
     Boolean isSelected;
     Boolean canChange;
+    private String vendor_country;
 
     public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, Boolean isSelected, Boolean canChange) {
         this.address_id = address_id;
@@ -53,24 +54,20 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
         this.isSelected = isSelected;
         this.canChange = canChange;
     }
+public CheckOutCartAddressItems(String address_id,String city, String address, String vendor_country,String address_title, String phoneNumber,String state,String postcode,String add_lat,String add_long){
+    this.address_id = address_id;
+    this.city=city;
+    this.address=address;
+    this.vendor_country=vendor_country;
+    this.addressTitle=address_title;
+    this.phoneNumber=phoneNumber;
+    this.state=state;
+    this.pin_code=postcode;
+    this.address_lat=Double.parseDouble(add_lat);
+    this.address_long=Double.parseDouble(add_long);
 
-    public CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle, String phoneNumber,String add_lat,String add_long) {
-    public
-        CheckOutCartAddressItems(String address_id, String addressType, String address, String detail, String addressTitle,
-                String phoneNumber, String city, String state, String pin_code) {
-            this.address_id = address_id;
-            this.addressType = addressType;
-            this.address = address;
-            this.detail = detail;
-            this.addressTitle = addressTitle;
-            this.phoneNumber = phoneNumber;
-            this.address_lat = Double.parseDouble(add_lat);
-            this.address_long = Double.parseDouble(add_long);
-            this.state = state;
-            this.city = city;
-            this.pin_code = pin_code;
-        }
-    }
+}
+
 
     public String getCity() {
         return city;

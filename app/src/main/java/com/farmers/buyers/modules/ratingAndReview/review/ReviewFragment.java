@@ -35,7 +35,6 @@ public class ReviewFragment extends BaseFragment {
     private RecyclerView rv_review_list;
     private ReviewListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
-    private LinearLayout ll_data_not_available;
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
         @NonNull
@@ -74,7 +73,6 @@ public class ReviewFragment extends BaseFragment {
     @Override
     public void bindView(View view) {
         rv_review_list = view.findViewById(R.id.rv_review_list);
-        ll_data_not_available = view.findViewById(R.id.ll_data_not_available);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
         adapter = new ReviewListAdapter();
         rv_review_list.setAdapter(adapter);

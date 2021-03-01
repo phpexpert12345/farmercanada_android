@@ -93,7 +93,6 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         });
         txt_count=findViewById(R.id.txt_count);
         txt_price=findViewById(R.id.txt_price);
-        adapter = new FarmDetailsAdapter(this, this);
         adapter = new FarmDetailsAdapter(this, this, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

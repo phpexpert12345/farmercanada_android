@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -36,6 +38,8 @@ public class CustomerReviewListActivity extends BaseActivity {
     private MutableLiveData<DataFetchState<CustomerReviewListApiModel>> stateMachine = new MutableLiveData<>();
     private CustomerReviewListAdapter adapter = new CustomerReviewListAdapter();
     private RecyclerView recyclerView;
+    private LinearLayout reviewErrorLL;
+    private TextView errorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,8 @@ public class CustomerReviewListActivity extends BaseActivity {
 
     private void init() {
         recyclerView = findViewById(R.id.customer_review_recyclerView);
+        reviewErrorLL = findViewById(R.id.customer_review_error_ll);
+        errorTv = findViewById(R.id.customer_review_error_tv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -81,12 +87,15 @@ public class CustomerReviewListActivity extends BaseActivity {
 
     private void success() {
         dismissLoader();
+        recyclerView.setVisibility(View.VISIBLE);
+        reviewErrorLL.setVisibility(View.GONE);
         bindAdapter();
     }
 
     private void error(String error) {
         dismissLoader();
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        recyclerView.setVisibility(View.GONE);
+        reviewErrorLL.setVisibility(View.VISIBLE);
     }
 
     private void bindAdapter(){
