@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -147,11 +148,15 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         CardMultilineWidget card_details = pay_dialog.findViewById(R.id.card_details);
         Button btnPay = pay_dialog.findViewById(R.id.btnPay);
+        ImageView wallet_back_image=pay_dialog.findViewById(R.id.wallet_back_image);
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createPaymentcall(card_details,type);
             }
+        });
+        wallet_back_image.setOnClickListener(v->{
+            pay_dialog.dismiss();
         });
 
 
