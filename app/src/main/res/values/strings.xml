@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Farmers</string>
     <string name="skip">Skip</string>
-
+<string name="order_type">Order type</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDlP-29eruHAyokmet3SOwUKGQXECtvQ9A</string>
