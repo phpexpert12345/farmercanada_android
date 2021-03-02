@@ -89,6 +89,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     String pay_type;
     String date;
     String time;
+    double dis=0.0;
     StripePay stripePay;
     private AppController appController = AppController.get();
     private MutableLiveData<DataFetchState<SubmitResponse>> submitMachine = new MutableLiveData<>();
@@ -476,6 +477,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             if(address==null) {
                 Toast.makeText(CheckOutFromCartActivity.this, "Please select address", Toast.LENGTH_SHORT).show();
             }
+
             else{
                 goToPayment();
             }
@@ -485,25 +487,33 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         }
     }
     private void goToPayment(){
-        Intent intent = getIntent();
-        taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-        order_type=intent.getStringExtra("order_type");
-        int type;
-        switch (order_type){
-            case "Delivery":
-                type=0;
-                break;
-            case "Pickup":
-                type=1;
-                break;
-            default:
-                type=0;
+        if(dis>=farmDeliveryStatus.farm_delivery_status){
+            Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
         }
-        if(pay_type.equalsIgnoreCase("Cash")){
-            Placeorder(type);
-        }
-        else if(pay_type.equalsIgnoreCase("Credit/Debit")){
-            dialogOpen(type);
+        else{
+            Intent intent = getIntent();
+            taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
+            order_type=intent.getStringExtra("order_type");
+            int type;
+            switch (order_type){
+                case "Delivery":
+                    type=0;
+                    break;
+                case "Pickup":
+                    type=1;
+                    break;
+                default:
+                    type=0;
+            }
+
+            if(pay_type.equalsIgnoreCase("Cash")){
+                Placeorder(type);
+            }
+            else if(pay_type.equalsIgnoreCase("Credit/Debit")){
+                dialogOpen(type);
+            }
+
+
         }
 
     }
@@ -526,14 +536,9 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             if (data != null) {
                  address = (CheckOutCartAddressItems) data.getSerializableExtra(Constant.DATA_INTENT);
                  if(address!=null){
-                     double dis=distance(farmDeliveryStatus.farm_lat,farmDeliveryStatus.farm_long,address.getAddress_lat(),address.getAddress_long());
+                     dis=distance(farmDeliveryStatus.farm_lat,farmDeliveryStatus.farm_long,address.getAddress_lat(),address.getAddress_long());
                      dis=dis*1.609;
-                     if(dis>=farmDeliveryStatus.farm_delivery_status){
-                         Toast.makeText(this, "We Don't Deliver here...", Toast.LENGTH_SHORT).show();
-                     }
-                     else{
-                         Toast.makeText(this, "We Deliver here...", Toast.LENGTH_SHORT).show();
-                     }
+
                  }
 
                 prepareItem(taxData, address);

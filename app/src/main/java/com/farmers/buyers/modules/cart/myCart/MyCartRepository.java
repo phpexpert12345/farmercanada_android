@@ -29,7 +29,7 @@ public class MyCartRepository extends BaseRepository {
 
     public void validateCoupanCode(ApplyCouponReqParams params, ApiResponseCallback<ApplyCouponResponse> responseCallback) {
         Call<ApplyCouponResponse> call = RetrofitBuilder.createServiceContract().APPLY_COUPON_RESPONSE_CALL(ApiConstants.APPLY_COUPON_URL,
-                params.getAuth_key(), params.getFarm_id(), params.getCoupon_code(), Integer.parseInt(params.getSubtotal_amount()));
+                params.getAuth_key(), params.getFarm_id(), params.getCoupon_code(), Double.parseDouble(params.getSubtotal_amount()));
         makeRequest(call, responseCallback);
 
     }

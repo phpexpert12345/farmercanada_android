@@ -165,6 +165,7 @@ public class MyCartFragment extends BaseFragment implements
                             taxData.setDiscountTextView(false);
                             taxData.setRemoveDiscountButton(false);
                             taxData.setDiscountAmount(-1f);
+                            Toast.makeText(getContext(),response.data.getStatusMessage(),Toast.LENGTH_SHORT).show();
                         }
                         // prepareData(taxData);
                         adapter.updateData(items);
