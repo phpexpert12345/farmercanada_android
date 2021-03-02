@@ -69,6 +69,7 @@ public class MyCartFragment extends BaseFragment implements
     LinearLayout linear_order;
     CardView cardViewDelivery, cardViewPickUp;
     TextView  textViewDelivery, textViewPickUp;
+    LinearLayout ll_data_not_available;
     String order_type="";
     private String subTotal = "";
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -108,15 +109,16 @@ public class MyCartFragment extends BaseFragment implements
         linear_order=view.findViewById(R.id.linear_order);
         textViewDelivery=view.findViewById(R.id.textViewDelivery);
         textViewPickUp=view.findViewById(R.id.textViewPickUp);
+        ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
         textViewDelivery.setOnClickListener(v->{
             order_type="Delivery";
-            textViewDelivery.setBackgroundColor(getContext().getColor(R.color.red));
-            textViewPickUp.setBackgroundColor(getContext().getColor(R.color.light_gray));
+            textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+            textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
         });
         textViewPickUp.setOnClickListener(v->{
             order_type="Pickup";
-            textViewPickUp.setBackgroundColor(getContext().getColor(R.color.red));
-            textViewDelivery.setBackgroundColor(getContext().getColor(R.color.light_gray));
+            textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+            textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
         });
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -127,7 +129,7 @@ public class MyCartFragment extends BaseFragment implements
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), HomeActivity.class));
+//                startActivity(new Intent(getActivity(), HomeActivity.class));
             }
         });
         // getServicesAndTax();
@@ -215,6 +217,7 @@ public class MyCartFragment extends BaseFragment implements
                         myCartInstruction.setVisibility(View.VISIBLE);
                         noDataLabel.setVisibility(View.GONE);
                         linear_order.setVisibility(View.VISIBLE);
+                        ll_data_not_available.setVisibility(View.GONE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
                         if(data.data.getData().getFarmProductCartList().size()>0) {
                             cartListData(data.data.getData().getFarmProductCartList());
@@ -224,6 +227,7 @@ public class MyCartFragment extends BaseFragment implements
                     } else {
                         items.clear();
                         recyclerView.setVisibility(View.GONE);
+                        ll_data_not_available.setVisibility(View.VISIBLE);
                         noDataLabel.setText(data.status_message);
                         linear_order.setVisibility(View.GONE);
                         noDataLabel.setVisibility(View.VISIBLE);
@@ -239,6 +243,7 @@ public class MyCartFragment extends BaseFragment implements
                     items.clear();
                     myCartInstruction.setVisibility(View.GONE);
                     itemCount.setVisibility(View.GONE);
+                    ll_data_not_available.setVisibility(View.VISIBLE);
                     linear_order.setVisibility(View.GONE);
                     noDataLabel.setVisibility(View.VISIBLE);
                     noDataLabel.setText(data.status_message);

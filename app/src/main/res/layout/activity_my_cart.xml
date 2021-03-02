@@ -160,6 +160,20 @@
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/ll_data_not_available"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@mipmap/ic_cart_not" />
+
+
 
     <TextView
         android:id="@+id/nodata_label"
@@ -167,9 +181,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="@dimen/_10sdp"
+        android:text="test"
+        android:textColor="@color/black"
         android:gravity="center"
         android:textAlignment="center"
-        android:textSize="@dimen/_12sdp"/>
+        android:textSize="@dimen/_16sdp"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

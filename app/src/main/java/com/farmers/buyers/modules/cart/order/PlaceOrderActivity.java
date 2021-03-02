@@ -209,8 +209,9 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                 Intent intent = new Intent();
                 intent.putExtra("time", time);
                 intent.putExtra("date", date);
-                finish();
                 setResult(Activity.RESULT_OK, intent);
+                finish();
+
             }
 
 //            SubmitRequestParam param = new SubmitRequestParam(appController.getAuthenticationKey(),
