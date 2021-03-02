@@ -223,7 +223,7 @@ public interface ApiController {
     Call<ApplyCouponResponse> APPLY_COUPON_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
                                                          @Field("farm_id") String farmId,
                                                          @Field("coupon_code") String couponCode,
-                                                         @Field("subtotal_amount") int subTotalAmount);
+                                                         @Field("subtotal_amount") double subTotalAmount);
 
     @FormUrlEncoded
     @POST
