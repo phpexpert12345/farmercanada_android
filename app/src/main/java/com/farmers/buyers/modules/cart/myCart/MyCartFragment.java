@@ -43,6 +43,7 @@ import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDec
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartItemViewHolder;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
@@ -83,10 +84,9 @@ public class MyCartFragment extends BaseFragment implements
 
     private MyCartViewModel viewModel = factory.create(MyCartViewModel.class);
     private AppController appController = AppController.get();
-
     private MutableLiveData<DataFetchState<ApplyCouponResponse>> applyCouponMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<TaxResponse>> taxServiceMachine = new MutableLiveData<>();
-    private MutableLiveData<DataFetchState<CartListResponse>> cartListMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<CartListResponse>>cartListMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> increaseDecreaseMachine = new MutableLiveData<>();
 
     @Override
@@ -127,7 +127,7 @@ public class MyCartFragment extends BaseFragment implements
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // startActivity(new Intent(getActivity(),FarmList));
+                startActivity(new Intent(getActivity(), HomeActivity.class));
             }
         });
         // getServicesAndTax();
@@ -216,8 +216,11 @@ public class MyCartFragment extends BaseFragment implements
                         noDataLabel.setVisibility(View.GONE);
                         linear_order.setVisibility(View.VISIBLE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
-                        cartListData(data.data.getData().getFarmProductCartList());
-                        adapter.updateData(items);
+                        if(data.data.getData().getFarmProductCartList().size()>0) {
+                            cartListData(data.data.getData().getFarmProductCartList());
+                            adapter.updateData(items);
+                        }
+//                        adapter.updateData(items);
                     } else {
                         items.clear();
                         recyclerView.setVisibility(View.GONE);
@@ -288,9 +291,15 @@ public class MyCartFragment extends BaseFragment implements
     @Override
     public void onCheckOutClicked() {
         Intent checkOutIntent = new Intent(getActivity(), CheckOutFromCartActivity.class);
-        checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
-        checkOutIntent.putExtra("order_type",order_type);
-        startActivity(checkOutIntent);
+        if(!order_type.equalsIgnoreCase("")){
+            checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
+            checkOutIntent.putExtra("order_type",order_type);
+            startActivity(checkOutIntent);
+        }
+        else{
+            Toast.makeText(baseActivity, "Please select Order type", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

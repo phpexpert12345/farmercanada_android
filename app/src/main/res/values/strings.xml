@@ -1,14 +1,20 @@
 <resources>
     <string name="app_name">Farmers</string>
     <string name="skip">Skip</string>
-<string name="order_type">Order type</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDlP-29eruHAyokmet3SOwUKGQXECtvQ9A</string>
     <string name="google_place_api">AIzaSyBDviyQvw9dr1Ygwudl4fFPG-dh0CmzOXg</string>
 
-    <string name="onBoardingHeader">Lorem ipsum dolor</string>
-    <string name="onBoardingContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
+    <string name="onBoardingHeader1">Lorem ipsum dolor</string>
+    <string name="onBoardingHeader2">Lorem ipsum dolor</string>
+    <string name="onBoardingHeader3">Lorem ipsum dolor</string>
+    <string name="onBoardingHeader4">Lorem ipsum dolor</string>
+    <string name="onBoardingContent1">Your Journey to Support and Eat Local food Begins Today! </string>
+    <string name="onBoardingContent2">Explore Local Farms and Store near you, Visit them or get it delivered! </string>
+    <string name="onBoardingContent3">Get the Fresh, chemical free foods, weekly on Subscription Basis, directly from Growers </string>
+    <string name="onBoardingContent4">Local Farms and Store! Spread the Love in Community, visit us :) </string>
     <string name="location_required">Location Required</string>
     <string name="manual_entry">Manual Entry</string>
     <string name="location_required_content">We need your location to curate near by stores for you</string>

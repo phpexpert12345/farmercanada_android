@@ -29,7 +29,6 @@ import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-
 public class LoginActivity extends BaseActivity {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -105,7 +104,8 @@ public class LoginActivity extends BaseActivity {
             String email = mobileEt.getText().toString();
             String password = passwordEt.getText().toString();
 
-            viewModel.doLogin(stateMachine, email, password, role, AppController.get().getDeviceId());
+            viewModel.doLogin(
+                    stateMachine, email, password, role, AppController.get().getDeviceId());
 
         });
     }

@@ -25,6 +25,7 @@ public class ApiConstants {
     public static final String CATEGORY_LIST = "phpexpert_category_list.php";
     public static final String OFFER_LIST = "phpexpert_offers_list.php";
     public static final String ADDRESS_LIST = "phpexpert_customer_address_list.php";
+    public static final String REFER_AND_EARN = "phpexpert_customer_earn_share.php";
     public static final String DELETE_ADDRESS = "phpexpert_customer_address_delete.php";
     public static final String ADD_ADDRESS = "phpexpert_customer_address_add.php";
     public static final String EDIT_ADDRESS = "phpexpert_customer_address_edit.php";
@@ -44,6 +45,8 @@ public class ApiConstants {
     public static final String GET_CUSTOMER_REVIEW_LIST = "phpexpert_customer_review_list.php";
     public static final String GET_FARM_REVIEW_LIST = "phpexpert_farm_review_list.php";
     public static final String GET_FARM_REVIEWED_LIST = "phpexpert_farm_review_customer_list.php";
+    public static final String GET_PAYMENT_KEY="phpexpert_payment_key.php";
+    public static final String STRIPE_PAY="phpexpert_payment_intent_generate.php";
     public static final String SEARCH_PRODUCT_ITEM = "phpexpert_all_farm_product_search.php";
 
 

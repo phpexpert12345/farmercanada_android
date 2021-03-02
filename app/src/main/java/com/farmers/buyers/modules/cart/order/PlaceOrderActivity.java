@@ -1,10 +1,14 @@
 package com.farmers.buyers.modules.cart.order;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,12 +20,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.model.SingleTextItem;
+import com.farmers.buyers.common.model.StripePay;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.utils.LinearSpacesItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
@@ -43,9 +52,21 @@ import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.cart.order.view.PlaceOrderSlotItemViewHolder;
 import com.farmers.buyers.modules.signUp.SignUpViewModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
+import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.stripe.android.ApiResultCallback;
+import com.stripe.android.Stripe;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
+import com.stripe.android.view.CardMultilineWidget;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,11 +81,15 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     CheckOutCartAddressItems address;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private OrderSuccessDialog dialog;
+    private Dialog pay_dialog;
     String price,quantity,itemid,item_unit_type,str_sizeid,extraitemid;
     Double subTotalAmount = 0.0;
-    int pay_type;
+    String order_type;
+    String pay_type;
+    TaxData taxData;
     String date;
     String time;
+    StripePay stripePay;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -109,6 +134,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 
 
 
+
         dateStateMachine.observe(this, response -> {
             switch (response.status) {
                 case LOADING:
@@ -116,7 +142,6 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
-                    Toast.makeText(PlaceOrderActivity.this, response.data.getStatus_message(), Toast.LENGTH_SHORT).show();
                     adapter.updateData(viewModel.items);
                     date=response.data.getData().getAllDateList().get(0).current_date;
                     callTimeSlot(response.data.getData().getAllDateList().get(0).current_date);
@@ -134,7 +159,6 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
-                    Toast.makeText(PlaceOrderActivity.this, response.data.getStatus_message(), Toast.LENGTH_SHORT).show();
                     mTimeAdapter = new TimeListAdapter(PlaceOrderActivity.this, response.data.getData().getAllTimeList(),
                             this);
                     rv_time_list.setAdapter(mTimeAdapter);
@@ -145,22 +169,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
             }
         });
 
-        submitMachine.observe(this, response -> {
-            switch (response.status) {
-                case LOADING:
-                    showLoader();
-                    break;
-                case SUCCESS:
-                    dismissLoader();
-                    dialog.showDialog();
-                    App.finish_activity=true;
-                    Toast.makeText(PlaceOrderActivity.this, response.data.getStatusMessage(), Toast.LENGTH_SHORT).show();
-                    break;
-                case ERROR:
-                    dismissLoader();
-                    break;
-            }
-        });
+
     }
 
     private void callTimeSlot(String date) {
@@ -192,111 +201,50 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     }
 
     private void listener() {
-        CartReqParam cartReqParam = new CartReqParam(
-                appController.getAuthenticationKey(),
-                appController.getLoginId(),
-                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "")));
-        viewModel.getCartListItems(cartListMachine,cartReqParam);
-        cartListMachine.observe(this, data -> {
-            switch (data.status) {
-                case SUCCESS:
-                    dismissLoader();
-                    if (data.data.getStatus()) {
-                       if(data.data.getData().getFarmProductCartList().size()>0){
-                           List<FarmProductCartList>farmProductCartLists=data.data.getData().getFarmProductCartList();
-                           StringBuilder price_=new StringBuilder();
-                           StringBuilder quat=new StringBuilder();
-                           StringBuilder item_id=new StringBuilder();
-                           StringBuilder size_id=new StringBuilder();
-                           StringBuilder extra=new StringBuilder();
-                           StringBuilder unit=new StringBuilder();
-                           subTotalAmount=0.0;
-                           for(FarmProductCartList farmProductCartList:farmProductCartLists){
-                               if(price_.length()>0){
-                                   price_.append(",");
-                               }
-                               if(quat.length()>0){
-                                   quat.append(",");
-                               }
-                               if(item_id.length()>0){
-                                   item_id.append(",");
-                               }
-                               if(size_id.length()>0){
-                                   size_id.append(",");
-                               }
-                               if(extra.length()>0){
-                                   extra.append(",");
-                               }
-                               price_.append(farmProductCartList.getItemPrice());
-                              quat.append(farmProductCartList.getItemQuantity());
-                              item_id.append(farmProductCartList.getItemId());
-                              unit.append(farmProductCartList.getItemUnit());
-                              size_id.append(farmProductCartList.getItemSize());
-                              extra.append(farmProductCartList.getItemSize());
-                               subTotalAmount = subTotalAmount + Double.parseDouble(farmProductCartList.getItemPrice())*Integer.parseInt(farmProductCartList.getItemQuantity());
-                           }
-                           price=price_.toString();
-                           itemid=item_id.toString();
-                           quantity=quat.toString();
-                           item_unit_type=unit.toString();
-                           str_sizeid=size_id.toString();
-                           extraitemid=extra.toString();
-                           Log.i("order",price+"_"+itemid+"_"+quantity+"_"+item_unit_type+"_"+str_sizeid+"_"+extraitemid);
-                       }
-                       else{
-
-                       }
-
-//                        cartListData(data.data.getData().getFarmProductCartList());
-
-                    } else {
-
-                    }
-                    break;
-                case LOADING:
-                    showLoader();
-                    break;
-                case ERROR:
-                    break;
-            }
-        });
         paymentButton.setOnClickListener(view -> {
-            Intent intent = getIntent();
-            address= (CheckOutCartAddressItems) intent.getSerializableExtra("address");
-            pay_type=intent.getIntExtra("pay_type",0);
-            TaxData taxData = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-            SubmitRequestParam param = new SubmitRequestParam(appController.getAuthenticationKey(),
-                    "0",
-                    "0",
-                    "",
-                    "",
-                    address.getAddress(),
-                    "",
-                    "0",
-                    "",
-                    time,
-                    date,
-                    "0",
-                    String.valueOf(taxData.getDiscountAmount()),
-                    taxData.getSubTotal(),
-                    taxData.getDeliveryCharge(),
-                    taxData.getDeliveryCharge(),
-                    taxData.getPackageFeeAmount(),
-                    taxData.getgSTTaxAmount(),
-                    subTotalAmount.toString(),
-                    String.valueOf(pay_type),
-                    address.getAddress_id(),
-                    appController.getLoginId(),
-                    "",
-                    item_unit_type,
-                    str_sizeid,
-                    price,
-                    quantity,
-                    itemid,
-                    "",
-                    SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString());
+            if(time==null){
+                Toast.makeText(this, "Please select time", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent intent = new Intent();
+                intent.putExtra("time", time);
+                intent.putExtra("date", date);
+                finish();
+                setResult(Activity.RESULT_OK, intent);
+            }
 
-            viewModel.submitOrder(submitMachine, param);
+//            SubmitRequestParam param = new SubmitRequestParam(appController.getAuthenticationKey(),
+//                    "0",
+//                    "0",
+//                    "",
+//                    "",
+//                    address.getAddress(),
+//                    "",
+//                    String.valueOf(type),
+//                    "",
+//                    time,
+//                    date,
+//                    "0",
+//                    String.valueOf(taxData.getDiscountAmount()),
+//                    taxData.getSubTotal(),
+//                    taxData.getDeliveryCharge(),
+//                    taxData.getDeliveryCharge(),
+//                    taxData.getPackageFeeAmount(),
+//                    taxData.getgSTTaxAmount(),
+//                    subTotalAmount.toString(),
+//                    String.valueOf(pay_type),
+//                    address.getAddress_id(),
+//                    appController.getLoginId(),
+//                    "",
+//                    item_unit_type,
+//                    str_sizeid,
+//                    price,
+//                    quantity,
+//                    itemid,
+//                    "",
+//                    SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString());
+//
+//            viewModel.submitOrder(submitMachine, param);
         });
     }
 
@@ -348,4 +296,6 @@ date=slot;
             finish();
         }
     }
+
+
 }

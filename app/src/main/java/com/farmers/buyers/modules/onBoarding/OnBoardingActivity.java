@@ -37,7 +37,6 @@ public class OnBoardingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_on_boarding);
         init();
         listener();
-
     }
 
     private void init() {

@@ -74,10 +74,10 @@ public class SubmitOtpActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 String otp = otp_textbox_one.getText().toString() + otp_textbox_two.getText().toString() + otp_textbox_three.getText().toString() + otp_textbox_four.getText().toString();
-                if (extra){
+                if (extra) {
                     viewModel.verifyRegistrationOtp(verifyOtpStateMachine, otp,
                             getIntent().getStringExtra("USER_ID"));
-                }else {
+                } else {
                     viewModel.verifyRegistrationOtp(verifyOtpStateMachine, otp,
                             getIntent().getStringExtra("USER_ID"));
                 }
@@ -188,6 +188,7 @@ public class SubmitOtpActivity extends BaseActivity {
     private void resendOtp() {
         SharedPreferenceManager.getInstance().setIsComingFrom(0);
         viewModel.resendOtp(stateMachine, getIntent().getStringExtra("number"));
+        startTimer();
     }
 
     @Override

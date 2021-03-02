@@ -24,8 +24,6 @@ import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
 
-import org.json.JSONObject;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -92,6 +90,10 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<AddressApiModel> getAddressList(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddressApiModel> getReferAndEarn(@Url String url, @Field("LoginId") String LoginId, @Field("auth_key") String authKey);
 
     @FormUrlEncoded
     @POST
@@ -243,34 +245,34 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<SubmitResponse> SUBMIT_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
-                                          @Field("customer_long") String customer_long,
-                                          @Field("customer_lat") String customer_lat,
-                                          @Field("customer_postcode") String postcode,
-                                          @Field("customer_city") String customer_city,
-                                          @Field("customer_address") String customer_address,
-                                          @Field("WalletPay") String WalletPay,
-                                          @Field("order_type") String order_type,
-                                          @Field("SpecialInstruction") String SpecialInstruction,
-                                          @Field("delivery_time") String delivery_time,
-                                          @Field("delivery_date") String delivery_date,
-                                          @Field("discount_amount") String discount_amount,
-                                          @Field("coupon_discount_amount") String coupon_discount_amount,
-                                          @Field("Total_amount") String Total_amount,
-                                          @Field("delivery_amount") String delivery_amount,
-                                          @Field("service_tax_amount") String service_tax_amount,
-                                          @Field("gst_tax_amount") String gst_tax_amount,
-                                          @Field("subtotal") String subtotal,
-                                          @Field("payment_type") String payment_type,
-                                          @Field("address_id") String address_id,
-                                          @Field("LoginId") String LoginId,
-                                          @Field("instructions") String instructions,
-                                          @Field("item_unit_type") String item_unit_type,
-                                          @Field("strsizeid") String strsizeid,
-                                          @Field("Price") String Price,
-                                          @Field("Quantity") String Quantity,
-                                          @Field("itemId") String itemId,
-                                          @Field("payment_transaction_id") String payment_transaction_id,
-                                          @Field("farm_id") String farm_id);
+                                              @Field("customer_long") String customer_long,
+                                              @Field("customer_lat") String customer_lat,
+                                              @Field("customer_postcode") String postcode,
+                                              @Field("customer_city") String customer_city,
+                                              @Field("customer_address") String customer_address,
+                                              @Field("WalletPay") String WalletPay,
+                                              @Field("order_type") String order_type,
+                                              @Field("SpecialInstruction") String SpecialInstruction,
+                                              @Field("delivery_time") String delivery_time,
+                                              @Field("delivery_date") String delivery_date,
+                                              @Field("discount_amount") String discount_amount,
+                                              @Field("coupon_discount_amount") String coupon_discount_amount,
+                                              @Field("Total_amount") String Total_amount,
+                                              @Field("delivery_amount") String delivery_amount,
+                                              @Field("service_tax_amount") String service_tax_amount,
+                                              @Field("gst_tax_amount") String gst_tax_amount,
+                                              @Field("subtotal") String subtotal,
+                                              @Field("payment_type") String payment_type,
+                                              @Field("address_id") String address_id,
+                                              @Field("LoginId") String LoginId,
+                                              @Field("instructions") String instructions,
+                                              @Field("item_unit_type") String item_unit_type,
+                                              @Field("strsizeid") String strsizeid,
+                                              @Field("Price") String Price,
+                                              @Field("Quantity") String Quantity,
+                                              @Field("itemId") String itemId,
+                                              @Field("payment_transaction_id") String payment_transaction_id,
+                                              @Field("farm_id") String farm_id);
 
 
     @FormUrlEncoded

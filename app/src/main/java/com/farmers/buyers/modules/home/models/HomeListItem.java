@@ -43,16 +43,6 @@ public class HomeListItem implements RecyclerViewListItem {
     public String farm_cover_photo;
     public String followed_id;
 
-    public int getFarm_delivery_radius() {
-        return farm_delivery_radius;
-    }
-
-    public void setFarm_delivery_radius(int farm_delivery_radius) {
-        this.farm_delivery_radius = farm_delivery_radius;
-    }
-
-    public int farm_delivery_radius;
-
     public void setId(String id) {
         this.id = id;
     }
@@ -212,7 +202,7 @@ public class HomeListItem implements RecyclerViewListItem {
     public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage,
                         String farmImage, Double farmLat, Double farmLong, String farm_address, String farm_opening_hours, String farm_estimate_delivery_time,
                         String farm_hosted_by, String farm_opening_status, String farm_favourite_status,
-                        String favourite_id, String farm_followed_status, String form_type_name, String followed_id,Integer farm_delivery_radius) {
+                        String favourite_id, String farm_followed_status, String form_type_name, String followed_id) {
         this.farmName = farmName;
         this.distance = distance;
         this.rating = rating;
@@ -232,10 +222,9 @@ public class HomeListItem implements RecyclerViewListItem {
         this.farm_followed_status = farm_followed_status;
         this.form_type_name = form_type_name;
         this.followed_id = followed_id;
-        this.farm_delivery_radius=farm_delivery_radius;
     }
 
-    public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage, String farmImage, Double farmLat, Double farmLong, String favoriteId, String isFollowing, String followId ) {
+    public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage, String farmImage, Double farmLat, Double farmLong, String favoriteId, String isFollowing, String followId) {
         this.farmName = farmName;
         this.distance = distance;
         this.rating = rating;

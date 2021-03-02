@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,6 +31,7 @@
                     app:cardUseCompatPadding="true">
 
                     <ImageView
+                        android:id="@+id/img_referal"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_110sdp"
                         android:scaleType="fitXY"
@@ -46,11 +46,12 @@
                     android:padding="@dimen/_20sdp">
 
                     <TextView
+                        android:id="@+id/tv_referral_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
-                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                        android:text="Title"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp_15_px" />
 
@@ -130,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
-                        android:text="Top to Edit Code"
+                        android:text="Tap to Copy Code"
                         android:textColor="@color/reset_bg"
                         android:textSize="@dimen/dp_15_px" />
 
@@ -143,11 +144,12 @@
                     android:padding="@dimen/_20sdp">
 
                     <TextView
+                        android:id="@+id/tv_referral_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
-                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+                        android:text="messga"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp_15_px" />
 

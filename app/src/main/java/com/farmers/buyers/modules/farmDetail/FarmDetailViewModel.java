@@ -11,8 +11,6 @@ import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
-import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
-import com.farmers.buyers.modules.cart.myCart.model.cartList.CartReqParam;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
@@ -140,24 +138,6 @@ public class FarmDetailViewModel extends BaseViewModel {
             @Override
             public void onFailure(StandardError standardError) {
                 stateMutableLiveData.postValue(DataFetchState.error(standardError.getDisplayError(), null));
-            }
-        });
-    }
-    public void getCartListItems(final MutableLiveData<DataFetchState<CartListResponse>> stateMutableLiveData, CartReqParam taxRequestParam) {
-        stateMutableLiveData.postValue(DataFetchState.<CartListResponse>loading());
-        repository.cartItemLists(taxRequestParam, new ApiResponseCallback<CartListResponse>() {
-            @Override
-            public void onSuccess(CartListResponse response) {
-                if (response.getStatus()) {
-                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                } else {
-                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), null));
-                }
-            }
-
-            @Override
-            public void onFailure(StandardError standardError) {
-                stateMutableLiveData.postValue(DataFetchState.<CartListResponse>error(standardError.getDisplayError(), null));
             }
         });
     }

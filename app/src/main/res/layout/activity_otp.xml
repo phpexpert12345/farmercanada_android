@@ -25,7 +25,7 @@
             android:layout_width="@dimen/dp_200_px"
             android:layout_height="@dimen/dp_200_px"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_sign_up_logo"
+            android:src="@mipmap/ic_enter_otp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

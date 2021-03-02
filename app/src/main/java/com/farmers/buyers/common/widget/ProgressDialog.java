@@ -38,7 +38,7 @@ public class ProgressDialog {
         loader = view.findViewById(R.id.avi_loader);
         titleTv = view.findViewById(R.id.progress_dialog_title_tv);
         titleTv.setText(title == null ? "Loading..." : title);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.show();
 
     }

@@ -22,7 +22,8 @@ public class LoginViewModel extends BaseViewModel {
     private LoginRepository repository = new LoginRepository();
     private AppController appController = AppController.get();
 
-    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String email, String password, int role, String FirebaseToken) {
+    public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String email,
+                        String password, int role, String FirebaseToken) {
 
         if (email.isEmpty() || email.length() < 10) {
             stateMachine.postValue(DataFetchState.error("Please enter mobile number", new LoginApiModel()));
@@ -41,7 +42,7 @@ public class LoginViewModel extends BaseViewModel {
                 password,
                 FirebaseToken,
                 role,
-                "android",
+                "Android",
                 appController.getAuthenticationKey());
 
         repository.doLogin(loginRequestParams, new ApiResponseCallback<LoginApiModel>() {

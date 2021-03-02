@@ -62,6 +62,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     private TextView addNewAddress;
     private String addressId;
     Integer comeFrom = 0;
+    private TextView tv_error_msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         ll_data_not_available = findViewById(R.id.ll_data_not_available);
 
         addNewAddress = findViewById(R.id.add_new_address);
+        tv_error_msg = findViewById(R.id.tv_error_msg);
         adapter = new MyAddressAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
@@ -142,6 +144,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                     dismissLoader();
                     Toast.makeText(MyAddressActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     recyclerView.setVisibility(View.GONE);
+                    tv_error_msg.setText(dataFetchState.status_message);
                     ll_data_not_available.setVisibility(View.VISIBLE);
                     break;
                 }
