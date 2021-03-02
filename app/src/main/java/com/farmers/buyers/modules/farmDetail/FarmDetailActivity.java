@@ -41,6 +41,9 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     private FarmDetailsAdapter adapter;
     public String farm_id;
     private AppController appController = AppController.get();
+    FarmDetailsVegetableItems veggie;
+    int quat;
+
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -127,7 +130,8 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                 case SUCCESS:
                     Toast.makeText(FarmDetailActivity.this, response.status_message, Toast.LENGTH_SHORT).show();
                     dismissLoader();
-                    getFarmProductDetail();
+                     AddtoCartItems(veggie,quat);
+//                    getFarmProductDetail();
                 case LOADING:
                     showLoader();
                 case ERROR:
@@ -218,6 +222,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     @Override
     public void onClickFarmDetailVegetableListener(FarmDetailsVegetableItems item, int cnt) {
+        veggie=item;
+        quat=cnt;
+       AddtoCartItems(item,cnt);
+    }
+    private void AddtoCartItems(FarmDetailsVegetableItems item,int cnt){
         FarmProductListReq farmProductListReq = new FarmProductListReq(appController.getAuthenticationKey(),
                 item.getFarmId(),
                 appController.getLoginId(),

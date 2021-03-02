@@ -76,29 +76,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2">
+           >
 
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+
+                >
 
                 <ImageView
                     android:id="@+id/location"
                     android:layout_width="15sp"
                     android:layout_height="15sp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:src="@drawable/ic_address" />
 
                 <TextView
                     android:id="@+id/tv_address"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toEndOf="@+id/location"
                     android:ellipsize="end"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:maxLines="3"
+                    android:layout_marginEnd="@dimen/_20sdp"
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="center_vertical"
                     android:text="@string/address"
@@ -110,12 +116,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:src="@drawable/ic_edit_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+               android:layout_alignParentEnd="true"
                 app:tint="@color/primaryTextColor" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="@dimen/dp_160_px"
