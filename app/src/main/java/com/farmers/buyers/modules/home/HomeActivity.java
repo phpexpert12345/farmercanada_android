@@ -40,7 +40,7 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
         navigation.setOnNavigationItemSelectedListener(this);
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    public boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -94,4 +94,6 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
         }
         return loadFragment(fragment);
     }
+
+
 }

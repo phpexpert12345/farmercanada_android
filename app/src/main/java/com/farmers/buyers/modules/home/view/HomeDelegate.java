@@ -12,9 +12,14 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class HomeDelegate extends BaseDelegate {
+    private HomeSearchItemViewHolder.SearchItemClickListener listener;
+
+    public HomeDelegate(HomeSearchItemViewHolder.SearchItemClickListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new HomeSearchItemViewHolder(parent);
+        return new HomeSearchItemViewHolder(parent, listener);
     }
 }

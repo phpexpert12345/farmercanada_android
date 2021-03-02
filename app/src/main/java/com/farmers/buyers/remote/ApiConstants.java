@@ -44,6 +44,7 @@ public class ApiConstants {
     public static final String GET_CUSTOMER_REVIEW_LIST = "phpexpert_customer_review_list.php";
     public static final String GET_FARM_REVIEW_LIST = "phpexpert_farm_review_list.php";
     public static final String GET_FARM_REVIEWED_LIST = "phpexpert_farm_review_customer_list.php";
+    public static final String SEARCH_PRODUCT_ITEM = "phpexpert_all_farm_product_search.php";
 
 
     //Ganesh working

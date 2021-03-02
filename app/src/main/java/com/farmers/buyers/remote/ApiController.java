@@ -11,6 +11,7 @@ import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
+import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.ratingAndReview.customerReview.model.CustomerReviewListApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewListApiModel;
@@ -317,5 +318,9 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<FarmReviewedListApiModel> getFarmReviewedList(@Url String url, @Field("farm_id") String farmId, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
+
+    @FormUrlEncoded
+    @POST
+    Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText);
 }
 

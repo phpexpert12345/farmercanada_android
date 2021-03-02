@@ -1,6 +1,7 @@
 package com.farmers.buyers.core;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -123,6 +124,34 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        dismissLoader();
+        Log.e("restart", "restart");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        dismissLoader();
+        Log.e("restart", "restart");
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        dismissLoader();
+        Log.e("restart", "restart");
+        super.onRestart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dismissLoader();
+    }
+
     public void showLoader(String title) {
         progressDialog.init(this, title);
     }
@@ -134,4 +163,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void dismissLoader() {
         progressDialog.dismiss();
     }
+
 }
