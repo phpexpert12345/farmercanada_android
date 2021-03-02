@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
+import com.farmers.buyers.common.model.OrderData;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.model.StripePay;
 import com.farmers.buyers.common.utils.DroidPrefs;
@@ -420,9 +421,16 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
                     break;
                 case SUCCESS:
                     dismissLoader();
-                    startActivity(new Intent(this, OrderSuccessDetailActivity.class));
-                    App.finish_activity=true;
-                    finish();
+                    if(response.data.getStatusCode().equalsIgnoreCase("0")){
+                        OrderData orderData=response.data.getData();
+                                startActivity(new Intent(this, OrderSuccessDetailActivity.class).putExtra("order_data",orderData).putExtra("order_type",order_type));
+                        App.finish_activity=true;
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(this, response.data.getStatusMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
                     break;
                 case ERROR:
                     dismissLoader();

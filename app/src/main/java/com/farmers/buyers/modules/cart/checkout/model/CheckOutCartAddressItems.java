@@ -40,8 +40,8 @@ public class CheckOutCartAddressItems implements RecyclerViewListItem, Serializa
         this.address_long = address_long;
     }
 
-    private double address_lat;
-    private double address_long;
+    private double address_lat=0.0;
+    private double address_long=0.0;
     Boolean isSelected;
     Boolean canChange;
     private String vendor_country;
@@ -63,8 +63,10 @@ public CheckOutCartAddressItems(String address_id,String city, String address, S
     this.phoneNumber=phoneNumber;
     this.state=state;
     this.pin_code=postcode;
-    this.address_lat=Double.parseDouble(add_lat);
-    this.address_long=Double.parseDouble(add_long);
+    if(add_lat!=null) {
+        this.address_lat = Double.parseDouble(add_lat);
+        this.address_long = Double.parseDouble(add_long);
+    }
 
 }
 

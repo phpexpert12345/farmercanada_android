@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ import java.lang.reflect.Type;
 public class AddMoneyWallet extends BaseActivity implements View.OnClickListener {
     StripePay stripePay;
  Dialog pay_dialog;
+
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -73,7 +75,8 @@ public class AddMoneyWallet extends BaseActivity implements View.OnClickListener
     private MutableLiveData<DataFetchState<SignUpApiModel>> stateMachine = new MutableLiveData<>();
 
     public ImageView wallet_back_image;
-    public TextView tv_remain_wallet_balance;
+    public RadioButton radio_credit;
+    public LinearLayout linear_credit;
     public Button bt_add;
     public EditText ed_amount, ed_transaction_id, ed_status;
     private AppController appController = AppController.get();
@@ -88,13 +91,12 @@ public class AddMoneyWallet extends BaseActivity implements View.OnClickListener
 
     private void init() {
         wallet_back_image = findViewById(R.id.wallet_back_image);
-        tv_remain_wallet_balance = findViewById(R.id.tv_remain_wallet_balance);
         bt_add = findViewById(R.id.bt_add);
         ed_amount = findViewById(R.id.ed_amount);
         ed_transaction_id = findViewById(R.id.ed_transaction_id);
         ed_status = findViewById(R.id.ed_status);
-
-        tv_remain_wallet_balance.setText(appController.getWalletAmount());
+        linear_credit=findViewById(R.id.linear_credit);
+        radio_credit=findViewById(R.id.radio_credit);
 getPaymentkey();
         stateMachine.observe(this, signUpApiModelDataFetchState -> {
             switch (signUpApiModelDataFetchState.status) {
@@ -117,6 +119,7 @@ getPaymentkey();
 
         bt_add.setOnClickListener(this);
         wallet_back_image.setOnClickListener(this);
+        linear_credit.setOnClickListener(this);
     }
 
     private void loading() {
@@ -145,22 +148,30 @@ getPaymentkey();
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_add:
-                dialogOpen(0);
+                if(radio_credit.isChecked()) {
+                    dialogOpen(0);
+                }
+                else{
+                    Toast.makeText(this, "Please select option", Toast.LENGTH_SHORT).show();
+                }
 //                addMoney();
                 break;
 
             case R.id.wallet_back_image:
                 finish();
                 break;
+            case R.id.linear_credit:
+                radio_credit.setChecked(true);
+                break;
+
         }
     }
 
-    private void addMoney() {
+    private void addMoney(String tra_id,String status) {
         AddMoneyRequestParams addMoneyRequestParams = new AddMoneyRequestParams(AppController.get().getLoginId(),
                 ed_amount.getText().toString().trim(),
-                ed_transaction_id.getText().toString().trim(),
-                ed_status.getText().toString().trim(), AppController.get().getAuthenticationKey());
-
+                tra_id,
+               status, AppController.get().getAuthenticationKey());
         viewModel.addMoney(stateMachine, addMoneyRequestParams);
     }
     private void getPaymentkey(){
@@ -275,12 +286,13 @@ getPaymentkey();
                 try {
                     dismissLoader();
                     pay_dialog.dismiss();
+                    Log.i("res",response);
                     JSONObject jsonObject=new JSONObject(response);
                     if(jsonObject.has("status")){
                         boolean status=jsonObject.getBoolean("status");
 
                         if(status){
-                           addMoney();
+                           addMoney("test",String.valueOf(status));
                         }
                         else{
                             Toast.makeText(AddMoneyWallet.this, jsonObject.optString("status_message"), Toast.LENGTH_SHORT).show();
