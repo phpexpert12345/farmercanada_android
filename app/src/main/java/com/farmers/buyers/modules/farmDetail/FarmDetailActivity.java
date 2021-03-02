@@ -150,6 +150,7 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                     dismissLoader();
                /*     Toast.makeText(FarmDetailActivity.this,
                             followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();*/
+
                     getFarmProductDetail();
                     break;
 
