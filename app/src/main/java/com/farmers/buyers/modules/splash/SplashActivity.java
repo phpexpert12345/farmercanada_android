@@ -17,6 +17,8 @@ import androidx.multidex.MultiDex;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
+import com.farmers.buyers.common.utils.AlertHelper;
+import com.farmers.buyers.common.utils.OnAlertClickListener;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
@@ -82,6 +84,7 @@ public class SplashActivity extends BaseActivity {
                     }
                     case ERROR: {
                         error(state.status_message);
+                        break;
                     }
 
                 }
@@ -127,6 +130,17 @@ public class SplashActivity extends BaseActivity {
 
     private void error(String error) {
         dismissLoader();
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+        AlertHelper.showAlert(this, "Authentication Error", error, true, "Retry", true, "Exit", false, new OnAlertClickListener() {
+            @Override
+            public void onNegativeBtnClicked() {
+                finish();
+            }
+
+            @Override
+            public void onPositiveBtnClicked() {
+                authenticateUser();
+            }
+        });
+//        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 }

@@ -40,6 +40,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
+import com.farmers.buyers.modules.farmDetail.FarmDetailActivity;
 import com.farmers.buyers.modules.farmDetail.model.FarmDeliveryStatus;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
@@ -160,20 +161,35 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
         });
 
 
+        increaseDecreaseMachine.observe(this, response -> {
+            switch (response.status) {
+                case SUCCESS:
+                    viewModel.doSearch(stateMachine, searchEt.getText().toString());
+                    Toast.makeText(baseActivity, response.status_message, Toast.LENGTH_SHORT).show();
+                    dismissLoader();
+                    break;
+                case LOADING:
+                    showLoader();
+                    break;
+                case ERROR:
+                    dismissLoader();
+                    break;
+            }
+        });
+
+
+
         backImage.setOnClickListener(v -> ((HomeActivity)getActivity()).loadFragment(new HomeFragment()));
 
         searchEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 3){
                     viewModel.doSearch(stateMachine, s.toString());
-                    Log.e("query", s.toString());
-                }
+
             }
 
             @Override
@@ -195,6 +211,7 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
 
     private void error(String error) {
         dismissLoader();
+        bindAdapter();
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
 
     }

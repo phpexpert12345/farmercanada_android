@@ -78,8 +78,9 @@ public class HomeSearchViewModel extends BaseViewModel {
     }
 
     public void doSearch(MutableLiveData<DataFetchState<HomeSearchApiModel>> stateMachine, String searchQuery) {
-        stateMachine.postValue(DataFetchState.loading());
         items.clear();
+
+        stateMachine.postValue(DataFetchState.loading());
 
         if (searchQuery.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter some text to search", new HomeSearchApiModel()));
