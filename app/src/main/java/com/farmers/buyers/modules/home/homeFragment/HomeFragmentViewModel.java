@@ -234,44 +234,44 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void doSearch(MutableLiveData<DataFetchState<HomeSearchApiModel>> stateMachine, String searchQuery) {
-        farmSearchListItems.clear();
-        stateMachine.postValue(DataFetchState.loading());
-
-        if (searchQuery.isEmpty()) {
-            stateMachine.postValue(DataFetchState.error("Please enter some text to search", new HomeSearchApiModel()));
-            return;
-        }
-
-        HomeSearchRequestParams params = new HomeSearchRequestParams(appController.getAuthenticationKey(), searchQuery);
-
-        homeSearchRepository.doSearch(params, new ApiResponseCallback<HomeSearchApiModel>() {
-            @Override
-            public void onSuccess(HomeSearchApiModel response) {
-                if (response.getStatus()) {
-                    if (!response.getData().getCategoryList().isEmpty()) {
-                        for (int i = 0; i < response.getData().getCategoryList().size(); i++) {
-                            HomeSearchCategoryList currentList = response.getData().getCategoryList().get(i);
-                            if (!currentList.getSubProductItemsRecord().isEmpty()) {
-                                farmSearchListItems.add(new SingleTextItem(currentList.getCategoryName()));
-                                farmSearchListItems.add(HomeTransformer.transformApiModelToHomeSearchItems(currentList.getSubProductItemsRecord()));
-                            }
-                        }
-                        stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-
-                    }
-                    else {
-                        stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new HomeSearchApiModel()));
-                    }
-                } else
-                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new HomeSearchApiModel()));
-            }
-
-            @Override
-            public void onFailure(StandardError standardError) {
-                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new HomeSearchApiModel()));
-            }
-        });
-    }
+//    public void doSearch(MutableLiveData<DataFetchState<HomeSearchApiModel>> stateMachine, String searchQuery) {
+//        farmSearchListItems.clear();
+//        stateMachine.postValue(DataFetchState.loading());
+//
+//        if (searchQuery.isEmpty()) {
+//            stateMachine.postValue(DataFetchState.error("Please enter some text to search", new HomeSearchApiModel()));
+//            return;
+//        }
+//
+//        HomeSearchRequestParams params = new HomeSearchRequestParams(appController.getAuthenticationKey(), searchQuery);
+//
+//        homeSearchRepository.doSearch(params, new ApiResponseCallback<HomeSearchApiModel>() {
+//            @Override
+//            public void onSuccess(HomeSearchApiModel response) {
+//                if (response.getStatus()) {
+//                    if (!response.getData().getCategoryList().isEmpty()) {
+//                        for (int i = 0; i < response.getData().getCategoryList().size(); i++) {
+//                            HomeSearchCategoryList currentList = response.getData().getCategoryList().get(i);
+//                            if (!currentList.getSubProductItemsRecord().isEmpty()) {
+//                                farmSearchListItems.add(new SingleTextItem(currentList.getCategoryName()));
+//                                farmSearchListItems.add(HomeTransformer.transformApiModelToHomeSearchItems(currentList.getSubProductItemsRecord()));
+//                            }
+//                        }
+//                        stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+//
+//                    }
+//                    else {
+//                        stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new HomeSearchApiModel()));
+//                    }
+//                } else
+//                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new HomeSearchApiModel()));
+//            }
+//
+//            @Override
+//            public void onFailure(StandardError standardError) {
+//                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new HomeSearchApiModel()));
+//            }
+//        });
+//    }
 
 }

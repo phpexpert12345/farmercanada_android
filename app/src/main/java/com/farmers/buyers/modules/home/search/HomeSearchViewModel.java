@@ -86,7 +86,7 @@ public class HomeSearchViewModel extends BaseViewModel {
             return;
         }
 
-        HomeSearchRequestParams params = new HomeSearchRequestParams(appController.getAuthenticationKey(), searchQuery);
+        HomeSearchRequestParams params = new HomeSearchRequestParams(appController.getAuthenticationKey(), searchQuery, appController.getLoginId());
 
         repository.doSearch(params, new ApiResponseCallback<HomeSearchApiModel>() {
             @Override

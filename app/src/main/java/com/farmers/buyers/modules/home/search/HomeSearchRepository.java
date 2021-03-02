@@ -17,7 +17,7 @@ import retrofit2.Call;
 public class HomeSearchRepository extends BaseRepository {
 
     public void doSearch(HomeSearchRequestParams params, ApiResponseCallback<HomeSearchApiModel> responseCallback) {
-        Call<HomeSearchApiModel> call = RetrofitBuilder.createServiceContract().doSearchProduct(ApiConstants.SEARCH_PRODUCT_ITEM, params.getAuthKey(), params.getSearchQuery());
+        Call<HomeSearchApiModel> call = RetrofitBuilder.createServiceContract().doSearchProduct(ApiConstants.SEARCH_PRODUCT_ITEM, params.getAuthKey(), params.getSearchQuery(), params.getLoginId());
         makeRequest(call, responseCallback);
 
     }

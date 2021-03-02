@@ -7,10 +7,12 @@ package com.farmers.buyers.modules.home.search.model;
 public class HomeSearchRequestParams {
     String authKey;
     String searchQuery;
+    String loginId;
 
-    public HomeSearchRequestParams(String authKey, String searchQuery) {
+    public HomeSearchRequestParams(String authKey, String searchQuery, String loginId) {
         this.authKey = authKey;
         this.searchQuery = searchQuery;
+        this.loginId = loginId;
     }
 
     public String getAuthKey() {
@@ -19,5 +21,9 @@ public class HomeSearchRequestParams {
 
     public String getSearchQuery() {
         return searchQuery;
+    }
+
+    public String getLoginId() {
+        return loginId;
     }
 }

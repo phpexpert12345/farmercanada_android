@@ -321,6 +321,6 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText);
+    Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText, @Field("LoginId") String loginId);
 }
 
