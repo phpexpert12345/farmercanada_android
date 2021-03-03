@@ -21,6 +21,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 HomeFragment homeFragment;
+    Fragment fragment = null;
+    BottomNavigationView navigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ HomeFragment homeFragment;
     private void init() {
         homeFragment=new HomeFragment();
         loadFragment(homeFragment);
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
     }
 
@@ -54,11 +56,12 @@ HomeFragment homeFragment;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment fragment = null;
+
         switch (item.getItemId()) {
 
             case R.id.navigation_home: {
                 fragment = new HomeFragment();
+
                 loadFragment(fragment);
                 break;
             }
@@ -90,6 +93,24 @@ HomeFragment homeFragment;
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==25){
             homeFragment.init();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(fragment!=null){
+            if(!(fragment instanceof HomeFragment)){
+                fragment=new HomeFragment();
+                loadFragment(homeFragment);
+                navigation.setSelectedItemId(R.id.navigation_home);
+            }
+            else{
+               finish();
+            }
+        }
+        else{
+            finish();
         }
     }
 }

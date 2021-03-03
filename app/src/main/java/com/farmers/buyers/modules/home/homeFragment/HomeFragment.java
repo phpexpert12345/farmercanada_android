@@ -223,11 +223,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     case SUCCESS:
-//                        dismissLoader();
+                        dismissLoader();
                         homeFarmListAdapter.updateData(viewModel.farmListItems);
                         break;
                     case LOADING:
-//                        showLoader();
+                        showLoader();
                         break;
 
                 }
@@ -237,16 +237,16 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         getUserStateMachine.observe(this, allDataModelDataFetchState -> {
             switch (allDataModelDataFetchState.status) {
                 case ERROR: {
-//                    dismissLoader();
+                    dismissLoader();
                     Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
-//                     showLoader();
+                     showLoader();
                     break;
                 }
                 case SUCCESS: {
-//                    dismissLoader();
+                    dismissLoader();
                     getCategoryData();
                     break;
                 }
@@ -256,15 +256,16 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         categoryStateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
-//                    dismissLoader();
+                    dismissLoader();
                     Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
-//                    showLoader();
+                    showLoader();
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     categorySuccess();
                     break;
                 }
@@ -278,10 +279,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case LOADING: {
-                    //showLoader();
+                    showLoader();
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     getUserSuccess();
                     farmListDataRequest("", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
                             , "", 0);
