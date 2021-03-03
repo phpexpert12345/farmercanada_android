@@ -18,5 +18,7 @@ public enum StorageKey {
     WalletAmount,
     Profile_Pic,
     LoginId,
-    FarmId;
+    FarmId,
+    Role,
+    IsStoreSetup;
 }

@@ -78,4 +78,14 @@ public class AppController implements AppControllerContract {
     public String getSharedPreferences(String key, @Nullable Object defaultValue) {
         return null;
     }
+
+    @Override
+    public String getRole() {
+        return sharedPreferenceManager.getRole();
+    }
+
+    @Override
+    public Boolean getIsStoreSetup() {
+        return sharedPreferenceManager.getIsStoreSetup();
+    }
 }

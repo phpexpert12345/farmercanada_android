@@ -1,6 +1,7 @@
 
 package com.farmers.buyers.modules.login.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginApiModel {
@@ -52,70 +53,173 @@ public class LoginApiModel {
     public static class Data {
 
 
-        @SerializedName("Mobile_OTP")
-        private String Mobile_OTP;
+        public String getLoginId() {
+            return loginId;
+        }
 
         @SerializedName("LoginId")
-        private String LoginId;
-
+        @Expose
+        private String loginId;
+        @SerializedName("Mobile_OTP")
+        @Expose
+        private String mobileOTP;
         @SerializedName("login_name")
-        private String login_name;
-
-        @SerializedName("message")
-        private String mMessage;
-
+        @Expose
+        private String loginName;
         @SerializedName("login_email")
-        private String login_email;
+        @Expose
+        private String loginEmail;
+        @SerializedName("login_phone")
+        @Expose
+        private String loginPhone;
+        @SerializedName("login_phone_code")
+        @Expose
+        private String loginPhoneCode;
+        @SerializedName("farm_id")
+        @Expose
+        private String farmId;
+        @SerializedName("account_type_name")
+        @Expose
+        private String accountTypeName;
+        @SerializedName("store_setup_status")
+        @Expose
+        private String storeSetupStatus;
+        @SerializedName("account_type")
+        @Expose
+        private String accountType;
+        @SerializedName("wallet_amount")
+        @Expose
+        private String walletAmount;
+        @SerializedName("Total_following")
+        @Expose
+        private String totalFollowing;
+        @SerializedName("Total_followers")
+        @Expose
+        private String totalFollowers;
+        @SerializedName("Total_Inbox_Message")
+        @Expose
+        private String totalInboxMessage;
+        @SerializedName("login_photo")
+        @Expose
+        private String loginPhoto;
 
-        @SerializedName("token")
-        private String mToken;
 
-        public String getMobile_OTP() {
-            return Mobile_OTP;
+        public String getMobileOTP() {
+            return mobileOTP;
         }
 
-        public void setMobile_OTP(String mobile_OTP) {
-            Mobile_OTP = mobile_OTP;
+        public void setMobileOTP(String mobileOTP) {
+            this.mobileOTP = mobileOTP;
         }
 
-        public String getMessage() {
-            return mMessage;
-        }
-
-        public void setMessage(String message) {
-            mMessage = message;
-        }
-
-        public String getToken() {
-            return mToken;
-        }
-
-        public String getLoginId() {
-            return LoginId;
-        }
 
         public void setLoginId(String loginId) {
-            LoginId = loginId;
+            this.loginId = loginId;
         }
 
-        public String getLogin_name() {
-            return login_name;
+        public String getLoginName() {
+            return loginName;
         }
 
-        public void setLogin_name(String login_name) {
-            this.login_name = login_name;
+        public void setLoginName(String loginName) {
+            this.loginName = loginName;
         }
 
-        public String getLogin_email() {
-            return login_email;
+        public String getLoginEmail() {
+            return loginEmail;
         }
 
-        public void setLogin_email(String login_email) {
-            this.login_email = login_email;
+        public void setLoginEmail(String loginEmail) {
+            this.loginEmail = loginEmail;
         }
 
-        public void setToken(String token) {
-            mToken = token;
+        public String getFarmId() {
+            return farmId;
         }
+
+        public void setFarmId(String farmId) {
+            this.farmId = farmId;
+        }
+
+        public String getAccountTypeName() {
+            return accountTypeName;
+        }
+
+        public void setAccountTypeName(String accountTypeName) {
+            this.accountTypeName = accountTypeName;
+        }
+
+        public String getStoreSetupStatus() {
+            return storeSetupStatus;
+        }
+
+        public void setStoreSetupStatus(String storeSetupStatus) {
+            this.storeSetupStatus = storeSetupStatus;
+        }
+
+        public String getAccountType() {
+            return accountType;
+        }
+
+        public void setAccountType(String accountType) {
+            this.accountType = accountType;
+        }
+
+        public String getLoginPhone() {
+            return loginPhone;
+        }
+
+        public void setLoginPhone(String loginPhone) {
+            this.loginPhone = loginPhone;
+        }
+
+        public String getLoginPhoneCode() {
+            return loginPhoneCode;
+        }
+
+        public void setLoginPhoneCode(String loginPhoneCode) {
+            this.loginPhoneCode = loginPhoneCode;
+        }
+
+        public String getWalletAmount() {
+            return walletAmount;
+        }
+
+        public void setWalletAmount(String walletAmount) {
+            this.walletAmount = walletAmount;
+        }
+
+        public String getTotalFollowing() {
+            return totalFollowing;
+        }
+
+        public void setTotalFollowing(String totalFollowing) {
+            this.totalFollowing = totalFollowing;
+        }
+
+        public String getTotalFollowers() {
+            return totalFollowers;
+        }
+
+        public void setTotalFollowers(String totalFollowers) {
+            this.totalFollowers = totalFollowers;
+        }
+
+        public String getTotalInboxMessage() {
+            return totalInboxMessage;
+        }
+
+        public void setTotalInboxMessage(String totalInboxMessage) {
+            this.totalInboxMessage = totalInboxMessage;
+        }
+
+        public String getLoginPhoto() {
+            return loginPhoto;
+        }
+
+        public void setLoginPhoto(String loginPhoto) {
+            this.loginPhoto = loginPhoto;
+        }
+
     }
 }

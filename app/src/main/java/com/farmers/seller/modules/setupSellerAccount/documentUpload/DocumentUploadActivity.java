@@ -25,8 +25,8 @@ public class DocumentUploadActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document_upload);
 
-        img_back = findViewById(R.id.img_back);
-        tv_toolbar_name = findViewById(R.id.tv_toolbar_name);
+        img_back = findViewById(R.id.tv_setup_seller_back_img);
+        tv_toolbar_name = findViewById(R.id.tv_setup_seller_toolbar_name);
         tv_toolbar_name.setText("Setup Seller Account");
         bt_next_document_upload = findViewById(R.id.bt_next_document_upload);
 

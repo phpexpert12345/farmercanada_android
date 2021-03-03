@@ -23,8 +23,8 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_details_step);
 
-        img_back = findViewById(R.id.img_back);
-        tv_toolbar_name = findViewById(R.id.tv_toolbar_name);
+        img_back = findViewById(R.id.tv_setup_seller_back_img);
+        tv_toolbar_name = findViewById(R.id.tv_setup_seller_toolbar_name);
         tv_toolbar_name.setText("Setup Seller Account");
         bt_next_store_details = findViewById(R.id.bt_next_store_details);
 

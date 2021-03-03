@@ -26,6 +26,7 @@ import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -134,12 +135,25 @@ public class LoginActivity extends BaseActivity {
                     case SUCCESS: {
                         dismissLoader();
                         Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                        if (role == 1) {
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                            finish();
-                        } else {
-                            startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
-                            finish();
+
+                        switch (viewModel.userType) {
+                            case "Seller": {
+                                if (viewModel.isStoreSetup.equals("1")) {
+                                    startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
+                                }
+                                else {
+                                    startActivity(new Intent(LoginActivity.this, StoreDetailsStepActivity.class));
+                                }
+                                finish();
+                                break;
+                            }
+                            case "Buyer" : {
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                finish();
+                                break;
+                            }
+
+
                         }
                         break;
                     }
