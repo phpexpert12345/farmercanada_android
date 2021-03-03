@@ -136,8 +136,10 @@ else{
 //        }
         packageFeeAmount.setText(taxData.getPackageFeeAmount()+".00");
         lableGst.setText("GST   (" + taxData.getgSTTax() + "%):");
-        double gst=Double.parseDouble(taxData.getgSTTaxAmount());
-        gstTaxAmount.setText(String.format("%.2f",gst));
+        if(taxData.getgSTTaxAmount()!=null) {
+            double gst = Double.parseDouble(taxData.getgSTTaxAmount());
+            gstTaxAmount.setText(String.format("%.2f", gst));
+        }
         packageFeeLabel.setText("Package Fee :");
         if(taxData.getDeliveryCharge()!=null) {
             totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount()) + Double.parseDouble(taxData.getPackageFeeAmount());
@@ -146,7 +148,7 @@ else{
             }
 
         }
-String price=decimalFormat.format(totalAmountf);
+
         totalAmount.setText("$"+String.format("%.2f",totalAmountf) );
         OrderSingleton.getInstance().setTaxData(taxData);
         OrderSingleton.getInstance().setTotal_amount(totalAmountf);
