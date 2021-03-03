@@ -492,8 +492,35 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         }
     }
     private void goToPayment(){
-        if(dis>=farmDeliveryStatus.farm_delivery_status){
-            Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
+        if(order_type.equalsIgnoreCase("Delivery")){
+            if(dis>=farmDeliveryStatus.farm_delivery_status){
+                Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
+            }
+            else{
+
+                Intent intent = getIntent();
+                taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
+                order_type=intent.getStringExtra("order_type");
+                int type;
+                switch (order_type){
+                    case "Delivery":
+                        type=0;
+                        break;
+                    case "Pickup":
+                        type=1;
+                        break;
+                    default:
+                        type=0;
+                }
+
+                if(pay_type.equalsIgnoreCase("Cash")){
+                    Placeorder(type);
+                }
+                else if(pay_type.equalsIgnoreCase("Credit/Debit")){
+                    dialogOpen(type);
+                }
+
+            }
         }
         else{
             Intent intent = getIntent();
@@ -517,9 +544,9 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             else if(pay_type.equalsIgnoreCase("Credit/Debit")){
                 dialogOpen(type);
             }
-
-
         }
+
+
 
     }
 
