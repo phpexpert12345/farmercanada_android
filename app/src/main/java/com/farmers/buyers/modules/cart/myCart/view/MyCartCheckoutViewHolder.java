@@ -116,7 +116,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
             couponEditText.setText("");
 
         }
-if(!taxData.getDeliveryCharge().equalsIgnoreCase("")){
+if(taxData.getDeliveryCharge() != null && !taxData.getDeliveryCharge().equalsIgnoreCase("")){
     if(!taxData.getDeliveryCharge().equalsIgnoreCase("0.00")){
         rl_shipping_fee.setVisibility(View.VISIBLE);
         shipingFee.setText(taxData.getDeliveryCharge());
