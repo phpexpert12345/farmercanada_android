@@ -1,8 +1,10 @@
 package com.farmers.buyers.modules.home;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
+HomeFragment homeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,8 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
     }
 
     private void init() {
-        loadFragment(new HomeFragment());
+        homeFragment=new HomeFragment();
+        loadFragment(homeFragment);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
     }
@@ -82,5 +85,11 @@ public class HomeActivity extends BaseActivity implements BottomNavigationView.O
         return loadFragment(fragment);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==25){
+            homeFragment.init();
+        }
+    }
 }

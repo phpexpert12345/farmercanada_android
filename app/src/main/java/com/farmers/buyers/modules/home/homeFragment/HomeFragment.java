@@ -72,6 +72,8 @@ import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.home.view.HomeSearchItemViewHolder;
+import com.farmers.buyers.modules.location.LocationAccessActivity;
+import com.farmers.buyers.modules.location.ManualLocationActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.login.LoginActivity;
@@ -161,6 +163,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     }
 
+
     private void farmListDataRequest(String farmType, String serviceType, String categoryId, int page) {
 
 
@@ -179,11 +182,9 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         viewModel.getFarmList(farmListStateMachine, farmListRequest);
     }
 
-    private void init() {
-
+    public void init() {
         adapter = new HomeAdapter(this, this, this, this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
-        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         homeFarmListAdapter = new HomeFarmListAdapter(this);
         recyclerView.setAdapter(adapter);
         farmRecyclerView.setAdapter(homeFarmListAdapter);
@@ -222,11 +223,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                         break;
                     case SUCCESS:
-                        dismissLoader();
+//                        dismissLoader();
                         homeFarmListAdapter.updateData(viewModel.farmListItems);
                         break;
                     case LOADING:
-                        showLoader();
+//                        showLoader();
                         break;
 
                 }
@@ -236,16 +237,16 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         getUserStateMachine.observe(this, allDataModelDataFetchState -> {
             switch (allDataModelDataFetchState.status) {
                 case ERROR: {
-                    dismissLoader();
+//                    dismissLoader();
                     Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
-                     showLoader();
+//                     showLoader();
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
+//                    dismissLoader();
                     getCategoryData();
                     break;
                 }
@@ -255,12 +256,12 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         categoryStateMachine.observe(this, dataFetchState -> {
             switch (dataFetchState.status) {
                 case ERROR: {
-                    dismissLoader();
+//                    dismissLoader();
                     Toast.makeText(getContext(), dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
-                    showLoader();
+//                    showLoader();
                     break;
                 }
                 case SUCCESS: {
@@ -384,7 +385,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onEditAddressClickListener(int position) {
-        Log.e("position", String.valueOf(position));
+        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),25);
     }
 
     public void buyer_seller_switch_dialog(Context activity) {
@@ -513,4 +514,9 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         startActivity(new Intent(baseActivity, HomeActivity.class));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }

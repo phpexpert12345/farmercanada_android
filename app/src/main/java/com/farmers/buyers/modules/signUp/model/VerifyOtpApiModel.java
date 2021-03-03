@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.signUp.model;
 
+import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -13,7 +14,7 @@ public class VerifyOtpApiModel {
     public boolean status;
     public String status_message;
 
-    private OtpData data;
+    public LoginApiModel.Data data;
 
     public static class OtpData {
     }

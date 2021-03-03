@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.contrarywind.adapter.WheelAdapter;
+import com.contrarywind.listener.OnItemSelectedListener;
+import com.contrarywind.view.WheelView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
@@ -36,6 +40,7 @@ import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.MyAddressActivity;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.checkout.adapter.CheckOutCartItemAdapter;
 import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
@@ -51,6 +56,7 @@ import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
 import com.farmers.buyers.modules.cart.order.OrderSuccessDetailActivity;
 import com.farmers.buyers.modules.cart.order.PlaceOrderActivity;
 import com.farmers.buyers.modules.cart.order.SubmitOrderViewModel;
+import com.farmers.buyers.modules.cart.order.adapter.TimeListAdapter;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
 import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.farmDetail.model.FarmDeliveryStatus;
@@ -85,6 +91,8 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     CheckOutCartAddressItems address;
     private FarmDeliveryStatus farmDeliveryStatus;
     private List<RecyclerViewListItem> items = new ArrayList<>();
+    List<AddressApiModel.AddressListData>date_list=new ArrayList<>();
+    List<AddressApiModel.AddressListData>time_list=new ArrayList<>();
     String price,quantity,itemid,item_unit_type,str_sizeid,extraitemid;
     Double subTotalAmount = 0.0;
     String pay_type;
@@ -92,6 +100,9 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     String time;
     double dis=0.0;
     StripePay stripePay;
+    Dialog date_dialog;
+    private MutableLiveData<DataFetchState<AddressApiModel>> dateStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AddressApiModel>> timeStateMachine = new MutableLiveData<>();
     private AppController appController = AppController.get();
     private MutableLiveData<DataFetchState<SubmitResponse>> submitMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<CartListResponse>> cartListMachine = new MutableLiveData<>();
@@ -140,6 +151,104 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     private GPSTracker gpsTracker;
     private int paymentType = -1;
     private Dialog pay_dialog;
+    private void callTimeSlot(String date) {
+
+        SubmitRequestParam requestParam = new SubmitRequestParam(
+                AppController.get().getAuthenticationKey(),
+                AppController.get().getLoginId(),
+                String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "")),
+                date);
+        viewModel.getOrderTimeByDate(timeStateMachine, requestParam);
+    }
+    private void dialogTimeSelection(List<AddressApiModel.AddressListData> sessionTypeMainData,int type) {
+
+        date_dialog = new Dialog(CheckOutFromCartActivity.this);
+        date_dialog.setContentView(R.layout.dialog_session_type);
+        Window window = date_dialog.getWindow();
+        date_dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        TextView tvCancel = date_dialog.findViewById(R.id.tvCancel);
+        TextView tvDone = date_dialog.findViewById(R.id.tvDone);
+        TextView txt_title = date_dialog.findViewById(R.id.txt_title);
+        if(type==0){
+           txt_title.setText("Select Date");
+        }
+        else{
+            txt_title.setText("Select TimeSlot");
+        }
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date_dialog.cancel();
+
+            }
+        });
+        tvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* if (sessionType.equalsIgnoreCase("")){
+                    sessionType= sessionTypeMainData.get(0).getId();
+                    tvSessionType.setText(sessionTypeMainData.get(0).getSessionType());
+                }*/
+                // txt_selected_time.setText();
+                date_dialog.cancel();
+            }
+        });
+
+        WheelView wvSessionType = date_dialog.findViewById(R.id.wvSessionType);
+        wvSessionType.setCyclic(false);
+
+        /*final List<String> mOptionsItems = new ArrayList<>();
+        for (int i=0;i<sessionTypeMainData.size();i++){
+            mOptionsItems.add("item0");
+        }*/
+
+        wvSessionType.setAdapter(new WheelAdapter() {
+            @Override
+            public int getItemsCount() {
+                return sessionTypeMainData.size();
+            }
+
+            @Override
+            public Object getItem(int index) {
+                if(type==0){
+                    return sessionTypeMainData.get(index).current_date;
+                }
+                else{
+                    return sessionTypeMainData.get(index).current_time;
+                }
+
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+        });
+        wvSessionType.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                switch (type){
+                    case 0:
+                        date=sessionTypeMainData.get(index).current_date;
+                        callTimeSlot(date);
+                        date_dialog.dismiss();
+                        break;
+                    case 1:
+                        time=sessionTypeMainData.get(index).current_time;
+                        date_dialog.dismiss();
+                        break;
+                }
+
+                //tvBookingTime.setText(sessionTypeMainData.get(index).getGetTime());
+                //txt_selected_time.setText(sessionTypeMainData.get(index).getGetTime());
+                //Toast.makeText(getApplicationContext(), "" + sessionTypeMainData.get(index).getSessionType(), Toast.LENGTH_SHORT).show();
+              /*  sessionType = sessionTypeMainData.get(index).getId();
+                tvSessionType.setText(sessionTypeMainData.get(index).getSessionType());*/
+            }
+        });
+        date_dialog.show();
+    }
     private void dialogOpen(int type) {
         pay_dialog = new Dialog(CheckOutFromCartActivity.this);
         pay_dialog.setContentView(R.layout.dialog_stripe);
@@ -396,7 +505,10 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             startActivityForResult(delivery, 1254);
         }
         else{
-            startActivityForResult(new Intent(CheckOutFromCartActivity.this,PlaceOrderActivity.class),21);
+            SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
+                    AppController.get().getLoginId());
+
+            viewModel.getOrderDate(dateStateMachine, requestParam);
         }
         taxData.setApplyCouponButton(false);
         taxData.setRemoveDiscountButton(false);
@@ -420,6 +532,37 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         init();
         listener();
         getPaymentkey();
+
+        timeStateMachine.observe(this, response -> {
+            switch (response.status) {
+                case LOADING:
+                    showLoader();
+                    break;
+                case SUCCESS:
+                    dismissLoader();
+                    time_list=response.data.getData().getAllTimeList();
+                    dialogTimeSelection(time_list,1);
+                    break;
+                case ERROR:
+                    dismissLoader();
+                    break;
+            }
+        });
+        dateStateMachine.observe(this, response -> {
+            switch (response.status) {
+                case LOADING:
+                    showLoader();
+                    break;
+                case SUCCESS:
+                    dismissLoader();
+date_list=response.data.getData().getAllDateList();
+                    dialogTimeSelection(date_list,0);
+                    break;
+                case ERROR:
+                    dismissLoader();
+                    break;
+            }
+        });
         submitMachine.observe(this, response -> {
             switch (response.status) {
                 case LOADING:
@@ -576,18 +719,14 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
                 prepareItem(taxData, address);
                 adapter.updateData(items);
                 if(time==null){
-                    startActivityForResult(new Intent(CheckOutFromCartActivity.this,PlaceOrderActivity.class),21);
+                    SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
+                            AppController.get().getLoginId());
+
+                    viewModel.getOrderDate(dateStateMachine, requestParam);
                 }
             }
         }
-        else if(requestCode==21){
-            if(data!=null){
-                if(data.hasExtra("time")){
-                    time=data.getStringExtra("time");
-                    date=data.getStringExtra("date");
-                }
-            }
-        }
+
     }
 
     @Override
