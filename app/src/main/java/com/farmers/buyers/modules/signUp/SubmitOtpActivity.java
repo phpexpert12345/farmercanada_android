@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.common.utils.GenericTextWatcher;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
@@ -155,8 +156,9 @@ public class SubmitOtpActivity extends BaseActivity {
                         if (extra) {
                             startActivity(new Intent(SubmitOtpActivity.this, ForgotPassword.class));
                         } else {
-                            startActivity(new Intent(SubmitOtpActivity.this, LoginActivity.class));
+                            startActivity(new Intent(SubmitOtpActivity.this, HomeActivity.class));
                         }
+                        App.finish_activity=true;
                         finish();
                     }
 

@@ -176,6 +176,8 @@ public class SignUpViewModel extends BaseViewModel {
             @Override
             public void onSuccess(VerifyOtpApiModel response) {
                 if (response.status) {
+                    SharedPreferenceManager.getInstance().setIsLoggedIn(true);
+                    SharedPreferenceManager.getInstance().setLoginId(response.data.getLoginId());
                     stateMachine.postValue(DataFetchState.success(response, response.status_message));
                 } else {
                     stateMachine.postValue(DataFetchState.error(response.status_message, response));

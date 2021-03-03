@@ -46,7 +46,6 @@ public class MyCartItemViewHolder extends BaseViewHolder {
         itemPrice = itemView.findViewById(R.id.item_price);
         itemAddress = itemView.findViewById(R.id.item_address);
         txt_unit=itemView.findViewById(R.id.txt_unit);
-
         decreaseCallback = decreaseCallback1;
         increaseCallback = increaseCallback1;
     }

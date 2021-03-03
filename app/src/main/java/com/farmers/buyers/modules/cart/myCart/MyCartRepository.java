@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponReqParams;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
@@ -33,6 +34,12 @@ public class MyCartRepository extends BaseRepository {
         makeRequest(call, responseCallback);
 
     }
+    public void getOrderDate(SubmitRequestParam params, ApiResponseCallback<AddressApiModel> responseCallback) {
+        Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().getDateData(
+                ApiConstants.GET_DATE_DATA,
+                params.getAuth_key(), params.getItemId());
+        makeRequest(call, responseCallback);
+    }
 
     public void applyServiceTax(TaxRequestParam params, ApiResponseCallback<TaxResponse> responseCallback) {
         Call<TaxResponse> call = RetrofitBuilder.createServiceContract().TAX_RESPONSE_CALL(ApiConstants.SERVICE_AND_TAX_URL,
@@ -47,6 +54,15 @@ public class MyCartRepository extends BaseRepository {
                 params.getAuth_key(),
                 params.getLoginId());
         makeRequest(call, cartResponse);
+    }
+    public void getOrderTimeByDate(SubmitRequestParam params, ApiResponseCallback<AddressApiModel> responseCallback) {
+        Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().getOrderTimeByDate(
+                ApiConstants.GET_TIME_BY_DATE_DATA,
+                params.getAuth_key(),
+                params.getItemId(),
+                params.getFarm_id(),
+                params.getCurrent_date());
+        makeRequest(call, responseCallback);
     }
 
     public void increaseDecrease(IncreaseDecreaseParams params, ApiResponseCallback<IncreaseDecreaseApiModel> apiResponseCallback) {
