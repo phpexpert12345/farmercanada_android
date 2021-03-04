@@ -4,21 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.ImageUtil;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreSetupExtra;
 
 public class DocumentUploadActivity extends AppCompatActivity implements View.OnClickListener {
 
     public ImageView img_back;
     public TextView tv_toolbar_name;
     public Button bt_next_document_upload;
+
+    private StoreSetupExtra extra = new StoreSetupExtra();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +35,20 @@ public class DocumentUploadActivity extends AppCompatActivity implements View.On
         tv_toolbar_name.setText("Setup Seller Account");
         bt_next_document_upload = findViewById(R.id.bt_next_document_upload);
 
-        img_back.setOnClickListener(this);
         bt_next_document_upload.setOnClickListener(this);
+
+        init();
+    }
+
+    private void init() {
+        extra = (StoreSetupExtra) getIntent().getSerializableExtra("storeExtra");
+        Log.e("name", extra.getName());
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override

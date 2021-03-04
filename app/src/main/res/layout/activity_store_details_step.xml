@@ -211,11 +211,13 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/store_setup__store_image"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:src="@drawable/ic_user_light_red_bg" />
 
                 <LinearLayout
+                    android:id="@+id/store_detail_choose_image_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -274,6 +276,7 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setup_store_location_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/location"
@@ -312,6 +315,7 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_state_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_state"
@@ -350,6 +354,7 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_city_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_city"

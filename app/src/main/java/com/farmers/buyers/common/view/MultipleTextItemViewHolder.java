@@ -41,11 +41,10 @@ public class MultipleTextItemViewHolder extends BaseViewHolder {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedPosition=getAdapterPosition();
+                selectedPosition = getAdapterPosition();
                 listener.onFilterItemClicked(getAdapterPosition());
             }
         });
-
 
         if (selectedPosition == getAdapterPosition()) {
             selectedPosition = getOldPosition();
