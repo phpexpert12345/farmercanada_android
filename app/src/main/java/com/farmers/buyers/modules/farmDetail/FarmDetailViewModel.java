@@ -47,6 +47,7 @@ public class FarmDetailViewModel extends BaseViewModel {
                 Intent intent = farmProductListReq.getContext().getIntent();
                 String farm_followed_status="";
                 String favourite_id="";
+
                 if(response.getData().getCategoryList().size()>0){
                     for(int i=0;i<response.getData().getCategoryList().size();i++){
                         CategoryList categoryList=response.getData().getCategoryList().get(i);
