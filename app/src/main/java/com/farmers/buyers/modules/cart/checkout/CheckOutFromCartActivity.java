@@ -505,10 +505,11 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             startActivityForResult(delivery, 1254);
         }
         else{
-            SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
-                    AppController.get().getLoginId());
-
-            viewModel.getOrderDate(dateStateMachine, requestParam);
+            startActivityForResult(new Intent(CheckOutFromCartActivity.this,PlaceOrderActivity.class),280);
+//            SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
+//                    AppController.get().getLoginId());
+//
+//            viewModel.getOrderDate(dateStateMachine, requestParam);
         }
         taxData.setApplyCouponButton(false);
         taxData.setRemoveDiscountButton(false);
@@ -635,26 +636,18 @@ date_list=response.data.getData().getAllDateList();
         }
     }
     private void goToPayment(){
+        Intent intent = getIntent();
+        taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
         if(order_type.equalsIgnoreCase("Delivery")){
             if(dis>=farmDeliveryStatus.farm_delivery_status){
                 Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
             }
             else{
 
-                Intent intent = getIntent();
-                taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-                order_type=intent.getStringExtra("order_type");
-                int type;
-                switch (order_type){
-                    case "Delivery":
-                        type=0;
-                        break;
-                    case "Pickup":
-                        type=1;
-                        break;
-                    default:
-                        type=0;
-                }
+
+
+                int type=0;
+
 
                 if(pay_type.equalsIgnoreCase("Cash")){
                     Placeorder(type);
@@ -666,21 +659,7 @@ date_list=response.data.getData().getAllDateList();
             }
         }
         else{
-            Intent intent = getIntent();
-            taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-            order_type=intent.getStringExtra("order_type");
-            int type;
-            switch (order_type){
-                case "Delivery":
-                    type=0;
-                    break;
-                case "Pickup":
-                    type=1;
-                    break;
-                default:
-                    type=0;
-            }
-
+            int type=1;
             if(pay_type.equalsIgnoreCase("Cash")){
                 Placeorder(type);
             }
@@ -719,10 +698,19 @@ date_list=response.data.getData().getAllDateList();
                 prepareItem(taxData, address);
                 adapter.updateData(items);
                 if(time==null){
-                    SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
-                            AppController.get().getLoginId());
-
-                    viewModel.getOrderDate(dateStateMachine, requestParam);
+                    startActivityForResult(new Intent(CheckOutFromCartActivity.this,PlaceOrderActivity.class),280);
+//                    SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
+//                            AppController.get().getLoginId());
+//
+//                    viewModel.getOrderDate(dateStateMachine, requestParam);
+                }
+            }
+        }
+        else if(requestCode==280){
+            if(data!=null){
+                if(data.hasExtra("date")){
+                    date=data.getStringExtra("date");
+                    time=data.getStringExtra("time");
                 }
             }
         }

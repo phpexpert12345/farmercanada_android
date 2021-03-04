@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.contrarywind.adapter.WheelAdapter;
+import com.contrarywind.listener.OnItemSelectedListener;
+import com.contrarywind.view.WheelView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
@@ -39,6 +43,7 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.OrderSuccessDialog;
+import com.farmers.buyers.modules.cart.checkout.CheckOutFromCartActivity;
 import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
@@ -90,6 +95,97 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     String date;
     String time;
     StripePay stripePay;
+    Dialog date_dialog;
+    private void dialogTimeSelection(List<AddressApiModel.AddressListData> sessionTypeMainData,int type) {
+
+        date_dialog = new Dialog(PlaceOrderActivity.this);
+        date_dialog.setContentView(R.layout.dialog_session_type);
+        Window window = date_dialog.getWindow();
+        date_dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        TextView tvCancel = date_dialog.findViewById(R.id.tvCancel);
+        TextView tvDone = date_dialog.findViewById(R.id.tvDone);
+        TextView txt_title = date_dialog.findViewById(R.id.txt_title);
+        if(type==0){
+            txt_title.setText("Select Date");
+        }
+        else{
+            txt_title.setText("Select TimeSlot");
+        }
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date_dialog.cancel();
+
+            }
+        });
+        tvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* if (sessionType.equalsIgnoreCase("")){
+                    sessionType= sessionTypeMainData.get(0).getId();
+                    tvSessionType.setText(sessionTypeMainData.get(0).getSessionType());
+                }*/
+                // txt_selected_time.setText();
+                date_dialog.dismiss();
+
+            }
+        });
+
+        WheelView wvSessionType = date_dialog.findViewById(R.id.wvSessionType);
+        wvSessionType.setCyclic(false);
+
+        /*final List<String> mOptionsItems = new ArrayList<>();
+        for (int i=0;i<sessionTypeMainData.size();i++){
+            mOptionsItems.add("item0");
+        }*/
+
+        wvSessionType.setAdapter(new WheelAdapter() {
+            @Override
+            public int getItemsCount() {
+                return sessionTypeMainData.size();
+            }
+
+            @Override
+            public Object getItem(int index) {
+                if(type==0){
+                    return sessionTypeMainData.get(index).current_date;
+                }
+                else{
+                    return sessionTypeMainData.get(index).current_time;
+                }
+
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+        });
+        wvSessionType.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                switch (type){
+                    case 0:
+                        date=sessionTypeMainData.get(index).current_date;
+                        callTimeSlot(date);
+
+                        break;
+                    case 1:
+                        time=sessionTypeMainData.get(index).current_time;
+
+                        break;
+                }
+
+                //tvBookingTime.setText(sessionTypeMainData.get(index).getGetTime());
+                //txt_selected_time.setText(sessionTypeMainData.get(index).getGetTime());
+                //Toast.makeText(getApplicationContext(), "" + sessionTypeMainData.get(index).getSessionType(), Toast.LENGTH_SHORT).show();
+              /*  sessionType = sessionTypeMainData.get(index).getId();
+                tvSessionType.setText(sessionTypeMainData.get(index).getSessionType());*/
+            }
+        });
+        date_dialog.show();
+    }
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -159,9 +255,10 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
-                    mTimeAdapter = new TimeListAdapter(PlaceOrderActivity.this, response.data.getData().getAllTimeList(),
-                            this);
-                    rv_time_list.setAdapter(mTimeAdapter);
+                    dialogTimeSelection(response.data.getData().getAllTimeList(),1);
+//                    mTimeAdapter = new TimeListAdapter(PlaceOrderActivity.this, response.data.getData().getAllTimeList(),
+//                            this);
+//                    rv_time_list.setAdapter(mTimeAdapter);
                     break;
                 case ERROR:
                     dismissLoader();

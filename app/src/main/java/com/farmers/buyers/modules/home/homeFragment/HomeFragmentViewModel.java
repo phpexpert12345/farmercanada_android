@@ -56,9 +56,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
     public List<HomeListItem> homeFarmListItem = new ArrayList<>();
 
     public void getCategoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
-
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
-
         items.add(HomeTransformer.getSearchItems());
         items.add(HomeTransformer.getFilterItems());
 

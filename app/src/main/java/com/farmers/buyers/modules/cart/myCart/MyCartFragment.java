@@ -110,15 +110,15 @@ public class MyCartFragment extends BaseFragment implements
         textViewDelivery=view.findViewById(R.id.textViewDelivery);
         textViewPickUp=view.findViewById(R.id.textViewPickUp);
         ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
+        order_type=SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
+        setType();
         textViewDelivery.setOnClickListener(v->{
             order_type="Delivery";
-            textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-            textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+            setType();
         });
         textViewPickUp.setOnClickListener(v->{
             order_type="Pickup";
-            textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-            textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+           setType();
         });
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -292,6 +292,23 @@ public class MyCartFragment extends BaseFragment implements
         cartData.addAll(MyCartTransformer.getMyCartItem(farmProductCartList));
         items.addAll(MyCartTransformer.getMyCartItem(farmProductCartList));
         getServicesAndTax(requestParam);
+    }
+    private void setType(){
+       switch (order_type){
+           case "Delivery":
+           {
+               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+           }
+           break;
+           case "Pickup":
+           {
+               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+           }
+           break;
+
+       }
     }
 
     @Override

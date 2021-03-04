@@ -122,7 +122,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private AppController appController = AppController.get();
     public GPSTracker gpsTracker;
     private RecyclerView recyclerView, farmRecyclerView;
-    private HomeAdapter adapter;
+    public HomeAdapter adapter;
     private HomeFarmListAdapter homeFarmListAdapter;
 
     @Override
@@ -180,6 +180,9 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 AppController.get().getLoginId());
 
         viewModel.getFarmList(farmListStateMachine, farmListRequest);
+    }
+    public void updateAddress(){
+        adapter.updateData(viewModel.items);
     }
 
     public void init() {
@@ -387,7 +390,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onEditAddressClickListener(int position) {
-        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),25);
+        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),300);
     }
 
     public void buyer_seller_switch_dialog(Context activity) {
@@ -490,6 +493,17 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onDeliveryTypeCheckedChangeListener(int type) {
         farmListDataRequest("", String.valueOf(type), "", 0);
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+        switch (type){
+            case 0:{
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Delivery");
+                break;
+            }
+            case 1:
+            {
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Pickup");
+                break;
+            }
+        }
     }
 
     @Override

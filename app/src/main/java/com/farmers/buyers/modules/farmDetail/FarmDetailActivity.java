@@ -260,6 +260,18 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     public void onDeliveryTypeCheckedChangeListener(int type) {
         getFarmProductDetail();
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+        switch (type){
+            case 0:{
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Delivery");
+                break;
+            }
+            case 1:
+            {
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Pickup");
+                break;
+            }
+        }
+
     }
 
     @Override
