@@ -72,6 +72,8 @@ import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.home.view.HomeSearchItemViewHolder;
+import com.farmers.buyers.modules.location.LocationAccessActivity;
+import com.farmers.buyers.modules.location.ManualLocationActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.login.LoginActivity;
@@ -120,7 +122,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private AppController appController = AppController.get();
     public GPSTracker gpsTracker;
     private RecyclerView recyclerView, farmRecyclerView;
-    private HomeAdapter adapter;
+    public HomeAdapter adapter;
     private HomeFarmListAdapter homeFarmListAdapter;
 
     @Override
@@ -161,6 +163,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     }
 
+
     private void farmListDataRequest(String farmType, String serviceType, String categoryId, int page) {
 
 
@@ -178,12 +181,13 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
         viewModel.getFarmList(farmListStateMachine, farmListRequest);
     }
+    public void updateAddress(){
+        adapter.updateData(viewModel.items);
+    }
 
-    private void init() {
-
+    public void init() {
         adapter = new HomeAdapter(this, this, this, this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
-        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         homeFarmListAdapter = new HomeFarmListAdapter(this);
         recyclerView.setAdapter(adapter);
         farmRecyclerView.setAdapter(homeFarmListAdapter);
@@ -264,6 +268,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     categorySuccess();
                     break;
                 }
@@ -277,10 +282,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case LOADING: {
-                    //showLoader();
+                    showLoader();
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     getUserSuccess();
                     farmListDataRequest("", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
                             , "", 0);
@@ -384,7 +390,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onEditAddressClickListener(int position) {
-        Log.e("position", String.valueOf(position));
+        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),300);
     }
 
     public void buyer_seller_switch_dialog(Context activity) {
@@ -487,6 +493,17 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onDeliveryTypeCheckedChangeListener(int type) {
         farmListDataRequest("", String.valueOf(type), "", 0);
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+        switch (type){
+            case 0:{
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Delivery");
+                break;
+            }
+            case 1:
+            {
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Pickup");
+                break;
+            }
+        }
     }
 
     @Override
@@ -513,4 +530,9 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         startActivity(new Intent(baseActivity, HomeActivity.class));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }

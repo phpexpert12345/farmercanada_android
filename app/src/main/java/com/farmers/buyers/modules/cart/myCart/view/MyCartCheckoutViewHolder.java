@@ -119,16 +119,24 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
 if(taxData.getDeliveryCharge() != null && !taxData.getDeliveryCharge().equalsIgnoreCase("")){
     if(!taxData.getDeliveryCharge().equalsIgnoreCase("0.00")){
         rl_shipping_fee.setVisibility(View.VISIBLE);
-        shipingFee.setText(taxData.getDeliveryCharge());
+        shipingFee.setText(String.format("%.2f",Double.parseDouble(taxData.getDeliveryCharge())));
     }
     else{
+
         rl_shipping_fee.setVisibility(View.GONE);
     }
 }
 else{
     rl_shipping_fee.setVisibility(View.GONE);
 }
-//        shipingFee.setText(taxData.getDeliveryCharge());
+      String order_type=  SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
+if(!order_type.equalsIgnoreCase("Delivery")){
+    rl_shipping_fee.setVisibility(View.GONE);
+}
+else{
+    rl_shipping_fee.setVisibility(View.VISIBLE);
+//        shipingFee.setText(taxData.getDeliveryCharge())
+}
 //        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
 //            rl_shipping_fee.setVisibility(View.GONE);
 //        } else {
@@ -144,7 +152,10 @@ else{
         if(taxData.getDeliveryCharge()!=null) {
             totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount()) + Double.parseDouble(taxData.getPackageFeeAmount());
             if(!taxData.getDeliveryCharge().equalsIgnoreCase("")){
-                totalAmountf+=Double.parseDouble(taxData.getDeliveryCharge());
+                if(order_type.equalsIgnoreCase("Delivery")){
+                    totalAmountf+=Double.parseDouble(taxData.getDeliveryCharge());
+                }
+
             }
 
         }

@@ -191,12 +191,14 @@
                 android:id="@+id/pickup_step_view_four"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/pickup_image_step5"
                 android:layout_width="@dimen/_25sdp"
+                android:visibility="gone"
                 android:layout_height="@dimen/_25sdp"
                 android:src="@drawable/ic_gray_check" />
 
@@ -216,6 +218,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Pending" />
 
@@ -249,6 +252,7 @@
             <TextView
                 android:id="@+id/tv_pickup_cancel"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sf_ui_regular"
@@ -261,6 +265,7 @@
             android:id="@+id/ll_delivery_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
@@ -276,7 +281,7 @@
 
             <View
                 android:id="@+id/delivery_step_view_one"
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
@@ -289,7 +294,7 @@
 
             <View
                 android:id="@+id/delivery_step_view_two"
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
@@ -298,12 +303,14 @@
                 android:id="@+id/delivery_image_step3"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
+                android:visibility="gone"
                 android:src="@drawable/ic_gray_check" />
 
             <View
                 android:id="@+id/delivery_step_view_three"
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
 
@@ -315,7 +322,7 @@
 
             <View
                 android:id="@+id/delivery_step_view_four"
-                android:layout_width="@dimen/_25sdp"
+                android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
@@ -330,6 +337,7 @@
                 android:id="@+id/delivery_step_view_five"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_1sdp"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:background="@color/light_gray" />
 
@@ -337,6 +345,7 @@
                 android:id="@+id/delivery_image_step6"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
+                android:visibility="gone"
                 android:src="@drawable/ic_gray_check" />
 
         </LinearLayout>
@@ -345,9 +354,10 @@
             android:id="@+id/ll_delivery_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/_5sdp"
-            android:gravity="center_horizontal"
+
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -355,6 +365,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Pending" />
 
@@ -372,6 +384,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="center"
                 android:text="Processing" />
@@ -399,6 +412,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="end"
                 android:text="Cancelled" />

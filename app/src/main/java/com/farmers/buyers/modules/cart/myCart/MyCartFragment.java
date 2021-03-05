@@ -72,6 +72,7 @@ public class MyCartFragment extends BaseFragment implements
     LinearLayout ll_data_not_available;
     String order_type="";
     private String subTotal = "";
+    List<FarmProductCartList> farmProductCartList=new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -110,15 +111,15 @@ public class MyCartFragment extends BaseFragment implements
         textViewDelivery=view.findViewById(R.id.textViewDelivery);
         textViewPickUp=view.findViewById(R.id.textViewPickUp);
         ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
+        order_type=SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
+        setType();
         textViewDelivery.setOnClickListener(v->{
             order_type="Delivery";
-            textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-            textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+            setType();
         });
         textViewPickUp.setOnClickListener(v->{
             order_type="Pickup";
-            textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-            textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+           setType();
         });
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -221,7 +222,9 @@ public class MyCartFragment extends BaseFragment implements
                         ll_data_not_available.setVisibility(View.GONE);
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
                         if(data.data.getData().getFarmProductCartList().size()>0) {
+                            farmProductCartList=data.data.getData().getFarmProductCartList();
                             cartListData(data.data.getData().getFarmProductCartList());
+
                             adapter.updateData(items);
                         }
 //                        adapter.updateData(items);
@@ -284,6 +287,9 @@ public class MyCartFragment extends BaseFragment implements
 
         subTotal = String.valueOf(subTotalAmount);
 
+        getTax(String.valueOf(subTotalAmount),farmProductCartList);
+    }
+    private void getTax(String subTotalAmount,List<FarmProductCartList> farmProductCartList){
         TaxRequestParam requestParam = new TaxRequestParam(appController.getAuthenticationKey(),
                 String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "")),
                 "",
@@ -292,6 +298,29 @@ public class MyCartFragment extends BaseFragment implements
         cartData.addAll(MyCartTransformer.getMyCartItem(farmProductCartList));
         items.addAll(MyCartTransformer.getMyCartItem(farmProductCartList));
         getServicesAndTax(requestParam);
+    }
+    private void setType(){
+        SharedPreferenceManager.getInstance().setSharedPreference("order_type", order_type);
+        cartListData(farmProductCartList);
+
+       switch (order_type){
+
+           case "Delivery":
+           {
+               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+           }
+
+
+           break;
+           case "Pickup":
+           {
+               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+           }
+           break;
+
+       }
     }
 
     @Override
