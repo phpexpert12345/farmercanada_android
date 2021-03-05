@@ -40,29 +40,34 @@ public class SignUpViewModel extends BaseViewModel {
             stateMachine.postValue(DataFetchState.error("Please enter Name", new SignUpApiModel()));
             return;
         }
-        if (signUpRequestParams.getMobile().isEmpty()) {
+       else if (signUpRequestParams.getMobile().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new SignUpApiModel()));
             return;
         }
-        if (signUpRequestParams.getMobile().length()<10) {
+      else  if (signUpRequestParams.getMobile().length()<10) {
             stateMachine.postValue(DataFetchState.error("Please enter a valid Mobile number", new SignUpApiModel()));
             return;
         }
-        if (signUpRequestParams.getEmail().isEmpty()) {
+      else  if (signUpRequestParams.getEmail().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Email", new SignUpApiModel()));
             return;
         }
 
-        if (!emailValidator(signUpRequestParams.getEmail())) {
+      else  if (!emailValidator(signUpRequestParams.getEmail())) {
             Log.e("validate", String.valueOf(emailValidator(signUpRequestParams.getEmail())));
             stateMachine.postValue(DataFetchState.error("Please enter a valid Email Address", new SignUpApiModel()));
             return;
         }
 
-        if (signUpRequestParams.getPassword().isEmpty()) {
+      else  if (signUpRequestParams.getPassword().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new SignUpApiModel()));
             return;
         }
+      else if(signUpRequestParams.getPassword().length()<5){
+            stateMachine.postValue(DataFetchState.error("Password should  be minimum 5 digit", new SignUpApiModel()));
+            return;
+        }
+
 
         repository.doUserRegis(signUpRequestParams, new ApiResponseCallback<SignUpApiModel>() {
             @Override
