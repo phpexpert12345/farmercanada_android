@@ -1,5 +1,8 @@
 package com.farmers.buyers.modules.signUp;
 
+import android.util.Log;
+import android.util.Patterns;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.AppController;
@@ -14,6 +17,9 @@ import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpRequestParams;
 import com.farmers.buyers.remote.StandardError;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * created by Mohammad Sajjad
@@ -33,13 +39,23 @@ public class SignUpViewModel extends BaseViewModel {
         if (signUpRequestParams.getName().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Name", new SignUpApiModel()));
             return;
-        } else if (signUpRequestParams.getMobile().isEmpty()) {
+        }
+        if (signUpRequestParams.getMobile().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new SignUpApiModel()));
             return;
         }
-
+        if (signUpRequestParams.getMobile().length()<10) {
+            stateMachine.postValue(DataFetchState.error("Please enter a valid Mobile number", new SignUpApiModel()));
+            return;
+        }
         if (signUpRequestParams.getEmail().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Email", new SignUpApiModel()));
+            return;
+        }
+
+        if (!emailValidator(signUpRequestParams.getEmail())) {
+            Log.e("validate", String.valueOf(emailValidator(signUpRequestParams.getEmail())));
+            stateMachine.postValue(DataFetchState.error("Please enter a valid Email Address", new SignUpApiModel()));
             return;
         }
 
@@ -159,10 +175,14 @@ public class SignUpViewModel extends BaseViewModel {
         repository.verifyRegistrationOtp(params, new ApiResponseCallback<VerifyOtpApiModel>() {
             @Override
             public void onSuccess(VerifyOtpApiModel response) {
-                if (response.status) {
-                    stateMachine.postValue(DataFetchState.success(response, response.status_message));
+                if (response.getStatus()) {
+                    SharedPreferenceManager.getInstance().setIsLoggedIn(true);
+                    SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
+                    SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
+                    SharedPreferenceManager.getInstance().setRole(response.getData().getAccountType());
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 } else {
-                    stateMachine.postValue(DataFetchState.error(response.status_message, response));
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), response));
                 }
             }
 
@@ -171,5 +191,16 @@ public class SignUpViewModel extends BaseViewModel {
                 stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new VerifyOtpApiModel()));
             }
         });
+    }
+
+    public static boolean emailValidator(final String mailAddress) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z].+[a-z]+";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(mailAddress);
+        return matcher.matches();
+
     }
 }

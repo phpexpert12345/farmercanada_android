@@ -10,6 +10,8 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class TrackOrderCountItem implements RecyclerViewListItem {
+   public int count;
+   public String total_price;
     @Override
     public int getViewType() {
         return CardConstant.TRACK_ORDER_COUNT_ADAPTER;

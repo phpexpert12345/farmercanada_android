@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/setup_range_delivery_item_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10KM"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:textColor="@color/primaryTextColor"
+        android:padding="@dimen/_8sdp"/>
+
+</LinearLayout>

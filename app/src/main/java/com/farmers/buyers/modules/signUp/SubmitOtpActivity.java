@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.common.utils.GenericTextWatcher;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
@@ -27,6 +28,7 @@ import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 
 public class SubmitOtpActivity extends BaseActivity {
 
@@ -155,8 +157,14 @@ public class SubmitOtpActivity extends BaseActivity {
                         if (extra) {
                             startActivity(new Intent(SubmitOtpActivity.this, ForgotPassword.class));
                         } else {
-                            startActivity(new Intent(SubmitOtpActivity.this, LoginActivity.class));
+                            if (verifyOtpApiModelDataFetchState.data.getData().getAccountType().equals("Seller")) {
+                                startActivity(new Intent(SubmitOtpActivity.this, StoreDetailsStepActivity.class));
+                            }
+                            else {
+                                startActivity(new Intent(SubmitOtpActivity.this, HomeActivity.class));
+                            }
                         }
+                        App.finish_activity=true;
                         finish();
                     }
 

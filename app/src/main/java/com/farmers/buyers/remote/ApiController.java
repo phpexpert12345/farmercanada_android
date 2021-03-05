@@ -11,6 +11,7 @@ import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
+import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.ratingAndReview.customerReview.model.CustomerReviewListApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewListApiModel;
@@ -22,6 +23,7 @@ import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
+import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -32,6 +34,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Url;
 
 /**
@@ -319,5 +322,40 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<FarmReviewedListApiModel> getFarmReviewedList(@Url String url, @Field("farm_id") String farmId, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
+
+    @FormUrlEncoded
+    @POST
+    Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText, @Field("LoginId") String loginId);
+
+
+    @Multipart
+    @POST
+    Call<SetupStoreApiModel> doSetupStore(@Url String url,
+                                          @Part("store_type") RequestBody storeType,
+                                          @Part("store_name") RequestBody storeName,
+                                          @Part("store_address") RequestBody address,
+                                          @Part("store_city") RequestBody city,
+                                          @Part("store_state") RequestBody state,
+                                          @Part("store_country") RequestBody country,
+                                          @Part("store_post_code") RequestBody postCode,
+                                          @Part("order_type") RequestBody orderType,
+                                          @Part("pickup_minimum_amount") RequestBody pickUpMinimumOrderAmount,
+                                          @Part("pickup_message") RequestBody pickUpMsg,
+                                          @Part("delivery_map_location_area") RequestBody mapLocation,
+                                          @Part("delivery_location_distance") RequestBody radius,
+                                          @Part("delivery_charge") RequestBody deliveryCharge,
+                                          @Part("delivery_additional_charge") RequestBody additionalCharge,
+                                          @Part("delivery_minimum_amount") RequestBody deliveryMinimumAmount,
+                                          @Part("delivery_message") RequestBody deliveryMsg,
+                                          @Part("company_type") RequestBody companyType,
+                                          @Part("document_type_1") RequestBody documentType,
+                                          @Part("LoginId") RequestBody loginId,
+                                          @Part("auth_key") RequestBody authKey,
+                                          @Part("store_logo") MultipartBody.Part logo,
+                                          MultipartBody.Part docOneFront,
+                                          MultipartBody.Part docOneBack,
+                                          MultipartBody.Part docTwoFront,
+                                          MultipartBody.Part docTwoBack);
+
 }
 

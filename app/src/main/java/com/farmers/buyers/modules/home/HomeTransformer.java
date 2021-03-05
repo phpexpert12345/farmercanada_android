@@ -3,6 +3,8 @@ package com.farmers.buyers.modules.home;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.model.MultipleTextItems;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
+import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetablesListItem;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.HomeCategoryItems;
 import com.farmers.buyers.modules.home.models.HomeCategoryListItem;
@@ -13,6 +15,8 @@ import com.farmers.buyers.modules.home.models.HomeListItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersItem;
 import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
+import com.farmers.buyers.modules.home.search.model.HomeSearchCategoryList;
+import com.farmers.buyers.modules.home.search.model.HomeSearchSubProductItemsRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +93,27 @@ public class HomeTransformer {
     public static HomeFilterListItems getFilterItems() {
         List<RecyclerViewListItem> filterItems = new ArrayList<>();
         filterItems.add(new MultipleTextItems("Categories", true));
-        filterItems.add(new MultipleTextItems("Subscribed", true));
         return new HomeFilterListItems(filterItems);
+    }
+
+    public static FarmDetailsVegetablesListItem transformApiModelToHomeSearchItems(List<HomeSearchSubProductItemsRecord> apiModel) {
+        List<RecyclerViewListItem> item = new ArrayList<>();
+        for (int i = 0; apiModel.size() > i; i++) {
+            item.add(new FarmDetailsVegetableItems(apiModel.get(i).getProductImages(),
+                    apiModel.get(i).getProductName(),
+                    apiModel.get(i).getProductSalesPrice(),
+                    apiModel.get(i).getPriceUnitType(),
+                    true,
+                    apiModel.get(i).getShoppingItemQuantity(),
+                    apiModel.get(i).getProductCode(),
+                    apiModel.get(i).getProductStock(),
+                    apiModel.get(i).getShoppingItemAvailable(),
+                    String.valueOf(apiModel.get(i).getCategoryId()),
+                    String.valueOf(apiModel.get(i).getCartId()),
+                    String.valueOf(apiModel.get(i).getProductID()),
+                    String.valueOf(apiModel.get(i).getPriceUnitType()),
+                    String.valueOf(apiModel.get(i).getFarmId())));
+        }
+        return new FarmDetailsVegetablesListItem(item);
     }
 }

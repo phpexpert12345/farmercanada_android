@@ -119,7 +119,8 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 if (appControllerContract.getIsLoggedIn()) {
                     switch (appControllerContract.getRole()) {
-                        case "2": {
+                        case "1":
+                        case "Seller": {
                             if (appControllerContract.getIsStoreSetup()) {
                                 startActivity(new Intent(SplashActivity.this, OurOrdersActivity.class));
                             } else {
@@ -128,7 +129,8 @@ public class SplashActivity extends BaseActivity {
                             finish();
                             break;
                         }
-                        case "1": {
+                        case "2":
+                        case "Buyer": {
                             startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                             finish();
                             break;
