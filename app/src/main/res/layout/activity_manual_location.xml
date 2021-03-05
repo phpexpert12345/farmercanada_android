@@ -37,6 +37,7 @@
             android:drawablePadding="@dimen/dp_16_px"
             android:ellipsize="end"
             android:enabled="true"
+            android:editable="false"
             android:fontFamily="@font/sf_ui_regular"
             android:hint="Enter your address"
             android:paddingStart="@dimen/dp_10_px"

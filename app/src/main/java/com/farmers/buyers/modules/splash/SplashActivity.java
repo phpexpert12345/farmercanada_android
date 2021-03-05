@@ -17,11 +17,16 @@ import androidx.multidex.MultiDex;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
+import com.farmers.buyers.common.utils.AlertHelper;
+import com.farmers.buyers.common.utils.OnAlertClickListener;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.HomeActivity;
+import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.onBoarding.OnBoardingActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class SplashActivity extends BaseActivity {
@@ -82,6 +87,7 @@ public class SplashActivity extends BaseActivity {
                     }
                     case ERROR: {
                         error(state.status_message);
+                        break;
                     }
 
                 }
@@ -112,9 +118,22 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 if (appControllerContract.getIsLoggedIn()) {
-                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+                    switch (appControllerContract.getRole()) {
+                        case "2": {
+                            if (appControllerContract.getIsStoreSetup()) {
+                                startActivity(new Intent(SplashActivity.this, OurOrdersActivity.class));
+                            } else {
+                                startActivity(new Intent(SplashActivity.this, StoreDetailsStepActivity.class));
+                            }
+                            finish();
+                            break;
+                        }
+                        case "1": {
+                            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                            finish();
+                            break;
+                        }
+                    }
                 } else {
                     Intent intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
                     startActivity(intent);
@@ -127,6 +146,17 @@ public class SplashActivity extends BaseActivity {
 
     private void error(String error) {
         dismissLoader();
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+        AlertHelper.showAlert(this, "Authentication Error", error, true, "Retry", true, "Exit", false, new OnAlertClickListener() {
+            @Override
+            public void onNegativeBtnClicked() {
+                finish();
+            }
+
+            @Override
+            public void onPositiveBtnClicked() {
+                authenticateUser();
+            }
+        });
+//        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 }

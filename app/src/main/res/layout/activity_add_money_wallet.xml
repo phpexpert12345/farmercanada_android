@@ -126,7 +126,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:textColor="@color/black"
             android:text="Pay By"
-            android:textSize="@dimen/_25sdp"
+            android:textSize="@dimen/_18sdp"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_10sdp"/>
         <LinearLayout

@@ -34,8 +34,8 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@mipmap/ic_address_not" />
 
         <TextView
@@ -44,8 +44,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_ui_regular"
             android:text="No address"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_16sdp" />
 
     </LinearLayout>
 </LinearLayout>

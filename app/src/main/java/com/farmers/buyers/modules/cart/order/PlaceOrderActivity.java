@@ -8,10 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -25,6 +29,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.contrarywind.adapter.WheelAdapter;
+import com.contrarywind.listener.OnItemSelectedListener;
+import com.contrarywind.view.WheelView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
@@ -39,6 +46,7 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.OrderSuccessDialog;
+import com.farmers.buyers.modules.cart.checkout.CheckOutFromCartActivity;
 import com.farmers.buyers.modules.cart.checkout.model.CheckOutCartAddressItems;
 import com.farmers.buyers.modules.cart.myCart.model.MyCartItem;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
@@ -90,6 +98,106 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     String date;
     String time;
     StripePay stripePay;
+    Dialog date_dialog;
+    CardView place_order_slot_card;
+    TextView txt_time;
+    ImageView img_time_edit;
+    LinearLayout  linear_refund,linear_okay;
+    RadioButton radio_refund,radio_okay;
+    List<AddressApiModel.AddressListData> addressListData=new ArrayList<>();
+    private void dialogTimeSelection(List<AddressApiModel.AddressListData> sessionTypeMainData,int type) {
+
+        date_dialog = new Dialog(PlaceOrderActivity.this);
+        date_dialog.setContentView(R.layout.dialog_session_type);
+        Window window = date_dialog.getWindow();
+        date_dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        TextView tvCancel = date_dialog.findViewById(R.id.tvCancel);
+        TextView tvDone = date_dialog.findViewById(R.id.tvDone);
+        TextView txt_title = date_dialog.findViewById(R.id.txt_title);
+
+        if(type==0){
+            txt_title.setText("Select Date");
+        }
+        else{
+            txt_title.setText("Select TimeSlot");
+        }
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date_dialog.cancel();
+
+            }
+        });
+        tvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* if (sessionType.equalsIgnoreCase("")){
+                    sessionType= sessionTypeMainData.get(0).getId();
+                    tvSessionType.setText(sessionTypeMainData.get(0).getSessionType());
+                }*/
+                // txt_selected_time.setText();
+                place_order_slot_card.setVisibility(View.VISIBLE);
+                txt_time.setText(time);
+                date_dialog.dismiss();
+
+            }
+        });
+
+        WheelView wvSessionType = date_dialog.findViewById(R.id.wvSessionType);
+        wvSessionType.setCyclic(false);
+
+        /*final List<String> mOptionsItems = new ArrayList<>();
+        for (int i=0;i<sessionTypeMainData.size();i++){
+            mOptionsItems.add("item0");
+        }*/
+
+        wvSessionType.setAdapter(new WheelAdapter() {
+            @Override
+            public int getItemsCount() {
+                return sessionTypeMainData.size();
+            }
+
+            @Override
+            public Object getItem(int index) {
+                if(type==0){
+                    return sessionTypeMainData.get(index).current_date;
+                }
+                else{
+                    return sessionTypeMainData.get(index).current_time;
+                }
+
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+        });
+        wvSessionType.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                switch (type){
+                    case 0:
+                        date=sessionTypeMainData.get(index).current_date;
+                        callTimeSlot(date);
+
+                        break;
+                    case 1:
+                        time=sessionTypeMainData.get(index).current_time;
+
+                        break;
+                }
+
+                //tvBookingTime.setText(sessionTypeMainData.get(index).getGetTime());
+                //txt_selected_time.setText(sessionTypeMainData.get(index).getGetTime());
+                //Toast.makeText(getApplicationContext(), "" + sessionTypeMainData.get(index).getSessionType(), Toast.LENGTH_SHORT).show();
+              /*  sessionType = sessionTypeMainData.get(index).getId();
+                tvSessionType.setText(sessionTypeMainData.get(index).getSessionType());*/
+            }
+        });
+        date_dialog.show();
+    }
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -115,12 +223,12 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
         App.finish_activity=false;
-        ToolbarConfig config = new ToolbarConfig("Add Date & Time", true, new View.OnClickListener() {
+        ToolbarConfig config = new ToolbarConfig("Schedule Date & Time", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -159,9 +267,11 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
-                    mTimeAdapter = new TimeListAdapter(PlaceOrderActivity.this, response.data.getData().getAllTimeList(),
-                            this);
-                    rv_time_list.setAdapter(mTimeAdapter);
+                    addressListData=response.data.getData().getAllTimeList();
+                    dialogTimeSelection(response.data.getData().getAllTimeList(),1);
+//                    mTimeAdapter = new TimeListAdapter(PlaceOrderActivity.this, response.data.getData().getAllTimeList(),
+//                            this);
+//                    rv_time_list.setAdapter(mTimeAdapter);
                     break;
                 case ERROR:
                     dismissLoader();
@@ -185,6 +295,13 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     private void init() {
         recyclerView = findViewById(R.id.place_order_recyclerView);
         paymentButton = findViewById(R.id.place_order_btn);
+        place_order_slot_card=findViewById(R.id.place_order_slot_card);
+        img_time_edit=findViewById(R.id.img_time_edit);
+        linear_okay=findViewById(R.id.linear_okay);
+        radio_refund=findViewById(R.id.radio_refund);
+        radio_okay=findViewById(R.id.radio_okay);
+        linear_refund=findViewById(R.id.linear_refund);
+        txt_time=findViewById(R.id.txt_time);
         adapter = new PlaceOrderAdapter(this);
         dialog = new OrderSuccessDialog(this, this, false);
         recyclerView.setAdapter(adapter);
@@ -193,7 +310,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 
         rv_time_list = findViewById(R.id.rv_time_list);
         rv_time_list.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-
+place_order_slot_card.setVisibility(View.GONE);
         SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
                 AppController.get().getLoginId());
 
@@ -246,6 +363,17 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 //                    SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString());
 //
 //            viewModel.submitOrder(submitMachine, param);
+        });
+        img_time_edit.setOnClickListener(v->{
+            dialogTimeSelection(addressListData,1);
+        });
+        linear_okay.setOnClickListener(v->{
+            radio_okay.setChecked(true);
+            radio_refund.setChecked(false);
+        });
+        linear_refund.setOnClickListener(v->{
+            radio_refund.setChecked(true);
+            radio_okay.setChecked(false);
         });
     }
 

@@ -58,7 +58,7 @@ public class TrackOrderActivity extends BaseActivity {
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -102,7 +102,14 @@ public class TrackOrderActivity extends BaseActivity {
         dismissLoader();
 
         items.add(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()));
-        items.add(new TrackOrderCountItem());
+        TrackOrderCountItem trackOrderCountItem=new TrackOrderCountItem();
+        trackOrderCountItem.count=dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().size();
+        double price=0.0;
+        for(int i=0;i<dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().size();i++){
+            price+=Double.parseDouble(dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().get(i).getItem_price())*Integer.parseInt(dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().get(i).getItem_quantity());
+        }
+        trackOrderCountItem.total_price= dataFetchState.data.getData().getAllOrderList().get(0).getTotal_amount();
+        items.add(trackOrderCountItem);
         items.addAll(TrackOrderTransformer.getTrackOrder(
                 dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList()));
         adapter.updateData(items);

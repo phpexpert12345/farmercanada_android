@@ -5,13 +5,14 @@
     android:id="@+id/home_category_ll"
     android:layout_width="@dimen/_80sdp"
     android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_5sdp"
     android:background="@drawable/gray_round_border_bg"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/category_item_card"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="@dimen/_50sdp"
         app:cardBackgroundColor="@color/transparent_gray"
         app:cardCornerRadius="@dimen/_5sdp">
 

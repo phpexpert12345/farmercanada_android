@@ -49,7 +49,18 @@ public class SubOrderItemViewHolder extends BaseViewHolder {
         SubOrdersListItem item = (SubOrdersListItem) items;
         itemData = item;
         tv_order_name.setText(item.getTitle());
-        sub_order_item_time_tv.setText(item.getTime());
+
+        if(item.getTime().contains(",")){
+           String [] items_=item.getTime().split(",");
+           if(items_.length>0){
+              sub_order_item_time_tv.setText(items_[0]+"\n"+items_[1]);
+           }
+        }
+        else{
+            sub_order_item_time_tv.setText(item.getTime());
+        }
+
+
         tv_order_number.setText(item.getOrderId());
         tv_order_amount.setText(item.getAmount());
 
