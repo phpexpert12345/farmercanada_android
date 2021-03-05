@@ -35,6 +35,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -59,7 +60,8 @@ public class LoginActivity extends BaseActivity {
     private Button loginBtn;
     private RadioGroup radioGroup;
     RelativeLayout relative_google,relative_face;
-    private int role = 1;  //todo 0 for buyer 1 for seller
+    //todo 0 for buyer 1 for seller
+    private int role = 2;  //todo 2 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
     @Override
@@ -109,11 +111,11 @@ public class LoginActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.login_seller_radio: {
-                        role = 0;
+                        role = 1;
                         break;
                     }
                     case R.id.login_buyer_radio: {
-                        role = 1;
+                        role = 2;
                         break;
                     }
                 }
@@ -164,12 +166,25 @@ public class LoginActivity extends BaseActivity {
                     case SUCCESS: {
                         dismissLoader();
                         Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                        if (role == 1) {
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                            finish();
-                        } else {
-                            startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
-                            finish();
+
+                        switch (viewModel.userType) {
+                            case "Seller": {
+                                if (viewModel.isStoreSetup.equals("1")) {
+                                    startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
+                                }
+                                else {
+                                    startActivity(new Intent(LoginActivity.this, StoreDetailsStepActivity.class));
+                                }
+                                finish();
+                                break;
+                            }
+                            case "Buyer" : {
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                finish();
+                                break;
+                            }
+
+
                         }
                         break;
                     }

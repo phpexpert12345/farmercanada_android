@@ -8,13 +8,37 @@
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
     tools:context="com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity">
 
-    <include layout="@layout/common_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_110sdp"
+        android:layout_height="@dimen/_150sdp"
         android:background="@mipmap/top_green_bg"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/_15sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:elevation="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/tv_setup_seller_back_img"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_white_back_arrow" />
+
+            <TextView
+                android:id="@+id/tv_setup_seller_toolbar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Setup Seller Account"
+                android:textColor="@color/secondaryTextColor" />
+
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,18 +46,19 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/_15sdp"
-            android:paddingRight="@dimen/_15sdp">
+           >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <LinearLayout
                         android:layout_width="@dimen/_35sdp"
@@ -54,12 +79,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center">
 
                     <View
-                        android:layout_width="@dimen/_50sdp"
+                        android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/white" />
                 </LinearLayout>
@@ -68,7 +94,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_3sdp">
 
                     <LinearLayout
                         android:layout_width="@dimen/_22sdp"
@@ -87,20 +115,23 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center">
 
                     <View
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="1sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:background="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_3sdp">
 
                     <LinearLayout
                         android:layout_width="@dimen/_22sdp"
@@ -118,131 +149,44 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
 
-                    <View
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="1sp"
-                        android:background="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="@dimen/_22sdp"
-                        android:layout_height="@dimen/_22sdp"
-                        android:background="@mipmap/unselect_circle"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:text="Store Details"
+                    android:gravity="start"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/_25sdp"
-                            android:text="Store\nDetails"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Service Details"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Service\nDetails"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_20sdp"
-                            android:gravity="center"
-                            android:text="Verification"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="end|center"
-                            android:text="Document\nUpload"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
+
 
         </LinearLayout>
 
@@ -256,7 +200,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/_10sdp">
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+           >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -265,11 +211,13 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/store_setup__store_image"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:src="@drawable/ic_user_light_red_bg" />
 
                 <LinearLayout
+                    android:id="@+id/store_detail_choose_image_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -304,6 +252,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setup_seller_store_name_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/store_name"
@@ -327,6 +276,7 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setup_store_location_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/location"
@@ -365,10 +315,13 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_state_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_state"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:editable="false"
+                        android:enabled="false"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -403,10 +356,13 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_city_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_city"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:editable="false"
+                        android:enabled="false"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -435,13 +391,15 @@
                 android:paddingRight="@dimen/_5sdp"
                 android:text="Store Timing"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/_5sdp">
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="0sp"
@@ -503,18 +461,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center">
-
-                <View
-                    android:layout_width="150sp"
-                    android:layout_height="2.5dp"
-                    android:background="@color/black" />
-            </LinearLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

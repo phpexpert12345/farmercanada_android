@@ -117,6 +117,22 @@ public class SharedPreferenceManager {
         return (String) getSharedPreferences(StorageKey.FarmId.toString(), "");
     }
 
+    public String getRole() {
+        return (String) getSharedPreferences(StorageKey.Role.toString(), "");
+    }
+
+    public void setRole(String value) {
+        setSharedPreference(StorageKey.Role.toString(), value);
+    }
+
+    public void setIsStoreSetup(Boolean value) {
+        setSharedPreference(StorageKey.IsStoreSetup.toString(), value);
+    }
+
+    public Boolean getIsStoreSetup() {
+        return (Boolean) getSharedPreferences(StorageKey.IsStoreSetup.toString(), false);
+    }
+
 
 
     public void setSharedPreference(String key, Object value) {
