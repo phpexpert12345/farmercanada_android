@@ -182,7 +182,7 @@ public class SubmitOtpActivity extends BaseActivity {
 
     private void success() {
         dismissLoader();
-        startActivity(new Intent(this, HomeActivity.class));
+//        startActivity(new Intent(this, HomeActivity.class));
     }
 
     private void error(String error) {

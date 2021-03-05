@@ -49,7 +49,7 @@ public class LoginActivity extends BaseActivity {
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private RadioGroup radioGroup;
-    private int role = 1;  //todo 0 for buyer 1 for seller
+    private int role = 2;  //todo 2 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
     @Override
@@ -89,11 +89,11 @@ public class LoginActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.login_seller_radio: {
-                        role = 0;
+                        role = 1;
                         break;
                     }
                     case R.id.login_buyer_radio: {
-                        role = 1;
+                        role = 2;
                         break;
                     }
                 }

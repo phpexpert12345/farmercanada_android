@@ -1,11 +1,16 @@
 package com.farmers.seller.modules.setupSellerAccount.storeDetails;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +27,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.ImageUtil;
 import com.farmers.buyers.common.utils.AlertHelper;
 import com.farmers.buyers.common.utils.OnAlertClickListener;
+import com.farmers.buyers.common.utils.Util;
 import com.farmers.buyers.storage.LatLngToGeoLocation;
 import com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity;
 import com.google.android.gms.common.api.Status;
@@ -58,6 +64,11 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
     public PlacesClient placesClient;
     public LatLngToGeoLocation latLngToGeoLocation = new LatLngToGeoLocation();
     private ImageUtil imageUtil = new ImageUtil();
+    private String country, postCode;
+    StoreSetupExtra extra = new StoreSetupExtra();
+    private String[] PERMISSIONS;
+
+
 
 
     @Override
@@ -109,7 +120,6 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
             @Override
             public void onNegativeBtnClicked() {
                 ImageUtil.choosePhotoFromGallery(StoreDetailsStepActivity.this, 102);
-//                cameraProvider.openGallery();
             }
 
             @Override
@@ -120,11 +130,17 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
     }
 
     private void init() {
+        PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+
 
         chooseStoreImageLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showProfilePicturePickerDialog();
+                if (!Util.hasPermissions(StoreDetailsStepActivity.this, PERMISSIONS)) {
+                    ActivityCompat.requestPermissions(StoreDetailsStepActivity.this, PERMISSIONS, 1);
+                }else {
+                    showProfilePicturePickerDialog();
+                }
             }
         });
     }
@@ -154,6 +170,11 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
                     locationEt.setText(latLngToGeoLocation.getAddressLine(this, lat, lng));
                     cityEt.setText(latLngToGeoLocation.getLocality(this, lat, lng));
                     stateEt.setText(latLngToGeoLocation.getAdminArea(this, lat, lng));
+                    country = latLngToGeoLocation.getCountryName(this, lat, lng);
+                    postCode = latLngToGeoLocation.getPostalCode(this, lat, lng);
+                    extra.setCountry(country);
+                    extra.setPostalCode(postCode);
+
 
                     if (cityEt.getText().toString().isEmpty()) {
                         cityEt.setEnabled(false);
@@ -180,13 +201,33 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
             }
         }
 
-        if (requestCode == 102) {
-            storeImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, StoreDetailsStepActivity.this).getBitmap());
-        }
-        if (requestCode == 201) {
-            storeImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, StoreDetailsStepActivity.this).getBitmap());
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 102) {
+                if (data != null) {
+                    storeImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, StoreDetailsStepActivity.this).getBitmap());
+                    extra.setStoreLogo(ImageUtil.phototakenFromGallery(data, this).getFile());
+                }
+            }else if (requestCode == 201) {
+                if (data != null) {
+                    storeImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, StoreDetailsStepActivity.this).getBitmap());
+                    extra.setStoreLogo(ImageUtil.photoTakenFromCamera(data, this).getFile());
+                }
+            }
         }
 
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 100);
+    }
+
+    public boolean checkCameraPermission() {
+        return (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
     @Override
@@ -216,14 +257,20 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
                 }
 
                 Intent intent = new Intent(this, ServiceDetailsStepActivity.class);
-                StoreSetupExtra extra = new StoreSetupExtra();
                 extra.setName(storeNameEt.getText().toString());
                 extra.setLocation(locationEt.getText().toString());
                 extra.setCity(cityEt.getText().toString());
                 extra.setState(stateEt.getText().toString());
+                extra.setCountry(country);
+                extra.setPostalCode(postCode);
                 intent.putExtra("storeExtra", extra);
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

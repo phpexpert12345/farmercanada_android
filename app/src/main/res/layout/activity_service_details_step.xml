@@ -364,6 +364,7 @@
                         android:src="@mipmap/doller_icon" />
 
                     <EditText
+                        android:id="@+id/store_setup_delivery_charges_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/transparent"
@@ -414,6 +415,7 @@
                         android:src="@mipmap/doller_icon" />
 
                     <EditText
+                        android:id="@+id/store_setup_additional_charges_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/transparent"
@@ -434,12 +436,14 @@
                     android:textColor="@color/primaryTextColor" />
 
                 <EditText
+                    android:id="@+id/store_setup_delivery_message_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60sdp"
+                    android:gravity="top"
+                    android:padding="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:background="@drawable/gray_border_transparent_bg" />
 
-            </LinearLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -451,13 +455,16 @@
                 app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_email_et"
+                    android:id="@+id/store_setup_minimum_order_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Minimum Order"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/store_setup_pickup_ll"
@@ -472,11 +479,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/light_gray"
-                    android:visibility="gone"
                     app:boxStrokeColor="@color/light_gray"
                     app:hintTextColor="@color/light_gray">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_pickup_minimum_order_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Minimum Order"
@@ -495,9 +502,12 @@
                     android:textColor="@color/primaryTextColor" />
 
                 <EditText
+                    android:id="@+id/store_setup_pickup_message_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_margin="@dimen/_5sdp"
+                    android:gravity="top"
+                    android:padding="@dimen/_5sdp"
                     android:background="@drawable/gray_border_transparent_bg" />
 
             </LinearLayout>

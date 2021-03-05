@@ -19,6 +19,7 @@ import com.farmers.seller.modules.setupSellerAccount.serviceDetails.model.StoreD
 public class StoreDeliveryRangeViewHolder extends BaseViewHolder {
     private TextView rangeTv;
     private RangeSelectedListener listener;
+    private int selected = -1;
 
     public StoreDeliveryRangeViewHolder(@NonNull ViewGroup parent, RangeSelectedListener listener) {
         super(Extensions.inflate(parent, R.layout.store_setup_delivery_range_item_layout));
@@ -34,24 +35,22 @@ public class StoreDeliveryRangeViewHolder extends BaseViewHolder {
         rangeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                selected = getAdapterPosition();
+                selected = getAdapterPosition();
                 rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
                 rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.white));
-
-
-//                listener.onRangeSelectListener(item.getTitle(), getAdapterPosition());
+                listener.onRangeSelectListener(item.getTitle(), getAdapterPosition());
             }
         });
 
-//        if (selected == getAdapterPosition()) {
-//            selected = getOldPosition();
-//            rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
-//            rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.white));
-//        }
-//        else {
-//            rangeTv.setBackground(null);
-//            rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
-//        }
+        if (selected != getAdapterPosition()) {
+            selected = getOldPosition();
+            rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
+            rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.white));
+        }
+        else {
+            rangeTv.setBackground(null);
+            rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+        }
     }
 
 

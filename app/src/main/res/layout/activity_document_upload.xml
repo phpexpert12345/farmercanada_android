@@ -206,14 +206,17 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/store_setup_homemade_check"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Home Made"
                     android:fontFamily="@font/sf_ui_semibold"
-                    android:textColor="@color/primaryTextColor"/>
+                    android:textColor="@color/primaryTextColor"
+                    android:buttonTint="@color/green"/>
 
                 <CheckBox
+                    android:id="@+id/store_setup_local_check"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -221,7 +224,7 @@
                     android:checked="true"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:textColor="@color/primaryTextColor"
-                    android:drawableTint="@color/green"
+                    android:buttonTint="@color/green"
                     />
 
             </LinearLayout>
@@ -250,6 +253,7 @@
                     android:layout_marginRight="@dimen/_16sdp">
 
                     <ImageView
+                        android:id="@+id/store_setup_document_one_front_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -267,6 +271,7 @@
                     android:layout_marginLeft="@dimen/_16sdp">
 
                     <ImageView
+                        android:id="@+id/store_setup_document_one_back_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -301,6 +306,7 @@
                     android:layout_marginRight="@dimen/_16sdp">
 
                     <ImageView
+                        android:id="@+id/store_setup_document_two_front_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -318,6 +324,7 @@
                     android:layout_marginLeft="@dimen/_16sdp">
 
                     <ImageView
+                        android:id="@+id/store_setup_document_two_back_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

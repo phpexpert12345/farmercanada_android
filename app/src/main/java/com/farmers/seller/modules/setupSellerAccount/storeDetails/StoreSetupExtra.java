@@ -1,6 +1,9 @@
 package com.farmers.seller.modules.setupSellerAccount.storeDetails;
 
+import java.io.File;
 import java.io.Serializable;
+
+import kotlin.io.FilesKt;
 
 /**
  * Created by Mohammad sajjad on 04-03-2021.
@@ -11,6 +14,8 @@ public class StoreSetupExtra implements Serializable {
     String location;
     String city;
     String state;
+    String country;
+    String postalCode;
     String deliveryType;
     String radius;
     String deliveryCharges;
@@ -20,6 +25,19 @@ public class StoreSetupExtra implements Serializable {
     String pickupMessage;
     String minimumDeliveryOrder;
     String minimumPickupOrder;
+    String docTypeOne;
+    String docTypeTwo;
+    String companyType;
+    String mapLat;
+    String mapLong;
+    String docType;
+    String storeLogoPath;
+    File storeLogo;
+    File docOneFront;
+    File docOneBack;
+    File docTwoFront;
+    File docTwoBack;
+
 
     public String getName() {
         return name;
@@ -123,5 +141,117 @@ public class StoreSetupExtra implements Serializable {
 
     public void setMinimumPickupOrder(String minimumPickupOrder) {
         this.minimumPickupOrder = minimumPickupOrder;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getDocTypeOne() {
+        return docTypeOne;
+    }
+
+    public void setDocTypeOne(String docTypeOne) {
+        this.docTypeOne = docTypeOne;
+    }
+
+    public String getDocTypeTwo() {
+        return docTypeTwo;
+    }
+
+    public void setDocTypeTwo(String docTypeTwo) {
+        this.docTypeTwo = docTypeTwo;
+    }
+
+    public String getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(String companyType) {
+        this.companyType = companyType;
+    }
+
+    public String getMapLat() {
+        return mapLat;
+    }
+
+    public void setMapLat(String mapLat) {
+        this.mapLat = mapLat;
+    }
+
+    public String getMapLong() {
+        return mapLong;
+    }
+
+    public void setMapLong(String mapLong) {
+        this.mapLong = mapLong;
+    }
+
+    public String getDocType() {
+        return docType;
+    }
+
+    public void setDocType(String docType) {
+        this.docType = docType;
+    }
+
+    public String getStoreLogoPath() {
+        return storeLogoPath;
+    }
+
+    public void setStoreLogoPath(String storeLogoPath) {
+        this.storeLogoPath = storeLogoPath;
+    }
+
+    public File getStoreLogo() {
+        return storeLogo;
+    }
+
+    public void setStoreLogo(File storeLogo) {
+        this.storeLogo = storeLogo;
+    }
+
+    public File getDocOneFront() {
+        return docOneFront;
+    }
+
+    public void setDocOneFront(File docOneFront) {
+        this.docOneFront = docOneFront;
+    }
+
+    public File getDocOneBack() {
+        return docOneBack;
+    }
+
+    public void setDocOneBack(File docOneBack) {
+        this.docOneBack = docOneBack;
+    }
+
+    public File getDocTwoFront() {
+        return docTwoFront;
+    }
+
+    public void setDocTwoFront(File docTwoFront) {
+        this.docTwoFront = docTwoFront;
+    }
+
+    public File getDocTwoBack() {
+        return docTwoBack;
+    }
+
+    public void setDocTwoBack(File docTwoBack) {
+        this.docTwoBack = docTwoBack;
     }
 }
