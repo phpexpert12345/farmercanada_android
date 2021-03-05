@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1019091949883-aitsn713mbikusk78mm2uqu0fpv2aeis.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.farmers.buyers",
+            "certificate_hash": "45f9adc04e39ab87e4aa3102a0be2bed609c1d10"
+          }
+        },
+        {
           "client_id": "1019091949883-ccjsgab06gepfcfu44bb5091fa2pub96.apps.googleusercontent.com",
           "client_type": 3
         }

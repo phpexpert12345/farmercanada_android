@@ -202,7 +202,7 @@ public class MyCartFragment extends BaseFragment implements
                     adapter.updateData(items);
                     break;
                 case LOADING:
-                    showLoader();
+//                    showLoader();
                     break;
                 case ERROR:
                     dismissLoader();

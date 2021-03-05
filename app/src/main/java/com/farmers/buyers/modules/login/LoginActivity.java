@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -27,11 +29,18 @@ import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends BaseActivity {
-
+    private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 9001;
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
         @NonNull
@@ -49,6 +58,7 @@ public class LoginActivity extends BaseActivity {
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private RadioGroup radioGroup;
+    RelativeLayout relative_google,relative_face;
     private int role = 1;  //todo 0 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
@@ -57,6 +67,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         App.finish_activity=false;
+
         init();
         listener();
     }
@@ -127,7 +138,16 @@ public class LoginActivity extends BaseActivity {
         mobileEt = findViewById(R.id.login_email_et);
         passwordEt = findViewById(R.id.login_password_et);
         radioGroup = findViewById(R.id.login_radio_group);
-
+        relative_google=findViewById(R.id.relative_google);
+        relative_face=findViewById(R.id.relative_face);
+        relative_google.setOnClickListener(v->{
+//            GoogleLogin();
+        });
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
             public void onChanged(DataFetchState dataFetchState) {
@@ -156,5 +176,29 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+    }
+    private void GoogleLogin(){
+        // Configure Google Sign In
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                Toast.makeText(this, account.getEmail(), Toast.LENGTH_SHORT).show();
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+
+                // [START_EXCLUDE]
+
+                // [END_EXCLUDE]
+            }
+        }
     }
 }

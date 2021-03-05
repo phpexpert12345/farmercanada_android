@@ -10,7 +10,6 @@ import java.io.Serializable;
  * Created by Ganesh ɐɯɹɐɥs on 2/17/2021.
  */
 public class FarmListProductResponse{
-
     @SerializedName("status_code")
     @Expose
     private String statusCode;

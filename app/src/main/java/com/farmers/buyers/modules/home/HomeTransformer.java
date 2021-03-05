@@ -93,7 +93,6 @@ public class HomeTransformer {
     public static HomeFilterListItems getFilterItems() {
         List<RecyclerViewListItem> filterItems = new ArrayList<>();
         filterItems.add(new MultipleTextItems("Categories", true));
-        filterItems.add(new MultipleTextItems("Subscribed", true));
         return new HomeFilterListItems(filterItems);
     }
 
