@@ -22,8 +22,27 @@ public class FarmDetailItems implements RecyclerViewListItem {
     String farmImage;
     String farmId;
 
+    public Double getFarmLat() {
+        return farmLat;
+    }
+
+    public void setFarmLat(Double farmLat) {
+        this.farmLat = farmLat;
+    }
+
+    public Double getFarmLong() {
+        return farmLong;
+    }
+
+    public void setFarmLong(Double farmLong) {
+        this.farmLong = farmLong;
+    }
+
+    Double farmLat;
+    Double farmLong;
+
     public FarmDetailItems(String farmName, String farmAddress, String rating, String hostedBy, String farm_opening_hours, String
-            farm_estimate_delivery_time, String farm_followed_status, String farm_delivery_radius_text, String farm_hosted_by, String farmImage, String farmId) {
+            farm_estimate_delivery_time, String farm_followed_status, String farm_delivery_radius_text, String farm_hosted_by, String farmImage, String farmId, Double farmLat,Double farmLong) {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
         this.rating = rating;
@@ -35,6 +54,9 @@ public class FarmDetailItems implements RecyclerViewListItem {
         this.farm_hosted_by = farm_hosted_by;
         this.farmImage = farmImage;
         this.farmId = farmId;
+        this.farmLat=farmLat;
+        this.farmLong=farmLong;
+
     }
 
     public FarmDetailItems() {

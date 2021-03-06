@@ -11,11 +11,15 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
+import com.farmers.buyers.common.utils.Helper;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailItems;
 import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
+import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
+
+import java.text.DecimalFormat;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,11 +30,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class FarmDetailViewHolder extends BaseViewHolder {
-    TextView farm_detail_item_farm_name_tv, tv_distance, tv_opening_time, tv_rating, tv_open_status, tv_hosted_by, tv_hosted_by_name, reviewTv;
+    TextView farm_detail_item_farm_name_tv, tv_distance, tv_opening_time,
+            tv_rating, tv_open_status, tv_hosted_by, tv_hosted_by_name, reviewTv;
     CircleImageView civ_farm_image;
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
     private FarmDetailItemClickListener farmDetailItemClickListener;
+    private GPSTracker gpsTracker = new GPSTracker(itemView.getContext());
 
     public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailItemClickListener farmDetailItemClickListener) {
         super(Extensions.inflate(parent, R.layout.farm_detail_item_layout));
@@ -82,7 +88,8 @@ public class FarmDetailViewHolder extends BaseViewHolder {
                 .into(civ_farm_image);
 
         farm_detail_item_farm_name_tv.setText(item.getFarmName());
-        tv_distance.setText(item.getFarm_delivery_radius_text());
+        tv_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong()))+ " km away from you");
+//        tv_distance.setText(item.getFarm_delivery_radius_text());
         tv_opening_time.setText(item.getFarm_estimate_delivery_time());
         tv_rating.setText(item.getRating());
         //  tv_open_status.setText(item.getFarm_followed_status());

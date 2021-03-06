@@ -61,6 +61,7 @@ public class LoginViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setRole(response.getData().getAccountTypeName());
                     SharedPreferenceManager.getInstance().setIsStoreSetup(response.getData().getStoreSetupStatus().equals("1"));
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE",response.getData().getAccountTypeName());
                     userType = response.getData().getAccountTypeName();
                     isStoreSetup = response.getData().getStoreSetupStatus();
 

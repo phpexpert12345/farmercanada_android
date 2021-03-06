@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +73,8 @@ public class MyCartFragment extends BaseFragment implements
     LinearLayout ll_data_not_available;
     String order_type="";
     private String subTotal = "";
+    ImageView cart_back;
+    TextView text_cart;
     List<FarmProductCartList> farmProductCartList=new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -110,6 +113,10 @@ public class MyCartFragment extends BaseFragment implements
         linear_order=view.findViewById(R.id.linear_order);
         textViewDelivery=view.findViewById(R.id.textViewDelivery);
         textViewPickUp=view.findViewById(R.id.textViewPickUp);
+        cart_back=view.findViewById(R.id.cart_back);
+        cart_back.setVisibility(View.GONE);
+        text_cart=view.findViewById(R.id.text_cart);
+        text_cart.setText("My Cart");
         ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
         order_type=SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
         setType();

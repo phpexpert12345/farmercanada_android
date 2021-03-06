@@ -78,7 +78,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -92,7 +92,6 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     private void init() {
         recyclerView = findViewById(R.id.my_address_recyclerView);
         ll_data_not_available = findViewById(R.id.ll_data_not_available);
-
         addNewAddress = findViewById(R.id.add_new_address);
         tv_error_msg = findViewById(R.id.tv_error_msg);
         adapter = new MyAddressAdapter(this);

@@ -133,7 +133,7 @@
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_15sdp"
-                        android:text="Tap to Copy Code"
+                        android:text="Tap on Copy to copy code"
                         android:textColor="@color/reset_bg"
                         android:textSize="@dimen/dp_15_px" />
 
@@ -171,6 +171,7 @@
                         android:layout_margin="@dimen/_30sdp"
                         android:background="@drawable/round_corner_light_gradient_bg"
                         android:text="Share"
+                        android:textSize="@dimen/_18sdp"
                         android:textAllCaps="false"
                         android:textColor="@color/secondaryTextColor" />
 

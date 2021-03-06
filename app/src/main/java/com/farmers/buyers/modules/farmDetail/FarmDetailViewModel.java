@@ -16,6 +16,7 @@ import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDec
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.CategoryList;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
+import com.farmers.buyers.modules.farmDetail.model.farmList.response.SubProductItemsRecord;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowRequestParams;
 import com.farmers.buyers.modules.home.homeFragment.HomeFragmentRepository;
@@ -36,6 +37,7 @@ public class FarmDetailViewModel extends BaseViewModel {
     private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
 
+
     public void getFarmProductList(MutableLiveData<DataFetchState<FarmListProductResponse>> stateMutableLiveData,
                                    FarmProductListReq farmProductListReq) {
         stateMutableLiveData.postValue(DataFetchState.<FarmListProductResponse>loading());
@@ -44,11 +46,26 @@ public class FarmDetailViewModel extends BaseViewModel {
             public void onSuccess(FarmListProductResponse response) {
                 items.clear();
                 Intent intent = farmProductListReq.getContext().getIntent();
+                String farm_followed_status="";
+                String favourite_id="";
+
+                if(response.getData().getCategoryList().size()>0){
+                    for(int i=0;i<response.getData().getCategoryList().size();i++){
+                        CategoryList categoryList=response.getData().getCategoryList().get(i);
+                        if(categoryList.getCategoryItemAvailable().equalsIgnoreCase("Yes")){
+                            SubProductItemsRecord subProductItemsRecord=categoryList.getSubProductItemsRecord().get(0);
+                            farm_followed_status=subProductItemsRecord.getFarm_followed_status();
+                            favourite_id=subProductItemsRecord.getFollowed_id();
+                            break;
+
+                        }
+                    }
+                }
                 items.add(FarmDetailTransformer.getHeaderItems(intent.getStringExtra("FARM_ADDRESS"),
                         intent.getStringExtra("farm_image"),
                         intent.getStringExtra("farm_cover_image"),
-                        intent.getStringExtra("farm_followed_status"),
-                        intent.getStringExtra("followed_id")));
+                        farm_followed_status,
+                        favourite_id));
 
                 items.add(FarmDetailTransformer.getFarmDetailItems(intent.getStringExtra("FARM_NAME"),
                         intent.getStringExtra("FARM_ADDRESS"), intent.getStringExtra("RATING_ANG"),
@@ -58,7 +75,7 @@ public class FarmDetailViewModel extends BaseViewModel {
                         intent.getStringExtra("farm_delivery_radius_text"),
                         intent.getStringExtra("farm_hosted_by"),
                         intent.getStringExtra("farm_image"),
-                        intent.getStringExtra("FARM_ID")));
+                        intent.getStringExtra("FARM_ID"),intent.getDoubleExtra("farm_lat",0.0),intent.getDoubleExtra("farm_long",0.0)));
 
                 if (response.getStatus()) {
                     if (!response.getData().getCategoryList().isEmpty()) {

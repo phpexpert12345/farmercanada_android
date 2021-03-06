@@ -41,6 +41,38 @@ public class SubProductItemsRecord {
     @SerializedName("price_unit_type")
     @Expose
     private String priceUnitType;
+
+    public String getFarm_followed_status() {
+        return farm_followed_status;
+    }
+
+    public void setFarm_followed_status(String farm_followed_status) {
+        this.farm_followed_status = farm_followed_status;
+    }
+
+    public String getFavourite_id() {
+        return favourite_id;
+    }
+
+    public void setFavourite_id(String favourite_id) {
+        this.favourite_id = favourite_id;
+    }
+
+    @SerializedName("farm_followed_status")
+    private String farm_followed_status;
+    @SerializedName("favourite_id")
+    private String  favourite_id;
+
+    public String getFollowed_id() {
+        return followed_id;
+    }
+
+    public void setFollowed_id(String followed_id) {
+        this.followed_id = followed_id;
+    }
+
+    @SerializedName("followed_id")
+    private String followed_id;
     public String product_code;
     public String shopping_item_quantity;
     public String product_stock;

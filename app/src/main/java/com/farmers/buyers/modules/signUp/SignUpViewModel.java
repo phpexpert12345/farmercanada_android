@@ -76,6 +76,7 @@ public class SignUpViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setSignUpMobileNumber(response.getData().getLoginPhone());
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setIsComingFrom(1);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE",response.getData().getAccountTypeName());
 //                    SharedPreferenceManager.getInstance().setIsLoggedIn(true);
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 } else {

@@ -76,11 +76,11 @@ public class OtpActivity extends BaseActivity {
         extra = getIntent().getBooleanExtra("fromForgetPassword", false);
         requestOtpBtn = findViewById(R.id.request_otp_btn);
         mobileNumberEt = findViewById(R.id.otp_number_et);
-        image_back_button=findViewById(R.id.image_back_button);
-        text_screen_title=findViewById(R.id.text_screen_title);
+        image_back_button=findViewById(R.id.forgot_back);
+        text_screen_title=findViewById(R.id.text_forgot);
         text_screen_title.setText("Forgot Password");
         image_back_button.setOnClickListener(v->{
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            onBackPressed();
         });
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
