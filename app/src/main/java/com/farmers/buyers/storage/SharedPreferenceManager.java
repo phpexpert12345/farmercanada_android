@@ -133,6 +133,13 @@ public class SharedPreferenceManager {
         return (Boolean) getSharedPreferences(StorageKey.IsStoreSetup.toString(), false);
     }
 
+    public void setGoogleApiKey(String value) {
+        setSharedPreference(StorageKey.GOOGLE_API_KEY.toString(), value);
+    }
+
+    public String getGoogleApiKey() {
+        return (String) getSharedPreferences(StorageKey.GOOGLE_API_KEY.toString(), "");
+    }
 
 
     public void setSharedPreference(String key, Object value) {

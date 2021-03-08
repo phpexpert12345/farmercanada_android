@@ -117,6 +117,7 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.e("loginID", appControllerContract.getLoginId());
                 if (appControllerContract.getIsLoggedIn()) {
                     switch (appControllerContract.getRole()) {
                         case "Seller": {

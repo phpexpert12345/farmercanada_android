@@ -19,12 +19,43 @@ import retrofit2.Call;
 public class SetupStoreRepository extends BaseRepository {
 
     public void doStoreSetup(SetupStoreRequestParams params, ApiResponseCallback<SetupStoreApiModel> responseCallback){
-        RequestBody logoBody = RequestBody.create(MediaType.parse("image/*"),params.getLogo());
-                RequestBody doc1Body = RequestBody.create(MediaType.parse("image/*"),params.getDoc1());
-                RequestBody doc2Body = RequestBody.create(MediaType.parse("image/*"),params.getDoc2());
-                RequestBody doc3Body = RequestBody.create(MediaType.parse("image/*"),params.getDoc3());
-                RequestBody doc4Body = RequestBody.create(MediaType.parse("image/*"),params.getDoc4());
+        RequestBody logoBody ;
+                RequestBody getDoc1Body;
+        RequestBody getDoc2Body;
+        RequestBody getDoc3Body;
+        RequestBody getDoc4Body;
 
+        if (params.getLogo() != null) {
+            logoBody = RequestBody.create(MediaType.parse("multipart/form-data"),params.getLogo());
+        }
+        else {
+            logoBody = RequestBody.create(MediaType.parse("multipart/form-data"),"");
+        }
+        if (params.getDoc1() != null) {
+            getDoc1Body = RequestBody.create(MediaType.parse("multipart/form-data"),params.getDoc1());
+        }
+        else {
+            getDoc1Body = RequestBody.create(MediaType.parse("multipart/form-data"),"");
+        }
+
+        if (params.getDoc2() != null) {
+            getDoc2Body = RequestBody.create(MediaType.parse("multipart/form-data"),params.getDoc2());
+        }
+        else {
+            getDoc2Body = RequestBody.create(MediaType.parse("multipart/form-data"),"");
+        }
+        if (params.getDoc3() != null) {
+            getDoc3Body = RequestBody.create(MediaType.parse("multipart/form-data"),params.getDoc3());
+        }
+        else {
+            getDoc3Body = RequestBody.create(MediaType.parse("multipart/form-data"),"");
+        }
+        if (params.getDoc4() != null) {
+            getDoc4Body = RequestBody.create(MediaType.parse("multipart/form-data"),params.getDoc4());
+        }
+        else {
+            getDoc4Body = RequestBody.create(MediaType.parse("multipart/form-data"),"");
+        }
 
         Call<SetupStoreApiModel> call = RetrofitBuilder.createServiceContract().doSetupStore(ApiConstants.SETUP_STORE,
                 RequestBody.create(MediaType.parse("text/plain"), params.getStoreType()),
@@ -47,11 +78,13 @@ public class SetupStoreRepository extends BaseRepository {
                 RequestBody.create(MediaType.parse("text/plain"), params.getDocType()),
                 RequestBody.create(MediaType.parse("text/plain"), params.getLoginId()),
                 RequestBody.create(MediaType.parse("text/plain"), params.getAuthKey()),
+                RequestBody.create(MediaType.parse("text/plain"), String.valueOf(params.getLat())),
+                RequestBody.create(MediaType.parse("text/plain"), String.valueOf(params.getLng())),
                 MultipartBody.Part.createFormData("store_logo","Image.png",logoBody),
-                MultipartBody.Part.createFormData("document_type_1_front_photo","Image.png",doc1Body),
-                MultipartBody.Part.createFormData("document_type_1_back_photo","Image.png",doc2Body),
-                MultipartBody.Part.createFormData("document_type_2_front_photo","Image.png",doc3Body),
-                MultipartBody.Part.createFormData("document_type_2_back_photo","Image.png",doc4Body));
+                MultipartBody.Part.createFormData("document_type_1_front_photo","Image.png",getDoc1Body),
+                MultipartBody.Part.createFormData("document_type_1_back_photo","Image.png",getDoc2Body),
+                MultipartBody.Part.createFormData("document_type_2_front_photo","Image.png",getDoc3Body),
+                MultipartBody.Part.createFormData("document_type_2_back_photo","Image.png",getDoc4Body));
 
         makeRequest(call, responseCallback);
     }

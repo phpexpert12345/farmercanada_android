@@ -88,4 +88,14 @@ public class AppController implements AppControllerContract {
     public Boolean getIsStoreSetup() {
         return sharedPreferenceManager.getIsStoreSetup();
     }
+
+    @Override
+    public String getGoogleApiKey() {
+        return sharedPreferenceManager.getGoogleApiKey();
+    }
+
+    @Override
+    public String getFarmId() {
+        return sharedPreferenceManager.getFarmId();
+    }
 }

@@ -43,6 +43,19 @@ public class AuthenticationApiModel {
         @SerializedName("auth_key")
         private String mAuthKey;
 
+
+        @SerializedName("GOOGLE_MAP_KEY")
+        private String googleMapKey;
+
+
+        public String getGoogleMapKey() {
+            return googleMapKey;
+        }
+
+        public void setGoogleMapKey(String googleMapKey) {
+            this.googleMapKey = googleMapKey;
+        }
+
         public String getAuthKey() {
             return mAuthKey;
         }

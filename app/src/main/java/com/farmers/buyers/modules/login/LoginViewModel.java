@@ -55,9 +55,12 @@ public class LoginViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setRole(response.getData().getAccountTypeName());
-                    SharedPreferenceManager.getInstance().setIsStoreSetup(response.getData().getStoreSetupStatus().equals("1"));
-                    userType = response.getData().getAccountTypeName();
+                    SharedPreferenceManager.getInstance().setFarmId(response.getData().getFarmId());
                     isStoreSetup = response.getData().getStoreSetupStatus();
+                    if (response.getData().getStoreSetupStatus().equals("Yes")) {
+                        SharedPreferenceManager.getInstance().setIsStoreSetup(true);
+                    }
+                    userType = response.getData().getAccountTypeName();
 
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {

@@ -28,13 +28,21 @@
                 android:layout_height="@dimen/_20sdp"
                 android:src="@drawable/ic_white_back_arrow" />
 
+            <ImageView
+                android:id="@+id/tv_setup_seller_log_out_img"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_log_out"
+                android:layout_alignParentEnd="true"
+                app:tint="@color/white" />
+
             <TextView
                 android:id="@+id/tv_setup_seller_toolbar_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:text="Setup Seller Account"
+                android:text="Store Setup"
                 android:textColor="@color/secondaryTextColor" />
 
 
@@ -161,7 +169,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Store Details"
+                    android:text="Store Setup"
                     android:gravity="start"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -172,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Service Details"
+                    android:text="Service Information"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -181,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Submit"
+                    android:text="Document"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -244,22 +252,62 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.AppTheme.TextInputLayoutList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/store_setup_homemade_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Home Made"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:textColor="@color/primaryTextColor"
+                    android:buttonTint="@color/green"
+                    />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/setup_seller_store_name_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/store_name"
-                        android:textColor="@color/black" />
+                <CheckBox
+                    android:id="@+id/store_setup_local_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Local Farm"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:textColor="@color/primaryTextColor"
+                    android:buttonTint="@color/green"
+                    />
 
-                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/gray_border_transparent_bg"
+                android:layout_margin="@dimen/_5sdp"
+                >
+
+                <EditText
+                    android:id="@+id/setup_seller_store_name_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Store Name"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@android:color/transparent"
+                    />
+
+                <ImageView
+                    android:id="@+id/store_setup_mic_img"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@drawable/ic_mic"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_8sdp"/>
+
+            </LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"

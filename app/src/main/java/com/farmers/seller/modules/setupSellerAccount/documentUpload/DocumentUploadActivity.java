@@ -2,7 +2,6 @@ package com.farmers.seller.modules.setupSellerAccount.documentUpload;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
@@ -17,25 +16,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
-import com.farmers.buyers.common.ImageUtil;
 import com.farmers.buyers.common.utils.AlertHelper;
 import com.farmers.buyers.common.utils.OnAlertClickListener;
+import com.farmers.buyers.common.utils.Util;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
-import com.farmers.buyers.modules.login.LoginActivity;
-import com.farmers.buyers.modules.profile.editProfile.EditProfileActivity;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
-import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 import com.farmers.seller.modules.setupSellerAccount.SetupStoreViewModel;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
-import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreSetupExtra;
 
 import java.io.File;
@@ -59,11 +52,12 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
     private TextView tv_toolbar_name;
     private Button bt_next_document_upload;
     private ImageView docOneFrontImage, docTwoFrontImage, docOneBackImage, docTwoBackImage;
-    private CheckBox homeMadeCheck, localFarmCheck;
-    private String farmType = "2"; // 1 for local 2 for homeMade
+
     private StoreSetupExtra extra = new StoreSetupExtra();
 
     private File doc1, doc2, doc3, doc4;
+    private String[] PERMISSIONS;
+
 
 
     @Override
@@ -73,14 +67,13 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
 
         img_back = findViewById(R.id.tv_setup_seller_back_img);
         tv_toolbar_name = findViewById(R.id.tv_setup_seller_toolbar_name);
-        tv_toolbar_name.setText("Setup Seller Account");
         bt_next_document_upload = findViewById(R.id.bt_next_document_upload);
-        homeMadeCheck = findViewById(R.id.store_setup_homemade_check);
-        localFarmCheck = findViewById(R.id.store_setup_local_check);
         docOneFrontImage = findViewById(R.id.store_setup_document_one_front_img);
         docOneBackImage = findViewById(R.id.store_setup_document_one_back_img);
         docTwoFrontImage = findViewById(R.id.store_setup_document_two_front_img);
         docTwoBackImage = findViewById(R.id.store_setup_document_two_back_img);
+        PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+
 
         bt_next_document_upload.setOnClickListener(this);
         extra = (StoreSetupExtra) getIntent().getSerializableExtra("storeExtra");
@@ -104,29 +97,6 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
             }
         });
 
-
-        homeMadeCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    farmType = "2";
-                } else {
-                    farmType = "0";
-                }
-            }
-        });
-
-        localFarmCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    farmType = "1";
-                } else {
-                    farmType = "0";
-                }
-            }
-        });
-
         docOneFrontImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,11 +115,11 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
         docOneBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkCameraPermission()) {
+
+                if (!Util.hasPermissions(DocumentUploadActivity.this, PERMISSIONS)) {
+                    ActivityCompat.requestPermissions(DocumentUploadActivity.this, PERMISSIONS, 1);
+                }else {
                     showImagePickerDialog(BACK_DOC_CAMERA_REQUEST_CODE, BACK_DOC_GALLERY_REQUEST_CODE);
-                }
-                else {
-                    requestPermission();
 
                 }
             }
@@ -159,11 +129,12 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
         docTwoFrontImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkCameraPermission()) {
+
+
+                if (!Util.hasPermissions(DocumentUploadActivity.this, PERMISSIONS)) {
+                    ActivityCompat.requestPermissions(DocumentUploadActivity.this, PERMISSIONS, 1);
+                }else {
                     showImagePickerDialog(FRONT_DOC_TWO_CAMERA_REQUEST_CODE, FRONT_DOC_TWO_GALLERY_REQUEST_CODE);
-                }
-                else {
-                    requestPermission();
 
                 }
             }
@@ -188,7 +159,11 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
             public void onChanged(DataFetchState<SetupStoreApiModel> setupStoreApiModelDataFetchState) {
                 switch (setupStoreApiModelDataFetchState.status) {
                     case LOADING: loading(); break;
-                    case SUCCESS: success(); break;
+                    case SUCCESS: {
+                        dismissLoader();
+                        Toast.makeText(DocumentUploadActivity.this, setupStoreApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(DocumentUploadActivity.this, ProductListActivity.class));
+                    }
                     case ERROR: error(setupStoreApiModelDataFetchState.status_message); break;
                 }
             }
@@ -241,12 +216,12 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
         AlertHelper.showAlert(this, "Choose Store Photo", "Choose your store Picture", true, "Camera", true, "Gallery", true, new OnAlertClickListener() {
             @Override
             public void onNegativeBtnClicked() {
-                ImageUtil.choosePhotoFromGallery(DocumentUploadActivity.this, GALLERY_REQUEST_CODE);
+//                ImageUtil.choosePhotoFromGallery(DocumentUploadActivity.this, GALLERY_REQUEST_CODE);
             }
 
             @Override
             public void onPositiveBtnClicked() {
-                ImageUtil.takePhotoFromCamera(DocumentUploadActivity.this, CAMERA_REQUEST_CODE);
+//                ImageUtil.takePhotoFromCamera(DocumentUploadActivity.this, CAMERA_REQUEST_CODE);
             }
         });
     }
@@ -254,61 +229,59 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-
-            if (data != null) {
-                switch (requestCode) {
-                    case FRONT_DOC_CAMERA_REQUEST_CODE: {
-                        docOneFrontImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocOneFront(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
-                        doc1 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case FRONT_DOC_TWO_CAMERA_REQUEST_CODE: {
-                        docTwoFrontImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocTwoFront(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
-                        doc3 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case BACK_DOC_CAMERA_REQUEST_CODE: {
-                        docOneBackImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocOneBack(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
-                        doc2 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case BACK_DOC_TWO_CAMERA_REQUEST_CODE: {
-                        docTwoBackImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocTwoBack(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
-                        doc4 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case FRONT_DOC_GALLERY_REQUEST_CODE: {
-                        docOneFrontImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocOneFront(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
-                        doc1 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case FRONT_DOC_TWO_GALLERY_REQUEST_CODE: {
-                        docTwoFrontImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocTwoFront(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
-                        doc3 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case BACK_DOC_GALLERY_REQUEST_CODE: {
-                        docOneBackImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocOneBack(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
-                        doc2 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                    case BACK_DOC_TWO_GALLERY_REQUEST_CODE: {
-                        docTwoBackImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
-//                        extra.setDocTwoBack(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
-                        doc4 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
-                        break;
-                    }
-                }
-            }
-        }
+//        if (resultCode == RESULT_OK && data.getData() != null) {
+//
+//                switch (requestCode) {
+//                    case FRONT_DOC_CAMERA_REQUEST_CODE: {
+//                        docOneFrontImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocOneFront(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
+//                        doc1 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case FRONT_DOC_TWO_CAMERA_REQUEST_CODE: {
+//                        docTwoFrontImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocTwoFront(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
+//                        doc3 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case BACK_DOC_CAMERA_REQUEST_CODE: {
+//                        docOneBackImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocOneBack(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
+//                        doc2 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case BACK_DOC_TWO_CAMERA_REQUEST_CODE: {
+//                        docTwoBackImage.setImageBitmap(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocTwoBack(ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile());
+//                        doc4 = ImageUtil.photoTakenFromCamera(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case FRONT_DOC_GALLERY_REQUEST_CODE: {
+//                        docOneFrontImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocOneFront(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
+//                        doc1 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case FRONT_DOC_TWO_GALLERY_REQUEST_CODE: {
+//                        docTwoFrontImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocTwoFront(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
+//                        doc3 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case BACK_DOC_GALLERY_REQUEST_CODE: {
+//                        docOneBackImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocOneBack(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
+//                        doc2 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                    case BACK_DOC_TWO_GALLERY_REQUEST_CODE: {
+//                        docTwoBackImage.setImageBitmap(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getBitmap());
+////                        extra.setDocTwoBack(ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile());
+//                        doc4 = ImageUtil.phototakenFromGallery(data, DocumentUploadActivity.this).getFile();
+//                        break;
+//                    }
+//                }
+//            }
     }
 
     @Override
@@ -319,11 +292,29 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
                 break;
 
             case R.id.bt_next_document_upload:
-                extra.setCompanyType(farmType);
-                viewModel.doSetupStore(stateMachine, farmType, doc1, doc2, doc3, doc4);
-
-//                startActivity(new Intent(DocumentUploadActivity.this, OurOrdersActivity.class));
+                if (doc1 == null) {
+                    Toast.makeText(DocumentUploadActivity.this, "Please select Image", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (doc2 == null) {
+                    Toast.makeText(DocumentUploadActivity.this, "Please select Image", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (doc3 == null) {
+                    Toast.makeText(DocumentUploadActivity.this, "Please select Image", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (doc4 == null) {
+                    Toast.makeText(DocumentUploadActivity.this, "Please select Image", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                viewModel.doSetupStore(stateMachine, doc1, doc2, doc3, doc4);
                 break;
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.seller.product.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.seller.product.view.ProductListDelegate;
+import com.farmers.buyers.modules.seller.product.view.ProductListViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -11,13 +12,15 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class ProductListAdapter extends BaseAdapter {
+    private ProductListViewHolder.ProductListItemClickListener listItemClickListener;
 
-    public ProductListAdapter() {
+    public ProductListAdapter(ProductListViewHolder.ProductListItemClickListener listItemClickListener) {
+        this.listItemClickListener = listItemClickListener;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.PRODUCT_LIST_ADAPTER, new ProductListDelegate());
+        delegates.put(CardConstant.PRODUCT_LIST_ADAPTER, new ProductListDelegate(listItemClickListener));
     }
 }

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:text="Setup Seller Account"
+                android:text="Service Information"
                 android:textColor="@color/secondaryTextColor" />
 
 
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Store Details"
+                    android:text="Store Setup"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Service Details"
+                    android:text="Service Information"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Submit"
+                    android:text="Document"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -216,15 +216,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/store_setup_pickup_check"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/green"
-                        android:fontFamily="@font/sf_ui_semibold"
-                        android:text="Pickup"
-                        android:textColor="@color/primaryTextColor" />
+
 
                     <CheckBox
                         android:id="@+id/store_setup_delivery_check"
@@ -232,7 +224,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:buttonTint="@color/green"
-                        android:checked="true"
                         android:fontFamily="@font/sf_ui_semibold"
                         android:text="Delivery"
                         android:textColor="@color/primaryTextColor" />
@@ -465,6 +456,16 @@
 
             </LinearLayout>
 
+            <CheckBox
+                android:id="@+id/store_setup_pickup_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/green"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Pickup"
+                android:textColor="@color/primaryTextColor" />
+
 
             <LinearLayout
                 android:id="@+id/store_setup_pickup_ll"
@@ -486,7 +487,7 @@
                         android:id="@+id/store_setup_pickup_minimum_order_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Minimum Order"
+                        android:hint="Enter Minimum Pickup Order"
                         android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>

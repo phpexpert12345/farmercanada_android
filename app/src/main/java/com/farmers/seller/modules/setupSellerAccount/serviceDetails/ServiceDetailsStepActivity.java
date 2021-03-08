@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.modules.followers.FollowersViewModel;
@@ -40,6 +42,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class ServiceDetailsStepActivity extends BaseActivity implements OnMapReadyCallback,
         View.OnClickListener, StoreDeliveryRangeViewHolder.RangeSelectedListener {
@@ -58,11 +64,11 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
     private SetupStoreDeliveryRangeAdapter adapter;
     private String radius, deliveryCharges, additionalDeliveryCharges, deliveryMsg, pickupCharges, pickupMsg, minimumDeliveryOrder, minimumPickupORder;
     private int deliveryType = 2; // 1 for pickup 2 for delivery
+    private ArrayList<String> orderTypeList = new ArrayList<>();
 
     private StoreSetupExtra extra = new StoreSetupExtra();
 
     private SetupStoreViewModel viewModel ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,14 +132,13 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     deliveryType = 1;
-                    deliveryCheck.setChecked(false);
-
+                    orderTypeList.add("0");
                     pickUpCheckLl.setVisibility(View.VISIBLE);
-                    deliveryCheckLl.setVisibility(View.GONE);
+
                 } else {
-                    deliveryCheck.setChecked(true);
-                    deliveryType = 2;
+                    orderTypeList.remove("0");
                     pickUpCheckLl.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -143,14 +148,11 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     deliveryType = 2;
+                    orderTypeList.add("1");
                     deliveryCheckLl.setVisibility(View.VISIBLE);
-                    pickUpCheckLl.setVisibility(View.GONE);
-                    pickUpCheck.setChecked(false);
-
 
                 } else {
-                    pickUpCheck.setChecked(true);
-                    deliveryType = 1;
+                    orderTypeList.remove("1");
                     deliveryCheckLl.setVisibility(View.GONE);
                 }
             }
@@ -173,7 +175,7 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
                 minimumPickupORder = pickUpMinimumOrderEt.getText().toString();
                 pickupMsg = pickUpOrderMessageEt.getText().toString();
 
-                if (deliveryType == 2) {
+                if (deliveryType == 1) {
 
                     if (deliveryCharges.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Delivery charges can not be empty", Toast.LENGTH_SHORT).show();
@@ -204,11 +206,14 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
                     }
                 }
 
+                if (orderTypeList.isEmpty()) {
+                    Toast.makeText(ServiceDetailsStepActivity.this, "Please Select Order type", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
                 Intent intent = new Intent(ServiceDetailsStepActivity.this, DocumentUploadActivity.class);
-                extra.setMapLat("28.457523");
-                extra.setMapLong("77.026344");
                 extra.setRadius(radius);
-                extra.setDeliveryType(String.valueOf(deliveryType));
+                extra.setDeliveryType(Extensions.convert(orderTypeList));
                 extra.setDeliveryCharges(deliveryCharges);
                 extra.setAdditionalCharges(additionalDeliveryCharges);
                 extra.setDeliveryMessage(deliveryMsg);
@@ -221,7 +226,6 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
             }
         });
     }
-
 
     @Override
     public Boolean showToolbar() {
@@ -250,10 +254,11 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
     }
 
     @Override
-    public void onRangeSelectListener(String range, int position) {
-        adapter.notifyDataSetChanged();
-        adapter.notifyItemChanged(position);
+    public void onRangeSelectListener(int position, String range) {
+//        adapter.notifyDataSetChanged();
+//        adapter.notifyItemChanged(position);
         this.radius = range;
+        extra.setRadius(range);
 
     }
 }

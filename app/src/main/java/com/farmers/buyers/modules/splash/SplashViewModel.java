@@ -27,6 +27,7 @@ public class SplashViewModel extends BaseViewModel {
             public void onSuccess(AuthenticationApiModel response) {
                 if (response.getStatusCode() == 0) {
                     SharedPreferenceManager.getInstance().setAuthenticationKey(response.getData().get(0).getAuthKey());
+                    SharedPreferenceManager.getInstance().setGoogleApiKey(response.getData().get(0).getGoogleMapKey());
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 }
 

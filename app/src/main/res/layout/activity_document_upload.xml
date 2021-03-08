@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:text="Setup Seller Account"
+                android:text="Document"
                 android:textColor="@color/secondaryTextColor" />
 
 
@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Store Details"
+                    android:text="Store Setup"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Service Details"
+                    android:text="Service Information"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -177,7 +177,7 @@
                     android:layout_marginRight="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Submit"
+                    android:text="Document"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -200,42 +200,19 @@
             android:layout_marginRight="@dimen/_16sdp"
             >
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/store_setup_homemade_check"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setup_seller_store_name_et"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Home Made"
-                    android:fontFamily="@font/sf_ui_semibold"
-                    android:textColor="@color/primaryTextColor"
-                    android:buttonTint="@color/green"/>
+                    android:hint="First Document Name"
+                    android:textColor="@color/black" />
 
-                <CheckBox
-                    android:id="@+id/store_setup_local_check"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Local Farm"
-                    android:checked="true"
-                    android:fontFamily="@font/sf_ui_semibold"
-                    android:textColor="@color/primaryTextColor"
-                    android:buttonTint="@color/green"
-                    />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Document"
-                android:fontFamily="@font/sf_ui_semibold"
-                android:textColor="@color/primaryTextColor"
-                android:layout_marginTop="@dimen/_8sdp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <LinearLayout
@@ -283,13 +260,18 @@
 
             </LinearLayout>
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Document"
-                android:fontFamily="@font/sf_ui_semibold"
-                android:textColor="@color/primaryTextColor"
-                android:layout_marginTop="@dimen/_8sdp"/>
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Second Document Name"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

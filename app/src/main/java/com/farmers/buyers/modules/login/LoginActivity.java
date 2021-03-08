@@ -148,7 +148,7 @@ public class LoginActivity extends BaseActivity {
 
                         switch (viewModel.userType) {
                             case "Seller": {
-                                if (viewModel.isStoreSetup.equals("1")) {
+                                if (viewModel.isStoreSetup.equals("Yes")) {
                                     startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
                                 }
                                 else {
