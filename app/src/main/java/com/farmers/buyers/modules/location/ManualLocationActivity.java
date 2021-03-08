@@ -3,6 +3,7 @@ package com.farmers.buyers.modules.location;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.storage.GPSTracker;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +35,8 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.farmers.buyers.app.App.getAppContext;
 
 public class ManualLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -108,7 +113,24 @@ public class ManualLocationActivity extends AppCompatActivity implements OnMapRe
         confirmLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ManualLocationActivity.this, LoginActivity.class));
+                if(placeAddress!=null) {
+                    DroidPrefs.apply(getApplicationContext(),"Current_Location",placeAddress.getAddress());
+//                        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", placeAddress.getAddress());
+                }
+                else{
+                    DroidPrefs.apply(getApplicationContext(),"Current_Location",gpsTracker.getAddressLine(ManualLocationActivity.this));
+//                        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(ManualLocationActivity.this));
+                }
+                if(!SharedPreferenceManager.getInstance().getIsLoggedIn()) {
+                    startActivity(new Intent(ManualLocationActivity.this, LoginActivity.class));
+                }
+                else{
+
+
+                    setResult(Activity.RESULT_OK);
+
+                }
+                finish();
             }
         });
     }

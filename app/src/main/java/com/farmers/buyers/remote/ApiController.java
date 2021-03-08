@@ -1,5 +1,7 @@
 package com.farmers.buyers.remote;
 
+import androidx.annotation.Nullable;
+
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
@@ -11,6 +13,7 @@ import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
+import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.ratingAndReview.customerReview.model.CustomerReviewListApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewListApiModel;
@@ -18,10 +21,18 @@ import com.farmers.buyers.modules.ratingAndReview.model.FarmReviewedListApiModel
 import com.farmers.buyers.modules.ratingAndReview.model.reviewAndRating.ReviewListResponse;
 import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
+import com.farmers.buyers.modules.seller.addProduct.model.AddProductApiResponseModel;
+import com.farmers.buyers.modules.seller.coupon.list.model.AddCouponApiModel;
+import com.farmers.buyers.modules.seller.coupon.list.model.CouponListApiModel;
+import com.farmers.buyers.modules.seller.coupon.list.model.DeleteCouponApiModel;
+import com.farmers.buyers.modules.seller.product.models.DeleteProductApiModel;
+import com.farmers.buyers.modules.seller.product.models.ProductListApiModel;
 import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
+import com.farmers.seller.modules.ourOrders.model.AllOrderResponse;
+import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -32,6 +43,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Url;
 
 /**
@@ -202,6 +214,27 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<AllOrderResponse> getNewOrdersList(@Url String url, @Field("LoginId") String LoginId,
+                                            @Field("auth_key") String authKey, @Field("order_type_filter") String order_type_filter);
+
+    @FormUrlEncoded
+    @POST
+    Call<AllOrderResponse> getOrderDetails(@Url String url, @Field("LoginId") String LoginId,
+                                           @Field("auth_key") String authKey, @Field("order_number") String order_number);
+
+    @FormUrlEncoded
+    @POST
+    Call<AllOrderResponse> orderAccept(@Url String url, @Field("LoginId") String LoginId,
+                                           @Field("auth_key") String authKey, @Field("order_number") String order_number);
+
+    @FormUrlEncoded
+    @POST
+    Call<AllOrderResponse> orderDecline(@Url String url, @Field("LoginId") String LoginId,
+                                        @Field("auth_key") String authKey, @Field("order_number") String order_number,
+                                        @Field("order_decline_reason") String order_decline_reason);
+
+    @FormUrlEncoded
+    @POST
     Call<FarmListProductResponse> getFarmProductList(@Url String url, @Field("auth_key") String authKey, @Field("LoginId") String LoginId,
                                                      @Field("farm_id") String farmId);
 
@@ -223,7 +256,7 @@ public interface ApiController {
     Call<ApplyCouponResponse> APPLY_COUPON_RESPONSE_CALL(@Url String url, @Field("auth_key") String authKey,
                                                          @Field("farm_id") String farmId,
                                                          @Field("coupon_code") String couponCode,
-                                                         @Field("subtotal_amount") int subTotalAmount);
+                                                         @Field("subtotal_amount") double subTotalAmount);
 
     @FormUrlEncoded
     @POST
@@ -319,5 +352,111 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<FarmReviewedListApiModel> getFarmReviewedList(@Url String url, @Field("farm_id") String farmId, @Field("auth_key") String authKey, @Field("LoginId") String loginId);
+
+    @FormUrlEncoded
+    @POST
+    Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText, @Field("LoginId") String loginId);
+
+
+    @Multipart
+    @POST
+    Call<SetupStoreApiModel> doSetupStore(@Url String url,
+                                          @Part("store_type") RequestBody storeType,
+                                          @Part("store_name") RequestBody storeName,
+                                          @Part("store_address") RequestBody address,
+                                          @Part("store_city") RequestBody city,
+                                          @Part("store_state") RequestBody state,
+                                          @Part("store_country") RequestBody country,
+                                          @Part("store_post_code") RequestBody postCode,
+                                          @Part("order_type") RequestBody orderType,
+                                          @Part("pickup_minimum_amount") RequestBody pickUpMinimumOrderAmount,
+                                          @Part("pickup_message") RequestBody pickUpMsg,
+                                          @Part("delivery_map_location_area") RequestBody mapLocation,
+                                          @Part("delivery_location_distance") RequestBody radius,
+                                          @Part("delivery_charge") RequestBody deliveryCharge,
+                                          @Part("delivery_additional_charge") RequestBody additionalCharge,
+                                          @Part("delivery_minimum_amount") RequestBody deliveryMinimumAmount,
+                                          @Part("delivery_message") RequestBody deliveryMsg,
+                                          @Part("company_type") RequestBody companyType,
+                                          @Part("document_type_1") RequestBody documentType,
+                                          @Part("LoginId") RequestBody loginId,
+                                          @Part("auth_key") RequestBody authKey,
+                                          @Part("store_latitude") RequestBody lat,
+                                          @Part("store_longitude") RequestBody lng,
+                                          @Part MultipartBody.Part logo,
+                                          @Part MultipartBody.Part docOneFront,
+                                          @Part MultipartBody.Part docOneBack,
+                                          @Part MultipartBody.Part docTwoFront,
+                                          @Part MultipartBody.Part docTwoBack);
+
+
+    @Multipart
+    @POST
+    Call<AddProductApiResponseModel> addProduct(@Url String url,
+                                                @Part("product_name") RequestBody productName,
+                                                @Part("product_quanity") RequestBody quantity,
+                                                @Part("product_unit") RequestBody unit,
+                                                @Part("product_category_id") RequestBody categoryId,
+                                                @Part("product_unit_price") RequestBody unitPrice,
+                                                @Part("product_sales_price") RequestBody salesPrice,
+                                                @Part("product_note") RequestBody note,
+                                                @Part("farm_id") RequestBody farmId,
+                                                @Part("LoginId") RequestBody loginId,
+                                                @Part("auth_key") RequestBody authKey,
+                                                @Part @Nullable MultipartBody.Part productImage);
+
+    @FormUrlEncoded
+    @POST
+    Call<ProductListApiModel> getProductList(@Url String url, @Field("LoginId") String loginId, @Field("farm_id") String farmId, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<CouponListApiModel> getCouponList(@Url String url, @Field("LoginId") String loginId, @Field("farm_id") String farmId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<AddCouponApiModel> addCoupon(@Url String url,
+                                      @Field("coupon_code") String couponCode,
+                                      @Field("discount_type") String discountType,
+                                      @Field("discount_amount") String discountAmount,
+                                      @Field("discount_minimum_order") String discountMinOrder,
+                                      @Field("term_condition") String termsCondition,
+                                      @Field("start_date") String startData,
+                                      @Field("expire_date") String endDate,
+                                      @Field("CouponID") String couponId,
+                                      @Field("farm_id") String farmId,
+                                      @Field("LoginId") String loginId,
+                                      @Field("auth_key") String authKey
+    );
+
+
+    @FormUrlEncoded
+    @POST
+    Call<AddCouponApiModel> EditCoupon(@Url String url,
+                                       @Field("coupon_code") String couponCode,
+                                       @Field("discount_type") String discountType,
+                                       @Field("discount_amount") String discountAmount,
+                                       @Field("discount_minimum_order") String discountMinOrder,
+                                       @Field("term_condition") String termsCondition,
+                                       @Field("start_date") String startData,
+                                       @Field("expire_date") String endDate,
+                                       @Field("CouponID") String couponId,
+                                       @Field("farm_id") String farmId,
+                                       @Field("LoginId") String loginId,
+                                       @Field("auth_key") String authKey
+    );
+
+
+    @FormUrlEncoded
+    @POST
+    Call<DeleteCouponApiModel> deleteCoupon(@Url String url, @Field("CouponID") String couponId, @Field("auth_key") String authKey);
+
+
+    @FormUrlEncoded
+    @POST
+    Call<DeleteProductApiModel> deleteProduct(@Url String url, @Field("ProductID") String productId, @Field("auth_key") String authKey);
+
 }
+
 

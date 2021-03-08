@@ -99,6 +99,7 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
 
     private void success() {
         dismissLoader();
+
         adapter.updateData(viewModel.items);
     }
 

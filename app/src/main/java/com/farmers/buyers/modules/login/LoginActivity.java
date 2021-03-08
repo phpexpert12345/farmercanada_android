@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
@@ -26,6 +27,7 @@ import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -48,15 +50,24 @@ public class LoginActivity extends BaseActivity {
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private RadioGroup radioGroup;
-    private int role = 1;  //todo 0 for buyer 1 for seller
+    private int role = 2;  //todo 2 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        App.finish_activity=false;
         init();
         listener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(App.finish_activity){
+            finish();
+        }
     }
 
     @Override
@@ -88,11 +99,11 @@ public class LoginActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.login_seller_radio: {
-                        role = 0;
+                        role = 1;
                         break;
                     }
                     case R.id.login_buyer_radio: {
-                        role = 1;
+                        role = 2;
                         break;
                     }
                 }
@@ -134,12 +145,25 @@ public class LoginActivity extends BaseActivity {
                     case SUCCESS: {
                         dismissLoader();
                         Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                        if (role == 1) {
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                            finish();
-                        } else {
-                            startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
-                            finish();
+
+                        switch (viewModel.userType) {
+                            case "Seller": {
+                                if (viewModel.isStoreSetup.equals("Yes")) {
+                                    startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
+                                }
+                                else {
+                                    startActivity(new Intent(LoginActivity.this, StoreDetailsStepActivity.class));
+                                }
+                                finish();
+                                break;
+                            }
+                            case "Buyer" : {
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                finish();
+                                break;
+                            }
+
+
                         }
                         break;
                     }

@@ -99,13 +99,13 @@ public class OtpActivity extends BaseActivity {
                             }
 
                             intent.putExtra("USER_ID", dataFetchState.data.getData().getLoginId());
-                            intent.putExtra("otp", dataFetchState.data.getData().getMobile_OTP());
+                            intent.putExtra("otp", dataFetchState.data.getData().getMobileOTP());
                             startActivity(intent);
                             finish();
                         } else if (getIntent().getStringExtra("FROM").equalsIgnoreCase("My Profile")) {
                             Intent intent = new Intent(OtpActivity.this, ChangePasswordActivity.class);
                             intent.putExtra("USER_ID", dataFetchState.data.getData().getLoginId());
-                            intent.putExtra("otp", dataFetchState.data.getData().getMobile_OTP());
+                            intent.putExtra("otp", dataFetchState.data.getData().getMobileOTP());
                             startActivity(intent);
                             finish();
                         }

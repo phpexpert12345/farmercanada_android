@@ -78,7 +78,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -146,6 +146,9 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                     recyclerView.setVisibility(View.GONE);
                     tv_error_msg.setText(dataFetchState.status_message);
                     ll_data_not_available.setVisibility(View.VISIBLE);
+                    startActivity(new Intent(MyAddressActivity.this,
+                            AddNewAddressActivity.class).putExtra("KEY_FROM", "ADD_ADDRESS"));
+                    finish();
                     break;
                 }
                 case LOADING: {

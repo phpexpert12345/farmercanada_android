@@ -117,6 +117,29 @@ public class SharedPreferenceManager {
         return (String) getSharedPreferences(StorageKey.FarmId.toString(), "");
     }
 
+    public String getRole() {
+        return (String) getSharedPreferences(StorageKey.Role.toString(), "");
+    }
+
+    public void setRole(String value) {
+        setSharedPreference(StorageKey.Role.toString(), value);
+    }
+
+    public void setIsStoreSetup(Boolean value) {
+        setSharedPreference(StorageKey.IsStoreSetup.toString(), value);
+    }
+
+    public Boolean getIsStoreSetup() {
+        return (Boolean) getSharedPreferences(StorageKey.IsStoreSetup.toString(), false);
+    }
+
+    public void setGoogleApiKey(String value) {
+        setSharedPreference(StorageKey.GOOGLE_API_KEY.toString(), value);
+    }
+
+    public String getGoogleApiKey() {
+        return (String) getSharedPreferences(StorageKey.GOOGLE_API_KEY.toString(), "");
+    }
 
 
     public void setSharedPreference(String key, Object value) {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.farmers.buyers.modules.address.MyAddressActivity;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.adapter.FarmDetailsAdapter;
+import com.farmers.buyers.modules.farmDetail.model.FarmDetailHeaderListItem;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -35,12 +37,17 @@ import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
+import java.util.List;
+
 public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
         FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener, FarmDetailViewHolder.FarmDetailItemClickListener {
     private RecyclerView recyclerView;
     private FarmDetailsAdapter adapter;
     public String farm_id;
     private AppController appController = AppController.get();
+    FarmDetailsVegetableItems veggie;
+    int quat;
+
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -127,7 +134,8 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                 case SUCCESS:
                     Toast.makeText(FarmDetailActivity.this, response.status_message, Toast.LENGTH_SHORT).show();
                     dismissLoader();
-                    getFarmProductDetail();
+                     AddtoCartItems(veggie,quat);
+//                    getFarmProductDetail();
                 case LOADING:
                     showLoader();
                 case ERROR:
@@ -146,6 +154,18 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                     dismissLoader();
                /*     Toast.makeText(FarmDetailActivity.this,
                             followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();*/
+
+//                  FarmDetailHeaderListItem farmDetailHeaderListItem= (FarmDetailHeaderListItem) viewModel.items.get(0);
+//                    viewModel.items.remove(0);
+//                    if(farmDetailHeaderListItem.followStatus.equalsIgnoreCase("no")){
+//                        farmDetailHeaderListItem.followStatus="Yes";
+//                    }
+//                    else{
+//                        farmDetailHeaderListItem.followStatus="no";
+//                    }
+//                    viewModel.items.add(0,farmDetailHeaderListItem);
+//                    adapter.updateData(viewModel.items);
+
                     getFarmProductDetail();
                     break;
 
@@ -218,6 +238,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     @Override
     public void onClickFarmDetailVegetableListener(FarmDetailsVegetableItems item, int cnt) {
+        veggie=item;
+        quat=cnt;
+       AddtoCartItems(item,cnt);
+    }
+    private void AddtoCartItems(FarmDetailsVegetableItems item,int cnt){
         FarmProductListReq farmProductListReq = new FarmProductListReq(appController.getAuthenticationKey(),
                 item.getFarmId(),
                 appController.getLoginId(),
@@ -250,6 +275,18 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
     public void onDeliveryTypeCheckedChangeListener(int type) {
         getFarmProductDetail();
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+        switch (type){
+            case 0:{
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Delivery");
+                break;
+            }
+            case 1:
+            {
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Pickup");
+                break;
+            }
+        }
+
     }
 
     @Override

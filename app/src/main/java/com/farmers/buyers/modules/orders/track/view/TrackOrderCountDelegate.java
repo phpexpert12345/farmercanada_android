@@ -16,5 +16,6 @@ public class TrackOrderCountDelegate extends BaseDelegate {
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
         return new TrackOrderCountViewHolder(parent);
+
     }
 }

@@ -36,7 +36,7 @@ public class PaymentMethodsViewHolder extends BaseViewHolder {
                 if (isChecked) {
                     cardRadio.setChecked(false);
                     walletRadio.setChecked(false);
-                    paymentMethodListener.onPaymentMethodCheckChangeListener(0);
+                    paymentMethodListener.onPaymentMethodCheckChangeListener(0,"Cash");
                 }
             }
         });
@@ -47,7 +47,7 @@ public class PaymentMethodsViewHolder extends BaseViewHolder {
                 if (isChecked) {
                     codRadio.setChecked(false);
                     walletRadio.setChecked(false);
-                    paymentMethodListener.onPaymentMethodCheckChangeListener(1);
+                    paymentMethodListener.onPaymentMethodCheckChangeListener(1,"Credit/Debit");
 
                 }
 
@@ -61,7 +61,7 @@ public class PaymentMethodsViewHolder extends BaseViewHolder {
                 if (isChecked) {
                     codRadio.setChecked(false);
                     cardRadio.setChecked(false);
-                    paymentMethodListener.onPaymentMethodCheckChangeListener(2);
+                    paymentMethodListener.onPaymentMethodCheckChangeListener(2,"Wallet");
 
                 }
             }
@@ -76,6 +76,6 @@ public class PaymentMethodsViewHolder extends BaseViewHolder {
 
 
     public interface PaymentMethodListener {
-        void onPaymentMethodCheckChangeListener(int type);
+        void onPaymentMethodCheckChangeListener(int type,String pay_type);
     }
 }

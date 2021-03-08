@@ -10,6 +10,7 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class ProductListItems implements RecyclerViewListItem {
+    String productId;
     String productName;
     String listTotal;
     String perUnitPrice;
@@ -18,6 +19,54 @@ public class ProductListItems implements RecyclerViewListItem {
     String couponAmount;
     String couponCode;
     String description;
+
+    public ProductListItems(String productId, String productName, String listTotal, String perUnitPrice, String category, String quantity, String couponAmount, String couponCode, String description) {
+        this.productName = productName;
+        this.listTotal = listTotal;
+        this.perUnitPrice = perUnitPrice;
+        this.category = category;
+        this.quantity = quantity;
+        this.couponAmount = couponAmount;
+        this.couponCode = couponCode;
+        this.description = description;
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getListTotal() {
+        return listTotal;
+    }
+
+    public String getPerUnitPrice() {
+        return perUnitPrice;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public String getCouponAmount() {
+        return couponAmount;
+    }
+
+    public String getCouponCode() {
+        return couponCode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
 
     @Override
     public int getViewType() {

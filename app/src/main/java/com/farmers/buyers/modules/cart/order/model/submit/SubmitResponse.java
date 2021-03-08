@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.cart.order.model.submit;
 
+import com.farmers.buyers.common.model.OrderData;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -20,7 +21,7 @@ public class SubmitResponse implements Serializable {
     private String statusMessage;
     @SerializedName("data")
     @Expose
-    private List<Object> data = null;
+    private OrderData data = null;
 
     public String getStatusCode() {
         return statusCode;
@@ -30,7 +31,7 @@ public class SubmitResponse implements Serializable {
         return statusMessage;
     }
 
-    public List<Object> getData() {
+    public OrderData getData() {
         return data;
     }
 }

@@ -153,12 +153,12 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_seller:
-                account_type = 2;
-                startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
+                account_type = 1;
+//                startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
                 break;
 
             case R.id.radio_buyer:
-                account_type = 1;
+                account_type = 2;
                 Toast.makeText(this, "Buyer", Toast.LENGTH_SHORT).show();
                 break;
         }

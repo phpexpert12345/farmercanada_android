@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/sf_ui_regular"
+            android:gravity="start"
+            android:text="Product Name"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_product_quantity"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/sf_ui_regular"
+            android:gravity="center"
+            android:text="Qty: 6kg"
+            android:textColor="@color/light_gray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/sf_ui_regular"
+            android:gravity="end"
+            android:text="$ 23.99"
+            android:textColor="@color/green"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_ui_regular"
+        android:text="Lipsum as it is sometimes known, is dummy text used in laying out print"
+        android:textColor="@color/light_gray"
+        android:textSize="@dimen/sp_12_px" />
+</LinearLayout>

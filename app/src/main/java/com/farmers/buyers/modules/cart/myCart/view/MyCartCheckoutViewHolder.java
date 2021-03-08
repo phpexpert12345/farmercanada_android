@@ -29,6 +29,8 @@ import com.farmers.buyers.modules.orders.OrderSingleton;
 import com.farmers.buyers.storage.Constant;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
+import java.text.DecimalFormat;
+
 /**
  * created by Mohammad Sajjad
  * on 29-01-2021 at 18:31
@@ -46,8 +48,9 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     TextView couponAmount, totalAmount;
     TextView shipingFee, packageFeeAmount, lableGst;
     TextView gstTaxAmount, subTotal, packageFeeLabel;
-    float totalAmountf = 0f;
+    double totalAmountf = 0f;
     RelativeLayout rl_shipping_fee;
+    DecimalFormat decimalFormat;
 
     public MyCartCheckoutViewHolder(@NonNull ViewGroup parent, final MyCartCheckOutClickListeners listeners1, final MyCoupounClickListeners couponListener) {
         super(Extensions.inflate(parent, R.layout.my_cart_check_out_view_holder_layout));
@@ -66,6 +69,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         subTotal = itemView.findViewById(R.id.sub_total);
         packageFeeLabel = itemView.findViewById(R.id.packedge_fee_lable);
         rl_shipping_fee = itemView.findViewById(R.id.rl_shipping_fee);
+        decimalFormat=new DecimalFormat("##.##");
 
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +89,9 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     @Override
     public void bindView(final RecyclerViewListItem items) {
         TaxData taxData = (TaxData) items;
-        subTotal.setText(taxData.getSubTotal());
+        double su_total=Double.parseDouble(taxData.getSubTotal());
+
+        subTotal.setText(String.format("%.2f",su_total));
         if (taxData.isApplyCouponButton()) {
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
             couponEditText.setError(null);
@@ -108,34 +114,60 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         } else {
             // couponEditText.setError(null);
             couponEditText.setText("");
-        }
 
-        shipingFee.setText(taxData.getDeliveryCharge());
-        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
-            rl_shipping_fee.setVisibility(View.VISIBLE);
-
-            totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) +
-                    Float.parseFloat(taxData.getPackageFeeAmount()) +
-                    Float.parseFloat(taxData.getDeliveryCharge());
-        } else {
-            rl_shipping_fee.setVisibility(View.GONE);
-            totalAmountf = Float.parseFloat(taxData.getSubTotal()) + Float.parseFloat(taxData.getgSTTaxAmount()) +
-                    Float.parseFloat(taxData.getPackageFeeAmount());
         }
-        packageFeeAmount.setText(taxData.getPackageFeeAmount());
+if(taxData.getDeliveryCharge() != null && !taxData.getDeliveryCharge().equalsIgnoreCase("")){
+    if(!taxData.getDeliveryCharge().equalsIgnoreCase("0.00")){
+        rl_shipping_fee.setVisibility(View.VISIBLE);
+        shipingFee.setText(String.format("%.2f",Double.parseDouble(taxData.getDeliveryCharge())));
+    }
+    else{
+
+        rl_shipping_fee.setVisibility(View.GONE);
+    }
+}
+else{
+    rl_shipping_fee.setVisibility(View.GONE);
+}
+      String order_type=  SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
+if(!order_type.equalsIgnoreCase("Delivery")){
+    rl_shipping_fee.setVisibility(View.GONE);
+}
+else{
+    rl_shipping_fee.setVisibility(View.VISIBLE);
+//        shipingFee.setText(taxData.getDeliveryCharge())
+}
+//        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
+//            rl_shipping_fee.setVisibility(View.GONE);
+//        } else {
+//            rl_shipping_fee.setVisibility(View.VISIBLE);
+//        }
+        packageFeeAmount.setText(taxData.getPackageFeeAmount()+".00");
         lableGst.setText("GST   (" + taxData.getgSTTax() + "%):");
-        gstTaxAmount.setText(taxData.getgSTTaxAmount());
-        packageFeeLabel.setText("Package Fee (" + taxData.getPackageFeeTax() + "):");
+        if(taxData.getgSTTaxAmount()!=null) {
+            double gst = Double.parseDouble(taxData.getgSTTaxAmount());
+            gstTaxAmount.setText(String.format("%.2f", gst));
+        }
+        packageFeeLabel.setText("Package Fee :");
+        if(taxData.getDeliveryCharge()!=null) {
+            totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount()) + Double.parseDouble(taxData.getPackageFeeAmount());
+            if(!taxData.getDeliveryCharge().equalsIgnoreCase("")){
+                if(order_type.equalsIgnoreCase("Delivery")){
+                    totalAmountf+=Double.parseDouble(taxData.getDeliveryCharge());
+                }
 
+            }
 
-        totalAmount.setText("$ " + String.valueOf(totalAmountf));
+        }
+
+        totalAmount.setText("$"+String.format("%.2f",totalAmountf) );
         OrderSingleton.getInstance().setTaxData(taxData);
         OrderSingleton.getInstance().setTotal_amount(totalAmountf);
 
         if (taxData.getDiscountAmount() > 0) {
             OrderSingleton.getInstance().setCoupon_discount_amount(taxData.getDiscountAmount());
-            couponAmount.setText("-$ " + taxData.getDiscountAmount());
-            totalAmount.setText("$ " + (totalAmountf - taxData.getDiscountAmount()));
+            couponAmount.setText("-$" + String.format("%.2f",taxData.getDiscountAmount()));
+            totalAmount.setText("$" + String.format("%.2f",totalAmountf-Double.parseDouble(String.valueOf(taxData.getDiscountAmount()))));
             OrderSingleton.getInstance().setTotal_amount(totalAmountf);
         } else {
 

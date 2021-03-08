@@ -72,6 +72,7 @@
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_16sdp"
+            android:id="@+id/description"
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center"
             android:text="You Can Track the delivery in the\n Orders Section"
@@ -98,6 +99,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/order_date"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_horizontal"
@@ -119,6 +121,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:id="@+id/order_id"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/sf_ui_semibold"
@@ -168,8 +171,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_weight="1"
+                android:id="@+id/order_type_txt"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="_____" />
+                android:text="" />
 
             <TextView
                 android:layout_width="0dp"
@@ -207,6 +211,7 @@
                 android:id="@+id/order_success_user_image"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_40sdp"
+
                 android:src="@drawable/follow_image" />
 
             <LinearLayout
@@ -220,6 +225,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/txt_farm_name"
                     android:text="Aman Kumar"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/sp_14_px" />
@@ -234,6 +240,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/txt_farm_address"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="4623 William Head Rd"
                     android:textColor="@color/primaryTextColor"
@@ -243,6 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
+                    android:visibility="gone"
                     android:text="Victoria, BC V9C 3Y7, Canada"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/sp_12_px" />
@@ -258,6 +266,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="+1 604 858 6368"
+                    android:id="@+id/txt_farm_phone"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/sp_12_px" />
 

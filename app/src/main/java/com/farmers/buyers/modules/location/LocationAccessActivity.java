@@ -13,8 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.storage.GPSTracker;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,8 +42,17 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_acces);
         gpsTracker = new GPSTracker(this);
+        App.finish_activity=false;
         init();
         listener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(App.finish_activity){
+            finish();
+        }
     }
 
     private void init() {
@@ -49,6 +61,7 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
         tv_current_location = findViewById(R.id.tv_current_location);
         Latitude = gpsTracker.getLatitude();
         Longitude = gpsTracker.getLongitude();
+
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
@@ -67,7 +80,16 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
         allowLocationAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LocationAccessActivity.this, LoginActivity.class));
+
+
+                    DroidPrefs.apply(getApplicationContext(),"Current_Location",gpsTracker.getAddressLine(LocationAccessActivity.this));
+
+                if(!SharedPreferenceManager.getInstance().getIsLoggedIn()) {
+                    startActivity(new Intent(LocationAccessActivity.this, LoginActivity.class));
+                }
+                else{
+                    finish();
+                }
             }
         });
     }

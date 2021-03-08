@@ -138,8 +138,8 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         items.add(MyProfileTransformer.getProfileMenuItems());
         items.add(new SimpleTitleItem("Account Setting", R.color.light_gray));
         items.add(MyProfileTransformer.getAccountSetting());
-        items.add(new SimpleTitleItem("Become a Vendor", R.color.light_gray));
-        items.add(MyProfileTransformer.getRoleSetting());
+//        items.add(new SimpleTitleItem("Become a Vendor", R.color.light_gray));
+//        items.add(MyProfileTransformer.getRoleSetting());
         items.add(new SimpleTitleItem("Referral & Credits", R.color.light_gray));
         items.add(MyProfileTransformer.getReferralSetting());
         adapter.updateData(items);

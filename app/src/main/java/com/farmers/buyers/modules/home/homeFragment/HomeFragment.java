@@ -12,13 +12,16 @@ import android.content.Intent;
 
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -29,14 +32,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.model.SingleTextItem;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.common.view.MultipleTextItemViewHolder;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.FarmDetailActivity;
+import com.farmers.buyers.modules.farmDetail.model.FarmDeliveryStatus;
+import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
+import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
+import com.farmers.buyers.modules.farmDetail.view.FarmDetailsVegetableItemsViewHolder;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.home.HomeTransformer;
 import com.farmers.buyers.modules.home.adapter.HomeAdapter;
 import com.farmers.buyers.modules.home.adapter.HomeFarmListAdapter;
@@ -51,12 +62,18 @@ import com.farmers.buyers.modules.home.models.HomeTopOffersListItems;
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
+import com.farmers.buyers.modules.home.search.HomeSearchBottomSheetFragment;
+import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
+import com.farmers.buyers.modules.home.search.model.HomeSearchCategoryList;
 import com.farmers.buyers.modules.home.view.HomeCategoryListItemViewHolder;
 import com.farmers.buyers.modules.home.view.HomeDeliveryTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeFarmTypeViewHolder;
 import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
+import com.farmers.buyers.modules.home.view.HomeSearchItemViewHolder;
+import com.farmers.buyers.modules.location.LocationAccessActivity;
+import com.farmers.buyers.modules.location.ManualLocationActivity;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.saveFarms.model.SaveUnsaveFarmApiModel;
 import com.farmers.buyers.modules.login.LoginActivity;
@@ -77,7 +94,7 @@ import static com.farmers.buyers.app.App.getAppContext;
  */
 
 public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.HeaderItemClickListener,
-        MultipleTextItemViewHolder.FilterItemClickListener, HomeItemsViewHolder.FarmItemClickListener, HomeCategoryListItemViewHolder.CategoryItemClickListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener, HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener {
+        MultipleTextItemViewHolder.FilterItemClickListener, HomeItemsViewHolder.FarmItemClickListener, HomeCategoryListItemViewHolder.CategoryItemClickListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener, HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener, HomeSearchItemViewHolder.SearchItemClickListener, HomeSearchBottomSheetFragment.OnBackPressedClickListeners {
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
@@ -100,10 +117,12 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private MutableLiveData<DataFetchState<AllDataModel>> offerStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllDataModel>> changeUserStateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<HomeSearchApiModel>> homeSearchStateMachine = new MutableLiveData<>();
+
     private AppController appController = AppController.get();
     public GPSTracker gpsTracker;
     private RecyclerView recyclerView, farmRecyclerView;
-    private HomeAdapter adapter;
+    public HomeAdapter adapter;
     private HomeFarmListAdapter homeFarmListAdapter;
 
     @Override
@@ -117,6 +136,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
 
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE",
                 String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0")));
@@ -136,15 +156,13 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.home_recyclerView);
         farmRecyclerView = view.findViewById(R.id.home_farm_item_recyclerView);
+        getUserData();
 
         init();
+
+
     }
 
-    @Override
-    public void onViewCreated() {
-        super.onViewCreated();
-        getUserData();
-    }
 
     private void farmListDataRequest(String farmType, String serviceType, String categoryId, int page) {
 
@@ -163,12 +181,13 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
         viewModel.getFarmList(farmListStateMachine, farmListRequest);
     }
+    public void updateAddress(){
+        adapter.updateData(viewModel.items);
+    }
 
-    private void init() {
-
-        adapter = new HomeAdapter(this, this, this, this, this);
+    public void init() {
+        adapter = new HomeAdapter(this, this, this, this, this, this);
         gpsTracker = new GPSTracker(getAppContext());
-        SharedPreferenceManager.getInstance().setSharedPreference("Current_Location", gpsTracker.getAddressLine(getAppContext()));
         homeFarmListAdapter = new HomeFarmListAdapter(this);
         recyclerView.setAdapter(adapter);
         farmRecyclerView.setAdapter(homeFarmListAdapter);
@@ -186,7 +205,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         adapter.getItemAt(position) instanceof HomeTopOffersListItems ||
                         adapter.getItemAt(position) instanceof HomeFilterListItems ||
                         adapter.getItemAt(position) instanceof DeliveryTypeItems ||
-                        adapter.getItemAt(position) instanceof HomeFarmTypeItem) {
+                        adapter.getItemAt(position) instanceof HomeFarmTypeItem ||
+                adapter.getItemAt(position) instanceof SingleTextItem) {
                     return 2;
                 } else {
                     return 1;
@@ -195,6 +215,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         });
 
         recyclerView.setLayoutManager(manager);
+
 
         farmListStateMachine.observe(this, new Observer<DataFetchState<AddressApiModel>>() {
             @Override
@@ -224,10 +245,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case LOADING: {
-                    // showLoader();
+                     showLoader();
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     getCategoryData();
                     break;
                 }
@@ -246,6 +268,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     categorySuccess();
                     break;
                 }
@@ -259,10 +282,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case LOADING: {
-                    //showLoader();
+                    showLoader();
                     break;
                 }
                 case SUCCESS: {
+                    dismissLoader();
                     getUserSuccess();
                     farmListDataRequest("", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
                             , "", 0);
@@ -335,6 +359,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 }
             }
         });
+
+
     }
 
     private void getUserSuccess() {
@@ -364,7 +390,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onEditAddressClickListener(int position) {
-        Log.e("position", String.valueOf(position));
+        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),300);
     }
 
     public void buyer_seller_switch_dialog(Context activity) {
@@ -467,6 +493,17 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onDeliveryTypeCheckedChangeListener(int type) {
         farmListDataRequest("", String.valueOf(type), "", 0);
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
+        switch (type){
+            case 0:{
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Delivery");
+                break;
+            }
+            case 1:
+            {
+                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Pickup");
+                break;
+            }
+        }
     }
 
     @Override
@@ -477,5 +514,25 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     @Override
     public void onFarmTypeCheckedChangeListener(int farmType) {
         farmListDataRequest(String.valueOf(farmType), "", "", 0);
+    }
+
+    @Override
+    public void onSearchItemClicked(String query) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, new HomeSearchBottomSheetFragment(this));
+        transaction.commit();
+
+    }
+
+
+    @Override
+    public void onPressedBackButton() {
+        startActivity(new Intent(baseActivity, HomeActivity.class));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

@@ -20,4 +20,8 @@ public interface AppControllerContract {
     String getWalletAmount();
     String getProfilePic();
     String getSharedPreferences(String key, @Nullable Object defaultValue);
+    String getRole();
+    Boolean getIsStoreSetup();
+    String getGoogleApiKey();
+    String getFarmId();
 }

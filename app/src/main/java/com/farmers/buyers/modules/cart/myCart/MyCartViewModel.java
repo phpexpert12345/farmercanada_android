@@ -4,9 +4,13 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
+import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
+import com.farmers.buyers.modules.cart.MyCartTransformer;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponReqParams;
 import com.farmers.buyers.modules.cart.myCart.model.applyCoupon.ApplyCouponResponse;
 import com.farmers.buyers.modules.cart.myCart.model.cartList.CartListResponse;
@@ -15,17 +19,65 @@ import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxRequestParam;
 import com.farmers.buyers.modules.cart.myCart.model.chargeTax.TaxResponse;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitRequestParam;
+import com.farmers.buyers.modules.cart.order.model.submit.SubmitResponse;
 import com.farmers.buyers.modules.farmDetail.FarmDetailRepository;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
 import com.farmers.buyers.remote.StandardError;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Ganesh ɐɯɹɐɥs on 2/17/2021.
  */
 public class MyCartViewModel extends BaseViewModel {
     private MyCartRepository repository = new MyCartRepository();
+    public List<RecyclerViewListItem> items = new ArrayList<>();
+    public void getOrderTimeByDate(final MutableLiveData<DataFetchState<AddressApiModel>> stateMutableLiveData,
+                                   SubmitRequestParam requestParam) {
+        stateMutableLiveData.postValue(DataFetchState.loading());
+        repository.getOrderTimeByDate(requestParam, new ApiResponseCallback<AddressApiModel>() {
+            @Override
+            public void onSuccess(AddressApiModel response) {
+                if (response.isStatus()) {
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatus_message(), new AddressApiModel()));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMutableLiveData.postValue(DataFetchState.<AddressApiModel>error(standardError.getDisplayError(), null));
+
+            }
+        });
+    }
+
+    public void getOrderDate(final MutableLiveData<DataFetchState<AddressApiModel>> stateMutableLiveData,
+                             SubmitRequestParam requestParam) {
+        stateMutableLiveData.postValue(DataFetchState.loading());
+        repository.getOrderDate(requestParam, new ApiResponseCallback<AddressApiModel>() {
+            @Override
+            public void onSuccess(AddressApiModel response) {
+                if (response.isStatus()) {
+                    items.clear();
+                    items.add(new SimpleTitleItem("Choose delivery slot for this address"));
+                    items.add(MyCartTransformer.getPlaceOrderSlot(response.getData().getAllDateList()));
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatus_message()));
+                } else
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatus_message(), new AddressApiModel()));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMutableLiveData.postValue(DataFetchState.<AddressApiModel>error(standardError.getDisplayError(), null));
+
+            }
+        });
+    }
 
     public void validateCoupon(final MutableLiveData<DataFetchState<ApplyCouponResponse>> stateMutableLiveData, ApplyCouponReqParams applyCouponReqParams) {
         stateMutableLiveData.postValue(DataFetchState.<ApplyCouponResponse>loading());
@@ -84,6 +136,26 @@ public class MyCartViewModel extends BaseViewModel {
                 stateMutableLiveData.postValue(DataFetchState.<CartListResponse>error(standardError.getDisplayError(), null));
             }
         });
+    }
+    public void submitOrder(final MutableLiveData<DataFetchState<SubmitResponse>> stateMutableLiveData,
+                            SubmitRequestParam requestParam) {
+        stateMutableLiveData.postValue(DataFetchState.loading());
+        repository.submitOrder(requestParam, new ApiResponseCallback<SubmitResponse>() {
+            @Override
+            public void onSuccess(SubmitResponse response) {
+                if (response.getData() != null)
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                else
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatusMessage(), new SubmitResponse()));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMutableLiveData.postValue(DataFetchState.<SubmitResponse>error(standardError.getDisplayError(), null));
+
+            }
+        });
+
     }
 
     public void increaseDecrease(final MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> stateMutableLiveData, IncreaseDecreaseParams param) {

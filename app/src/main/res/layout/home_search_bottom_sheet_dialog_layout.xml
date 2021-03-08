@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:id="@+id/dialog_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+
+        <ImageView
+            android:id="@+id/home_search_back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:scaleType="center"
+            android:layout_marginLeft="@dimen/_8sdp"
+            />
+
+
+    <LinearLayout
+        android:id="@+id/search_box_ll"
+        android:layout_toRightOf="@+id/home_search_back_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_8sdp"
+        >
+        <EditText
+            android:id="@+id/home_search_bottom_sheet_search_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/light_gray_round_border_bg"
+            android:drawableStart="@drawable/ic_search"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/sf_ui_regular"
+            android:hint="Find your items"
+            android:padding="@dimen/_8sdp"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/home_search_bottom_sheet_search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/round_corner_light_gradient_bg"
+            android:textColor="@color/secondaryTextColor"
+            android:padding="@dimen/_8sdp"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/search_box_ll"
+        android:id="@+id/home_search_error_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:src="@drawable/no_followers_found"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"/>
+
+        <TextView
+            android:id="@+id/home_search_error_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search Your Product"
+            android:fontFamily="@font/sf_ui_regular"
+            android:textSize="@dimen/_12ssp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/primaryTextColor"/>
+
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_search_recyclerView"
+        android:layout_below="@+id/search_box_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

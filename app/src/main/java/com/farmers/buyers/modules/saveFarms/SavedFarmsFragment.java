@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.saveFarms;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     private RecyclerView recyclerView;
     private SavedFarmsAdapter adapter;
     private TextView txt_no_saved_farms;
+    LinearLayout ll_data_not_available;
     private AppController appController = AppController.get();
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -71,6 +73,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     public void bindView(View view) {
         recyclerView = view.findViewById(R.id.saved_farms_recyclerView);
         txt_no_saved_farms=view.findViewById(R.id.txt_no_saved_farms);
+        ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
         adapter = new SavedFarmsAdapter(this);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.GRID));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -148,7 +151,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
     private void success() {
         dismissLoader();
-        txt_no_saved_farms.setVisibility(View.GONE);
+        ll_data_not_available.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         bindAdapter();
 
@@ -156,7 +159,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
     private void error(String error) {
         dismissLoader();
-        txt_no_saved_farms.setVisibility(View.VISIBLE);
+        ll_data_not_available.setVisibility(View.VISIBLE);
         txt_no_saved_farms.setText(error);
         recyclerView.setVisibility(View.GONE);
     }

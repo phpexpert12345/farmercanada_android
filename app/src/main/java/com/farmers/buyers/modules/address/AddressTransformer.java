@@ -25,9 +25,8 @@ public class AddressTransformer {
                     allDataModels.get(i).getVendor_country(),
                     allDataModels.get(i).getAddress_title(),
                     allDataModels.get(i).getAccount_phone_number(),
-                    allDataModels.get(i).getVendor_city(),
                     allDataModels.get(i).getVendor_state(),
-                    allDataModels.get(i).getAddress_postcode()));
+                    allDataModels.get(i).getAddress_postcode(),allDataModels.get(i).getVendor_lat(),allDataModels.get(i).getVendor_long()));
         }
 
         return items;

@@ -21,6 +21,8 @@ public class LoginViewModel extends BaseViewModel {
 
     private LoginRepository repository = new LoginRepository();
     private AppController appController = AppController.get();
+    public String userType;
+    public String isStoreSetup;
 
     public void doLogin(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine, String email,
                         String password, int role, String FirebaseToken) {
@@ -52,6 +54,14 @@ public class LoginViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setIsLoggedIn(true);
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
+                    SharedPreferenceManager.getInstance().setRole(response.getData().getAccountTypeName());
+                    SharedPreferenceManager.getInstance().setFarmId(response.getData().getFarmId());
+                    isStoreSetup = response.getData().getStoreSetupStatus();
+                    if (response.getData().getStoreSetupStatus().equals("Yes")) {
+                        SharedPreferenceManager.getInstance().setIsStoreSetup(true);
+                    }
+                    userType = response.getData().getAccountTypeName();
+
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {
                     stateMachine.postValue(DataFetchState.<LoginApiModel>error(response.getStatus_message(), null));

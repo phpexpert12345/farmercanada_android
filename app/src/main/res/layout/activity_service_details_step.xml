@@ -9,22 +9,44 @@
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
     tools:context="com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity">
 
-    <include layout="@layout/common_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_110sdp"
+        android:layout_height="@dimen/_150sdp"
         android:background="@mipmap/top_green_bg"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/_15sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:elevation="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/tv_setup_seller_back_img"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_white_back_arrow" />
+
+            <TextView
+                android:id="@+id/tv_setup_seller_toolbar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Service Information"
+                android:textColor="@color/secondaryTextColor" />
+
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/_15sdp"
-            android:paddingRight="@dimen/_15sdp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,32 +56,36 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:gravity="center">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
                         android:background="@mipmap/unselect_circle"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/sf_ui_semibold"
-                            android:gravity="center"
                             android:text="1"
                             android:textColor="@color/white"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
 
                     <View
-                        android:layout_width="@dimen/_53sdp"
+                        android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/white" />
                 </LinearLayout>
@@ -88,19 +114,22 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
 
                     <View
-                        android:layout_width="@dimen/_53sdp"
-                        android:layout_height="1sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:background="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
                     android:gravity="center">
 
                     <LinearLayout
@@ -119,138 +148,49 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
 
-                    <View
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="1sp"
-                        android:background="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="@dimen/_22sdp"
-                        android:layout_height="@dimen/_22sdp"
-                        android:background="@mipmap/unselect_circle"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Store Setup"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="3sp"
-                            android:gravity="start"
-                            android:text="Store\nDetails"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Service Information"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:gravity="center"
-                            android:text="Service\nDetails"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Document"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_20sdp"
-                            android:gravity="center"
-                            android:text="Verification"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="end|center"
-                            android:text="Document\nUpload"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
+
 
         </LinearLayout>
 
     </LinearLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -259,8 +199,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_15sdp">
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -269,266 +210,309 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <RadioGroup
-                    android:id="@+id/radio_group"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/radio_pickup"
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:buttonTint="@color/green"
-                        android:checked="true"
-                        android:fontFamily="@font/sf_ui_semibold"
-                        android:text="Pickup"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_16_px" />
 
-                    <RadioButton
-                        android:id="@+id/radio_delivery"
-                        android:layout_width="0sp"
+
+                    <CheckBox
+                        android:id="@+id/store_setup_delivery_check"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="1"
                         android:buttonTint="@color/green"
                         android:fontFamily="@font/sf_ui_semibold"
                         android:text="Delivery"
-                        android:textColor="@color/light_gray"
-                        android:textSize="@dimen/sp_16_px" />
-                </RadioGroup>
+                        android:textColor="@color/primaryTextColor" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/sf_ui_regular"
-                android:gravity="center"
-                android:text="Select Delivery Location"
-                android:textSize="16sp" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="vertical"
-                app:cardCornerRadius="7sp"
-                app:cardUseCompatPadding="true">
-
-                <fragment
-                    android:id="@+id/map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </androidx.cardview.widget.CardView>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.AppTheme.TextInputLayoutList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/select_distance"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginRight="@dimen/_20sdp"
-                    android:layout_weight="0.2"
-                    android:gravity="end">
-
-                    <ImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:src="@mipmap/dropdown_icon" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
             <LinearLayout
+                android:id="@+id/store_setup_delivery_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
-                <LinearLayout
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="Select Delivery Location"
+                    android:textSize="16sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="7sp"
+                    app:cardUseCompatPadding="true">
+
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/transparent_gray"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/dp_0_px">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/setup_store_delivery_range_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:src="@mipmap/info_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_8sdp"
+                            android:fontFamily="@font/sf_ui_regular"
+                            android:gravity="start"
+                            android:text="You have selected 10km Delivery Location"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:src="@mipmap/info_icon" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_8sdp"
+                            android:fontFamily="@font/sf_ui_regular"
+                            android:gravity="start"
+                            android:text="ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:text="Delivery Charges"
+                    android:textColor="@color/primaryTextColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/gray_border_transparent_bg"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"
-                        android:src="@mipmap/info_icon" />
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_margin="@dimen/_3sdp"
+                        android:src="@mipmap/doller_icon" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/store_setup_delivery_charges_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="start"
-                        android:text="You have selected 10km Delivery Location"
-                        android:textSize="14sp" />
+                        android:backgroundTint="@android:color/transparent"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_ui_semibold"
+                        android:text="Additional Delivery Charges"
+                        android:textColor="@color/primaryTextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/sf_ui_semibold"
+                        android:gravity="end"
+                        android:text="(Per KM)"
+                        android:textColor="@color/primaryTextColor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/gray_border_transparent_bg"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"
-                        android:src="@mipmap/info_icon" />
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_margin="@dimen/_3sdp"
+                        android:src="@mipmap/doller_icon" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/store_setup_additional_charges_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="start"
-                        android:text="ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print"
-                        android:textSize="14sp" />
+                        android:backgroundTint="@android:color/transparent"
+                        android:inputType="number"
+                        android:padding="@dimen/_8sdp" />
+
+
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="Delivery Message"
+                    android:textColor="@color/primaryTextColor" />
+
+                <EditText
+                    android:id="@+id/store_setup_delivery_message_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:gravity="top"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/gray_border_transparent_bg" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.AppTheme.TextInputLayoutList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/store_setup_minimum_order_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Minimum Order"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
-            <LinearLayout
+            <CheckBox
+                android:id="@+id/store_setup_pickup_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:buttonTint="@color/green"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Pickup"
+                android:textColor="@color/primaryTextColor" />
 
-                <LinearLayout
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:background="@mipmap/doller_icon"
-                    android:gravity="center">
 
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/store_setup_pickup_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.AppTheme.TextInputLayoutList"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/light_gray"
+                    app:boxStrokeColor="@color/light_gray"
+                    app:hintTextColor="@color/light_gray">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_pickup_minimum_order_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/delivery_charges"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:hint="Enter Minimum Pickup Order"
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:fontFamily="@font/sf_ui_semibold"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:text="Time for Delivery"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/_5sdp">
-
-                <LinearLayout
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/light_gray_round_border_bg"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_5sdp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@mipmap/clock_icon"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="Start Time 10:00 Am"
-                        android:textColor="@color/light_gray"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/light_gray_round_border_bg"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_5sdp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableRight="@mipmap/clock_icon"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="End Time 10:00 Am"
-                        android:textColor="@color/light_gray"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/minimum_delivery_amount"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="Pickup Message"
+                    android:textColor="@color/primaryTextColor" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/store_setup_pickup_message_et"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/minimum_pickup_amount"
-                    android:textColor="@color/black" />
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:gravity="top"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/gray_border_transparent_bg" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -541,25 +525,13 @@
                     android:id="@+id/bt_next_service_details"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/round_corner_green_gradient_bg"
                     android:text="Next"
                     android:textColor="@color/secondaryTextColor" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center">
-
-                <View
-                    android:layout_width="150sp"
-                    android:layout_height="2.5dp"
-                    android:background="@color/black" />
-            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
