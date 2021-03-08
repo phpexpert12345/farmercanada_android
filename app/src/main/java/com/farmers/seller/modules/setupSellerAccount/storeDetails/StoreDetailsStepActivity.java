@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.utils.AlertHelper;
+import com.farmers.buyers.common.utils.CameraProvider;
 import com.farmers.buyers.common.utils.OnAlertClickListener;
 import com.farmers.buyers.common.utils.Util;
 import com.farmers.buyers.modules.login.LoginActivity;
@@ -42,11 +44,14 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 public class StoreDetailsStepActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -75,6 +80,7 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
     private Double lat;
     private Double lang;
     private ImageView micImage;
+    private CameraProvider cameraProvider = new CameraProvider(this, CAMERA_REQUEST_CODE, GALLERY_REQUEST_CODE);
 
 
     @Override
@@ -142,10 +148,12 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
         AlertHelper.showAlert(this, "Choose Store Photo", "Choose your store Picture", true, "Camera", true, "Gallery", true, new OnAlertClickListener() {
             @Override
             public void onNegativeBtnClicked() {
+                cameraProvider.openGallery();
             }
 
             @Override
             public void onPositiveBtnClicked() {
+                cameraProvider.openCamera();
             }
         });
     }
@@ -217,6 +225,11 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        cameraProvider.processOnActivityResult(requestCode, resultCode, data, (file, s) -> {
+            storeImage.setImageURI(Uri.fromFile(file));
+            return Unit.INSTANCE;
+        });
 
         if (resultCode == RESULT_OK && data != null) {
                 switch (requestCode) {

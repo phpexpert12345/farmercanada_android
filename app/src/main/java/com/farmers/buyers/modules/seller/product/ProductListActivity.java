@@ -155,6 +155,24 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onEditItemClickListener(int position) {
+        viewModel.selectedProduct = viewModel.productItems.get(position);
+        EditProductExtra extra = new EditProductExtra(
+                viewModel.selectedProduct.getProductId(),
+                viewModel.selectedProduct.getProductName(),
+                viewModel.selectedProduct.getListTotal(),
+                viewModel.selectedProduct.getPerUnitPrice(),
+                viewModel.selectedProduct.getCategory(),
+                viewModel.selectedProduct.getQuantity(),
+                viewModel.selectedProduct.getCouponAmount(),
+                viewModel.selectedProduct.getCouponCode(),
+                viewModel.selectedProduct.getDescription(),
+                viewModel.selectedProduct.getUnitType(),
+                viewModel.selectedProduct.getSalesPrice()
+                );
+
+        Intent intent = new Intent(this, AddProductActivity.class);
+        intent.putExtra(AddProductActivity.EDIT_PRODUCT_EXTRA, extra);
+        startActivity(intent);
 
     }
 }

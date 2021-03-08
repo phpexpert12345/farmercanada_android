@@ -19,8 +19,10 @@ public class ProductListItems implements RecyclerViewListItem {
     String couponAmount;
     String couponCode;
     String description;
+    String unitType;
+    String salesPrice;
 
-    public ProductListItems(String productId, String productName, String listTotal, String perUnitPrice, String category, String quantity, String couponAmount, String couponCode, String description) {
+    public ProductListItems(String productId, String productName, String listTotal, String perUnitPrice, String category, String quantity, String couponAmount, String couponCode, String description, String unitType, String salesPrice) {
         this.productName = productName;
         this.listTotal = listTotal;
         this.perUnitPrice = perUnitPrice;
@@ -30,6 +32,8 @@ public class ProductListItems implements RecyclerViewListItem {
         this.couponCode = couponCode;
         this.description = description;
         this.productId = productId;
+        this.unitType = unitType;
+        this.salesPrice = salesPrice;
     }
 
     public String getProductName() {
@@ -66,6 +70,14 @@ public class ProductListItems implements RecyclerViewListItem {
 
     public String getProductId() {
         return productId;
+    }
+
+    public String getSalesPrice() {
+        return salesPrice;
+    }
+
+    public String getUnitType() {
+        return unitType;
     }
 
     @Override

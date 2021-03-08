@@ -12,9 +12,14 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class ManageCouponDelegate extends BaseDelegate {
+    private ManageCouponViewHolder.CouponItemClickListener listener;
+
+    public ManageCouponDelegate(ManageCouponViewHolder.CouponItemClickListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new ManageCouponViewHolder(parent);
+        return new ManageCouponViewHolder(parent, listener);
     }
 }

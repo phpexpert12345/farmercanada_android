@@ -195,7 +195,6 @@
             android:orientation="horizontal"
             android:background="@drawable/gray_border_transparent_bg"
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/_8sdp"
             >
 
                 <Spinner
@@ -203,6 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12ssp"
+                    android:padding="@dimen/_5sdp"
                     style="@style/Widget.AppCompat.DropDownItem.Spinner"/>
 
 

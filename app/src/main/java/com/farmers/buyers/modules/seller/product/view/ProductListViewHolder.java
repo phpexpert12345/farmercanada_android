@@ -47,10 +47,9 @@ public class ProductListViewHolder extends BaseViewHolder {
         editTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listItemClickListener.onDeleteItemClickListener(getAdapterPosition());
+                listItemClickListener.onEditItemClickListener(getAdapterPosition());
             }
         });
-
 
 
     }
@@ -60,17 +59,18 @@ public class ProductListViewHolder extends BaseViewHolder {
         ProductListItems item = (ProductListItems) items;
 
         productName.setText(item.getProductName());
-                total.setText(item.getListTotal());
-//        unitTv.setText(item.);
-                categoryNameTv.setText(item.getCategory());
+        total.setText(item.getListTotal());
+        unitTv.setText(item.getPerUnitPrice());
+        categoryNameTv.setText(item.getCategory());
         couponAmountTv.setText(item.getCouponAmount());
-                quantityTv.setText(item.getQuantity());
+        quantityTv.setText(item.getQuantity());
         couponCodeTv.setText(item.getCouponCode());
-                descriptionTv.setText(item.getDescription());
+        descriptionTv.setText(item.getDescription());
     }
 
     public interface ProductListItemClickListener {
         void onDeleteItemClickListener(int position);
+
         void onEditItemClickListener(int position);
     }
 }

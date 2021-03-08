@@ -27,9 +27,9 @@ import java.util.List;
 public class ProductListViewModel extends BaseViewModel {
     private ProductListRepository repository = new ProductListRepository();
     public List<RecyclerViewListItem> items = new ArrayList<>();
-    private List<ProductListItems> productItems = new ArrayList<>();
+    public List<ProductListItems> productItems = new ArrayList<>();
     private AppController appController = AppController.get();
-    private ProductListItems selectedProduct = null;
+    public ProductListItems selectedProduct = null;
 
 
     public void getProductList(MutableLiveData<DataFetchState<ProductListApiModel>> stateMachine) {

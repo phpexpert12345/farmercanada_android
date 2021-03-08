@@ -1,9 +1,7 @@
 package com.farmers.buyers.common.utils
 
 import android.app.Activity
-import android.content.ContentUris
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
@@ -12,12 +10,9 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.provider.DocumentsContract
 import android.provider.MediaStore
-import androidx.annotation.WorkerThread
 import androidx.exifinterface.media.ExifInterface
 import java.io.*
-import java.net.URISyntaxException
 import kotlin.math.roundToInt
 
 
@@ -30,13 +25,17 @@ class CameraProvider(private val activity: Activity, private val code: Int, priv
     private var imageUri: Uri? = null
 
     fun openGallery() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-//        if(fragment != null) {
-//            fragment.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
-//        }else {
-        activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
+        val intent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        activity.startActivityForResult(intent, galleryCode)
+
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+////        if(fragment != null) {
+////            fragment.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
+////        }else {
+//        activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
 //        }
 
     }
@@ -80,10 +79,10 @@ class CameraProvider(private val activity: Activity, private val code: Int, priv
         }else if(requestCode == galleryCode) {
             val selectedImage: Uri? = data?.data
             try {
-                val realPath = ContentUriUtils.getFilePath(activity, selectedImage!!)
-                if(realPath != null) {
+                val realPath = ContentUriUtils.getFilePath(activity, selectedImage)
+//                if(realPath != null) {
                     val file = File(realPath)
-//                    handleSamplingAndRotationBitmap(Uri.fromFile(file), file.name)?.run {
+                    handleSamplingAndRotationBitmap(Uri.fromFile(file), file.name)?.run {
                     callBack(file, realPath)
 //                    }
 

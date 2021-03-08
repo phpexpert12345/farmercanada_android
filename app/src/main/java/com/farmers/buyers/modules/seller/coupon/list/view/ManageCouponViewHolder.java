@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.seller.coupon.list.view;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -18,15 +19,31 @@ import com.farmers.buyers.modules.seller.coupon.list.model.ManageCouponItem;
  */
 
 public class ManageCouponViewHolder extends BaseViewHolder {
-    private TextView couponIdTv, addDateTv, endDateTv, couponStatusTv, couponCodeTv;
+    private TextView couponIdTv, addDateTv, endDateTv, couponStatusTv, couponCodeTv, editTv, deleteTv;
 
-    public ManageCouponViewHolder(@NonNull ViewGroup parent) {
+    public ManageCouponViewHolder(@NonNull ViewGroup parent, CouponItemClickListener listener) {
         super(Extensions.inflate(parent, R.layout.manage_coupon_item_layout));
         couponIdTv = itemView.findViewById(R.id.manage_coupon_id_tv);
         addDateTv = itemView.findViewById(R.id.manage_coupon_add_date_tv);
-        endDateTv = itemView.findViewById(R.id.manage_coupon_add_status_tv);
-        couponStatusTv = itemView.findViewById(R.id.manage_coupon_expire_date_tv);
+        couponStatusTv = itemView.findViewById(R.id.manage_coupon_add_status_tv);
+        endDateTv = itemView.findViewById(R.id.manage_coupon_expire_date_tv);
         couponCodeTv = itemView.findViewById(R.id.manage_coupon_item_coupon_code_tv);
+        deleteTv = itemView.findViewById(R.id.manage_coupon_item_delete_tv);
+        editTv = itemView.findViewById(R.id.manage_coupon_item_edit_tv);
+
+        editTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onEditCouponListener(getAdapterPosition());
+            }
+        });
+
+        deleteTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onDeleteCouponListener(getAdapterPosition());
+            }
+        });
 
     }
 
@@ -38,8 +55,13 @@ public class ManageCouponViewHolder extends BaseViewHolder {
         couponIdTv.setText(item.getCouponId());
                 addDateTv.setText(item.getAddDate());
         endDateTv.setText(item.getEndDate());
-                couponStatusTv.setText(item.getStatus() ? "Active" : "");
+                couponStatusTv.setText(item.getStatus());
         couponCodeTv.setText(item.getCouponCode());
 
+    }
+
+    public interface CouponItemClickListener {
+        void onDeleteCouponListener(int position);
+        void onEditCouponListener(int position);
     }
 }

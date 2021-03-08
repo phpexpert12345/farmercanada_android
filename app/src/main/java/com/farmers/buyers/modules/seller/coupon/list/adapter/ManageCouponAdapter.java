@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.seller.coupon.list.adapter;
 
 import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.seller.coupon.list.view.ManageCouponDelegate;
+import com.farmers.buyers.modules.seller.coupon.list.view.ManageCouponViewHolder;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -11,13 +12,15 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class ManageCouponAdapter extends BaseAdapter {
+    private ManageCouponViewHolder.CouponItemClickListener listener;
 
-    public ManageCouponAdapter() {
+    public ManageCouponAdapter(ManageCouponViewHolder.CouponItemClickListener listener) {
+        this.listener = listener;
         this.initDelegate();
     }
 
     @Override
     public void initDelegate() {
-        delegates.put(CardConstant.MANAGE_COUPON_ITEM_ADAPTER, new ManageCouponDelegate());
+        delegates.put(CardConstant.MANAGE_COUPON_ITEM_ADAPTER, new ManageCouponDelegate(listener));
     }
 }

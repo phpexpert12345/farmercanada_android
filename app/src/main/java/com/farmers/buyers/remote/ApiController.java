@@ -383,6 +383,25 @@ public interface ApiController {
                                                 @Part("auth_key") RequestBody authKey,
                                                 @Part @Nullable MultipartBody.Part productImage);
 
+    @Multipart
+    @POST
+    Call<AddProductApiResponseModel> EditProduct(@Url String url,
+                                                @Part("product_name") RequestBody productName,
+                                                @Part("product_quanity") RequestBody quantity,
+                                                @Part("product_unit") RequestBody unit,
+                                                @Part("product_category_id") RequestBody categoryId,
+                                                @Part("product_unit_price") RequestBody unitPrice,
+                                                @Part("product_sales_price") RequestBody salesPrice,
+                                                @Part("product_note") RequestBody note,
+                                                @Part("ProductID") RequestBody productId,
+                                                @Part("farm_id") RequestBody farmId,
+                                                @Part("LoginId") RequestBody loginId,
+                                                @Part("auth_key") RequestBody authKey,
+                                                @Part @Nullable MultipartBody.Part productImage);
+
+
+
+
     @FormUrlEncoded
     @POST
     Call<ProductListApiModel> getProductList(@Url String url, @Field("LoginId") String loginId, @Field("farm_id") String farmId, @Field("auth_key") String authKey);
@@ -403,7 +422,6 @@ public interface ApiController {
                                       @Field("term_condition") String termsCondition,
                                       @Field("start_date") String startData,
                                       @Field("expire_date") String endDate,
-                                      @Field("CouponID") String couponId,
                                       @Field("farm_id") String farmId,
                                       @Field("LoginId") String loginId,
                                       @Field("auth_key") String authKey
@@ -412,7 +430,7 @@ public interface ApiController {
 
   @FormUrlEncoded
     @POST
-    Call<AddCouponApiModel> EditCoupon(@Url String url,
+    Call<AddCouponApiModel> editCoupon(@Url String url,
                                       @Field("coupon_code") String couponCode,
                                       @Field("discount_type") String discountType,
                                       @Field("discount_amount") String discountAmount,
@@ -430,12 +448,14 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<DeleteCouponApiModel> deleteCoupon(@Url String url, @Field("CouponID") String couponId, @Field("auth_key") String authKey);
+    Call<DeleteProductApiModel> deleteCoupon(@Url String url, @Field("CouponID") String couponId, @Field("auth_key") String authKey);
 
 
     @FormUrlEncoded
     @POST
     Call<DeleteProductApiModel> deleteProduct(@Url String url, @Field("ProductID") String productId, @Field("auth_key") String authKey);
+
+
 
 }
 

@@ -1,5 +1,8 @@
 package com.farmers.buyers.modules.seller.coupon.list;
 
+import android.widget.LinearLayout;
+
+import com.farmers.buyers.modules.seller.coupon.list.model.CouponCodeListSeller;
 import com.farmers.buyers.modules.seller.coupon.list.model.ManageCouponItem;
 
 import java.util.ArrayList;
@@ -13,12 +16,26 @@ import java.util.List;
 
 public class ManageCouponTransformer {
 
-    public static List<ManageCouponItem> getCoupons() {
+    public static List<ManageCouponItem> getCoupons(List<CouponCodeListSeller> apiData) {
         List<ManageCouponItem> item = new ArrayList<>();
-        item.add(new ManageCouponItem("","","","","",false));
-        item.add(new ManageCouponItem("","","","","",false));
-        item.add(new ManageCouponItem("","","","","",false));
-        item.add(new ManageCouponItem("","","","","",false));
+        for (int i =0 ; i < apiData.size(); i++) {
+            CouponCodeListSeller couponData = apiData.get(i);
+
+            item.add(new ManageCouponItem(
+                    String.valueOf(couponData.getCouponID()),
+                    couponData.getCouponCode(),
+                    "",
+                    "",
+                    String.valueOf(couponData.getNumberPersonUse()),
+                    couponData.getActiveStatusName(),
+                    "",
+                    "",
+                    couponData.getDiscountMinimumOrder(),
+                    couponData.getTermCondition(),
+                    couponData.getDiscountAmount()
+            ));
+        }
+
         return item;
     }
 }
