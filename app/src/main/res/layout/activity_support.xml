@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
                 android:padding="@dimen/_10sdp"
-                android:text="What issue are my facing?"
+                android:text="What issue i am facing?"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_16_px" />
 

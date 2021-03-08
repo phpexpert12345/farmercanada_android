@@ -7,11 +7,37 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".modules.cart.myCart.MyCartActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:visibility="visible"
+        android:id="@+id/cart_header">
+        <ImageView
+            android:id="@+id/cart_back"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_white_back_arrow"
+            app:tint="@color/black" />
+        <TextView
+            android:id="@+id/text_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+
+            android:fontFamily="@font/sf_ui_bold"/>
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_30sdp">
+        android:layout_below="@+id/cart_header"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,7 +60,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
                 android:text="@string/order_type"
-                android:textSize="16sp" />
+                android:textSize="@dimen/_18sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +70,6 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="10dp"
-                android:layout_marginTop="10dp"
                 android:paddingBottom="10dp">
 
                 <androidx.cardview.widget.CardView
@@ -52,7 +77,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-
                     android:elevation="5dp"
                     app:cardCornerRadius="5dp"
                     app:cardUseCompatPadding="true">
@@ -62,10 +86,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/_18sdp"
+                        android:textSize="@dimen/_14sdp"
                         android:background="@color/light_gray"
                         android:gravity="center"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="@dimen/_5sdp"
                         android:singleLine="true"
                         android:text="@string/delivery"
                         android:textColor="@color/colorPrimaryDark" />
@@ -86,10 +110,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/_18sdp"
+                        android:textSize="@dimen/_14sdp"
                         android:background="@color/light_gray"
                         android:gravity="center"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="@dimen/_5sdp"
                         android:singleLine="true"
                         android:text="@string/pickup"
                         android:textColor="@color/colorPrimaryDark" />
@@ -112,10 +136,11 @@
 
                 <TextView
                     android:id="@+id/itemCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="4 items"
+                    android:visibility="gone"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/sp_12_px" />
 
@@ -145,6 +170,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:drawableLeft="@drawable/ic_swipe_hand"
                 android:drawablePadding="@dimen/_8sdp"
+                android:visibility="gone"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Swipe on an item to delete"
                 android:textColor="@color/black"
@@ -160,7 +186,6 @@
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
-   />
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -170,8 +195,8 @@
     android:visibility="gone"
     android:orientation="vertical">
     <ImageView
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
         android:src="@mipmap/ic_cart_not"/>
 
 
@@ -183,6 +208,7 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/_10sdp"
         android:text="test"
+        android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/black"
         android:gravity="center"
         android:textAlignment="center"

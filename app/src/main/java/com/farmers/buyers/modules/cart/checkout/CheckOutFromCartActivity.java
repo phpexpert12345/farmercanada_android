@@ -519,6 +519,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             taxData.setDiscountTextView(false);
         }
         taxData.setDiscountAmount(OrderSingleton.getInstance().getCoupon_discount_amount());
+        taxData.setTitle("Pay & Confirm");
 
         CheckOutCartAddressItems addressItems = new CheckOutCartAddressItems(
                 "",

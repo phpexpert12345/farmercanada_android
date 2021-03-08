@@ -70,13 +70,13 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         packageFeeLabel = itemView.findViewById(R.id.packedge_fee_lable);
         rl_shipping_fee = itemView.findViewById(R.id.rl_shipping_fee);
         decimalFormat=new DecimalFormat("##.##");
-
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listeners1.onCheckOutClicked();
             }
         });
+
 
         myCartApplyCouponTv.setOnClickListener(view -> {
             if (!couponEditText.getText().toString().trim().isEmpty())
@@ -90,7 +90,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     public void bindView(final RecyclerViewListItem items) {
         TaxData taxData = (TaxData) items;
         double su_total=Double.parseDouble(taxData.getSubTotal());
-
+        checkOutBtn.setText(taxData.getTitle());
         subTotal.setText(String.format("%.2f",su_total));
         if (taxData.isApplyCouponButton()) {
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
@@ -137,6 +137,7 @@ else{
     rl_shipping_fee.setVisibility(View.VISIBLE);
 //        shipingFee.setText(taxData.getDeliveryCharge())
 }
+
 //        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
 //            rl_shipping_fee.setVisibility(View.GONE);
 //        } else {

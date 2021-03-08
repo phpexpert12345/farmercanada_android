@@ -6,11 +6,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".modules.wallet.WalletActivity">
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:visibility="visible"
+        android:id="@+id/wallet_header">
+        <ImageView
+            android:id="@+id/wallet_back"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_white_back_arrow"
+            app:tint="@color/black" />
+    <TextView
+        android:id="@+id/text_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        tools:text="Screen Title"
+        android:fontFamily="@font/sf_ui_bold"/>
+</RelativeLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wallet_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/wallet_header"/>
 
     <LinearLayout
         android:id="@+id/ll_data_not_available"
@@ -21,8 +50,8 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@mipmap/ic_wallet_not" />
 
         <TextView
@@ -31,8 +60,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_ui_regular"
             android:text="No address"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_16sdp" />
 
     </LinearLayout>
 

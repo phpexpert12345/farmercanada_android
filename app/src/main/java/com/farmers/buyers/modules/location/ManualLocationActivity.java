@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class ManualLocationActivity extends AppCompatActivity implements OnMapRe
     public PlacesClient placesClient;
     public TextView tv_address;
     public EditText ed_search;
-
+    public ImageView img_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,10 @@ public class ManualLocationActivity extends AppCompatActivity implements OnMapRe
         tv_address = findViewById(R.id.tv_address);
         ed_search = findViewById(R.id.ed_search);
         tv_address.setText(gpsTracker.getAddressLine(this));
+        img_edit=findViewById(R.id.img_edit);
+        img_edit.setOnClickListener(v -> {
+            searchPlace();
+        });
         Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
         placesClient = Places.createClient(ManualLocationActivity.this);
 

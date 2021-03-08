@@ -288,7 +288,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                 case SUCCESS: {
                     dismissLoader();
                     getUserSuccess();
-                    farmListDataRequest("", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
+                    farmListDataRequest("0", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
                             , "", 0);
                     break;
                 }
@@ -347,6 +347,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     }
                     case SUCCESS: {
                         dismissLoader();
+                        farmListDataRequest("0", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
+                                , "", 0);
                         break;
 
                     }
@@ -479,6 +481,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         intent.putExtra("farm_cover_image", viewModel.homeFarmListItem.get(position).getCoverImage());
         intent.putExtra("farm_image", viewModel.homeFarmListItem.get(position).getFarmImage());
         intent.putExtra("followed_id", viewModel.homeFarmListItem.get(position).followed_id);
+        intent.putExtra("farm_lat",viewModel.homeFarmListItem.get(position).getFarmLat());
+        intent.putExtra("farm_long",viewModel.homeFarmListItem.get(position).getFarmLong());
         startActivity(intent);
     }
 
@@ -486,12 +490,12 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     public void onCategoryItemClicked(String id, int position) {
         adapter.notifyDataSetChanged();
         adapter.notifyItemChanged(position);
-        farmListDataRequest("", "", id, 0);
+        farmListDataRequest("0", "", id, 0);
     }
 
     @Override
     public void onDeliveryTypeCheckedChangeListener(int type) {
-        farmListDataRequest("", String.valueOf(type), "", 0);
+        farmListDataRequest("0", String.valueOf(type), "", 0);
         SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
         switch (type){
             case 0:{

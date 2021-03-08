@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -25,6 +27,8 @@ public class OtpActivity extends BaseActivity {
 
     private Button requestOtpBtn;
     private TextInputEditText mobileNumberEt;
+    private ImageView image_back_button;
+    private TextView  text_screen_title;
     private boolean extra = false;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -46,7 +50,6 @@ public class OtpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-
         init();
         listener();
     }
@@ -66,13 +69,19 @@ public class OtpActivity extends BaseActivity {
         });
 
 
+
     }
 
     private void init() {
         extra = getIntent().getBooleanExtra("fromForgetPassword", false);
         requestOtpBtn = findViewById(R.id.request_otp_btn);
         mobileNumberEt = findViewById(R.id.otp_number_et);
-
+        image_back_button=findViewById(R.id.forgot_back);
+        text_screen_title=findViewById(R.id.text_forgot);
+        text_screen_title.setText("Forgot Password");
+        image_back_button.setOnClickListener(v->{
+            onBackPressed();
+        });
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
             public void onChanged(DataFetchState<LoginApiModel> dataFetchState) {

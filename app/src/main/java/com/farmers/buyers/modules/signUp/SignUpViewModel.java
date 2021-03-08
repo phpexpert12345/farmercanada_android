@@ -53,16 +53,21 @@ public class SignUpViewModel extends BaseViewModel {
             return;
         }
 
-        if (!emailValidator(signUpRequestParams.getEmail())) {
+      else  if (!emailValidator(signUpRequestParams.getEmail())) {
             Log.e("validate", String.valueOf(emailValidator(signUpRequestParams.getEmail())));
             stateMachine.postValue(DataFetchState.error("Please enter a valid Email Address", new SignUpApiModel()));
             return;
         }
 
-        if (signUpRequestParams.getPassword().isEmpty()) {
+      else  if (signUpRequestParams.getPassword().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new SignUpApiModel()));
             return;
         }
+      else if(signUpRequestParams.getPassword().length()<5){
+            stateMachine.postValue(DataFetchState.error("Password should  be minimum 5 digit", new SignUpApiModel()));
+            return;
+        }
+
 
         repository.doUserRegis(signUpRequestParams, new ApiResponseCallback<SignUpApiModel>() {
             @Override
@@ -71,6 +76,7 @@ public class SignUpViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setSignUpMobileNumber(response.getData().getLoginPhone());
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setIsComingFrom(1);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE",response.getData().getAccountTypeName());
 //                    SharedPreferenceManager.getInstance().setIsLoggedIn(true);
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 } else {

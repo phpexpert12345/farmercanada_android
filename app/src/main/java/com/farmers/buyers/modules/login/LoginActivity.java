@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -27,12 +29,20 @@ import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.signUp.OtpActivity;
 import com.farmers.buyers.modules.signUp.SignUpActivity;
 import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends BaseActivity {
-
+    private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 9001;
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
 
         @NonNull
@@ -50,6 +60,8 @@ public class LoginActivity extends BaseActivity {
     private TextInputEditText mobileEt, passwordEt;
     private Button loginBtn;
     private RadioGroup radioGroup;
+    RelativeLayout relative_google,relative_face;
+    //todo 0 for buyer 1 for seller
     private int role = 2;  //todo 2 for buyer 1 for seller
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 
@@ -128,7 +140,16 @@ public class LoginActivity extends BaseActivity {
         mobileEt = findViewById(R.id.login_email_et);
         passwordEt = findViewById(R.id.login_password_et);
         radioGroup = findViewById(R.id.login_radio_group);
-
+        relative_google=findViewById(R.id.relative_google);
+        relative_face=findViewById(R.id.relative_face);
+        relative_google.setOnClickListener(v->{
+//            GoogleLogin();
+        });
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         stateMachine.observe(this, new Observer<DataFetchState<LoginApiModel>>() {
             @Override
             public void onChanged(DataFetchState dataFetchState) {

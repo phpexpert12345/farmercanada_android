@@ -37,6 +37,7 @@
             android:drawablePadding="@dimen/dp_16_px"
             android:ellipsize="end"
             android:enabled="true"
+            android:editable="false"
             android:fontFamily="@font/sf_ui_regular"
             android:hint="Enter your address"
             android:paddingStart="@dimen/dp_10_px"
@@ -82,6 +83,7 @@
             <ImageButton
                 android:layout_width="@dimen/dp_40_px"
                 android:layout_height="@dimen/dp_40_px"
+                android:id="@+id/img_edit"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/circle_bg"
                 android:src="@drawable/ic_edit" />

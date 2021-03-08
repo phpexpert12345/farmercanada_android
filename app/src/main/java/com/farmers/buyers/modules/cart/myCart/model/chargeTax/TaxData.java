@@ -46,6 +46,18 @@ public class TaxData implements Serializable, RecyclerViewListItem {
     @Expose
     private String minimumOrderAmount;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @SerializedName("title")
+    @Expose
+    private String title;
+
     private boolean isApplyCouponButton;
     private boolean isDiscountTextView;
     private boolean isRemoveDiscountButton;

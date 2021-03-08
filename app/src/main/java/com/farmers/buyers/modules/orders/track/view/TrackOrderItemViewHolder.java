@@ -46,9 +46,10 @@ public class TrackOrderItemViewHolder extends BaseViewHolder {
                 .into(track_order_item_image);
 
         tv_product_name.setText(item.getProduct_name());
+        String[] item_=item.getItem_unit().split("");
         tv_product_quantity.setText(item.getItem_unit());
-        tv_product_amount.setText(item.getItem_price());
-        tv_product_price.setText(item.getItem_price());
-        tv_price_in_multiple.setText(item.getItem_price() + "*" + item.getItem_quantity());
+        tv_product_amount.setText("$"+String.format("%.2f",Double.parseDouble(item.getItem_price())));
+        tv_product_price.setVisibility(View.GONE);
+        tv_price_in_multiple.setText("$"+item.getItem_price() + " x " + item.getItem_quantity());
     }
 }

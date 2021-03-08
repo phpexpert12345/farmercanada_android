@@ -10,8 +10,7 @@
         android:id="@+id/track_order_item_image"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
-        android:layout_centerVertical="true"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@drawable/fruit_one" />
 
     <LinearLayout

@@ -3,6 +3,7 @@ package com.farmers.buyers.modules.wallet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,11 +52,25 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
     private LinearLayout ll_add_money;
     private LinearLayout ll_data_not_available;
     private TextView tv_error_msg;
+    private TextView text_wallet;
+    private ImageView image_back_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
+//        setupToolbar(new ToolbarConfig("Wallet", true, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onBackPressed();
+//            }
+//        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        })));
         init();
     }
 
@@ -64,6 +79,12 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
         tv_error_msg = findViewById(R.id.tv_error_msg);
         ll_add_money = findViewById(R.id.ll_add_money);
         recyclerView = findViewById(R.id.wallet_recyclerView);
+        text_wallet=findViewById(R.id.text_wallet);
+        text_wallet.setText("Wallet");
+        image_back_button=findViewById(R.id.wallet_back);
+        image_back_button.setOnClickListener(v->{
+            onBackClicked();
+        });
         adapter = new WalletHistoryAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

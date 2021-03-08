@@ -16,19 +16,31 @@ public class ChangePasswordViewModel extends BaseViewModel {
 
     public void doChangePassword(final MutableLiveData<DataFetchState<LoginApiModel>> stateMachine,
                                  String new_password, String confirm_password, String Old_Password, String Mobile_OTP, String LoginId) {
-
-        if (new_password.isEmpty()) {
-            stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
-            return;
-        }
-        if (confirm_password.isEmpty()) {
-            stateMachine.postValue(DataFetchState.error("Please enter confirm password", new LoginApiModel()));
-            return;
-        }
         if (Old_Password.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter old password", new LoginApiModel()));
             return;
         }
+        else if(Old_Password.length()<5){
+            stateMachine.postValue(DataFetchState.error("Old Password should be minimum 5 digits", new LoginApiModel()));
+            return;
+        }
+        if (new_password.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
+            return;
+        }
+        else if(new_password.length()<5){
+            stateMachine.postValue(DataFetchState.error("new Password should be minimum 5 digits", new LoginApiModel()));
+            return;
+        }
+      else  if (confirm_password.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter confirm password", new LoginApiModel()));
+            return;
+        }
+      else if(!new_password.equalsIgnoreCase(confirm_password)){
+            stateMachine.postValue(DataFetchState.error("Please enter same password", new LoginApiModel()));
+            return;
+        }
+
 
         stateMachine.postValue(DataFetchState.<LoginApiModel>loading());
 

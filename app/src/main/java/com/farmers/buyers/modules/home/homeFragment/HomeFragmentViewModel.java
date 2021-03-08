@@ -121,7 +121,6 @@ public class HomeFragmentViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setProfilePic(response.getmData().login_photo);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_NAME", response.getmData().login_name);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_EMAIL", response.getmData().login_email);
-                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE", response.getmData().account_type_name);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_ACCOUNT_TYPE", response.getmData().account_type);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_MOBILE", response.getmData().login_phone);
                     SharedPreferenceManager.getInstance().setSharedPreference("MOBILE_CODE", response.getmData().login_phone_code);

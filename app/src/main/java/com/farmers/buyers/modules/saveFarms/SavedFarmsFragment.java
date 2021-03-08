@@ -1,6 +1,8 @@
 package com.farmers.buyers.modules.saveFarms;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.followers.model.FollowUnFollowApiModel;
+import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.home.view.HomeItemsViewHolder;
 import com.farmers.buyers.modules.saveFarms.adapter.SavedFarmsAdapter;
 import com.farmers.buyers.modules.saveFarms.model.SaveFarmListApiModel;
@@ -40,7 +43,18 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     private SavedFarmsAdapter adapter;
     private TextView txt_no_saved_farms;
     LinearLayout ll_data_not_available;
+    ImageView saved_back;
+    TextView text_saved_farms;
+    HomeActivity homeActivity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        homeActivity= (HomeActivity) context;
+    }
+
     private AppController appController = AppController.get();
+
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -74,6 +88,12 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
         recyclerView = view.findViewById(R.id.saved_farms_recyclerView);
         txt_no_saved_farms=view.findViewById(R.id.txt_no_saved_farms);
         ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
+        saved_back=view.findViewById(R.id.saved_back);
+        text_saved_farms=view.findViewById(R.id.text_saved_farms);
+        text_saved_farms.setText("Saved Farms");
+        saved_back.setOnClickListener(v->{
+            homeActivity.onBackPressed();
+        });
         adapter = new SavedFarmsAdapter(this);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.GRID));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));

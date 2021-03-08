@@ -32,8 +32,12 @@ public class LoginViewModel extends BaseViewModel {
             return;
         }
 
-        if (password.isEmpty()) {
+      else  if (password.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
+            return;
+        }
+        else if(password.length()<5){
+            stateMachine.postValue(DataFetchState.error("Password should  be minimum 5 digit", new LoginApiModel()));
             return;
         }
 
@@ -46,6 +50,7 @@ public class LoginViewModel extends BaseViewModel {
                 role,
                 "Android",
                 appController.getAuthenticationKey());
+        http://farmercanada.com/buyer_api/phpexpert_login.php?account_email=9899096063&account_password=12345&account_type=2&device_id=eJS07f35RsyO8asoHH0h4q:APA91bGmgmja0Gbe7rG_PITuBTdEeKogeFxCzWoSgZZXAFzJBnGh9ZxYQHRdENrB_LW-Vo1xObN6joVhS-ve4pYSXRHssPQXmo0rWduR2ghUh97nUahuxyxRzwgLzwE-EyjF1l858Vhh&device_platform=Android&auth_key=dH_8Rpyla-E:APA91bFNJsbcya80FU0SrsxtzEXR3qdK100EzdZykXtpQCkZgzp10tfaSC7PjDFSn7JJ6eFsAObjAN6Y_fr4kO8PnhW2PcMkjYVjDZODnf7Iou0AgYYWh0vFRolOVB5d1UTYRfC7gdSB
 
         repository.doLogin(loginRequestParams, new ApiResponseCallback<LoginApiModel>() {
             @Override

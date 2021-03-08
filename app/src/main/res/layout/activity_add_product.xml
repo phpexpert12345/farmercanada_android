@@ -151,18 +151,20 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/gray_border_transparent_bg">
 
-                <EditText
-                    android:id="@+id/add_product_unit_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/gray_border_transparent_bg"
-                    android:fontFamily="@font/sf_ui_regular"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/_12ssp" />
+            <EditText
+                android:id="@+id/add_product_unit_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/sf_ui_regular"
+                android:textColor="@color/primaryTextColor"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:backgroundTint="@android:color/transparent"
+                />
 
 
             </LinearLayout>
@@ -186,14 +188,15 @@
             android:orientation="horizontal"
             android:padding="@dimen/_8sdp">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:layout_weight="1.3"
-                android:background="@drawable/gray_border_transparent_bg"
-                android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:orientation="horizontal"
+            android:background="@drawable/gray_border_transparent_bg"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/_8sdp"
+            >
 
                 <Spinner
                     android:id="@+id/add_product_spinner"

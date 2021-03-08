@@ -8,11 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -96,6 +100,12 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     String time;
     StripePay stripePay;
     Dialog date_dialog;
+    CardView place_order_slot_card;
+    TextView txt_time;
+    ImageView img_time_edit;
+    LinearLayout  linear_refund,linear_okay;
+    RadioButton radio_refund,radio_okay;
+    List<AddressApiModel.AddressListData> addressListData=new ArrayList<>();
     private void dialogTimeSelection(List<AddressApiModel.AddressListData> sessionTypeMainData,int type) {
 
         date_dialog = new Dialog(PlaceOrderActivity.this);
@@ -106,6 +116,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
         TextView tvCancel = date_dialog.findViewById(R.id.tvCancel);
         TextView tvDone = date_dialog.findViewById(R.id.tvDone);
         TextView txt_title = date_dialog.findViewById(R.id.txt_title);
+
         if(type==0){
             txt_title.setText("Select Date");
         }
@@ -127,6 +138,8 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     tvSessionType.setText(sessionTypeMainData.get(0).getSessionType());
                 }*/
                 // txt_selected_time.setText();
+                place_order_slot_card.setVisibility(View.VISIBLE);
+                txt_time.setText(time);
                 date_dialog.dismiss();
 
             }
@@ -211,12 +224,12 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
         App.finish_activity=false;
-        ToolbarConfig config = new ToolbarConfig("Add Date & Time", true, new View.OnClickListener() {
+        ToolbarConfig config = new ToolbarConfig("Schedule Date & Time", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -255,6 +268,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                     break;
                 case SUCCESS:
                     dismissLoader();
+                    addressListData=response.data.getData().getAllTimeList();
                     dialogTimeSelection(response.data.getData().getAllTimeList(),1);
 //                    mTimeAdapter = new TimeListAdapter(PlaceOrderActivity.this, response.data.getData().getAllTimeList(),
 //                            this);
@@ -282,6 +296,13 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
     private void init() {
         recyclerView = findViewById(R.id.place_order_recyclerView);
         paymentButton = findViewById(R.id.place_order_btn);
+        place_order_slot_card=findViewById(R.id.place_order_slot_card);
+        img_time_edit=findViewById(R.id.img_time_edit);
+        linear_okay=findViewById(R.id.linear_okay);
+        radio_refund=findViewById(R.id.radio_refund);
+        radio_okay=findViewById(R.id.radio_okay);
+        linear_refund=findViewById(R.id.linear_refund);
+        txt_time=findViewById(R.id.txt_time);
         adapter = new PlaceOrderAdapter(this);
         dialog = new OrderSuccessDialog(this, this, false);
         recyclerView.setAdapter(adapter);
@@ -290,7 +311,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 
         rv_time_list = findViewById(R.id.rv_time_list);
         rv_time_list.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-
+place_order_slot_card.setVisibility(View.GONE);
         SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
                 AppController.get().getLoginId());
 
@@ -343,6 +364,17 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 //                    SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString());
 //
 //            viewModel.submitOrder(submitMachine, param);
+        });
+        img_time_edit.setOnClickListener(v->{
+            dialogTimeSelection(addressListData,1);
+        });
+        linear_okay.setOnClickListener(v->{
+            radio_okay.setChecked(true);
+            radio_refund.setChecked(false);
+        });
+        linear_refund.setOnClickListener(v->{
+            radio_refund.setChecked(true);
+            radio_okay.setChecked(false);
         });
     }
 

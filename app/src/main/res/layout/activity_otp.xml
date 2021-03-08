@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context=".modules.signUp.OtpActivity">
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:visibility="visible"
+        android:id="@+id/relative_header">
+        <ImageView
+            android:id="@+id/forgot_back"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_white_back_arrow"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/text_forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            tools:text="Screen Title"
+            android:fontFamily="@font/sf_ui_bold"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +43,7 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginRight="@dimen/_30sdp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_below="@+id/relative_header">
 
         <ImageView
             android:id="@+id/imageView"
@@ -44,7 +69,7 @@
             android:text="@string/otp_text"
             android:textColor="@color/primaryTextColor" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.stripe.android.view.IconTextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
@@ -65,7 +90,7 @@
                 android:maxLength="10"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.stripe.android.view.IconTextInputLayout>
 
         <Button
             android:id="@+id/request_otp_btn"
@@ -91,9 +116,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/login_bottom_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
