@@ -41,6 +41,15 @@ public class HomeListItem implements RecyclerViewListItem {
     public String form_type_name;
     public String farm_logo;
     public String farm_cover_photo;
+
+    public String getFollowed_id() {
+        return followed_id;
+    }
+
+    public void setFollowed_id(String followed_id) {
+        this.followed_id = followed_id;
+    }
+
     public String followed_id;
 
     public void setId(String id) {

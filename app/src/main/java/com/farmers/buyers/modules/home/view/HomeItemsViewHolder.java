@@ -117,7 +117,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             public void onClick(View v) {
                 unFollowFarmLayout.setVisibility(View.VISIBLE);
                 followFarmLayout.setVisibility(View.GONE);
-                farmItemClickListener.onFollowFarmClicked(item.getId(), "1", item.getFollowId());
+                farmItemClickListener.onFollowFarmClicked(item.getId(), "1", item.getFollowed_id());
             }
         });
 
@@ -126,7 +126,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             public void onClick(View v) {
                 unFollowFarmLayout.setVisibility(View.GONE);
                 followFarmLayout.setVisibility(View.VISIBLE);
-                farmItemClickListener.onFollowFarmClicked(item.getId(), "0", item.getFollowId());
+                farmItemClickListener.onFollowFarmClicked(item.getId(), "0", item.getFollowed_id());
             }
         });
 
