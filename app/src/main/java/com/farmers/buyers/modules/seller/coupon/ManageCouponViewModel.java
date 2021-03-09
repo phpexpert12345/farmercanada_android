@@ -84,31 +84,6 @@ public class ManageCouponViewModel extends BaseViewModel {
         });
     }
 
-    public void editCoupon(MutableLiveData<DataFetchState<AddCouponApiModel>> stateMachine) {
-        stateMachine.postValue(DataFetchState.loading());
-
-        EditCouponRequestParams params = new EditCouponRequestParams("","","","","","","","","","", "", "");
-
-        repository.editCoupon(params, new ApiResponseCallback<AddCouponApiModel>() {
-            @Override
-            public void onSuccess(AddCouponApiModel response) {
-                if (response.getStatus()) {
-                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                }
-                else {
-                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new AddCouponApiModel()));
-                }
-            }
-a
-            @Override
-            public void onFailure(StandardError standardError) {
-                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new AddCouponApiModel()));
-            }
-        });
-
-    }
-
-
     public void onDeleteCoupon(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine, int position) {
         selectedItem = couponList.get(position);
         deleteCoupon(stateMachine);

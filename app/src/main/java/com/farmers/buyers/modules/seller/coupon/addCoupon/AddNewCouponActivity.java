@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
@@ -55,6 +56,7 @@ public class AddNewCouponActivity extends BaseActivity {
 
     private AddCouponViewModel viewModel = factory.create(AddCouponViewModel.class);
     private MutableLiveData<DataFetchState<AddCouponApiModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AddCouponApiModel>> updateStateMachine = new MutableLiveData<>();
 
 
 
@@ -88,42 +90,67 @@ public class AddNewCouponActivity extends BaseActivity {
        saveBtn = findViewById(R.id.add_new_coupon_save_btn);
         add_new_coupon_time_ll = findViewById(R.id.add_new_coupon_time_ll);
 
+        couponCodeTv.setText(Extensions.getRandomCode());
         if (extra != null) {
             bindData();
         }
-       couponCodeTv.setText(Extensions.getRandomCode());
 
        saveBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               viewModel.addCoupon(stateMachine, couponCodeTv.getText().toString(), percentTop, discountPercentEt.getText().toString(),minimumOrderAmountEt.getText().toString(),termsConditionEt.getText().toString(),startTimeTv.getText().toString(), endTimeTv.getText().toString());
+               if (extra == null) {
+                   viewModel.addCoupon(stateMachine, couponCodeTv.getText().toString(), percentTop, discountPercentEt.getText().toString(),minimumOrderAmountEt.getText().toString(),termsConditionEt.getText().toString(),startTimeTv.getText().toString(), endTimeTv.getText().toString());
+               }
+               else {
+                   viewModel.editCoupon(updateStateMachine, couponCodeTv.getText().toString(), percentTop, discountPercentEt.getText().toString(),minimumOrderAmountEt.getText().toString(),termsConditionEt.getText().toString(),startTimeTv.getText().toString(), endTimeTv.getText().toString(), extra.getCouponId());
+
+               }
            }
        });
 
-       stateMachine.observe(this, new Observer<DataFetchState<AddCouponApiModel>>() {
-           @Override
-           public void onChanged(DataFetchState<AddCouponApiModel> addCouponApiModelDataFetchState) {
-               switch (addCouponApiModelDataFetchState.status) {
-                   case LOADING: loading(); break;
-                   case SUCCESS: { success();
-                   AlertHelper.showAlert(AddNewCouponActivity.this, "Coupon Added", addCouponApiModelDataFetchState.status_message, true, "Ok", false, "", true, new OnAlertClickListener() {
-                       @Override
-                       public void onNegativeBtnClicked() {
+       stateMachine.observe(this, addCouponApiModelDataFetchState -> {
+           switch (addCouponApiModelDataFetchState.status) {
+               case LOADING: loading(); break;
+               case SUCCESS: { success();
+               AlertHelper.showAlert(AddNewCouponActivity.this, "Coupon Added", addCouponApiModelDataFetchState.status_message, true, "Ok", false, "", true, new OnAlertClickListener() {
+                   @Override
+                   public void onNegativeBtnClicked() {
 
-                       }
-
-                       @Override
-                       public void onPositiveBtnClicked() {
-                           finish();
-                       }
-                   });
-                   break;
                    }
 
-                   case ERROR: error(addCouponApiModelDataFetchState.status_message); break;
+                   @Override
+                   public void onPositiveBtnClicked() {
+                       finish();
+                   }
+               });
+               break;
                }
 
+               case ERROR: error(addCouponApiModelDataFetchState.status_message); break;
            }
+
+       });
+       updateStateMachine.observe(this, addCouponApiModelDataFetchState -> {
+           switch (addCouponApiModelDataFetchState.status) {
+               case LOADING: loading(); break;
+               case SUCCESS: { success();
+               AlertHelper.showAlert(AddNewCouponActivity.this, "Coupon Update", addCouponApiModelDataFetchState.status_message, true, "Ok", false, "", true, new OnAlertClickListener() {
+                   @Override
+                   public void onNegativeBtnClicked() {
+
+                   }
+
+                   @Override
+                   public void onPositiveBtnClicked() {
+                       finish();
+                   }
+               });
+               break;
+               }
+
+               case ERROR: error(addCouponApiModelDataFetchState.status_message); break;
+           }
+
        });
 
        startTimeTv.setOnClickListener(new View.OnClickListener() {
@@ -208,11 +235,16 @@ public class AddNewCouponActivity extends BaseActivity {
     private void bindData() {
         if (extra != null) {
             couponCodeTv.setText(extra.getCouponCode());
-                    startTimeTv.setText(extra.getStartDate());
-            endTimeTv.setText(extra.getEndDate());
                     minimumOrderAmountEt.setText(extra.getMinimumOrder());
             termsConditionEt.setText(extra.getTermsCondition());
                     discountPercentEt.setText(extra.getAmount());
+
+                    if (!extra.getStartDate().isEmpty()){
+                        startTimeTv.setText(extra.getStartDate());
+                    }
+                    if (!extra.getEndDate().isEmpty()) {
+                        endTimeTv.setText(extra.getEndDate());
+                    }
         }
     }
 
@@ -232,5 +264,6 @@ public class AddNewCouponActivity extends BaseActivity {
 
     private void error(String error) {
         dismissLoader();
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 }

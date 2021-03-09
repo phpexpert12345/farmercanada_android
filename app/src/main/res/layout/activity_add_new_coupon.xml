@@ -120,6 +120,8 @@
             android:fontFamily="@font/sf_ui_semibold"
             android:gravity="center_vertical"
             android:text="1"
+            android:inputType="number"
+            android:maxLength="6"
             android:backgroundTint="@android:color/transparent"
             android:textColorHint="@color/primaryTextColor"
             android:textSize="@dimen/_12ssp" />
@@ -150,6 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Minimum order"
+                android:inputType="number"
+                android:maxLength="6"
                 android:singleLine="true"
                 />
 
@@ -284,6 +288,7 @@
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        android:buttonTint="@color/green"
         android:layout_marginLeft="@dimen/_24sdp"
         android:layout_marginRight="@dimen/_24sdp"/>
 

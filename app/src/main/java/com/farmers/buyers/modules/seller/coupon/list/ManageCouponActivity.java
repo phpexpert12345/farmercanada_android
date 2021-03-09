@@ -168,7 +168,7 @@ public class ManageCouponActivity extends BaseActivity implements ManageCouponVi
     public void onEditCouponListener(int position) {
         viewModel.selectedItem = viewModel.couponList.get(position);
         EditCouponExtra extra = new EditCouponExtra(
-                viewModel.selectedItem.getCouponId(),
+                viewModel.selectedItem.getCouponCode(),
                 viewModel.selectedItem.getDiscountType(),
                 viewModel.selectedItem.getDiscountTypeCheck(),
                 viewModel.selectedItem.getAmount(),

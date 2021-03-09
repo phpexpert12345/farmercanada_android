@@ -30,21 +30,4 @@ public class ManageCouponRepository extends BaseRepository {
         Call<DeleteProductApiModel> call = RetrofitBuilder.createServiceContract().deleteCoupon(ApiConstants.DELETE_COUPON, params.getProductId(), params.getAuthKey());
         makeRequest(call, responseCallback);
     }
-
-    public void editCoupon(EditCouponRequestParams params, ApiResponseCallback<AddCouponApiModel> responseCallback) {
-        Call<AddCouponApiModel> call = RetrofitBuilder.createServiceContract().editCoupon(ApiConstants.EDIT_COUPON,
-                params.getCouponCode(),
-                params.getDiscountType(),
-                params.getAmount(),
-                params.getMinimumOrder(),
-                params.getTermsCondition(),
-                params.getStartDate(),
-                params.getEndDate(),
-                params.getCouponId(),
-                params.getFarmId(),
-                params.getLoginId(),
-                params.getAuthKey());
-        makeRequest(call, responseCallback);
-    }
-
 }

@@ -8,6 +8,7 @@ import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.seller.coupon.list.model.AddCouponApiModel;
 import com.farmers.buyers.modules.seller.coupon.list.model.AddCouponRequestParams;
+import com.farmers.buyers.modules.seller.coupon.odel.EditCouponRequestParams;
 import com.farmers.buyers.remote.StandardError;
 
 /**
@@ -64,7 +65,12 @@ public class AddCouponViewModel extends BaseViewModel {
         repository.addCoupon(params, new ApiResponseCallback<AddCouponApiModel>() {
             @Override
             public void onSuccess(AddCouponApiModel response) {
-                stateMachine.postValue(DataFetchState.success(response, ""));
+                if (response.getStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new AddCouponApiModel()));
+                }
             }
 
             @Override
@@ -73,4 +79,58 @@ public class AddCouponViewModel extends BaseViewModel {
             }
         });
     }
+
+    public void editCoupon(MutableLiveData<DataFetchState<AddCouponApiModel>> stateMachine, String couponCode, String discountType, String discountAmount, String minimumOrder, String isTermsCondition, String startDate, String endDate, String couponId) {
+        stateMachine.postValue(DataFetchState.loading());
+
+        if (couponCode.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please Select coupon code", new AddCouponApiModel()));
+            return;
+        }
+        if (discountType.isEmpty()){
+            stateMachine.postValue(DataFetchState.error("Please enter discount type", new AddCouponApiModel()));
+            return;
+        }
+        if (discountAmount.isEmpty()){
+            stateMachine.postValue(DataFetchState.error("Please enter discount amount", new AddCouponApiModel()));
+            return;
+        }
+        if (minimumOrder.isEmpty()){
+            stateMachine.postValue(DataFetchState.error("Please enter minimum order", new AddCouponApiModel()));
+            return;
+        }
+        if (isTermsCondition.isEmpty()){
+            stateMachine.postValue(DataFetchState.error("Please enter terms and condition", new AddCouponApiModel()));
+            return;
+        }
+        if (startDate.isEmpty()){
+            stateMachine.postValue(DataFetchState.error("Please Select start date ", new AddCouponApiModel()));
+            return;
+        }
+        if (endDate.isEmpty()){
+            stateMachine.postValue(DataFetchState.error("Please Select end date", new AddCouponApiModel()));
+            return;
+        }
+
+        EditCouponRequestParams params = new EditCouponRequestParams(couponCode,discountType,discountType,discountAmount,minimumOrder,isTermsCondition,startDate,endDate,couponId,appController.getFarmId(), appController.getLoginId(), appController.getAuthenticationKey());
+
+        repository.editCoupon(params, new ApiResponseCallback<AddCouponApiModel>() {
+            @Override
+            public void onSuccess(AddCouponApiModel response) {
+                if (response.getStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new AddCouponApiModel()));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new AddCouponApiModel()));
+            }
+        });
+
+    }
+
 }
