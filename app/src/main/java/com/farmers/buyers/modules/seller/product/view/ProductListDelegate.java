@@ -12,9 +12,14 @@ import com.farmers.buyers.core.BaseViewHolder;
  */
 
 public class ProductListDelegate extends BaseDelegate {
+    private ProductListViewHolder.ProductListItemClickListener listItemClickListener;
+
+    public ProductListDelegate(ProductListViewHolder.ProductListItemClickListener listItemClickListener) {
+        this.listItemClickListener = listItemClickListener;
+    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new ProductListViewHolder(parent);
+        return new ProductListViewHolder(parent, listItemClickListener);
     }
 }

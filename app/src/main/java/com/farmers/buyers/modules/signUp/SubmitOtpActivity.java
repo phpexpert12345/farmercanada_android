@@ -157,7 +157,7 @@ public class SubmitOtpActivity extends BaseActivity {
                         if (extra) {
                             startActivity(new Intent(SubmitOtpActivity.this, ForgotPassword.class));
                         } else {
-                            if (verifyOtpApiModelDataFetchState.data.getData().getAccountType().equals("Seller")) {
+                            if (verifyOtpApiModelDataFetchState.data.getData().getAccountTypeName().equals("Seller")) {
                                 startActivity(new Intent(SubmitOtpActivity.this, StoreDetailsStepActivity.class));
                             }
                             else {

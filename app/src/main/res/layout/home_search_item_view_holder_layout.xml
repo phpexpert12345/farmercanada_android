@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/home_header_item_search_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

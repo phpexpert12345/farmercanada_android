@@ -1,5 +1,7 @@
 package com.farmers.seller.modules.setupSellerAccount;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.App;
@@ -9,6 +11,7 @@ import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.remote.StandardError;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreRequestParams;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreSetupExtra;
@@ -35,11 +38,11 @@ public class SetupStoreViewModel extends BaseViewModel {
         items.addAll(SetupStoreTransformer.getDeliveryRangeItem());
     }
 
-    public void doSetupStore(MutableLiveData<DataFetchState<SetupStoreApiModel>> stateMachine, String farmType, File doc1, File doc2, File doc3, File doc4) {
+    public void doSetupStore(MutableLiveData<DataFetchState<SetupStoreApiModel>> stateMachine, File doc1, File doc2, File doc3, File doc4) {
         stateMachine.postValue(DataFetchState.loading());
 
         SetupStoreRequestParams params = new SetupStoreRequestParams(
-                farmType,
+                extra.getCompanyType(),
                 extra.getName(),
                 extra.getLocation(),
                 extra.getCity(),
@@ -49,8 +52,8 @@ public class SetupStoreViewModel extends BaseViewModel {
                 extra.getDeliveryType(),
                 extra.getMinimumPickupOrder() == null ? "": extra.getMinimumPickupOrder(),
                 extra.getPickupMessage() == null ? "" : extra.getPickupMessage(),
-                extra.getMapLat()+extra.getMapLong(),
-                extra.getRadius(),
+                extra.getLocation(),
+                extra.getRadius() == null ? "" : extra.getRadius(),
                 extra.getDeliveryCharges() == null ? "" : extra.getDeliveryCharges(),
                 extra.getAdditionalCharges() == null ? "" : extra.getAdditionalCharges(),
                 extra.getMinimumDeliveryOrder() == null ? "" : extra.getMinimumDeliveryOrder(),
@@ -63,13 +66,23 @@ public class SetupStoreViewModel extends BaseViewModel {
                 doc4,
                 extra.getStoreLogo(),
                 appController.getLoginId(),
-                appController.getAuthenticationKey()
+                appController.getAuthenticationKey(),
+                extra.getMapLat(),
+                extra.getMapLong()
         );
+
+        Log.e("extra", extra.toString());
 
         repository.doStoreSetup(params, new ApiResponseCallback<SetupStoreApiModel>() {
             @Override
             public void onSuccess(SetupStoreApiModel response) {
-                stateMachine.postValue(DataFetchState.success(response, ""));
+                if (response.getStatus()) {
+                    SharedPreferenceManager.getInstance().setIsStoreSetup(true);
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new SetupStoreApiModel()));
+                }
             }
 
             @Override

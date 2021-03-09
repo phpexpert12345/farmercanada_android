@@ -28,8 +28,8 @@ public class StoreSetupExtra implements Serializable {
     String docTypeOne;
     String docTypeTwo;
     String companyType;
-    String mapLat;
-    String mapLong;
+    Double mapLat;
+    Double mapLong;
     String docType;
     String storeLogoPath;
     File storeLogo;
@@ -183,19 +183,19 @@ public class StoreSetupExtra implements Serializable {
         this.companyType = companyType;
     }
 
-    public String getMapLat() {
+    public Double getMapLat() {
         return mapLat;
     }
 
-    public void setMapLat(String mapLat) {
+    public void setMapLat(Double mapLat) {
         this.mapLat = mapLat;
     }
 
-    public String getMapLong() {
+    public Double getMapLong() {
         return mapLong;
     }
 
-    public void setMapLong(String mapLong) {
+    public void setMapLong(Double mapLong) {
         this.mapLong = mapLong;
     }
 

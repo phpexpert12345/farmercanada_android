@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 
 import kotlin.jvm.functions.Function0;
 
@@ -17,7 +18,7 @@ public class AlertHelper {
         Dialog dialog = null;
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle(title);
-        alertDialog.setMessage(title);
+        alertDialog.setMessage(message);
         alertDialog.setPositiveButton(positiveBtnTitle, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -25,16 +26,19 @@ public class AlertHelper {
                 dialog.dismiss();
             }
         });
+        if (negativeBtn) {
+            alertDialog.setNegativeButton(negativeBtnTitle, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alertClickListener.onNegativeBtnClicked();
+                    dialog.dismiss();
+                }
+            });
+        }
 
-        alertDialog.setNegativeButton(negativeBtnTitle, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertClickListener.onNegativeBtnClicked();
-                dialog.dismiss();
-            }
-        });
 
         dialog = alertDialog.create();
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.setCancelable(isCancellable);
         dialog.show();
     }

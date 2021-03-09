@@ -32,9 +32,11 @@ public class SetupStoreRequestParams {
     File logo;
     String loginId;
     String authKey;
+    Double lat;
+    Double lng;
 
 
-    public SetupStoreRequestParams(String storeType, String storeName, String storeAddress, String city, String state, String country, String postCode, String orderType, String pickUpMinAmount, String pickUpMsg, String deliveryMapLocationArea, String radius, String deliveryCharge, String additionalCharge, String deliveryMinAmount, String deliveryMsg, String companyType, String docType, File doc1, File doc2, File doc3, File doc4, File logo, String loginId, String authKey) {
+    public SetupStoreRequestParams(String storeType, String storeName, String storeAddress, String city, String state, String country, String postCode, String orderType, String pickUpMinAmount, String pickUpMsg, String deliveryMapLocationArea, String radius, String deliveryCharge, String additionalCharge, String deliveryMinAmount, String deliveryMsg, String companyType, String docType, File doc1, File doc2, File doc3, File doc4, File logo, String loginId, String authKey, Double lat, Double lng) {
         this.storeType = storeType;
         this.storeName = storeName;
         this.storeAddress = storeAddress;
@@ -60,6 +62,9 @@ public class SetupStoreRequestParams {
         this.logo = logo;
         this.loginId = loginId;
         this.authKey = authKey;
+        this.lat = lat;
+        this.lng = lng;
+
     }
 
     public String getStoreType() {
@@ -160,5 +165,13 @@ public class SetupStoreRequestParams {
 
     public String getAuthKey() {
         return authKey;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLng() {
+        return lng;
     }
 }

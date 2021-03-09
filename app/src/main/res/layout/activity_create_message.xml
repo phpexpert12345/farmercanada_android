@@ -28,6 +28,7 @@
                 android:layout_marginRight="@dimen/dp_16_px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title"
@@ -44,6 +45,7 @@
                 android:layout_marginRight="@dimen/dp_16_px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_description"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:gravity="start"
@@ -76,18 +78,17 @@
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:id="@+id/radio_pickup"
+                        android:id="@+id/radio_allBuyers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/green"
-                        android:checked="true"
                         android:fontFamily="@font/sf_ui_semibold"
                         android:text="All Buyers(Associated)"
                         android:textColor="@color/primaryTextColor"
                         android:textSize="@dimen/sp_16_px" />
 
                     <RadioButton
-                        android:id="@+id/radio_delivery"
+                        android:id="@+id/radio_allFollowers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/green"

@@ -20,5 +20,6 @@ public enum StorageKey {
     LoginId,
     FarmId,
     Role,
-    IsStoreSetup;
+    IsStoreSetup,
+    GOOGLE_API_KEY,;
 }

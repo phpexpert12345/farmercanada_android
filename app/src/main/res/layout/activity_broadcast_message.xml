@@ -14,6 +14,30 @@
         android:padding="@dimen/_7sdp" />
 
     <LinearLayout
+        android:id="@+id/ll_data_not_available"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/no_message" />
+
+        <TextView
+            android:id="@+id/tv_error_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_ui_regular"
+            android:text="No Data"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll_create_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,8 +48,8 @@
         android:gravity="end">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:background="@mipmap/plus_icon" />
 
     </LinearLayout>

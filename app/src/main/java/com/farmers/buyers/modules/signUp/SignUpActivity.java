@@ -154,7 +154,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_seller:
                 account_type = 1;
-                startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
+//                startActivity(new Intent(SignUpActivity.this, StoreDetailsStepActivity.class));
                 break;
 
             case R.id.radio_buyer:

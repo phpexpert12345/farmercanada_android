@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.seller.coupon.list.view;
 
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -8,6 +9,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.seller.coupon.list.model.ManageCouponItem;
 
 /**
  * created by Mohammad Sajjad
@@ -16,13 +18,28 @@ import com.farmers.buyers.core.RecyclerViewListItem;
  */
 
 public class ManageCouponViewHolder extends BaseViewHolder {
+    private TextView couponIdTv, addDateTv, endDateTv, couponStatusTv, couponCodeTv;
 
     public ManageCouponViewHolder(@NonNull ViewGroup parent) {
         super(Extensions.inflate(parent, R.layout.manage_coupon_item_layout));
+        couponIdTv = itemView.findViewById(R.id.manage_coupon_id_tv);
+        addDateTv = itemView.findViewById(R.id.manage_coupon_add_date_tv);
+        endDateTv = itemView.findViewById(R.id.manage_coupon_add_status_tv);
+        couponStatusTv = itemView.findViewById(R.id.manage_coupon_expire_date_tv);
+        couponCodeTv = itemView.findViewById(R.id.manage_coupon_item_coupon_code_tv);
+
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
+        ManageCouponItem item = (ManageCouponItem) items;
+
+
+        couponIdTv.setText(item.getCouponId());
+                addDateTv.setText(item.getAddDate());
+        endDateTv.setText(item.getEndDate());
+                couponStatusTv.setText(item.getStatus() ? "Active" : "");
+        couponCodeTv.setText(item.getCouponCode());
 
     }
 }

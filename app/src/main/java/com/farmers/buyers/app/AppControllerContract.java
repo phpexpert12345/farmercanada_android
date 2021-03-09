@@ -22,4 +22,6 @@ public interface AppControllerContract {
     String getSharedPreferences(String key, @Nullable Object defaultValue);
     String getRole();
     Boolean getIsStoreSetup();
+    String getGoogleApiKey();
+    String getFarmId();
 }

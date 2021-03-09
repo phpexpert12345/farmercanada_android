@@ -19,6 +19,7 @@
             android:padding="8dp">
 
             <TextView
+                android:id="@+id/tv_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -51,7 +52,7 @@
                     <TextView
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
+                        android:layout_weight="0.2"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="start"
                         android:text="Date: "
@@ -59,9 +60,10 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_date"
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
+                        android:layout_weight="0.4"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
                         android:text="02/11/2021"
@@ -80,11 +82,13 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_delete"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:src="@drawable/ic_delete" />
 
                 <ImageView
+                    android:id="@+id/img_copy"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -104,6 +108,7 @@
                     android:paddingBottom="3sp">
 
                     <TextView
+                        android:id="@+id/tv_publish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
@@ -136,6 +141,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_published_on"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"

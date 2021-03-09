@@ -143,11 +143,11 @@ public class AddNewAddressActivity extends BaseActivity implements View.OnClickL
             }
         });
 
-        Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+        Places.initialize(getApplicationContext(), AppController.get().getGoogleApiKey());
         placesClient = Places.createClient(AddNewAddressActivity.this);
 
         if (!Places.isInitialized()) {//
-            Places.initialize(getApplicationContext(), getApplication().getString(R.string.google_place_api));
+            Places.initialize(getApplicationContext(), AppController.get().getGoogleApiKey());
         }
 
         ed_complete_address.setOnClickListener(view -> searchPlace());

@@ -33,6 +33,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/product_list_item_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_semibold"
@@ -113,6 +114,7 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
+                    android:id="@+id/product_list_item_category_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
@@ -128,6 +130,7 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
+                    android:id="@+id/product_list_item_coupon_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
@@ -152,6 +155,7 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
+                    android:id="@+id/product_list_quantity_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
@@ -168,6 +172,7 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView
+                    android:id="@+id/product_list_item_coupon_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rect_border_light_green_bg"
@@ -186,6 +191,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/product_list_item_description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp"
@@ -201,6 +207,7 @@
             android:layout_marginBottom="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/product_list_item_delete_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -217,6 +224,7 @@
                 android:layout_marginRight="@dimen/_8sdp"/>
 
             <TextView
+                android:id="@+id/product_list_item_edit_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

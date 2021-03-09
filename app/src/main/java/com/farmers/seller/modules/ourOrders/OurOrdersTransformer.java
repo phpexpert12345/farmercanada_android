@@ -1,8 +1,10 @@
 package com.farmers.seller.modules.ourOrders;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.ratingAndReview.model.ReviewListItem;
 import com.farmers.buyers.modules.ratingAndReview.model.ReviewedListItem;
+import com.farmers.seller.modules.ourOrders.model.AllOrderResponse;
 import com.farmers.seller.modules.ourOrders.model.OngoingOrderListItem;
 import com.farmers.seller.modules.ourOrders.model.OurOrderListItem;
 import com.farmers.seller.modules.ourOrders.model.PastOrderListItem;
@@ -12,6 +14,82 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OurOrdersTransformer {
+
+    public static List<OurOrderListItem> getOurOrderList(List<AllOrderResponse.OrderListData> orderListData) {
+        List<OurOrderListItem> item = new ArrayList<>();
+        for (int i = 0; i < orderListData.size(); i++) {
+            item.add(new OurOrderListItem(
+                    orderListData.get(i).order_id,
+                    orderListData.get(i).customer_name,
+                    orderListData.get(i).order_date,
+                    orderListData.get(i).order_time,
+                    orderListData.get(i).Total_amount,
+                    orderListData.get(i).order_type,
+                    orderListData.get(i).review_status,
+                    orderListData.get(i).order_status_msg,
+                    orderListData.get(i).order_status_close,
+                    orderListData.get(i).farm_name,
+                    orderListData.get(i).farm_logo,
+                    orderListData.get(i).order_number,
+                    orderListData.get(i).farm_address,
+                    orderListData.get(i).login_photo,
+                    orderListData.get(i).order_pick,
+                    orderListData.get(i).order_closed,
+                    orderListData.get(i).OrderRecordList));
+        }
+
+        return item;
+    }
+
+    public static List<OngoingOrderListItem> getOngoingOrderList(List<AllOrderResponse.OrderListData> orderListData) {
+        List<OngoingOrderListItem> item = new ArrayList<>();
+        for (int i = 0; i < orderListData.size(); i++) {
+            item.add(new OngoingOrderListItem(
+                    orderListData.get(i).order_id,
+                    orderListData.get(i).customer_name,
+                    orderListData.get(i).order_date,
+                    orderListData.get(i).order_time,
+                    orderListData.get(i).Total_amount,
+                    orderListData.get(i).order_type,
+                    orderListData.get(i).review_status,
+                    orderListData.get(i).order_status_msg,
+                    orderListData.get(i).order_status_close,
+                    orderListData.get(i).farm_name,
+                    orderListData.get(i).farm_logo,
+                    orderListData.get(i).order_number,
+                    orderListData.get(i).farm_address,
+                    orderListData.get(i).login_photo,
+                    orderListData.get(i).order_pick,
+                    orderListData.get(i).order_closed,
+                    orderListData.get(i).OrderRecordList));
+        }
+        return item;
+    }
+
+    public static List<PastOrderListItem> getPastOrderList(List<AllOrderResponse.OrderListData> orderListData) {
+        List<PastOrderListItem> item = new ArrayList<>();
+        for (int i = 0; i < orderListData.size(); i++) {
+            item.add(new PastOrderListItem(
+                    orderListData.get(i).order_id,
+                    orderListData.get(i).customer_name,
+                    orderListData.get(i).order_date,
+                    orderListData.get(i).order_time,
+                    orderListData.get(i).Total_amount,
+                    orderListData.get(i).order_type,
+                    orderListData.get(i).review_status,
+                    orderListData.get(i).order_status_msg,
+                    orderListData.get(i).order_status_close,
+                    orderListData.get(i).farm_name,
+                    orderListData.get(i).farm_logo,
+                    orderListData.get(i).order_number,
+                    orderListData.get(i).farm_address,
+                    orderListData.get(i).login_photo,
+                    orderListData.get(i).order_pick,
+                    orderListData.get(i).order_closed,
+                    orderListData.get(i).OrderRecordList));
+        }
+        return item;
+    }
 
     public static List<OurOrderListItem> getOurOrderList() {
         List<OurOrderListItem> item = new ArrayList<>();

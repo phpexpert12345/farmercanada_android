@@ -43,6 +43,7 @@
                             android:layout_height="match_parent">
 
                             <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/civ_farm_image"
                                 android:layout_width="@dimen/_32sdp"
                                 android:layout_height="@dimen/_32sdp"
                                 android:src="@drawable/image_icon" />
@@ -56,6 +57,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_customer_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
@@ -64,6 +66,7 @@
                                 android:textSize="17sp" />
 
                             <TextView
+                                android:id="@+id/tv_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
@@ -89,10 +92,34 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
+                                android:text="Order Type: "
+                                android:textSize="@dimen/sp_14_px" />
+
+                            <TextView
+                                android:id="@+id/tv_order_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_regular"
+                                android:text="Delivery"
+                                android:textSize="@dimen/sp_14_px" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end|center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_regular"
                                 android:text="Order ID: "
                                 android:textSize="@dimen/sp_14_px" />
 
                             <TextView
+                                android:id="@+id/tv_order_number"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
@@ -116,6 +143,7 @@
                                 android:textSize="@dimen/_13sdp" />
 
                             <TextView
+                                android:id="@+id/tv_total_amount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
@@ -137,156 +165,10 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sub_product_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="start"
-                        android:text="Product Name"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="Qty: 6kg"
-                        android:textColor="@color/light_gray"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
-                        android:text="$ 23.99"
-                        android:textColor="@color/green"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="start"
-                        android:text="Product Name2"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="Qty: 60 kg"
-                        android:textColor="@color/light_gray"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
-                        android:text="$ 40.99"
-                        android:textColor="@color/green"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="start"
-                        android:text="Product Name3"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="Qty: 160kg"
-                        android:textColor="@color/light_gray"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
-                        android:text="$ 53.99"
-                        android:textColor="@color/green"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="start"
-                        android:text="Product Name"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="Qty: 10kg"
-                        android:textColor="@color/light_gray"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
-                        android:text="$ 13.99"
-                        android:textColor="@color/green"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -300,16 +182,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:padding="8dp">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:src="@mipmap/ic_location_icon" />
+
             <TextView
+                android:id="@+id/tv_customer_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Lipsum as it is sometimes known, is dummy text used in laying out print"
                 android:textColor="@color/light_gray"
-                android:textSize="@dimen/sp_16_px" />
+                android:textSize="@dimen/_12ssp" />
 
         </LinearLayout>
 
@@ -341,10 +231,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
                     android:background="@drawable/gray_border_white_bg"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="4dp">
 
                     <TextView
+                        android:id="@+id/tv_order_status_msg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
@@ -354,8 +246,8 @@
                         android:textSize="13sp" />
 
                     <ImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
+                        android:layout_width="@dimen/_12ssp"
+                        android:layout_height="@dimen/_10sdp"
                         android:layout_marginLeft="10sp"
                         android:src="@mipmap/dropdown_icon" />
 
