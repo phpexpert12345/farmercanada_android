@@ -52,6 +52,10 @@ public class ApiConstants {
     public static final String ORDERS_DETAILS_DATA = "phpexpert_store_order_detail.php";
     public static final String ORDERS_ACCEPT = "phpexpert_store_order_accepted.php";
     public static final String ORDERS_DECLINE = "phpexpert_store_order_decline.php";
+    public static final String BROADCAST_MESSAGE_LIST = "phpexpert_store_boardcast_message_list.php";
+    public static final String PUBLISH_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_add.php";
+    public static final String DELETE_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_delete.php";
+    public static final String EDIT_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_edit.php";
 
 
     //Ganesh working

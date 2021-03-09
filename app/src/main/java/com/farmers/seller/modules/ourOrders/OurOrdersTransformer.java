@@ -32,6 +32,9 @@ public class OurOrdersTransformer {
                     orderListData.get(i).farm_logo,
                     orderListData.get(i).order_number,
                     orderListData.get(i).farm_address,
+                    orderListData.get(i).login_photo,
+                    orderListData.get(i).order_pick,
+                    orderListData.get(i).order_closed,
                     orderListData.get(i).OrderRecordList));
         }
 
@@ -55,6 +58,9 @@ public class OurOrdersTransformer {
                     orderListData.get(i).farm_logo,
                     orderListData.get(i).order_number,
                     orderListData.get(i).farm_address,
+                    orderListData.get(i).login_photo,
+                    orderListData.get(i).order_pick,
+                    orderListData.get(i).order_closed,
                     orderListData.get(i).OrderRecordList));
         }
         return item;
@@ -77,6 +83,9 @@ public class OurOrdersTransformer {
                     orderListData.get(i).farm_logo,
                     orderListData.get(i).order_number,
                     orderListData.get(i).farm_address,
+                    orderListData.get(i).login_photo,
+                    orderListData.get(i).order_pick,
+                    orderListData.get(i).order_closed,
                     orderListData.get(i).OrderRecordList));
         }
         return item;

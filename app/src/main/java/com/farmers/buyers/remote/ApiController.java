@@ -31,6 +31,7 @@ import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
+import com.farmers.seller.modules.broadcastMessage.model.BroadcastMessageResponse;
 import com.farmers.seller.modules.ourOrders.model.AllOrderResponse;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 
@@ -225,7 +226,40 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<AllOrderResponse> orderAccept(@Url String url, @Field("LoginId") String LoginId,
-                                           @Field("auth_key") String authKey, @Field("order_number") String order_number);
+                                       @Field("auth_key") String authKey, @Field("order_number") String order_number);
+
+    @FormUrlEncoded
+    @POST
+    Call<BroadcastMessageResponse> getBroadcastMessage(@Url String url, @Field("LoginId") String LoginId,
+                                                       @Field("auth_key") String authKey, @Field("farm_id") String farm_id);
+
+    @FormUrlEncoded
+    @POST
+    Call<BroadcastMessageResponse> deleteBroadcastMessage(@Url String url, @Field("LoginId") String LoginId,
+                                                          @Field("auth_key") String authKey, @Field("MessageID") String MessageID);
+
+    @FormUrlEncoded
+    @POST
+    Call<BroadcastMessageResponse> publishBroadcastMessage(@Url String url,
+                                                           @Field("LoginId") String LoginId,
+                                                           @Field("auth_key") String authKey,
+                                                           @Field("farm_id") String farm_id,
+                                                           @Field("message_title") String message_title,
+                                                           @Field("message_content") String message_content,
+                                                           @Field("message_target") String message_target,
+                                                           @Field("message_status") String message_status);
+
+    @FormUrlEncoded
+    @POST
+    Call<BroadcastMessageResponse> editBroadcastMessage(@Url String url,
+                                                        @Field("LoginId") String LoginId,
+                                                        @Field("auth_key") String authKey,
+                                                        @Field("farm_id") String farm_id,
+                                                        @Field("message_title") String message_title,
+                                                        @Field("message_content") String message_content,
+                                                        @Field("message_target") String message_target,
+                                                        @Field("message_status") String message_status,
+                                                        @Field("MessageID") String MessageID);
 
     @FormUrlEncoded
     @POST

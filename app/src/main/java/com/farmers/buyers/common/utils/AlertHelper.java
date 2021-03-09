@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 
 import kotlin.jvm.functions.Function0;
 
@@ -37,6 +38,7 @@ public class AlertHelper {
 
 
         dialog = alertDialog.create();
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.setCancelable(isCancellable);
         dialog.show();
     }

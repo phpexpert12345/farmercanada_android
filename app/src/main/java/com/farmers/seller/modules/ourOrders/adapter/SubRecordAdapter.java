@@ -1,4 +1,5 @@
 package com.farmers.seller.modules.ourOrders.adapter;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class SubRecordAdapter extends RecyclerView.Adapter<SubRecordAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tv_product_name.setText(modelArrayList.get(position).product_name);
-        holder.tv_product_quantity.setText("Qty: " + modelArrayList.get(position).item_quantity);
+        holder.tv_product_quantity.setText("Qty: " + modelArrayList.get(position).item_quantity + "/" + modelArrayList.get(position).item_unit);
         holder.tv_product_price.setText("$" + modelArrayList.get(position).item_price);
         holder.tv_product_description.setText(modelArrayList.get(position).product_description);
     }

@@ -8,6 +8,7 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:id="@+id/ll_order_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -92,6 +93,29 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
+                                android:text="Order Type: "
+                                android:textSize="@dimen/sp_14_px" />
+
+                            <TextView
+                                android:id="@+id/tv_order_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_regular"
+                                android:text="Delivery"
+                                android:textSize="@dimen/sp_14_px" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end|center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_ui_regular"
                                 android:text="Order ID: "
                                 android:textSize="@dimen/sp_14_px" />
 
@@ -159,17 +183,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:padding="8dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:src="@mipmap/ic_location_icon" />
 
             <TextView
                 android:id="@+id/tv_customer_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Lipsum as it is sometimes known, is dummy text used in laying out print"
                 android:textColor="@color/light_gray"
-                android:textSize="@dimen/sp_12_px" />
+                android:textSize="@dimen/_12ssp" />
 
         </LinearLayout>
 
@@ -203,6 +234,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_both_action"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"

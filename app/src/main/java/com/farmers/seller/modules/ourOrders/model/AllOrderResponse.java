@@ -96,10 +96,13 @@ public class AllOrderResponse {
         public String order_type;
         public String review_status;
         public String order_status_close;
-        public String order_status_color_code;
+        public String customer_comment;
         public String current_time;
         public String customer_name;
         public String farm_address;
+        public String login_photo;
+        public String order_pick;
+        public String order_closed;
         public List<RecordList> OrderRecordList;
     }
 }

@@ -23,7 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OngoingOrderListViewHolder extends BaseViewHolder {
 
-    TextView tv_customer_name, tv_date, tv_order_number, tv_total_amount, tv_customer_address;
+    TextView tv_customer_name, tv_date, tv_order_number, tv_total_amount, tv_customer_address, tv_order_status_msg, tv_order_type;
     CircleImageView civ_farm_image;
     RecyclerView rv_sub_product_list;
     CardView messageCard;
@@ -40,6 +40,8 @@ public class OngoingOrderListViewHolder extends BaseViewHolder {
         tv_customer_address = itemView.findViewById(R.id.tv_customer_address);
         civ_farm_image = itemView.findViewById(R.id.civ_farm_image);
         rv_sub_product_list = itemView.findViewById(R.id.rv_sub_product_list);
+        tv_order_status_msg = itemView.findViewById(R.id.tv_order_status_msg);
+        tv_order_type = itemView.findViewById(R.id.tv_order_type);
 
         messageCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,15 +56,17 @@ public class OngoingOrderListViewHolder extends BaseViewHolder {
         OngoingOrderListItem item = (OngoingOrderListItem) items;
         this.item = item;
         Glide.with(itemView.getContext())
-                .load(item.farm_logo)
-                .placeholder(R.drawable.farm_image)
+                .load(item.login_photo)
+                .placeholder(R.drawable.user_profile_icon)
                 .into(civ_farm_image);
 
         tv_customer_name.setText(item.customer_name);
-        tv_date.setText(item.order_time);
+        tv_date.setText(item.order_time + ", " + item.order_date);
         tv_order_number.setText(item.order_number);
         tv_total_amount.setText("$" + item.Total_amount);
         tv_customer_address.setText(item.farm_address);
+        tv_order_status_msg.setText(item.order_status_msg);
+        tv_order_type.setText(item.order_type);
 
         SubRecordAdapter subRecordAdapter = new SubRecordAdapter(item.OrderRecordList);
         rv_sub_product_list.setHasFixedSize(true);

@@ -6,5 +6,6 @@ public class RecordList {
     public String product_name;
     public String product_description;
     public String product_images;
+    public String item_unit;
 }
 

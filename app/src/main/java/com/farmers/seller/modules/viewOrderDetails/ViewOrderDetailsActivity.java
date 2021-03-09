@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -54,12 +55,13 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
 
     public String KEY = "";
     public String ORDER_NUMBER = "";
-    public String mobileNumber = "";
-    public LinearLayout ll_order_status, ll_order_delivered, ll_order_reject_accept, ll_calling, ll_order_reject, ll_order_accept;
+    public String mobileNumber = "", emailAddress = "", customerAddress = "";
+    public LinearLayout ll_order_status, ll_order_delivered, ll_order_reject_accept, ll_send_email, ll_navigate,
+            ll_calling, ll_order_reject, ll_order_accept, ll_order_cancel, ll_customer_comment, ll_delivery, ll_service_tax, ll_discount;
     public Button bt_track_order;
 
     TextView tv_customer_name, tv_date, tv_order_number, tv_total_amount, tv_customer_address,
-            tv_customer_contact, tv_customer_email, tv_customer_message;
+            tv_customer_contact, tv_customer_email, tv_customer_message, tv_order_status_msg, tv_order_status_msg2, tv_order_type;
     TextView tv_subtotal_amount, tv_delivery_amount, tv_service_tax, tv_discount, tv_invoice_total, tv_print_invoice;
     CircleImageView civ_farm_image;
     RecyclerView rv_sub_product_list;
@@ -112,6 +114,16 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
         ll_calling = findViewById(R.id.ll_calling);
         ll_order_reject = findViewById(R.id.ll_order_reject);
         ll_order_accept = findViewById(R.id.ll_order_accept);
+        ll_send_email = findViewById(R.id.ll_send_email);
+        ll_navigate = findViewById(R.id.ll_navigate);
+        tv_order_status_msg = findViewById(R.id.tv_order_status_msg);
+        tv_order_status_msg2 = findViewById(R.id.tv_order_status_msg2);
+        ll_order_cancel = findViewById(R.id.ll_order_cancel);
+        tv_order_type = findViewById(R.id.tv_order_type);
+        ll_customer_comment = findViewById(R.id.ll_customer_comment);
+        ll_delivery = findViewById(R.id.ll_delivery);
+        ll_service_tax = findViewById(R.id.ll_service_tax);
+        ll_discount = findViewById(R.id.ll_discount);
 
         ll_order_status.setVisibility(View.GONE);
         ll_order_delivered.setVisibility(View.GONE);
@@ -124,6 +136,8 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
         ll_calling.setOnClickListener(this);
         ll_order_reject.setOnClickListener(this);
         ll_order_accept.setOnClickListener(this);
+        ll_send_email.setOnClickListener(this);
+        ll_navigate.setOnClickListener(this);
 
         viewModel.getOrderDetails(orderDetailsStateMachine, ORDER_NUMBER);
 
@@ -206,34 +220,60 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
     private void successData(DataFetchState<AllOrderResponse> farmListResponseDataFetchState) {
         dismissLoader();
         Glide.with(this)
-                .load(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).farm_logo)
-                .placeholder(R.drawable.farm_image)
+                .load(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).login_photo)
+                .placeholder(R.drawable.user_profile_icon)
                 .into(civ_farm_image);
 
+        tv_order_type.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_type);
         tv_customer_name.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_name);
-        tv_date.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_time);
+        tv_date.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_time + ", " +
+                farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_date);
         tv_order_number.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_number);
         tv_total_amount.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).Total_amount);
         tv_customer_address.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).farm_address);
         mobileNumber = farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_mobile;
         tv_customer_contact.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_mobile);
         tv_customer_email.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_email);
+        emailAddress = farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_email;
         tv_customer_address.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_address);
-        // tv_customer_message.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_address);
+        customerAddress = farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_address;
         tv_subtotal_amount.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).subtotal);
+
+        if (!TextUtils.isEmpty(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).delivery_amount)) {
+            ll_delivery.setVisibility(View.VISIBLE);
+        } else {
+            ll_delivery.setVisibility(View.GONE);
+        }
+        if (!TextUtils.isEmpty(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).service_tax_amount)) {
+            ll_service_tax.setVisibility(View.VISIBLE);
+        } else {
+            ll_service_tax.setVisibility(View.GONE);
+        }
+        if (!TextUtils.isEmpty(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).discount_amount)) {
+            ll_discount.setVisibility(View.VISIBLE);
+        } else {
+            ll_discount.setVisibility(View.GONE);
+        }
+
+        if (farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_pick.equals("0")) {
+            ll_order_reject_accept.setVisibility(View.VISIBLE);
+        } else {
+            ll_order_reject_accept.setVisibility(View.GONE);
+        }
+
         tv_delivery_amount.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).delivery_amount);
         tv_service_tax.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).service_tax_amount);
         tv_discount.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).discount_amount);
-
-        try {
-            Double total = Double.parseDouble(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).delivery_amount) +
-                    Double.parseDouble(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).service_tax_amount) +
-                    Double.parseDouble(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).discount_amount) +
-                    Double.parseDouble(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).subtotal);
-            tv_invoice_total.setText("$" + String.valueOf(total));
-        } catch (Exception e) {
-            tv_invoice_total.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).Total_amount);
+        if (!TextUtils.isEmpty(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_comment)) {
+            tv_customer_message.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_comment);
+            ll_customer_comment.setVisibility(View.VISIBLE);
+        } else {
+            ll_customer_comment.setVisibility(View.GONE);
+            tv_customer_message.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).customer_comment);
         }
+        tv_order_status_msg.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_status_msg);
+        tv_order_status_msg2.setText(farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_status_msg);
+        tv_invoice_total.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).Total_amount);
 
         SubRecordAdapter subRecordAdapter = new SubRecordAdapter(
                 farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).OrderRecordList);
@@ -269,14 +309,25 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
                 callIntent.setData(Uri.parse("tel:" + mobileNumber));//change the number
                 startActivity(callIntent);
                 break;
+            case R.id.ll_send_email:
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_EMAIL, emailAddress);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Order Details");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+
+                break;
             case R.id.ll_order_reject:
                 order_decline_dialog(this);
                 break;
 
             case R.id.ll_order_accept:
                 AlertHelper.showAlert(ViewOrderDetailsActivity.this, "Order Details",
-                        "You want to accept this order ?", true, "Ok",
-                        false, "", true, new OnAlertClickListener() {
+                        "Are you sure you want to accept this order", true, "Ok",
+                        true, "Cancel", true, new OnAlertClickListener() {
                             @Override
                             public void onNegativeBtnClicked() {
                                 finish();
@@ -287,6 +338,26 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
                                 viewModel.orderAccept(orderAcceptStateMachine, ORDER_NUMBER);
                             }
                         });
+                break;
+
+            case R.id.ll_navigate:
+                if (!TextUtils.isEmpty(customerAddress)) {
+                    Uri.Builder builder = new Uri.Builder();
+                    builder.scheme("geo")
+                            .path("0,0")
+                            .query(customerAddress);
+                    Uri addressUri = builder.build();
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, addressUri);
+                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    }
+
+                    /*Intent intent = new Intent(Intent.ACTION_VIEW,
+    Uri.parse("google.navigation:q=replace+this+with+an+address"));
+startActivity(intent);*/
+                } else {
+                    Toast.makeText(ViewOrderDetailsActivity.this, "Customer address not available", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
@@ -348,6 +419,7 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.gravity = Gravity.BOTTOM;
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setAttributes(lp);
         dialog.show();

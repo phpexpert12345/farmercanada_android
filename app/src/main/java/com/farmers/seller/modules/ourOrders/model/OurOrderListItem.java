@@ -20,6 +20,9 @@ public class OurOrderListItem implements RecyclerViewListItem {
     public String farm_logo;
     public String order_number;
     public String farm_address;
+    public String login_photo;
+    public String order_pick;
+    public String order_closed;
     public List<RecordList> OrderRecordList;
 
     public OurOrderListItem() {
@@ -28,7 +31,7 @@ public class OurOrderListItem implements RecyclerViewListItem {
     public OurOrderListItem(String order_id, String customer_name, String order_date,
                             String order_time, String total_amount, String order_type, String review_status,
                             String order_status_msg, String order_status_close, String farm_name, String farm_logo,
-                            String order_number, String farm_address, List<RecordList> OrderRecordList) {
+                            String order_number, String farm_address, String login_photo, String order_pick, String order_closed, List<RecordList> OrderRecordList) {
         this.order_id = order_id;
         this.customer_name = customer_name;
         this.order_date = order_date;
@@ -42,6 +45,9 @@ public class OurOrderListItem implements RecyclerViewListItem {
         this.farm_logo = farm_logo;
         this.order_number = order_number;
         this.farm_address = farm_address;
+        this.login_photo = login_photo;
+        this.order_pick = order_pick;
+        this.order_closed = order_closed;
         this.OrderRecordList = OrderRecordList;
     }
 
