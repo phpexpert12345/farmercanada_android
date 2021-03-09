@@ -134,6 +134,9 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
     }
 
     private void prepareItems() {
+        if(items.size()>0){
+            items.clear();
+        }
         items.add(MyProfileTransformer.getProfileHeader());
         items.add(MyProfileTransformer.getProfileMenuItems());
         items.add(new SimpleTitleItem("Account Setting", R.color.light_gray));
@@ -144,8 +147,12 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         }
         items.add(new SimpleTitleItem("Referral & Credits", R.color.light_gray));
         items.add(MyProfileTransformer.getReferralSetting());
-        adapter.updateData(items);
+       updateItems();
 
+    }
+    public void updateItems(){
+
+        adapter.updateData(items);
     }
 
     @Override
@@ -155,7 +162,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     @Override
     public void onWalletClicked() {
-        startActivity(new Intent(baseActivity, WalletActivity.class));
+        startActivityForResult(new Intent(baseActivity, WalletActivity.class),56);
     }
 
     @Override

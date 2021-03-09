@@ -18,6 +18,7 @@
             android:fontFamily="@font/sf_ui_semibold"
             android:singleLine="true"
             android:text="Aman Kumar"
+            android:layout_marginStart="@dimen/_10sdp"
             android:textColor="@color/heading_text_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +54,7 @@
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Seller"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:textColor="@color/primary_button_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:src="@drawable/ic_edit_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                android:layout_alignParentEnd="true"

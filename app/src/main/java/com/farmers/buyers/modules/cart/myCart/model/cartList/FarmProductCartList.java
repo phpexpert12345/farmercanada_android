@@ -81,6 +81,29 @@ public class FarmProductCartList implements Serializable , RecyclerViewListItem 
     public String product_name;
     public String product_images;
 
+    public String getPickup_available() {
+        return pickup_available;
+    }
+
+    public void setPickup_available(String pickup_available) {
+        this.pickup_available = pickup_available;
+    }
+
+    public String getDelivery_available() {
+        return delivery_available;
+    }
+
+    public void setDelivery_available(String delivery_available) {
+        this.delivery_available = delivery_available;
+    }
+
+    @SerializedName("pickup_available")
+    @Expose
+    private String pickup_available;
+    @SerializedName("delivery_available")
+    @Expose
+    private String delivery_available;
+
     public String getCartId() {
         return cartId;
     }

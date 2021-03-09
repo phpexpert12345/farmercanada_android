@@ -124,6 +124,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     private RecyclerView recyclerView, farmRecyclerView;
     public HomeAdapter adapter;
     private HomeFarmListAdapter homeFarmListAdapter;
+    int follow=0;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -164,7 +165,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     }
 
 
-    private void farmListDataRequest(String farmType, String serviceType, String categoryId, int page) {
+    public void farmListDataRequest(String farmType, String serviceType, String categoryId, int page) {
 
 
         FarmListRequest farmListRequest = new FarmListRequest(
@@ -186,7 +187,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     }
 
     public void init() {
-        adapter = new HomeAdapter(this, this, this, this, this, this);
+        adapter = new HomeAdapter(this, this, this, this, this, this,"","");
         gpsTracker = new GPSTracker(getAppContext());
         homeFarmListAdapter = new HomeFarmListAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -230,7 +231,6 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                         homeFarmListAdapter.updateData(viewModel.farmListItems);
                         break;
                     case LOADING:
-                        showLoader();
                         break;
 
                 }
@@ -240,17 +240,22 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         getUserStateMachine.observe(this, allDataModelDataFetchState -> {
             switch (allDataModelDataFetchState.status) {
                 case ERROR: {
+
                     dismissLoader();
                     Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
-                     showLoader();
+                    if(follow==0){
+                        showLoader();
+                    }
+
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
-                    getCategoryData();
+                    if(follow==0) {
+                        getCategoryData();
+                    }
                     break;
                 }
             }
@@ -264,11 +269,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case LOADING: {
-                    showLoader();
+
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
+
                     categorySuccess();
                     break;
                 }
@@ -282,11 +287,11 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     break;
                 }
                 case LOADING: {
-                    showLoader();
+
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
+
                     getUserSuccess();
                     farmListDataRequest("0", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
                             , "", 0);
@@ -347,6 +352,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
                     }
                     case SUCCESS: {
                         dismissLoader();
+                        follow=1;
+                        getUserData();
                         farmListDataRequest("0", String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0"))
                                 , "", 0);
                         break;
@@ -366,7 +373,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     }
 
     private void getUserSuccess() {
-        dismissLoader();
+
         bindAdapter();
     }
 
@@ -387,7 +394,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
     }
 
     private void getUserData() {
-        viewModel.getUserInformation(getUserStateMachine);
+        viewModel.getUserInformation(getUserStateMachine,getContext());
     }
 
     @Override
@@ -483,6 +490,8 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
         intent.putExtra("followed_id", viewModel.homeFarmListItem.get(position).followed_id);
         intent.putExtra("farm_lat",viewModel.homeFarmListItem.get(position).getFarmLat());
         intent.putExtra("farm_long",viewModel.homeFarmListItem.get(position).getFarmLong());
+        intent.putExtra("pickup_available",viewModel.homeFarmListItem.get(position).getPickup_available());
+        intent.putExtra("delivery_available",viewModel.homeFarmListItem.get(position).getDelivery_available());
         startActivity(intent);
     }
 

@@ -55,7 +55,7 @@ public class HomeHeaderViewHolder extends BaseViewHolder {
         tv_user_name.setText(item.getUserName());
         String address= DroidPrefs.get(context,"Current_Location",String.class);
         tv_address.setText(address);
-        if (item.getAccount_type().equals("1")) {
+        if (item.getAccount_type().equals("2")) {
             tv_account_type.setText("Seller");
         } else {
             tv_account_type.setText("Buyer");

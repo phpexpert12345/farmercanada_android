@@ -82,7 +82,7 @@
             android:layout_below="@+id/cover_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_minus50sdp"
-            android:src="@drawable/follow_image" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/edit_profile_change_profile_tv"

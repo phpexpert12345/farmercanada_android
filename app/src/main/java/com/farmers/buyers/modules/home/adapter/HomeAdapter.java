@@ -35,9 +35,10 @@ public class HomeAdapter extends BaseAdapter {
     private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
     private HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener;
     private HomeSearchItemViewHolder.SearchItemClickListener listener;
+    private String delivery_available,pickup_available;
 
 
-    public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener, HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener, HomeSearchItemViewHolder.SearchItemClickListener listener) {
+    public HomeAdapter(HomeHeaderViewHolder.HeaderItemClickListener headerListener, MultipleTextItemViewHolder.FilterItemClickListener filterItemClickListener, HomeCategoryListItemViewHolder.CategoryItemClickListener categoryItemClickListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, HomeFarmTypeViewHolder.FarmTypeCheckedChangeListener farmTypeCheckedChangeListener, HomeSearchItemViewHolder.SearchItemClickListener listener,String delivery_available, String pickup_available) {
         super();
         this.headerListener = headerListener;
         this.filterItemClickListener = filterItemClickListener;
@@ -45,7 +46,8 @@ public class HomeAdapter extends BaseAdapter {
         this.deliveryTypeCheckedChangeListener = deliveryTypeCheckedChangeListener;
         this.farmTypeCheckedChangeListener  = farmTypeCheckedChangeListener;
         this.listener = listener;
-
+        this.pickup_available=pickup_available;
+        this.delivery_available=delivery_available;
         this.initDelegate();
     }
 

@@ -25,6 +25,7 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
 
+
     public HomeDeliveryTypeViewHolder(@NonNull ViewGroup parent, DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {
         super(Extensions.inflate(parent, R.layout.app_toggle_layout));
         toggle = itemView.findViewById(R.id.toggleButton1);
@@ -33,8 +34,12 @@ public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
         deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
 
         if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("0")) {
+            deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+            pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
             toggle.setChecked(false);
         } else {
+            pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+            deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
             toggle.setChecked(true);
         }
 

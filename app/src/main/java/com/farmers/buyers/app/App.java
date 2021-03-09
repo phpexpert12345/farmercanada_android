@@ -22,6 +22,9 @@ public class App extends Application {
     public static Context appContext;
 
     public static  boolean finish_activity=false;
+    public static boolean updated=false;
+    public static boolean wallet_updated=false;
+    public static boolean cart_updated=false;
     @Override
     public void onCreate() {
         super.onCreate();

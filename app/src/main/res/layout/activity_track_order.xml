@@ -12,5 +12,18 @@
         android:id="@+id/track_order_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/bt_cancel"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_30sdp"
+        android:textAllCaps="false"
+        android:background="@drawable/round_corner_light_gradient_bg"
+        android:fontFamily="@font/sf_ui_semibold"
+        android:text="Cancel"
+        android:visibility="gone"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="@dimen/_16ssp" />
 
 </LinearLayout>

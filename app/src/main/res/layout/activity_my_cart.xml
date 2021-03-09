@@ -28,9 +28,9 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_16ssp"
 
-            android:fontFamily="@font/sf_ui_bold"/>
+            android:fontFamily="@font/sf_ui_semibold"/>
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -50,27 +50,26 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:visibility="gone"
+    android:layout_marginStart="@dimen/_15sdp"
+    android:layout_marginEnd="@dimen/_15sdp"
     android:id="@+id/linear_order">
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtOrderType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_ui_bold"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
+                android:fontFamily="@font/sf_ui_semibold"
+
+                android:textColor="@color/black"
                 android:text="@string/order_type"
-                android:textSize="@dimen/_18sdp" />
+                android:textSize="@dimen/_16sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:layout_marginTop="@dimen/_10sdp"
+                >
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewDelivery"
@@ -85,11 +84,11 @@
                         android:id="@+id/textViewDelivery"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="@dimen/_14sdp"
+
+                        android:textSize="@dimen/_14ssp"
                         android:background="@color/light_gray"
                         android:gravity="center"
-                        android:padding="@dimen/_5sdp"
+                        android:padding="@dimen/_7sdp"
                         android:singleLine="true"
                         android:text="@string/delivery"
                         android:textColor="@color/colorPrimaryDark" />
@@ -109,11 +108,10 @@
                         android:id="@+id/textViewPickUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_14ssp"
                         android:background="@color/light_gray"
                         android:gravity="center"
-                        android:padding="@dimen/_5sdp"
+                        android:padding="@dimen/_7sdp"
                         android:singleLine="true"
                         android:text="@string/pickup"
                         android:textColor="@color/colorPrimaryDark" />

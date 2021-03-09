@@ -1,10 +1,13 @@
 
 package com.farmers.buyers.modules.home.homeFragment;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
@@ -102,7 +105,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
+    public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, Context context) {
 
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
         CategoryListRequestParams loginRequestParams = new CategoryListRequestParams(appController.getLoginId(),
@@ -111,7 +114,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
             @Override
             public void onSuccess(AllDataModel response) {
                 if (response.isStatus()) {
-
+                    DroidPrefs.apply(context,"wallet_amount",response.getmData().wallet_amount);
                     SharedPreferenceManager.getInstance().setWalletAmount(response.getmData().wallet_amount);
                     SharedPreferenceManager.getInstance().setProfilePic(response.getmData().login_photo);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_NAME", response.getmData().login_name);

@@ -46,6 +46,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
     ImageView saved_back;
     TextView text_saved_farms;
     HomeActivity homeActivity;
+    int flag=0;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -103,7 +104,9 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
         stateMachine.observe(baseActivity, saveFarmListApiModelDataFetchState -> {
             switch (saveFarmListApiModelDataFetchState.status) {
                 case LOADING: {
-                    loading();
+                    if(flag==0) {
+                        loading();
+                    }
                     break;
                 }
                 case SUCCESS: {
@@ -121,11 +124,12 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
 
             switch (saveUnsaveFarmApiModelDataFetchState.status) {
                 case LOADING: {
+                    flag=1;
                     loading();
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
+
                     getSavedFarmList();
                     break;
                 }
@@ -140,11 +144,12 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
         followUnFollowStateMachine.observe(this, followUnFollowApiModelDataFetchState -> {
             switch (followUnFollowApiModelDataFetchState.status) {
                 case LOADING: {
+                    flag=1;
                     loading();
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
+
                     getSavedFarmList();
                     break;
                 }

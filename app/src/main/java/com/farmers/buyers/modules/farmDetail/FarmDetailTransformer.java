@@ -27,11 +27,11 @@ public class FarmDetailTransformer {
     public static FarmDetailItems getFarmDetailItems(String farm_name, String farm_address, String rating_ang, String farm_opening_hours,
                                                      String farm_estimate_delivery_time, String farm_followed_status,
                                                      String farm_delivery_radius_text,
-                                                     String farm_hosted_by, String farmImage, String farmId,double farm_lat,double farm_long) {
+                                                     String farm_hosted_by, String farmImage, String farmId,double farm_lat,double farm_long,String delivery_available,String pickup_available) {
 
         return new FarmDetailItems(farm_name, farm_address, rating_ang, farm_hosted_by,
                 farm_opening_hours, farm_estimate_delivery_time, farm_followed_status,
-                farm_delivery_radius_text, farm_hosted_by, farmImage, farmId,farm_lat,farm_long);
+                farm_delivery_radius_text, farm_hosted_by, farmImage, farmId,farm_lat,farm_long,delivery_available,pickup_available);
     }
 
     public static FarmDetailItems getFarmDetailItems() {

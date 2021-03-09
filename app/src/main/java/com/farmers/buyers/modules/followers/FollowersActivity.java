@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -164,5 +165,11 @@ public class FollowersActivity extends BaseActivity implements FollowersViewHold
     @Override
     public void onFollowUnFollowFarmListener(String farmId, String Status, String followId) {
         viewModel.followUnFollowFarm(followUnFollowStateMachine, farmId, Status, followId);
+    }
+
+    @Override
+    public void onBackPressed() {
+        App.wallet_updated=true;
+        finish();
     }
 }

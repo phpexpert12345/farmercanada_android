@@ -31,7 +31,7 @@
                 android:id="@+id/login_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_24_px"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:fontFamily="@font/sf_ui_bold"
                 android:text="@string/login"
                 android:textColor="@color/primary_button_color"
@@ -51,8 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_8sdp"
-                    android:button="@drawable/circle_check_drawable"
-                    android:fontFamily="@font/sf_ui_regular"
+                    android:buttonTint="@color/primary_button_color"
+                    android:fontFamily="@font/sf_ui_semibold"
                     android:paddingLeft="@dimen/_5sdp"
                     android:text="Seller"
                     android:textSize="@dimen/_14ssp" />
@@ -60,11 +60,11 @@
                 <RadioButton
                     android:id="@+id/login_buyer_radio"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_8sdp"
-                    android:button="@drawable/circle_check_drawable"
+                    android:buttonTint="@color/primary_button_color"
                     android:checked="true"
-                    android:fontFamily="@font/sf_ui_regular"
+                    android:fontFamily="@font/sf_ui_semibold"
                     android:paddingLeft="@dimen/_5sdp"
                     android:text="Buyer"
                     android:textSize="@dimen/_14ssp" />
@@ -129,8 +129,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginLeft="@dimen/_16sdp"
-                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="@string/forgot_password"
                 android:textColor="@color/primary_button_color"
@@ -143,13 +143,15 @@
                 android:layout_marginTop="@dimen/dp_16_px"
                 android:background="@drawable/round_corner_light_gradient_bg"
                 android:text="@string/login"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_18sdp"
                 android:textColor="@color/secondaryTextColor" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_20_px"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -181,7 +183,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/dp_50_px"
                     android:layout_height="@dimen/dp_50_px"
-                    android:layout_marginLeft="@dimen/dp_5_px"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:elevation="@dimen/dp_5_px"
 
                     >
@@ -208,7 +210,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -224,7 +226,7 @@
                     android:id="@+id/login_register_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_5_px"
+android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="@string/register"
                     android:textColor="@color/primary_button_color"

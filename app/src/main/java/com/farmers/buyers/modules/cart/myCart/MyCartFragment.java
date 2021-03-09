@@ -75,6 +75,7 @@ public class MyCartFragment extends BaseFragment implements
     private String subTotal = "";
     ImageView cart_back;
     TextView text_cart;
+    String delivery_available,pickup_available;
     List<FarmProductCartList> farmProductCartList=new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -121,12 +122,25 @@ public class MyCartFragment extends BaseFragment implements
         order_type=SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
         setType();
         textViewDelivery.setOnClickListener(v->{
-            order_type="Delivery";
-            setType();
+            if(delivery_available.equalsIgnoreCase("Yes")){
+                order_type="Delivery";
+                setType();
+            }
+            else{
+                Toast.makeText(baseActivity, "Sorry we are not Providing delivery currently!!", Toast.LENGTH_SHORT).show();
+
+            }
+
         });
         textViewPickUp.setOnClickListener(v->{
-            order_type="Pickup";
-           setType();
+            if(pickup_available.equalsIgnoreCase("Yes")){
+                order_type="Pickup";
+                setType();
+            }
+            else{
+                Toast.makeText(baseActivity, "Sorry we are not Providing pickup currently!!", Toast.LENGTH_SHORT).show();
+            }
+
         });
         adapter = new MyCartAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -230,6 +244,10 @@ public class MyCartFragment extends BaseFragment implements
                         itemCount.setText(data.data.getData().getFarmProductCartList().size() + " Items");
                         if(data.data.getData().getFarmProductCartList().size()>0) {
                             farmProductCartList=data.data.getData().getFarmProductCartList();
+                            if(farmProductCartList.size()>0){
+                                delivery_available=farmProductCartList.get(0).getDelivery_available();
+                                pickup_available=farmProductCartList.get(0).getPickup_available();
+                            }
                             cartListData(data.data.getData().getFarmProductCartList());
 
                             adapter.updateData(items);
@@ -315,7 +333,7 @@ public class MyCartFragment extends BaseFragment implements
 
            case "Delivery":
            {
-               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.gradient_color_dark));
                textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
            }
 
@@ -323,7 +341,7 @@ public class MyCartFragment extends BaseFragment implements
            break;
            case "Pickup":
            {
-               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.gradient_color_dark));
                textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
            }
            break;

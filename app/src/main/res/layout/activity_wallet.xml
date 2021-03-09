@@ -13,8 +13,8 @@
         android:id="@+id/wallet_header">
         <ImageView
             android:id="@+id/wallet_back"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_15sdp"
             android:background="@android:color/transparent"
@@ -29,7 +29,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_16sdp"
         tools:text="Screen Title"
-        android:fontFamily="@font/sf_ui_bold"/>
+        android:fontFamily="@font/sf_ui_regular"/>
 </RelativeLayout>
 
 

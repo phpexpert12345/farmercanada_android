@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.address;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -235,7 +236,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         if (comeFrom == 0) {
             Intent intent = new Intent();
             intent.putExtra(Constant.DATA_INTENT, addressObj);
-            setResult(1254, intent);
+            setResult(Activity.RESULT_OK, intent);
             finish();
         }
     }

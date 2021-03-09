@@ -22,6 +22,25 @@ public class FarmDetailItems implements RecyclerViewListItem {
     String farmImage;
     String farmId;
 
+    public String getPickup_available() {
+        return pickup_available;
+    }
+
+    public void setPickup_available(String pickup_available) {
+        this.pickup_available = pickup_available;
+    }
+
+    public String getDelivery_available() {
+        return delivery_available;
+    }
+
+    public void setDelivery_available(String delivery_available) {
+        this.delivery_available = delivery_available;
+    }
+
+    String pickup_available;
+    String delivery_available;
+
     public Double getFarmLat() {
         return farmLat;
     }
@@ -42,7 +61,7 @@ public class FarmDetailItems implements RecyclerViewListItem {
     Double farmLong;
 
     public FarmDetailItems(String farmName, String farmAddress, String rating, String hostedBy, String farm_opening_hours, String
-            farm_estimate_delivery_time, String farm_followed_status, String farm_delivery_radius_text, String farm_hosted_by, String farmImage, String farmId, Double farmLat,Double farmLong) {
+            farm_estimate_delivery_time, String farm_followed_status, String farm_delivery_radius_text, String farm_hosted_by, String farmImage, String farmId, Double farmLat,Double farmLong,String delivery_available,String pickup_available) {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
         this.rating = rating;
@@ -56,6 +75,8 @@ public class FarmDetailItems implements RecyclerViewListItem {
         this.farmId = farmId;
         this.farmLat=farmLat;
         this.farmLong=farmLong;
+        this.pickup_available=pickup_available;
+        this.delivery_available=delivery_available;
 
     }
 

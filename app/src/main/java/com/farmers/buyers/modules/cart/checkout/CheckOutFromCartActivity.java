@@ -1,5 +1,6 @@
 package com.farmers.buyers.modules.cart.checkout;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -292,6 +293,9 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
                                 if(extra.length()>0){
                                     extra.append(",");
                                 }
+                                if(unit.length()>0){
+                                    unit.append(",");
+                                }
                                 price_.append(farmProductCartList.getItemPrice());
                                 quat.append(farmProductCartList.getItemQuantity());
                                 item_id.append(farmProductCartList.getItemId());
@@ -335,6 +339,10 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             addres=address.getAddress();
             address_id=address.getAddress_id();
         }
+        double  totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount()) + Double.parseDouble(taxData.getPackageFeeAmount());
+        if(order_type.equalsIgnoreCase("Delivery")){
+            totalAmountf+=Double.parseDouble(taxData.getDeliveryCharge());
+        }
         SubmitRequestParam param = new SubmitRequestParam(appController.getAuthenticationKey(),
                 "0",
                 "0",
@@ -348,7 +356,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
                 date,
                 "0",
                 String.valueOf(taxData.getDiscountAmount()),
-                taxData.getSubTotal(),
+                String.valueOf(totalAmountf),
                 taxData.getDeliveryCharge(),
                 taxData.getDeliveryCharge(),
                 taxData.getPackageFeeAmount(),
@@ -382,7 +390,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             }
@@ -493,26 +501,15 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         }
     }
     private void goToPayment(){
+        Intent intent = getIntent();
+        taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
         if(order_type.equalsIgnoreCase("Delivery")){
-            if(dis>=farmDeliveryStatus.farm_delivery_status){
-                Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
-            }
-            else{
+//            if(dis>=farmDeliveryStatus.farm_delivery_status){
+//                Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
+//            }
+//            else{
 
-                Intent intent = getIntent();
-                taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-                order_type=intent.getStringExtra("order_type");
-                int type;
-                switch (order_type){
-                    case "Delivery":
-                        type=0;
-                        break;
-                    case "Pickup":
-                        type=1;
-                        break;
-                    default:
-                        type=0;
-                }
+                int type=0;
 
                 if(pay_type.equalsIgnoreCase("Cash")){
                     Placeorder(type);
@@ -522,23 +519,9 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
                 }
 
             }
-        }
+//        }
         else{
-            Intent intent = getIntent();
-            taxData  = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
-            order_type=intent.getStringExtra("order_type");
-            int type;
-            switch (order_type){
-                case "Delivery":
-                    type=0;
-                    break;
-                case "Pickup":
-                    type=1;
-                    break;
-                default:
-                    type=0;
-            }
-
+            int type=1;
             if(pay_type.equalsIgnoreCase("Cash")){
                 Placeorder(type);
             }
@@ -565,29 +548,33 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1254) {
-            if (data != null) {
-                 address = (CheckOutCartAddressItems) data.getSerializableExtra(Constant.DATA_INTENT);
-                 if(address!=null){
-                     dis=distance(farmDeliveryStatus.farm_lat,farmDeliveryStatus.farm_long,address.getAddress_lat(),address.getAddress_long());
-                     dis=dis*1.609;
+        if(resultCode== Activity.RESULT_OK) {
+            if (requestCode == 1254) {
+                if (data != null) {
+                    address = (CheckOutCartAddressItems) data.getSerializableExtra(Constant.DATA_INTENT);
+                    if (address != null) {
+                        dis = distance(farmDeliveryStatus.farm_lat, farmDeliveryStatus.farm_long, address.getAddress_lat(), address.getAddress_long());
+                        dis = dis * 1.609;
 
-                 }
+                    }
 
-                prepareItem(taxData, address);
-                adapter.updateData(items);
-                if(time==null){
-                    startActivityForResult(new Intent(CheckOutFromCartActivity.this,PlaceOrderActivity.class),21);
+                    prepareItem(taxData, address);
+                    adapter.updateData(items);
+                    if (time == null) {
+                        startActivityForResult(new Intent(CheckOutFromCartActivity.this, PlaceOrderActivity.class), 21);
+                    }
+                }
+            } else if (requestCode == 21) {
+                if (data != null) {
+                    if (data.hasExtra("time")) {
+                        time = data.getStringExtra("time");
+                        date = data.getStringExtra("date");
+                    }
                 }
             }
         }
-        else if(requestCode==21){
-            if(data!=null){
-                if(data.hasExtra("time")){
-                    time=data.getStringExtra("time");
-                    date=data.getStringExtra("date");
-                }
-            }
+        else{
+            finish();
         }
     }
 

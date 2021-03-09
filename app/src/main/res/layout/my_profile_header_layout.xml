@@ -16,7 +16,7 @@
             android:layout_height="@dimen/_70sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/user_image"
+            android:src="@drawable/profile_pic"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/_1sdp" />
 
@@ -133,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="Followers" />
+                android:text="Following" />
         </LinearLayout>
 
         <LinearLayout

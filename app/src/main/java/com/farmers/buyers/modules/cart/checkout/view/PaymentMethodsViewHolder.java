@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
@@ -23,48 +24,33 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 
 public class PaymentMethodsViewHolder extends BaseViewHolder {
     RadioButton codRadio, cardRadio, walletRadio;
+    RelativeLayout relative_cash,relative_card,relative_wallet;
 
     public PaymentMethodsViewHolder(@NonNull ViewGroup parent, PaymentMethodListener paymentMethodListener) {
         super(Extensions.inflate(parent, R.layout.payment_methods_holder_layout));
         codRadio = itemView.findViewById(R.id.payment_method_cod_radio);
         cardRadio = itemView.findViewById(R.id.payment_method_card_radio);
         walletRadio = itemView.findViewById(R.id.payment_method_wallet_radio);
-
-        codRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    cardRadio.setChecked(false);
-                    walletRadio.setChecked(false);
-                    paymentMethodListener.onPaymentMethodCheckChangeListener(0,"Cash");
-                }
-            }
+        relative_card=itemView.findViewById(R.id.relative_card);
+        relative_cash=itemView.findViewById(R.id.relative_cash);
+        relative_wallet=itemView.findViewById(R.id.relative_wallet);
+        relative_card.setOnClickListener(v->{
+            cardRadio.setChecked(true);
+            walletRadio.setChecked(false);
+            codRadio.setChecked(false);
+            paymentMethodListener.onPaymentMethodCheckChangeListener(1,"Credit/Debit");
         });
-
-        cardRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    codRadio.setChecked(false);
-                    walletRadio.setChecked(false);
-                    paymentMethodListener.onPaymentMethodCheckChangeListener(1,"Credit/Debit");
-
-                }
-
-            }
+        relative_cash.setOnClickListener(v->{
+            cardRadio.setChecked(false);
+            walletRadio.setChecked(false);
+            codRadio.setChecked(true);
+            paymentMethodListener.onPaymentMethodCheckChangeListener(0,"Cash");
         });
-
-
-        walletRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    codRadio.setChecked(false);
-                    cardRadio.setChecked(false);
-                    paymentMethodListener.onPaymentMethodCheckChangeListener(2,"Wallet");
-
-                }
-            }
+        relative_wallet.setOnClickListener(v->{
+            cardRadio.setChecked(false);
+            walletRadio.setChecked(true);
+            codRadio.setChecked(false);
+            paymentMethodListener.onPaymentMethodCheckChangeListener(2,"Wallet");
         });
 
     }

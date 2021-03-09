@@ -18,7 +18,7 @@
             android:id="@+id/sub_order_item_farm_image"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/farm_image" />
+            android:src="@drawable/logo" />
 
         <LinearLayout
             android:id="@+id/sub_order_item_ll"

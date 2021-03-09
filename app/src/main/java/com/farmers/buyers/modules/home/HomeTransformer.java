@@ -55,7 +55,7 @@ public class HomeTransformer {
                     data.getFarmOpeningStatus(),
                     data.getFarmFavouriteStatus(),
                     data.getFavouriteId(), data.getFarmFollowedStatus(),
-                    data.getFormTypeName(), data.getFollowedId()));
+                    data.getFormTypeName(), data.getFollowedId(),data.getDelivery_available(),data.getPickup_available()));
         }
         return items;
     }
