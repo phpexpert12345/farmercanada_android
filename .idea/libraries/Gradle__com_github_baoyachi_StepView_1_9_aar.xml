@@ -7,6 +7,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/418875c9b675411c9832ba3f335f3222/jetified-StepView-1.9/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/418875c9b675411c9832ba3f335f3222/jetified-StepView-1.9/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/418875c9b675411c9832ba3f335f3222/jetified-StepView-1.9/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6c595defb696a252b80c9311437e2ef/jetified-StepView-1.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6c595defb696a252b80c9311437e2ef/jetified-StepView-1.9/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6c595defb696a252b80c9311437e2ef/jetified-StepView-1.9/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
