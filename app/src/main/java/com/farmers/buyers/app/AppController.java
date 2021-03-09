@@ -79,15 +79,7 @@ public class AppController implements AppControllerContract {
         return null;
     }
 
-    @Override
-    public String getRole() {
-        return sharedPreferenceManager.getRole();
-    }
 
-    @Override
-    public Boolean getIsStoreSetup() {
-        return sharedPreferenceManager.getIsStoreSetup();
-    }
 
     @Override
     public String getRole() {

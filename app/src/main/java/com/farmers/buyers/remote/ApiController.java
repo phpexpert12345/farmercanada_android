@@ -423,10 +423,6 @@ public interface ApiController {
                                           MultipartBody.Part docTwoBack);
 
 
-    @FormUrlEncoded
-    @POST
-    Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText, @Field("LoginId") String loginId);
-
 
     @Multipart
     @POST

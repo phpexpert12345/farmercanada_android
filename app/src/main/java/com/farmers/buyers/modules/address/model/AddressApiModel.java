@@ -4,7 +4,6 @@ import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
 import com.farmers.buyers.storage.CardConstant;
-import com.farmers.seller.modules.ourOrders.model.RecordList;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -104,11 +103,8 @@ public class AddressApiModel {
             return allTimeList;
         }
 
-        @SerializedName("OrderList")
-        private List<AddressListData> getOrderList;
-
-        public List<AddressListData> getGetOrderList() {
-            return getOrderList;
+        public void setAllTimeList(List<AddressListData> allTimeList) {
+            this.allTimeList = allTimeList;
         }
     }
 
@@ -141,9 +137,6 @@ public class AddressApiModel {
         private String order_status_close;
         private String order_status_color_code;
         public String current_time;
-        public String customer_name;
-        public String farm_address;
-        public List<RecordList> OrderRecordList;
 
         @SerializedName("OrderRecordList")
         private List<AllRecordsData> allRecordList;

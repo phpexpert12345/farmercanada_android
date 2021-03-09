@@ -50,10 +50,6 @@ public class ApiConstants {
     public static final String GET_PAYMENT_KEY_WALLET="phpexpert_payment_key_wallet.php";
     public static final String STRIPE_PAY_WALLET="phpexpert_payment_intent_generate_wallet.php";
     public static final String SEARCH_PRODUCT_ITEM = "phpexpert_all_farm_product_search.php";
-
-    public static final String GET_PAYMENT_KEY = "phpexpert_payment_key.php";
-    public static final String STRIPE_PAY = "phpexpert_payment_intent_generate.php";
-    public static final String SEARCH_PRODUCT_ITEM = "phpexpert_all_farm_product_search.php";
     public static final String NEW_ORDERS_LIST = "phpexpert_store_order_list.php";
     public static final String ORDERS_DETAILS_DATA = "phpexpert_store_order_detail.php";
     public static final String ORDERS_ACCEPT = "phpexpert_store_order_accepted.php";
@@ -82,7 +78,7 @@ public class ApiConstants {
 
     // TODO Seller Section
 
-    public static final String SETUP_STORE = "phpexpert_store_configuration_process.php";
+
 
 
     // TODO Seller Section
