@@ -109,9 +109,9 @@
                     android:id="@+id/ed_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
                     android:background="@null"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp"
                     android:inputType="number"
                     android:fontFamily="@font/sf_ui_regular"
                     android:hint="@string/hint_money"
@@ -132,7 +132,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:visibility="visible"
             android:layout_marginStart="@dimen/_15sdp"
             android:id="@+id/linear_credit"
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_debit"
                 android:gravity="center"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_16ssp"
                 android:text="Credit/Debit Card"/>
 
 

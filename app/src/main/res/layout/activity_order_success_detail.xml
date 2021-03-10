@@ -28,291 +28,297 @@
         android:text="We received your order"
         android:textColor="@color/secondaryTextColor"
         android:textSize="@dimen/sp_14_px" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_bg"
         android:layout_marginLeft="@dimen/dp_18_px"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginRight="@dimen/dp_18_px"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:background="@drawable/card_bg"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:layout_marginBottom="@dimen/_30sdp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_110sdp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/ic_order_success" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15sp"
-            android:layout_marginRight="17sp"
-            android:background="@color/transparent_gray" />
-
-        <TextView
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:id="@+id/description"
-            android:fontFamily="@font/sf_ui_regular"
-            android:gravity="center"
-            android:text="You Can Track the delivery in the\n Orders Section"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/sp_14_px" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:padding="@dimen/_8sdp">
-
-            <TextView
-                android:id="@+id/order_id_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:fontFamily="@font/sf_ui_regular"
-                android:text="Order Id"
-                android:textSize="@dimen/sp_14_px" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/order_date"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:fontFamily="@font/sf_ui_regular"
-                android:text="23-12-2020/20:30"
-                android:textSize="@dimen/sp_14_px" />
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/order_id_textView"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@drawable/round_corner_ligh_red_bg"
-                android:backgroundTint="#FDEAEB"
-                android:orientation="horizontal"
-                android:padding="@dimen/_8sdp">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/order_id"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/sf_ui_semibold"
-                    android:text="#33834239"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/_16sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="@dimen/_24sdp"
-                    android:layout_marginLeft="@dimen/_24sdp"
-                    android:drawableRight="@drawable/ic_copy"
-                    android:fontFamily="@font/sf_ui_regular"
-                    android:gravity="center"
-                    android:text="Copy"
-                    android:textSize="@dimen/dp_12_px" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/ic_order_success" />
 
             </LinearLayout>
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/_8sdp"
-            android:paddingRight="@dimen/_8sdp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="17sp"
+                android:background="@color/transparent_gray" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_weight="1"
-                android:singleLine="true"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:id="@+id/description"
                 android:fontFamily="@font/sf_ui_regular"
-                android:text="Order Type:"
-                android:textSize="@dimen/sp_13_px" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_weight="1"
-                android:id="@+id/order_type_txt"
-                android:fontFamily="@font/sf_ui_regular"
-                android:text="" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/sf_ui_regular"
-                android:gravity="end"
-                android:text="Status:"
+                android:gravity="center"
+                android:text="You Can Track the delivery in the\n Orders Section"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_14_px" />
 
-            <TextView
-                android:layout_width="0dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_weight="1"
-                android:fontFamily="@font/sf_ui_regular"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:text="Pending"
-                android:textColor="@color/primary_button_color"
-                android:textSize="@dimen/sp_14_px" />
+                android:layout_marginTop="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/order_id_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="Order Id"
+                    android:textSize="@dimen/sp_14_px" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/order_date"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="23-12-2020/20:30"
+                    android:textSize="@dimen/sp_14_px" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/order_success_user_image"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_40sdp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_id_textView"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/round_corner_ligh_red_bg"
+                    android:backgroundTint="#FDEAEB"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp">
 
-                android:src="@drawable/follow_image" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/order_id"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/sf_ui_semibold"
+                        android:text="#33834239"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/_24sdp"
+                        android:layout_marginLeft="@dimen/_24sdp"
+                        android:drawableRight="@drawable/ic_copy"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:gravity="center"
+                        android:text="Copy"
+                        android:textSize="@dimen/dp_12_px" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:layout_toRightOf="@+id/order_success_user_image"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingRight="@dimen/_8sdp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txt_farm_name"
-                    android:text="Aman Kumar"
-                    android:textColor="@color/primaryTextColor"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="Order Type:"
+                    android:textSize="@dimen/sp_13_px" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_weight="1"
+                    android:id="@+id/order_type_txt"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:text="" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:gravity="end"
+                    android:text="Status:"
                     android:textSize="@dimen/sp_14_px" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@color/transparent_gray" />
-
-
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txt_farm_address"
-                    android:fontFamily="@font/sf_ui_semibold"
-                    android:text="4623 William Head Rd"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/sp_16_px" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:visibility="gone"
-                    android:text="Victoria, BC V9C 3Y7, Canada"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/sp_12_px" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@color/transparent_gray" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_ui_regular"
-                    android:text="+1 604 858 6368"
-                    android:id="@+id/txt_farm_phone"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="@dimen/sp_12_px" />
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:text="Pending"
+                    android:textColor="@color/primary_button_color"
+                    android:textSize="@dimen/sp_14_px" />
 
             </LinearLayout>
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_24sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_24sdp">
-
-            <Button
-                android:id="@+id/order_success_continue_go_to_order_btn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:background="@drawable/light_gray_round_border_bg"
-                android:text="Go to Order"
-                android:textAllCaps="false"
-                android:textColor="@color/primaryTextColor" />
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp">
 
-            <Button
-                android:id="@+id/order_success_continue_shopping_btn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/order_success_user_image"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_40sdp"
+
+                    android:src="@drawable/follow_image" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:layout_toRightOf="@+id/order_success_user_image"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_farm_name"
+                        android:text="Aman Kumar"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="@dimen/sp_14_px" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@color/transparent_gray" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_farm_address"
+                        android:fontFamily="@font/sf_ui_semibold"
+                        android:text="4623 William Head Rd"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="@dimen/sp_16_px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:visibility="gone"
+                        android:text="Victoria, BC V9C 3Y7, Canada"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="@dimen/sp_12_px" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@color/transparent_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:text="+1 604 858 6368"
+                        android:id="@+id/txt_farm_phone"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="@dimen/sp_12_px" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:padding="@dimen/_5sdp"
-                android:background="@drawable/round_corner_light_gradient_bg"
-                android:text="Continue Shopping"
-                android:textAllCaps="false"
-                android:textColor="@color/secondaryTextColor" />
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_24sdp">
+
+                <Button
+                    android:id="@+id/order_success_continue_go_to_order_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/light_gray_round_border_bg"
+                    android:text="Go to Order"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primaryTextColor" />
+
+                <Button
+                    android:id="@+id/order_success_continue_shopping_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/round_corner_light_gradient_bg"
+                    android:text="Continue Shopping"
+                    android:textAllCaps="false"
+                    android:textColor="@color/secondaryTextColor" />
+
+            </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+
 
 </LinearLayout>

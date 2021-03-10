@@ -69,7 +69,7 @@ public class SubOrderItemViewHolder extends BaseViewHolder {
 
         tv_order_number.setText(item.getOrderId());
         tv_order_amount.setText(item.getAmount());
-        Glide.with(context).load(item.getImageUri()).placeholder(R.drawable.logo).into(sub_order_item_farm_image);
+        Glide.with(context).load(item.getImageUri()).placeholder(R.drawable.ic_sign_up_logo).into(sub_order_item_farm_image);
 
       /*  switch (item.getStatus()) {
             case 0 : {

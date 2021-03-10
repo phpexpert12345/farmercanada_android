@@ -54,6 +54,15 @@ public class FarmProductCartList implements Serializable , RecyclerViewListItem 
     @SerializedName("farm_postcode")
     @Expose
     private String farmPostcode;
+
+    public void setFarmAddress(String farmAddress) {
+        this.farmAddress = farmAddress;
+    }
+
+    public void setFarmLogo(String farmLogo) {
+        this.farmLogo = farmLogo;
+    }
+
     @SerializedName("farm_logo")
     @Expose
     private String farmLogo;

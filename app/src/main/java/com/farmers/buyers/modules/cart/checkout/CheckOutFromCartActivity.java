@@ -10,6 +10,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
@@ -75,6 +78,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CheckOutFromCartActivity extends BaseActivity implements MyCartCheckoutViewHolder.MyCartCheckOutClickListeners,
         MyCartCheckoutViewHolder.MyCoupounClickListeners, CheckOutFromCartAddressViewHolder.ChangeAddressCallback,
         PaymentMethodsViewHolder.PaymentMethodListener {
@@ -93,8 +98,11 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     String time;
     double dis=0.0;
     StripePay stripePay;
-    String farm_latitude,farm_longitude;
+    String farm_latitude,farm_longitude,farm_name,farm_logo,farm_address;
     int farm_delivery_radius;
+    TextView txt_farm_name,txt_farm_address,txt_farm_distance;
+    RelativeLayout layout_farm_details;
+    CircleImageView img_farm_logo;
     private AppController appController = AppController.get();
     private MutableLiveData<DataFetchState<SubmitResponse>> submitMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<CartListResponse>> cartListMachine = new MutableLiveData<>();
@@ -387,7 +395,7 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         gpsTracker = new GPSTracker(this);
         farmDeliveryStatus= DroidPrefs.get(this,"delivery_radius",FarmDeliveryStatus.class);
 
-        setupToolbar(new ToolbarConfig("CheckOut", true, new View.OnClickListener() {
+        setupToolbar(new ToolbarConfig("Payment", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -404,6 +412,9 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         farm_latitude=intent.getStringExtra("farm_latitude");
         farm_longitude=intent.getStringExtra("farm_longitude");
         farm_delivery_radius=intent.getIntExtra("farm_delivery_radius",0);
+        farm_name=intent.getStringExtra("farm_name");
+        farm_address=intent.getStringExtra("farm_address");
+        farm_logo=intent.getStringExtra("farm_logo");
         if(order_type.equalsIgnoreCase("Delivery")){
             Intent delivery = new Intent(CheckOutFromCartActivity.this, MyAddressActivity.class);
             delivery.putExtra("farm_latitude",farm_latitude);
@@ -464,11 +475,24 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
 
     private void init() {
         recyclerView = findViewById(R.id.check_out_from_cart_recyclerView);
+        layout_farm_details=findViewById(R.id.layout_farm_details);
+        img_farm_logo=layout_farm_details.findViewById(R.id.img_farm_logo);
+        txt_farm_name=layout_farm_details.findViewById(R.id.txt_farm_name);
+        txt_farm_address=layout_farm_details.findViewById(R.id.txt_farm_address);
+        txt_farm_distance=layout_farm_details.findViewById(R.id.txt_farm_distance);
+        setupFarmDetails();
         adapter = new CheckOutCartItemAdapter(this, this, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(50, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         adapter.updateData(items);
+    }
+    private void setupFarmDetails(){
+        layout_farm_details.setVisibility(View.VISIBLE);
+        txt_farm_name.setText(farm_name);
+        txt_farm_address.setText(farm_address);
+        txt_farm_distance.setVisibility(View.GONE);
+        Glide.with(this).load(farm_logo).placeholder(R.drawable.ic_sign_up_logo).into(img_farm_logo);
     }
 
     private void prepareItem(TaxData taxData, CheckOutCartAddressItems addressItems) {

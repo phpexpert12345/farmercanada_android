@@ -6,10 +6,13 @@
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".modules.cart.checkout.CheckOutFromCartActivity">
+    <include layout="@layout/farm_details"
+        android:id="@+id/layout_farm_details"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/check_out_from_cart_recyclerView"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_minus12sdp"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -63,9 +63,9 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         home_list_item_layout_farmName.setText(item.getFarmName());
         home_list_item_layout_distance_tv.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong()))+ " km away from you");
         customer_home_parlour_view_holder_rating_tv.setText(String.valueOf(item.getRating()));
-        Glide.with(itemView.getContext()).load(item.getCoverImage()).placeholder(R.drawable.logo).into(farmImage);
-        Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.logo).into(circleImageView);
-        Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.logo).into(circleImageView2);
+        Glide.with(itemView.getContext()).load(item.getCoverImage()).placeholder(R.drawable.ic_sign_up_logo).into(farmImage);
+        Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.ic_sign_up_logo).into(circleImageView);
+        Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.ic_sign_up_logo).into(circleImageView2);
         farmImage.setOnClickListener(view -> {
             Intent intent= new Intent(itemView.getContext(), FarmDetailActivity.class);
 //                intent.putExtra(Constant.SERIALIZABLE_INTENT,item);

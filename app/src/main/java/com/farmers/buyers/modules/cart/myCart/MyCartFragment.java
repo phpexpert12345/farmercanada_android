@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
@@ -51,6 +54,8 @@ import com.farmers.buyers.storage.SharedPreferenceManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * created by Mohammad Sajjad
  * on 28-01-2021 at 17:39
@@ -74,9 +79,12 @@ public class MyCartFragment extends BaseFragment implements
     String order_type="";
     private String subTotal = "";
     ImageView cart_back;
-    TextView text_cart;
-    String delivery_available,pickup_available,farm_latitude,farm_longitude;
+    TextView text_cart,txt_farm_name,txt_farm_address,txt_farm_distance;
+    String delivery_available,pickup_available,farm_latitude,farm_longitude,farm_name,farm_logo,farm_address;
     int farm_delivery_radius;
+   RelativeLayout layout_farm_details;
+   CircleImageView img_farm_logo;
+
     List<FarmProductCartList> farmProductCartList=new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -119,6 +127,11 @@ public class MyCartFragment extends BaseFragment implements
         cart_back.setVisibility(View.GONE);
         text_cart=view.findViewById(R.id.text_cart);
         text_cart.setText("My Cart");
+        layout_farm_details=view.findViewById(R.id.layout_farm_details);
+        img_farm_logo=layout_farm_details.findViewById(R.id.img_farm_logo);
+        txt_farm_name=layout_farm_details.findViewById(R.id.txt_farm_name);
+        txt_farm_address=layout_farm_details.findViewById(R.id.txt_farm_address);
+        txt_farm_distance=layout_farm_details.findViewById(R.id.txt_farm_distance);
         ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
         order_type=SharedPreferenceManager.getInstance().getSharedPreferences("order_type","").toString();
         setType();
@@ -251,6 +264,12 @@ public class MyCartFragment extends BaseFragment implements
                                 farm_delivery_radius=farmProductCartList.get(0).getFarm_delivery_radius();
                                 farm_latitude=farmProductCartList.get(0).getFarm_latitude();
                                 farm_longitude=farmProductCartList.get(0).getFarm_longitude();
+                                farm_name=farmProductCartList.get(0).getFarmName();
+                                farm_address=farmProductCartList.get(0).getFarmAddress();
+                                farm_logo=farmProductCartList.get(0).getFarmLogo();
+                                if(farm_name!=null){
+                                    setupFarmDetails();
+                                }
                             }
                             cartListData(data.data.getData().getFarmProductCartList());
 
@@ -265,6 +284,7 @@ public class MyCartFragment extends BaseFragment implements
                         linear_order.setVisibility(View.GONE);
                         noDataLabel.setVisibility(View.VISIBLE);
                         myCartInstruction.setVisibility(View.GONE);
+                        layout_farm_details.setVisibility(View.GONE);
                         itemCount.setText("0 Items");
                     }
                     break;
@@ -277,6 +297,7 @@ public class MyCartFragment extends BaseFragment implements
                     myCartInstruction.setVisibility(View.GONE);
                     itemCount.setVisibility(View.GONE);
                     ll_data_not_available.setVisibility(View.VISIBLE);
+                    layout_farm_details.setVisibility(View.GONE);
                     linear_order.setVisibility(View.GONE);
                     noDataLabel.setVisibility(View.VISIBLE);
                     noDataLabel.setText(data.status_message);
@@ -303,6 +324,13 @@ public class MyCartFragment extends BaseFragment implements
         helper.attachToRecyclerView(recyclerView);
 
         cartDataListRequest();
+    }
+    private void setupFarmDetails(){
+        layout_farm_details.setVisibility(View.VISIBLE);
+        txt_farm_name.setText(farm_name);
+        txt_farm_address.setText(farm_address);
+        txt_farm_distance.setVisibility(View.GONE);
+        Glide.with(getContext()).load(farm_logo).placeholder(R.drawable.ic_sign_up_logo).into(img_farm_logo);
     }
 
     private void cartListData(List<FarmProductCartList> farmProductCartList) {
@@ -359,6 +387,9 @@ public class MyCartFragment extends BaseFragment implements
         checkOutIntent.putExtra("farm_latitude",farm_latitude);
         checkOutIntent.putExtra("farm_longitude",farm_longitude);
         checkOutIntent.putExtra("farm_delivery_radius",farm_delivery_radius);
+        checkOutIntent.putExtra("farm_name",farm_name);
+        checkOutIntent.putExtra("farm_address",farm_address);
+        checkOutIntent.putExtra("farm_logo",farm_logo);
         if(!order_type.equalsIgnoreCase("")){
             checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
             checkOutIntent.putExtra("order_type",order_type);

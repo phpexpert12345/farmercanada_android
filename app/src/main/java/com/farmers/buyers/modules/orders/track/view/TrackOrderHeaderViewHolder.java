@@ -105,7 +105,7 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
         track_order_header_estimate_tv.setText("Estimated "+item.order_type+" Time");
         Glide.with(itemView.getContext())
                 .load(item.getLogo())
-                .placeholder(R.drawable.farm_image)
+                .placeholder(R.drawable.ic_sign_up_logo)
                 .into(sub_order_item_farm_image);
 
         if (item.order_type.equalsIgnoreCase("Pickup")) {

@@ -2,15 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_minus6sdp">
 
     <TextView
         android:id="@+id/simple_title_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginStart="@dimen/_15sdp"
         android:fontFamily="@font/sf_ui_regular"
         android:textColor="@color/light_gray"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_13ssp"
         tools:text="Title" />
 </LinearLayout>

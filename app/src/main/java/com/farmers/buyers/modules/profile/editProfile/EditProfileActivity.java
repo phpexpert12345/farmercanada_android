@@ -362,8 +362,5 @@ public class EditProfileActivity extends BaseActivity {
         dialog.show();
     }
 
-    @Override
-    public void onBackPressed() {
 
-    }
 }

@@ -41,7 +41,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
 
     LinearLayout applyCouponButtonLayout;
     TextView myCartApplyCouponTv;
-    RelativeLayout appliedCouponAmountLayout;
+    RelativeLayout appliedCouponAmountLayout,relative_package;
     TextView removeCouponTextView;
     Button checkOutBtn;
     EditText couponEditText;
@@ -69,6 +69,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         subTotal = itemView.findViewById(R.id.sub_total);
         packageFeeLabel = itemView.findViewById(R.id.packedge_fee_lable);
         rl_shipping_fee = itemView.findViewById(R.id.rl_shipping_fee);
+        relative_package=itemView.findViewById(R.id.relative_package);
         decimalFormat=new DecimalFormat("##.##");
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +151,22 @@ else{
             gstTaxAmount.setText(String.format("%.2f", gst));
         }
         packageFeeLabel.setText("Package Fee :");
+
         if(taxData.getDeliveryCharge()!=null) {
-            totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount()) + Double.parseDouble(taxData.getPackageFeeAmount());
+            double packagee_fees=0.0;
+            if(taxData.getPackageFeeAmount()!=null){
+                if(!taxData.getPackageFeeAmount().isEmpty()) {
+                   relative_package.setVisibility(View.VISIBLE);
+                    packagee_fees = Double.parseDouble(taxData.getPackageFeeAmount());
+                }
+                else{
+                    relative_package.setVisibility(View.GONE);
+                }
+            }
+            else{
+                relative_package.setVisibility(View.GONE);
+            }
+            totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount())+packagee_fees;
             if(!taxData.getDeliveryCharge().equalsIgnoreCase("")){
                 if(order_type.equalsIgnoreCase("Delivery")){
                     totalAmountf+=Double.parseDouble(taxData.getDeliveryCharge());

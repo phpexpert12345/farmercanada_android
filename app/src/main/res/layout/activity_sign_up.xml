@@ -38,15 +38,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
+                    android:gravity="center"
                     android:text="@string/do_yo_want_signup_as_a"
                     android:textColor="@color/primaryTextColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_5_px"
+                    android:layout_marginStart="@dimen/dp_5_px"
                     android:fontFamily="@font/sf_ui_bold"
-                    android:text="@string/seller"
+                    android:text="@string/seller_yuer"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_16_px" />
             </LinearLayout>
@@ -188,9 +189,12 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_16_px"
+                android:layout_marginTop="@dimen/_8sdp"
+               android:textAllCaps="false"
                 android:background="@drawable/round_corner_light_gradient_bg"
                 android:text="@string/submit"
+                android:textSize="@dimen/_16ssp"
+                android:fontFamily="@font/sf_ui_semibold"
                 android:textColor="@color/secondaryTextColor" />
 
             <LinearLayout

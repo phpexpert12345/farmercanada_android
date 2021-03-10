@@ -138,7 +138,13 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
                 }*/
                 // txt_selected_time.setText();
                 place_order_slot_card.setVisibility(View.VISIBLE);
-                txt_time.setText(time);
+               if(time!=null) {
+                   txt_time.setText(time);
+               }
+               else{
+                   time=sessionTypeMainData.get(0).current_time;
+                   txt_time.setText(time);
+               }
                 date_dialog.dismiss();
 
             }
