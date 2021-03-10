@@ -191,4 +191,28 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+    private void GoogleLogin(){
+        // Configure Google Sign In
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                Toast.makeText(this, account.getEmail(), Toast.LENGTH_SHORT).show();
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+
+                // [START_EXCLUDE]
+
+                // [END_EXCLUDE]
+            }
+        }
+    }
 }
