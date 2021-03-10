@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_13ssp"
-        android:fontFamily="@font/sf_ui_regular"
+        android:fontFamily="@font/sf_ui_semibold"
         android:text="Orders"
         android:textColor="@color/primaryTextColor" />
 

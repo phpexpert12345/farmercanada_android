@@ -129,18 +129,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="@string/forgot_password"
                 android:textColor="@color/primary_button_color"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_13ssp" />
 
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16_px"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:background="@drawable/round_corner_light_gradient_bg"
                 android:text="@string/login"
                 android:textAllCaps="false"

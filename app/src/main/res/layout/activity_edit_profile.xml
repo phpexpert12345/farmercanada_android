@@ -51,7 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/edit_profile_cover_image" />
+                android:src="@drawable/edit_profile_cover_image"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/edit_profile_change_cover_image_tv"
@@ -70,7 +71,8 @@
                 android:paddingRight="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_5sdp"
                 android:text="Change"
-                android:textColor="@color/secondaryTextColor" />
+                android:textColor="@color/secondaryTextColor"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -183,8 +185,9 @@
         android:background="@drawable/round_corner_light_gradient_bg"
         android:fontFamily="@font/sf_ui_semibold"
         android:text="Save"
+        android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

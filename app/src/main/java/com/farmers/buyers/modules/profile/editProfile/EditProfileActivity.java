@@ -34,6 +34,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.provider.PermissionProvider;
 import com.farmers.buyers.core.BaseActivity;
@@ -154,14 +155,15 @@ public class EditProfileActivity extends BaseActivity {
         backImage.setOnClickListener(view -> onBackPressed());
 
         saveBtn.setOnClickListener(view -> {
-            if (!User) {
-                Toast.makeText(EditProfileActivity.this, "Please Choose profile picture", Toast.LENGTH_SHORT).show();
-            }
-            if (!Cover) {
-                Toast.makeText(EditProfileActivity.this, "Please Choose cover picture", Toast.LENGTH_SHORT).show();
-            } else {
-                editProfile();
-            }
+//            if (!User) {
+//                Toast.makeText(EditProfileActivity.this, "Please Choose profile picture", Toast.LENGTH_SHORT).show();
+//            }
+//            if (!Cover) {
+//                Toast.makeText(EditProfileActivity.this, "Please Choose cover picture", Toast.LENGTH_SHORT).show();
+//            } else {
+//                editProfile();
+//            }
+            editProfile();
         });
         changeProfileImageTv.setOnClickListener(view -> {
             if (checkCameraPermission()) {
@@ -181,11 +183,19 @@ public class EditProfileActivity extends BaseActivity {
     }
 
     private void editProfile() {
+        String path="";
+        if(!User){
+
+        }
+        else{
+            path=IMAGE_PATH_USER.getPath();
+
+        }
+
         AddMoneyRequestParams addMoneyRequestParams = new AddMoneyRequestParams(AppController.get().getLoginId(),
                 edit_profile_user_name.getText().toString().trim(),
                 ed_profile_email.getText().toString().trim(),
-                new File(IMAGE_PATH_USER.getPath()),
-                new File(IMAGE_PATH_COVER.getPath()),
+                path,
                 AppController.get().getAuthenticationKey());
 
         viewModel.editProfile(stateMachine, addMoneyRequestParams);
@@ -340,7 +350,9 @@ public class EditProfileActivity extends BaseActivity {
         tv_profile_msg.setText(msg);
         bt_ok.setOnClickListener(view -> {
             dialog.dismiss();
+            App.wallet_updated=true;
             finish();
+
         });
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -348,5 +360,10 @@ public class EditProfileActivity extends BaseActivity {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setAttributes(lp);
         dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

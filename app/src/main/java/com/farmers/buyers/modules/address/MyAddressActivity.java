@@ -64,6 +64,9 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     private String addressId;
     Integer comeFrom = 0;
     private TextView tv_error_msg;
+    String farm_latitude,farm_longitude;
+    int farm_delivery_radius;
+    double dis=0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +102,10 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+Intent intent=getIntent();
+farm_latitude=intent.getStringExtra("farm_latitude");
+farm_longitude=intent.getStringExtra("farm_longitude");
+farm_delivery_radius=intent.getIntExtra("farm_delivery_radius",0);
 
         SwipeHelper swipeHelper = new SwipeHelper(this, recyclerView, 250) {
             @Override
@@ -232,12 +238,30 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     @Override
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
+        dis = distance(Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude), addressObj.getAddress_lat(), addressObj.getAddress_long());
+        dis = dis * 1.609;
+        if(dis>=farm_delivery_radius){
+                Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
+            }
+        else {
 
-        if (comeFrom == 0) {
-            Intent intent = new Intent();
-            intent.putExtra(Constant.DATA_INTENT, addressObj);
-            setResult(Activity.RESULT_OK, intent);
-            finish();
+            if (comeFrom == 0) {
+                Intent intent = new Intent();
+                intent.putExtra(Constant.DATA_INTENT, addressObj);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }
         }
     }
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = deg2rad(dist);
+        dist = dist * 60 * 1.1515;
+        return (dist);
+    }
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0); }
+
 }

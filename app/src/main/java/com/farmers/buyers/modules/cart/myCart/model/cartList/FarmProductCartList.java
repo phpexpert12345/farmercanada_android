@@ -51,12 +51,6 @@ public class FarmProductCartList implements Serializable , RecyclerViewListItem 
     @SerializedName("store_city_name")
     @Expose
     private String storeCityName;
-    @SerializedName("farm_latitude")
-    @Expose
-    private String farmLatitude;
-    @SerializedName("farm_longitude")
-    @Expose
-    private String farmLongitude;
     @SerializedName("farm_postcode")
     @Expose
     private String farmPostcode;
@@ -66,6 +60,40 @@ public class FarmProductCartList implements Serializable , RecyclerViewListItem 
     @SerializedName("farm_cover_photo")
     @Expose
     private String farmCoverPhoto;
+
+    public String getFarm_latitude() {
+        return farm_latitude;
+    }
+
+    public void setFarm_latitude(String farm_latitude) {
+        this.farm_latitude = farm_latitude;
+    }
+
+    public String getFarm_longitude() {
+        return farm_longitude;
+    }
+
+    public void setFarm_longitude(String farm_longitude) {
+        this.farm_longitude = farm_longitude;
+    }
+
+    public int getFarm_delivery_radius() {
+        return farm_delivery_radius;
+    }
+
+    public void setFarm_delivery_radius(int farm_delivery_radius) {
+        this.farm_delivery_radius = farm_delivery_radius;
+    }
+
+    @SerializedName("farm_latitude")
+    @Expose
+    private String farm_latitude;
+    @SerializedName("farm_longitude")
+    @Expose
+    private String farm_longitude;
+    @SerializedName("farm_delivery_radius")
+    @Expose
+    private int farm_delivery_radius;
 
     public String getProduct_description() {
         return product_description;
@@ -156,13 +184,6 @@ public class FarmProductCartList implements Serializable , RecyclerViewListItem 
         return storeCityName;
     }
 
-    public String getFarmLatitude() {
-        return farmLatitude;
-    }
-
-    public String getFarmLongitude() {
-        return farmLongitude;
-    }
 
     public String getFarmPostcode() {
         return farmPostcode;

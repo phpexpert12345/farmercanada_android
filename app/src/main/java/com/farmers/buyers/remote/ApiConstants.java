@@ -58,6 +58,7 @@ public class ApiConstants {
     public static final String PUBLISH_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_add.php";
     public static final String DELETE_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_delete.php";
     public static final String EDIT_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_edit.php";
+    public static final String NOTIFICATION_LIST=BASE_URL+"phpexpert_customer_notification_list.php";
 
 
     //Ganesh working

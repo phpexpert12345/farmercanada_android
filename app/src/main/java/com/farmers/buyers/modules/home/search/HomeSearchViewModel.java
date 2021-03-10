@@ -57,6 +57,24 @@ public class HomeSearchViewModel extends BaseViewModel {
             }
         });
     }
+    public void clearAllCartItems(final MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> stateMutableLiveData,
+                                  IncreaseDecreaseParams param) {
+        stateMutableLiveData.postValue(DataFetchState.<IncreaseDecreaseApiModel>loading());
+        farmDetailrepository.clearAllCartItems(param, new ApiResponseCallback<IncreaseDecreaseApiModel>() {
+            @Override
+            public void onSuccess(IncreaseDecreaseApiModel response) {
+                if (response.getStatus())
+                    stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatus_message()));
+                else
+                    stateMutableLiveData.postValue(DataFetchState.error(response.getStatus_message(), null));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMutableLiveData.postValue(DataFetchState.error(standardError.getDisplayError(), null));
+            }
+        });
+    }
 
     public void increaseDecrease(final MutableLiveData<DataFetchState<IncreaseDecreaseApiModel>> stateMutableLiveData,
                                  IncreaseDecreaseParams param) {

@@ -69,7 +69,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         App.finish_activity=false;
-
         init();
         listener();
     }

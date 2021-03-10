@@ -34,7 +34,7 @@
     <string name="submit">Submit</string>
     <string name="register">Register</string>
     <string name="terms_amp_conditions"><![CDATA[Terms & conditions]]></string>
-    <string name="otp_text">We need your Phone number \n to reach you</string>
+    <string name="otp_text">We need your Phone number to reach you</string>
     <string name="submit_otp_text">Please enter the OTP code sent to</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="delivery">Delivery</string>

@@ -75,7 +75,8 @@ public class MyCartFragment extends BaseFragment implements
     private String subTotal = "";
     ImageView cart_back;
     TextView text_cart;
-    String delivery_available,pickup_available;
+    String delivery_available,pickup_available,farm_latitude,farm_longitude;
+    int farm_delivery_radius;
     List<FarmProductCartList> farmProductCartList=new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -247,6 +248,9 @@ public class MyCartFragment extends BaseFragment implements
                             if(farmProductCartList.size()>0){
                                 delivery_available=farmProductCartList.get(0).getDelivery_available();
                                 pickup_available=farmProductCartList.get(0).getPickup_available();
+                                farm_delivery_radius=farmProductCartList.get(0).getFarm_delivery_radius();
+                                farm_latitude=farmProductCartList.get(0).getFarm_latitude();
+                                farm_longitude=farmProductCartList.get(0).getFarm_longitude();
                             }
                             cartListData(data.data.getData().getFarmProductCartList());
 
@@ -352,6 +356,9 @@ public class MyCartFragment extends BaseFragment implements
     @Override
     public void onCheckOutClicked() {
         Intent checkOutIntent = new Intent(getActivity(), CheckOutFromCartActivity.class);
+        checkOutIntent.putExtra("farm_latitude",farm_latitude);
+        checkOutIntent.putExtra("farm_longitude",farm_longitude);
+        checkOutIntent.putExtra("farm_delivery_radius",farm_delivery_radius);
         if(!order_type.equalsIgnoreCase("")){
             checkOutIntent.putExtra(Constant.DATA_INTENT, taxData);
             checkOutIntent.putExtra("order_type",order_type);

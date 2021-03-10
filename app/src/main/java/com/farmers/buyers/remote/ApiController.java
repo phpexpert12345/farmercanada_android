@@ -184,7 +184,6 @@ public interface ApiController {
                                      @Part("account_name") RequestBody account_name,
                                      @Part("account_email") RequestBody account_email,
                                      @Part MultipartBody.Part account_photo,
-                                     @Part MultipartBody.Part cover_photo,
                                      @Part("auth_key") RequestBody auth_key);
 
 

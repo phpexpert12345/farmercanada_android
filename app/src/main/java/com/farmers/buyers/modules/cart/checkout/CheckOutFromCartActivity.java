@@ -93,6 +93,8 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
     String time;
     double dis=0.0;
     StripePay stripePay;
+    String farm_latitude,farm_longitude;
+    int farm_delivery_radius;
     private AppController appController = AppController.get();
     private MutableLiveData<DataFetchState<SubmitResponse>> submitMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<CartListResponse>> cartListMachine = new MutableLiveData<>();
@@ -358,8 +360,8 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
                 String.valueOf(taxData.getDiscountAmount()),
                 String.valueOf(totalAmountf),
                 taxData.getDeliveryCharge(),
-                taxData.getDeliveryCharge(),
                 taxData.getPackageFeeAmount(),
+                taxData.getServiceTaxAmount(),
                 taxData.getgSTTaxAmount(),
                 subTotalAmount.toString(),
                 String.valueOf(pay_type),
@@ -399,8 +401,14 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         Intent intent = getIntent();
         taxData = (TaxData) intent.getSerializableExtra(Constant.DATA_INTENT);
         order_type=intent.getStringExtra("order_type");
+        farm_latitude=intent.getStringExtra("farm_latitude");
+        farm_longitude=intent.getStringExtra("farm_longitude");
+        farm_delivery_radius=intent.getIntExtra("farm_delivery_radius",0);
         if(order_type.equalsIgnoreCase("Delivery")){
             Intent delivery = new Intent(CheckOutFromCartActivity.this, MyAddressActivity.class);
+            delivery.putExtra("farm_latitude",farm_latitude);
+            delivery.putExtra("farm_longitude",farm_longitude);
+            delivery.putExtra("farm_delivery_radius",farm_delivery_radius);
             startActivityForResult(delivery, 1254);
         }
         else{

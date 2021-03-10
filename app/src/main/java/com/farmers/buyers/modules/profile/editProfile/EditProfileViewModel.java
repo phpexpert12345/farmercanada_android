@@ -27,10 +27,7 @@ public class EditProfileViewModel extends BaseViewModel {
             stateMachine.postValue(DataFetchState.error("Please enter email address", new SignUpApiModel()));
             return;
         }
-        if (addMoneyRequestParams.getFile() == null) {
-            stateMachine.postValue(DataFetchState.error("Please Choose profile picture", new SignUpApiModel()));
-            return;
-        }
+
 
         repository.editProfile(addMoneyRequestParams, new ApiResponseCallback<SignUpApiModel>() {
             @Override

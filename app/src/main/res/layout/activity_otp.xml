@@ -32,7 +32,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
             tools:text="Screen Title"
-            android:fontFamily="@font/sf_ui_bold"/>
+            android:fontFamily="@font/sf_ui_semibold"/>
 
     </RelativeLayout>
 
@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="@dimen/dp_200_px"
-            android:layout_height="@dimen/dp_200_px"
+            android:layout_width="@dimen/_125sdp"
+            android:layout_height="@dimen/_125sdp"
             android:layout_gravity="center_horizontal"
             android:src="@mipmap/ic_enter_otp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,22 +60,53 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/_24sdp"
-            android:layout_marginRight="@dimen/_24sdp"
-            android:layout_marginBottom="@dimen/_30sdp"
+
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center_horizontal"
             android:text="@string/otp_text"
             android:textColor="@color/primaryTextColor" />
+        <RadioGroup
+            android:id="@+id/forgot_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
+            <RadioButton
+                android:id="@+id/forgot_seller_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:buttonTint="@color/primary_button_color"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:text="Seller"
+                android:textSize="@dimen/_14ssp" />
+
+            <RadioButton
+                android:id="@+id/forgot_buyer_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:buttonTint="@color/primary_button_color"
+                android:checked="true"
+                android:fontFamily="@font/sf_ui_semibold"
+
+                android:text="Buyer"
+                android:textSize="@dimen/_14ssp" />
+        </RadioGroup>
         <com.stripe.android.view.IconTextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_30_px"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginRight="@dimen/dp_30_px"
             android:textColorHint="@color/light_gray"
             app:boxStrokeColor="@color/light_gray"
@@ -98,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10_px"
-            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
             android:fontFamily="@font/sf_ui_semibold"
             android:text="Request OTP"

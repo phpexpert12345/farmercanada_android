@@ -16,33 +16,19 @@ public class AddMoneyRequestParams {
     String authKey;
     String account_name;
     String account_email;
-    File file;
-    File coverFile;
 
-    public AddMoneyRequestParams(String loginId, String account_name, String account_email, File file, File coverFile, String authKey) {
-        LoginId = loginId;
-        this.account_name = account_name;
-        this.account_email = account_email;
-        this.file = file;
-        this.coverFile = coverFile;
-        this.authKey = authKey;
-    }
+
 
     public AddMoneyRequestParams(String loginId, String wallet_amount, String wallet_transation_id, String wallet_transation_status, String authKey) {
         LoginId = loginId;
         this.wallet_amount = wallet_amount;
         this.wallet_transation_id = wallet_transation_id;
         this.wallet_transation_status = wallet_transation_status;
+        this.account_name = wallet_amount;
+        this.account_email = wallet_transation_id;
         this.authKey = authKey;
     }
 
-    public File getCoverFile() {
-        return coverFile;
-    }
-
-    public void setCoverFile(File coverFile) {
-        this.coverFile = coverFile;
-    }
 
     public String getAccount_name() {
         return account_name;
@@ -52,9 +38,6 @@ public class AddMoneyRequestParams {
         return account_email;
     }
 
-    public File getFile() {
-        return file;
-    }
 
     public void setAccount_name(String account_name) {
         this.account_name = account_name;
@@ -64,9 +47,6 @@ public class AddMoneyRequestParams {
         this.account_email = account_email;
     }
 
-    public void setFile(File file) {
-        this.file = file;
-    }
 
     public void setLoginId(String loginId) {
         LoginId = loginId;

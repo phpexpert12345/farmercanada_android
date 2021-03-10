@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,9 @@ public class OtpActivity extends BaseActivity {
     private ImageView image_back_button;
     private TextView  text_screen_title;
     private boolean extra = false;
+    int role=-1;
+    RadioGroup forgot_radio_group;
+    RadioButton forgot_buyer_radio,forgot_seller_radio;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -60,11 +65,29 @@ public class OtpActivity extends BaseActivity {
     }
 
     private void listener() {
+        forgot_radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.forgot_seller_radio: {
+                        role = 1;
+                        break;
+                    }
+                    case R.id.forgot_buyer_radio: {
+                        role = 2;
+                        break;
+                    }
+                }
+            }
+        });
         requestOtpBtn.setOnClickListener(view -> {
             if (mobileNumberEt.getText().toString().isEmpty()) {
                 Toast.makeText(OtpActivity.this, "Please enter mobile number", Toast.LENGTH_SHORT).show();
-            } else {
-                viewModel.doVerifyMobileForgotPassword(stateMachine, mobileNumberEt.getText().toString(), 1);
+            } else if(role>=0) {
+                viewModel.doVerifyMobileForgotPassword(stateMachine, mobileNumberEt.getText().toString(), role);
+            }
+            else{
+                Toast.makeText(OtpActivity.this, "Please select account Type", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,10 +97,14 @@ public class OtpActivity extends BaseActivity {
 
     private void init() {
         extra = getIntent().getBooleanExtra("fromForgetPassword", false);
+        role=getIntent().getIntExtra("role",2);
         requestOtpBtn = findViewById(R.id.request_otp_btn);
         mobileNumberEt = findViewById(R.id.otp_number_et);
         image_back_button=findViewById(R.id.forgot_back);
         text_screen_title=findViewById(R.id.text_forgot);
+        forgot_buyer_radio=findViewById(R.id.forgot_buyer_radio);
+        forgot_seller_radio=findViewById(R.id.forgot_seller_radio);
+        forgot_radio_group=findViewById(R.id.forgot_radio_group);
         text_screen_title.setText("Forgot Password");
         image_back_button.setOnClickListener(v->{
             onBackPressed();

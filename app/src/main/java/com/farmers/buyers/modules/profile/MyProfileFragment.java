@@ -257,8 +257,9 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case NOTIFICATION: {
-                NotificationBottomSheetDialogFragment notifyme = new NotificationBottomSheetDialogFragment();
-                notifyme.show(baseActivity.getSupportFragmentManager(), notifyme.getTag());
+                startActivity(new Intent(baseActivity, NotificationsActivity.class));
+//                NotificationBottomSheetDialogFragment notifyme = new NotificationBottomSheetDialogFragment();
+//                notifyme.show(baseActivity.getSupportFragmentManager(), notifyme.getTag());
                 break;
             }
 
