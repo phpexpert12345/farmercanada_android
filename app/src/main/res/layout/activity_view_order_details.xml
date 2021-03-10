@@ -471,6 +471,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -514,7 +515,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
+                        android:gravity="start"
                         android:text="Subtotal:"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_16_px" />
@@ -544,7 +545,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
+                        android:gravity="start"
                         android:text="Delivery Fee:"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_16_px" />
@@ -573,7 +574,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
+                        android:gravity="start"
                         android:text="+ Service Tax:"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_16_px" />
@@ -602,7 +603,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
+                        android:gravity="start"
                         android:text="- Discount:"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_16_px" />
@@ -630,7 +631,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="end"
+                        android:gravity="start"
                         android:text="Total:"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp" />
@@ -720,10 +721,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_corner_light_gradient_bg"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:paddingTop="3sp"
-                        android:paddingRight="@dimen/_5sdp"
-                        android:paddingBottom="3sp">
+                        android:paddingLeft="@dimen/_6sdp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="@dimen/_6sdp"
+                        android:paddingBottom="4dp">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -799,36 +800,15 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/ll_order_reject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_corner_light_gradient_bg"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="3sp"
-                android:paddingRight="@dimen/_5sdp"
-                android:paddingBottom="3sp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_20sdp"
-                    android:fontFamily="@font/sf_ui_regular"
-                    android:gravity="center"
-                    android:text="Reject Order"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/ll_order_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
                 android:background="@drawable/round_corner_green_gradient_bg"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="3sp"
-                android:paddingRight="@dimen/_5sdp"
-                android:paddingBottom="3sp">
+                android:paddingTop="4dp"
+                android:paddingRight="@dimen/_6sdp"
+                android:paddingLeft="@dimen/_6sdp"
+                android:paddingBottom="4dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -836,6 +816,27 @@
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="center"
                     android:text="Accept Order"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_order_reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corner_light_gradient_bg"
+                android:paddingTop="4dp"
+                android:paddingRight="@dimen/_6sdp"
+                android:paddingLeft="@dimen/_6sdp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:gravity="center"
+                    android:text="Reject Order"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 

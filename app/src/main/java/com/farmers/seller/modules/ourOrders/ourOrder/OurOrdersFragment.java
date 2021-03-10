@@ -22,7 +22,9 @@ import android.widget.Toast;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.utils.AlertHelper;
+import com.farmers.buyers.common.utils.CustomAlertDialog;
 import com.farmers.buyers.common.utils.OnAlertClickListener;
+import com.farmers.buyers.common.utils.OnCustomAlertClickListener;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -69,7 +71,7 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
 
     @Override
     public String getTitle() {
-        return "My Order's";
+        return "New Order's";
     }
 
     @Override
@@ -124,6 +126,7 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
                     Toast.makeText(getContext(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 case SUCCESS:
+                    dismissLoader();
                     prepareItems();
                     break;
                 case LOADING:
@@ -133,12 +136,18 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void prepareItems() {
+        dismissLoader();
         viewModel.getNewOrders(newOrderStateMachine);
     }
 
     public void getOurOrder() {
-        // items.addAll(OurOrdersTransformer.getOurOrderList());
+        prepareItems();
     }
 
     @Override
@@ -150,16 +159,21 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
 
     @Override
     public void onOurOrderItemAcceptClicked(OurOrderListItem item) {
-        AlertHelper.showAlert(getContext(), "Order Details",
-                "Are you sure you want to accept this order", true, "Ok",
-                true, "Cancel", true, new OnAlertClickListener() {
+
+        CustomAlertDialog.showDialogCustom(getActivity(),
+                R.drawable.alert_icon,
+                "#" + item.order_number,
+                "Are you sure you want to accept this order",
+                new OnCustomAlertClickListener() {
                     @Override
-                    public void onNegativeBtnClicked() {
+                    public void onNegativeBtnClicked(Dialog dialog) {
+                        dialog.dismiss();
                     }
 
                     @Override
-                    public void onPositiveBtnClicked() {
+                    public void onPositiveBtnClicked(Dialog dialog) {
                         viewModel.orderAccept(orderAcceptStateMachine, item.order_number);
+                        dialog.dismiss();
                     }
                 });
     }

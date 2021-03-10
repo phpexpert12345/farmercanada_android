@@ -63,12 +63,12 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
 
     private SetupStoreDeliveryRangeAdapter adapter;
     private String radius, deliveryCharges, additionalDeliveryCharges, deliveryMsg, pickupCharges, pickupMsg, minimumDeliveryOrder, minimumPickupORder;
-    private int deliveryType = 2; // 1 for pickup 2 for delivery
+    private int deliveryType = 0; // 1 for pickup 2 for delivery
     private ArrayList<String> orderTypeList = new ArrayList<>();
 
     private StoreSetupExtra extra = new StoreSetupExtra();
 
-    private SetupStoreViewModel viewModel ;
+    private SetupStoreViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,21 +181,20 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
                         Toast.makeText(ServiceDetailsStepActivity.this, "Delivery charges can not be empty", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (additionalDeliveryCharges.isEmpty()) {
+               /*     if (additionalDeliveryCharges.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Additional charges can not be empty", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
 
-                    if (deliveryMsg.isEmpty()) {
+                /*    if (deliveryMsg.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Delivery Message can not be empty", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    }*/
                     if (minimumDeliveryOrder.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Minimum order can not be empty", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
-                else {
+                } else {
                     if (minimumPickupORder.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Minimum order can not be empty", Toast.LENGTH_SHORT).show();
                         return;
@@ -209,7 +208,6 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
                 if (orderTypeList.isEmpty()) {
                     Toast.makeText(ServiceDetailsStepActivity.this, "Please Select Order type", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
                 Intent intent = new Intent(ServiceDetailsStepActivity.this, DocumentUploadActivity.class);
                 extra.setRadius(radius);
@@ -250,15 +248,13 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
         mMap.addMarker(new MarkerOptions().position(washington).title("New Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(washington));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(washington, 14));
-
     }
 
     @Override
     public void onRangeSelectListener(int position, String range) {
-//        adapter.notifyDataSetChanged();
-//        adapter.notifyItemChanged(position);
         this.radius = range;
         extra.setRadius(range);
-
+        adapter.notifyDataSetChanged();
+        adapter.notifyItemChanged(position);
     }
 }

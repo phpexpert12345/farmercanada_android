@@ -7,10 +7,12 @@
     <color name="black">#000000</color>
     <color name="light_gray">#8E9398</color>
 
+    <color name="transparent">#00000000</color>
     <color name="header_color">#434343</color>
     <color name="primaryTextColor">#424242</color>
     <color name="secondaryTextColor">@color/white</color>
 
+    <color name="textcolor">#5e6067</color>
     <color name="on_boarding_header_color">#565656</color>
     <color name="indicator_color">#E8626A</color>
     <color name="in_active_indicator_color">#C4C4C4</color>
@@ -37,7 +39,7 @@
     <color name="heading_text_color">#424242</color>
 
     <color name="separator_color">#EEEEEE</color>
-
+    <color name="main_background">#FAF6F6</color>
     <color name="secondaryBtnColor">#429345</color>
     <color name="greenTextColor">#10A100</color>
 

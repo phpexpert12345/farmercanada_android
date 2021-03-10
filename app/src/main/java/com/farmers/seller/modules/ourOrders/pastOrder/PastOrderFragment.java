@@ -60,7 +60,7 @@ public class PastOrderFragment extends BaseFragment implements PastOrderListView
 
     @Override
     public String getTitle() {
-        return "Past Order's";
+        return "Past";
     }
 
     @Override
@@ -98,7 +98,7 @@ public class PastOrderFragment extends BaseFragment implements PastOrderListView
     }
 
     public void getPastOrder() {
-        // pastItems.addAll(OurOrdersTransformer.getPastOrderList());
+        prepareItems();
     }
 
     @Override

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white">
-
+    tools:context="com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -195,10 +193,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_16sdp"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -218,24 +215,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_16sdp">
+                    app:cardCornerRadius="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/store_setup_document_one_front_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/front_image_bg"
-                        />
+                        android:src="@drawable/front_image_bg" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -243,17 +239,16 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    android:layout_marginLeft="@dimen/_16sdp">
+                    app:cardCornerRadius="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/store_setup_document_one_back_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/back_image_bg"
-                        />
+                        android:src="@drawable/back_image_bg" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -276,24 +271,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_16sdp">
+                    app:cardCornerRadius="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/store_setup_document_two_front_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/front_image_bg"
-                        />
+                        android:src="@drawable/front_image_bg" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -301,17 +295,16 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_110sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    android:layout_marginLeft="@dimen/_16sdp">
+                    app:cardCornerRadius="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/store_setup_document_two_back_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/back_image_bg"
-                        />
+                        android:src="@drawable/back_image_bg" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -323,11 +316,11 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_24sdp"
                 android:background="@drawable/round_corner_green_gradient_bg"
                 android:text="Setup Store"
                 android:textAllCaps="false"
-                android:textColor="@color/secondaryTextColor"
-                android:layout_marginTop="@dimen/_24sdp"/>
+                android:textColor="@color/secondaryTextColor" />
 
 
         </LinearLayout>
@@ -335,7 +328,7 @@
     </androidx.core.widget.NestedScrollView>
 
 
-    </LinearLayout>
+</LinearLayout>
 
 
 

@@ -64,14 +64,14 @@ public class SplashActivity extends BaseActivity {
                             return;
                         }
                         FirebaseToken = task.getResult().getToken();
-                         SharedPreferenceManager.getInstance().setDeviceId(FirebaseToken);
+                        SharedPreferenceManager.getInstance().setDeviceId(FirebaseToken);
                         Log.d("HomeActivity ", "FCM TOKEN " + FirebaseToken);
                     });
         } catch (Exception e) {
             e.getMessage();
         }
 
-      //  SharedPreferenceManager.getInstance().setDeviceId(Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID));
+        //  SharedPreferenceManager.getInstance().setDeviceId(Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID));
 
         stateMachine.observe(this, new Observer<DataFetchState<AuthenticationApiModel>>() {
             @Override
@@ -124,7 +124,7 @@ public class SplashActivity extends BaseActivity {
                             if (appControllerContract.getIsStoreSetup()) {
                                 startActivity(new Intent(SplashActivity.this, OurOrdersActivity.class));
                             } else {
-                                startActivity(new Intent(SplashActivity.this, OurOrdersActivity.class));
+                                startActivity(new Intent(SplashActivity.this, StoreDetailsStepActivity.class));
                             }
                             finish();
                             break;

@@ -27,7 +27,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.utils.AlertHelper;
+import com.farmers.buyers.common.utils.CustomAlertDialog;
 import com.farmers.buyers.common.utils.OnAlertClickListener;
+import com.farmers.buyers.common.utils.OnCustomAlertClickListener;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.seller.addProduct.AddProductActivity;
@@ -163,6 +165,7 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
                     Toast.makeText(this, farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 case SUCCESS:
+                    dismissLoader();
                     successOrderAccept(farmListResponseDataFetchState);
                     break;
                 case LOADING:
@@ -185,14 +188,6 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
                     break;
             }
         });
-
-        if (KEY.equalsIgnoreCase("reject_accept")) {
-            ll_order_reject_accept.setVisibility(View.VISIBLE);
-        } else if (KEY.equalsIgnoreCase("order_preparing")) {
-            ll_order_status.setVisibility(View.VISIBLE);
-        } else if (KEY.equalsIgnoreCase("order_delivered")) {
-            ll_order_delivered.setVisibility(View.VISIBLE);
-        }
     }
 
     private void successOrderDecline(DataFetchState<AllOrderResponse> farmListResponseDataFetchState) {
@@ -201,18 +196,20 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
     }
 
     private void successOrderAccept(DataFetchState<AllOrderResponse> farmListResponseDataFetchState) {
-        AlertHelper.showAlert(ViewOrderDetailsActivity.this, "Order Details",
-                farmListResponseDataFetchState.status_message, true, "Ok",
-                false, "", true, new OnAlertClickListener() {
+        CustomAlertDialog.showDialogCustom(ViewOrderDetailsActivity.this,
+                R.drawable.alert_icon,
+                "Order Details",
+                farmListResponseDataFetchState.status_message,
+                new OnCustomAlertClickListener() {
                     @Override
-                    public void onNegativeBtnClicked() {
-                        viewModel.getOrderDetails(orderDetailsStateMachine, ORDER_NUMBER);
-                        finish();
+                    public void onNegativeBtnClicked(Dialog dialog) {
+                        dialog.dismiss();
                     }
 
                     @Override
-                    public void onPositiveBtnClicked() {
-                        finish();
+                    public void onPositiveBtnClicked(Dialog dialog) {
+                        viewModel.getOrderDetails(orderDetailsStateMachine, ORDER_NUMBER);
+                        dialog.dismiss();
                     }
                 });
     }
@@ -255,10 +252,19 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
             ll_discount.setVisibility(View.GONE);
         }
 
-        if (farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_pick.equals("0")) {
+        if (KEY.equalsIgnoreCase("reject_accept")) {
             ll_order_reject_accept.setVisibility(View.VISIBLE);
-        } else {
-            ll_order_reject_accept.setVisibility(View.GONE);
+
+            if (farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).order_pick.equals("0")) {
+                ll_order_reject_accept.setVisibility(View.VISIBLE);
+            } else {
+                ll_order_reject_accept.setVisibility(View.GONE);
+            }
+
+        } else if (KEY.equalsIgnoreCase("order_preparing")) {
+            ll_order_status.setVisibility(View.VISIBLE);
+        } else if (KEY.equalsIgnoreCase("order_delivered")) {
+            ll_order_delivered.setVisibility(View.VISIBLE);
         }
 
         tv_delivery_amount.setText("$" + farmListResponseDataFetchState.data.getData().getGetOrderList().get(0).delivery_amount);
@@ -304,6 +310,7 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
             case R.id.bt_track_order:
                 order_track_dialog(this);
                 break;
+
             case R.id.ll_calling:
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:" + mobileNumber));//change the number
@@ -325,17 +332,20 @@ public class ViewOrderDetailsActivity extends BaseActivity implements View.OnCli
                 break;
 
             case R.id.ll_order_accept:
-                AlertHelper.showAlert(ViewOrderDetailsActivity.this, "Order Details",
-                        "Are you sure you want to accept this order", true, "Ok",
-                        true, "Cancel", true, new OnAlertClickListener() {
+                CustomAlertDialog.showDialogCustom(ViewOrderDetailsActivity.this,
+                        R.drawable.alert_icon,
+                        "#" + ORDER_NUMBER,
+                        "Are you sure you want to accept this order",
+                        new OnCustomAlertClickListener() {
                             @Override
-                            public void onNegativeBtnClicked() {
-                                finish();
+                            public void onNegativeBtnClicked(Dialog dialog) {
+                                dialog.dismiss();
                             }
 
                             @Override
-                            public void onPositiveBtnClicked() {
+                            public void onPositiveBtnClicked(Dialog dialog) {
                                 viewModel.orderAccept(orderAcceptStateMachine, ORDER_NUMBER);
+                                dialog.dismiss();
                             }
                         });
                 break;

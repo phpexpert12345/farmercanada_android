@@ -61,7 +61,7 @@ public class OngoingOrderFragment extends BaseFragment implements OngoingOrderLi
 
     @Override
     public String getTitle() {
-        return "Running Order's";
+        return "Running";
     }
 
     @Override
@@ -99,7 +99,7 @@ public class OngoingOrderFragment extends BaseFragment implements OngoingOrderLi
     }
 
     public void getOngoingOrder() {
-        //   items.addAll(OurOrdersTransformer.getOngoingOrderList());
+        prepareItems();
     }
 
     @Override

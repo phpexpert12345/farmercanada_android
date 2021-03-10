@@ -141,7 +141,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="Total: "
                                 android:textColor="@color/green"
-                                android:textSize="@dimen/_13sdp" />
+                                android:textSize="@dimen/_12ssp" />
 
                             <TextView
                                 android:id="@+id/tv_total_amount"
@@ -150,7 +150,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="$107.95"
                                 android:textColor="@color/green"
-                                android:textSize="@dimen/_13sdp" />
+                                android:textSize="@dimen/_12ssp" />
 
                         </LinearLayout>
 
@@ -174,11 +174,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:background="@drawable/divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -242,43 +237,42 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_order_accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5sp"
+                    android:background="@drawable/round_corner_green_gradient_bg"
+                    android:paddingLeft="@dimen/_6sdp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="@dimen/_6sdp"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:gravity="center"
+                        android:text="Accepted"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ll_order_reject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_corner_light_gradient_bg"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:paddingTop="3sp"
-                    android:paddingRight="@dimen/_5sdp"
-                    android:paddingBottom="3sp">
+                    android:paddingLeft="@dimen/_6sdp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="@dimen/_6sdp"
+                    android:paddingBottom="4dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
-                        android:text="Rejected Order"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_order_accept"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:background="@drawable/round_corner_green_gradient_bg"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:paddingTop="3sp"
-                    android:paddingRight="@dimen/_5sdp"
-                    android:paddingBottom="3sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_ui_regular"
-                        android:gravity="center"
-                        android:text="Accepted Order"
+                        android:text="Rejected"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
