@@ -422,7 +422,6 @@ public interface ApiController {
                                           MultipartBody.Part docTwoBack);
 
 
-
     @Multipart
     @POST
     Call<SetupStoreApiModel> doSetupStore(@Url String url,
@@ -454,6 +453,40 @@ public interface ApiController {
                                           @Part MultipartBody.Part docTwoFront,
                                           @Part MultipartBody.Part docTwoBack);
 
+    @Multipart
+    @POST
+    Call<SetupStoreApiModel> doSetupStore2(@Url String url,
+                                           @Part("store_type") RequestBody storeType,
+                                           @Part("store_name") RequestBody storeName,
+                                           @Part("store_address") RequestBody address,
+                                           @Part("store_city") RequestBody city,
+                                           @Part("store_state") RequestBody state,
+                                           @Part("store_country") RequestBody country,
+                                           @Part("store_post_code") RequestBody postCode,
+                                           @Part("order_type") RequestBody orderType,
+                                           @Part("pickup_minimum_amount") RequestBody pickUpMinimumOrderAmount,
+                                           @Part("pickup_message") RequestBody pickUpMsg,
+                                           @Part("delivery_map_location_area") RequestBody mapLocation,
+                                           @Part("delivery_location_distance") RequestBody radius,
+                                           @Part("delivery_charge") RequestBody deliveryCharge,
+                                           @Part("delivery_additional_charge") RequestBody additionalCharge,
+                                           @Part("delivery_minimum_amount") RequestBody deliveryMinimumAmount,
+                                           @Part("delivery_message") RequestBody deliveryMsg,
+                                           @Part("company_type") RequestBody companyType,
+                                           @Part("document_type_1") RequestBody documentType,
+                                           @Part("LoginId") RequestBody loginId,
+                                           @Part("auth_key") RequestBody authKey,
+                                           @Part("store_latitude") RequestBody lat,
+                                           @Part("store_longitude") RequestBody lng,
+                                           @Part("store_type_farm") RequestBody store_type_farm,
+                                           @Part("store_type_local") RequestBody store_type_local,
+                                           @Part("pickup_available") RequestBody pickup_available,
+                                           @Part("delivery_available") RequestBody delivery_available,
+                                           @Part MultipartBody.Part logo,
+                                           @Part MultipartBody.Part docOneFront,
+                                           @Part MultipartBody.Part docOneBack,
+                                           @Part MultipartBody.Part docTwoFront,
+                                           @Part MultipartBody.Part docTwoBack);
 
     @Multipart
     @POST
@@ -469,6 +502,22 @@ public interface ApiController {
                                                 @Part("LoginId") RequestBody loginId,
                                                 @Part("auth_key") RequestBody authKey,
                                                 @Part @Nullable MultipartBody.Part productImage);
+
+    @Multipart
+    @POST
+    Call<AddProductApiResponseModel> EditProduct(@Url String url,
+                                                 @Part("product_name") RequestBody productName,
+                                                 @Part("product_quanity") RequestBody quantity,
+                                                 @Part("product_unit") RequestBody unit,
+                                                 @Part("product_category_id") RequestBody categoryId,
+                                                 @Part("product_unit_price") RequestBody unitPrice,
+                                                 @Part("product_sales_price") RequestBody salesPrice,
+                                                 @Part("product_note") RequestBody note,
+                                                 @Part("ProductID") RequestBody productId,
+                                                 @Part("farm_id") RequestBody farmId,
+                                                 @Part("LoginId") RequestBody loginId,
+                                                 @Part("auth_key") RequestBody authKey,
+                                                 @Part @Nullable MultipartBody.Part productImage);
 
     @FormUrlEncoded
     @POST
@@ -489,7 +538,6 @@ public interface ApiController {
                                       @Field("term_condition") String termsCondition,
                                       @Field("start_date") String startData,
                                       @Field("expire_date") String endDate,
-                                      @Field("CouponID") String couponId,
                                       @Field("farm_id") String farmId,
                                       @Field("LoginId") String loginId,
                                       @Field("auth_key") String authKey
@@ -515,12 +563,37 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
-    Call<DeleteCouponApiModel> deleteCoupon(@Url String url, @Field("CouponID") String couponId, @Field("auth_key") String authKey);
+    Call<AddCouponApiModel> editCoupon(@Url String url,
+                                       @Field("coupon_code") String couponCode,
+                                       @Field("discount_type") String discountType,
+                                       @Field("discount_amount") String discountAmount,
+                                       @Field("discount_minimum_order") String discountMinOrder,
+                                       @Field("term_condition") String termsCondition,
+                                       @Field("start_date") String startData,
+                                       @Field("expire_date") String endDate,
+                                       @Field("CouponID") String couponId,
+                                       @Field("farm_id") String farmId,
+                                       @Field("LoginId") String loginId,
+                                       @Field("auth_key") String authKey
+    );
+
+
+    @FormUrlEncoded
+    @POST
+    Call<DeleteProductApiModel> deleteCoupon(@Url String url, @Field("CouponID") String couponId, @Field("auth_key") String authKey);
 
 
     @FormUrlEncoded
     @POST
     Call<DeleteProductApiModel> deleteProduct(@Url String url, @Field("ProductID") String productId, @Field("auth_key") String authKey);
+
+    @FormUrlEncoded
+    @POST
+    Call<DeleteProductApiModel> updateStockProduct(@Url String url,
+                                                   @Field("LoginId") String loginId,
+                                                   @Field("auth_key") String authKey,
+                                                   @Field("ProductID") String productId,
+                                                   @Field("product_quanity") String product_quanity);
 
 }
 

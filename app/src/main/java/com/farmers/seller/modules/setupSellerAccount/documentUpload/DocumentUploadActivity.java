@@ -76,7 +76,6 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
     private File doc1, doc2, doc3, doc4;
     private String[] PERMISSIONS;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -389,7 +388,7 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
                     Toast.makeText(DocumentUploadActivity.this, "Please select Image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                viewModel.doSetupStore(stateMachine, doc1, doc2, doc3, doc4);
+                viewModel.doSetupStore2(stateMachine, doc1, doc2, doc3, doc4);
                 break;
         }
     }

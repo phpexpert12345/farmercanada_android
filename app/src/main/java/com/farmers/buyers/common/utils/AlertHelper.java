@@ -1,9 +1,14 @@
 package com.farmers.buyers.common.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.DatePicker;
+
+import java.util.Calendar;
 import android.view.Gravity;
 
 import kotlin.jvm.functions.Function0;
@@ -36,11 +41,13 @@ public class AlertHelper {
             });
         }
 
+
         dialog = alertDialog.create();
        // dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.setCancelable(isCancellable);
         dialog.show();
     }
+    }
 
-}
+
 

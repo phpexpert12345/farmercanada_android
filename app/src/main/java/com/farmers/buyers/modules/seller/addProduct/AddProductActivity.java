@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -36,6 +37,7 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.seller.addProduct.adapter.CategoryItemAdapter;
 import com.farmers.buyers.modules.seller.addProduct.model.AddProductApiResponseModel;
+import com.farmers.buyers.modules.seller.product.EditProductExtra;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class AddProductActivity extends BaseActivity {
 
     private static final int CAMERA_REQUEST = 201;
     private static final int GALLERY_REQUEST = 102;
+    public static final String EDIT_PRODUCT_EXTRA = "edit_product_extra";
 
     private ImageView micImage;
     private EditText productNameEt;
@@ -62,9 +65,11 @@ public class AddProductActivity extends BaseActivity {
     private int counter = 1;
     private MutableLiveData<DataFetchState<AllDataModel>> categoryStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AddProductApiResponseModel>> stateMachine = new MutableLiveData<>();
+    private MutableLiveData<DataFetchState<AddProductApiResponseModel>> editStateMachine = new MutableLiveData<>();
     private String[] PERMISSIONS;
     CameraProvider cameraProvider = new CameraProvider(this, CAMERA_REQUEST, GALLERY_REQUEST);
     private File productFile;
+    private EditProductExtra extra = null;
 
 
 
@@ -85,14 +90,9 @@ public class AddProductActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-        setupToolbar(new ToolbarConfig("Add Product", true, R.drawable.ic_arrow_back_black, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        }, false, null));
+        extra = (EditProductExtra) getIntent().getSerializableExtra(EDIT_PRODUCT_EXTRA);
 
-
+        setupToolbar(new ToolbarConfig(extra == null ? "Add Product" : "Edit Product", true, R.drawable.ic_arrow_back_black, view -> onBackPressed(), false, null));
 
 
         init();
@@ -118,8 +118,10 @@ public class AddProductActivity extends BaseActivity {
         PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
 
+        if (extra != null) {
+            bindData();
 
-
+        }
         chooseImageLl.setOnClickListener(v -> {
             if (!Util.hasPermissions(AddProductActivity.this, PERMISSIONS)) {
                 ActivityCompat.requestPermissions(AddProductActivity.this, PERMISSIONS, 1);
@@ -160,7 +162,12 @@ public class AddProductActivity extends BaseActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.addProduct(stateMachine, productNameEt.getText().toString(), salesPriceEt.getText().toString(), unitPriceEt.getText().toString(), noteEt.getText().toString(), unitEt.getText().toString(), String.valueOf(counter), productFile);
+                if (extra != null) {
+                    viewModel.editProduct(editStateMachine, productNameEt.getText().toString(), salesPriceEt.getText().toString(), unitPriceEt.getText().toString(), noteEt.getText().toString(), unitEt.getText().toString(), String.valueOf(counter), productFile, extra.getProductId());
+
+                }else {
+                    viewModel.addProduct(stateMachine, productNameEt.getText().toString(), salesPriceEt.getText().toString(), unitPriceEt.getText().toString(), noteEt.getText().toString(), unitEt.getText().toString(), String.valueOf(counter), productFile);
+                }
 
             }
         });
@@ -224,6 +231,34 @@ public class AddProductActivity extends BaseActivity {
                 }
             }
         });
+        editStateMachine.observe(this, new Observer<DataFetchState<AddProductApiResponseModel>>() {
+            @Override
+            public void onChanged(DataFetchState<AddProductApiResponseModel> addProductResponse) {
+                switch (addProductResponse.status) {
+                    case LOADING:
+                        loading();
+                        break;
+                    case SUCCESS: {
+                        dismissLoader();
+                        AlertHelper.showAlert(AddProductActivity.this, "Product Updated", addProductResponse.status_message, true, "Ok", false, "", true, new OnAlertClickListener() {
+                            @Override
+                            public void onNegativeBtnClicked() {
+
+                            }
+
+                            @Override
+                            public void onPositiveBtnClicked() {
+                                finish();
+                            }
+                        });
+                        break;
+                    }
+                    case ERROR:
+                        error(addProductResponse.status_message);
+
+                }
+            }
+        });
 
         viewModel.getCategoryList(categoryStateMachine);
 
@@ -271,15 +306,13 @@ public class AddProductActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        cameraProvider.processOnActivityResult(requestCode, resultCode, data, (file, s) -> {
-            productFile = file;
-            productImage.setImageBitmap(BitmapFactory.decodeFile(s));
+        cameraProvider.processOnActivityResult(requestCode, resultCode, data, (file, filepath) -> {
+            this.productFile = file;
+            productImage.setImageURI(Uri.parse(file.getAbsolutePath()));
             return Unit.INSTANCE;
         });
 
         if (resultCode == RESULT_OK && data != null) {
-
-
             switch (requestCode) {
                 case 101: {
 
@@ -292,6 +325,27 @@ public class AddProductActivity extends BaseActivity {
                     break;
                 }
             }
+        }
+    }
+
+    private void bindData() {
+        if (extra != null) {
+            productNameEt.setText(extra.getProductName());
+            unitPriceEt.setText(extra.getPerUnitPrice());
+            quantityTv.setText(extra.getQuantity());
+            noteEt.setText(extra.getDescription());
+            unitEt.setText(extra.getUnitType());
+            salesPriceEt.setText(extra.getSalesPrice());
+            setTitle("Edit Product");
+
+            spinner.setSelection(2);
+            spinner.setSelected(true);
+
+//            for (int  i=0 ; i < viewModel.categoryList.size() ; i++){
+//                if (viewModel.categoryList.get(i).getName().equals(extra.getCategory())){
+//                    spinner.setSelection(i);
+//                }
+//            }
         }
     }
 

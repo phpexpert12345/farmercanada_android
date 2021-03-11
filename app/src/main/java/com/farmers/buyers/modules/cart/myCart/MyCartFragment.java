@@ -79,7 +79,8 @@ public class MyCartFragment extends BaseFragment implements
     String order_type="";
     private String subTotal = "";
     ImageView cart_back;
-    TextView text_cart,txt_farm_name,txt_farm_address,txt_farm_distance;
+    TextView text_cart;
+    TextView txt_farm_name,txt_farm_address,txt_farm_distance;
     String delivery_available,pickup_available,farm_latitude,farm_longitude,farm_name,farm_logo,farm_address;
     int farm_delivery_radius;
    RelativeLayout layout_farm_details;
@@ -161,6 +162,7 @@ public class MyCartFragment extends BaseFragment implements
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new EqualSpacingItemDecoration(40, EqualSpacingItemDecoration.VERTICAL));
         adapter.updateData(items);
+
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,7 +230,6 @@ public class MyCartFragment extends BaseFragment implements
                         taxData.setCouponApplied(false);
                         taxData.setDiscountAmount(0f);
                         taxData.setSubTotal(subTotal);
-                        taxData.setTitle("Checkout");
 
                         // cartDataListRequest();
                     }
@@ -237,7 +238,7 @@ public class MyCartFragment extends BaseFragment implements
                     adapter.updateData(items);
                     break;
                 case LOADING:
-//                    showLoader();
+                    showLoader();
                     break;
                 case ERROR:
                     dismissLoader();
@@ -365,7 +366,7 @@ public class MyCartFragment extends BaseFragment implements
 
            case "Delivery":
            {
-               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.gradient_color_dark));
+               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
                textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
            }
 

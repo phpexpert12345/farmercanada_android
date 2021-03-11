@@ -71,7 +71,7 @@ public class SplashActivity extends BaseActivity {
             e.getMessage();
         }
 
-        //  SharedPreferenceManager.getInstance().setDeviceId(Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID));
+      //  SharedPreferenceManager.getInstance().setDeviceId(Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID));
 
         stateMachine.observe(this, new Observer<DataFetchState<AuthenticationApiModel>>() {
             @Override
@@ -120,7 +120,6 @@ public class SplashActivity extends BaseActivity {
                 Log.e("loginID", appControllerContract.getLoginId());
                 if (appControllerContract.getIsLoggedIn()) {
                     switch (appControllerContract.getRole()) {
-                        case "1":
                         case "Seller": {
                             if (appControllerContract.getIsStoreSetup()) {
                                 startActivity(new Intent(SplashActivity.this, OurOrdersActivity.class));
@@ -130,7 +129,6 @@ public class SplashActivity extends BaseActivity {
                             finish();
                             break;
                         }
-                        case "2":
                         case "Buyer": {
                             startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                             finish();

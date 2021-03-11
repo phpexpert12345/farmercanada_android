@@ -34,7 +34,7 @@ public class SetupStoreViewModel extends BaseViewModel {
         this.extra = extra;
     }
 
-    public void prepareRageItems () {
+    public void prepareRageItems() {
         items.addAll(SetupStoreTransformer.getDeliveryRangeItem());
     }
 
@@ -50,7 +50,7 @@ public class SetupStoreViewModel extends BaseViewModel {
                 extra.getCountry(),
                 extra.getPostalCode(),
                 extra.getDeliveryType(),
-                extra.getMinimumPickupOrder() == null ? "": extra.getMinimumPickupOrder(),
+                extra.getMinimumPickupOrder() == null ? "" : extra.getMinimumPickupOrder(),
                 extra.getPickupMessage() == null ? "" : extra.getPickupMessage(),
                 extra.getLocation(),
                 extra.getRadius() == null ? "" : extra.getRadius(),
@@ -79,8 +79,7 @@ public class SetupStoreViewModel extends BaseViewModel {
                 if (response.getStatus()) {
                     SharedPreferenceManager.getInstance().setIsStoreSetup(true);
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                }
-                else {
+                } else {
                     stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new SetupStoreApiModel()));
                 }
             }
@@ -92,5 +91,60 @@ public class SetupStoreViewModel extends BaseViewModel {
         });
     }
 
+    public void doSetupStore2(MutableLiveData<DataFetchState<SetupStoreApiModel>> stateMachine, File doc1, File doc2, File doc3, File doc4) {
+        stateMachine.postValue(DataFetchState.loading());
 
+        SetupStoreRequestParams params = new SetupStoreRequestParams(
+                extra.getCompanyType(),
+                extra.getName(),
+                extra.getLocation(),
+                extra.getCity(),
+                extra.getState(),
+                extra.getCountry(),
+                extra.getPostalCode(),
+                extra.getDeliveryType(),
+                extra.getMinimumPickupOrder() == null ? "" : extra.getMinimumPickupOrder(),
+                extra.getPickupMessage() == null ? "" : extra.getPickupMessage(),
+                extra.getLocation(),
+                extra.getRadius() == null ? "" : extra.getRadius(),
+                extra.getDeliveryCharges() == null ? "" : extra.getDeliveryCharges(),
+                extra.getAdditionalCharges() == null ? "" : extra.getAdditionalCharges(),
+                extra.getMinimumDeliveryOrder() == null ? "" : extra.getMinimumDeliveryOrder(),
+                extra.getDeliveryMessage() == null ? "" : extra.getDeliveryMessage(),
+                extra.getCompanyType(),
+                "document1",
+                doc1,
+                doc2,
+                doc3,
+                doc4,
+                extra.getStoreLogo(),
+                appController.getLoginId(),
+                appController.getAuthenticationKey(),
+                extra.getMapLat(),
+                extra.getMapLong(),
+                extra.getStore_type_farm(),
+                extra.getStore_type_local(),
+                extra.getPickup_available(),
+                extra.getDelivery_available()
+        );
+
+        Log.e("extra", extra.toString());
+
+        repository.doStoreSetup2(params, new ApiResponseCallback<SetupStoreApiModel>() {
+            @Override
+            public void onSuccess(SetupStoreApiModel response) {
+                if (response.getStatus()) {
+                    SharedPreferenceManager.getInstance().setIsStoreSetup(true);
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                } else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new SetupStoreApiModel()));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new SetupStoreApiModel()));
+            }
+        });
+    }
 }

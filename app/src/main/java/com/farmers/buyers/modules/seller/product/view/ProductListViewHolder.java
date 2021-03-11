@@ -46,7 +46,7 @@ public class ProductListViewHolder extends BaseViewHolder {
 
         deleteTv.setOnClickListener(v -> listItemClickListener.onDeleteItemClickListener(getAdapterPosition()));
 
-        editTv.setOnClickListener(v -> listItemClickListener.onEditItemClickListener(item));
+        editTv.setOnClickListener(v -> listItemClickListener.onEditItemClickListener(getAdapterPosition()));
 
         product_list_add_stock_btn.setOnClickListener(view -> listItemClickListener.onAddStockItemClickListener(item));
     }
@@ -73,7 +73,7 @@ public class ProductListViewHolder extends BaseViewHolder {
     public interface ProductListItemClickListener {
         void onDeleteItemClickListener(int position);
 
-        void onEditItemClickListener(ProductListItems item);
+        void onEditItemClickListener(int position);
 
         void onAddStockItemClickListener(ProductListItems item);
     }

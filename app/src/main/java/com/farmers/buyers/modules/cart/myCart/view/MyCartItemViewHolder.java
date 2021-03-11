@@ -71,7 +71,7 @@ public class MyCartItemViewHolder extends BaseViewHolder {
             itemAddress.setVisibility(View.GONE);
         }
 double  item_price = Double.parseDouble(item.getItemSubPrice());
-        itemPrice.setText("$" + String.format("%.2f",item_price)+" "+"X"+item.getCartItemQuantity()+" /"+item.getItem_unit());
+        itemPrice.setText("$" + String.format("%.2f",item_price)+" "+"X"+item.getCartItemQuantity()+" "+item.getItem_unit());
 
         iconIncrease.setOnClickListener(view -> {
             quantity++;

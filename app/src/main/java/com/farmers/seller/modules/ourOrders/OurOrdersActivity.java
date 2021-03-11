@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -23,10 +24,12 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.common.widget.AppPagerAdapter;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.login.LoginActivity;
 import com.farmers.buyers.modules.seller.coupon.list.ManageCouponActivity;
 import com.farmers.buyers.modules.seller.manageCalender.ManageCalenderActivity;
 import com.farmers.buyers.modules.seller.product.ProductListActivity;
 import com.farmers.buyers.modules.seller.sellerProfile.SellerProfileActivity;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.farmers.seller.modules.broadcastMessage.BroadCastMessageTransformer;
 import com.farmers.seller.modules.broadcastMessage.activity.BroadcastMessageActivity;
 import com.farmers.seller.modules.broadcastMessage.adapter.BroadCastMessageListAdapter;
@@ -38,6 +41,7 @@ import com.farmers.seller.modules.ourOrders.pastOrder.PastOrderFragment;
 import com.farmers.seller.modules.ourOrders.view.SideMenuListViewHolder;
 import com.farmers.seller.modules.referFriends.SellerReferFriendsActivity;
 import com.farmers.seller.modules.setupSellerAccount.documentUpload.DocumentUploadActivity;
+import com.farmers.seller.modules.storeSetting.StoreSettingActivity;
 import com.farmers.seller.modules.workingHour.WorkingHourActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -190,10 +194,9 @@ public class OurOrdersActivity extends BaseActivity implements NavigationView.On
 
     @Override
     public void onSideMenuItemClicked(SideMenuListItem item) {
-
         drawer.closeDrawers();
 
-        if (item.getId() == 1) {
+    /*    if (item.getId() == 1) {
             startActivity(new Intent(OurOrdersActivity.this, ProductListActivity.class));
         } else if (item.getId() == 2) {
         } else if (item.getId() == 3) {
@@ -208,6 +211,42 @@ public class OurOrdersActivity extends BaseActivity implements NavigationView.On
             startActivity(new Intent(OurOrdersActivity.this, SellerProfileActivity.class));
         } else if (item.getId() == 8) {
             startActivity(new Intent(OurOrdersActivity.this, WorkingHourActivity.class));
+        }*/
+
+        if (item.getId() == 1) {//My Store
+            startActivity(new Intent(OurOrdersActivity.this, StoreSettingActivity.class));
+        } else if (item.getId() == 2) {//My Products
+            startActivity(new Intent(OurOrdersActivity.this, ProductListActivity.class));
+        } else if (item.getId() == 3) {//My Coupon
+            startActivity(new Intent(OurOrdersActivity.this, ManageCouponActivity.class));
+        } else if (item.getId() == 4) {//My Orders
+        } else if (item.getId() == 5) {//My Earning
+            startActivity(new Intent(OurOrdersActivity.this, SellerReferFriendsActivity.class));
+        } else if (item.getId() == 6) {//Broadcast Message
+            startActivity(new Intent(OurOrdersActivity.this, BroadcastMessageActivity.class));
+        } else if (item.getId() == 7) {//Manage Calender
+            startActivity(new Intent(OurOrdersActivity.this, ManageCalenderActivity.class));
+        } else if (item.getId() == 8) {//Working Hours
+            startActivity(new Intent(OurOrdersActivity.this, WorkingHourActivity.class));
+        } else if (item.getId() == 9) {//My Profile
+            startActivity(new Intent(OurOrdersActivity.this, SellerProfileActivity.class));
+        } else if (item.getId() == 10) {//Logout
+            showLogoutAlert();
         }
+    }
+
+    private void showLogoutAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(OurOrdersActivity.this);
+        builder.setTitle("Farmer Alert");
+        builder.setMessage("Are you sure! You want to logout ?");
+        builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+            SharedPreferenceManager.getInstance().clearUserInfo();
+            startActivity(new Intent(OurOrdersActivity.this, LoginActivity.class));
+            finish();
+        });
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        });
+        builder.show();
     }
 }

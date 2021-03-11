@@ -114,6 +114,67 @@ public class AddProductViewModel extends BaseViewModel {
 
     }
 
+
+    public void editProduct(MutableLiveData<DataFetchState<AddProductApiResponseModel>> stateMachine, String name, String salesPrice, String unitPrice, String note, String units, String counter, File image, String productId) {
+
+        if (name.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter product name", new AddProductApiResponseModel()));
+            return;
+        }
+        if (unitPrice.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Unit Price", new AddProductApiResponseModel()));
+            return;
+        }
+        if (salesPrice.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Sales Price", new AddProductApiResponseModel()));
+            return;
+        }
+        if (units.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Units", new AddProductApiResponseModel()));
+            return;
+        }
+        if (note.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Note", new AddProductApiResponseModel()));
+            return;
+        }
+
+        if (selectedCategory == null) {
+            stateMachine.postValue(DataFetchState.error("Please Select category", new AddProductApiResponseModel()));
+            return;
+        }
+//
+//        if (image == null) {
+//            stateMachine.postValue(DataFetchState.error("Please Select image", new AddProductApiResponseModel()));
+//            return;
+//        }
+
+        stateMachine.postValue(DataFetchState.loading());
+
+        AddProductRequestParams params = new AddProductRequestParams(productId, name, counter, units, selectedCategory.getId(), unitPrice, salesPrice, note, SharedPreferenceManager.getInstance().getFarmId(), appController.getLoginId(), appController.getAuthenticationKey(), image);
+
+        repository.EditProduct(params, new ApiResponseCallback<AddProductApiResponseModel>() {
+            @Override
+            public void onSuccess(AddProductApiResponseModel response) {
+                if (response.getStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new AddProductApiResponseModel()));
+
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new AddProductApiResponseModel()));
+            }
+        });
+
+
+
+
+    }
+
     public void onCategorySelected(CategoryItem data) {
         this.selectedCategory = data;
         Log.e("cat", selectedCategory.getName());

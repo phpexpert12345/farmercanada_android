@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity android:name="com.farmers.seller.modules.storeSetting.StoreSettingActivity"></activity>
         <activity android:name="com.farmers.seller.modules.SettingUpStoreActivity" />
         <activity android:name=".modules.webview.WebViewActivity" />
         <activity android:name=".modules.ratingAndReview.customerReview.CustomerReviewListActivity" />
@@ -85,6 +85,10 @@
         <activity android:name=".modules.seller.sellerProfile.SellerProfileActivity" />
         <activity android:name="com.farmers.seller.modules.workingHour.WorkingHourActivity" />
         <activity android:name=".modules.aboutStore.AboutStoreActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

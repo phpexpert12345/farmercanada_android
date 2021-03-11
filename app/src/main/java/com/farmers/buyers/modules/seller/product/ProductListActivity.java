@@ -146,7 +146,7 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
                     break;
                 case SUCCESS: {
                     dismissLoader();
-                    AlertHelper.showAlert(this, "Delete Product",
+                    AlertHelper.showAlert(this, "Update Stock",
                             deleteProductResponse.status_message,
                             true, "Ok", true,
                             "", false,
@@ -211,8 +211,25 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    public void onEditItemClickListener(ProductListItems item) {
-        Toast.makeText(ProductListActivity.this, "Click", Toast.LENGTH_SHORT).show();
+    public void onEditItemClickListener(int position) {
+        viewModel.selectedProduct = viewModel.productItems.get(position);
+        EditProductExtra extra = new EditProductExtra(
+                viewModel.selectedProduct.ProductID,
+                viewModel.selectedProduct.product_name,
+                viewModel.selectedProduct.product_unit_price,
+                viewModel.selectedProduct.product_unit_price,
+                viewModel.selectedProduct.product_category_Name,
+                viewModel.selectedProduct.product_stock,
+                viewModel.selectedProduct.price_unit_type,
+                viewModel.selectedProduct.product_code,
+                viewModel.selectedProduct.product_description,
+                viewModel.selectedProduct.price_unit_type,
+                viewModel.selectedProduct.product_sales_price
+        );
+
+        Intent intent = new Intent(this, AddProductActivity.class);
+        intent.putExtra(AddProductActivity.EDIT_PRODUCT_EXTRA, extra);
+        startActivity(intent);
     }
 
     @Override
@@ -237,7 +254,9 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
                 Toast.makeText(this, "Please enter quantity", Toast.LENGTH_SHORT).show();
             } else {
                 dialog.dismiss();
-                viewModel.updateStockQuantity(updateStockStateMachine, item.ProductID,
+                viewModel.updateStockQuantity(
+                        updateStockStateMachine,
+                        item.ProductID,
                         ed_quantity.getText().toString().trim());
             }
         });

@@ -2,10 +2,16 @@ package com.farmers.buyers.modules.seller.coupon;
 
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
+import com.farmers.buyers.modules.seller.coupon.list.model.AddCouponApiModel;
 import com.farmers.buyers.modules.seller.coupon.list.model.CouponListApiModel;
 import com.farmers.buyers.modules.seller.coupon.list.model.CouponListRequestParams;
+import com.farmers.buyers.modules.seller.coupon.odel.EditCouponApiModel;
+import com.farmers.buyers.modules.seller.coupon.odel.EditCouponRequestParams;
+import com.farmers.buyers.modules.seller.product.models.DeleteProductApiModel;
+import com.farmers.buyers.modules.seller.product.models.DeleteProductRequestParams;
 import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
+import com.google.android.gms.common.api.Api;
 
 import retrofit2.Call;
 
@@ -20,4 +26,8 @@ public class ManageCouponRepository extends BaseRepository {
         makeRequest(call, responseCallback);
     }
 
+    public void deleteCoupon(DeleteProductRequestParams params, ApiResponseCallback<DeleteProductApiModel> responseCallback) {
+        Call<DeleteProductApiModel> call = RetrofitBuilder.createServiceContract().deleteCoupon(ApiConstants.DELETE_COUPON, params.getProductId(), params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
 }

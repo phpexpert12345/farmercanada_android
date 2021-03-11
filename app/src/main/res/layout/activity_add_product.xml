@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:inputType="text"
                 android:hint="Product Name"
                 android:padding="@dimen/_10sdp" />
 
@@ -151,6 +152,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_weight="1"
+                android:background="@drawable/gray_border_transparent_bg"
                 android:orientation="horizontal">
 
                 <EditText
@@ -158,8 +160,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/gray_border_transparent_bg"
+                    android:backgroundTint="@android:color/transparent"
                     android:fontFamily="@font/sf_ui_regular"
+                    android:inputType="number"
                     android:padding="@dimen/_8sdp"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/_12ssp" />
@@ -190,17 +193,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_8sdp"
                 android:layout_weight="1.3"
                 android:background="@drawable/gray_border_transparent_bg"
                 android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/add_product_spinner"
+                    style="@style/Widget.AppCompat.DropDownItem.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_12ssp"
-                    style="@style/Widget.AppCompat.DropDownItem.Spinner"/>
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/_12ssp" />
 
 
             </LinearLayout>
@@ -264,12 +267,14 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:fontFamily="@font/sf_ui_semibold"
-                android:gravity="center_vertical"
                 android:backgroundTint="@android:color/transparent"
+                android:fontFamily="@font/sf_ui_semibold"
+                android:inputType="number"
+                android:gravity="center_vertical"
                 android:textColorHint="@color/primaryTextColor"
                 android:textSize="@dimen/_10ssp" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -303,9 +308,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
                 android:fontFamily="@font/sf_ui_semibold"
                 android:gravity="center_vertical"
-                android:backgroundTint="@android:color/transparent"
+                android:inputType="number"
                 android:textColorHint="@color/primaryTextColor"
                 android:textSize="@dimen/_10ssp" />
         </LinearLayout>
@@ -330,6 +336,7 @@
             android:background="@drawable/gray_border_transparent_bg"
             android:gravity="top"
             android:hint="Note"
+            android:inputType="text"
             android:paddingLeft="@dimen/_8sdp" />
 
 

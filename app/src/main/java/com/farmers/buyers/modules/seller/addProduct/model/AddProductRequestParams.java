@@ -7,6 +7,7 @@ import java.io.File;
  * mohammadsajjad679@gmail.com
  */
 public class AddProductRequestParams {
+    private String productId;
     private String productName;
     private String quantity;
     private String unit;
@@ -18,6 +19,21 @@ public class AddProductRequestParams {
     private String loginId;
     private String authKey;
     private File image;
+
+    public AddProductRequestParams(String productId, String productName, String quantity, String unit, String categoryId, String unitPrice, String salesPrice, String note, String farmId, String loginId, String authKey, File image) {
+        this.productId = productId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.categoryId = categoryId;
+        this.unitPrice = unitPrice;
+        this.salesPrice = salesPrice;
+        this.note = note;
+        this.farmId = farmId;
+        this.loginId = loginId;
+        this.authKey = authKey;
+        this.image = image;
+    }
 
     public AddProductRequestParams(String productName, String quantity, String unit, String categoryId, String unitPrice, String salesPrice, String note, String farmId, String loginId, String authKey, File image) {
         this.productName = productName;
@@ -75,5 +91,9 @@ public class AddProductRequestParams {
 
     public File getImage() {
         return image;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 }

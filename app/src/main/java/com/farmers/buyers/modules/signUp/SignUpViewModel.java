@@ -40,15 +40,15 @@ public class SignUpViewModel extends BaseViewModel {
             stateMachine.postValue(DataFetchState.error("Please enter Name", new SignUpApiModel()));
             return;
         }
-       else if (signUpRequestParams.getMobile().isEmpty()) {
+        if (signUpRequestParams.getMobile().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Mobile number", new SignUpApiModel()));
             return;
         }
-      else  if (signUpRequestParams.getMobile().length()<10) {
+        if (signUpRequestParams.getMobile().length()<10) {
             stateMachine.postValue(DataFetchState.error("Please enter a valid Mobile number", new SignUpApiModel()));
             return;
         }
-      else  if (signUpRequestParams.getEmail().isEmpty()) {
+        if (signUpRequestParams.getEmail().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Email", new SignUpApiModel()));
             return;
         }
@@ -185,7 +185,7 @@ public class SignUpViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setIsLoggedIn(true);
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
-                    SharedPreferenceManager.getInstance().setRole(response.getData().getAccountType());
+                    SharedPreferenceManager.getInstance().setRole(response.getData().getAccountTypeName());
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
                 } else {
                     stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), response));

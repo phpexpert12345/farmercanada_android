@@ -34,7 +34,10 @@ public class SetupStoreRequestParams {
     String authKey;
     Double lat;
     Double lng;
-
+    String store_type_farm;
+    String store_type_local;
+    String pickup_available;
+    String delivery_available;
 
     public SetupStoreRequestParams(String storeType, String storeName, String storeAddress, String city, String state, String country, String postCode, String orderType, String pickUpMinAmount, String pickUpMsg, String deliveryMapLocationArea, String radius, String deliveryCharge, String additionalCharge, String deliveryMinAmount, String deliveryMsg, String companyType, String docType, File doc1, File doc2, File doc3, File doc4, File logo, String loginId, String authKey, Double lat, Double lng) {
         this.storeType = storeType;
@@ -65,6 +68,46 @@ public class SetupStoreRequestParams {
         this.lat = lat;
         this.lng = lng;
 
+    }
+
+    public SetupStoreRequestParams(String storeType, String storeName, String storeAddress, String city, String state,
+                                   String country, String postCode, String orderType, String pickUpMinAmount,
+                                   String pickUpMsg, String deliveryMapLocationArea, String radius, String deliveryCharge,
+                                   String additionalCharge, String deliveryMinAmount, String deliveryMsg, String companyType,
+                                   String docType, File doc1, File doc2, File doc3, File doc4, File logo, String loginId,
+                                   String authKey, Double lat, Double lng, String store_type_farm, String store_type_local,
+                                   String pickup_available, String delivery_available) {
+        this.storeType = storeType;
+        this.storeName = storeName;
+        this.storeAddress = storeAddress;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.postCode = postCode;
+        this.orderType = orderType;
+        this.pickUpMinAmount = pickUpMinAmount;
+        this.pickUpMsg = pickUpMsg;
+        this.deliveryMapLocationArea = deliveryMapLocationArea;
+        this.radius = radius;
+        this.deliveryCharge = deliveryCharge;
+        this.additionalCharge = additionalCharge;
+        this.deliveryMinAmount = deliveryMinAmount;
+        this.deliveryMsg = deliveryMsg;
+        this.companyType = companyType;
+        this.docType = docType;
+        this.doc1 = doc1;
+        this.doc2 = doc2;
+        this.doc3 = doc3;
+        this.doc4 = doc4;
+        this.logo = logo;
+        this.loginId = loginId;
+        this.authKey = authKey;
+        this.lat = lat;
+        this.lng = lng;
+        this.store_type_farm = store_type_farm;
+        this.store_type_local = store_type_local;
+        this.pickup_available = pickup_available;
+        this.delivery_available = delivery_available;
     }
 
     public String getStoreType() {
@@ -173,5 +216,37 @@ public class SetupStoreRequestParams {
 
     public Double getLng() {
         return lng;
+    }
+
+    public String getStore_type_farm() {
+        return store_type_farm;
+    }
+
+    public void setStore_type_farm(String store_type_farm) {
+        this.store_type_farm = store_type_farm;
+    }
+
+    public String getStore_type_local() {
+        return store_type_local;
+    }
+
+    public void setStore_type_local(String store_type_local) {
+        this.store_type_local = store_type_local;
+    }
+
+    public String getPickup_available() {
+        return pickup_available;
+    }
+
+    public void setPickup_available(String pickup_available) {
+        this.pickup_available = pickup_available;
+    }
+
+    public String getDelivery_available() {
+        return delivery_available;
+    }
+
+    public void setDelivery_available(String delivery_available) {
+        this.delivery_available = delivery_available;
     }
 }

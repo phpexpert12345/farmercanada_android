@@ -31,5 +31,13 @@ public class ProductListRepository extends BaseRepository {
         makeRequest(call, responseCallback);
     }
 
-
+    public void addStockApiModel(DeleteProductRequestParams params, ApiResponseCallback<DeleteProductApiModel> responseCallback) {
+        Call<DeleteProductApiModel> call = RetrofitBuilder.createServiceContract().updateStockProduct(ApiConstants.UPDATE_STOCK_QUANTITY,
+                params.getLoginId(),
+                params.getAuthKey(),
+                params.getProductId(),
+                params.getQuantity()
+        );
+        makeRequest(call, responseCallback);
+    }
 }

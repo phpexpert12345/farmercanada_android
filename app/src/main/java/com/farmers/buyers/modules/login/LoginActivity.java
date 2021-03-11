@@ -36,6 +36,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
+import com.farmers.seller.modules.setupSellerAccount.storeDetails.StoreDetailsStepActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -165,9 +166,10 @@ public class LoginActivity extends BaseActivity {
                     case SUCCESS: {
                         dismissLoader();
                         Toast.makeText(LoginActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+
                         switch (viewModel.userType) {
                             case "Seller": {
-                                if (viewModel.isStoreSetup.equals("1")) {
+                                if (viewModel.isStoreSetup.equals("Yes")) {
                                     startActivity(new Intent(LoginActivity.this, OurOrdersActivity.class));
                                 }
                                 else {

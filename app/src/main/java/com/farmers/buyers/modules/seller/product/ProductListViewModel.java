@@ -24,12 +24,13 @@ import java.util.List;
  * Created by Mohammad sajjad on 06-03-2021.
  * mohammadsajjad679@gmail.com
  */
+
 public class ProductListViewModel extends BaseViewModel {
     private ProductListRepository repository = new ProductListRepository();
     public List<RecyclerViewListItem> items = new ArrayList<>();
-    private List<ProductListItems> productItems = new ArrayList<>();
+    public List<ProductListItems> productItems = new ArrayList<>();
     private AppController appController = AppController.get();
-    private ProductListItems selectedProduct = null;
+    public ProductListItems selectedProduct = null;
 
 
     public void getProductList(MutableLiveData<DataFetchState<ProductListApiModel>> stateMachine) {
@@ -47,8 +48,7 @@ public class ProductListViewModel extends BaseViewModel {
                         productItems.addAll(ProductListTransformer.getProducts(response));
                         items.addAll(ProductListTransformer.getProducts(response));
                         stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                    }
-                    else {
+                    } else {
                         stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new ProductListApiModel()));
                     }
 
@@ -62,7 +62,7 @@ public class ProductListViewModel extends BaseViewModel {
         });
     }
 
-    public void deleteProduct(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine){
+    public void deleteProduct(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine) {
         stateMachine.postValue(DataFetchState.loading());
 
         DeleteProductRequestParams params = new DeleteProductRequestParams(
@@ -74,8 +74,7 @@ public class ProductListViewModel extends BaseViewModel {
             public void onSuccess(DeleteProductApiModel response) {
                 if (response.getStatus()) {
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                }
-                else {
+                } else {
                     stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new DeleteProductApiModel()));
 
                 }
@@ -93,20 +92,21 @@ public class ProductListViewModel extends BaseViewModel {
         deleteProduct(stateMachine);
     }
 
-    public void updateStockQuantity(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine,String productId,String quantity){
+    public void updateStockQuantity(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine, String productId, String quantity) {
         stateMachine.postValue(DataFetchState.loading());
 
         DeleteProductRequestParams params = new DeleteProductRequestParams(
-                selectedProduct.ProductID,
-                appController.getAuthenticationKey());
+                appController.getLoginId(),
+                appController.getAuthenticationKey(),
+                productId,
+                quantity);
 
-        repository.deleteProductApiModel(params, new ApiResponseCallback<DeleteProductApiModel>() {
+        repository.addStockApiModel(params, new ApiResponseCallback<DeleteProductApiModel>() {
             @Override
             public void onSuccess(DeleteProductApiModel response) {
                 if (response.getStatus()) {
                     stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                }
-                else {
+                } else {
                     stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new DeleteProductApiModel()));
 
                 }

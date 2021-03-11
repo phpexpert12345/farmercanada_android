@@ -62,8 +62,9 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
 
 
     private SetupStoreDeliveryRangeAdapter adapter;
-    private String radius, deliveryCharges, additionalDeliveryCharges, deliveryMsg, pickupCharges, pickupMsg, minimumDeliveryOrder, minimumPickupORder;
+    private String radius = "", deliveryCharges, additionalDeliveryCharges, deliveryMsg, pickupCharges, pickupMsg, minimumDeliveryOrder, minimumPickupORder;
     private int deliveryType = 0; // 1 for pickup 2 for delivery
+    private int checkStatus = 0;
     private ArrayList<String> orderTypeList = new ArrayList<>();
 
     private StoreSetupExtra extra = new StoreSetupExtra();
@@ -127,18 +128,23 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
         adapter.updateData(viewModel.items);
 
 
+        extra.setPickup_available("0");
+        extra.setDelivery_available("0");
+
         pickUpCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    checkStatus = 1;
                     deliveryType = 1;
                     orderTypeList.add("0");
                     pickUpCheckLl.setVisibility(View.VISIBLE);
-
+                    extra.setPickup_available("1");
                 } else {
+                    checkStatus = 0;
                     orderTypeList.remove("0");
                     pickUpCheckLl.setVisibility(View.GONE);
-
+                    extra.setPickup_available("0");
                 }
             }
         });
@@ -147,13 +153,17 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    checkStatus = 2;
                     deliveryType = 2;
                     orderTypeList.add("1");
                     deliveryCheckLl.setVisibility(View.VISIBLE);
+                    extra.setDelivery_available("1");
 
                 } else {
+                    checkStatus = 0;
                     orderTypeList.remove("1");
                     deliveryCheckLl.setVisibility(View.GONE);
+                    extra.setDelivery_available("0");
                 }
             }
         });
@@ -175,21 +185,54 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
                 minimumPickupORder = pickUpMinimumOrderEt.getText().toString();
                 pickupMsg = pickUpOrderMessageEt.getText().toString();
 
-                if (deliveryType == 1) {
+                if (radius.isEmpty()) {
+                    Toast.makeText(ServiceDetailsStepActivity.this, "Please choose radius", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (checkStatus == 1) {
+
+                    if (minimumPickupORder.isEmpty()) {
+                        Toast.makeText(ServiceDetailsStepActivity.this, "Minimum order can not be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (pickupMsg.isEmpty()) {
+                        Toast.makeText(ServiceDetailsStepActivity.this, "Pickup message can not be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                } else if (checkStatus == 2) {
+                    if (deliveryCharges.isEmpty()) {
+                        Toast.makeText(ServiceDetailsStepActivity.this, "Delivery charges can not be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (minimumDeliveryOrder.isEmpty()) {
+                        Toast.makeText(ServiceDetailsStepActivity.this, "Minimum order can not be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                } else {
+                    Toast.makeText(ServiceDetailsStepActivity.this, "Please Select Order type", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+             /*   if (deliveryType == 1) {
 
                     if (deliveryCharges.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Delivery charges can not be empty", Toast.LENGTH_SHORT).show();
                         return;
                     }
-               /*     if (additionalDeliveryCharges.isEmpty()) {
+               *//*     if (additionalDeliveryCharges.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Additional charges can not be empty", Toast.LENGTH_SHORT).show();
                         return;
-                    }*/
+                    }*//*
 
-                /*    if (deliveryMsg.isEmpty()) {
+                 *//*    if (deliveryMsg.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Delivery Message can not be empty", Toast.LENGTH_SHORT).show();
                         return;
-                    }*/
+                    }*//*
                     if (minimumDeliveryOrder.isEmpty()) {
                         Toast.makeText(ServiceDetailsStepActivity.this, "Minimum order can not be empty", Toast.LENGTH_SHORT).show();
                         return;
@@ -203,12 +246,13 @@ public class ServiceDetailsStepActivity extends BaseActivity implements OnMapRea
                         Toast.makeText(ServiceDetailsStepActivity.this, "Pickup message can not be empty", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
+                }*/
 
                 if (orderTypeList.isEmpty()) {
                     Toast.makeText(ServiceDetailsStepActivity.this, "Please Select Order type", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 Intent intent = new Intent(ServiceDetailsStepActivity.this, DocumentUploadActivity.class);
                 extra.setRadius(radius);
                 extra.setDeliveryType(Extensions.convert(orderTypeList));

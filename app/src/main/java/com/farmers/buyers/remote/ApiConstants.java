@@ -75,22 +75,18 @@ public class ApiConstants {
     public static final String FOLLOWERS_LIST = "phpexpert_customer_unfollow_follow_list.php";
     public static final String FOLLOW_UNFOLLOW_USER = "phpexpert_customer_follow_unfollow.php";
     public static final String INCREADE_DECREASE_API_URL = "phpexpert_product_cart_increase_decrease.php";
+    public static final String UPDATE_STOCK_QUANTITY = "phpexpert_store_product_stock_edit.php";
 
 
     // TODO Seller Section
 
-
-
-
-    // TODO Seller Section
-
-    public static final String SETUP_STORE = "phpexpert_store_configuration_process.php";
-    public static final String ADD_PRODUCT = "phpexpert_store_product_add.php";
-    public static final String PRODUCT_LIST = "phpexpert_store_product_list.php";
-    public static final String DELETE_PRODUCT = "phpexpert_store_product_delete.php";
-    public static final String ADD_COUPON = "phpexpert_store_product_coupon_add.php";
-    public static final String COUPON_LIST = "phpexpert_store_product_coupon_list.php";
-    public static final String DELETE_COUPON = "phpexpert_store_product_coupon_delete.php";
-    public static final String EDIT_COUPON = "phpexpert_store_product_coupon_edit.php";
-
+    public static final String SETUP_STORE          = "phpexpert_store_configuration_process.php";
+    public static final String ADD_PRODUCT          = "phpexpert_store_product_add.php";
+    public static final String PRODUCT_LIST         = "phpexpert_store_product_list.php";
+    public static final String EDIT_PRODUCT         = "phpexpert_store_product_edit.php";
+    public static final String DELETE_PRODUCT       = "phpexpert_store_product_delete.php";
+    public static final String ADD_COUPON           = "phpexpert_store_product_coupon_add.php";
+    public static final String COUPON_LIST          = "phpexpert_store_product_coupon_list.php";
+    public static final String DELETE_COUPON        = "phpexpert_store_product_coupon_delete.php";
+    public static final String EDIT_COUPON          = "phpexpert_store_product_coupon_edit.php";
 }

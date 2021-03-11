@@ -1,9 +1,7 @@
 package com.farmers.buyers.common.utils
 
 import android.app.Activity
-import android.content.ContentUris
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
@@ -12,12 +10,9 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.provider.DocumentsContract
 import android.provider.MediaStore
-import androidx.annotation.WorkerThread
 import androidx.exifinterface.media.ExifInterface
 import java.io.*
-import java.net.URISyntaxException
 import kotlin.math.roundToInt
 
 

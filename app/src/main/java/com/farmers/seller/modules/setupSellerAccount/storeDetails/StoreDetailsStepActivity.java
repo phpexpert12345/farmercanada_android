@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.common.utils.AlertHelper;
+import com.farmers.buyers.common.utils.CameraProvider;
 import com.farmers.buyers.common.utils.OnAlertClickListener;
 import com.farmers.buyers.common.utils.Util;
 import com.farmers.buyers.modules.login.LoginActivity;
@@ -42,11 +44,14 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 public class StoreDetailsStepActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -75,6 +80,7 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
     private Double lat;
     private Double lang;
     private ImageView micImage;
+    private CameraProvider cameraProvider = new CameraProvider(this, CAMERA_REQUEST_CODE, GALLERY_REQUEST_CODE);
 
 
     @Override
@@ -142,10 +148,12 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
         AlertHelper.showAlert(this, "Choose Store Photo", "Choose your store Picture", true, "Camera", true, "Gallery", true, new OnAlertClickListener() {
             @Override
             public void onNegativeBtnClicked() {
+                cameraProvider.openGallery();
             }
 
             @Override
             public void onPositiveBtnClicked() {
+                cameraProvider.openCamera();
             }
         });
     }
@@ -159,12 +167,11 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
             public void onClick(View v) {
                 if (!Util.hasPermissions(StoreDetailsStepActivity.this, PERMISSIONS)) {
                     ActivityCompat.requestPermissions(StoreDetailsStepActivity.this, PERMISSIONS, 1);
-                }else {
+                } else {
                     showProfilePicturePickerDialog();
                 }
             }
         });
-
 
         homeMadeCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -172,9 +179,11 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
                 if (isChecked) {
                     farmTypeList.add("1");
                     farmType = "1";
+                    extra.setStore_type_farm("1");
                 } else {
                     farmTypeList.remove("1");
                     farmType = "0";
+                    extra.setStore_type_farm("0");
                 }
 
                 Log.e("item", farmTypeList.toString());
@@ -187,9 +196,11 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
                 if (isChecked) {
                     farmTypeList.add("0");
                     farmType = "1";
+                    extra.setStore_type_local("1");
                 } else {
                     farmTypeList.remove("0");
                     farmType = "0";
+                    extra.setStore_type_local("0");
                 }
                 Log.e("item", farmTypeList.toString());
 
@@ -202,6 +213,9 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
                 showLogoutAlert();
             }
         });
+
+        extra.setStore_type_farm("0");
+        extra.setStore_type_local("0");
     }
 
 
@@ -218,59 +232,64 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK && data != null) {
-                switch (requestCode) {
-                    case 100 :{
-                        if (resultCode == RESULT_OK) {
-                            Place place = Autocomplete.getPlaceFromIntent(data);
+        cameraProvider.processOnActivityResult(requestCode, resultCode, data, (file, s) -> {
+            storeImage.setImageURI(Uri.fromFile(file));
+            return Unit.INSTANCE;
+        });
 
-                            placeAddress = place;
-                            SearchFlag = true;
-                            double lat = placeAddress.getLatLng().latitude;
-                            double lng = placeAddress.getLatLng().longitude;
-                            try {
-                                locationEt.setText(latLngToGeoLocation.getAddressLine(this, lat, lng));
-                                cityEt.setText(latLngToGeoLocation.getLocality(this, lat, lng));
-                                stateEt.setText(latLngToGeoLocation.getAdminArea(this, lat, lng));
-                                country = latLngToGeoLocation.getCountryName(this, lat, lng);
-                                postCode = latLngToGeoLocation.getPostalCode(this, lat, lng);
-                                this.lat = lat;
-                                lang = lng;
+        if (resultCode == RESULT_OK && data != null) {
+            switch (requestCode) {
+                case 100: {
+                    if (resultCode == RESULT_OK) {
+                        Place place = Autocomplete.getPlaceFromIntent(data);
+
+                        placeAddress = place;
+                        SearchFlag = true;
+                        double lat = placeAddress.getLatLng().latitude;
+                        double lng = placeAddress.getLatLng().longitude;
+                        try {
+                            locationEt.setText(latLngToGeoLocation.getAddressLine(this, lat, lng));
+                            cityEt.setText(latLngToGeoLocation.getLocality(this, lat, lng));
+                            stateEt.setText(latLngToGeoLocation.getAdminArea(this, lat, lng));
+                            country = latLngToGeoLocation.getCountryName(this, lat, lng);
+                            postCode = latLngToGeoLocation.getPostalCode(this, lat, lng);
+                            this.lat = lat;
+                            lang = lng;
 //                    extra.setCountry(country);
 //                    extra.setPostalCode(postCode);
 
 
-                                if (cityEt.getText().toString().isEmpty()) {
-                                    cityEt.setEnabled(false);
-                                } else {
-                                    cityEt.setEnabled(true);
-                                }
-
-                                if (stateEt.getText().toString().isEmpty()) {
-                                    stateEt.setEnabled(false);
-                                } else {
-                                    stateEt.setEnabled(true);
-                                }
-
-
-                            } catch (Exception e) {
-                                Log.i("TAG", "An error occurred: GeoCoder" + e.getMessage());
+                            if (cityEt.getText().toString().isEmpty()) {
+                                cityEt.setEnabled(false);
+                            } else {
+                                cityEt.setEnabled(true);
                             }
-                            Log.d("TAG", place.getAddress());
 
-                        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                            Status status = Autocomplete.getStatusFromIntent(data);
-                            Toast.makeText(this, "Some went wrong. Search again", Toast.LENGTH_SHORT).show();
-                            Log.i("TAG", status.getStatusMessage());
+                            if (stateEt.getText().toString().isEmpty()) {
+                                stateEt.setEnabled(false);
+                            } else {
+                                stateEt.setEnabled(true);
+                            }
+
+
+                        } catch (Exception e) {
+                            Log.i("TAG", "An error occurred: GeoCoder" + e.getMessage());
                         }
-                        break;
-                    }
+                        Log.d("TAG", place.getAddress());
 
-                    case 1001: {
-                        ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                        storeNameEt.setText(result.get(0));
-                        break;
+                    } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                        Status status = Autocomplete.getStatusFromIntent(data);
+                        Toast.makeText(this, "Some went wrong. Search again", Toast.LENGTH_SHORT).show();
+                        Log.i("TAG", status.getStatusMessage());
                     }
+                    break;
+                }
+
+                case 1001: {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    storeNameEt.setText(result.get(0));
+                    break;
+                }
 
 //                    case CAMERA_REQUEST_CODE : {
 //                        storeImage.setImageBitmap(imageUtil.getFileBitmapOfCameraResponse(data, StoreDetailsStepActivity.this).getBitmap());
@@ -284,8 +303,8 @@ public class StoreDetailsStepActivity extends AppCompatActivity implements View.
 //
 //                        break;
 //                    }
-                }
             }
+        }
 
 
     }

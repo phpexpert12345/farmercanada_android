@@ -15,16 +15,36 @@ public class ManageCouponItem implements RecyclerViewListItem {
     String addDate;
     String endDate;
     String applied;
-    Boolean status;
+    String status;
+    String discountType;
+    String discountTypeCheck;
+    String discountMinimumAmount;
+    String termCondition;
+    String amount;
 
-    public ManageCouponItem(String couponId, String couponCode, String addDate, String endDate, String applied, Boolean status) {
+    public ManageCouponItem(String couponId, String couponCode, String addDate, String endDate, String applied, String status, String discountType, String discountTypeCheck, String discountMinimumAmount, String termCondition, String amount) {
         this.couponId = couponId;
         this.couponCode = couponCode;
         this.addDate = addDate;
         this.endDate = endDate;
         this.applied = applied;
         this.status = status;
+        this.discountType = discountType;
+        this.discountTypeCheck = discountTypeCheck;
+        this.discountMinimumAmount = discountMinimumAmount;
+        this.termCondition = termCondition;
+        this.amount = amount;
     }
+//
+//    public ManageCouponItem(String couponId, String couponCode, String addDate, String endDate, String applied, String status) {
+//        this.couponId = couponId;
+//        this.couponCode = couponCode;
+//        this.addDate = addDate;
+//        this.endDate = endDate;
+//        this.applied = applied;
+//        this.status = status;
+//    }
+
 
     public String getCouponId() {
         return couponId;
@@ -46,8 +66,28 @@ public class ManageCouponItem implements RecyclerViewListItem {
         return applied;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
+    }
+
+    public String getDiscountType() {
+        return discountType;
+    }
+
+    public String getDiscountTypeCheck() {
+        return discountTypeCheck;
+    }
+
+    public String getDiscountMinimumAmount() {
+        return discountMinimumAmount;
+    }
+
+    public String getTermCondition() {
+        return termCondition;
+    }
+
+    public String getAmount() {
+        return amount;
     }
 
     @Override

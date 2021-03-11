@@ -37,7 +37,42 @@ public class StoreSetupExtra implements Serializable {
     File docOneBack;
     File docTwoFront;
     File docTwoBack;
+    String store_type_farm;
+    String store_type_local;
+    String pickup_available;
+    String delivery_available;
 
+    public String getStore_type_farm() {
+        return store_type_farm;
+    }
+
+    public void setStore_type_farm(String store_type_farm) {
+        this.store_type_farm = store_type_farm;
+    }
+
+    public String getStore_type_local() {
+        return store_type_local;
+    }
+
+    public void setStore_type_local(String store_type_local) {
+        this.store_type_local = store_type_local;
+    }
+
+    public String getPickup_available() {
+        return pickup_available;
+    }
+
+    public void setPickup_available(String pickup_available) {
+        this.pickup_available = pickup_available;
+    }
+
+    public String getDelivery_available() {
+        return delivery_available;
+    }
+
+    public void setDelivery_available(String delivery_available) {
+        this.delivery_available = delivery_available;
+    }
 
     public String getName() {
         return name;
