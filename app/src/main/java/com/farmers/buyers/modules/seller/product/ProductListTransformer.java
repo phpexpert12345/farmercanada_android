@@ -17,9 +17,22 @@ public class ProductListTransformer {
 
     public static List<ProductListItems> getProducts(ProductListApiModel apiData) {
         List<ProductListItems> items = new ArrayList<>();
-        for (int i = 0 ; i< apiData.getData().getSubProductItemsRecordSeller().size(); i++) {
+        for (int i = 0; i < apiData.getData().getSubProductItemsRecordSeller().size(); i++) {
             SubProductItemsRecordSeller item = apiData.getData().getSubProductItemsRecordSeller().get(i);
-            items.add(new ProductListItems(item.getProductID(), item.getProductName(), "", item.getProductUnitPrice(), item.getCategoryName(), item.getProductStock(), item.getDiscountProductAmount(), item.getProductCode(), item.getProductDescription()));
+            items.add(new ProductListItems(
+                    item.getProductID(),
+                    String.valueOf(item.getFarmId()),
+                    String.valueOf(item.getCategoryId()),
+                    item.getProductName(),
+                    item.getProductCode(),
+                    item.getProductStock(),
+                    item.getCategoryName(),
+                    item.getProductDescription(),
+                    item.getProductImages(),
+                    item.getDiscountProductAmount(),
+                    item.getProductUnitPrice(),
+                    item.getProductSalesPrice(),
+                    item.getPriceUnitType()));
         }
         return items;
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_5sdp"
     app:cardCornerRadius="@dimen/_5sdp">
 
@@ -38,8 +38,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:text="Product name"
-                    android:textSize="@dimen/_12ssp"
-                    android:textColor="@color/primaryTextColor" />
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/_12ssp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -72,7 +72,6 @@
                         android:id="@+id/product_list_item_per_unit_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:fontFamily="@font/sf_ui_regular"
                         android:text="$ 49.50"
                         android:textColor="@color/secondaryBtnColor"
@@ -109,9 +108,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_ui_regular"
+                    android:fontFamily="@font/sf_ui_semibold"
                     android:text="Category"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/product_list_item_category_name_tv"
@@ -127,7 +127,8 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="Coupon Amount"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/product_list_item_coupon_amount"
@@ -135,7 +136,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="$ 10.99"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -150,9 +152,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_ui_regular"
+                    android:fontFamily="@font/sf_ui_semibold"
                     android:text="Quantity"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/product_list_quantity_tv"
@@ -169,7 +172,8 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="Coupon Code"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/product_list_item_coupon_code"
@@ -183,7 +187,8 @@
                     android:paddingBottom="@dimen/_1sdp"
                     android:text="HEU3302"
                     android:textColor="@color/secondaryBtnColor"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -203,44 +208,60 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/_8sdp">
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:gravity="end"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/product_list_item_delete_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
                 android:background="@drawable/light_gray_rect_bg"
                 android:drawableLeft="@drawable/ic_delete"
-                android:paddingLeft="@dimen/_8sdp"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingRight="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="Delete item"
-                android:textColor="@color/primaryTextColor"
                 android:drawablePadding="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="Delete item"
+                android:textColor="@color/primaryTextColor" />
+
+            <TextView
+                android:id="@+id/product_list_add_stock_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"/>
+                android:layout_marginRight="@dimen/_8sdp"
+                android:background="@drawable/light_gray_rect_bg"
+                android:drawableLeft="@drawable/ic_edit_gray"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/red"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="Add Stock"
+                android:textColor="@color/primaryTextColor" />
 
             <TextView
                 android:id="@+id/product_list_item_edit_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/light_gray_rect_bg"
-                android:drawableLeft="@drawable/ic_edit_gray"
-                android:paddingLeft="@dimen/_8sdp"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingRight="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp"
-                android:text="Edit item"
-                android:textColor="@color/secondaryTextColor"
-                android:drawableTint="@color/white"
-                android:backgroundTint="@color/green"
-                android:drawablePadding="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"/>
+                android:layout_marginRight="@dimen/_8sdp"
+                android:background="@drawable/light_gray_rect_bg"
+                android:backgroundTint="@color/green"
+                android:drawableLeft="@drawable/ic_edit_gray"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/white"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="Edit item"
+                android:textColor="@color/secondaryTextColor" />
 
         </LinearLayout>
 

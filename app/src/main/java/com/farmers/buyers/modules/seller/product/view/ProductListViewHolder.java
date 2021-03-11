@@ -2,10 +2,12 @@ package com.farmers.buyers.modules.seller.product.view;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
@@ -23,6 +25,9 @@ import org.w3c.dom.Text;
 
 public class ProductListViewHolder extends BaseViewHolder {
     private TextView productName, total, unitTv, categoryNameTv, couponAmountTv, quantityTv, couponCodeTv, descriptionTv, editTv, deleteTv;
+    private ImageView product_list_item_img;
+    private TextView product_list_add_stock_btn;
+    private ProductListItems item;
 
     public ProductListViewHolder(@NonNull ViewGroup parent, ProductListItemClickListener listItemClickListener) {
         super(Extensions.inflate(parent, R.layout.product_list_item_layout));
@@ -36,41 +41,40 @@ public class ProductListViewHolder extends BaseViewHolder {
         descriptionTv = itemView.findViewById(R.id.product_list_item_description_tv);
         deleteTv = itemView.findViewById(R.id.product_list_item_delete_btn);
         editTv = itemView.findViewById(R.id.product_list_item_edit_btn);
+        product_list_item_img = itemView.findViewById(R.id.product_list_item_img);
+        product_list_add_stock_btn = itemView.findViewById(R.id.product_list_add_stock_btn);
 
-        deleteTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listItemClickListener.onDeleteItemClickListener(getAdapterPosition());
-            }
-        });
+        deleteTv.setOnClickListener(v -> listItemClickListener.onDeleteItemClickListener(getAdapterPosition()));
 
-        editTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listItemClickListener.onDeleteItemClickListener(getAdapterPosition());
-            }
-        });
+        editTv.setOnClickListener(v -> listItemClickListener.onEditItemClickListener(item));
 
-
-
+        product_list_add_stock_btn.setOnClickListener(view -> listItemClickListener.onAddStockItemClickListener(item));
     }
 
     @Override
     public void bindView(RecyclerViewListItem items) {
         ProductListItems item = (ProductListItems) items;
+        this.item = item;
+        Glide.with(itemView.getContext())
+                .load(((ProductListItems) items).product_images)
+                .placeholder(R.drawable.fruit_two)
+                .into(product_list_item_img);
 
-        productName.setText(item.getProductName());
-                total.setText(item.getListTotal());
-//        unitTv.setText(item.);
-                categoryNameTv.setText(item.getCategory());
-        couponAmountTv.setText(item.getCouponAmount());
-                quantityTv.setText(item.getQuantity());
-        couponCodeTv.setText(item.getCouponCode());
-                descriptionTv.setText(item.getDescription());
+        productName.setText(item.product_name);
+        total.setText(item.product_unit_price);
+        unitTv.setText(item.product_sales_price);
+        categoryNameTv.setText(item.product_category_Name);
+        // couponAmountTv.setText(item.getCouponAmount());
+        quantityTv.setText(item.product_stock);
+        // couponCodeTv.setText(item.getCouponCode());
+        descriptionTv.setText(item.product_description);
     }
 
     public interface ProductListItemClickListener {
         void onDeleteItemClickListener(int position);
-        void onEditItemClickListener(int position);
+
+        void onEditItemClickListener(ProductListItems item);
+
+        void onAddStockItemClickListener(ProductListItems item);
     }
 }

@@ -65,7 +65,9 @@ public class ProductListViewModel extends BaseViewModel {
     public void deleteProduct(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine){
         stateMachine.postValue(DataFetchState.loading());
 
-        DeleteProductRequestParams params = new DeleteProductRequestParams(selectedProduct.getProductId(), appController.getAuthenticationKey());
+        DeleteProductRequestParams params = new DeleteProductRequestParams(
+                selectedProduct.ProductID,
+                appController.getAuthenticationKey());
 
         repository.deleteProductApiModel(params, new ApiResponseCallback<DeleteProductApiModel>() {
             @Override
@@ -90,6 +92,4 @@ public class ProductListViewModel extends BaseViewModel {
         selectedProduct = productItems.get(position);
         deleteProduct(stateMachine);
     }
-
-
 }

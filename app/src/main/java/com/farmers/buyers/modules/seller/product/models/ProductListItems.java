@@ -10,62 +10,36 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class ProductListItems implements RecyclerViewListItem {
-    String productId;
-    String productName;
-    String listTotal;
-    String perUnitPrice;
-    String category;
-    String quantity;
-    String couponAmount;
-    String couponCode;
-    String description;
 
-    public ProductListItems(String productId, String productName, String listTotal, String perUnitPrice, String category, String quantity, String couponAmount, String couponCode, String description) {
-        this.productName = productName;
-        this.listTotal = listTotal;
-        this.perUnitPrice = perUnitPrice;
-        this.category = category;
-        this.quantity = quantity;
-        this.couponAmount = couponAmount;
-        this.couponCode = couponCode;
-        this.description = description;
-        this.productId = productId;
-    }
+    public String ProductID;
+    public String farm_id;
+    public String category_id;
+    public String product_name;
+    public String product_code;
+    public String product_stock;
+    public String product_category_Name;
+    public String product_description;
+    public String product_images;
+    public String Discount_product_Amount;
+    public String product_unit_price;
+    public String product_sales_price;
+    public String price_unit_type;
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public String getListTotal() {
-        return listTotal;
-    }
-
-    public String getPerUnitPrice() {
-        return perUnitPrice;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public String getCouponAmount() {
-        return couponAmount;
-    }
-
-    public String getCouponCode() {
-        return couponCode;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getProductId() {
-        return productId;
+    public ProductListItems(String productID, String farm_id, String category_id, String product_name, String product_code, String product_stock, String product_category_Name, String product_description, String product_images, String discount_product_Amount,
+                            String product_unit_price, String product_sales_price, String price_unit_type) {
+        ProductID = productID;
+        this.farm_id = farm_id;
+        this.category_id = category_id;
+        this.product_name = product_name;
+        this.product_code = product_code;
+        this.product_stock = product_stock;
+        this.product_category_Name = product_category_Name;
+        this.product_description = product_description;
+        this.product_images = product_images;
+        Discount_product_Amount = discount_product_Amount;
+        this.product_unit_price = product_unit_price;
+        this.product_sales_price = product_sales_price;
+        this.price_unit_type = price_unit_type;
     }
 
     @Override
