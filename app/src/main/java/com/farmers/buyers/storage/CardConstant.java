@@ -82,6 +82,7 @@ public class CardConstant {
     public static final int PICKUP_ORDER_LIMIT_ITEM_ADAPTER     = 59;
     public static final int PICKUP_WEEK_DAYS_ITEM_ADAPTER       = 60;
     public static final int STORE_SETUP_DELIVERY_RANGE_ADAPTER  = 61;
+    public static final int DELIVERY_WEEK_DAYS_ITEM_ADAPTER     = 62;
 
 
 }

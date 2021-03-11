@@ -29,16 +29,11 @@ public class PickupTimeListViewHolder extends BaseViewHolder {
         ll_interval_select = itemView.findViewById(R.id.ll_interval_select);
         rd_time_interval_select = itemView.findViewById(R.id.rd_time_interval_select);
 
-        rd_time_interval_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pickupTimeItemClickListener.onPickupTimeItemClicked(item);
-            }
-        });
 
         ll_interval_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rd_time_interval_select.setChecked(true);
                 pickupTimeItemClickListener.onPickupTimeItemClicked(item);
             }
         });

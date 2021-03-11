@@ -2,13 +2,16 @@ package com.farmers.seller.modules.workingHour.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,8 +34,10 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
     TextView tv_time_interval;
     SwitchCompat switch_week;
     LinearLayout ll_order_limit_time;
-    EditText ed_order_limit;
+    EditText ed_order_limit,edit_end_time,edit_start_time;
+    ImageView img_drop;
     int selectedPosition = -1;
+    RelativeLayout relative_end_time,relative_start_time;
     OrderLimitListAdapter.OrderLimitItemClickListener onStoreTimeItemClicked;
 
     public WeekDaysListViewHolder(@NonNull ViewGroup parent, final WeekDayItemClickListener weekDayItemClickListener) {
@@ -42,7 +47,15 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
         switch_week = itemView.findViewById(R.id.switch_week);
         ll_order_limit_time = itemView.findViewById(R.id.ll_order_limit_time);
         ed_order_limit = itemView.findViewById(R.id.ed_order_limit);
-
+        edit_start_time = itemView.findViewById(R.id.edit_start_time);
+        edit_end_time = itemView.findViewById(R.id.edit_end_time);
+        relative_end_time = itemView.findViewById(R.id.relative_end_time);
+        relative_start_time = itemView.findViewById(R.id.relative_start_time);
+        ed_order_limit.setFocusable(true);
+        ed_order_limit.setCursorVisible(true);
+        ed_order_limit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        img_drop = itemView.findViewById(R.id.img_drop);
+       img_drop.setVisibility(View.GONE);
         switch_week.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -54,13 +67,21 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
                 }
             }
         });
+        edit_start_time.setOnClickListener(v->{
 
-        ed_order_limit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OrderLimitDialog(itemView.getContext(), item);
-            }
+            OrderLimitDialog(itemView.getContext(), item,"Select Start Time",0);
         });
+        edit_end_time.setOnClickListener(v->{
+
+            OrderLimitDialog(itemView.getContext(), item,"Select End Time",1);
+        });
+
+//        ed_order_limit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                OrderLimitDialog(itemView.getContext(), item);
+//            }
+//        });
     }
 
     @Override
@@ -78,8 +99,14 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
     }
 
     @Override
-    public void onOrderLimitItemClicked(String item) {
-        ed_order_limit.setText(item);
+    public void onOrderLimitItemClicked(String item,int type) {
+        if(type==0){
+            edit_start_time.setText(item);
+        }
+        else{
+            edit_end_time.setText(item);
+        }
+//        ed_order_limit.setText(item);
         orderLimitDialog.dismiss();
     }
 
@@ -87,7 +114,7 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
         void onWeekDayItemClicked(WeekDayListItem weekDayListItem);
     }
 
-    public void OrderLimitDialog(Context activity, WeekDayListItem item) {
+    public void OrderLimitDialog(Context activity, WeekDayListItem item,String message,int type) {
 
         orderLimitDialog = new Dialog(activity, R.style.NewDialog);
         orderLimitDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -95,11 +122,11 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
         orderLimitDialog.setContentView(R.layout.layout_store_time_interval_dialog);
 
         TextView tv_dialog_title = orderLimitDialog.findViewById(R.id.tv_dialog_title);
-        tv_dialog_title.setText("Select Order Limit");
+        tv_dialog_title.setText(message);
 
         rv_review_list = orderLimitDialog.findViewById(R.id.rv_review_list);
         OrderLimitListAdapter orderLimitListAdapter = new OrderLimitListAdapter(itemView.getContext(), item.getDropDownDataList(),
-                onStoreTimeItemClicked);
+                onStoreTimeItemClicked,type);
         rv_review_list.setHasFixedSize(true);
         rv_review_list.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
 
