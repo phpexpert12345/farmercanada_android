@@ -27,9 +27,32 @@
             android:layout_marginRight="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             app:cardCornerRadius="@dimen/_8sdp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_time"
+                    android:text="10:30-10:45"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sf_ui_regular"
+                    android:textSize="@dimen/_18sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/img_time_edit"
+                    android:src="@drawable/ic_drop_arrow"/>
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_time_list"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
@@ -65,11 +88,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center_vertical"
+                android:id="@+id/linear_refund"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:id="@+id/radio_refund"
                     android:button="@drawable/circle_check_drawable" />
 
                 <TextView
@@ -88,11 +114,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/linear_okay"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:id="@+id/radio_okay"
                     android:button="@drawable/circle_check_drawable" />
 
                 <TextView
@@ -117,6 +146,7 @@
             android:layout_margin="@dimen/_16sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
             android:text="Continue"
+            android:textSize="@dimen/_15ssp"
             android:textAllCaps="false"
             android:textColor="@color/secondaryTextColor" />
     </LinearLayout>

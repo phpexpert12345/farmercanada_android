@@ -55,7 +55,7 @@ public class HomeTransformer {
                     data.getFarmOpeningStatus(),
                     data.getFarmFavouriteStatus(),
                     data.getFavouriteId(), data.getFarmFollowedStatus(),
-                    data.getFormTypeName(), data.getFollowedId()));
+                    data.getFormTypeName(), data.getFollowedId(),data.getDelivery_available(),data.getPickup_available()));
         }
         return items;
     }
@@ -93,7 +93,6 @@ public class HomeTransformer {
     public static HomeFilterListItems getFilterItems() {
         List<RecyclerViewListItem> filterItems = new ArrayList<>();
         filterItems.add(new MultipleTextItems("Categories", true));
-        filterItems.add(new MultipleTextItems("Subscribed", true));
         return new HomeFilterListItems(filterItems);
     }
 

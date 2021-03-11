@@ -237,8 +237,8 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
                 Toast.makeText(this, "Please enter quantity", Toast.LENGTH_SHORT).show();
             } else {
                 dialog.dismiss();
-                /*viewModel.orderDecline(orderAcceptStateMachine, orderNumber,
-                        ed_message.getText().toString().trim());*/
+                viewModel.updateStockQuantity(updateStockStateMachine, item.ProductID,
+                        ed_quantity.getText().toString().trim());
             }
         });
 

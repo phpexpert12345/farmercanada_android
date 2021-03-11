@@ -41,6 +41,35 @@ public class HomeListItem implements RecyclerViewListItem {
     public String form_type_name;
     public String farm_logo;
     public String farm_cover_photo;
+
+    public String getDelivery_available() {
+        return delivery_available;
+    }
+
+    public void setDelivery_available(String delivery_available) {
+        this.delivery_available = delivery_available;
+    }
+
+    public String getPickup_available() {
+        return pickup_available;
+    }
+
+    public void setPickup_available(String pickup_available) {
+        this.pickup_available = pickup_available;
+    }
+
+    public String delivery_available;
+    public String pickup_available;
+
+
+    public String getFollowed_id() {
+        return followed_id;
+    }
+
+    public void setFollowed_id(String followed_id) {
+        this.followed_id = followed_id;
+    }
+
     public String followed_id;
 
     public void setId(String id) {
@@ -202,7 +231,7 @@ public class HomeListItem implements RecyclerViewListItem {
     public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage,
                         String farmImage, Double farmLat, Double farmLong, String farm_address, String farm_opening_hours, String farm_estimate_delivery_time,
                         String farm_hosted_by, String farm_opening_status, String farm_favourite_status,
-                        String favourite_id, String farm_followed_status, String form_type_name, String followed_id) {
+                        String favourite_id, String farm_followed_status, String form_type_name, String followed_id,String delivery_available,String pickup_available) {
         this.farmName = farmName;
         this.distance = distance;
         this.rating = rating;
@@ -222,6 +251,8 @@ public class HomeListItem implements RecyclerViewListItem {
         this.farm_followed_status = farm_followed_status;
         this.form_type_name = form_type_name;
         this.followed_id = followed_id;
+        this.delivery_available=delivery_available;
+        this.pickup_available=pickup_available;
     }
 
     public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage, String farmImage, Double farmLat, Double farmLong, String favoriteId, String isFollowing, String followId) {
@@ -236,7 +267,9 @@ public class HomeListItem implements RecyclerViewListItem {
         this.farmLong = farmLong;
         this.favoriteId = favoriteId;
         this.isFollowing = isFollowing;
+        this.farm_followed_status=isFollowing;
         this.followId = followId;
+        this.followed_id=followId;
     }
 
     public String getFarmName() {

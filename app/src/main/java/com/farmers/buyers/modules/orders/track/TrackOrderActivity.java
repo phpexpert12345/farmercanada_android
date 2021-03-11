@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
@@ -47,6 +48,7 @@ public class TrackOrderActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     private TrackOrderAdapter adapter;
+    private Button bt_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class TrackOrderActivity extends BaseActivity {
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -76,6 +78,8 @@ public class TrackOrderActivity extends BaseActivity {
         DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         divider.setDrawable(getResources().getDrawable(R.drawable.divider));
         recyclerView.addItemDecoration(divider);
+        bt_cancel=findViewById(R.id.bt_cancel);
+
         //  adapter.updateData(items);
 
         getOrderDetails();
@@ -100,7 +104,12 @@ public class TrackOrderActivity extends BaseActivity {
 
     private void callSetData(DataFetchState<AddressApiModel> dataFetchState) {
         dismissLoader();
-
+if(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()).order_status_msg.equalsIgnoreCase("Pending")){
+    bt_cancel.setVisibility(View.VISIBLE);
+}
+else{
+    bt_cancel.setVisibility(View.GONE);
+}
         items.add(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()));
         TrackOrderCountItem trackOrderCountItem=new TrackOrderCountItem();
         trackOrderCountItem.count=dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().size();
@@ -108,7 +117,7 @@ public class TrackOrderActivity extends BaseActivity {
         for(int i=0;i<dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().size();i++){
             price+=Double.parseDouble(dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().get(i).getItem_price())*Integer.parseInt(dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().get(i).getItem_quantity());
         }
-        trackOrderCountItem.total_price= String.valueOf(price);
+        trackOrderCountItem.total_price= dataFetchState.data.getData().getAllOrderList().get(0).getTotal_amount();
         items.add(trackOrderCountItem);
         items.addAll(TrackOrderTransformer.getTrackOrder(
                 dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList()));

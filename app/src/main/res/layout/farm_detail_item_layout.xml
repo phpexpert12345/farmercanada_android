@@ -272,6 +272,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Hosted by Ravi"

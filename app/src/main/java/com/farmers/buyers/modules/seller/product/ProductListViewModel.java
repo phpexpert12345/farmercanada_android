@@ -92,4 +92,30 @@ public class ProductListViewModel extends BaseViewModel {
         selectedProduct = productItems.get(position);
         deleteProduct(stateMachine);
     }
+
+    public void updateStockQuantity(MutableLiveData<DataFetchState<DeleteProductApiModel>> stateMachine,String productId,String quantity){
+        stateMachine.postValue(DataFetchState.loading());
+
+        DeleteProductRequestParams params = new DeleteProductRequestParams(
+                selectedProduct.ProductID,
+                appController.getAuthenticationKey());
+
+        repository.deleteProductApiModel(params, new ApiResponseCallback<DeleteProductApiModel>() {
+            @Override
+            public void onSuccess(DeleteProductApiModel response) {
+                if (response.getStatus()) {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else {
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new DeleteProductApiModel()));
+
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new DeleteProductApiModel()));
+            }
+        });
+    }
 }

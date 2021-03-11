@@ -57,7 +57,7 @@ public class WebViewActivity extends BaseActivity {
         }
         myWebView.setWebChromeClient(new WebChromeClient());
 
-        url = "https://www.phpexperttechnologies.com/";
+        url = "https://www.google.com/";
         myWebView.loadUrl(url);
     }
 

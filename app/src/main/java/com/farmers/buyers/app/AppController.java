@@ -79,6 +79,8 @@ public class AppController implements AppControllerContract {
         return null;
     }
 
+
+
     @Override
     public String getRole() {
         return sharedPreferenceManager.getRole();

@@ -2,6 +2,7 @@ package com.farmers.buyers.modules.signUp.model;
 
 import java.util.List;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -67,6 +68,17 @@ public class SignUpApiModel implements Serializable {
 
         @SerializedName("Mobile_OTP")
         private String Mobile_OTP;
+
+        public String getAccountTypeName() {
+            return accountTypeName;
+        }
+
+        public void setAccountTypeName(String accountTypeName) {
+            this.accountTypeName = accountTypeName;
+        }
+
+        @SerializedName("account_type_name")
+        private String accountTypeName;
 
         public void setLoginId(String loginId) {
             this.loginId = loginId;

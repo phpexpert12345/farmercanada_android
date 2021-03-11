@@ -24,8 +24,8 @@
         >
 
         <ImageView
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_200sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@drawable/no_followers_found"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"/>
@@ -36,9 +36,10 @@
             android:layout_height="wrap_content"
             android:text="No Data Found"
             android:fontFamily="@font/sf_ui_regular"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_horizontal"
-            android:textColor="@color/primaryTextColor"/>
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>

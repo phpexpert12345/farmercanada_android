@@ -45,8 +45,10 @@ public class ApiConstants {
     public static final String GET_CUSTOMER_REVIEW_LIST = "phpexpert_customer_review_list.php";
     public static final String GET_FARM_REVIEW_LIST = "phpexpert_farm_review_list.php";
     public static final String GET_FARM_REVIEWED_LIST = "phpexpert_farm_review_customer_list.php";
-    public static final String GET_PAYMENT_KEY = "phpexpert_payment_key.php";
-    public static final String STRIPE_PAY = "phpexpert_payment_intent_generate.php";
+    public static final String GET_PAYMENT_KEY="phpexpert_payment_key.php";
+    public static final String STRIPE_PAY="phpexpert_payment_intent_generate.php";
+    public static final String GET_PAYMENT_KEY_WALLET="phpexpert_payment_key_wallet.php";
+    public static final String STRIPE_PAY_WALLET="phpexpert_payment_intent_generate_wallet.php";
     public static final String SEARCH_PRODUCT_ITEM = "phpexpert_all_farm_product_search.php";
     public static final String NEW_ORDERS_LIST = "phpexpert_store_order_list.php";
     public static final String ORDERS_DETAILS_DATA = "phpexpert_store_order_detail.php";
@@ -56,6 +58,7 @@ public class ApiConstants {
     public static final String PUBLISH_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_add.php";
     public static final String DELETE_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_delete.php";
     public static final String EDIT_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_edit.php";
+    public static final String NOTIFICATION_LIST=BASE_URL+"phpexpert_customer_notification_list.php";
 
 
     //Ganesh working
@@ -72,6 +75,11 @@ public class ApiConstants {
     public static final String FOLLOWERS_LIST = "phpexpert_customer_unfollow_follow_list.php";
     public static final String FOLLOW_UNFOLLOW_USER = "phpexpert_customer_follow_unfollow.php";
     public static final String INCREADE_DECREASE_API_URL = "phpexpert_product_cart_increase_decrease.php";
+
+
+    // TODO Seller Section
+
+
 
 
     // TODO Seller Section

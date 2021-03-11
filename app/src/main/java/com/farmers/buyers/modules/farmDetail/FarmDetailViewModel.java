@@ -37,9 +37,12 @@ public class FarmDetailViewModel extends BaseViewModel {
     private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
 
+
     public void getFarmProductList(MutableLiveData<DataFetchState<FarmListProductResponse>> stateMutableLiveData,
-                                   FarmProductListReq farmProductListReq) {
-        stateMutableLiveData.postValue(DataFetchState.<FarmListProductResponse>loading());
+                                   FarmProductListReq farmProductListReq,String type) {
+        if(type.equalsIgnoreCase("view")) {
+            stateMutableLiveData.postValue(DataFetchState.<FarmListProductResponse>loading());
+        }
         repository.getFarmProductList(farmProductListReq, new ApiResponseCallback<FarmListProductResponse>() {
             @Override
             public void onSuccess(FarmListProductResponse response) {
@@ -74,7 +77,7 @@ public class FarmDetailViewModel extends BaseViewModel {
                         intent.getStringExtra("farm_delivery_radius_text"),
                         intent.getStringExtra("farm_hosted_by"),
                         intent.getStringExtra("farm_image"),
-                        intent.getStringExtra("FARM_ID")));
+                        intent.getStringExtra("FARM_ID"),intent.getDoubleExtra("farm_lat",0.0),intent.getDoubleExtra("farm_long",0.0),intent.getStringExtra("delivery_available"),intent.getStringExtra("pickup_available")));
 
                 if (response.getStatus()) {
                     if (!response.getData().getCategoryList().isEmpty()) {

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/_my_cart_recyclerView"
     android:layout_alignParentBottom="true"
+    android:layout_marginTop="@dimen/_minus6sdp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -47,7 +48,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/round_coner_dash_border_ligh_gray_bg"
         android:orientation="vertical">
 
@@ -98,6 +99,7 @@
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_8sdp"
+            android:id="@+id/relative_package"
             android:orientation="horizontal">
 
             <TextView
@@ -126,6 +128,7 @@
                 android:layout_toLeftOf="@id/packedge_fee_amount"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="$ "
+                android:id="@+id/dollar_package"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/sp_16_px" />
 
@@ -299,9 +302,10 @@
         android:id="@+id/my_cart_checkout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/round_corner_light_gradient_bg"
         android:text="Checkout"
+        android:textSize="@dimen/_15ssp"
         android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor" />
 

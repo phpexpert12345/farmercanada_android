@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.storage.SharedPreferenceManager;
@@ -37,9 +38,11 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
     private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type, tv_followers, tv_account_type, my_profile_header_inbox_msg_tv;
     private AppController appController = AppController.get();
     private CircleImageView profile_header_user_image;
+    Context context;
 
     public MyProfileHeaderViewHolder(@NonNull ViewGroup parent, final MyProfileItemClickListener profileItemClickListener) {
         super(Extensions.inflate(parent, R.layout.my_profile_header_layout));
+        context=parent.getContext();
         followersLL = itemView.findViewById(R.id.followers_ll);
         walletLL = itemView.findViewById(R.id.wallet_ll);
         inboxLL = itemView.findViewById(R.id.inbox_ll);
@@ -52,17 +55,17 @@ public class MyProfileHeaderViewHolder extends BaseViewHolder {
         tv_followers = itemView.findViewById(R.id.tv_followers);
         my_profile_header_inbox_msg_tv = itemView.findViewById(R.id.my_profile_header_inbox_msg_tv);
         tv_account_type = itemView.findViewById(R.id.tv_account_type);
-
-        tv_wallet_balance.setText("$ " + appController.getWalletAmount());
+        String current_price= DroidPrefs.get(context,"wallet_amount",String.class);
+        tv_wallet_balance.setText("$ " + current_price);
         tv_user_name.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_NAME", "")));
         tv_user_email.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_EMAIL", "")));
         tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
-        tv_followers.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_FOLLOWERS", "")));
+        tv_followers.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_FOLLOWED", "")));
         my_profile_header_inbox_msg_tv.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_MESSAGE_INBOX", "")));
 
         Glide.with(itemView.getContext())
                 .load(appController.getProfilePic())
-                .placeholder(R.drawable.user_image)
+                .placeholder(R.drawable.profile_pic)
                 .into(profile_header_user_image);
 
         followersLL.setOnClickListener(new View.OnClickListener() {

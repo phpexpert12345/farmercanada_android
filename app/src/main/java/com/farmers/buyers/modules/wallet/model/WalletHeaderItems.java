@@ -10,7 +10,7 @@ import com.farmers.buyers.storage.CardConstant;
  */
 
 public class WalletHeaderItems implements RecyclerViewListItem {
-
+public String wallet_amount;
     @Override
     public int getViewType() {
         return CardConstant.WALLET_HEADER_ITEM_ADAPTER;

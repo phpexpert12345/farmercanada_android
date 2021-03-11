@@ -17,7 +17,9 @@
             android:layout_weight="0.4"
             android:fontFamily="@font/sf_ui_semibold"
             android:singleLine="true"
+            android:textSize="@dimen/_13ssp"
             android:text="Aman Kumar"
+            android:layout_marginStart="@dimen/_10sdp"
             android:textColor="@color/heading_text_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,16 +55,17 @@
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
                 android:text="Seller"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:textColor="@color/primary_button_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="17dp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:src="@drawable/ic_notification_gray" />
         </LinearLayout>
     </LinearLayout>
@@ -81,31 +84,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+
            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/home_header_edit_image"
                 >
 
                 <ImageView
                     android:id="@+id/location"
                     android:layout_width="15sp"
                     android:layout_height="15sp"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:src="@drawable/ic_address" />
 
                 <TextView
                     android:id="@+id/tv_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_15sdp"
                     android:layout_toEndOf="@+id/location"
                     android:ellipsize="end"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:maxLines="3"
-                    android:layout_marginEnd="@dimen/_20sdp"
+
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="center_vertical"
                     android:text="@string/address"
@@ -117,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:src="@drawable/ic_edit_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                android:layout_alignParentEnd="true"

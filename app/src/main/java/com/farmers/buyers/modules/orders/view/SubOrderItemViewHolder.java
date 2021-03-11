@@ -27,10 +27,9 @@ public class SubOrderItemViewHolder extends BaseViewHolder {
     TextView tv_order_name, sub_order_item_time_tv, tv_order_number, tv_order_amount, statusTv;
     CardView subOrderCard;
     SubOrdersListItem itemData;
+    CircleImageView sub_order_item_farm_image;
     Context context;
-    CircleImageView  sub_order_item_farm_image;
     public SubOrderItemViewHolder(@NonNull ViewGroup parent, final SubOrderItemClickListener subOrderItemClickListener) {
-
         super(Extensions.inflate(parent, R.layout.sub_order_item_layout));
         context=parent.getContext();
         statusTv = itemView.findViewById(R.id.sub_order_item_status_tv);
@@ -39,7 +38,6 @@ public class SubOrderItemViewHolder extends BaseViewHolder {
         tv_order_number = itemView.findViewById(R.id.tv_order_number);
         tv_order_amount = itemView.findViewById(R.id.tv_order_amount);
         sub_order_item_farm_image=itemView.findViewById(R.id.sub_order_item_farm_image);
-
         subOrderCard = itemView.findViewById(R.id.sub_ordet_item_card);
 
         subOrderCard.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +55,22 @@ public class SubOrderItemViewHolder extends BaseViewHolder {
         SubOrdersListItem item = (SubOrdersListItem) items;
         itemData = item;
         tv_order_name.setText(item.getTitle());
-        sub_order_item_time_tv.setText(item.getTime());
+
+        if(item.getTime().contains(",")){
+           String [] items_=item.getTime().split(",");
+           if(items_.length>0){
+              sub_order_item_time_tv.setText(items_[0]+"\n"+items_[1]);
+           }
+        }
+        else{
+            sub_order_item_time_tv.setText(item.getTime());
+        }
+
+
         tv_order_number.setText(item.getOrderId());
         tv_order_amount.setText(item.getAmount());
-        Glide.with(context).load(item.getImageUri()).placeholder(R.drawable.logo).into(sub_order_item_farm_image);
+        Glide.with(context).load(item.getImageUri()).placeholder(R.drawable.ic_sign_up_logo).into(sub_order_item_farm_image);
+
       /*  switch (item.getStatus()) {
             case 0 : {
                 statusTv.setText("Pending");

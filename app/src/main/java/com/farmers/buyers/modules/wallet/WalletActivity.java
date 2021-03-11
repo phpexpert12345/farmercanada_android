@@ -1,13 +1,16 @@
 package com.farmers.buyers.modules.wallet;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
@@ -51,11 +55,25 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
     private LinearLayout ll_add_money;
     private LinearLayout ll_data_not_available;
     private TextView tv_error_msg;
+    private TextView text_wallet;
+    private ImageView image_back_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
+//        setupToolbar(new ToolbarConfig("Wallet", true, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onBackPressed();
+//            }
+//        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        })));
         init();
     }
 
@@ -64,6 +82,13 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
         tv_error_msg = findViewById(R.id.tv_error_msg);
         ll_add_money = findViewById(R.id.ll_add_money);
         recyclerView = findViewById(R.id.wallet_recyclerView);
+        text_wallet=findViewById(R.id.text_wallet);
+        text_wallet.setText("Wallet");
+        image_back_button=findViewById(R.id.wallet_back);
+        image_back_button.setOnClickListener(v->{
+            App.wallet_updated=true;
+            onBackClicked();
+        });
         adapter = new WalletHistoryAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -89,12 +114,12 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
             }
         });
 
-        ll_add_money.setOnClickListener(view -> startActivity(new Intent(WalletActivity.this, AddMoneyWallet.class)));
+        ll_add_money.setOnClickListener(view -> startActivityForResult(new Intent(WalletActivity.this, AddMoneyWallet.class),34));
         getWalletHistoryData();
     }
 
     private void getWalletHistoryData() {
-        viewModel.getWalletHistoryList(stateMachine);
+        viewModel.getWalletHistoryList(stateMachine,this);
     }
 
     private void success() {
@@ -114,7 +139,25 @@ public class WalletActivity extends BaseActivity implements WalletHeaderViewHold
     }
 
     @Override
+    public void onBackPressed() {
+        App.wallet_updated=true;
+       finish();
+
+    }
+
+    @Override
     public void onWithdrawClicked() {
         startActivity(new Intent(this, AccountDetailsActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode== Activity.RESULT_OK){
+            if(requestCode==34){
+
+                getWalletHistoryData();
+            }
+        }
     }
 }

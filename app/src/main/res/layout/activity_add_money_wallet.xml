@@ -101,17 +101,17 @@
                 android:padding="@dimen/_15sdp">
 
                 <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:src="@mipmap/dollor_red" />
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/wallet_red" />
 
                 <EditText
                     android:id="@+id/ed_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
                     android:background="@null"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp"
                     android:inputType="number"
                     android:fontFamily="@font/sf_ui_regular"
                     android:hint="@string/hint_money"
@@ -126,13 +126,13 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:textColor="@color/black"
             android:text="Pay By"
-            android:textSize="@dimen/_25sdp"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_10sdp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:visibility="visible"
             android:layout_marginStart="@dimen/_15sdp"
             android:id="@+id/linear_credit"
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_debit"
                 android:gravity="center"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_16ssp"
                 android:text="Credit/Debit Card"/>
 
 
@@ -247,12 +247,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
+            android:layout_margin="@dimen/_16sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
-            android:fontFamily="@font/sf_ui_semibold"
+            android:fontFamily="@font/sf_ui_regular"
             android:padding="@dimen/_4sdp"
             android:text="Continue"
             android:textColor="@color/secondaryTextColor"
-            android:textSize="@dimen/_20sdp" />
+            android:textSize="@dimen/_16ssp" />
 
     </LinearLayout>
 

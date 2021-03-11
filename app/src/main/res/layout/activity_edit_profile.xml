@@ -26,17 +26,18 @@
 
             <ImageView
                 android:id="@+id/edi_profile_back_image"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                app:tint="@color/black"
                 android:src="@drawable/ic_white_back_arrow" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="@font/sf_ui_semibold"
+                android:fontFamily="@font/sf_ui_regular"
                 android:text="Edit Profile"
-                android:textColor="@color/secondaryTextColor" />
+                android:textColor="@color/black" />
 
 
         </RelativeLayout>
@@ -51,7 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/edit_profile_cover_image" />
+                android:src="@drawable/edit_profile_cover_image"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/edit_profile_change_cover_image_tv"
@@ -70,19 +72,20 @@
                 android:paddingRight="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_5sdp"
                 android:text="Change"
-                android:textColor="@color/secondaryTextColor" />
+                android:textColor="@color/secondaryTextColor"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/edit_profile_user_image"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_below="@+id/cover_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_minus50sdp"
-            android:src="@drawable/follow_image" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/edit_profile_change_profile_tv"
@@ -183,8 +186,9 @@
         android:background="@drawable/round_corner_light_gradient_bg"
         android:fontFamily="@font/sf_ui_semibold"
         android:text="Save"
+        android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

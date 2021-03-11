@@ -1,11 +1,13 @@
 
 package com.farmers.buyers.modules.home.homeFragment;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
-import com.farmers.buyers.common.model.SingleTextItem;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
@@ -25,10 +27,6 @@ import com.farmers.buyers.modules.home.models.HomeListItem;
 import com.farmers.buyers.modules.home.models.farmList.FarmListRequest;
 import com.farmers.buyers.modules.home.models.farmList.FarmListResponse;
 import com.farmers.buyers.modules.home.models.farmList.SubProductItemRecord;
-import com.farmers.buyers.modules.home.search.HomeSearchRepository;
-import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
-import com.farmers.buyers.modules.home.search.model.HomeSearchCategoryList;
-import com.farmers.buyers.modules.home.search.model.HomeSearchRequestParams;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.profile.model.ProfileRequestParams;
 import com.farmers.buyers.modules.saveFarms.SaveFarmRepository;
@@ -46,17 +44,18 @@ import java.util.List;
 public class HomeFragmentViewModel extends BaseViewModel {
 
     private HomeFragmentRepository repository = new HomeFragmentRepository();
-    private HomeSearchRepository homeSearchRepository = new HomeSearchRepository();
     private SaveFarmRepository saveFarmRepository = new SaveFarmRepository();
     private FollowersRepository followersRepository = new FollowersRepository();
     private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
     public List<RecyclerViewListItem> farmListItems = new ArrayList<>();
-    public List<RecyclerViewListItem> farmSearchListItems = new ArrayList<>();
     public List<HomeListItem> homeFarmListItem = new ArrayList<>();
 
     public void getCategoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
+
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
+
+        //   items.add(HomeTransformer.getHeaderItems());
         items.add(HomeTransformer.getSearchItems());
         items.add(HomeTransformer.getFilterItems());
 
@@ -106,8 +105,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
-        items.clear();
+    public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, Context context) {
 
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
         CategoryListRequestParams loginRequestParams = new CategoryListRequestParams(appController.getLoginId(),
@@ -116,12 +114,11 @@ public class HomeFragmentViewModel extends BaseViewModel {
             @Override
             public void onSuccess(AllDataModel response) {
                 if (response.isStatus()) {
-
+                    DroidPrefs.apply(context,"wallet_amount",response.getmData().wallet_amount);
                     SharedPreferenceManager.getInstance().setWalletAmount(response.getmData().wallet_amount);
                     SharedPreferenceManager.getInstance().setProfilePic(response.getmData().login_photo);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_NAME", response.getmData().login_name);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_EMAIL", response.getmData().login_email);
-                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE", response.getmData().account_type_name);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_ACCOUNT_TYPE", response.getmData().account_type);
                     SharedPreferenceManager.getInstance().setSharedPreference("USER_MOBILE", response.getmData().login_phone);
                     SharedPreferenceManager.getInstance().setSharedPreference("MOBILE_CODE", response.getmData().login_phone_code);
@@ -231,45 +228,4 @@ public class HomeFragmentViewModel extends BaseViewModel {
             }
         });
     }
-
-//    public void doSearch(MutableLiveData<DataFetchState<HomeSearchApiModel>> stateMachine, String searchQuery) {
-//        farmSearchListItems.clear();
-//        stateMachine.postValue(DataFetchState.loading());
-//
-//        if (searchQuery.isEmpty()) {
-//            stateMachine.postValue(DataFetchState.error("Please enter some text to search", new HomeSearchApiModel()));
-//            return;
-//        }
-//
-//        HomeSearchRequestParams params = new HomeSearchRequestParams(appController.getAuthenticationKey(), searchQuery);
-//
-//        homeSearchRepository.doSearch(params, new ApiResponseCallback<HomeSearchApiModel>() {
-//            @Override
-//            public void onSuccess(HomeSearchApiModel response) {
-//                if (response.getStatus()) {
-//                    if (!response.getData().getCategoryList().isEmpty()) {
-//                        for (int i = 0; i < response.getData().getCategoryList().size(); i++) {
-//                            HomeSearchCategoryList currentList = response.getData().getCategoryList().get(i);
-//                            if (!currentList.getSubProductItemsRecord().isEmpty()) {
-//                                farmSearchListItems.add(new SingleTextItem(currentList.getCategoryName()));
-//                                farmSearchListItems.add(HomeTransformer.transformApiModelToHomeSearchItems(currentList.getSubProductItemsRecord()));
-//                            }
-//                        }
-//                        stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-//
-//                    }
-//                    else {
-//                        stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new HomeSearchApiModel()));
-//                    }
-//                } else
-//                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new HomeSearchApiModel()));
-//            }
-//
-//            @Override
-//            public void onFailure(StandardError standardError) {
-//                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new HomeSearchApiModel()));
-//            }
-//        });
-//    }
-
 }

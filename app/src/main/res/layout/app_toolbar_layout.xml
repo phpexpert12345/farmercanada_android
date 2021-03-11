@@ -12,10 +12,10 @@
         android:layout_width="@dimen/_15sdp"
         android:layout_height="@dimen/_15sdp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dp_8_px"
+        android:layout_marginStart="@dimen/_7sdp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_white_back_arrow"
-        android:layout_marginLeft="@dimen/dp_8_px"
+
         app:tint="@color/black" />
 
     <TextView
@@ -25,9 +25,9 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_14_px"
+        android:textSize="@dimen/_14ssp"
         tools:text="Screen Title"
-        android:fontFamily="@font/sf_ui_bold"/>
+        android:fontFamily="@font/sf_ui_regular"/>
 
     <ImageView
         android:id="@+id/image_more_btn"

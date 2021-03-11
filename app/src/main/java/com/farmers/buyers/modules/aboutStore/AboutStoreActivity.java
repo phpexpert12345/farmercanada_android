@@ -22,7 +22,7 @@ public class AboutStoreActivity extends BaseActivity {
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification_gray, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification_gray, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

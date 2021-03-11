@@ -1,6 +1,7 @@
 package com.farmers.buyers.modules.home.search;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -68,7 +69,8 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
    private ImageView backImage;
    private OnBackPressedClickListeners onBackPressedClickListeners;
     private HomeSearchAdapter adapter;
-
+    FarmDetailsVegetableItems veggie;
+    int quat;
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -90,6 +92,23 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
     public String farm_id;
     int farm_delivery_radius;
     double farm_lat,farm_long;
+    private void callClearCartDialog(String msg) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Farmer Alert")
+                .setMessage(msg)
+                .setCancelable(false)
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .setPositiveButton("OK", (dialog, which) -> {
+                    IncreaseDecreaseParams params = new IncreaseDecreaseParams(appController.getAuthenticationKey(),
+                            appController.getLoginId());
+                    viewModel.clearAllCartItems(clearAllCartItemsMachine, params);
+                    dialog.dismiss();
+                })
+                .setIcon(getResources().getDrawable(R.drawable.logo))
+                .show();
+    }
 
 
 
@@ -155,7 +174,8 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
                     break;
                 case ERROR:
                     dismissLoader();
-                    viewModel.doSearch(stateMachine, searchEt.getText().toString());
+                    callClearCartDialog(response.status_message);
+//                    viewModel.doSearch(stateMachine, searchEt.getText().toString());
                     break;
             }
         });
@@ -171,6 +191,21 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
                 case LOADING:
                     showLoader();
                     break;
+                case ERROR:
+                    dismissLoader();
+                    break;
+            }
+        });
+        clearAllCartItemsMachine.observe(this, response -> {
+            switch (response.status) {
+                case SUCCESS:
+                    Toast.makeText(getContext(), response.status_message, Toast.LENGTH_SHORT).show();
+
+                    AddtoCartItems(veggie,quat);
+//                    getFarmProductDetail();
+                case LOADING:
+
+                    showLoader();
                 case ERROR:
                     dismissLoader();
                     break;
@@ -222,6 +257,11 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
 
     @Override
     public void onClickFarmDetailVegetableListener(FarmDetailsVegetableItems item, int cnt) {
+        veggie=item;
+        quat=cnt;
+        AddtoCartItems(item,cnt);
+    }
+    private void AddtoCartItems(FarmDetailsVegetableItems item,int cnt){
         FarmProductListReq farmProductListReq = new FarmProductListReq(appController.getAuthenticationKey(),
                 item.getFarmId(),
                 appController.getLoginId(),
@@ -231,11 +271,6 @@ public class HomeSearchBottomSheetFragment extends BaseFragment implements FarmD
                 "1",
                 item.price_unit_type,
                 String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")));
-        FarmDeliveryStatus farmDeliveryStatus=new FarmDeliveryStatus();
-        farmDeliveryStatus.farm_delivery_status=farm_delivery_radius;
-        farmDeliveryStatus.farm_lat=farm_lat;
-        farmDeliveryStatus.farm_long=farm_long;
-        DroidPrefs.apply(baseActivity,"delivery_radius",farmDeliveryStatus);
         viewModel.addToCartItems(addToCartStateMachine, farmProductListReq);
     }
 

@@ -63,8 +63,9 @@ public class HomeItemsViewHolder extends BaseViewHolder {
         home_list_item_layout_farmName.setText(item.getFarmName());
         home_list_item_layout_distance_tv.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong()))+ " km away from you");
         customer_home_parlour_view_holder_rating_tv.setText(String.valueOf(item.getRating()));
-        Glide.with(itemView.getContext()).load(item.getCoverImage()).into(farmImage);
-        Glide.with(itemView.getContext()).load(item.getFarmImage()).into(circleImageView);
+        Glide.with(itemView.getContext()).load(item.getCoverImage()).placeholder(R.drawable.ic_sign_up_logo).into(farmImage);
+        Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.ic_sign_up_logo).into(circleImageView);
+        Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.ic_sign_up_logo).into(circleImageView2);
         farmImage.setOnClickListener(view -> {
             Intent intent= new Intent(itemView.getContext(), FarmDetailActivity.class);
 //                intent.putExtra(Constant.SERIALIZABLE_INTENT,item);
@@ -82,7 +83,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
 
 
         try {//todo Please check sajjad
-            if (item.getIsFollowing().equals("Yes")) {
+            if (item.getFarm_followed_status().equals("Yes")) {
                 unFollowFarmLayout.setVisibility(View.VISIBLE);
                 followFarmLayout.setVisibility(View.GONE);
             }
@@ -116,7 +117,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             public void onClick(View v) {
                 unFollowFarmLayout.setVisibility(View.VISIBLE);
                 followFarmLayout.setVisibility(View.GONE);
-                farmItemClickListener.onFollowFarmClicked(item.getId(), "1", item.getFollowId());
+                farmItemClickListener.onFollowFarmClicked(item.getId(), "1", item.getFollowed_id());
             }
         });
 
@@ -125,7 +126,7 @@ public class HomeItemsViewHolder extends BaseViewHolder {
             public void onClick(View v) {
                 unFollowFarmLayout.setVisibility(View.GONE);
                 followFarmLayout.setVisibility(View.VISIBLE);
-                farmItemClickListener.onFollowFarmClicked(item.getId(), "0", item.getFollowId());
+                farmItemClickListener.onFollowFarmClicked(item.getId(), "0", item.getFollowed_id());
             }
         });
 

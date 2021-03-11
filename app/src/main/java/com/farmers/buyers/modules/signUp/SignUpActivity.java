@@ -53,7 +53,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
     public GPSTracker gpsTracker;
     private RadioButton radio_seller, radio_buyer;
     private String account_country = "";
-    private Integer account_type = 1;//Buyer = 1 & Seller = 2
+    private Integer account_type = 2;//Buyer = 1 & Seller = 2
     protected Context context;
     private boolean check = false;
     private String account_city, account_state, account_address, account_long, account_lat, device_id, device_platform, account_phone_code;

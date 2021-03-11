@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_semibold"
-                android:text="Add A Credit Card"
+                android:text="Add Debit/Credit Card"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp" />
         </LinearLayout>
@@ -135,13 +135,14 @@
 
     </ProgressBar>
     <Button
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_18ssp"
         android:fontFamily="@font/sf_ui_semibold"
         android:textColor="@color/secondaryTextColor"
         android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:layout_margin="@dimen/_16sdp"
         android:text="Add"
         android:background="@drawable/round_corner_light_gradient_bg"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_gravity="center"
         android:id="@+id/btnPay"
         android:layout_width="match_parent"

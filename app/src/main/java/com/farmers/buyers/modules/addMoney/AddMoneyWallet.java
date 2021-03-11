@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.StripePay;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.modules.addMoney.model.AddMoneyRequestParams;
@@ -59,6 +61,7 @@ import java.lang.reflect.Type;
 public class AddMoneyWallet extends BaseActivity implements View.OnClickListener {
     StripePay stripePay;
  Dialog pay_dialog;
+
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -101,7 +104,7 @@ getPaymentkey();
         stateMachine.observe(this, signUpApiModelDataFetchState -> {
             switch (signUpApiModelDataFetchState.status) {
                 case LOADING: {
-                    loading();
+//                    loading();
                     break;
                 }
 
@@ -128,9 +131,12 @@ getPaymentkey();
 
     private void success(String msg) {
         dismissLoader();
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(AddMoneyWallet.this, WalletActivity.class);
-        startActivity(intent);
+        String current_price=DroidPrefs.get(this,"wallet_amount",String.class);
+        double price= Double.parseDouble(current_price);
+        price+=Double.parseDouble(ed_amount.getText().toString());
+        DroidPrefs.apply(this,"wallet_amount",String.format("%.2f",price));
+        Log.i("price",price+"");
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
@@ -148,8 +154,15 @@ getPaymentkey();
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_add:
+
                 if(radio_credit.isChecked()) {
-                    dialogOpen(0);
+                    if(ed_amount.getText().toString().isEmpty()){
+                        Toast.makeText(this, "Please enter amount", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+
+                        dialogOpen(0);
+                    }
                 }
                 else{
                     Toast.makeText(this, "Please select option", Toast.LENGTH_SHORT).show();
@@ -175,7 +188,7 @@ getPaymentkey();
         viewModel.addMoney(stateMachine, addMoneyRequestParams);
     }
     private void getPaymentkey(){
-        String url= ApiConstants.BASE_URL+ApiConstants.GET_PAYMENT_KEY+"?farm_id="+ SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString()+"&auth_key="+appController.getAuthenticationKey();
+        String url= ApiConstants.BASE_URL+ApiConstants.GET_PAYMENT_KEY_WALLET+"?farm_id="+ SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString()+"&auth_key="+appController.getAuthenticationKey();
         StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -257,7 +270,7 @@ getPaymentkey();
 
                 @Override
                 public void onSuccess(Token token) {
-                    dismissLoader();
+
                     String description = "Payment success";
                     Log.e("getTokenId=", token.getId());
                     //Toast.makeText(CartCheckout.this, token.getId(), Toast.LENGTH_SHORT).show();
@@ -282,13 +295,11 @@ getPaymentkey();
         }
     }
     private void stripePayment(String token,int type){
-        showLoader();
-        String url= ApiConstants.BASE_URL+ApiConstants.STRIPE_PAY+"?farm_id="+ SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString()+"&auth_key="+appController.getAuthenticationKey()+"&amount="+ ed_amount.getText().toString().trim()+"&stripeToken="+token+"&currency=usd"+"&description=test";
+        String url= ApiConstants.BASE_URL+ApiConstants.STRIPE_PAY_WALLET+"?farm_id="+ SharedPreferenceManager.getInstance().getSharedPreferences("FARM_ID", "").toString()+"&auth_key="+appController.getAuthenticationKey()+"&amount="+ ed_amount.getText().toString().trim()+"&stripeToken="+token+"&currency=usd"+"&description=test";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    dismissLoader();
                     pay_dialog.dismiss();
                     Log.i("res",response);
                     JSONObject jsonObject=new JSONObject(response);
@@ -311,7 +322,7 @@ getPaymentkey();
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                dismissLoader();
+
             }
         });
         RequestQueue requestQueue=Volley.newRequestQueue(this);

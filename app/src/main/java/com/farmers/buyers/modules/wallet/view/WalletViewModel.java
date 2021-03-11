@@ -1,10 +1,13 @@
 
 package com.farmers.buyers.modules.wallet.view;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
@@ -28,19 +31,23 @@ public class WalletViewModel extends BaseViewModel {
     private AppController appController = AppController.get();
     public List<RecyclerViewListItem> items = new ArrayList<>();
 
-    public void getWalletHistoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine) {
+    public void getWalletHistoryList(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, Context context) {
         stateMachine.postValue(DataFetchState.<AllDataModel>loading());
         CategoryListRequestParams loginRequestParams = new CategoryListRequestParams(appController.getLoginId(),
                 appController.getAuthenticationKey());
         repository.getWalletHistoryList(loginRequestParams, new ApiResponseCallback<AllDataModel>() {
             @Override
             public void onSuccess(AllDataModel response) {
+                if(items.size()>0){
+                    items.clear();
+                }
                 if (response.isStatus()) {
-                    items.add(new WalletHeaderItems());
-                    items.add(new SimpleTitleItem("Today"));
+                    WalletHeaderItems walletHeaderItems=new WalletHeaderItems();
+                    String amount= DroidPrefs.get(context,"wallet_amount",String.class);
+                    walletHeaderItems.wallet_amount=amount;
+                    items.add(walletHeaderItems);
+                    items.add(new SimpleTitleItem("Recent"));
                     items.addAll(WalletTransformer.getWalletHistory(response.getmData().WalletList));
-                    items.add(new SimpleTitleItem("Yesterday"));
-                    items.addAll(WalletTransformer.getYesterdayHistory());
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {
                     stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));

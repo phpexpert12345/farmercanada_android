@@ -55,7 +55,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
             public void onClick(View view) {
                 onBackPressed();
             }
-        }, true, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
+        }, false, new ToolbarMenuConfig(R.drawable.ic_notification, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -81,7 +81,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
             switch (dataFetchState.status) {
                 case ERROR: {
                     dismissLoader();
-                    Toast.makeText(ReferFriendsActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ReferFriendsActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case LOADING: {
@@ -107,7 +107,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
         shareMsg = dataFetchState.data.getData().refer_a_friend_sharing;
         tv_referral_code.setText(dataFetchState.data.getData().referral_code);
         dismissLoader();
-        Toast.makeText(ReferFriendsActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(ReferFriendsActivity.this, dataFetchState.status_message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

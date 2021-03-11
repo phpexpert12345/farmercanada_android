@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.common.model.OrderData;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.modules.orders.subOrderList.SubOrderListActivity;
@@ -69,5 +70,9 @@ TextView order_id,order_date,order_type_txt,txt_farm_name,txt_farm_address,txt_f
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        App.finish_activity=true;
+        finish();
+    }
 }

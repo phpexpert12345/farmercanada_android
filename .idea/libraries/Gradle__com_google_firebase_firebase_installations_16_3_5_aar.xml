@@ -2,8 +2,8 @@
   <library name="Gradle: com.google.firebase:firebase-installations:16.3.5@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/93f461583c36ddb69e936ad5d17bcd5d/jetified-firebase-installations-16.3.5/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dd2d132a08badb68cd4646ce4bf955ad/jetified-firebase-installations-16.3.5/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dd2d132a08badb68cd4646ce4bf955ad/jetified-firebase-installations-16.3.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dd2d132a08badb68cd4646ce4bf955ad/jetified-firebase-installations-16.3.5/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dd2d132a08badb68cd4646ce4bf955ad/jetified-firebase-installations-16.3.5/res" />
     </CLASSES>
     <JAVADOC>

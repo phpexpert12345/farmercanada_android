@@ -32,8 +32,12 @@ public class LoginViewModel extends BaseViewModel {
             return;
         }
 
-        if (password.isEmpty()) {
+      else  if (password.isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter password", new LoginApiModel()));
+            return;
+        }
+        else if(password.length()<5){
+            stateMachine.postValue(DataFetchState.error("Password should  be minimum 5 digit", new LoginApiModel()));
             return;
         }
 

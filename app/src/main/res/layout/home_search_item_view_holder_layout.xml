@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="-10dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/home_header_item_search_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:editable="false"
         android:background="@drawable/light_gray_round_border_bg"
         android:drawableStart="@drawable/ic_search"
         android:drawableLeft="@drawable/ic_search"

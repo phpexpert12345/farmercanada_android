@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Farmers</string>
     <string name="skip">Skip</string>
-    <string name="order_type">Order type</string>
+<string name="order_type">Order Type</string>
     <string name="hint_money">Enter amount</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -27,14 +27,16 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">Login</string>
+    <string name="login_as">Login as</string>
     <string name="do_yo_want_signup_as_a">Do yo want signup as a</string>
     <string name="seller">Seller?</string>
+    <string name="seller_yuer">Seller/buyer?</string>
     <string name="name">Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="submit">Submit</string>
     <string name="register">Register</string>
     <string name="terms_amp_conditions"><![CDATA[Terms & conditions]]></string>
-    <string name="otp_text">We need your Phone number \n to reach you</string>
+    <string name="otp_text">We need your Phone number to reach you</string>
     <string name="submit_otp_text">Please enter the OTP code sent to</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="delivery">Delivery</string>

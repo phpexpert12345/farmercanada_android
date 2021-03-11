@@ -31,6 +31,7 @@ import com.farmers.buyers.modules.signUp.model.SendOtpApiModel;
 import com.farmers.buyers.modules.signUp.model.SignUpApiModel;
 import com.farmers.buyers.modules.signUp.model.VerifyOtpApiModel;
 import com.farmers.buyers.modules.splash.AuthenticationApiModel;
+import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 import com.farmers.seller.modules.broadcastMessage.model.BroadcastMessageResponse;
 import com.farmers.seller.modules.ourOrders.model.AllOrderResponse;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
@@ -183,7 +184,6 @@ public interface ApiController {
                                      @Part("account_name") RequestBody account_name,
                                      @Part("account_email") RequestBody account_email,
                                      @Part MultipartBody.Part account_photo,
-                                     @Part MultipartBody.Part cover_photo,
                                      @Part("auth_key") RequestBody auth_key);
 
 
@@ -390,6 +390,37 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText, @Field("LoginId") String loginId);
+
+
+    @Multipart
+    @POST
+    Call<SetupStoreApiModel> doSetupStore(@Url String url,
+                                          @Part("store_type") RequestBody storeType,
+                                          @Part("store_name") RequestBody storeName,
+                                          @Part("store_address") RequestBody address,
+                                          @Part("store_city") RequestBody city,
+                                          @Part("store_state") RequestBody state,
+                                          @Part("store_country") RequestBody country,
+                                          @Part("store_post_code") RequestBody postCode,
+                                          @Part("order_type") RequestBody orderType,
+                                          @Part("pickup_minimum_amount") RequestBody pickUpMinimumOrderAmount,
+                                          @Part("pickup_message") RequestBody pickUpMsg,
+                                          @Part("delivery_map_location_area") RequestBody mapLocation,
+                                          @Part("delivery_location_distance") RequestBody radius,
+                                          @Part("delivery_charge") RequestBody deliveryCharge,
+                                          @Part("delivery_additional_charge") RequestBody additionalCharge,
+                                          @Part("delivery_minimum_amount") RequestBody deliveryMinimumAmount,
+                                          @Part("delivery_message") RequestBody deliveryMsg,
+                                          @Part("company_type") RequestBody companyType,
+                                          @Part("document_type_1") RequestBody documentType,
+                                          @Part("LoginId") RequestBody loginId,
+                                          @Part("auth_key") RequestBody authKey,
+                                          @Part("store_logo") MultipartBody.Part logo,
+                                          MultipartBody.Part docOneFront,
+                                          MultipartBody.Part docOneBack,
+                                          MultipartBody.Part docTwoFront,
+                                          MultipartBody.Part docTwoBack);
+
 
 
     @Multipart

@@ -1,10 +1,11 @@
 package com.farmers.buyers.modules.farmDetail;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
@@ -23,7 +25,6 @@ import com.farmers.buyers.modules.address.MyAddressActivity;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseApiModel;
 import com.farmers.buyers.modules.cart.myCart.model.increaseDecrease.IncreaseDecreaseParams;
 import com.farmers.buyers.modules.farmDetail.adapter.FarmDetailsAdapter;
-import com.farmers.buyers.modules.farmDetail.model.FarmDetailHeaderListItem;
 import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 import com.farmers.buyers.modules.farmDetail.model.farmList.request.FarmProductListReq;
 import com.farmers.buyers.modules.farmDetail.model.farmList.response.FarmListProductResponse;
@@ -36,17 +37,20 @@ import com.farmers.buyers.modules.home.view.HomeHeaderViewHolder;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.modules.ratingAndReview.RatingAndReviewActivity;
 import com.farmers.buyers.storage.SharedPreferenceManager;
-
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHolder.HeaderItemClickListener,
         FarmDetailHeaderViewHolder.FarmHeaderClickListener, FarmDetailsVegetableItemsViewHolder.FarmDetailVegetableListener, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener, FarmDetailViewHolder.FarmDetailItemClickListener {
     private RecyclerView recyclerView;
     private FarmDetailsAdapter adapter;
-    public String farm_id;
+    public String farm_id,pickup_available,delivery_available;
     private AppController appController = AppController.get();
     FarmDetailsVegetableItems veggie;
     int quat;
+    int flag=0;
+    FloatingActionButton img_go_cart;
+
+
 
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -80,7 +84,13 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         adapter = new FarmDetailsAdapter(this, this, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        img_go_cart=findViewById(R.id.img_go_cart);
+        pickup_available=getIntent().getStringExtra("pickup_available");
+        delivery_available=getIntent().getStringExtra("delivery_available");
+        img_go_cart.setOnClickListener(v->{
+            App.cart_updated=true;
+            finish();
+        });
         stateMachine.observe(this, response -> {
             switch (response.status) {
                 case SUCCESS:
@@ -88,7 +98,9 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                     adapter.updateData(viewModel.items);
                     break;
                 case LOADING:
-                    showLoader();
+                        showLoader();
+
+
                     break;
                 case ERROR:
                     dismissLoader();
@@ -101,12 +113,14 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         addToCartStateMachine.observe(this, response -> {
             switch (response.status) {
                 case SUCCESS:
-                    dismissLoader();
-                    getFarmProductDetail();
+
+                    getFarmProductDetail("allcart");
                     Toast.makeText(FarmDetailActivity.this, response.status_message, Toast.LENGTH_SHORT).show();
                     break;
                 case LOADING:
-                    showLoader();
+
+                        showLoader();
+
                     break;
                 case ERROR:
                     dismissLoader();
@@ -118,13 +132,16 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         increaseDecreaseMachine.observe(this, response -> {
             switch (response.status) {
                 case SUCCESS:
-                    getFarmProductDetail();
+                    dismissLoader();
+                    getFarmProductDetail("add");
                     Toast.makeText(FarmDetailActivity.this, response.status_message, Toast.LENGTH_SHORT).show();
-                    dismissLoader();
+
                 case LOADING:
-                    showLoader();
+
+                        showLoader();
+
                 case ERROR:
-                    dismissLoader();
+
                     break;
             }
         });
@@ -133,10 +150,11 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
             switch (response.status) {
                 case SUCCESS:
                     Toast.makeText(FarmDetailActivity.this, response.status_message, Toast.LENGTH_SHORT).show();
-                    dismissLoader();
+
                      AddtoCartItems(veggie,quat);
 //                    getFarmProductDetail();
                 case LOADING:
+                    flag=1;
                     showLoader();
                 case ERROR:
                     dismissLoader();
@@ -147,26 +165,16 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
         followUnFollowStateMachine.observe(this, followUnFollowApiModelDataFetchState -> {
             switch (followUnFollowApiModelDataFetchState.status) {
                 case LOADING: {
+
                     showLoader();
                     break;
                 }
                 case SUCCESS: {
-                    dismissLoader();
+
                /*     Toast.makeText(FarmDetailActivity.this,
                             followUnFollowApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();*/
 
-//                  FarmDetailHeaderListItem farmDetailHeaderListItem= (FarmDetailHeaderListItem) viewModel.items.get(0);
-//                    viewModel.items.remove(0);
-//                    if(farmDetailHeaderListItem.followStatus.equalsIgnoreCase("no")){
-//                        farmDetailHeaderListItem.followStatus="Yes";
-//                    }
-//                    else{
-//                        farmDetailHeaderListItem.followStatus="no";
-//                    }
-//                    viewModel.items.add(0,farmDetailHeaderListItem);
-//                    adapter.updateData(viewModel.items);
-
-                    getFarmProductDetail();
+                    getFarmProductDetail("follow");
                     break;
 
                 }
@@ -179,7 +187,7 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
             }
         });
 
-        getFarmProductDetail();
+        getFarmProductDetail("view");
     }
 
     private void callClearCartDialog(String msg) {
@@ -200,12 +208,12 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
                 .show();
     }
 
-    private void getFarmProductDetail() {
+    private void getFarmProductDetail(String type) {
         FarmProductListReq farmProductListReq = new FarmProductListReq(FarmDetailActivity.this,
                 appController.getAuthenticationKey(),
                 appController.getLoginId(),
                 getIntent().getStringExtra("FARM_ID"));
-        viewModel.getFarmProductList(stateMachine, farmProductListReq);
+        viewModel.getFarmProductList(stateMachine, farmProductListReq,type);
     }
 
     @Override
@@ -224,6 +232,7 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     @Override
     public void onOnBackClickListener() {
+        App.updated=true;
         onBackPressed();
     }
 
@@ -273,20 +282,9 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     @Override
     public void onDeliveryTypeCheckedChangeListener(int type) {
-        getFarmProductDetail();
-        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
-        switch (type){
-            case 0:{
-                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Delivery");
-                break;
-            }
-            case 1:
-            {
-                SharedPreferenceManager.getInstance().setSharedPreference("order_type","Pickup");
-                break;
-            }
-        }
+        getFarmProductDetail("view");
 
+        SharedPreferenceManager.getInstance().setSharedPreference("SERVICE_TYPE", String.valueOf(type));
     }
 
     @Override

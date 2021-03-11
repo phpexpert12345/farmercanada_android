@@ -50,6 +50,25 @@ public class SubProductItemRecord {
     private String favourite_id;
     private String followed_id;
 
+    public String getDelivery_available() {
+        return delivery_available;
+    }
+
+    public void setDelivery_available(String delivery_available) {
+        this.delivery_available = delivery_available;
+    }
+
+    public String getPickup_available() {
+        return pickup_available;
+    }
+
+    public void setPickup_available(String pickup_available) {
+        this.pickup_available = pickup_available;
+    }
+
+    private String delivery_available;
+    private String pickup_available;
+
 
     public String getFarmId() {
         return farm_id;

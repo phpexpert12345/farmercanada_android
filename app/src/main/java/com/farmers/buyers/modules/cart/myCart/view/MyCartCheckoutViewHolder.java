@@ -41,7 +41,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
 
     LinearLayout applyCouponButtonLayout;
     TextView myCartApplyCouponTv;
-    RelativeLayout appliedCouponAmountLayout;
+    RelativeLayout appliedCouponAmountLayout,relative_package;
     TextView removeCouponTextView;
     Button checkOutBtn;
     EditText couponEditText;
@@ -69,14 +69,15 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
         subTotal = itemView.findViewById(R.id.sub_total);
         packageFeeLabel = itemView.findViewById(R.id.packedge_fee_lable);
         rl_shipping_fee = itemView.findViewById(R.id.rl_shipping_fee);
+        relative_package=itemView.findViewById(R.id.relative_package);
         decimalFormat=new DecimalFormat("##.##");
-
         checkOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listeners1.onCheckOutClicked();
             }
         });
+
 
         myCartApplyCouponTv.setOnClickListener(view -> {
             if (!couponEditText.getText().toString().trim().isEmpty())
@@ -90,7 +91,7 @@ public class MyCartCheckoutViewHolder extends BaseViewHolder {
     public void bindView(final RecyclerViewListItem items) {
         TaxData taxData = (TaxData) items;
         double su_total=Double.parseDouble(taxData.getSubTotal());
-
+        checkOutBtn.setText(taxData.getTitle());
         subTotal.setText(String.format("%.2f",su_total));
         if (taxData.isApplyCouponButton()) {
             appliedCouponAmountLayout.setVisibility(View.VISIBLE);
@@ -137,6 +138,7 @@ else{
     rl_shipping_fee.setVisibility(View.VISIBLE);
 //        shipingFee.setText(taxData.getDeliveryCharge())
 }
+
 //        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("1")) {
 //            rl_shipping_fee.setVisibility(View.GONE);
 //        } else {
@@ -149,8 +151,22 @@ else{
             gstTaxAmount.setText(String.format("%.2f", gst));
         }
         packageFeeLabel.setText("Package Fee :");
+
         if(taxData.getDeliveryCharge()!=null) {
-            totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount()) + Double.parseDouble(taxData.getPackageFeeAmount());
+            double packagee_fees=0.0;
+            if(taxData.getPackageFeeAmount()!=null){
+                if(!taxData.getPackageFeeAmount().isEmpty()) {
+                   relative_package.setVisibility(View.VISIBLE);
+                    packagee_fees = Double.parseDouble(taxData.getPackageFeeAmount());
+                }
+                else{
+                    relative_package.setVisibility(View.GONE);
+                }
+            }
+            else{
+                relative_package.setVisibility(View.GONE);
+            }
+            totalAmountf = Double.parseDouble(taxData.getSubTotal()) + Double.parseDouble(taxData.getgSTTaxAmount())+packagee_fees;
             if(!taxData.getDeliveryCharge().equalsIgnoreCase("")){
                 if(order_type.equalsIgnoreCase("Delivery")){
                     totalAmountf+=Double.parseDouble(taxData.getDeliveryCharge());

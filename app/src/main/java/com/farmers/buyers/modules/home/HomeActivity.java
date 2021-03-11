@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,11 +12,13 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.App;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.modules.cart.myCart.MyCartFragment;
 import com.farmers.buyers.modules.home.homeFragment.HomeFragment;
 import com.farmers.buyers.modules.profile.MyProfileFragment;
 import com.farmers.buyers.modules.saveFarms.SavedFarmsFragment;
+import com.farmers.buyers.storage.SharedPreferenceManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -27,6 +30,10 @@ HomeFragment homeFragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        App.updated=false;
+        App.finish_activity=false;
+        App.wallet_updated=false;
+        App.cart_updated=false;
         init();
     }
 
@@ -93,6 +100,46 @@ HomeFragment homeFragment;
         super.onActivityResult(requestCode, resultCode, data);
 
             homeFragment.updateAddress();
+            if(resultCode==Activity.RESULT_OK){
+                if(requestCode==45){
+                    fragment=new MyCartFragment();
+                    loadFragment(fragment);
+                    navigation.setSelectedItemId(R.id.navigation_cart);
+                }
+                else if(requestCode==56){
+                    if(fragment instanceof MyProfileFragment){
+                        MyProfileFragment profileFragment= (MyProfileFragment) fragment;
+                        profileFragment.updateItems();
+                    }
+                }
+            }
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(App.updated){
+            homeFragment.farmListDataRequest("0",String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "0")),"",0);
+            App.updated=false;
+        }
+        if(App.wallet_updated){
+            if(fragment instanceof MyProfileFragment){
+                onBackPressed();
+                App.wallet_updated=false;
+            }
+        }
+        if(App.finish_activity){
+           onBackPressed();
+            App.finish_activity=false;
+        }
+        if(App.cart_updated){
+            fragment=new MyCartFragment();
+            loadFragment(fragment);
+            navigation.setSelectedItemId(R.id.navigation_cart);
+            App.cart_updated=false;
+        }
 
     }
 
@@ -113,4 +160,5 @@ HomeFragment homeFragment;
             finish();
         }
     }
+
 }
