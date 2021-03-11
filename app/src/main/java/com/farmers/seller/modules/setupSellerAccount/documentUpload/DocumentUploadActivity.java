@@ -163,22 +163,19 @@ public class DocumentUploadActivity extends BaseActivity implements View.OnClick
             }
         });
 
-        stateMachine.observe(this, new Observer<DataFetchState<SetupStoreApiModel>>() {
-            @Override
-            public void onChanged(DataFetchState<SetupStoreApiModel> setupStoreApiModelDataFetchState) {
-                switch (setupStoreApiModelDataFetchState.status) {
-                    case LOADING:
-                        loading();
-                        break;
-                    case SUCCESS: {
-                        dismissLoader();
-                        Toast.makeText(DocumentUploadActivity.this, setupStoreApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(DocumentUploadActivity.this, ProductListActivity.class));
-                    }
-                    case ERROR:
-                        error(setupStoreApiModelDataFetchState.status_message);
-                        break;
+        stateMachine.observe(this, setupStoreApiModelDataFetchState -> {
+            switch (setupStoreApiModelDataFetchState.status) {
+                case LOADING:
+                    loading();
+                    break;
+                case SUCCESS: {
+                    dismissLoader();
+                    Toast.makeText(DocumentUploadActivity.this, setupStoreApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DocumentUploadActivity.this, ProductListActivity.class));
                 }
+                case ERROR:
+                    error(setupStoreApiModelDataFetchState.status_message);
+                    break;
             }
         });
     }
