@@ -63,7 +63,6 @@ public class HomeCategoryListItemViewHolder extends BaseViewHolder {
             }
         });
 
-
         if (selectedPosition == getAdapterPosition()) {
             selectedPosition = getOldPosition();
             cardView.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.select_rect_bg));

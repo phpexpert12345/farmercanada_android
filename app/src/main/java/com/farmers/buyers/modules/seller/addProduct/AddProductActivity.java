@@ -268,7 +268,6 @@ public class AddProductActivity extends BaseActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -292,7 +291,6 @@ public class AddProductActivity extends BaseActivity {
                     }
                     break;
                 }
-
             }
         }
     }

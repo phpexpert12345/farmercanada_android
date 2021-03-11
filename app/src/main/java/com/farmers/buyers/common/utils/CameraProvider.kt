@@ -30,13 +30,16 @@ class CameraProvider(private val activity: Activity, private val code: Int, priv
     private var imageUri: Uri? = null
 
     fun openGallery() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
+        val intent =
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        activity.startActivityForResult(intent, galleryCode)
+    //    val intent = Intent()
+        //intent.type = "image/*"
+        //intent.action = Intent.ACTION_GET_CONTENT
 //        if(fragment != null) {
 //            fragment.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
 //        }else {
-        activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
+       // activity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), galleryCode)
 //        }
 
     }
@@ -207,7 +210,7 @@ class CameraProvider(private val activity: Activity, private val code: Int, priv
             file = File(Environment.getExternalStorageDirectory().toString() + File.separator + fileNameToSave)
             file.createNewFile()
             val bos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, bos)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 25, bos)
             val bitmapData = bos.toByteArray()
 
             val fos = FileOutputStream(file)

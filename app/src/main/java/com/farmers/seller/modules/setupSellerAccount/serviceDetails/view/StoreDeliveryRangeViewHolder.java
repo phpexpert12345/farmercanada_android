@@ -1,6 +1,5 @@
 package com.farmers.seller.modules.setupSellerAccount.serviceDetails.view;
 
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -25,8 +24,6 @@ public class StoreDeliveryRangeViewHolder extends BaseViewHolder {
         super(Extensions.inflate(parent, R.layout.store_setup_delivery_range_item_layout));
         rangeTv = itemView.findViewById(R.id.setup_range_delivery_item_title_tv);
         this.listener = listener;
-
-
     }
 
     @Override
@@ -34,24 +31,20 @@ public class StoreDeliveryRangeViewHolder extends BaseViewHolder {
         StoreDeliveryRangeItems item = (StoreDeliveryRangeItems) items;
         rangeTv.setText(item.getTitle());
 
-        rangeTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
-                listener.onRangeSelectListener(getAdapterPosition(), item.getTitle());
-            }
+        if (selectedPosition == getAdapterPosition()) {
+            selectedPosition = getOldPosition();
+            rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
+        } else {
+            rangeTv.setBackground(null);
+            rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+        }
+
+        rangeTv.setOnClickListener(view -> {
+            selectedPosition = getAdapterPosition();
+            rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
+            listener.onRangeSelectListener(getAdapterPosition(), item.getTitle());
         });
-
-
-//        if (selectedPosition == getAdapterPosition()) {
-//            selectedPosition = getOldPosition();
-//            rangeTv.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.green_rect_bg));
-//        } else {
-//            rangeTv.setBackground(null);
-//            rangeTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
-//        }
     }
-
 
     public interface RangeSelectedListener {
         void onRangeSelectListener(int position, String range);

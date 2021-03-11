@@ -9,7 +9,6 @@
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
     tools:context="com.farmers.seller.modules.setupSellerAccount.serviceDetails.ServiceDetailsStepActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
@@ -191,7 +190,6 @@
 
     </LinearLayout>
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -217,7 +215,6 @@
                     android:orientation="horizontal">
 
 
-
                     <CheckBox
                         android:id="@+id/store_setup_delivery_check"
                         android:layout_width="0dp"
@@ -238,8 +235,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -359,7 +356,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/transparent"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:padding="@dimen/_8sdp" />
 
 
@@ -410,9 +407,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/transparent"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:padding="@dimen/_8sdp" />
-
 
                 </LinearLayout>
 
@@ -430,29 +426,39 @@
                     android:id="@+id/store_setup_delivery_message_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60sdp"
-                    android:gravity="top"
-                    android:padding="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_8sdp"
-                    android:background="@drawable/gray_border_transparent_bg" />
+                    android:background="@drawable/gray_border_transparent_bg"
+                    android:gravity="top"
+                    android:inputType="text"
+                    android:padding="@dimen/_5sdp" />
 
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray"
-                app:hintTextColor="@color/light_gray">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/store_setup_minimum_order_et"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Minimum Order"
-                    android:singleLine="true" />
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="Minimum Order"
+                    android:textColor="@color/primaryTextColor" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.AppTheme.TextInputLayoutList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/light_gray"
+                    app:boxStrokeColor="@color/light_gray"
+                    app:hintTextColor="@color/light_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/store_setup_minimum_order_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Minimum Order"
+                        android:inputType="number"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -466,7 +472,6 @@
                 android:text="Pickup"
                 android:textColor="@color/primaryTextColor" />
 
-
             <LinearLayout
                 android:id="@+id/store_setup_pickup_ll"
                 android:layout_width="match_parent"
@@ -474,6 +479,15 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="Minimum Order"
+                    android:textColor="@color/primaryTextColor" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -488,6 +502,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Minimum Pickup Order"
+                        android:inputType="number"
                         android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -507,12 +522,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/gray_border_transparent_bg"
                     android:gravity="top"
-                    android:padding="@dimen/_5sdp"
-                    android:background="@drawable/gray_border_transparent_bg" />
+                    android:padding="@dimen/_5sdp" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -531,7 +545,6 @@
                     android:textColor="@color/secondaryTextColor" />
 
             </LinearLayout>
-
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

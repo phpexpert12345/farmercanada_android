@@ -80,7 +80,7 @@ public class OurOrdersActivity extends BaseActivity implements NavigationView.On
         tv_title_name = findViewById(R.id.tv_title_name);
         nav_icon.setOnClickListener(nav_iconListener);
         drawer = findViewById(R.id.drawer_layout);
-        tv_title_name.setText("Our Order's");
+        tv_title_name.setText("My Order's");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,

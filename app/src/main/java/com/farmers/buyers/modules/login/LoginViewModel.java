@@ -50,7 +50,6 @@ public class LoginViewModel extends BaseViewModel {
                 role,
                 "Android",
                 appController.getAuthenticationKey());
-        http://farmercanada.com/buyer_api/phpexpert_login.php?account_email=9899096063&account_password=12345&account_type=2&device_id=eJS07f35RsyO8asoHH0h4q:APA91bGmgmja0Gbe7rG_PITuBTdEeKogeFxCzWoSgZZXAFzJBnGh9ZxYQHRdENrB_LW-Vo1xObN6joVhS-ve4pYSXRHssPQXmo0rWduR2ghUh97nUahuxyxRzwgLzwE-EyjF1l858Vhh&device_platform=Android&auth_key=dH_8Rpyla-E:APA91bFNJsbcya80FU0SrsxtzEXR3qdK100EzdZykXtpQCkZgzp10tfaSC7PjDFSn7JJ6eFsAObjAN6Y_fr4kO8PnhW2PcMkjYVjDZODnf7Iou0AgYYWh0vFRolOVB5d1UTYRfC7gdSB
 
         repository.doLogin(loginRequestParams, new ApiResponseCallback<LoginApiModel>() {
             @Override
@@ -60,10 +59,12 @@ public class LoginViewModel extends BaseViewModel {
                     SharedPreferenceManager.getInstance().setLoginId(response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setSharedPreference("", response.getData().getLoginId());
                     SharedPreferenceManager.getInstance().setRole(response.getData().getAccountTypeName());
-                    SharedPreferenceManager.getInstance().setIsStoreSetup(response.getData().getStoreSetupStatus().equals("1"));
-                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE",response.getData().getAccountTypeName());
+                    SharedPreferenceManager.getInstance().setFarmId(response.getData().getFarmId());
+                    isStoreSetup = response.getData().getStoreSetupStatus(); //"store_setup_status": "Yes",
+                    if (response.getData().getStoreSetupStatus().equals("Yes")) {
+                        SharedPreferenceManager.getInstance().setIsStoreSetup(true);
+                    }
                     userType = response.getData().getAccountTypeName();
-                    isStoreSetup = response.getData().getStoreSetupStatus();
 
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {

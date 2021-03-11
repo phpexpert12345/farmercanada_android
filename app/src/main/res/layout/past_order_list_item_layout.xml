@@ -140,7 +140,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="Total: "
                                 android:textColor="@color/green"
-                                android:textSize="@dimen/_13sdp" />
+                                android:textSize="@dimen/_12ssp" />
 
                             <TextView
                                 android:id="@+id/tv_total_amount"
@@ -149,7 +149,7 @@
                                 android:fontFamily="@font/sf_ui_regular"
                                 android:text="$107.95"
                                 android:textColor="@color/green"
-                                android:textSize="@dimen/_13sdp" />
+                                android:textSize="@dimen/_12ssp" />
 
                         </LinearLayout>
 
@@ -173,11 +173,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:background="@drawable/divider" />
 
         <LinearLayout
             android:layout_width="match_parent"

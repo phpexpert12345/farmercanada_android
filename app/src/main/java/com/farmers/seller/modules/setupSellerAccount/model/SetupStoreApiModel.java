@@ -23,7 +23,7 @@ public class SetupStoreApiModel {
     private String statusMessage;
     @SerializedName("data")
     @Expose
-    private List<Object> data = null;
+    private Object data = null;
 
     public String getStatusCode() {
         return statusCode;
@@ -49,11 +49,11 @@ public class SetupStoreApiModel {
         this.statusMessage = statusMessage;
     }
 
-    public List<Object> getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

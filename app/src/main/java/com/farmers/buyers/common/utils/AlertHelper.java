@@ -36,9 +36,8 @@ public class AlertHelper {
             });
         }
 
-
         dialog = alertDialog.create();
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
+       // dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.setCancelable(isCancellable);
         dialog.show();
     }
