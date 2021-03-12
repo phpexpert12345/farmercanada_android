@@ -89,4 +89,7 @@ public class ApiConstants {
     public static final String COUPON_LIST          = "phpexpert_store_product_coupon_list.php";
     public static final String DELETE_COUPON        = "phpexpert_store_product_coupon_delete.php";
     public static final String EDIT_COUPON          = "phpexpert_store_product_coupon_edit.php";
+    public static final String STORE_DETAILS        =  BASE_URL+ "phpexpert_store_farm_detail.php";
+    public static final String EDIT_STORE           =   BASE_URL+"phpexpert_store_edit.php";
+    public static final String UPDATE_SERVICE       =  BASE_URL+"phpexpert_store_service_update.php";
 }

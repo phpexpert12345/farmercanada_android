@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
+            android:id="@+id/linear_step_services"
             android:orientation="vertical">
 
             <LinearLayout
