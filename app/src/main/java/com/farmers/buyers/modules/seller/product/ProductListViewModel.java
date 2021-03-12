@@ -4,10 +4,15 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.App;
 import com.farmers.buyers.app.AppController;
+import com.farmers.buyers.common.model.SingleTextItem;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.home.HomeTransformer;
+import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
+import com.farmers.buyers.modules.home.search.model.HomeSearchCategoryList;
+import com.farmers.buyers.modules.home.search.model.HomeSearchRequestParams;
 import com.farmers.buyers.modules.seller.product.models.DeleteProductApiModel;
 import com.farmers.buyers.modules.seller.product.models.DeleteProductRequestParams;
 import com.farmers.buyers.modules.seller.product.models.ProductListApiModel;
@@ -118,4 +123,44 @@ public class ProductListViewModel extends BaseViewModel {
             }
         });
     }
+
+    public void doSearch(MutableLiveData<DataFetchState<ProductListApiModel>> stateMachine, String searchQuery) {
+        items.clear();
+        stateMachine.postValue(DataFetchState.loading());
+        if (searchQuery.isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter some text to search", new ProductListApiModel()));
+            return;
+        }
+
+        HomeSearchRequestParams params = new HomeSearchRequestParams(appController.getAuthenticationKey(), searchQuery, appController.getLoginId());
+
+        repository.doSearch(params, new ApiResponseCallback<ProductListApiModel>() {
+            @Override
+            public void onSuccess(ProductListApiModel response) {
+                if (response.getStatus()) {
+                    if (response.getData()!=null) {
+                  /*      for (int i = 0; i < response.getData().getCategoryList().size(); i++) {
+                            HomeSearchCategoryList currentList = response.getData().getCategoryList().get(i);
+                            if (!currentList.getSubProductItemsRecord().isEmpty()) {
+                                items.add(new SingleTextItem(currentList.getCategoryName()));
+                                items.add(HomeTransformer.transformApiModelToHomeSearchItems(currentList.getSubProductItemsRecord()));
+                            }
+                        }*/
+                        stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+
+                    }
+                    else {
+                        stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new ProductListApiModel()));
+                    }
+                } else
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new ProductListApiModel()));
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new ProductListApiModel()));
+            }
+        });
+    }
+
 }

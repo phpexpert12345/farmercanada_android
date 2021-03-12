@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -61,8 +62,8 @@ public class ProductListViewHolder extends BaseViewHolder {
                 .into(product_list_item_img);
 
         productName.setText(item.product_name);
-        total.setText(item.product_unit_price);
-        unitTv.setText(item.product_sales_price);
+        total.setText(AppController.get().getCurrencyCodeKey() + item.product_unit_price);
+        unitTv.setText(item.product_sales_price + "/");
         categoryNameTv.setText(item.product_category_Name);
         // couponAmountTv.setText(item.getCouponAmount());
         quantityTv.setText(item.product_stock);

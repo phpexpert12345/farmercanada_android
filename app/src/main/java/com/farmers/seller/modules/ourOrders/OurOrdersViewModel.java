@@ -1,10 +1,13 @@
 
 package com.farmers.seller.modules.ourOrders;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.model.SimpleTitleItem;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseViewModel;
 import com.farmers.buyers.core.DataFetchState;
@@ -40,6 +43,41 @@ public class OurOrdersViewModel extends BaseViewModel {
     public List<RecyclerViewListItem> items = new ArrayList<>();
     public List<RecyclerViewListItem> runningItems = new ArrayList<>();
     public List<RecyclerViewListItem> pastItems = new ArrayList<>();
+
+    public void getUserInformation(final MutableLiveData<DataFetchState<AllDataModel>> stateMachine, Context context) {
+
+        stateMachine.postValue(DataFetchState.<AllDataModel>loading());
+        CategoryListRequestParams loginRequestParams = new CategoryListRequestParams(appController.getLoginId(),
+                appController.getAuthenticationKey());
+        repository.getUserInformation(loginRequestParams, new ApiResponseCallback<AllDataModel>() {
+            @Override
+            public void onSuccess(AllDataModel response) {
+                if (response.isStatus()) {
+                    DroidPrefs.apply(context, "wallet_amount", response.getmData().wallet_amount);
+                    SharedPreferenceManager.getInstance().setWalletAmount(response.getmData().wallet_amount);
+                    SharedPreferenceManager.getInstance().setProfilePic(response.getmData().login_photo);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_NAME", response.getmData().login_name);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_EMAIL", response.getmData().login_email);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_ACCOUNT_TYPE", response.getmData().account_type);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_MOBILE", response.getmData().login_phone);
+                    SharedPreferenceManager.getInstance().setSharedPreference("MOBILE_CODE", response.getmData().login_phone_code);
+                    SharedPreferenceManager.getInstance().setSharedPreference("TOTAL_FOLLOWERS", response.getmData().Total_followers);
+                    SharedPreferenceManager.getInstance().setSharedPreference("TOTAL_FOLLOWED", response.getmData().Total_following);
+                    SharedPreferenceManager.getInstance().setSharedPreference("TOTAL_MESSAGE_INBOX", response.getmData().Total_Inbox_Message);
+                    SharedPreferenceManager.getInstance().setSharedPreference("USER_TYPE", response.getmData().account_type_name);
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
+
+                } else {
+                    stateMachine.postValue(DataFetchState.<AllDataModel>error(response.getStatus_message(), null));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.<AllDataModel>error(standardError.getDisplayError(), null));
+            }
+        });
+    }
 
     public void getNewOrders(final MutableLiveData<DataFetchState<AllOrderResponse>> stateMachine) {
         stateMachine.postValue(DataFetchState.<AllOrderResponse>loading());

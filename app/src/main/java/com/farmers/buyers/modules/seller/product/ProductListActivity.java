@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -12,12 +14,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,15 +40,15 @@ import com.farmers.buyers.modules.seller.product.models.DeleteProductApiModel;
 import com.farmers.buyers.modules.seller.product.models.ProductListApiModel;
 import com.farmers.buyers.modules.seller.product.models.ProductListItems;
 import com.farmers.buyers.modules.seller.product.view.ProductListViewHolder;
-import com.farmers.seller.modules.ourOrders.OurOrdersActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListActivity extends BaseActivity implements View.OnClickListener, ProductListViewHolder.ProductListItemClickListener {
+public class ProductListActivity extends BaseActivity implements View.OnClickListener, ProductListViewHolder.ProductListItemClickListener, TextWatcher {
     private RecyclerView recyclerView;
     private ProductListAdapter adapter;
     public LinearLayout ll_add_product;
+    public EditText home_search_bottom_sheet_search_et;
 
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
@@ -65,7 +68,8 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-        setupToolbar(new ToolbarConfig("Product List", true, R.drawable.ic_arrow_back_black, new View.OnClickListener() {
+        setupToolbar(new ToolbarConfig("Product List", true,
+                R.drawable.ic_arrow_back_black, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -81,6 +85,7 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
 
     private void init() {
         ll_add_product = findViewById(R.id.ll_add_product);
+        home_search_bottom_sheet_search_et = findViewById(R.id.home_search_bottom_sheet_search_et);
         recyclerView = findViewById(R.id.product_recyclerView);
         adapter = new ProductListAdapter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -164,8 +169,67 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
                     break;
                 }
             }
-
         });
+
+        home_search_bottom_sheet_search_et.addTextChangedListener(this);
+    }
+
+    private void dialogOpen() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.activity_product_search);
+        Window window = dialog.getWindow();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        ImageView home_search_back_img = dialog.findViewById(R.id.home_search_back_img);
+        EditText searchEt = dialog.findViewById(R.id.home_search_bottom_sheet_search_et);
+
+        searchEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // viewModel.doSearch(stateMachine, s.toString());
+                Toast.makeText(ProductListActivity.this, s.toString().trim(), Toast.LENGTH_SHORT).show();
+                //after the change calling the method and passing the search input
+                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        home_search_back_img.setOnClickListener(view -> dialog.dismiss());
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.show();
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+        // Toast.makeText(ProductListActivity.this, s.toString().trim(), Toast.LENGTH_SHORT).show();
+        filter(s.toString());
+    }
+
+    private void filter(String text) {
+        //new array list that will hold the filtered data
+        List<RecyclerViewListItem> filterdNames = new ArrayList<>();
+        for (int i = 0; i < viewModel.items.size(); i++) {
+            ProductListItems item = (ProductListItems) viewModel.items.get(i);
+            if (item.product_name.contains(text.toLowerCase())) {
+                //adding the element to filtered list
+                filterdNames.add(item);
+            }
+        }
+        //calling a method of the adapter class and passing the filtered list
+        try {
+            adapter.updateData(filterdNames);
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
     }
 
     @Override
@@ -269,5 +333,15 @@ public class ProductListActivity extends BaseActivity implements View.OnClickLis
         lp.gravity = Gravity.BOTTOM;
         dialog.getWindow().setAttributes(lp);
         dialog.show();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
     }
 }

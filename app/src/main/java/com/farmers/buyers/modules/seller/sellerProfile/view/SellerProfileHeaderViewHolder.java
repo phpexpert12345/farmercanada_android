@@ -7,14 +7,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
+import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.Extensions;
+import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.core.BaseViewHolder;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
+import com.farmers.buyers.storage.SharedPreferenceManager;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * created by Mohammad Sajjad
@@ -22,9 +29,12 @@ import com.farmers.buyers.modules.profile.view.MyProfileHeaderViewHolder;
  * mohammadsajjad679@gmail.com
  */
 
-public class SellerProfileHeaderViewHolder  extends BaseViewHolder {
+public class SellerProfileHeaderViewHolder extends BaseViewHolder {
 
     private LinearLayout followersLL, walletLL, inboxLL, ll_switch_user;
+    private TextView tv_wallet_balance, tv_user_name, tv_user_email, tv_user_type, tv_followers, tv_account_type, my_profile_header_inbox_msg_tv;
+    private AppController appController = AppController.get();
+    private CircleImageView profile_header_user_image;
 
     public SellerProfileHeaderViewHolder(@NonNull ViewGroup parent, final SellerProfileItemClickListener profileItemClickListener) {
         super(Extensions.inflate(parent, R.layout.seller_profile_header_layout));
@@ -32,6 +42,27 @@ public class SellerProfileHeaderViewHolder  extends BaseViewHolder {
         walletLL = itemView.findViewById(R.id.seller_profile_wallet_ll);
         inboxLL = itemView.findViewById(R.id.seller_profile_inbox_ll);
         ll_switch_user = itemView.findViewById(R.id.seller_profile_ll_switch_user);
+
+        tv_wallet_balance = itemView.findViewById(R.id.tv_wallet_balance);
+        profile_header_user_image = itemView.findViewById(R.id.profile_header_user_image);
+        tv_user_name = itemView.findViewById(R.id.tv_user_name);
+        tv_user_email = itemView.findViewById(R.id.tv_user_email);
+        tv_user_type = itemView.findViewById(R.id.tv_user_type);
+        tv_followers = itemView.findViewById(R.id.tv_followers);
+        my_profile_header_inbox_msg_tv = itemView.findViewById(R.id.my_profile_header_inbox_msg_tv);
+        tv_account_type = itemView.findViewById(R.id.tv_account_type);
+        String current_price = DroidPrefs.get(itemView.getContext(), "wallet_amount", String.class);
+        tv_wallet_balance.setText("$ " + current_price);
+        tv_user_name.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_NAME", "")));
+        tv_user_email.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_EMAIL", "")));
+        tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
+        tv_followers.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_FOLLOWED", "")));
+        my_profile_header_inbox_msg_tv.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("TOTAL_MESSAGE_INBOX", "")));
+
+        Glide.with(itemView.getContext())
+                .load(appController.getProfilePic())
+                .placeholder(R.drawable.profile_pic)
+                .into(profile_header_user_image);
 
         followersLL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +88,8 @@ public class SellerProfileHeaderViewHolder  extends BaseViewHolder {
         ll_switch_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buyer_seller_switch_dialog(itemView.getContext());
+                profileItemClickListener.onUserChangeClicked();
+              //  buyer_seller_switch_dialog(itemView.getContext());
             }
         });
 
@@ -68,26 +100,13 @@ public class SellerProfileHeaderViewHolder  extends BaseViewHolder {
 
     }
 
-    public void buyer_seller_switch_dialog(Context activity) {
-
-        final Dialog dialog = new Dialog(activity, R.style.NewDialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setContentView(R.layout.buyer_seller_switch_dialog);
-
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-    }
-
     public interface SellerProfileItemClickListener {
         void onFollowersItemClicked();
 
         void onWalletClicked();
 
         void onInboxClicked();
+
+        void onUserChangeClicked();
     }
 }

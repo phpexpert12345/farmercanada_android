@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -30,12 +32,15 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
 import com.farmers.buyers.modules.home.homeFragment.HomeFragmentViewModel;
+import com.farmers.buyers.modules.home.models.AllDataModel;
 import com.farmers.buyers.modules.login.model.LoginApiModel;
 import com.farmers.buyers.modules.ratingAndReview.ReviewTransfarmer;
+import com.farmers.buyers.modules.seller.product.models.ProductListItems;
 import com.farmers.seller.modules.ourOrders.OurOrdersTransformer;
 import com.farmers.seller.modules.ourOrders.OurOrdersViewModel;
 import com.farmers.seller.modules.ourOrders.adapter.OurOrderListAdapter;
 import com.farmers.seller.modules.ourOrders.model.AllOrderResponse;
+import com.farmers.seller.modules.ourOrders.model.OngoingOrderListItem;
 import com.farmers.seller.modules.ourOrders.model.OurOrderListItem;
 import com.farmers.seller.modules.ourOrders.view.OurOrderListViewHolder;
 import com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity;
@@ -43,7 +48,7 @@ import com.farmers.seller.modules.viewOrderDetails.ViewOrderDetailsActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OurOrdersFragment extends BaseFragment implements OurOrderListViewHolder.OurOrderItemClickListener {
+public class OurOrdersFragment extends BaseFragment implements OurOrderListViewHolder.OurOrderItemClickListener, TextWatcher {
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override
@@ -55,10 +60,11 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
         }
     };
     public OurOrdersViewModel viewModel = factory.create(OurOrdersViewModel.class);
+    private MutableLiveData<DataFetchState<AllDataModel>> getUserStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllOrderResponse>> newOrderStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllOrderResponse>> orderAcceptStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllOrderResponse>> orderDeclineStateMachine = new MutableLiveData<>();
-
+    public EditText home_search_bottom_sheet_search_et;
     private RecyclerView rv_review_list;
     private OurOrderListAdapter adapter;
 
@@ -82,11 +88,14 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
     @Override
     public void bindView(View view) {
 
+        home_search_bottom_sheet_search_et = view.findViewById(R.id.home_search_bottom_sheet_search_et);
         rv_review_list = view.findViewById(R.id.rv_review_list);
         adapter = new OurOrderListAdapter(this);
         rv_review_list.setAdapter(adapter);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
+
         prepareItems();
+        viewModel.getUserInformation(getUserStateMachine, getContext());
 
         newOrderStateMachine.observe(this, farmListResponseDataFetchState -> {
             switch (farmListResponseDataFetchState.status) {
@@ -134,6 +143,25 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
                     break;
             }
         });
+
+        getUserStateMachine.observe(this, allDataModelDataFetchState -> {
+            switch (allDataModelDataFetchState.status) {
+                case ERROR: {
+                    // dismissLoader();
+                    Toast.makeText(getContext(), allDataModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case LOADING: {
+                    //  showLoader();
+                    break;
+                }
+                case SUCCESS: {
+                    // dismissLoader();
+                    break;
+                }
+            }
+        });
+        home_search_bottom_sheet_search_et.addTextChangedListener(this);
     }
 
     @Override
@@ -148,6 +176,30 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
 
     public void getOurOrder() {
         prepareItems();
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+        // Toast.makeText(ProductListActivity.this, s.toString().trim(), Toast.LENGTH_SHORT).show();
+        filter(s.toString());
+    }
+
+    private void filter(String text) {
+        //new array list that will hold the filtered data
+        List<RecyclerViewListItem> filterdNames = new ArrayList<>();
+        for (int i = 0; i < viewModel.items.size(); i++) {
+            OurOrderListItem item = (OurOrderListItem) viewModel.items.get(i);
+            if (item.order_number.contains(text.toLowerCase())) {
+                //adding the element to filtered list
+                filterdNames.add(item);
+            }
+        }
+        //calling a method of the adapter class and passing the filtered list
+        try {
+            adapter.updateData(filterdNames);
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
     }
 
     @Override
@@ -212,5 +264,15 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
         lp.gravity = Gravity.BOTTOM;
         dialog.getWindow().setAttributes(lp);
         dialog.show();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
     }
 }

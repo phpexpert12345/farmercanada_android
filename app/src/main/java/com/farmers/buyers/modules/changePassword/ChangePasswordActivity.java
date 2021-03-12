@@ -26,9 +26,7 @@ import com.farmers.buyers.modules.login.model.LoginApiModel;
 
 public class ChangePasswordActivity extends BaseActivity implements View.OnClickListener {
 
-
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
-
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -38,7 +36,6 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
             return null;
         }
     };
-
     public ChangePasswordViewModel viewModel = factory.create(ChangePasswordViewModel.class);
     private MutableLiveData<DataFetchState<LoginApiModel>> stateMachine = new MutableLiveData<>();
 

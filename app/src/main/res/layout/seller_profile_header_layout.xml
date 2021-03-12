@@ -8,17 +8,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+        android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/seller_profile_header_user_image"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:id="@+id/profile_header_user_image"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/user_image"
-           />
+            android:src="@drawable/profile_pic"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/_1sdp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,6 +26,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_semibold"
@@ -35,6 +36,7 @@
                 android:textSize="@dimen/sp_16_px" />
 
             <TextView
+                android:id="@+id/tv_user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -51,12 +53,13 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_user_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/sf_ui_semibold"
                     android:singleLine="true"
                     android:text="Buyer"
-                    android:layout_gravity="center"
                     android:textColor="@color/secondaryBtnColor"
                     android:textSize="@dimen/sp_14_px" />
 
@@ -64,10 +67,9 @@
                     android:layout_width="@dimen/_8sdp"
                     android:layout_height="@dimen/_8ssp"
                     android:layout_marginLeft="@dimen/_3sdp"
-                    android:src="@drawable/profile_send_icon"
-                    app:tint="@color/green"
                     android:layout_marginTop="@dimen/_1sdp"
-                    />
+                    android:src="@drawable/profile_send_icon"
+                    app:tint="@color/green" />
 
             </LinearLayout>
         </LinearLayout>
@@ -98,6 +100,7 @@
             android:padding="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/tv_wallet_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -122,6 +125,7 @@
             android:padding="@dimen/_8sdp">
 
             <TextView
+                android:id="@+id/tv_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
@@ -146,7 +150,7 @@
             android:padding="@dimen/_8sdp">
 
             <TextView
-                android:id="@+id/my_profile_header_wallet_amount_tv"
+                android:id="@+id/my_profile_header_inbox_msg_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"

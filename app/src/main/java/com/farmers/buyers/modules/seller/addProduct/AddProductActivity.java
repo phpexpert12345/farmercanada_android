@@ -71,9 +71,6 @@ public class AddProductActivity extends BaseActivity {
     private File productFile;
     private EditProductExtra extra = null;
 
-
-
-
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
         @NonNull
         @Override

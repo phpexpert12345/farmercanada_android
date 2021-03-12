@@ -1,5 +1,6 @@
-package com.farmers.buyers.modules.inbox;
+package com.farmers.seller.modules.inbox;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,11 +35,11 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class NotificationsActivity extends BaseActivity {
+public class SellerNotificationsActivity extends BaseActivity {
+
     TabLayout tabLayout;
     ViewPager viewPager;
     NotificationFragment tab2;
@@ -51,7 +52,8 @@ public class NotificationsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notifications);
+        setContentView(R.layout.activity_seller_notifications);
+
         setupToolbar(new ToolbarConfig("Inbox", true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +109,6 @@ public class NotificationsActivity extends BaseActivity {
                                     inbox_error_ll.setVisibility(View.GONE);
                                     Log.i("size", notificationLists.size() + "");
                                     setAdapter(notificationLists);
-
                                 }
                             }
                         } else {

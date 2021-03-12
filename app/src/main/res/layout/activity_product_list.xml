@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/main_background"
     android:orientation="vertical"
     tools:context=".modules.seller.product.ProductListActivity">
+
+    <EditText
+        android:id="@+id/home_search_bottom_sheet_search_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/light_gray_round_border_bg"
+        android:drawableStart="@drawable/ic_search"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="@dimen/_8sdp"
+        android:fontFamily="@font/sf_ui_regular"
+        android:hint="Find your items"
+        android:padding="@dimen/_8sdp"
+        android:singleLine="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp" />
 
     <LinearLayout
         android:id="@+id/ll_add_product"
@@ -29,5 +43,4 @@
             android:background="@mipmap/plus_icon" />
 
     </LinearLayout>
-
 </RelativeLayout>

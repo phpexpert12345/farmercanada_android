@@ -6,8 +6,8 @@
     android:orientation="vertical"
     tools:context="com.farmers.seller.modules.ourOrders.pastOrder.PastOrderFragment">
 
-    <TextView
-        android:id="@+id/home_header_item_search_et"
+    <EditText
+        android:id="@+id/home_search_bottom_sheet_search_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
@@ -17,7 +17,9 @@
         android:drawablePadding="@dimen/_8sdp"
         android:fontFamily="@font/sf_ui_regular"
         android:hint="Search by Order Number"
-        android:padding="@dimen/_8sdp" />
+        android:inputType="number"
+        android:padding="@dimen/_8sdp"
+        android:singleLine="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_review_list"

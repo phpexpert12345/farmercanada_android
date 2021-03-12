@@ -3,6 +3,8 @@ package com.farmers.buyers.modules.seller.product;
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.core.RecyclerViewListItem;
+import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
+import com.farmers.buyers.modules.home.search.model.HomeSearchRequestParams;
 import com.farmers.buyers.modules.seller.product.models.DeleteProductApiModel;
 import com.farmers.buyers.modules.seller.product.models.DeleteProductRequestParams;
 import com.farmers.buyers.modules.seller.product.models.ProductListApiModel;
@@ -39,5 +41,12 @@ public class ProductListRepository extends BaseRepository {
                 params.getQuantity()
         );
         makeRequest(call, responseCallback);
+    }
+
+    public void doSearch(HomeSearchRequestParams params, ApiResponseCallback<ProductListApiModel> responseCallback) {
+        Call<ProductListApiModel> call = RetrofitBuilder.createServiceContract().doSearchProductItems(
+                ApiConstants.SEARCH_PRODUCT_ITEM, params.getAuthKey(), params.getSearchQuery(), params.getLoginId());
+        makeRequest(call, responseCallback);
+
     }
 }

@@ -36,7 +36,8 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/sf_ui_semibold"
                 android:text="Edit Profile"
-                android:textColor="@color/secondaryTextColor" />
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="@dimen/_14sdp" />
 
         </RelativeLayout>
 
@@ -55,7 +56,7 @@
             android:layout_below="@+id/cover_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_minus50sdp"
-            android:src="@drawable/follow_image" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/edit_profile_change_profile_tv"
@@ -89,12 +90,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/name" />
+                    android:hint="@string/name"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,27 +109,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                android:visibility="gone"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_profile_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/phone_number" />
+                    android:hint="@string/phone_no"
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_16_px"
-                android:layout_marginRight="@dimen/dp_16_px">
+                android:layout_marginRight="@dimen/dp_16_px"
+                android:textColorHint="@color/light_gray"
+                app:boxStrokeColor="@color/light_gray"
+                app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email" />
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:hint="@string/email_address"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

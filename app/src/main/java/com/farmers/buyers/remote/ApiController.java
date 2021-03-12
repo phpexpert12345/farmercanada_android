@@ -391,6 +391,14 @@ public interface ApiController {
     @POST
     Call<HomeSearchApiModel> doSearchProduct(@Url String url, @Field("auth_key") String authKey, @Field("search_text") String searchText, @Field("LoginId") String loginId);
 
+    @FormUrlEncoded
+    @POST
+    Call<ProductListApiModel> doSearchProductItems(@Url String url,
+                                             @Field("auth_key") String authKey,
+                                             @Field("search_text") String searchText,
+                                             @Field("LoginId") String loginId
+    );
+
 
     @Multipart
     @POST

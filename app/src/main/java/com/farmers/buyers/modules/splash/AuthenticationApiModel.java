@@ -47,6 +47,8 @@ public class AuthenticationApiModel {
         @SerializedName("GOOGLE_MAP_KEY")
         private String googleMapKey;
 
+        @SerializedName("currency_code")
+        private String currencyCode;
 
         public String getGoogleMapKey() {
             return googleMapKey;
@@ -64,6 +66,13 @@ public class AuthenticationApiModel {
             mAuthKey = authKey;
         }
 
+        public String getCurrencyCode() {
+            return currencyCode;
+        }
+
+        public void setCurrencyCode(String currencyCode) {
+            this.currencyCode = currencyCode;
+        }
     }
 
 }

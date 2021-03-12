@@ -28,8 +28,8 @@
                 android:id="@+id/edi_profile_back_image"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
-                app:tint="@color/black"
-                android:src="@drawable/ic_white_back_arrow" />
+                android:src="@drawable/ic_white_back_arrow"
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -140,8 +140,8 @@
                 android:layout_marginLeft="@dimen/dp_16_px"
                 android:layout_marginRight="@dimen/dp_16_px"
                 android:textColorHint="@color/light_gray"
-                app:boxStrokeColor="@color/light_gray"
                 android:visibility="gone"
+                app:boxStrokeColor="@color/light_gray"
                 app:hintTextColor="@color/light_gray">
 
                 <com.google.android.material.textfield.TextInputEditText

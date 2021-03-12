@@ -41,7 +41,6 @@ public class ChangePasswordViewModel extends BaseViewModel {
             return;
         }
 
-
         stateMachine.postValue(DataFetchState.<LoginApiModel>loading());
 
         ChangePasswordRequestParams changePasswordRequestParams = new ChangePasswordRequestParams(
