@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_7sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginRight="@dimen/_7sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
     app:cardCornerRadius="@dimen/_5sdp"
-    android:layout_marginLeft="@dimen/_8sdp"
-    android:layout_marginRight="@dimen/_8sdp"
-    android:layout_marginTop="@dimen/_4sdp"
-    android:layout_marginBottom="@dimen/_4sdp"
-    app:cardElevation="@dimen/_1sdp"
- >
+    app:cardUseCompatPadding="true"
+    app:cardElevation="@dimen/_1sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/relativeLayout"
@@ -74,8 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="Added On"
-                    />
+                    android:text="Added On" />
 
                 <TextView
                     android:id="@+id/colonadd"
@@ -93,8 +91,7 @@
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_toRightOf="@+id/colonadd"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="11/01/2020"
-                    />
+                    android:text="11/01/2020" />
 
 
             </RelativeLayout>
@@ -112,8 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="Status"
-                    />
+                    android:text="Status" />
 
                 <TextView
                     android:id="@+id/colon_status"
@@ -150,8 +146,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_3sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/manage_coupon_item_coupon_code_tv"
@@ -161,8 +156,8 @@
                     android:layout_marginRight="@dimen/_38sdp"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="UJFG787"
-                    android:textSize="@dimen/_10ssp"
-                    android:textColor="@color/primaryTextColor"/>
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/_10ssp" />
 
 
                 <TextView
@@ -189,18 +184,17 @@
                 android:id="@+id/relativeLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_8sdp"
                 android:padding="@dimen/_3sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-                android:layout_marginRight="@dimen/_8sdp">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
                 <TextView
                     android:id="@+id/expire_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="Expire On"
-                    />
+                    android:text="Expire On" />
 
                 <TextView
                     android:id="@+id/colonExpire"
@@ -218,8 +212,7 @@
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_toRightOf="@+id/colonExpire"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="11/01/2020"
-                    />
+                    android:text="11/01/2020" />
 
 
             </RelativeLayout>
@@ -228,20 +221,19 @@
                 android:id="@+id/relative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_8sdp"
                 android:padding="@dimen/_3sdp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
-                android:layout_marginRight="@dimen/_8sdp"
-                android:visibility="gone">
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
 
                 <TextView
                     android:id="@+id/applied_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="Status"
-                    />
+                    android:text="Status" />
 
                 <TextView
                     android:id="@+id/colon_applied"
@@ -259,8 +251,7 @@
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_toRightOf="@+id/colon_applied"
                     android:fontFamily="@font/sf_ui_regular"
-                    android:text="5 Products"
-                    />
+                    android:text="5 Products" />
 
 
             </RelativeLayout>
@@ -270,42 +261,43 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/separator_color"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"/>
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@color/separator_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
+            android:gravity="end"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/manage_coupon_item_delete_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete"
-                android:fontFamily="@font/sf_ui_semibold"
+                android:layout_marginLeft="@dimen/_8sdp"
                 android:background="@drawable/round_corner_light_gradient_bg"
+                android:fontFamily="@font/sf_ui_semibold"
                 android:paddingLeft="@dimen/_16sdp"
-                android:paddingRight="@dimen/_16sdp"
                 android:paddingTop="@dimen/_3sdp"
+                android:paddingRight="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_3sdp"
-                android:textColor="@color/white"
-                android:layout_marginLeft="@dimen/_8sdp"/>
+                android:text="Delete"
+                android:textColor="@color/white" />
+
             <TextView
                 android:id="@+id/manage_coupon_item_edit_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit"
-                android:textColor="@color/white"
-                android:fontFamily="@font/sf_ui_semibold"
+                android:layout_marginLeft="@dimen/_8sdp"
                 android:background="@drawable/round_corner_green_gradient_bg"
+                android:fontFamily="@font/sf_ui_semibold"
                 android:paddingLeft="@dimen/_16sdp"
-                android:paddingRight="@dimen/_16sdp"
                 android:paddingTop="@dimen/_3sdp"
+                android:paddingRight="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_3sdp"
-                android:layout_marginLeft="@dimen/_8sdp"/>
+                android:text="Edit"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

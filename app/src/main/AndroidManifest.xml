@@ -24,7 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.farmers.seller.modules.storeSetting.StoreSettingActivity"></activity>
+        <activity android:name=".modules.seller.product.ProductSearchActivity"></activity>
+        <activity android:name="com.farmers.seller.modules.inbox.SellerNotificationsActivity" />
+        <activity android:name="com.farmers.seller.modules.storeSetting.StoreSettingActivity" />
         <activity android:name="com.farmers.seller.modules.SettingUpStoreActivity" />
         <activity android:name=".modules.webview.WebViewActivity" />
         <activity android:name=".modules.ratingAndReview.customerReview.CustomerReviewListActivity" />

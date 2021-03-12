@@ -21,5 +21,6 @@ public enum StorageKey {
     FarmId,
     Role,
     IsStoreSetup,
-    GOOGLE_API_KEY,;
+    GOOGLE_API_KEY,
+    CURRENCY_CODE,
 }

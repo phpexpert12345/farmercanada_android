@@ -7,37 +7,38 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".modules.inbox.NotificationsActivity">
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyler_inbox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyler_inbox"/>
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/inbox_error_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        >
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_150sdp"
-            android:src="@drawable/no_noti"
             android:layout_marginLeft="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_30sdp"/>
+            android:layout_marginRight="@dimen/_30sdp"
+            android:src="@drawable/no_noti" />
 
         <TextView
             android:id="@+id/inbox_error_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No Data Found"
-            android:fontFamily="@font/sf_ui_regular"
-            android:textSize="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/sf_ui_regular"
             android:gravity="center_horizontal"
-            android:textColor="@color/black"/>
+            android:text="No Data Found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp" />
 
 
     </LinearLayout>
@@ -53,12 +54,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0_5_px"
-        android:visibility="gone"
-        android:background="@color/light_gray" />
+        android:background="@color/light_gray"
+        android:visibility="gone" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/notification_viewPager"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 </RelativeLayout>

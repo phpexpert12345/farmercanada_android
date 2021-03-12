@@ -24,4 +24,5 @@ public interface AppControllerContract {
     Boolean getIsStoreSetup();
     String getGoogleApiKey();
     String getFarmId();
+    String getCurrencyCodeKey();
 }

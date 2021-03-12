@@ -140,7 +140,13 @@ public class SharedPreferenceManager {
     public String getGoogleApiKey() {
         return (String) getSharedPreferences(StorageKey.GOOGLE_API_KEY.toString(), "");
     }
+    public void setCurrencyCode(String value) {
+        setSharedPreference(StorageKey.CURRENCY_CODE.toString(), value);
+    }
 
+    public String getCurrencyCodeKey() {
+        return (String) getSharedPreferences(StorageKey.CURRENCY_CODE.toString(), "");
+    }
 
     public void setSharedPreference(String key, Object value) {
         SharedPreferences sharedPreferences = App.getAppContext().getSharedPreferences(prefsName, 0);

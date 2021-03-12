@@ -100,4 +100,9 @@ public class AppController implements AppControllerContract {
     public String getFarmId() {
         return sharedPreferenceManager.getFarmId();
     }
+
+    @Override
+    public String getCurrencyCodeKey() {
+        return sharedPreferenceManager.getCurrencyCodeKey();
+    }
 }

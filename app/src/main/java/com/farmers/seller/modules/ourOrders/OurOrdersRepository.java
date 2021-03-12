@@ -15,6 +15,12 @@ import retrofit2.Call;
 
 public class OurOrdersRepository extends BaseRepository {
 
+    public void getUserInformation(CategoryListRequestParams params, ApiResponseCallback<AllDataModel> responseCallback) {
+        Call<AllDataModel> call = RetrofitBuilder.createServiceContract().getUserInformation(ApiConstants.USER_INFORMATION,
+                params.getUserId(), params.getAuthKey());
+        makeRequest(call, responseCallback);
+    }
+
     public void newOrdersData(CategoryListRequestParams params, ApiResponseCallback<AllOrderResponse> responseCallback) {
         Call<AllOrderResponse> call = RetrofitBuilder.createServiceContract().getNewOrdersList(ApiConstants.NEW_ORDERS_LIST,
                 params.getUserId(),
@@ -41,6 +47,7 @@ public class OurOrdersRepository extends BaseRepository {
         );
         makeRequest(call, responseCallback);
     }
+
     public void orderDecline(CategoryListRequestParams params, ApiResponseCallback<AllOrderResponse> responseCallback) {
         Call<AllOrderResponse> call = RetrofitBuilder.createServiceContract().orderDecline(ApiConstants.ORDERS_DECLINE,
                 params.getUserId(),

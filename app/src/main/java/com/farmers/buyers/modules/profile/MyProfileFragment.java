@@ -150,6 +150,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
        updateItems();
 
     }
+
     public void updateItems(){
 
         adapter.updateData(items);

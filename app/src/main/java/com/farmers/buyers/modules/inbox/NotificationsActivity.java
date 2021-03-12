@@ -76,40 +76,41 @@ public class NotificationsActivity extends BaseActivity {
     private void init() {
         tabLayout = findViewById(R.id.notification_tab_layout);
         viewPager = findViewById(R.id.notification_viewPager);
-        recyler_inbox=findViewById(R.id.recyler_inbox);
-        inbox_error_ll=findViewById(R.id.inbox_error_ll);
-        inbox_error_tv=findViewById(R.id.inbox_error_tv);
+        recyler_inbox = findViewById(R.id.recyler_inbox);
+        inbox_error_ll = findViewById(R.id.inbox_error_ll);
+        inbox_error_tv = findViewById(R.id.inbox_error_tv);
         getNotifications();
 //        setUpTabLayout();
 
     }
-    private void getNotifications(){
+
+    private void getNotifications() {
         showLoader();
-        String url= ApiConstants.NOTIFICATION_LIST+"?auth_key="+appController.getAuthenticationKey()+"&LoginId="+appController.getLoginId();
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        String url = ApiConstants.NOTIFICATION_LIST + "?auth_key=" + appController.getAuthenticationKey() + "&LoginId=" + appController.getLoginId();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-dismissLoader();
-                if(response!=null){
+                dismissLoader();
+                if (response != null) {
 
                     try {
-                        JSONObject jsonObject=new JSONObject(response);
-                        boolean status=jsonObject.getBoolean("status");
-                        if(status){
-                            JSONObject data=jsonObject.getJSONObject("data");
-                            if(data.has("NotificationList")){
-                                Gson gson=new Gson();
-                                Type type=new TypeToken<List<NotificationLists>>(){}.getType();
-                                List<NotificationLists> notificationLists=gson.fromJson(data.getJSONArray("NotificationList").toString(),type);
-                                if(notificationLists.size()>0){
+                        JSONObject jsonObject = new JSONObject(response);
+                        boolean status = jsonObject.getBoolean("status");
+                        if (status) {
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            if (data.has("NotificationList")) {
+                                Gson gson = new Gson();
+                                Type type = new TypeToken<List<NotificationLists>>() {
+                                }.getType();
+                                List<NotificationLists> notificationLists = gson.fromJson(data.getJSONArray("NotificationList").toString(), type);
+                                if (notificationLists.size() > 0) {
                                     inbox_error_ll.setVisibility(View.GONE);
-                                    Log.i("size",notificationLists.size()+"");
+                                    Log.i("size", notificationLists.size() + "");
                                     setAdapter(notificationLists);
 
                                 }
                             }
-                        }
-                        else{
+                        } else {
                             recyler_inbox.setVisibility(View.GONE);
                             inbox_error_ll.setVisibility(View.VISIBLE);
                             inbox_error_tv.setText(jsonObject.optString("status_message"));
@@ -125,13 +126,14 @@ dismissLoader();
                 dismissLoader();
             }
         });
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    private void setAdapter(List<NotificationLists> notificationLists){
+
+    private void setAdapter(List<NotificationLists> notificationLists) {
         recyler_inbox.setVisibility(View.VISIBLE);
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
-        NotificationAdapter notificationAdapter=new NotificationAdapter(notificationLists,this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        NotificationAdapter notificationAdapter = new NotificationAdapter(notificationLists, this);
         recyler_inbox.setAdapter(notificationAdapter);
         recyler_inbox.setLayoutManager(linearLayoutManager);
     }

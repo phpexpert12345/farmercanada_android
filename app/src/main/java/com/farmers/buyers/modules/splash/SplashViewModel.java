@@ -8,6 +8,8 @@ import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.remote.StandardError;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
+import java.util.Currency;
+
 /**
  * created by Mohammad Sajjad
  * on 12-02-2021 at 15:27
@@ -19,7 +21,7 @@ public class SplashViewModel extends BaseViewModel {
     private SplashRepository repository = new SplashRepository();
 
 
-    public void authenticateUser(final MutableLiveData<DataFetchState<AuthenticationApiModel>> stateMachine){
+    public void authenticateUser(final MutableLiveData<DataFetchState<AuthenticationApiModel>> stateMachine) {
         stateMachine.postValue(DataFetchState.<AuthenticationApiModel>loading());
 
         repository.authenticateUser(new ApiResponseCallback<AuthenticationApiModel>() {
@@ -28,10 +30,15 @@ public class SplashViewModel extends BaseViewModel {
                 if (response.getStatusCode() == 0) {
                     SharedPreferenceManager.getInstance().setAuthenticationKey(response.getData().get(0).getAuthKey());
                     SharedPreferenceManager.getInstance().setGoogleApiKey(response.getData().get(0).getGoogleMapKey());
-                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
-                }
+                    try {
+                        Currency currency = Currency.getInstance(response.getData().get(0).getCurrencyCode());
+                        SharedPreferenceManager.getInstance().setCurrencyCode(currency.getSymbol());
+                    } catch (Exception e) {
+                        SharedPreferenceManager.getInstance().setCurrencyCode(response.getData().get(0).getCurrencyCode());
+                    }
 
-                else {
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                } else {
                     stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new AuthenticationApiModel()));
                 }
             }

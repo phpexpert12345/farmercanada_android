@@ -361,6 +361,4 @@ public class EditProfileActivity extends BaseActivity {
         dialog.getWindow().setAttributes(lp);
         dialog.show();
     }
-
-
 }
