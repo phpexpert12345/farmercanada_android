@@ -203,7 +203,6 @@ public class UpdateDocActivity extends BaseActivity {
                                     finish();
                                 }
                             });
-                    Toast.makeText(UpdateDocActivity.this, setupStoreApiModelDataFetchState.status_message, Toast.LENGTH_SHORT).show();
 
                 }
                 case ERROR:
