@@ -178,7 +178,7 @@ public class UpdateDocActivity extends BaseActivity {
                 Toast.makeText(UpdateDocActivity.this, "Please select second back Image", Toast.LENGTH_SHORT).show();
                 return;
             }
-            viewModel.UpdateDocs(stateMachine, doc1, doc2, doc3, doc4,setup_seller_store_name_et.getText().toString(),second_doc_et.getText().toString(),appController.getAuthenticationKey(),appController.getLoginId());
+            viewModel.UpdateDocs(stateMachine, doc1, doc2, doc3, doc4,setup_seller_store_name_et.getText().toString(),second_doc_et.getText().toString(),appController.getLoginId(),appController.getAuthenticationKey());
         });
 
 
