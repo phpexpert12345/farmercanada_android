@@ -30,7 +30,7 @@ public class SellerProfileTransformer {
         itemList.add(new MyProfileOptionMenuItems("My Products", R.drawable.ic_my_products, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.MyProduct));
         itemList.add(new MyProfileOptionMenuItems("My Orders", R.drawable.ic_my_orders, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.MyOrder));
         itemList.add(new MyProfileOptionMenuItems("My Earnings", R.drawable.ic_my_earnings, R.drawable.round_corner_ligh_green_bg, ProfileOptionsGridItem.MyEarning));
-        itemList.add(new MyProfileOptionMenuItems("Shop Setting", R.drawable.ic_shop_setting, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.ShopSetting));
+        itemList.add(new MyProfileOptionMenuItems("Shop Settings", R.drawable.ic_shop_setting, R.drawable.round_corner_ligh_red_bg, ProfileOptionsGridItem.ShopSetting));
         return new MyProfileOptionItem(itemList);
     }
 
