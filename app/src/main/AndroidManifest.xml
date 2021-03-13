@@ -79,6 +79,7 @@
         <activity android:name="com.farmers.seller.modules.ourOrders.OurOrdersActivity" />
         <activity android:name="com.farmers.seller.modules.storeSetting.ChangeStoreActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.farmers.seller.modules.storeSetting.UpdateServiceActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.farmers.seller.modules.storeSetting.UpdateDocActivity" android:screenOrientation="portrait"/>
         <activity android:name=".modules.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

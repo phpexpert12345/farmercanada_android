@@ -496,7 +496,11 @@
                     android:id="@+id/bt_next_store_details"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_7sdp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:textSize="@dimen/_16ssp"
                     android:background="@drawable/round_corner_green_gradient_bg"
                     android:text="Next"
                     android:textColor="@color/secondaryTextColor" />

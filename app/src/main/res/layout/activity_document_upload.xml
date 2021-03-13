@@ -264,6 +264,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/second_doc_et"
                     android:hint="Second Document Name"
                     android:textColor="@color/black" />
 
@@ -316,11 +317,13 @@
                 android:id="@+id/bt_next_document_upload"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/round_corner_green_gradient_bg"
                 android:text="Setup Store"
                 android:textAllCaps="false"
+                android:textSize="@dimen/_15ssp"
+                android:fontFamily="@font/sf_ui_semibold"
                 android:textColor="@color/secondaryTextColor" />
 
 

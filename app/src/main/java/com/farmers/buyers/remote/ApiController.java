@@ -495,6 +495,16 @@ public interface ApiController {
                                            @Part MultipartBody.Part docOneBack,
                                            @Part MultipartBody.Part docTwoFront,
                                            @Part MultipartBody.Part docTwoBack);
+    @Multipart
+    @POST
+    Call<SetupStoreApiModel>UpdateDocs(@Url String url, @Part MultipartBody.Part docOneFront,
+                                       @Part MultipartBody.Part docOneBack,
+                                       @Part MultipartBody.Part docTwoFront,
+                                       @Part MultipartBody.Part docTwoBack,
+                                       @Part("document_type_1") RequestBody documentType,
+                                       @Part("document_type_2") RequestBody doc_2,
+                                       @Part("LoginId") RequestBody loginId,
+                                       @Part("auth_key") RequestBody authKey);
 
     @Multipart
     @POST

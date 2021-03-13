@@ -89,6 +89,7 @@ public class StoreSettingActivity extends BaseActivity implements View.OnClickLi
                 startActivity(new Intent(StoreSettingActivity.this,UpdateServiceActivity.class).putExtra("store",storeFarmDetails));
                 break;
             case R.id.card_document:
+                startActivity(new Intent(StoreSettingActivity.this,UpdateDocActivity.class).putExtra("store",storeFarmDetails));
                 break;
             case R.id.card_working_hours:
                 startActivity(new Intent(StoreSettingActivity.this, WorkingHourActivity.class));
