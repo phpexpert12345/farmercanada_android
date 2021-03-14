@@ -17,8 +17,8 @@ public class SubProductItemRecord {
     private String farm_address;
     private String store_state_name;
     private String store_city_name;
-    private Double farm_latitude;
-    private Double farm_longitude;
+    private String farm_latitude;
+    private String farm_longitude;
     private String farm_postcode;
     private Integer rating_avg;
     private String farm_type;
@@ -90,11 +90,11 @@ public class SubProductItemRecord {
         return store_city_name;
     }
 
-    public Double getFarmLatitude() {
+    public String getFarmLatitude() {
         return farm_latitude;
     }
 
-    public Double getFarmLongitude() {
+    public String getFarmLongitude() {
         return farm_longitude;
     }
 

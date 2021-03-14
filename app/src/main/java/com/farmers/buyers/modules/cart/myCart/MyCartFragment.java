@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.Helper;
 import com.farmers.buyers.common.utils.SwipeControllerActions;
 import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.BaseFragment;
@@ -49,8 +50,10 @@ import com.farmers.buyers.modules.cart.myCart.view.MyCartCheckoutViewHolder;
 import com.farmers.buyers.modules.cart.myCart.view.MyCartItemViewHolder;
 import com.farmers.buyers.modules.home.HomeActivity;
 import com.farmers.buyers.storage.Constant;
+import com.farmers.buyers.storage.GPSTracker;
 import com.farmers.buyers.storage.SharedPreferenceManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +88,7 @@ public class MyCartFragment extends BaseFragment implements
     int farm_delivery_radius;
    RelativeLayout layout_farm_details;
    CircleImageView img_farm_logo;
+    private GPSTracker gpsTracker = new GPSTracker(getContext());
 
     List<FarmProductCartList> farmProductCartList=new ArrayList<>();
     private ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
@@ -268,6 +272,7 @@ public class MyCartFragment extends BaseFragment implements
                                 farm_name=farmProductCartList.get(0).getFarmName();
                                 farm_address=farmProductCartList.get(0).getFarmAddress();
                                 farm_logo=farmProductCartList.get(0).getFarmLogo();
+
                                 if(farm_name!=null){
                                     setupFarmDetails();
                                 }
@@ -330,8 +335,8 @@ public class MyCartFragment extends BaseFragment implements
         layout_farm_details.setVisibility(View.VISIBLE);
         txt_farm_name.setText(farm_name);
         txt_farm_address.setText(farm_address);
-        txt_farm_distance.setVisibility(View.GONE);
         Glide.with(getContext()).load(farm_logo).placeholder(R.drawable.ic_sign_up_logo).into(img_farm_logo);
+        txt_farm_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude)))+ " km away from you");
     }
 
     private void cartListData(List<FarmProductCartList> farmProductCartList) {

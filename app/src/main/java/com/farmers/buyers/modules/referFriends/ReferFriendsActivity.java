@@ -41,7 +41,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
     private MutableLiveData<DataFetchState<AddressApiModel>> stateMachine = new MutableLiveData<>();
 
     Button bt_share;
-    LinearLayout ll_copy;
+    LinearLayout ll_copy,linear_refer;
     TextView tv_referral_code, tv_referral_title, tv_referral_description;
     public ImageView img_referral;
     public String shareMsg = "";
@@ -67,6 +67,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
 
     private void init() {
         ll_copy = findViewById(R.id.ll_copy);
+        linear_refer=findViewById(R.id.linear_refer);
         tv_referral_code = findViewById(R.id.tv_referral_code);
         tv_referral_title = findViewById(R.id.tv_referral_title);
         tv_referral_description = findViewById(R.id.tv_referral_description);
@@ -97,6 +98,7 @@ public class ReferFriendsActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void referAndEarnSuccess(DataFetchState<AddressApiModel> dataFetchState) {
+        linear_refer.setVisibility(View.VISIBLE);
         Glide.with(this)
                 .load(dataFetchState.data.getData().referral_photo)
                 .centerCrop()

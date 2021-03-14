@@ -36,6 +36,7 @@ import com.farmers.buyers.common.model.SimpleTitleItem;
 import com.farmers.buyers.common.model.StripePay;
 import com.farmers.buyers.common.utils.DroidPrefs;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.Helper;
 import com.farmers.buyers.core.BaseActivity;
 import com.farmers.buyers.core.DataFetchState;
 import com.farmers.buyers.core.RecyclerViewListItem;
@@ -75,6 +76,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -491,8 +493,8 @@ public class CheckOutFromCartActivity extends BaseActivity implements MyCartChec
         layout_farm_details.setVisibility(View.VISIBLE);
         txt_farm_name.setText(farm_name);
         txt_farm_address.setText(farm_address);
-        txt_farm_distance.setVisibility(View.GONE);
         Glide.with(this).load(farm_logo).placeholder(R.drawable.ic_sign_up_logo).into(img_farm_logo);
+        txt_farm_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude)))+ " km away from you");
     }
 
     private void prepareItem(TaxData taxData, CheckOutCartAddressItems addressItems) {

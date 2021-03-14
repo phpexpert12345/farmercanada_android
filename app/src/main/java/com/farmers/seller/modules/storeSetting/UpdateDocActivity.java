@@ -22,6 +22,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.utils.AlertHelper;
@@ -81,6 +82,7 @@ public class UpdateDocActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document_upload);
+        storeFarmDetails= (StoreFarmDetails) getIntent().getSerializableExtra("store");
         linear_step_doc=findViewById(R.id.linear_step_doc);
         tv_setup_seller_back_img=findViewById(R.id.tv_setup_seller_back_img);
         tv_setup_seller_toolbar_name=findViewById(R.id.tv_setup_seller_toolbar_name);
@@ -99,7 +101,29 @@ public class UpdateDocActivity extends BaseActivity {
         PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
         bindViewModel();
         init();
+        setupDetails();
 
+
+    }
+    private void setupDetails(){
+        if(storeFarmDetails.document_one_name!=null) {
+            setup_seller_store_name_et.setText(storeFarmDetails.document_one_name);
+        }
+        if(storeFarmDetails.document_two_name!=null){
+            second_doc_et.setText(storeFarmDetails.document_two_name);
+        }
+        if(storeFarmDetails.document_front_photo_one!=null){
+            Glide.with(this).load(storeFarmDetails.document_front_photo_one).placeholder(R.drawable.front_image_bg).into(store_setup_document_one_front_img);
+        }
+        if(storeFarmDetails.document_back_photo_one!=null){
+            Glide.with(this).load(storeFarmDetails.document_back_photo_one).placeholder(R.drawable.back_image_bg).into(store_setup_document_one_back_img);
+        }
+        if(storeFarmDetails.document_front_photo_two!=null){
+            Glide.with(this).load(storeFarmDetails.document_front_photo_two).placeholder(R.drawable.front_image_bg).into(store_setup_document_two_front_img);
+        }
+        if(storeFarmDetails.document_back_photo_two!=null){
+            Glide.with(this).load(storeFarmDetails.document_back_photo_two).placeholder(R.drawable.back_image_bg).into(store_setup_document_two_back_img);
+        }
     }
 
     @Override

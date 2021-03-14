@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.farmers.buyers.R;
 import com.farmers.buyers.app.AppController;
 import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
+import com.farmers.buyers.common.utils.Helper;
 import com.farmers.buyers.common.utils.SwipeControllerActions;
 import com.farmers.buyers.common.utils.SwipeHelper;
 import com.farmers.buyers.core.BaseActivity;
@@ -238,12 +239,10 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     @Override
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
-        dis = distance(Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude), addressObj.getAddress_lat(), addressObj.getAddress_long());
-        dis = dis * 1.609;
+        dis= Helper.getKmFromLatLong(Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude), addressObj.getAddress_lat(), addressObj.getAddress_long());
         if (dis >= farm_delivery_radius) {
             Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
         } else {
-
             if (comeFrom == 0) {
                 Intent intent = new Intent();
                 intent.putExtra(Constant.DATA_INTENT, addressObj);

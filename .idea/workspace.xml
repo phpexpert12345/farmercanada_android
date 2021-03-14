@@ -40,7 +40,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="store_update_service_update_12_03_2021_2118">
+    <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="store_docs_update_13_03_2021_1351">
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -51,20 +51,19 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/model/SetupStoreRequestParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/model/SetupStoreRequestParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/StoreSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/StoreSettingActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/CheckOutFromCartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/CheckOutFromCartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/farmDetail/view/FarmDetailsVegetableItemsViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/farmDetail/view/FarmDetailsVegetableItemsViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/HomeTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/HomeTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/farmList/SubProductItemRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/farmList/SubProductItemRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/referFriends/ReferFriendsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/referFriends/ReferFriendsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/UpdateDocActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/UpdateDocActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_document_upload.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_document_upload.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_details_step.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_details_step.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_store_details_step.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_store_details_step.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_refer_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_refer_friends.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +348,28 @@
       <option name="project" value="LOCAL" />
       <updated>1615564217492</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="store_docs_service_update_13_03_2021_1337">
+      <created>1615622923218</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1615622923218</updated>
+    </task>
+    <task id="LOCAL-00004" summary="store_docs_update_13_03_2021_1341">
+      <created>1615623147521</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1615623147521</updated>
+    </task>
+    <task id="LOCAL-00005" summary="store_docs_update_13_03_2021_1351">
+      <created>1615623726991</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1615623726991</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -379,7 +399,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Final_uyer_fixes_10_03_2021_2220" />
     <MESSAGE value="store_update_service_update_12_03_2021_2118" />
-    <option name="LAST_COMMIT_MESSAGE" value="store_update_service_update_12_03_2021_2118" />
+    <MESSAGE value="store_docs_service_update_13_03_2021_1337" />
+    <MESSAGE value="store_docs_update_13_03_2021_1341" />
+    <MESSAGE value="store_docs_update_13_03_2021_1351" />
+    <option name="LAST_COMMIT_MESSAGE" value="store_docs_update_13_03_2021_1351" />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="0" key="#app" timestamp="1614010475905">
@@ -412,15 +435,15 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="291" y="155" width="824" height="491" key="AndroidCreateResourceFileDialog/50.27.1316.741@50.27.1316.741" timestamp="1615193401126" />
-    <state x="481" y="110" width="505" height="512" key="AndroidProcessChooserDialog" timestamp="1615620478286">
+    <state x="481" y="110" width="505" height="512" key="AndroidProcessChooserDialog" timestamp="1615741332023">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="481" y="110" key="AndroidProcessChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1615620478286" />
+    <state x="481" y="110" key="AndroidProcessChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1615741332023" />
     <state x="513" y="139" width="505" height="512" key="AndroidProcessChooserDialog/50.27.1316.741@50.27.1316.741" timestamp="1615460043563" />
-    <state width="523" height="470" key="DebuggerActiveHint" timestamp="1615620516145">
+    <state width="523" height="470" key="DebuggerActiveHint" timestamp="1615741356432">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="523" height="470" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1615620516145" />
+    <state width="523" height="470" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1615741356432" />
     <state width="503" height="478" key="DebuggerActiveHint/50.27.1316.741@50.27.1316.741" timestamp="1615440479810" />
     <state x="150" y="127" width="1116" height="541" key="DiffContextDialog" timestamp="1615387858642">
       <screen x="50" y="27" width="1316" height="741" />
@@ -430,49 +453,49 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="491" y="155" width="424" height="491" key="FileChooserDialogImpl/50.27.1316.741@50.27.1316.741" timestamp="1615368082551" />
-    <state width="1303" height="134" key="GridCell.Tab.0.bottom" timestamp="1615620481343">
+    <state width="1303" height="132" key="GridCell.Tab.0.bottom" timestamp="1615741332712">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1615620481343" />
+    <state width="1303" height="132" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1615741332712" />
     <state width="1482" height="448" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
     <state width="1270" height="383" key="GridCell.Tab.0.bottom/50.27.1316.741@50.27.1316.741" timestamp="1615462584978" />
-    <state width="1303" height="134" key="GridCell.Tab.0.center" timestamp="1615620481342">
+    <state width="1303" height="132" key="GridCell.Tab.0.center" timestamp="1615741332711">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1615620481342" />
+    <state width="1303" height="132" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1615741332711" />
     <state width="1482" height="448" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
     <state width="1270" height="383" key="GridCell.Tab.0.center/50.27.1316.741@50.27.1316.741" timestamp="1615462584977" />
-    <state width="1303" height="134" key="GridCell.Tab.0.left" timestamp="1615620481341">
+    <state width="1303" height="132" key="GridCell.Tab.0.left" timestamp="1615741332711">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1615620481341" />
+    <state width="1303" height="132" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1615741332711" />
     <state width="1482" height="448" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1613975246268" />
     <state width="1270" height="383" key="GridCell.Tab.0.left/50.27.1316.741@50.27.1316.741" timestamp="1615462584976" />
-    <state width="1303" height="134" key="GridCell.Tab.0.right" timestamp="1615620481342">
+    <state width="1303" height="132" key="GridCell.Tab.0.right" timestamp="1615741332712">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1615620481342" />
+    <state width="1303" height="132" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1615741332712" />
     <state width="1482" height="448" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613975246269" />
     <state width="1270" height="383" key="GridCell.Tab.0.right/50.27.1316.741@50.27.1316.741" timestamp="1615462584977" />
-    <state width="1303" height="134" key="GridCell.Tab.1.bottom" timestamp="1615620499294">
+    <state width="1303" height="132" key="GridCell.Tab.1.bottom" timestamp="1615741337857">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1615620499294" />
+    <state width="1303" height="132" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1615741337857" />
     <state width="1270" height="299" key="GridCell.Tab.1.bottom/50.27.1316.741@50.27.1316.741" timestamp="1615460209097" />
-    <state width="1303" height="134" key="GridCell.Tab.1.center" timestamp="1615620499293">
+    <state width="1303" height="132" key="GridCell.Tab.1.center" timestamp="1615741337856">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1615620499293" />
+    <state width="1303" height="132" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1615741337856" />
     <state width="1270" height="299" key="GridCell.Tab.1.center/50.27.1316.741@50.27.1316.741" timestamp="1615460209097" />
-    <state width="1303" height="134" key="GridCell.Tab.1.left" timestamp="1615620499293">
+    <state width="1303" height="132" key="GridCell.Tab.1.left" timestamp="1615741337855">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1615620499293" />
+    <state width="1303" height="132" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1615741337855" />
     <state width="1270" height="299" key="GridCell.Tab.1.left/50.27.1316.741@50.27.1316.741" timestamp="1615460209096" />
-    <state width="1303" height="134" key="GridCell.Tab.1.right" timestamp="1615620499294">
+    <state width="1303" height="132" key="GridCell.Tab.1.right" timestamp="1615741337856">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1303" height="134" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1615620499294" />
+    <state width="1303" height="132" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1615741337856" />
     <state width="1270" height="299" key="GridCell.Tab.1.right/50.27.1316.741@50.27.1316.741" timestamp="1615460209097" />
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog" timestamp="1615213114835">
       <screen x="50" y="27" width="1316" height="741" />
@@ -487,10 +510,10 @@
     </state>
     <state x="358" y="155" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1615564388494" />
     <state x="403" y="176" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1613973683819" />
-    <state x="274" y="84" key="Vcs.Push.Dialog.v2" timestamp="1615564230238">
+    <state x="274" y="84" key="Vcs.Push.Dialog.v2" timestamp="1615623734628">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="274" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1615564230238" />
+    <state x="274" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1615623734628" />
     <state width="658" height="370" key="XDebugger.FullValuePopup" timestamp="1615385270772">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
@@ -503,18 +526,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1615482798896" />
-    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1615620816134">
+    <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615741980840">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1615620816134" />
+    <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1615741980840" />
+    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1615741718543">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1615741718543" />
     <state x="72" y="109" width="1261" height="583" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1615453968146">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="72" y="109" width="1261" height="583" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/50.27.1316.741@50.27.1316.741" timestamp="1615453968146" />
-    <state x="362" y="107" width="935" height="534" key="find.popup" timestamp="1615620750852">
+    <state x="362" y="107" width="935" height="534" key="find.popup" timestamp="1615739900150">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="362" y="107" width="935" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1615620750852" />
+    <state x="362" y="107" width="935" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1615739900150" />
     <state x="399" y="136" width="900" height="522" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1615462963661" />
     <state x="354" y="152" key="git4idea.merge.GitPullDialog" timestamp="1615564301126">
       <screen x="0" y="0" width="1366" height="728" />
@@ -612,6 +639,26 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreViewModel.java</url>
           <line>165</line>
           <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/referFriends/ReferFriendsActivity.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentViewModel.java</url>
+          <line>155</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentViewModel.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="122" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

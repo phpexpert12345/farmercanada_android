@@ -1,5 +1,7 @@
 package com.farmers.buyers.modules.home.homeFragment;
 
+import android.util.Log;
+
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.address.model.AddressApiModel;
@@ -36,11 +38,18 @@ public class HomeFragmentRepository extends BaseRepository {
     }
 
     public void farmListRequest(FarmListRequest params, ApiResponseCallback<AddressApiModel> responseCallback) {
+        String address="";
+        if(params.getCustomer_full_address().contains(" ")){
+         address=params.getCustomer_full_address().replaceAll(" ","%20");
+        }
+        else{
+            address=params.getCustomer_full_address();
+        }
         Call<AddressApiModel> call = RetrofitBuilder.createServiceContract().FARM_LIST_RESPONSE_CALL(ApiConstants.FARM_LIST_URL,
                 params.getAuthKey(),
                 params.getCustomer_lat(),
                 params.getCustomer_long(),
-                params.getCustomer_full_address(),
+               address,
                 params.getCustomer_city(),
                 params.getFarm_type(),
                 params.getFarm_service_type(),

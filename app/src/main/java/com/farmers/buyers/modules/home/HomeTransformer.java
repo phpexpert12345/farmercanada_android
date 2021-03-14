@@ -42,6 +42,13 @@ public class HomeTransformer {
         List<HomeListItem> items = new ArrayList<>();
         for (int i = 0; i < listItem.size(); i++) {
             SubProductItemRecord data = listItem.get(i);
+            double farm_lat=0.0;
+            double farm_longt=0.0;
+            if(!data.getFarmLatitude().equalsIgnoreCase("")){
+                farm_lat=Double.parseDouble(data.getFarmLatitude());
+                farm_longt=Double.parseDouble(data.getFarmLongitude());
+            }
+
             items.add(new HomeListItem(data.getFarmName(),
                     data.getFarmDeliveryRadiusText(),
                     data.getRatingAvg().toString(),
@@ -49,8 +56,8 @@ public class HomeTransformer {
                     data.getFarmId(),
                     data.getFarmCoverPhoto(),
                     data.getFarmLogo(),
-                    data.getFarmLatitude(),
-                    data.getFarmLongitude(), data.getFarmAddress(), data.getFarmOpeningHours(),
+                   farm_lat,
+                    farm_longt, data.getFarmAddress(), data.getFarmOpeningHours(),
                     data.farm_estimate_delivery_time, data.getFarmHostedBy(),
                     data.getFarmOpeningStatus(),
                     data.getFarmFavouriteStatus(),
