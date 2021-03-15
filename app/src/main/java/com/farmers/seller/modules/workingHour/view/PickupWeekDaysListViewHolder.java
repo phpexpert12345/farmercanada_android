@@ -44,8 +44,8 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
         switch_week = itemView.findViewById(R.id.switch_week);
         ll_order_limit_time = itemView.findViewById(R.id.ll_order_limit_time);
         ed_order_limit = itemView.findViewById(R.id.ed_order_limit);
-        edit_start_time = itemView.findViewById(R.id.edit_start_time);
-        edit_end_time = itemView.findViewById(R.id.edit_end_time);
+        edit_start_time = itemView.findViewById(R.id.ed_start_date);
+        edit_end_time = itemView.findViewById(R.id.ed_end_date);
 
         switch_week.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

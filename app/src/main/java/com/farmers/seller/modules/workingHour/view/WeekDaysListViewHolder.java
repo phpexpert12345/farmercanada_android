@@ -93,12 +93,6 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
         tv_time_interval.setText(item.getInterval());
     }
 
-    @Override
-    public void onOrderLimitItemClicked(String item) {
-        ed_order_limit.setText(item);
-        orderLimitDialog.dismiss();
-    }
-
     public void OrderLimitDialog(Context activity, WeekDayListItem item) {
 
         orderLimitDialog = new Dialog(activity, R.style.NewDialog);
@@ -123,6 +117,12 @@ public class WeekDaysListViewHolder extends BaseViewHolder implements OrderLimit
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         orderLimitDialog.getWindow().setAttributes(lp);
         orderLimitDialog.show();
+    }
+
+    @Override
+    public void onOrderLimitItemClicked(String item, int type) {
+        ed_order_limit.setText(item);
+        orderLimitDialog.dismiss();
     }
 
     public interface WeekDayItemClickListener {
