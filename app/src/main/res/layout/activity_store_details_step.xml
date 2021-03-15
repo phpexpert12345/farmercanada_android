@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
+            android:id="@+id/linear_step"
             android:orientation="vertical">
 
             <LinearLayout
@@ -328,6 +329,7 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:layout_weight="0.2"
+                    android:layout_centerVertical="true"
                     android:gravity="end">
 
                     <ImageView
@@ -369,6 +371,7 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:layout_weight="0.2"
+                    android:layout_centerVertical="true"
                     android:gravity="end">
 
                     <ImageView
@@ -410,6 +413,7 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:layout_weight="0.2"
+                    android:layout_centerVertical="true"
                     android:gravity="end">
 
                     <ImageView
@@ -492,7 +496,11 @@
                     android:id="@+id/bt_next_store_details"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_7sdp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/sf_ui_semibold"
+                    android:textSize="@dimen/_16ssp"
                     android:background="@drawable/round_corner_green_gradient_bg"
                     android:text="Next"
                     android:textColor="@color/secondaryTextColor" />

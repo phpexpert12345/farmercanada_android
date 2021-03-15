@@ -147,4 +147,25 @@ public class SetupStoreViewModel extends BaseViewModel {
             }
         });
     }
+    public void UpdateDocs(MutableLiveData<DataFetchState<SetupStoreApiModel>> stateMachine, File doc1, File doc2, File doc3, File doc4,String txt_doc1,String txt_doc_2,String logid,String authkey){
+        stateMachine.postValue(DataFetchState.loading());
+        SetupStoreRequestParams params=new SetupStoreRequestParams(doc1,doc2,doc3,doc4,txt_doc1,txt_doc_2,authkey,logid);
+        repository.updateDocs(params, new ApiResponseCallback<SetupStoreApiModel>() {
+            @Override
+            public void onSuccess(SetupStoreApiModel response) {
+                if(response.getStatus()){
+                    stateMachine.postValue(DataFetchState.success(response, response.getStatusMessage()));
+                }
+                else{
+                    stateMachine.postValue(DataFetchState.error(response.getStatusMessage(), new SetupStoreApiModel()));
+                }
+            }
+
+            @Override
+            public void onFailure(StandardError standardError) {
+                stateMachine.postValue(DataFetchState.error(standardError.getDisplayError(), new SetupStoreApiModel()));
+            }
+        });
+
+    }
 }

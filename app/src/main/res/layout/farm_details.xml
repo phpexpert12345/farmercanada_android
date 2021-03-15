@@ -22,7 +22,7 @@
             android:fontFamily="@font/sf_ui_semibold"
             android:id="@+id/txt_farm_name"
             android:text="Farm name"
-            android:textColor="@color/black"
+            android:textColor="@color/gradient_color_dark"
             android:textSize="@dimen/_18ssp"/>
         <TextView
             android:layout_width="wrap_content"

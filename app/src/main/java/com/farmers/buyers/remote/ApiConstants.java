@@ -82,13 +82,17 @@ public class ApiConstants {
 
     // TODO Seller Section
 
-    public static final String SETUP_STORE = "phpexpert_store_configuration_process.php";
-    public static final String ADD_PRODUCT = "phpexpert_store_product_add.php";
-    public static final String PRODUCT_LIST = "phpexpert_store_product_list.php";
-    public static final String EDIT_PRODUCT = "phpexpert_store_product_edit.php";
-    public static final String DELETE_PRODUCT = "phpexpert_store_product_delete.php";
-    public static final String ADD_COUPON = "phpexpert_store_product_coupon_add.php";
-    public static final String COUPON_LIST = "phpexpert_store_product_coupon_list.php";
-    public static final String DELETE_COUPON = "phpexpert_store_product_coupon_delete.php";
-    public static final String EDIT_COUPON = "phpexpert_store_product_coupon_edit.php";
+    public static final String SETUP_STORE          = "phpexpert_store_configuration_process.php";
+    public static final String ADD_PRODUCT          = "phpexpert_store_product_add.php";
+    public static final String PRODUCT_LIST         = "phpexpert_store_product_list.php";
+    public static final String EDIT_PRODUCT         = "phpexpert_store_product_edit.php";
+    public static final String DELETE_PRODUCT       = "phpexpert_store_product_delete.php";
+    public static final String ADD_COUPON           = "phpexpert_store_product_coupon_add.php";
+    public static final String COUPON_LIST          = "phpexpert_store_product_coupon_list.php";
+    public static final String DELETE_COUPON        = "phpexpert_store_product_coupon_delete.php";
+    public static final String EDIT_COUPON          = "phpexpert_store_product_coupon_edit.php";
+    public static final String STORE_DETAILS        =  BASE_URL+ "phpexpert_store_farm_detail.php";
+    public static final String EDIT_STORE           =   BASE_URL+"phpexpert_store_edit.php";
+    public static final String UPDATE_SERVICE       =  BASE_URL+"phpexpert_store_service_update.php";
+    public static final String UPDATE_DOCS          =  "phpexpert_store_document_update.php";
 }

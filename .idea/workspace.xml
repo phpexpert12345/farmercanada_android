@@ -35,7 +35,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/ChangeStoreActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/ServiceAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/UpdateDocActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/UpdateServiceActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/model/StoreFarmDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Farmers.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Farmers.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/address/MyAddressActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/CheckOutFromCartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/checkout/CheckOutFromCartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/cart/myCart/MyCartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/farmDetail/view/FarmDetailsVegetableItemsViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/farmDetail/view/FarmDetailsVegetableItemsViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/forgotPassword/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/forgotPassword/ForgotPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/HomeTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/HomeTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/homeFragment/HomeFragmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/farmList/SubProductItemRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/home/models/farmList/SubProductItemRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/referFriends/ReferFriendsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/referFriends/ReferFriendsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/remote/ApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/storage/CardConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/storage/CardConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/SetupStoreViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/model/SetupStoreRequestParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/model/SetupStoreRequestParams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/StoreSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/storeSetting/StoreSettingActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/WorkingHourActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/WorkingHourActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/WorkingHourTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/WorkingHourTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/adapter/OrderLimitListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/adapter/OrderLimitListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/adapter/PickupOrderLimitListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/adapter/PickupOrderLimitListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/PickupTimeListViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/PickupTimeListViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/PickupWeekDaysListViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/PickupWeekDaysListViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_document_upload.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_document_upload.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_refer_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_refer_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_details_step.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_service_details_step.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_store_details_step.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_store_details_step.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/farm_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/farm_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_delivery_time.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_delivery_time.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pickup_time.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pickup_time.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_store_time_interval_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_store_time_interval_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,26 +521,6 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/setupSellerAccount/serviceDetails/ServiceDetailsStepActivity.java</url>
           <line>211</line>
           <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/storeTime/StoreTimeFragment.java</url>
-          <line>372</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/storeTime/StoreTimeFragment.java</url>
-          <line>373</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/storeTime/StoreTimeFragment.java</url>
-          <line>375</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/storeTime/StoreTimeFragment.java</url>
-          <line>374</line>
-          <option name="timeStamp" value="115" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -30,6 +30,25 @@ public class SetupStoreRequestParams {
     File doc3;
     File doc4;
     File logo;
+
+    public String getTxt_doc_1() {
+        return txt_doc_1;
+    }
+
+    public void setTxt_doc_1(String txt_doc_1) {
+        this.txt_doc_1 = txt_doc_1;
+    }
+
+    public String getTxt_doc_2() {
+        return txt_doc_2;
+    }
+
+    public void setTxt_doc_2(String txt_doc_2) {
+        this.txt_doc_2 = txt_doc_2;
+    }
+
+    String txt_doc_1;
+    String txt_doc_2;
     String loginId;
     String authKey;
     Double lat;
@@ -109,6 +128,17 @@ public class SetupStoreRequestParams {
         this.pickup_available = pickup_available;
         this.delivery_available = delivery_available;
     }
+    public SetupStoreRequestParams(File doc1, File doc2, File doc3, File doc4,String txt_doc_1,String txt_doc_2,String authKey,String loginId){
+        this.doc1 = doc1;
+        this.doc2 = doc2;
+        this.doc3 = doc3;
+        this.doc4 = doc4;
+        this.txt_doc_1=txt_doc_1;
+        this.txt_doc_2=txt_doc_2;
+        this.authKey=authKey;
+        this.loginId=loginId;
+    }
+
 
     public String getStoreType() {
         return storeType;

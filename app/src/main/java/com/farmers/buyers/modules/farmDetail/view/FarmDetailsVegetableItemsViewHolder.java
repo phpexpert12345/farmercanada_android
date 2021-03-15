@@ -79,7 +79,7 @@ public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         FarmDetailsVegetableItems item = (FarmDetailsVegetableItems) items;
         this.item = item;
-        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
+        Glide.with(itemView.getContext()).load(item.getImageUri()).placeholder(R.drawable.ic_sign_up_logo).into(imageView);
         farmName.setText(item.getTitle());
         tv_sub_cat_price.setText("$"+item.getPrice());
         tv_sub_cat_quantity.setText(item.getQuantity());

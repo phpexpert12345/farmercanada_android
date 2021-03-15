@@ -20,11 +20,13 @@ public class OrderLimitListAdapter extends RecyclerView.Adapter<OrderLimitListAd
     private Context context;
     private List<DropDownData> modelArrayList;
     private OrderLimitItemClickListener onStoreTimeItemClicked;
+    int type;
 
-    public OrderLimitListAdapter(Context context, List<DropDownData> modelArrayList, OrderLimitItemClickListener onStoreTimeItemClicked) {
+    public OrderLimitListAdapter(Context context, List<DropDownData> modelArrayList, OrderLimitItemClickListener onStoreTimeItemClicked,int type) {
         this.context = context;
         this.modelArrayList = modelArrayList;
         this.onStoreTimeItemClicked = onStoreTimeItemClicked;
+        this.type=type;
     }
 
     @Override
@@ -39,17 +41,11 @@ public class OrderLimitListAdapter extends RecyclerView.Adapter<OrderLimitListAd
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tv_time_interval.setText(modelArrayList.get(position).getName());
 
-        holder.rd_time_interval_select.setOnClickListener(new View.OnClickListener() {
+        holder.ll_interval_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onStoreTimeItemClicked.onOrderLimitItemClicked(modelArrayList.get(position).getName());
-            }
-        });
-
-        holder.rd_time_interval_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onStoreTimeItemClicked.onOrderLimitItemClicked(modelArrayList.get(position).getName());
+                holder.rd_time_interval_select.setChecked(true);
+                onStoreTimeItemClicked.onOrderLimitItemClicked(modelArrayList.get(position).getName(),type);
             }
         });
     }
@@ -75,6 +71,6 @@ public class OrderLimitListAdapter extends RecyclerView.Adapter<OrderLimitListAd
     }
 
     public interface OrderLimitItemClickListener {
-        void onOrderLimitItemClicked(String item);
+        void onOrderLimitItemClicked(String item,int type);
     }
 }

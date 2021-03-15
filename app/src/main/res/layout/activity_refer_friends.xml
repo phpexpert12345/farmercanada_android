@@ -11,6 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/linear_refer"
         android:orientation="vertical">
 
         <androidx.core.widget.NestedScrollView

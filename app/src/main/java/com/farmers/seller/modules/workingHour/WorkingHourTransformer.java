@@ -19,33 +19,26 @@ public class WorkingHourTransformer {
 
     public static List<StoreTimeListItem> getStoreTimeList() {
         List<StoreTimeListItem> item = new ArrayList<>();
-        item.add(new StoreTimeListItem(1, "5 Minute"));
-        item.add(new StoreTimeListItem(2, "10 Minute"));
-        item.add(new StoreTimeListItem(3, "15 Minute"));
-        item.add(new StoreTimeListItem(4, "20 Minute"));
-        item.add(new StoreTimeListItem(5, "25 Minute"));
-        item.add(new StoreTimeListItem(6, "30 Minute"));
-        item.add(new StoreTimeListItem(7, "35 Minute"));
-        item.add(new StoreTimeListItem(8, "40 Minute"));
-        item.add(new StoreTimeListItem(9, "45 Minute"));
-        item.add(new StoreTimeListItem(10, "50 Minute"));
-        item.add(new StoreTimeListItem(11, "1 Hour"));
-        item.add(new StoreTimeListItem(12, "2 Hour"));
+        item.add(new StoreTimeListItem(1, "1 hours"));
+        item.add(new StoreTimeListItem(2, "1.30 hours"));
+        item.add(new StoreTimeListItem(3, "2 hours"));
+        item.add(new StoreTimeListItem(4, "2.30 hours"));
+        item.add(new StoreTimeListItem(5, "3 hours"));
+        item.add(new StoreTimeListItem(6, "3.30 hours"));
+        item.add(new StoreTimeListItem(7, "4 hours"));
         return item;
     }
 
     public static List<WeekDayListItem> getWeekDaysList() {
 
         List<DropDownData> dropDownDataList = new ArrayList<>();
-        dropDownDataList.add(new DropDownData(1, "1 Order"));
-        dropDownDataList.add(new DropDownData(3, "3 Order"));
-        dropDownDataList.add(new DropDownData(4, "4 Order"));
         dropDownDataList.add(new DropDownData(5, "5 Order"));
-        dropDownDataList.add(new DropDownData(6, "6 Order"));
-        dropDownDataList.add(new DropDownData(7, "7 Order"));
-        dropDownDataList.add(new DropDownData(8, "8 Order"));
-        dropDownDataList.add(new DropDownData(9, "9 Order"));
-        dropDownDataList.add(new DropDownData(10, "10 Order"));
+        dropDownDataList.add(new DropDownData(6, "10 Order"));
+        dropDownDataList.add(new DropDownData(7, "15 Order"));
+        dropDownDataList.add(new DropDownData(8, "20 Order"));
+        dropDownDataList.add(new DropDownData(9, "25 Order"));
+        dropDownDataList.add(new DropDownData(10, "30 Order"));
+
 
         List<WeekDayListItem> item = new ArrayList<>();
 
@@ -62,33 +55,25 @@ public class WorkingHourTransformer {
 
     public static List<PickupTimeListItem> getPickupTimeList() {
         List<PickupTimeListItem> item = new ArrayList<>();
-        item.add(new PickupTimeListItem(1, "5 Minute"));
-        item.add(new PickupTimeListItem(2, "10 Minute"));
-        item.add(new PickupTimeListItem(3, "15 Minute"));
-        item.add(new PickupTimeListItem(4, "20 Minute"));
-        item.add(new PickupTimeListItem(5, "25 Minute"));
-        item.add(new PickupTimeListItem(6, "30 Minute"));
-        item.add(new PickupTimeListItem(7, "35 Minute"));
-        item.add(new PickupTimeListItem(8, "40 Minute"));
-        item.add(new PickupTimeListItem(9, "45 Minute"));
-        item.add(new PickupTimeListItem(10, "50 Minute"));
-        item.add(new PickupTimeListItem(11, "1 Hour"));
-        item.add(new PickupTimeListItem(12, "2 Hour"));
+        item.add(new PickupTimeListItem(1, "1 hours"));
+        item.add(new PickupTimeListItem(2, "1.30 hours"));
+        item.add(new PickupTimeListItem(3, "2 hours"));
+        item.add(new PickupTimeListItem(4, "2.30 hours"));
+        item.add(new PickupTimeListItem(5, "3 hours"));
+        item.add(new PickupTimeListItem(6, "3.30 hours"));
+        item.add(new PickupTimeListItem(7, "4 hours"));
         return item;
     }
 
     public static List<PickupWeekDayListItem> getPickupWeekDaysList() {
 
         List<PickupDropDownData> pickupDropDownData = new ArrayList<>();
-        pickupDropDownData.add(new PickupDropDownData(1, "1 Order"));
-        pickupDropDownData.add(new PickupDropDownData(3, "3 Order"));
-        pickupDropDownData.add(new PickupDropDownData(4, "4 Order"));
-        pickupDropDownData.add(new PickupDropDownData(5, "5 Order"));
-        pickupDropDownData.add(new PickupDropDownData(6, "6 Order"));
-        pickupDropDownData.add(new PickupDropDownData(7, "7 Order"));
-        pickupDropDownData.add(new PickupDropDownData(8, "8 Order"));
-        pickupDropDownData.add(new PickupDropDownData(9, "9 Order"));
-        pickupDropDownData.add(new PickupDropDownData(10, "10 Order"));
+        pickupDropDownData.add(new PickupDropDownData(1, "5 Order"));
+        pickupDropDownData.add(new PickupDropDownData(3, "10 Order"));
+        pickupDropDownData.add(new PickupDropDownData(4, "15 Order"));
+        pickupDropDownData.add(new PickupDropDownData(5, "20 Order"));
+        pickupDropDownData.add(new PickupDropDownData(6, "25 Order"));
+        pickupDropDownData.add(new PickupDropDownData(6, "30 Order"));
 
         List<PickupWeekDayListItem> item = new ArrayList<>();
 

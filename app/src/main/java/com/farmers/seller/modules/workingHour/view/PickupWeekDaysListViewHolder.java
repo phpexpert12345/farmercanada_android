@@ -33,7 +33,7 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
     TextView tv_time_interval;
     SwitchCompat switch_week;
     LinearLayout ll_order_limit_time;
-    EditText ed_order_limit;
+    EditText ed_order_limit,edit_start_time,edit_end_time;
     int selectedPosition = -1;
     PickupOrderLimitListAdapter.PickupOrderLimitItemClickListener pickupOrderLimitItemClickListener;
 
@@ -44,6 +44,8 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
         switch_week = itemView.findViewById(R.id.switch_week);
         ll_order_limit_time = itemView.findViewById(R.id.ll_order_limit_time);
         ed_order_limit = itemView.findViewById(R.id.ed_order_limit);
+        edit_start_time = itemView.findViewById(R.id.edit_start_time);
+        edit_end_time = itemView.findViewById(R.id.edit_end_time);
 
         switch_week.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -56,11 +58,17 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
                 }
             }
         });
+        edit_start_time.setOnClickListener(v->{
+            OrderLimitDialog(itemView.getContext(), item,"Select Start Time",0);
+        });
+        edit_end_time.setOnClickListener(v->{
+            OrderLimitDialog(itemView.getContext(), item,"Select End Time",1);
+        });
 
         ed_order_limit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OrderLimitDialog(itemView.getContext(), item);
+                OrderLimitDialog(itemView.getContext(), item,"Select Order Limit",2);
             }
         });
     }
@@ -80,8 +88,20 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
     }
 
     @Override
-    public void onPickupOrderLimitItemClicked(String item) {
-        ed_order_limit.setText(item);
+    public void onPickupOrderLimitItemClicked(String item,int type) {
+        switch(type){
+            case 0:
+                edit_start_time.setText(item);
+                break;
+            case 1:
+                edit_end_time.setText(item);
+                break;
+            case 2:
+                ed_order_limit.setText(item);
+                break;
+        }
+
+
         orderLimitDialog.dismiss();
     }
 
@@ -89,7 +109,7 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
         void onPickupWeekDayItemClicked(WeekDayListItem weekDayListItem);
     }
 
-    public void OrderLimitDialog(Context activity, PickupWeekDayListItem item) {
+    public void OrderLimitDialog(Context activity, PickupWeekDayListItem item,String message,int type) {
 
         orderLimitDialog = new Dialog(activity, R.style.NewDialog);
         orderLimitDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -97,11 +117,11 @@ public class PickupWeekDaysListViewHolder extends BaseViewHolder implements Pick
         orderLimitDialog.setContentView(R.layout.layout_store_time_interval_dialog);
 
         TextView tv_dialog_title = orderLimitDialog.findViewById(R.id.tv_dialog_title);
-        tv_dialog_title.setText("Select Order Limit");
+        tv_dialog_title.setText(message);
 
         rv_review_list = orderLimitDialog.findViewById(R.id.rv_review_list);
         PickupOrderLimitListAdapter orderLimitListAdapter = new PickupOrderLimitListAdapter(itemView.getContext(), item.getDropDownDataList(),
-                pickupOrderLimitItemClickListener);
+                pickupOrderLimitItemClickListener,type);
         rv_review_list.setHasFixedSize(true);
         rv_review_list.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
 

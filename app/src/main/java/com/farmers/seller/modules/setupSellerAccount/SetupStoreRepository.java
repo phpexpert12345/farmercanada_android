@@ -6,6 +6,7 @@ import com.farmers.buyers.remote.ApiConstants;
 import com.farmers.buyers.remote.RetrofitBuilder;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreRequestParams;
+import com.google.android.gms.common.api.Api;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -154,4 +155,41 @@ public class SetupStoreRepository extends BaseRepository {
 
         makeRequest(call, responseCallback);
     }
+    public void updateDocs(SetupStoreRequestParams params, ApiResponseCallback<SetupStoreApiModel> responseCallback){
+        RequestBody getDoc1Body;
+        RequestBody getDoc2Body;
+        RequestBody getDoc3Body;
+        RequestBody getDoc4Body;
+        if (params.getDoc1() != null) {
+            getDoc1Body = RequestBody.create(MediaType.parse("multipart/form-data"), params.getDoc1());
+        } else {
+            getDoc1Body = RequestBody.create(MediaType.parse("multipart/form-data"), "");
+        }
+
+        if (params.getDoc2() != null) {
+            getDoc2Body = RequestBody.create(MediaType.parse("multipart/form-data"), params.getDoc2());
+        } else {
+            getDoc2Body = RequestBody.create(MediaType.parse("multipart/form-data"), "");
+        }
+        if (params.getDoc3() != null) {
+            getDoc3Body = RequestBody.create(MediaType.parse("multipart/form-data"), params.getDoc3());
+        } else {
+            getDoc3Body = RequestBody.create(MediaType.parse("multipart/form-data"), "");
+        }
+        if (params.getDoc4() != null) {
+            getDoc4Body = RequestBody.create(MediaType.parse("multipart/form-data"), params.getDoc4());
+        } else {
+            getDoc4Body = RequestBody.create(MediaType.parse("multipart/form-data"), "");
+        }
+
+        Call<SetupStoreApiModel> call = RetrofitBuilder.createServiceContract().UpdateDocs(ApiConstants.UPDATE_DOCS, MultipartBody.Part.createFormData("document_type_1_front_photo", "Image.png", getDoc1Body),
+                MultipartBody.Part.createFormData("document_type_1_back_photo", "Image.png", getDoc2Body),
+                MultipartBody.Part.createFormData("document_type_2_front_photo", "Image.png", getDoc3Body),
+                MultipartBody.Part.createFormData("document_type_2_back_photo", "Image.png", getDoc4Body), RequestBody.create(MediaType.parse("text/plain"), params.getTxt_doc_1()),
+                RequestBody.create(MediaType.parse("text/plain"), params.getTxt_doc_2()),
+                RequestBody.create(MediaType.parse("text/plain"), params.getLoginId()),
+                RequestBody.create(MediaType.parse("text/plain"), params.getAuthKey()));
+        makeRequest(call, responseCallback);
+    }
+
 }

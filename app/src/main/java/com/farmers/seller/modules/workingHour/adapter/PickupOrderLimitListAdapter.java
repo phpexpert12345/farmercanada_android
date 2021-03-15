@@ -21,11 +21,13 @@ public class PickupOrderLimitListAdapter extends RecyclerView.Adapter<PickupOrde
     private Context context;
     private List<PickupDropDownData> modelArrayList;
     private PickupOrderLimitItemClickListener pickupOrderLimitItemClickListener;
+    int type;
 
-    public PickupOrderLimitListAdapter(Context context, List<PickupDropDownData> modelArrayList, PickupOrderLimitItemClickListener pickupOrderLimitItemClickListener) {
+    public PickupOrderLimitListAdapter(Context context, List<PickupDropDownData> modelArrayList, PickupOrderLimitItemClickListener pickupOrderLimitItemClickListener,int type) {
         this.context = context;
         this.modelArrayList = modelArrayList;
         this.pickupOrderLimitItemClickListener = pickupOrderLimitItemClickListener;
+        this.type=type;
     }
 
     @Override
@@ -40,19 +42,15 @@ public class PickupOrderLimitListAdapter extends RecyclerView.Adapter<PickupOrde
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tv_time_interval.setText(modelArrayList.get(position).getName());
 
-        holder.rd_time_interval_select.setOnClickListener(new View.OnClickListener() {
+        holder.ll_interval_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pickupOrderLimitItemClickListener.onPickupOrderLimitItemClicked(modelArrayList.get(position).getName());
+                holder.rd_time_interval_select.setChecked(true);
+                pickupOrderLimitItemClickListener.onPickupOrderLimitItemClicked(modelArrayList.get(position).getName(),type);
             }
         });
 
-        holder.rd_time_interval_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pickupOrderLimitItemClickListener.onPickupOrderLimitItemClicked(modelArrayList.get(position).getName());
-            }
-        });
+
     }
 
     @Override
@@ -76,6 +74,6 @@ public class PickupOrderLimitListAdapter extends RecyclerView.Adapter<PickupOrde
     }
 
     public interface PickupOrderLimitItemClickListener {
-        void onPickupOrderLimitItemClicked(String item);
+        void onPickupOrderLimitItemClicked(String item,int type);
     }
 }
