@@ -135,7 +135,22 @@ public class DeliveryTimeFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void onWeekDayItemClicked(WeekDayListItem weekDayListItem) {
+    public void onWeekDayItemClicked(int position, String startDate, String endDate) {
+
+    }
+
+    @Override
+    public void onUpdateSwitchItemClicked(int position) {
+
+    }
+
+    @Override
+    public void onStartDateClicked(int position, EditText startDate) {
+
+    }
+
+    @Override
+    public void onEndDateClicked(int position, EditText endDate) {
 
     }
 }

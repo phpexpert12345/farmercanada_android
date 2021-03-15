@@ -109,7 +109,6 @@ public class WorkingHourActivity extends BaseActivity {
                 tab1.getStoreTime();
                 break;
             }
-
             case 1: {
                 tab2.getPickupTime();
                 break;

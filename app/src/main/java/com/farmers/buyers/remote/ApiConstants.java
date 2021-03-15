@@ -45,10 +45,10 @@ public class ApiConstants {
     public static final String GET_CUSTOMER_REVIEW_LIST = "phpexpert_customer_review_list.php";
     public static final String GET_FARM_REVIEW_LIST = "phpexpert_farm_review_list.php";
     public static final String GET_FARM_REVIEWED_LIST = "phpexpert_farm_review_customer_list.php";
-    public static final String GET_PAYMENT_KEY="phpexpert_payment_key.php";
-    public static final String STRIPE_PAY="phpexpert_payment_intent_generate.php";
-    public static final String GET_PAYMENT_KEY_WALLET="phpexpert_payment_key_wallet.php";
-    public static final String STRIPE_PAY_WALLET="phpexpert_payment_intent_generate_wallet.php";
+    public static final String GET_PAYMENT_KEY = "phpexpert_payment_key.php";
+    public static final String STRIPE_PAY = "phpexpert_payment_intent_generate.php";
+    public static final String GET_PAYMENT_KEY_WALLET = "phpexpert_payment_key_wallet.php";
+    public static final String STRIPE_PAY_WALLET = "phpexpert_payment_intent_generate_wallet.php";
     public static final String SEARCH_PRODUCT_ITEM = "phpexpert_all_farm_product_search.php";
     public static final String NEW_ORDERS_LIST = "phpexpert_store_order_list.php";
     public static final String ORDERS_DETAILS_DATA = "phpexpert_store_order_detail.php";
@@ -58,7 +58,9 @@ public class ApiConstants {
     public static final String PUBLISH_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_add.php";
     public static final String DELETE_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_delete.php";
     public static final String EDIT_BROADCAST_MESSAGE = "phpexpert_store_boardcast_message_edit.php";
-    public static final String NOTIFICATION_LIST=BASE_URL+"phpexpert_customer_notification_list.php";
+    public static final String NOTIFICATION_LIST = BASE_URL + "phpexpert_customer_notification_list.php";
+    public static final String STORE_TIME_LIST = "phpexpert_store_time_list.php";
+    public static final String STORE_TIME_UPDATE = "phpexpert_store_time_update.php";
 
 
     //Ganesh working
@@ -80,13 +82,13 @@ public class ApiConstants {
 
     // TODO Seller Section
 
-    public static final String SETUP_STORE          = "phpexpert_store_configuration_process.php";
-    public static final String ADD_PRODUCT          = "phpexpert_store_product_add.php";
-    public static final String PRODUCT_LIST         = "phpexpert_store_product_list.php";
-    public static final String EDIT_PRODUCT         = "phpexpert_store_product_edit.php";
-    public static final String DELETE_PRODUCT       = "phpexpert_store_product_delete.php";
-    public static final String ADD_COUPON           = "phpexpert_store_product_coupon_add.php";
-    public static final String COUPON_LIST          = "phpexpert_store_product_coupon_list.php";
-    public static final String DELETE_COUPON        = "phpexpert_store_product_coupon_delete.php";
-    public static final String EDIT_COUPON          = "phpexpert_store_product_coupon_edit.php";
+    public static final String SETUP_STORE = "phpexpert_store_configuration_process.php";
+    public static final String ADD_PRODUCT = "phpexpert_store_product_add.php";
+    public static final String PRODUCT_LIST = "phpexpert_store_product_list.php";
+    public static final String EDIT_PRODUCT = "phpexpert_store_product_edit.php";
+    public static final String DELETE_PRODUCT = "phpexpert_store_product_delete.php";
+    public static final String ADD_COUPON = "phpexpert_store_product_coupon_add.php";
+    public static final String COUPON_LIST = "phpexpert_store_product_coupon_list.php";
+    public static final String DELETE_COUPON = "phpexpert_store_product_coupon_delete.php";
+    public static final String EDIT_COUPON = "phpexpert_store_product_coupon_edit.php";
 }

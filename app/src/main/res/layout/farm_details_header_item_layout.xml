@@ -10,7 +10,7 @@
             android:id="@+id/home_top_offers_item_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/farm_detail_img"
+            android:src="@drawable/ic_launcher_background"
             android:scaleType="fitXY"
             android:background="@drawable/bottom_round_corner_bg"
             />

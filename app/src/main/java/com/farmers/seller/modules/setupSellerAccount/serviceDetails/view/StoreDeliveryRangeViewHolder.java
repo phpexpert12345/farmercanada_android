@@ -24,8 +24,6 @@ public class StoreDeliveryRangeViewHolder extends BaseViewHolder {
         super(Extensions.inflate(parent, R.layout.store_setup_delivery_range_item_layout));
         rangeTv = itemView.findViewById(R.id.setup_range_delivery_item_title_tv);
         this.listener = listener;
-
-
     }
 
     @Override

@@ -59,10 +59,12 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_start_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Time"
-                        android:inputType="datetime"
+                        android:focusable="false"
+                        android:hint="Start Time"
+                        android:inputType="none"
                         android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -83,10 +85,12 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_end_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Time"
-                        android:inputType="datetime"
+                        android:focusable="false"
+                        android:hint="End Time"
+                        android:inputType="none"
                         android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -95,10 +99,30 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="@dimen/_5sdp">
+
+            <Button
+                android:id="@+id/bt_save"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/round_corner_green_gradient_bg"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/secondaryTextColor" />
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -134,5 +158,4 @@
         </RelativeLayout>
 
     </LinearLayout>
-
 </LinearLayout>

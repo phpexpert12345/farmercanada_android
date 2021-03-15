@@ -35,6 +35,7 @@ import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
 import com.farmers.seller.modules.broadcastMessage.model.BroadcastMessageResponse;
 import com.farmers.seller.modules.ourOrders.model.AllOrderResponse;
 import com.farmers.seller.modules.setupSellerAccount.model.SetupStoreApiModel;
+import com.farmers.seller.modules.workingHour.model.WorkingHoursResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -220,6 +221,40 @@ public interface ApiController {
 
     @FormUrlEncoded
     @POST
+    Call<WorkingHoursResponse> addUpdateStoreTimeList(@Url String url,
+                                                      @Field("LoginId") String LoginId,
+                                                      @Field("auth_key") String authKey,
+                                                      @Field("farm_id") String farm_id,
+                                                      @Field("mon_available") String mon_available,
+                                                      @Field("mon_start_time") String mon_start_time,
+                                                      @Field("mon_close_time") String mon_close_time,
+                                                      @Field("tue_available") String tue_available,
+                                                      @Field("tue_start_time") String tue_start_time,
+                                                      @Field("tue_close_time") String tue_close_time,
+                                                      @Field("wed_available") String wed_available,
+                                                      @Field("wed_start_time") String wed_start_time,
+                                                      @Field("wed_close_time") String wed_close_time,
+                                                      @Field("thu_available") String thu_available,
+                                                      @Field("thu_start_time") String thu_start_time,
+                                                      @Field("thu_close_time") String thu_close_time,
+                                                      @Field("fri_available") String fri_available,
+                                                      @Field("fri_start_time") String fri_start_time,
+                                                      @Field("fri_close_time") String fri_close_time,
+                                                      @Field("sat_available") String sat_available,
+                                                      @Field("sat_start_time") String sat_start_time,
+                                                      @Field("sat_close_time") String sat_close_time,
+                                                      @Field("sun_available") String sun_available,
+                                                      @Field("sun_start_time") String sun_start_time,
+                                                      @Field("sun_close_time") String sun_close_time
+    );
+
+    @FormUrlEncoded
+    @POST
+    Call<WorkingHoursResponse> getStoreTimeList(@Url String url, @Field("LoginId") String LoginId,
+                                                @Field("auth_key") String authKey, @Field("farm_id") String farm_id);
+
+    @FormUrlEncoded
+    @POST
     Call<AllOrderResponse> getOrderDetails(@Url String url, @Field("LoginId") String LoginId,
                                            @Field("auth_key") String authKey, @Field("order_number") String order_number);
 
@@ -394,9 +429,9 @@ public interface ApiController {
     @FormUrlEncoded
     @POST
     Call<ProductListApiModel> doSearchProductItems(@Url String url,
-                                             @Field("auth_key") String authKey,
-                                             @Field("search_text") String searchText,
-                                             @Field("LoginId") String loginId
+                                                   @Field("auth_key") String authKey,
+                                                   @Field("search_text") String searchText,
+                                                   @Field("LoginId") String loginId
     );
 
 
