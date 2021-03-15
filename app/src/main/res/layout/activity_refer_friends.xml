@@ -36,8 +36,7 @@
                         android:id="@+id/img_referal"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_110sdp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/refer" />
+                        android:scaleType="fitXY" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -53,8 +52,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_bold"
                         android:gravity="center"
-                        android:text="Title"
-
                         android:textColor="@color/black"
                         android:textSize="@dimen/_18sdp" />
 
@@ -85,7 +82,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/sf_ui_regular"
-                                android:text="89597828"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp" />
 
@@ -132,9 +128,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/_15sdp"
                         android:text="Tap on Copy to copy code"
                         android:textColor="@color/reset_bg"
                         android:textSize="@dimen/dp_15_px" />
@@ -153,7 +149,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_regular"
                         android:gravity="center"
-                        android:text="messga"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp" />
 
@@ -173,9 +168,9 @@
                         android:layout_margin="@dimen/_30sdp"
                         android:background="@drawable/round_corner_light_gradient_bg"
                         android:text="Share"
-                        android:textSize="@dimen/_18sdp"
                         android:textAllCaps="false"
-                        android:textColor="@color/secondaryTextColor" />
+                        android:textColor="@color/secondaryTextColor"
+                        android:textSize="@dimen/_18sdp" />
 
                 </LinearLayout>
 

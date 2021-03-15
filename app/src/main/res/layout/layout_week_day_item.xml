@@ -45,11 +45,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:id="@+id/relative_start_time"
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -60,38 +59,22 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_start_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:focusable="false"
                         android:hint="Start Time"
-                        android:id="@+id/edit_start_time"
-                        android:cursorVisible="false"
-                        android:focusable="false"
                         android:inputType="none"
                         android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginRight="@dimen/_20sdp"
-                    android:layout_weight="0.2"
-                    android:layout_centerVertical="true"
-                    android:gravity="end">
 
-                    <ImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:visibility="visible"
-                        android:src="@mipmap/dropdown_icon" />
-                </LinearLayout>
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:id="@+id/relative_end_time"
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -102,39 +85,44 @@
                     android:layout_marginRight="@dimen/dp_16_px">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_end_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="End Time"
-                        android:id="@+id/edit_end_time"
                         android:focusable="false"
-                        android:cursorVisible="false"
+                        android:hint="End Time"
                         android:inputType="none"
                         android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_weight="0.2"
-                    android:layout_centerVertical="true"
-                    android:gravity="end">
 
-                    <ImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:visibility="visible"
-                        android:src="@mipmap/dropdown_icon" />
-                </LinearLayout>
-            </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="@dimen/_5sdp">
+
+            <Button
+                android:id="@+id/bt_save"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/round_corner_green_gradient_bg"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/secondaryTextColor" />
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -145,9 +133,8 @@
                     android:id="@+id/ed_order_limit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   android:maxLength="10"
-                    android:focusable="false"
                     android:cursorVisible="false"
+                    android:focusable="false"
                     android:hint="Order Limit"
                     android:inputType="none"
                     android:textColor="@color/black" />
@@ -160,19 +147,15 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_weight="0.2"
-                android:layout_centerVertical="true"
                 android:gravity="end">
 
                 <ImageView
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
-                    android:visibility="visible"
-                    android:id="@+id/img_drop"
                     android:src="@mipmap/dropdown_icon" />
             </LinearLayout>
 
         </RelativeLayout>
 
     </LinearLayout>
-
 </LinearLayout>
