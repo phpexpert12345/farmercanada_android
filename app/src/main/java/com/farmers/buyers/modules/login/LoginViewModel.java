@@ -28,7 +28,7 @@ public class LoginViewModel extends BaseViewModel {
                         String password, int role, String FirebaseToken) {
 
         if (email.isEmpty() || email.length() < 10) {
-            stateMachine.postValue(DataFetchState.error("Please enter mobile number", new LoginApiModel()));
+            stateMachine.postValue(DataFetchState.error("Please enter valid mobile number", new LoginApiModel()));
             return;
         }
 

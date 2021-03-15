@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -46,7 +47,8 @@ import java.util.Locale;
 
 public class SignUpActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private CheckBox termsConditionTv;
-    private TextView tv_sign_up_terms_condition;
+    private TextView tv_sign_up_terms_condition,text_sign_up;
+    private ImageView sign_up_back;
     private Button signUpBtn;
     private TextInputEditText nameEt, emailEt, numberEt, passwordEt, signUp_referral_et;
     private RadioGroup user_type_radio_group;
@@ -97,7 +99,9 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         signUp_referral_et = findViewById(R.id.signUp_referral_et);
         user_type_radio_group = findViewById(R.id.user_type_radio_group);
         user_type_radio_group.setOnCheckedChangeListener(this);
-
+        text_sign_up=findViewById(R.id.text_sign_up);
+        sign_up_back=findViewById(R.id.sign_up_back);
+        text_sign_up.setText("Register");
         gpsTracker = new GPSTracker(SignUpActivity.this);
 
         if (!checkPermissions()) {
@@ -192,6 +196,9 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
             } else {
                 Toast.makeText(SignUpActivity.this, "Please check T&C", Toast.LENGTH_SHORT).show();
             }
+        });
+        sign_up_back.setOnClickListener(v->{
+            onBackPressed();
         });
     }
 

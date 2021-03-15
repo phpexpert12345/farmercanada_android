@@ -40,23 +40,33 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="store_docs_update_14_03_2021_2243">
+    <list default="true" id="f8b60b9e-683f-4a49-8097-efe49929d283" name="Default Changelist" comment="maerged_code_seller_15_03_2021_1126">
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/forgotPassword/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/forgotPassword/ForgotPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/login/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/login/LoginViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/signUp/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/buyers/modules/signUp/SignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/WorkingHourActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/WorkingHourActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/deliveryTime/DeliveryTimeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/deliveryTime/DeliveryTimeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/PickupWeekDaysListViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/PickupWeekDaysListViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/WeekDaysListViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/view/WeekDaysListViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_week_day_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_week_day_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RZ8M53B3FBB]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -82,19 +92,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Farmers" type="f1a62948:ProjectNode" />
                 <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Farmers" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Farmers" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="android" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -136,16 +133,10 @@
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/farmers/seller/modules/workingHour/deliveryTime" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.1759372171">
-      <recent name="com.farmers.buyers.modules.webview" />
-    </key>
-    <key name="android.template.1362669096">
-      <recent name="com.farmers.seller.modules.storeSetting" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.farmers.buyers.common.utils" />
       <recent name="com.farmers.seller.modules.broadcastMessage.model" />
@@ -153,12 +144,18 @@
       <recent name="com.farmers.seller.modules.ourOrders.adapter" />
       <recent name="com.farmers.seller.modules.ourOrders" />
     </key>
+    <key name="android.template.1362669096">
+      <recent name="com.farmers.seller.modules.storeSetting" />
+    </key>
+    <key name="android.template.1759372171">
+      <recent name="com.farmers.buyers.modules.webview" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\punee\AndroidStudioProjects\farmercanada_android\app\src\main\java\com\farmers\seller\modules\workingHour\deliveryTime" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -362,7 +359,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615742082173</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="store_docs_update_15_03_2021_1111">
+      <created>1615786919396</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615786919396</updated>
+    </task>
+    <task id="LOCAL-00008" summary="maerged_code_seller_15_03_2021_1126">
+      <created>1615787825867</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1615787825867</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -396,7 +407,9 @@
     <MESSAGE value="store_docs_update_13_03_2021_1341" />
     <MESSAGE value="store_docs_update_13_03_2021_1351" />
     <MESSAGE value="store_docs_update_14_03_2021_2243" />
-    <option name="LAST_COMMIT_MESSAGE" value="store_docs_update_14_03_2021_2243" />
+    <MESSAGE value="store_docs_update_15_03_2021_1111" />
+    <MESSAGE value="maerged_code_seller_15_03_2021_1126" />
+    <option name="LAST_COMMIT_MESSAGE" value="maerged_code_seller_15_03_2021_1126" />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="0" key="#app" timestamp="1614010475905">
@@ -407,18 +420,19 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="403" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1613987321608" />
-    <state x="484" y="56" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1615617810917">
+    <state x="484" y="56" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1615790305613">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="484" y="56" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1615617810917" />
+    <state x="484" y="56" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1615790305613" />
     <state x="516" y="84" width="374" height="633" key="#com.intellij.ide.util.MemberChooser/50.27.1316.741@50.27.1316.741" timestamp="1615464658223" />
     <state x="164" y="322" width="1087" height="158" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1614241136150">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="164" y="322" width="1087" height="158" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/50.27.1316.741@50.27.1316.741" timestamp="1614241136150" />
-    <state x="441" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1615463759195">
-      <screen x="50" y="27" width="1316" height="741" />
+    <state x="406" y="117" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1615787761254">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="406" y="117" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1615787761254" />
     <state x="441" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.27.1316.741@50.27.1316.741" timestamp="1615463759195" />
     <state x="231" y="134" key="#xdebugger.evaluate" timestamp="1615547558566">
       <screen x="0" y="0" width="1366" height="728" />
@@ -439,9 +453,10 @@
     </state>
     <state width="523" height="470" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1615741356432" />
     <state width="503" height="478" key="DebuggerActiveHint/50.27.1316.741@50.27.1316.741" timestamp="1615440479810" />
-    <state x="150" y="127" width="1116" height="541" key="DiffContextDialog" timestamp="1615387858642">
-      <screen x="50" y="27" width="1316" height="741" />
+    <state x="104" y="98" width="1116" height="541" key="DiffContextDialog" timestamp="1615786851364">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="104" y="98" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1615786851364" />
     <state x="150" y="127" width="1116" height="541" key="DiffContextDialog/50.27.1316.741@50.27.1316.741" timestamp="1615387858642" />
     <state x="491" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1615368082551">
       <screen x="50" y="27" width="1316" height="741" />
@@ -495,19 +510,23 @@
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="291" y="143" width="824" height="515" key="IDE.errors.dialog/50.27.1316.741@50.27.1316.741" timestamp="1615213114835" />
-    <state x="166" y="85" key="MergeDialog" timestamp="1613976587972">
+    <state x="166" y="85" key="MergeDialog" timestamp="1615787271825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="166" y="85" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1613976587972" />
-    <state x="358" y="155" key="MultipleFileMergeDialog" timestamp="1615742370527">
+    <state x="166" y="85" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1615787271825" />
+    <state x="358" y="155" key="MultipleFileMergeDialog" timestamp="1615787342543">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="358" y="155" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1615742370527" />
+    <state x="358" y="155" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1615787342543" />
     <state x="403" y="176" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1613973683819" />
-    <state x="274" y="84" key="Vcs.Push.Dialog.v2" timestamp="1615742104450">
+    <state x="387" y="67" key="RollbackChangesDialog" timestamp="1615786854313">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="274" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1615742104450" />
+    <state x="387" y="67" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1615786854313" />
+    <state x="274" y="84" key="Vcs.Push.Dialog.v2" timestamp="1615787846561">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="274" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1615787846561" />
     <state width="658" height="370" key="XDebugger.FullValuePopup" timestamp="1615385270772">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
@@ -520,14 +539,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1615482798896" />
-    <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615741980840">
+    <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615790563859">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1615741980840" />
-    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1615783592600">
+    <state x="100" y="100" width="1164" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1615790563859" />
+    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1615789116644">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1615783592600" />
+    <state x="326" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1615789116644" />
     <state x="72" y="109" width="1261" height="583" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1615453968146">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
@@ -537,10 +556,10 @@
     </state>
     <state x="362" y="107" width="935" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1615739900150" />
     <state x="399" y="136" width="900" height="522" key="find.popup/50.27.1316.741@50.27.1316.741" timestamp="1615462963661" />
-    <state x="354" y="152" key="git4idea.merge.GitPullDialog" timestamp="1615742231508">
+    <state x="354" y="152" key="git4idea.merge.GitPullDialog" timestamp="1615786988126">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="354" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1615742231508" />
+    <state x="354" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1615786988126" />
     <state x="540" y="155" width="325" height="492" key="refactoring.ChangeSignatureDialog" timestamp="1614064302565">
       <screen x="50" y="27" width="1316" height="741" />
     </state>

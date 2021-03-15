@@ -120,7 +120,6 @@ public class DeliveryTimeFragment extends BaseFragment implements View.OnClickLi
         rv_review_list.addItemDecoration(new EqualSpacingItemDecoration(0));
         rv_review_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.updateData(items);
-
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(storeTimeIntervalDialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
