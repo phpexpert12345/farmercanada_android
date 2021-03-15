@@ -72,6 +72,7 @@ public class StoreTimeFragment extends BaseFragment implements StoreTimeListView
     private Button bt_next_store_time;
     public String startTime, endTime;
     int sHours, sMinit;
+    public long timeMilesStart = 0, calenderTimeMiles = 0;
 
     public StoreTimeFragment get() {
         return new StoreTimeFragment();
@@ -256,6 +257,13 @@ public class StoreTimeFragment extends BaseFragment implements StoreTimeListView
 
             int hour, minute;
             String am_pm;
+            int hourOfDay = 0;
+            int minutes = 0;
+            Calendar datetime = Calendar.getInstance();
+            Calendar c = Calendar.getInstance();
+            datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            datetime.set(Calendar.MINUTE, minutes);
+
             if (Build.VERSION.SDK_INT >= 23) {
                 hour = time_picker.getHour();
                 minute = time_picker.getMinute();
@@ -273,6 +281,8 @@ public class StoreTimeFragment extends BaseFragment implements StoreTimeListView
             startTime = hour + ":" + minute + " " + am_pm;
             sHours = hour;
             sMinit = minute;
+            timeMilesStart = datetime.getTimeInMillis();
+            calenderTimeMiles = c.getTimeInMillis();
 
             bojStatus = true;
             switch (position) {
@@ -335,6 +345,13 @@ public class StoreTimeFragment extends BaseFragment implements StoreTimeListView
 
             int hour, minute;
             String am_pm;
+            int hourOfDay = 0;
+            int minutes = 0;
+            Calendar datetime = Calendar.getInstance();
+            Calendar c = Calendar.getInstance();
+            datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            datetime.set(Calendar.MINUTE, minutes);
+
             if (Build.VERSION.SDK_INT >= 23) {
                 hour = time_picker.getHour();
                 minute = time_picker.getMinute();
@@ -353,39 +370,43 @@ public class StoreTimeFragment extends BaseFragment implements StoreTimeListView
             if (startTime.equals(endTime)) {
                 Toast.makeText(baseActivity, "Start and End time can not be same !!", Toast.LENGTH_LONG).show();
             } else {
-                bojStatus = true;
-                switch (position) {
-                    case 0:
-                        extract.mon_available = "Yes";
-                        extract.mon_close_time = ed_end_date.getText().toString().trim();
-                        break;
-                    case 1:
-                        extract.tue_available = "Yes";
-                        extract.tue_close_time = ed_end_date.getText().toString().trim();
-                        ;
-                        break;
-                    case 2:
-                        extract.wed_available = "Yes";
-                        extract.wed_close_time = ed_end_date.getText().toString().trim();
-                        break;
-                    case 3:
-                        extract.thu_available = "Yes";
-                        extract.thu_close_time = ed_end_date.getText().toString().trim();
-                        break;
-                    case 4:
-                        extract.fri_available = "Yes";
-                        extract.fri_close_time = ed_end_date.getText().toString().trim();
-                        break;
-                    case 5:
-                        extract.sat_available = "Yes";
-                        extract.sat_close_time = ed_end_date.getText().toString().trim();
-                        break;
-                    case 6:
-                        extract.sun_available = "Yes";
-                        extract.sun_close_time = ed_end_date.getText().toString().trim();
-                        break;
+                if (timeMilesStart < datetime.getTimeInMillis()) {
+                    Toast.makeText(baseActivity, "End time can not be less start time!!", Toast.LENGTH_LONG).show();
+                } else {
+                    bojStatus = true;
+                    switch (position) {
+                        case 0:
+                            extract.mon_available = "Yes";
+                            extract.mon_close_time = ed_end_date.getText().toString().trim();
+                            break;
+                        case 1:
+                            extract.tue_available = "Yes";
+                            extract.tue_close_time = ed_end_date.getText().toString().trim();
+                            ;
+                            break;
+                        case 2:
+                            extract.wed_available = "Yes";
+                            extract.wed_close_time = ed_end_date.getText().toString().trim();
+                            break;
+                        case 3:
+                            extract.thu_available = "Yes";
+                            extract.thu_close_time = ed_end_date.getText().toString().trim();
+                            break;
+                        case 4:
+                            extract.fri_available = "Yes";
+                            extract.fri_close_time = ed_end_date.getText().toString().trim();
+                            break;
+                        case 5:
+                            extract.sat_available = "Yes";
+                            extract.sat_close_time = ed_end_date.getText().toString().trim();
+                            break;
+                        case 6:
+                            extract.sun_available = "Yes";
+                            extract.sun_close_time = ed_end_date.getText().toString().trim();
+                            break;
+                    }
+                    timeDialog.dismiss();
                 }
-                timeDialog.dismiss();
             }
         });
 
