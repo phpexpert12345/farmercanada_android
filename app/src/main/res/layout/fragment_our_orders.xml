@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,18 +13,43 @@
         android:layout_margin="@dimen/_10sdp"
         android:background="@drawable/light_gray_round_border_bg"
         android:drawableStart="@drawable/ic_search"
-        android:drawableLeft="@drawable/ic_search"
         android:drawablePadding="@dimen/_8sdp"
         android:fontFamily="@font/sf_ui_regular"
         android:hint="Search by Order Number"
         android:inputType="number"
         android:padding="@dimen/_8sdp"
         android:singleLine="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/ll_data_not_available"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/ic_fav_data"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:id="@+id/txt_no_orders"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_16sdp"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_review_list"
+        android:layout_below="@+id/home_search_bottom_sheet_search_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_7sdp" />
 
-</LinearLayout>
+</RelativeLayout>

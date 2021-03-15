@@ -3,8 +3,7 @@
     android:id="@+id/simple_row_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/_3sdp"
-    android:paddingBottom="@dimen/_3sdp"
+    android:layout_marginTop="@dimen/_minus8sdp"
     android:gravity="center_vertical"
     >
 
@@ -19,12 +18,12 @@
         android:id="@+id/simple_row_item_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_toRightOf="@+id/simple_row_item_left_imageView"
-        android:fontFamily="@font/sf_ui_regular"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@+id/simple_row_item_left_imageView"
+        android:fontFamily="@font/sf_ui_semibold"
         android:text="Edit Profile"
-        android:textSize="@dimen/_12ssp"
-        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/black"
         android:gravity="center_vertical"
         android:layout_centerVertical="true"/>
 

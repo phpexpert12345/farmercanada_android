@@ -145,7 +145,7 @@
                 android:background="@drawable/round_corner_light_gradient_bg"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_16ssp"
                 android:textColor="@color/secondaryTextColor" />
 
             <LinearLayout

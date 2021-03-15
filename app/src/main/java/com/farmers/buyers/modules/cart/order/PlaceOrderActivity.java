@@ -317,7 +317,7 @@ public class PlaceOrderActivity extends BaseActivity implements OrderSuccessDial
 
         rv_time_list = findViewById(R.id.rv_time_list);
         rv_time_list.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-place_order_slot_card.setVisibility(View.GONE);
+place_order_slot_card.setVisibility(View.VISIBLE);
         SubmitRequestParam requestParam = new SubmitRequestParam(AppController.get().getAuthenticationKey(),
                 AppController.get().getLoginId());
 

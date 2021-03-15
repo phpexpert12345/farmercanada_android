@@ -55,13 +55,13 @@ public class SimpleRowViewHolder extends BaseViewHolder {
             rightImage.setImageResource(((SimpleRowListItem)items).getItem().get(i).getRightImageUri());
             titleTv.setText(((SimpleRowListItem)items).getItem().get(i).getTitle());
 
-            if (item.getItem().size()-1 == i ){
-                dividerView.setVisibility(View.GONE);
-            }
-            else {
-                dividerView.setVisibility(View.VISIBLE);
-
-            }
+//            if (item.getItem().size()-1 == i ){
+//                dividerView.setVisibility(View.GONE);
+//            }
+//            else {
+//                dividerView.setVisibility(View.VISIBLE);
+//
+//            }
             rowItemLl.addView(view);
 
             final int finalI = i;

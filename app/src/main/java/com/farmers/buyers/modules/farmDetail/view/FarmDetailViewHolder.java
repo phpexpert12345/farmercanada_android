@@ -38,6 +38,7 @@ public class FarmDetailViewHolder extends BaseViewHolder {
     private TextView deliveryTv, pickUpTv;
     private FarmDetailItemClickListener farmDetailItemClickListener;
     String pickup_available,delivery_available;
+    TextView tv_address;
     private GPSTracker gpsTracker = new GPSTracker(itemView.getContext());
     HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
 
@@ -58,6 +59,7 @@ this.deliveryTypeCheckedChangeListener=deliveryTypeCheckedChangeListener;
         deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
         civ_farm_image = itemView.findViewById(R.id.civ_farm_image);
         reviewTv = itemView.findViewById(R.id.farm_detail_item_review_tv);
+        tv_address=itemView.findViewById(R.id.tv_address);
         this.farmDetailItemClickListener = farmDetailItemClickListener;
         this.pickup_available=pickup_available;
         this.delivery_available=delivery_available;
@@ -93,6 +95,7 @@ else if(pickup_available.equalsIgnoreCase("Yes")){
                 .into(civ_farm_image);
 
         farm_detail_item_farm_name_tv.setText(item.getFarmName());
+        tv_address.setText(item.getFarmAddress());
         tv_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong()))+ " km away from you");
 //        tv_distance.setText(item.getFarm_delivery_radius_text());
         tv_opening_time.setText(item.getFarm_estimate_delivery_time());

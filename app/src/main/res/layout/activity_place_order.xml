@@ -21,7 +21,6 @@
             android:id="@+id/place_order_slot_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/place_order_recyclerView"
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_16sdp"
@@ -31,12 +30,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_8sdp"
+                android:background="@drawable/light_red_border_bg"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txt_time"
-                    android:text="10:30-10:45"
+                    android:text="Select Time"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black"
                     android:fontFamily="@font/sf_ui_semibold"

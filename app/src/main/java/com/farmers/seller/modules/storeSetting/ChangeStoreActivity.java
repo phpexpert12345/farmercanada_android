@@ -82,6 +82,9 @@ public class ChangeStoreActivity extends BaseActivity {
     private Place placeAddress;
     private boolean SearchFlag = false;
     private String farmType = "2";
+    private ArrayList<String> farmTypeList = new ArrayList<>();
+    String home_made="";
+    String local="";
     private String[] PERMISSIONS;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,15 +131,24 @@ public class ChangeStoreActivity extends BaseActivity {
         setup_store_location_et.setText(storeFarmDetails.farm_address);
         store_setup_city_et.setText(storeFarmDetails.store_city_name);
         store_setup_state_et.setText(storeFarmDetails.store_state_name);
-        if(storeFarmDetails.farm_type.equalsIgnoreCase("0")){
-            farmType="0";
-            store_setup_local_check.setChecked(false);
-            store_setup_homemade_check.setChecked(true);
-        }
-        else{
-            farmType="1";
-            store_setup_local_check.setChecked(true);
+        if(storeFarmDetails.store_type_farm_home.equalsIgnoreCase("No")){
+            home_made="0";
             store_setup_homemade_check.setChecked(false);
+
+        }
+        else if(storeFarmDetails.store_type_farm_home.equalsIgnoreCase("Yes")){
+            home_made="1";
+            store_setup_homemade_check.setChecked(true);
+            farmTypeList.add("1");
+        }
+        if(storeFarmDetails.store_type_farm_local.equalsIgnoreCase("No")){
+            local="0";
+            store_setup_local_check.setChecked(false);
+        }
+        else if(storeFarmDetails.store_type_farm_local.equalsIgnoreCase("Yes")){
+            local="1";
+            store_setup_local_check.setChecked(true);
+            farmTypeList.add("0");
         }
 //        if(storeFarmDetails.form_type_name!=null) {
 //            if (storeFarmDetails.form_type_name.equalsIgnoreCase("Local Farm")) {
@@ -152,15 +164,26 @@ public class ChangeStoreActivity extends BaseActivity {
         });
         store_setup_homemade_check.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
-                store_setup_local_check.setChecked(false);
+                farmTypeList.add("1");
+                home_made="1";
                 farmType="0";
+            }
+            else{
+                farmTypeList.remove("1");
+                home_made="0";
+
             }
 
         });
         store_setup_local_check.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
-                store_setup_homemade_check.setChecked(false);
+                farmTypeList.add("0");
+               local="1";
                 farmType="1";
+            }
+            else{
+                farmTypeList.remove("0");
+                local="0";
             }
 
         });
@@ -182,7 +205,7 @@ public class ChangeStoreActivity extends BaseActivity {
                 Toast.makeText(this, "City can not be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-          else  if (farmType.isEmpty()) {
+          else  if (farmTypeList.size()==0) {
                 Toast.makeText(this, "Please Select Farm Type", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -234,19 +257,18 @@ store_detail_choose_image_ll.setOnClickListener(v->{
             postCode=storeFarmDetails.farm_postcode;
 
         }
-        String home_made="";
-        String local="";
-        if(farmType.equalsIgnoreCase("0")){
-            home_made="1";
-            local="0";
+        StringBuilder stringBuilder= new StringBuilder();
+if(farmTypeList.size()>0){
+    for(int i=0;i<farmTypeList.size();i++){
+        if(stringBuilder.length()>0){
+            stringBuilder.append(",");
         }
-        else{
-            local="1";
-            home_made="0";
-        }
+        stringBuilder.append(farmTypeList.get(i));
+    }
+}
         showLoader();
 //        { "store_type_farm": null, "store_type_local": null, "store_type": null, "store_name": null, "store_address": null, "store_city": null, "store_state": null, "store_country": null, "store_post_code": null, "farm_id": null, "store_cover_image": null, "store_logo": null, "LoginId": null, "auth_key": null }
-        String url= ApiConstants.EDIT_STORE+"?auth_key="+appController.getAuthenticationKey()+"&store_name="+setup_seller_store_name_et.getText().toString()+"&store_address="+setup_store_location_et.getText().toString()+"&store_city="+store_setup_city_et.getText().toString()+"&store_state="+store_setup_state_et.getText().toString()+"&store_post_code="+postCode+"&store_country="+country+"&farm_id="+storeFarmDetails.farm_id+"&store_cover_image="+"&store_logo="+"&LoginId="+appController.getLoginId()+"&store_type_farm="+home_made+"&store_type_local="+local+"&store_type="+farmType;
+        String url= ApiConstants.EDIT_STORE+"?auth_key="+appController.getAuthenticationKey()+"&store_name="+setup_seller_store_name_et.getText().toString()+"&store_address="+setup_store_location_et.getText().toString()+"&store_city="+store_setup_city_et.getText().toString()+"&store_state="+store_setup_state_et.getText().toString()+"&store_post_code="+postCode+"&store_country="+country+"&farm_id="+storeFarmDetails.farm_id+"&store_cover_image="+"&store_logo="+"&LoginId="+appController.getLoginId()+"&store_type_farm="+home_made+"&store_type_local="+local+"&store_type="+stringBuilder.toString();
         Log.i("url",url);
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

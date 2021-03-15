@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:id="@+id/description"
@@ -147,18 +147,35 @@
                         android:textSize="@dimen/dp_12_px" />
 
                 </LinearLayout>
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/order_date"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:fontFamily="@font/sf_ui_semibold"
-                    android:id="@+id/txt_pay_type"
-                    android:textSize="@dimen/_13ssp"
-                    android:text="Cash"
-                    android:textColor="@color/light_gray"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/txt_mode"
+                        android:text="Payment Mode:"
+                        android:textSize="@dimen/_11ssp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/sf_ui_regular"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/txt_pay_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/sf_ui_semibold"
+                        android:text="Cash"
+                        android:textColor="@color/gradient_color_light"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
 
             </RelativeLayout>
 
@@ -229,7 +246,8 @@
                     android:id="@+id/order_success_user_image"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_40sdp"
-
+                    app:civ_border_width="@dimen/_1sdp"
+                    app:civ_border_color="@color/light_gray"
                     android:src="@drawable/follow_image" />
 
                 <LinearLayout
@@ -320,9 +338,9 @@
                     android:layout_weight="1"
 
                     android:background="@drawable/round_corner_light_gradient_bg"
-                    android:text="Continue Shopping"
+                    android:text="Continue"
                     android:textAllCaps="false"
-                    android:textColor="@color/secondaryTextColor" />
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 

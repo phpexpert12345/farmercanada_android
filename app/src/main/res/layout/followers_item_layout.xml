@@ -45,7 +45,7 @@
             android:id="@+id/followers_item_un_follow_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/followers_item_name_tv"
+            android:layout_alignBottom="@+id/followers_item_distance_tv"
             android:layout_alignParentEnd="true"
             android:background="@color/primary_button_color"
             android:fontFamily="@font/sf_ui_regular"

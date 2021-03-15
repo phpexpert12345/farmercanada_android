@@ -18,6 +18,8 @@
             android:id="@+id/sub_order_item_farm_image"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            app:civ_border_width="@dimen/_1sdp"
+            app:civ_border_color="@color/light_gray"
             android:src="@drawable/logo" />
 
         <LinearLayout

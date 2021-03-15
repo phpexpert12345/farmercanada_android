@@ -104,12 +104,14 @@ public class TrackOrderActivity extends BaseActivity {
 
     private void callSetData(DataFetchState<AddressApiModel> dataFetchState) {
         dismissLoader();
-if(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()).order_status_msg.equalsIgnoreCase("Pending")){
-    bt_cancel.setVisibility(View.VISIBLE);
-}
-else{
-    bt_cancel.setVisibility(View.GONE);
-}
+
+//if(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()).order_status_msg.equalsIgnoreCase("Pending")){
+//    bt_cancel.setVisibility(View.VISIBLE);
+//}
+//else{
+//    bt_cancel.setVisibility(View.GONE);
+//}
+        bt_cancel.setVisibility(View.GONE);
         items.add(TrackOrderTransformer.getTackOrderHeader(dataFetchState.data.getData().getAllOrderList()));
         TrackOrderCountItem trackOrderCountItem=new TrackOrderCountItem();
         trackOrderCountItem.count=dataFetchState.data.getData().getAllOrderList().get(0).getAllRecordList().size();

@@ -20,6 +20,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farmers.buyers.R;
@@ -65,9 +67,10 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
     private MutableLiveData<DataFetchState<AllOrderResponse>> orderAcceptStateMachine = new MutableLiveData<>();
     private MutableLiveData<DataFetchState<AllOrderResponse>> orderDeclineStateMachine = new MutableLiveData<>();
     public EditText home_search_bottom_sheet_search_et;
+    private TextView txt_no_orders;
     private RecyclerView rv_review_list;
+    private LinearLayout ll_data_not_available;
     private OurOrderListAdapter adapter;
-
     public OurOrdersFragment get() {
         return new OurOrdersFragment();
     }
@@ -77,7 +80,7 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
 
     @Override
     public String getTitle() {
-        return "New Order's";
+        return "New Orders";
     }
 
     @Override
@@ -89,10 +92,13 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
     public void bindView(View view) {
 
         home_search_bottom_sheet_search_et = view.findViewById(R.id.home_search_bottom_sheet_search_et);
+        txt_no_orders=view.findViewById(R.id.txt_no_orders);
+        ll_data_not_available=view.findViewById(R.id.ll_data_not_available);
         rv_review_list = view.findViewById(R.id.rv_review_list);
         adapter = new OurOrderListAdapter(this);
         rv_review_list.setAdapter(adapter);
         rv_review_list.setLayoutManager(new LinearLayoutManager(baseActivity));
+
 
         prepareItems();
         viewModel.getUserInformation(getUserStateMachine, getContext());
@@ -101,10 +107,12 @@ public class OurOrdersFragment extends BaseFragment implements OurOrderListViewH
             switch (farmListResponseDataFetchState.status) {
                 case ERROR:
                     dismissLoader();
-                    Toast.makeText(getActivity(), farmListResponseDataFetchState.status_message, Toast.LENGTH_SHORT).show();
+                    ll_data_not_available.setVisibility(View.VISIBLE);
+                    txt_no_orders.setText(farmListResponseDataFetchState.status_message);
                     break;
                 case SUCCESS:
                     dismissLoader();
+                    ll_data_not_available.setVisibility(View.GONE);
                     adapter.updateData(viewModel.items);
                     break;
                 case LOADING:

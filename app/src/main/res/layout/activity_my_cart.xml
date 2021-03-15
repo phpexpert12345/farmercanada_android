@@ -28,7 +28,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_16sdp"
 
             android:fontFamily="@font/sf_ui_semibold"/>
     </RelativeLayout>
@@ -64,7 +64,7 @@
 android:layout_marginStart="@dimen/_6sdp"
                 android:textColor="@color/black"
                 android:text="@string/order_type"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_16ssp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

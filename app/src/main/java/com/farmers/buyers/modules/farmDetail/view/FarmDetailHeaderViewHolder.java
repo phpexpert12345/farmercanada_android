@@ -66,6 +66,7 @@ public class FarmDetailHeaderViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         FarmDetailHeaderListItem item = (FarmDetailHeaderListItem) items;
         this.item = item;
+        tv_address.setVisibility(View.GONE);
         tv_address.setText(item.getAddress());
         Glide.with(itemView.getContext())
                 .load(item.getImage())

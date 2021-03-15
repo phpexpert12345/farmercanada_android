@@ -77,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_12ssp"
+            android:visibility="gone"
+            android:id="@+id/linear_address"
             android:layout_marginTop="@dimen/_3sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

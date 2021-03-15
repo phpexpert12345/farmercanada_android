@@ -25,7 +25,7 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_16sdp"
         tools:text="Screen Title"
         android:fontFamily="@font/sf_ui_semibold"/>
 

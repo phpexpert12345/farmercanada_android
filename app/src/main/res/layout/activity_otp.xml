@@ -39,16 +39,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_50sdp"
-        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:orientation="vertical"
         android:layout_below="@+id/relative_header">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="@dimen/_125sdp"
-            android:layout_height="@dimen/_125sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center_horizontal"
             android:src="@mipmap/ic_enter_otp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
 
             android:layout_gravity="center_horizontal"
 
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_14ssp"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/sf_ui_regular"
             android:gravity="center_horizontal"
@@ -105,9 +105,9 @@
             style="@style/Widget.AppTheme.TextInputLayoutList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_30_px"
+            android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/dp_30_px"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:textColorHint="@color/light_gray"
             app:boxStrokeColor="@color/light_gray"
             app:hintTextColor="@color/light_gray">
@@ -128,14 +128,14 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_10_px"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_70sdp"
             android:background="@drawable/round_corner_light_gradient_bg"
             android:fontFamily="@font/sf_ui_semibold"
-            android:text="Request OTP"
+            android:text="Submit"
             android:textAllCaps="false"
             android:textColor="@color/secondaryTextColor"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_16ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
