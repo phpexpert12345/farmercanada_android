@@ -98,8 +98,10 @@ public class ForgotPassword extends BaseActivity {
                 String mobile_number = otp_number_et.getText().toString().trim();
                 String password = ed_forgot_password.getText().toString();
                 String confirm_password = ed_confirm_forgot_password.getText().toString();
-
-                if (ed_forgot_password.getText().toString().trim().equalsIgnoreCase(ed_confirm_forgot_password.getText().toString().trim())){
+if(password.length()<5){
+    Toast.makeText(ForgotPassword.this, "Please select valid password", Toast.LENGTH_SHORT).show();
+}
+              else  if (ed_forgot_password.getText().toString().trim().equalsIgnoreCase(ed_confirm_forgot_password.getText().toString().trim())){
                     viewModel.doForgotPassword(stateMachine, mobile_number,
                             getIntent().getStringExtra("USER_ID"),
                             password, confirm_password);
