@@ -10,7 +10,6 @@ import android.view.View;
 import com.farmers.buyers.R;
 import com.farmers.buyers.common.widget.AppPagerAdapter;
 import com.farmers.buyers.core.BaseActivity;
-import com.farmers.seller.modules.workingHour.deliveryTime.DeliveryTimeFragment;
 import com.farmers.seller.modules.workingHour.pickupTime.PickupTimeFragment;
 import com.farmers.seller.modules.workingHour.storeTime.StoreTimeFragment;
 import com.google.android.material.tabs.TabLayout;

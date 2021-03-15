@@ -22,34 +22,28 @@ import com.farmers.buyers.common.utils.EqualSpacingItemDecoration;
 import com.farmers.buyers.core.BaseFragment;
 import com.farmers.buyers.core.RecyclerViewListItem;
 import com.farmers.seller.modules.workingHour.WorkingHourTransformer;
-import com.farmers.seller.modules.workingHour.adapter.PickupTimeListAdapter;
-import com.farmers.seller.modules.workingHour.adapter.PickupWeekDayListAdapter;
 import com.farmers.seller.modules.workingHour.adapter.StoreTimeListAdapter;
 import com.farmers.seller.modules.workingHour.adapter.WeekDayListAdapter;
-import com.farmers.seller.modules.workingHour.model.PickupTimeListItem;
 import com.farmers.seller.modules.workingHour.model.StoreTimeListItem;
 import com.farmers.seller.modules.workingHour.model.WeekDayListItem;
 import com.farmers.seller.modules.workingHour.pickupTime.PickupTimeFragment;
-import com.farmers.seller.modules.workingHour.view.PickupTimeListViewHolder;
-import com.farmers.seller.modules.workingHour.view.PickupWeekDaysListViewHolder;
 import com.farmers.seller.modules.workingHour.view.StoreTimeListViewHolder;
 import com.farmers.seller.modules.workingHour.view.WeekDaysListViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeliveryTimeFragment extends BaseFragment implements View.OnClickListener, PickupWeekDaysListViewHolder.PickupWeekDayItemClickListener,
-        PickupTimeListViewHolder.PickupTimeItemClickListener {
+public class DeliveryTimeFragment extends BaseFragment implements View.OnClickListener, WeekDaysListViewHolder.WeekDayItemClickListener,
+        StoreTimeListViewHolder.StoreTimeItemClickListener {
 
     private Dialog storeTimeIntervalDialog;
     private RecyclerView rv_review_list;
-//    private StoreTimeListAdapter adapter;
-    PickupTimeListAdapter adapter;
+    private StoreTimeListAdapter adapter;
     private List<RecyclerViewListItem> items = new ArrayList<>();
     public EditText ed_store_time_interval;
 
     private RecyclerView rv_week_day_time;
-    private PickupWeekDayListAdapter weekAdapter;
+    private WeekDayListAdapter weekAdapter;
     private List<RecyclerViewListItem> weekItems = new ArrayList<>();
     private Button bt_next_store_time;
 
@@ -81,7 +75,7 @@ public class DeliveryTimeFragment extends BaseFragment implements View.OnClickLi
         prepareItems();
 
         rv_week_day_time = view.findViewById(R.id.rv_week_day_time);
-        weekAdapter = new PickupWeekDayListAdapter(this);
+        weekAdapter = new WeekDayListAdapter(this);
         rv_week_day_time.setAdapter(weekAdapter);
         rv_week_day_time.addItemDecoration(new EqualSpacingItemDecoration(2));
         rv_week_day_time.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -103,8 +97,8 @@ public class DeliveryTimeFragment extends BaseFragment implements View.OnClickLi
     }
 
     private void prepareItems() {
-        items.addAll(WorkingHourTransformer.getPickupTimeList());
-        weekItems.addAll(WorkingHourTransformer.getPickupWeekDaysList());
+        items.addAll(WorkingHourTransformer.getStoreTimeList());
+        weekItems.addAll(WorkingHourTransformer.getWeekDaysList());
     }
 
     public void getStoreTime() {
@@ -121,7 +115,7 @@ public class DeliveryTimeFragment extends BaseFragment implements View.OnClickLi
         tv_dialog_title.setText("Select Time Interval");
 
         rv_review_list = storeTimeIntervalDialog.findViewById(R.id.rv_review_list);
-        adapter = new PickupTimeListAdapter(this);
+        adapter = new StoreTimeListAdapter(this);
         rv_review_list.setAdapter(adapter);
         rv_review_list.addItemDecoration(new EqualSpacingItemDecoration(0));
         rv_review_list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -134,12 +128,8 @@ public class DeliveryTimeFragment extends BaseFragment implements View.OnClickLi
         storeTimeIntervalDialog.show();
     }
 
-
-
-
-
     @Override
-    public void onPickupTimeItemClicked(PickupTimeListItem storeTimeItem) {
+    public void onStoreTimeItemClicked(StoreTimeListItem storeTimeItem) {
         storeTimeIntervalDialog.dismiss();
         ed_store_time_interval.setText(storeTimeItem.getInterval());
     }
