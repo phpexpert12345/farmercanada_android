@@ -39,6 +39,17 @@
             android:text="Farm name"
             android:textColor="@color/primaryTextColor"
             android:textSize="@dimen/sp_14_px" />
+        <TextView
+            android:id="@+id/txt_farm_name_veggie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:fontFamily="@font/sf_ui_semibold"
+            android:singleLine="true"
+            android:text="Farm name"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/sp_14_px" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -47,12 +47,15 @@ public class NotificationsActivity extends BaseActivity {
     LinearLayout inbox_error_ll;
     TextView inbox_error_tv;
     private AppController appController = AppController.get();
+    String type="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
-        setupToolbar(new ToolbarConfig("Inbox", true, new View.OnClickListener() {
+        type=getIntent().getStringExtra("type");
+
+        setupToolbar(new ToolbarConfig(type, true, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();

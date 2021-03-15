@@ -81,12 +81,12 @@ public class FarmDetailActivity extends BaseActivity implements HomeHeaderViewHo
 
     private void init() {
         recyclerView = findViewById(R.id.farmers_detail_recyclerView);
-        adapter = new FarmDetailsAdapter(this, this, this, this);
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         img_go_cart=findViewById(R.id.img_go_cart);
         pickup_available=getIntent().getStringExtra("pickup_available");
         delivery_available=getIntent().getStringExtra("delivery_available");
+        adapter = new FarmDetailsAdapter(this, this, this, this,pickup_available,delivery_available);
+        recyclerView.setAdapter(adapter);
         img_go_cart.setOnClickListener(v->{
             App.cart_updated=true;
             finish();

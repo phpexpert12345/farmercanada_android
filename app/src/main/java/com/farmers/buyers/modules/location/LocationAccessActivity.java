@@ -101,9 +101,9 @@ public class LocationAccessActivity extends FragmentActivity implements OnMapRea
         mMap.getUiSettings().setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(Latitude, Longitude);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("I am here!"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title(gpsTracker.getAddressLine(LocationAccessActivity.this)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 17));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
         if (checkPermissions()) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                     PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,

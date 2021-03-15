@@ -46,7 +46,7 @@ public class WalletViewModel extends BaseViewModel {
                     String amount= DroidPrefs.get(context,"wallet_amount",String.class);
                     walletHeaderItems.wallet_amount=amount;
                     items.add(walletHeaderItems);
-                    items.add(new SimpleTitleItem("Recent"));
+                    items.add(new SimpleTitleItem("Transactions"));
                     items.addAll(WalletTransformer.getWalletHistory(response.getmData().WalletList));
                     stateMachine.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else {

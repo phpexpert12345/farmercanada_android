@@ -35,7 +35,7 @@ public class SubmitOrderViewModel extends BaseViewModel {
             public void onSuccess(AddressApiModel response) {
                 if (response.isStatus()) {
                     items.clear();
-                    items.add(new SimpleTitleItem("Choose date"));
+                    items.add(new SimpleTitleItem("Choose Date"));
                     items.add(MyCartTransformer.getPlaceOrderSlot(response.getData().getAllDateList()));
                     stateMutableLiveData.postValue(DataFetchState.success(response, response.getStatus_message()));
                 } else

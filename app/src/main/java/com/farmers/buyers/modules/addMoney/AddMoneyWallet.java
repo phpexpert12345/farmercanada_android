@@ -291,7 +291,7 @@ getPaymentkey();
             });
         }
         else{
-            Toast.makeText(this, "Please enter card details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter valid card details", Toast.LENGTH_SHORT).show();
         }
     }
     private void stripePayment(String token,int type){
@@ -307,7 +307,7 @@ getPaymentkey();
                         boolean status=jsonObject.getBoolean("status");
 
                         if(status){
-                           addMoney("test",String.valueOf(status));
+                           addMoney("test","Credited");
                         }
                         else{
                             Toast.makeText(AddMoneyWallet.this, jsonObject.optString("status_message"), Toast.LENGTH_SHORT).show();

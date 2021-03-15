@@ -200,12 +200,14 @@ public class MyCartFragment extends BaseFragment implements
                             taxData.setDiscountTextView(true);
                             taxData.setRemoveDiscountButton(true);
                             taxData.setDiscountAmount(Float.parseFloat(response.data.getData().getCoupon_Discount_Price()));
+                            taxData.setTitle("Checkout");
                         } else {
                             taxData.setCouponApplied(true);
                             taxData.setApplyCouponButton(true);
                             taxData.setDiscountTextView(false);
                             taxData.setRemoveDiscountButton(false);
                             taxData.setDiscountAmount(-1f);
+                            taxData.setTitle("Checkout");
                             Toast.makeText(getContext(),response.data.getStatusMessage(),Toast.LENGTH_SHORT).show();
                         }
                         // prepareData(taxData);
@@ -234,6 +236,7 @@ public class MyCartFragment extends BaseFragment implements
                         taxData.setCouponApplied(false);
                         taxData.setDiscountAmount(0f);
                         taxData.setSubTotal(subTotal);
+                        taxData.setTitle("Checkout");
 
                         // cartDataListRequest();
                     }
@@ -277,9 +280,10 @@ public class MyCartFragment extends BaseFragment implements
                                     setupFarmDetails();
                                 }
                             }
+                            adapter.updateData(items);
                             cartListData(data.data.getData().getFarmProductCartList());
 
-                            adapter.updateData(items);
+//                            adapter.updateData(items);
                         }
 //                        adapter.updateData(items);
                     } else {

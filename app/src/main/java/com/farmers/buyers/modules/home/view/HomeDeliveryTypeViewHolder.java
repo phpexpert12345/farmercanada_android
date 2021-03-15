@@ -24,6 +24,7 @@ import com.farmers.buyers.storage.SharedPreferenceManager;
 public class HomeDeliveryTypeViewHolder extends BaseViewHolder {
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
+    String delivery_available,pickup_available;
 
 
     public HomeDeliveryTypeViewHolder(@NonNull ViewGroup parent, DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener) {

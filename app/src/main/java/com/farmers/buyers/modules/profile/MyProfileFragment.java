@@ -141,7 +141,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         items.add(MyProfileTransformer.getProfileMenuItems());
         items.add(new SimpleTitleItem("Account Setting", R.color.light_gray));
         items.add(MyProfileTransformer.getAccountSetting());
-        if(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE","").toString().equalsIgnoreCase("Seller")) {
+        if(appController.getRole().equalsIgnoreCase("Seller")) {
             items.add(new SimpleTitleItem("Become a Vendor", R.color.light_gray));
             items.add(MyProfileTransformer.getRoleSetting());
         }
@@ -223,7 +223,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
 
     @Override
     public void onInboxClicked() {
-        startActivity(new Intent(baseActivity, NotificationsActivity.class));
+        startActivity(new Intent(baseActivity, NotificationsActivity.class).putExtra("type","Inbox"));
     }
 
     @Override
@@ -258,7 +258,7 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
             }
 
             case NOTIFICATION: {
-                startActivity(new Intent(baseActivity, NotificationsActivity.class));
+                startActivity(new Intent(baseActivity, NotificationsActivity.class).putExtra("type","Notification"));
 //                NotificationBottomSheetDialogFragment notifyme = new NotificationBottomSheetDialogFragment();
 //                notifyme.show(baseActivity.getSupportFragmentManager(), notifyme.getTag());
                 break;

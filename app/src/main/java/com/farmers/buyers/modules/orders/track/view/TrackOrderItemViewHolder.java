@@ -42,7 +42,7 @@ public class TrackOrderItemViewHolder extends BaseViewHolder {
 
         Glide.with(itemView.getContext())
                 .load(item.getProduct_images())
-                .placeholder(R.drawable.farm_image)
+                .placeholder(R.drawable.ic_sign_up_logo)
                 .into(track_order_item_image);
 
         tv_product_name.setText(item.getProduct_name());

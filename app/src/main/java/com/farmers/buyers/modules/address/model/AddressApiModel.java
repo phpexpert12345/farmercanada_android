@@ -138,6 +138,17 @@ public class AddressApiModel {
         private String order_status_color_code;
         public String current_time;
 
+        public String getFarm_address() {
+            return farm_address;
+        }
+
+        public void setFarm_address(String farm_address) {
+            this.farm_address = farm_address;
+        }
+
+        private String farm_address;
+
+
         @SerializedName("OrderRecordList")
         private List<AllRecordsData> allRecordList;
 

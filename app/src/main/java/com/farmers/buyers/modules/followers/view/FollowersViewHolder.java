@@ -39,7 +39,7 @@ public class FollowersViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         FollowersItems item = (FollowersItems) items;
 
-        Glide.with(itemView.getContext()).load(item.getImageUri()).into(imageView);
+        Glide.with(itemView.getContext()).load(item.getImageUri()).placeholder(R.drawable.ic_sign_up_logo).into(imageView);
         nameTv.setText(item.getName());
 
         followTv.setOnClickListener(new View.OnClickListener() {

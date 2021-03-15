@@ -24,7 +24,7 @@ public class OrderSuccessDetailActivity extends AppCompatActivity {
     OrderData orderData;
 Intent intent;
 String order_type;
-TextView order_id,order_date,order_type_txt,txt_farm_name,txt_farm_address,txt_farm_phone,description;
+TextView order_id,order_date,order_type_txt,txt_farm_name,txt_farm_address,txt_farm_phone,description,txt_pay_type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,7 @@ TextView order_id,order_date,order_type_txt,txt_farm_name,txt_farm_address,txt_f
         order_date=findViewById(R.id.order_date);
         order_type_txt=findViewById(R.id.order_type_txt);
         description=findViewById(R.id.description);
+        txt_pay_type=findViewById(R.id.txt_pay_type);
         txt_farm_phone.setVisibility(View.GONE);
         if(intent.hasExtra("order_data")){
             order_type=intent.getStringExtra("order_type");
@@ -51,6 +52,7 @@ TextView order_id,order_date,order_type_txt,txt_farm_name,txt_farm_address,txt_f
             txt_farm_name.setText(orderData.farm_name);
             txt_farm_address.setText(orderData.farm_address);
             description.setText(orderData.thank_you_confirmation_description);
+            txt_pay_type.setText(orderData.payment_method);
         }
 
         goToOrderBtn.setOnClickListener(new View.OnClickListener() {

@@ -26,7 +26,7 @@ public class TrackOrderTransformer {
                 "$ " + allOrderList.get(0).getTotal_amount(),
                 true, 1,
                 allOrderList.get(0).getOrder_type(),
-                allOrderList.get(0).getOrder_status_msg());
+                allOrderList.get(0).getOrder_status_msg(),allOrderList.get(0).getFarm_address());
     }
 
     public static List<TrackOrderItemList> getTrackOrder(List<AddressApiModel.AllRecordsData> allRecordList) {
@@ -50,7 +50,7 @@ public class TrackOrderTransformer {
                 "Tomorrow, 10 AM - 3 PM",
                 "10 items",
                 "$ 155.80",
-                true, 1, "", "");
+                true, 1, "", "","");
     }
 
     public static List<TrackOrderItemList> getTrackOrder() {

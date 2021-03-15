@@ -31,7 +31,7 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
             delivery_step_view_one, delivery_step_view_two, delivery_step_view_three, delivery_step_view_four, delivery_step_view_five;
     TextView tv_product_date_time, tv_product_name, tv_order_number, tv_estimate_delivery_date_time, tv_edit,
             tv_pickup_pending, tv_pickup_accepted, tv_pickup_processing, tv_pickup_picked, tv_pickup_cancel,
-            tv_delivery_pending, tv_delivery_accepted, tv_delivery_processing, tv_delivery_shipped, tv_delivery_delivery, tv_delivery_cancel,track_order_header_estimate_tv;
+            tv_delivery_pending, tv_delivery_accepted, tv_delivery_processing, tv_delivery_shipped, tv_delivery_delivery, tv_delivery_cancel,track_order_header_estimate_tv,tv_farm_address;
     LinearLayout ll_pickup_text, ll_pickup_img, ll_delivery_text, ll_delivery_img;
 
     /*Pickup
@@ -92,6 +92,7 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
         tv_estimate_delivery_date_time = itemView.findViewById(R.id.tv_estimate_delivery_date_time);
         tv_edit = itemView.findViewById(R.id.tv_edit);
         track_order_header_estimate_tv=itemView.findViewById(R.id.track_order_header_estimate_tv);
+        tv_farm_address=itemView.findViewById(R.id.tv_farm_address);
     }
 
     @Override
@@ -103,6 +104,7 @@ public class TrackOrderHeaderViewHolder extends BaseViewHolder {
         tv_order_number.setText(item.getOrderId());
         tv_estimate_delivery_date_time.setText(item.getDeliveryTime());
         track_order_header_estimate_tv.setText("Estimated "+item.order_type+" Time");
+        tv_farm_address.setText(item.getFarm_address());
         Glide.with(itemView.getContext())
                 .load(item.getLogo())
                 .placeholder(R.drawable.ic_sign_up_logo)

@@ -47,15 +47,15 @@ public class MyAddressViewModel extends BaseViewModel {
     }
 
     public void addAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine, AddAddressRequestParams addAddressRequestParams) {
-
-        if (addAddressRequestParams.getName_of_address().isEmpty()) {
-            stateMachine.postValue(DataFetchState.error("Please enter Address Type", new AddressApiModel()));
-            return;
-        }
         if (addAddressRequestParams.getComplete_address().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Complete Address", new AddressApiModel()));
             return;
         }
+        if (addAddressRequestParams.getName_of_address().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Address Name", new AddressApiModel()));
+            return;
+        }
+
         if (addAddressRequestParams.getAddress_city().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter City name", new AddressApiModel()));
             return;
@@ -92,15 +92,15 @@ public class MyAddressViewModel extends BaseViewModel {
     }
 
     public void editAddress(final MutableLiveData<DataFetchState<AddressApiModel>> stateMachine, AddAddressRequestParams addAddressRequestParams) {
-
-        if (addAddressRequestParams.getName_of_address().isEmpty()) {
-            stateMachine.postValue(DataFetchState.error("Please enter Address Type", new AddressApiModel()));
-            return;
-        }
         if (addAddressRequestParams.getComplete_address().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter Complete Address", new AddressApiModel()));
             return;
         }
+        if (addAddressRequestParams.getName_of_address().isEmpty()) {
+            stateMachine.postValue(DataFetchState.error("Please enter Address Name", new AddressApiModel()));
+            return;
+        }
+
         if (addAddressRequestParams.getAddress_city().isEmpty()) {
             stateMachine.postValue(DataFetchState.error("Please enter City name", new AddressApiModel()));
             return;

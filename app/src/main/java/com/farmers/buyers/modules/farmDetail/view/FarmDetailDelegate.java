@@ -16,14 +16,17 @@ public class FarmDetailDelegate extends BaseDelegate {
 
     private HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
     private FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener;
+    private String delivery_available,pickup_available;
 
-    public FarmDetailDelegate(HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener) {
+    public FarmDetailDelegate(HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailViewHolder.FarmDetailItemClickListener farmDetailItemClickListener,String pickup_available,String delivery_available) {
         this.deliveryTypeCheckedChangeListener = deliveryTypeCheckedChangeListener;
         this.farmDetailItemClickListener = farmDetailItemClickListener;
+        this.pickup_available=pickup_available;
+        this.delivery_available=delivery_available;
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new FarmDetailViewHolder(parent, deliveryTypeCheckedChangeListener,farmDetailItemClickListener);
+        return new FarmDetailViewHolder(parent, deliveryTypeCheckedChangeListener,farmDetailItemClickListener,pickup_available,delivery_available);
     }
 }

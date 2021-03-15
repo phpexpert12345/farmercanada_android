@@ -43,8 +43,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
                 android:text="Kin's Farm Market"
+                android:textColor="@color/gradient_color_dark"
+                android:textSize="@dimen/_14ssp" />
+            \<TextView
+                android:id="@+id/tv_farm_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_regular"
+                android:text="Kin's Farm Market"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_16_px" />
+                android:textSize="@dimen/_12ssp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

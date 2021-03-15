@@ -27,7 +27,7 @@ import com.farmers.buyers.modules.farmDetail.model.FarmDetailsVegetableItems;
 public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
     private ImageView imageView,img_cart_veggie;
     private TextView addToCartTv;
-    private TextView farmName, tv_sub_cat_price, tv_sub_cat_quantity, txt_quantity;
+    private TextView farmName, tv_sub_cat_price, tv_sub_cat_quantity, txt_quantity,txt_farm_name_veggie;
     private FarmDetailVegetableListener listener;
     private FarmDetailsVegetableItems item;
     private LinearLayout ll_increase_decrease, ll_decrease, ll_increase;
@@ -47,7 +47,7 @@ public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
         ll_increase = itemView.findViewById(R.id.ll_increase);
         img_cart_veggie = itemView.findViewById(R.id.img_cart_veggie);
         relative_veggie_cart = itemView.findViewById(R.id.relative_veggie_cart);
-
+        txt_farm_name_veggie=itemView.findViewById(R.id.txt_farm_name_veggie);
         this.listener = listener;
 
         addToCartTv.setOnClickListener(view -> {
@@ -80,8 +80,12 @@ public class FarmDetailsVegetableItemsViewHolder extends BaseViewHolder {
         FarmDetailsVegetableItems item = (FarmDetailsVegetableItems) items;
         this.item = item;
         Glide.with(itemView.getContext()).load(item.getImageUri()).placeholder(R.drawable.ic_sign_up_logo).into(imageView);
+        String price=item.getPrice();
+        if(price.endsWith("\n")){
+           price= price.replaceAll("\n","");
+        }
         farmName.setText(item.getTitle());
-        tv_sub_cat_price.setText("$"+item.getPrice());
+        tv_sub_cat_price.setText("$"+price);
         tv_sub_cat_quantity.setText(item.getQuantity());
 
         if (item.product_stock.equals("Yes")) {

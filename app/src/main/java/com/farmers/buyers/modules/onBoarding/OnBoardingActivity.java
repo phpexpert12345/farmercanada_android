@@ -79,8 +79,13 @@ public class OnBoardingActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OnBoardingActivity.this, LocationAccessActivity.class));
-                finish();
+                if(page==0) {
+                    startActivity(new Intent(OnBoardingActivity.this, LocationAccessActivity.class));
+                    finish();
+                }
+                else{
+                    viewPager.setCurrentItem(page++);
+                }
             }
         });
 
@@ -94,8 +99,14 @@ public class OnBoardingActivity extends AppCompatActivity {
                 if (position == layouts.length - 1) {
                     getStartButton.setVisibility(View.VISIBLE);
                     skipButton.setVisibility(View.GONE);
-                } else {
+                } else if(position==0) {
                     skipButton.setVisibility(View.VISIBLE);
+                    skipButton.setText("Skip");
+                    getStartButton.setVisibility(View.GONE);
+                }
+                else{
+                    skipButton.setVisibility(View.VISIBLE);
+                    skipButton.setText("Next");
                     getStartButton.setVisibility(View.GONE);
                 }
 

@@ -37,10 +37,11 @@ public class FarmDetailViewHolder extends BaseViewHolder {
     private SwitchCompat toggle;
     private TextView deliveryTv, pickUpTv;
     private FarmDetailItemClickListener farmDetailItemClickListener;
+    String pickup_available,delivery_available;
     private GPSTracker gpsTracker = new GPSTracker(itemView.getContext());
     HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener;
 
-    public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailItemClickListener farmDetailItemClickListener) {
+    public FarmDetailViewHolder(@NonNull ViewGroup parent, HomeDeliveryTypeViewHolder.DeliveryTypeCheckedChangeListener deliveryTypeCheckedChangeListener, FarmDetailItemClickListener farmDetailItemClickListener,String pickup_available,String delivery_available) {
         super(Extensions.inflate(parent, R.layout.farm_detail_item_layout));
 this.deliveryTypeCheckedChangeListener=deliveryTypeCheckedChangeListener;
         farm_detail_item_farm_name_tv = itemView.findViewById(R.id.farm_detail_item_farm_name_tv);
@@ -58,16 +59,24 @@ this.deliveryTypeCheckedChangeListener=deliveryTypeCheckedChangeListener;
         civ_farm_image = itemView.findViewById(R.id.civ_farm_image);
         reviewTv = itemView.findViewById(R.id.farm_detail_item_review_tv);
         this.farmDetailItemClickListener = farmDetailItemClickListener;
-
-        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("0")) {
-            deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
-            pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
-            toggle.setChecked(false);
-        } else {
-            pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
-            deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
-            toggle.setChecked(true);
-        }
+        this.pickup_available=pickup_available;
+        this.delivery_available=delivery_available;
+if(delivery_available.equalsIgnoreCase("Yes")) {
+    if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("SERVICE_TYPE", "")).equals("0")) {
+        deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+        pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+        toggle.setChecked(false);
+    } else {
+        pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+        deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+        toggle.setChecked(true);
+    }
+}
+else if(pickup_available.equalsIgnoreCase("Yes")){
+    pickUpTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_button_color));
+    deliveryTv.setTextColor(itemView.getContext().getResources().getColor(R.color.primaryTextColor));
+    toggle.setChecked(true);
+}
 
 
 

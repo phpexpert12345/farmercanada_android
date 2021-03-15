@@ -1,6 +1,8 @@
 package com.farmers.buyers.modules.home.search;
 
 
+import android.util.Log;
+
 import com.farmers.buyers.core.ApiResponseCallback;
 import com.farmers.buyers.core.BaseRepository;
 import com.farmers.buyers.modules.home.search.model.HomeSearchApiModel;
@@ -18,6 +20,8 @@ public class HomeSearchRepository extends BaseRepository {
 
     public void doSearch(HomeSearchRequestParams params, ApiResponseCallback<HomeSearchApiModel> responseCallback) {
         Call<HomeSearchApiModel> call = RetrofitBuilder.createServiceContract().doSearchProduct(ApiConstants.SEARCH_PRODUCT_ITEM, params.getAuthKey(), params.getSearchQuery(), params.getLoginId());
+        String url=ApiConstants.BASE_URL+ApiConstants.SEARCH_PRODUCT_ITEM+"?auth_key="+params.getAuthKey()+"&search_text="+params.getSearchQuery()+"&LoginId="+params.getLoginId();
+        Log.i("url",url);
         makeRequest(call, responseCallback);
 
     }

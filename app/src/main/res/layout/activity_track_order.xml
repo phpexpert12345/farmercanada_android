@@ -14,14 +14,15 @@
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/bt_cancel"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
+
+        android:layout_width="@dimen/_130sdp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_30sdp"
+        android:layout_gravity="end"
         android:textAllCaps="false"
         android:background="@drawable/round_corner_light_gradient_bg"
         android:fontFamily="@font/sf_ui_semibold"
-        android:text="Cancel"
+        android:text="Cancel Order"
         android:visibility="gone"
         android:textColor="@color/secondaryTextColor"
         android:textSize="@dimen/_16ssp" />

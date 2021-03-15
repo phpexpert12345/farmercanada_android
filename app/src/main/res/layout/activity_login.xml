@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:fontFamily="@font/sf_ui_bold"
-                android:text="@string/login_as"
+                android:text="@string/login"
                 android:textColor="@color/primary_button_color"
                 android:textSize="@dimen/_24ssp"
                 android:textStyle="bold" />
