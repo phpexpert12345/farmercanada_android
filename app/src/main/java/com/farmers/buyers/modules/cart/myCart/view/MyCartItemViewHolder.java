@@ -27,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class MyCartItemViewHolder extends BaseViewHolder {
-    private CircleImageView cartImage;
+    private ImageView cartImage;
     private ImageView iconIncrease, iconDecrease;
     private TextView textQuantity, itemName, itemAddress, itemPrice,txt_unit;
     IncreaseCallback increaseCallback;
@@ -71,7 +71,7 @@ public class MyCartItemViewHolder extends BaseViewHolder {
             itemAddress.setVisibility(View.GONE);
         }
 double  item_price = Double.parseDouble(item.getItemSubPrice());
-        itemPrice.setText("$" + String.format("%.2f",item_price)+" "+"*"+item.getCartItemQuantity());
+        itemPrice.setText("$" + String.format("%.2f",item_price)+" "+"X"+item.getCartItemQuantity());
 
         iconIncrease.setOnClickListener(view -> {
             quantity++;

@@ -4,19 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/_12sdp">
+    android:foreground="@drawable/shape"
+    android:elevation="@dimen/_15sdp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/_5sdp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp">
+        android:padding="@dimen/_5sdp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/my_cart_item_image"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:src="@mipmap/ic_launcher"
+            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,23 +29,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8_px"
-            android:layout_marginLeft="@dimen/dp_8_px"
+            android:layout_toStartOf="@+id/linearLayout3"
             android:layout_toEndOf="@id/my_cart_item_image"
-            android:layout_toRightOf="@id/my_cart_item_image"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+
+
+
             android:orientation="vertical"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/my_cart_item_image"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/item_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
                 android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
                 android:fontFamily="@font/sf_ui_semibold"
-
-                android:text="Quince eco."
+                android:text="Quince eco.222222222222222"
                 android:textSize="@dimen/sp_14_px" />
 
             <TextView
@@ -88,7 +96,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:background="@drawable/round_corner_light_gradient_bg"
             android:gravity="center"
             android:orientation="horizontal"
@@ -96,8 +103,7 @@
             android:paddingTop="@dimen/_2sdp"
             android:paddingRight="@dimen/_5sdp"
             android:paddingBottom="@dimen/_2sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/ic_decrease"
@@ -125,6 +131,6 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

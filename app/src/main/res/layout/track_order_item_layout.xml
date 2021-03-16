@@ -80,6 +80,6 @@
         android:fontFamily="@font/sf_ui_bold"
         android:text="$ 42.00"
         android:textColor="@color/primary_button_color"
-        android:textSize="@dimen/sp_16_px" />
+        android:textSize="@dimen/_15ssp" />
 
 </RelativeLayout>

@@ -15,7 +15,7 @@
     <application
         android:name=".app.App"
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -67,7 +67,7 @@
         <activity android:name=".modules.cart.myCart.MyCartActivity" />
         <activity android:name=".modules.farmDetail.FarmDetailActivity" />
         <activity android:name=".modules.home.HomeActivity" />
-        <activity android:name=".modules.forgotPassword.ForgotPassword" />
+        <activity android:name=".modules.forgotPassword.ForgotPassword"  android:windowSoftInputMode="adjustResize" />
         <activity android:name=".modules.signUp.SubmitOtpActivity" />
         <activity android:name=".modules.signUp.OtpActivity" />
         <activity android:name=".modules.signUp.SignUpActivity" />

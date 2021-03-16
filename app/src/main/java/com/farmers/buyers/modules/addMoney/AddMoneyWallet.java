@@ -132,6 +132,9 @@ getPaymentkey();
     private void success(String msg) {
         dismissLoader();
         String current_price=DroidPrefs.get(this,"wallet_amount",String.class);
+        if(current_price.contains(",")){
+          current_price=  current_price.replaceAll(",","");
+        }
         double price= Double.parseDouble(current_price);
         price+=Double.parseDouble(ed_amount.getText().toString());
         DroidPrefs.apply(this,"wallet_amount",String.format("%.2f",price));

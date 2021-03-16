@@ -89,10 +89,10 @@ public class SaveFarmListApiModel {
         private String storeCityName;
         @SerializedName("farm_latitude")
         @Expose
-        private Double farmLatitude;
+        private String farmLatitude;
         @SerializedName("farm_longitude")
         @Expose
-        private Double farmLongitude;
+        private String farmLongitude;
         @SerializedName("farm_postcode")
         @Expose
         private String farmPostcode;
@@ -227,19 +227,19 @@ public class SaveFarmListApiModel {
             this.storeCityName = storeCityName;
         }
 
-        public Double getFarmLatitude() {
+        public String getFarmLatitude() {
             return farmLatitude;
         }
 
-        public void setFarmLatitude(Double farmLatitude) {
+        public void setFarmLatitude(String farmLatitude) {
             this.farmLatitude = farmLatitude;
         }
 
-        public Double getFarmLongitude() {
+        public String getFarmLongitude() {
             return farmLongitude;
         }
 
-        public void setFarmLongitude(Double farmLongitude) {
+        public void setFarmLongitude(String farmLongitude) {
             this.farmLongitude = farmLongitude;
         }
 

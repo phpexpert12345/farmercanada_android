@@ -20,8 +20,8 @@ public class HomeListItem implements RecyclerViewListItem {
     String isSaved;
     String coverImage;
     String farmImage;
-    Double farmLat;
-    Double farmLong;
+    String  farmLat;
+    String farmLong;
     String favoriteId;
     String isFollowing;
     String followId;
@@ -100,11 +100,11 @@ public class HomeListItem implements RecyclerViewListItem {
         this.farmImage = farmImage;
     }
 
-    public void setFarmLat(Double farmLat) {
+    public void setFarmLat(String farmLat) {
         this.farmLat = farmLat;
     }
 
-    public void setFarmLong(Double farmLong) {
+    public void setFarmLong(String farmLong) {
         this.farmLong = farmLong;
     }
 
@@ -229,7 +229,7 @@ public class HomeListItem implements RecyclerViewListItem {
     }
 
     public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage,
-                        String farmImage, Double farmLat, Double farmLong, String farm_address, String farm_opening_hours, String farm_estimate_delivery_time,
+                        String farmImage, String farmLat, String farmLong, String farm_address, String farm_opening_hours, String farm_estimate_delivery_time,
                         String farm_hosted_by, String farm_opening_status, String farm_favourite_status,
                         String favourite_id, String farm_followed_status, String form_type_name, String followed_id,String delivery_available,String pickup_available) {
         this.farmName = farmName;
@@ -255,7 +255,7 @@ public class HomeListItem implements RecyclerViewListItem {
         this.pickup_available=pickup_available;
     }
 
-    public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage, String farmImage, Double farmLat, Double farmLong, String favoriteId, String isFollowing, String followId) {
+    public HomeListItem(String farmName, String distance, String rating, String isSaved, String id, String coverImage, String farmImage, String farmLat, String farmLong, String favoriteId, String isFollowing, String followId) {
         this.farmName = farmName;
         this.distance = distance;
         this.rating = rating;
@@ -304,11 +304,11 @@ public class HomeListItem implements RecyclerViewListItem {
         return isSaved;
     }
 
-    public Double getFarmLat() {
+    public String getFarmLat() {
         return farmLat;
     }
 
-    public Double getFarmLong() {
+    public String getFarmLong() {
         return farmLong;
     }
 

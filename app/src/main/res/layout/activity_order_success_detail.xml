@@ -74,13 +74,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
                 android:id="@+id/description"
                 android:fontFamily="@font/sf_ui_regular"
                 android:gravity="start"
                 android:text="You Can Track the delivery in the\n Orders Section"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/sp_14_px" />
+                android:textSize="@dimen/_14ssp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -183,57 +183,62 @@ android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/_8sdp"
                 android:paddingRight="@dimen/_8sdp">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_weight="1"
+
                     android:singleLine="true"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="Order Type:"
                     android:textSize="@dimen/sp_13_px" />
 
+
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_weight="1"
                    android:textColor="@color/primary_button_color"
                     android:id="@+id/order_type_txt"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="end"
                     android:text="Status:"
                     android:textSize="@dimen/sp_14_px" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/_5sdp"
                     android:text="Pending"
                     android:textColor="@color/primary_button_color"
                     android:textSize="@dimen/sp_14_px" />
+                </LinearLayout>
 
             </LinearLayout>
 

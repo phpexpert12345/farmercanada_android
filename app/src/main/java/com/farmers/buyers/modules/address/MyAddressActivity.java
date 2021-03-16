@@ -239,10 +239,20 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
     @Override
     public void onAddressItemClicked(CheckOutCartAddressItems addressObj) {
         this.addressId = addressObj.getAddress_id();
-        dis= Helper.getKmFromLatLong(Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude), addressObj.getAddress_lat(), addressObj.getAddress_long());
-        if (dis >= farm_delivery_radius) {
-            Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
-        } else {
+        if(farm_latitude!=null){
+            dis= Helper.getKmFromLatLong(Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude), addressObj.getAddress_lat(), addressObj.getAddress_long());
+            if (dis >= farm_delivery_radius) {
+                Toast.makeText(this, "We Don't Deliver here kindly change address", Toast.LENGTH_SHORT).show();
+            } else {
+                if (comeFrom == 0) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Constant.DATA_INTENT, addressObj);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }
+            }
+        }
+        else{
             if (comeFrom == 0) {
                 Intent intent = new Intent();
                 intent.putExtra(Constant.DATA_INTENT, addressObj);
@@ -250,6 +260,7 @@ public class MyAddressActivity extends BaseActivity implements MyAddressListView
                 finish();
             }
         }
+
     }
 
     private double distance(double lat1, double lon1, double lat2, double lon2) {

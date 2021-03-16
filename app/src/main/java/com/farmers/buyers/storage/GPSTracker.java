@@ -31,6 +31,7 @@ public class GPSTracker extends Service implements LocationListener {
     boolean isNetworkEnabled = false;
     boolean canGetLocation = false;
     public Location location;
+
     double latitude;
     double longitude;
     //The minimum distance to change updates in metters
@@ -176,6 +177,7 @@ public class GPSTracker extends Service implements LocationListener {
             Geocoder geocoder = new Geocoder(context, Locale.ENGLISH);
             try {
                 List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+
                 return addresses;
             } catch (IOException e) {
                 //e.printStackTrace();
@@ -191,10 +193,23 @@ public class GPSTracker extends Service implements LocationListener {
      *
      * @return null or addressLine
      */
+    public String  getCountryCode(Context context){
+        List<Address> addresses = getGeocoderAddress(context);
+        if (addresses != null && addresses.size() > 0) {
+            Address address = addresses.get(0);
+            String  code=address.getCountryCode();
+            Log.i("code",code);
+
+            return code;
+        } else {
+            return null;
+        }
+    }
     public String getAddressLine(Context context) {
         List<Address> addresses = getGeocoderAddress(context);
         if (addresses != null && addresses.size() > 0) {
             Address address = addresses.get(0);
+            String  code=address.getCountryCode();
             String addressLine = address.getAddressLine(0);
             System.out.println("Address line" + address.toString() + "  " + address);
 

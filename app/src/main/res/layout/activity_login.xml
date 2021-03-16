@@ -158,17 +158,16 @@
 
 
                 <ImageView
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:background="@drawable/shadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shadow"
                     android:elevation="@dimen/_50sdp"
-                            android:src="@drawable/ic_google" />
+                    android:src="@drawable/ic_google" />
 
 
                         <ImageView
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
-                            android:background="@drawable/shadow"
                             android:elevation="@dimen/_50sdp"
 
                             android:layout_marginStart="@dimen/_10sdp"

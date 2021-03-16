@@ -53,18 +53,18 @@ public class OnBoardingActivity extends AppCompatActivity {
         adapter = new OnBoardingAdapter(this, layouts);
         viewPager.setAdapter(adapter);
 
-        runnable = new Runnable() {
-            public void run() {
-                if (adapter.getCount() == page) {
-                    handler.removeCallbacks(this);
-
-                } else {
-                    page++;
-                }
-                viewPager.setCurrentItem(page, true);
-                handler.postDelayed(this, 5000);
-            }
-        };
+//        runnable = new Runnable() {
+//            public void run() {
+//                if (adapter.getCount() == page) {
+//                    handler.removeCallbacks(this);
+//
+//                } else {
+//                    page++;
+//                }
+//                viewPager.setCurrentItem(page, true);
+//                handler.postDelayed(this, 5000);
+//            }
+//        };
     }
 
     private void listener() {
@@ -84,7 +84,9 @@ public class OnBoardingActivity extends AppCompatActivity {
                     finish();
                 }
                 else{
-                    viewPager.setCurrentItem(page++);
+                    page++;
+                    viewPager.setCurrentItem(page, true);
+
                 }
             }
         });
@@ -132,7 +134,7 @@ public class OnBoardingActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        handler.postDelayed(runnable, 5000);
+//        handler.postDelayed(runnable, 5000);
     }
 
     @Override

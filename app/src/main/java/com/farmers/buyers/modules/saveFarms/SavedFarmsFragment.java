@@ -104,9 +104,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
         stateMachine.observe(baseActivity, saveFarmListApiModelDataFetchState -> {
             switch (saveFarmListApiModelDataFetchState.status) {
                 case LOADING: {
-                    if(flag==0) {
-                        loading();
-                    }
+                    loading();
                     break;
                 }
                 case SUCCESS: {
@@ -129,7 +127,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
                     break;
                 }
                 case SUCCESS: {
-
+dismissLoader();
                     getSavedFarmList();
                     break;
                 }
@@ -149,7 +147,7 @@ public class SavedFarmsFragment extends BaseFragment implements HomeItemsViewHol
                     break;
                 }
                 case SUCCESS: {
-
+dismissLoader();
                     getSavedFarmList();
                     break;
                 }

@@ -3,7 +3,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_8sdp">
+    android:layout_marginStart="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
+   >
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,12 +35,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:id="@+id/txt_total_count"
             android:layout_toRightOf="@+id/total_text"
             android:fontFamily="@font/sf_ui_bold"
             android:text="$ 155.80"
+            android:textSize="@dimen/_15ssp"
             android:textColor="@color/primary_button_color" />
     </LinearLayout>
 

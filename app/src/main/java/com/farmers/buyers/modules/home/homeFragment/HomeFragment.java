@@ -399,7 +399,7 @@ public class HomeFragment extends BaseFragment implements HomeHeaderViewHolder.H
 
     @Override
     public void onEditAddressClickListener(int position) {
-        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),300);
+        startActivityForResult(new Intent(getContext(), ManualLocationActivity.class),45);
     }
 
     public void buyer_seller_switch_dialog(Context activity) {

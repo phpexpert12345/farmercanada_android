@@ -359,7 +359,13 @@ if(selected>=0){
             order_type="Delivery";
             setType();
         }
-        txt_farm_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude)))+ " km away from you");
+        double  lat=0.0;
+        double  logt=0.0;
+        if(!farm_latitude.equalsIgnoreCase("")){
+            lat=Double.parseDouble(farm_latitude);
+            logt=Double.parseDouble(farm_longitude);
+        }
+        txt_farm_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), lat, logt))+ " km away from you");
     }
 
     private void cartListData(List<FarmProductCartList> farmProductCartList) {
@@ -394,16 +400,16 @@ if(selected>=0){
 
            case "Delivery":
            {
-               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+               textViewDelivery.setBackground(getContext().getResources().getDrawable(R.drawable.cart_shape_red));
+               textViewPickUp.setBackground(getContext().getResources().getDrawable(R.drawable.cart_shape_gray));
            }
 
 
            break;
            case "Pickup":
            {
-               textViewPickUp.setBackgroundColor(getContext().getResources().getColor(R.color.gradient_color_dark));
-               textViewDelivery.setBackgroundColor(getContext().getResources().getColor(R.color.light_gray));
+               textViewDelivery.setBackground(getContext().getResources().getDrawable(R.drawable.cart_shape_gray));
+               textViewPickUp.setBackground(getContext().getResources().getDrawable(R.drawable.cart_shape_red));
            }
            break;
 

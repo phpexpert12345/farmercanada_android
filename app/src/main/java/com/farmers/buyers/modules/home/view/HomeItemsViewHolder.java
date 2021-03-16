@@ -61,7 +61,13 @@ public class HomeItemsViewHolder extends BaseViewHolder {
     public void bindView(RecyclerViewListItem items) {
         final HomeListItem item = (HomeListItem) items;
         home_list_item_layout_farmName.setText(item.getFarmName());
-        home_list_item_layout_distance_tv.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), item.getFarmLat(), item.getFarmLong()))+ " km away from you");
+        double lat=0.0;
+        double  logt=0.0;
+        if(!item.getFarmLat().equalsIgnoreCase("")){
+            lat=Double.parseDouble(item.getFarmLat());
+            logt=Double.parseDouble(item.getFarmLong());
+        }
+        home_list_item_layout_distance_tv.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), lat, logt))+ " km away from you");
         customer_home_parlour_view_holder_rating_tv.setText(String.valueOf(item.getRating()));
         Glide.with(itemView.getContext()).load(item.getCoverImage()).placeholder(R.drawable.ic_sign_up_logo).into(farmImage);
         Glide.with(itemView.getContext()).load(item.getFarmImage()).placeholder(R.drawable.ic_sign_up_logo).into(circleImageView);

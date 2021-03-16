@@ -57,6 +57,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -72,7 +73,7 @@
         <LinearLayout
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="0.8"
             android:orientation="vertical">
 
@@ -92,15 +93,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
                 <ImageView
-                    android:layout_width="@dimen/_13sdp"
-                    android:layout_height="@dimen/_13sdp"
+                    android:layout_width="@dimen/_11sdp"
+                    android:layout_height="@dimen/_11sdp"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_address"/>
 
                 <TextView
                     android:id="@+id/tv_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/sf_ui_regular"
                     android:gravity="center_vertical"
                     android:singleLine="true"
@@ -116,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_ui_regular"
                 android:singleLine="true"
+                android:layout_marginStart="@dimen/_18sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="2 km away from you"
                 android:textColor="@color/primaryTextColor"
@@ -233,6 +236,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
         android:background="@drawable/light_gray_round_border_bg"
         android:orientation="vertical"
         android:padding="@dimen/_8sdp">
