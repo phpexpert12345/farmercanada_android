@@ -140,11 +140,11 @@ public class LoginActivity extends BaseActivity {
         mobileEt = findViewById(R.id.login_email_et);
         passwordEt = findViewById(R.id.login_password_et);
         radioGroup = findViewById(R.id.login_radio_group);
-        relative_google=findViewById(R.id.relative_google);
-        relative_face=findViewById(R.id.relative_face);
-        relative_google.setOnClickListener(v->{
-//            GoogleLogin();
-        });
+//        relative_google=findViewById(R.id.relative_google);
+//        relative_face=findViewById(R.id.relative_face);
+//        relative_google.setOnClickListener(v->{
+////            GoogleLogin();
+//        });
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()

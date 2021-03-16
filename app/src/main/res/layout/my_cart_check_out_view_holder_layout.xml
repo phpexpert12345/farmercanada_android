@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/_my_cart_recyclerView"
     android:layout_alignParentBottom="true"
-    android:layout_marginTop="@dimen/_minus6sdp"
+    android:layout_marginTop="@dimen/_minus10sdp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -302,7 +302,7 @@
         android:id="@+id/my_cart_checkout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:background="@drawable/round_corner_light_gradient_bg"
         android:text="Checkout"
         android:textSize="@dimen/_15ssp"

@@ -14,14 +14,25 @@ public class WalletHistoryItems implements RecyclerViewListItem {
     String status;
     String amount;
     String time;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    String  date;
     int icon;
 
-    public WalletHistoryItems(String shopName, String status, String amount, String time, int icon) {
+    public WalletHistoryItems(String shopName, String status, String amount, String time,String  date, int icon) {
         this.shopName = shopName;
         this.status = status;
         this.amount = amount;
         this.time = time;
         this.icon = icon;
+        this.date=date;
     }
 
     public String getShopName() {

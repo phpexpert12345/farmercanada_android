@@ -240,7 +240,18 @@ public class MyCartFragment extends BaseFragment implements
 
                         // cartDataListRequest();
                     }
-                    items.add(MyCartTransformer.getTaxDataItem(taxRes.data.getTaxData()));
+                    int  selected=-1;
+for(int  i=0;i<items.size();i++){
+    if(items.get(i)  instanceof TaxData){
+        selected=i;
+        break;
+    }
+}
+if(selected>=0){
+    items.remove(selected);
+}
+                        items.add(MyCartTransformer.getTaxDataItem(taxRes.data.getTaxData()));
+
 
                     adapter.updateData(items);
                     break;
@@ -280,7 +291,7 @@ public class MyCartFragment extends BaseFragment implements
                                     setupFarmDetails();
                                 }
                             }
-                            adapter.updateData(items);
+//                            adapter.updateData(items);
                             cartListData(data.data.getData().getFarmProductCartList());
 
 //                            adapter.updateData(items);
@@ -340,6 +351,14 @@ public class MyCartFragment extends BaseFragment implements
         txt_farm_name.setText(farm_name);
         txt_farm_address.setText(farm_address);
         Glide.with(getContext()).load(farm_logo).placeholder(R.drawable.ic_sign_up_logo).into(img_farm_logo);
+        if(pickup_available.equalsIgnoreCase("yes")){
+            order_type="Pickup";
+            setType();
+        }
+        else if(delivery_available.equalsIgnoreCase("yes")){
+            order_type="Delivery";
+            setType();
+        }
         txt_farm_distance.setText(new DecimalFormat("##.##").format(Helper.getKmFromLatLong(gpsTracker.getLatitude(), gpsTracker.getLongitude(), Double.parseDouble(farm_latitude), Double.parseDouble(farm_longitude)))+ " km away from you");
     }
 

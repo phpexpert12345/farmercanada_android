@@ -5,6 +5,7 @@ import com.farmers.buyers.core.BaseAdapter;
 import com.farmers.buyers.modules.wallet.view.WalletHeaderDelegate;
 import com.farmers.buyers.modules.wallet.view.WalletHeaderViewHolder;
 import com.farmers.buyers.modules.wallet.view.WalletHistoryDelegate;
+import com.farmers.buyers.modules.wallet.view.WalletTitleDelegate;
 import com.farmers.buyers.storage.CardConstant;
 
 /**
@@ -26,7 +27,7 @@ public class WalletHistoryAdapter extends BaseAdapter {
     @Override
     public void initDelegate() {
         delegates.put(CardConstant.WALLET_HEADER_ITEM_ADAPTER, new WalletHeaderDelegate(walletHeaderClickListener));
-        delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new SimpleTitleDelegate());
+        delegates.put(CardConstant.SIMPLE_TITLE_ITEM_ADAPTER, new WalletTitleDelegate());
         delegates.put(CardConstant.WALLET_HISTORY_ADAPTER, new WalletHistoryDelegate());
     }
 }

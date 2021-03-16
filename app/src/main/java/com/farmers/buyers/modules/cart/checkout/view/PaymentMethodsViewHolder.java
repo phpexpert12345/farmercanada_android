@@ -33,6 +33,7 @@ public class PaymentMethodsViewHolder extends BaseViewHolder {
         walletRadio = itemView.findViewById(R.id.payment_method_wallet_radio);
         relative_card=itemView.findViewById(R.id.relative_card);
         relative_cash=itemView.findViewById(R.id.relative_cash);
+        relative_cash.setVisibility(View.GONE);
         relative_wallet=itemView.findViewById(R.id.relative_wallet);
         relative_card.setOnClickListener(v->{
             cardRadio.setChecked(true);

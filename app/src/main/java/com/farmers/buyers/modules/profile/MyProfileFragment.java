@@ -183,9 +183,9 @@ public class MyProfileFragment extends BaseFragment implements MyProfileHeaderVi
         RadioButton radio_seller, radio_buyer;
         radio_seller = dialog.findViewById(R.id.radio_seller);
         radio_buyer = dialog.findViewById(R.id.radio_buyer);
-        tv_user_type.setText(String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")));
+        tv_user_type.setText(appController.getRole());
 
-        if (String.valueOf(SharedPreferenceManager.getInstance().getSharedPreferences("USER_TYPE", "")).
+        if (appController.getRole().
                 equalsIgnoreCase("Seller")) {
             radio_seller.setChecked(true);
         } else {

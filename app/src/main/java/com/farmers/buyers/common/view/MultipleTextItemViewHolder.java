@@ -22,7 +22,7 @@ import com.farmers.buyers.modules.home.adapter.HomeFilterTypeAdapter;
 public class MultipleTextItemViewHolder extends BaseViewHolder {
 
     private TextView title;
-    private int selectedPosition = -1;
+    private int selectedPosition = 0;
     private FilterItemClickListener listener;
 
     public MultipleTextItemViewHolder(@NonNull ViewGroup parent, final FilterItemClickListener listener) {

@@ -101,7 +101,7 @@ public class SignUpActivity extends BaseActivity implements RadioGroup.OnChecked
         user_type_radio_group.setOnCheckedChangeListener(this);
         text_sign_up=findViewById(R.id.text_sign_up);
         sign_up_back=findViewById(R.id.sign_up_back);
-        text_sign_up.setText("Register");
+        text_sign_up.setText("Signup");
         gpsTracker = new GPSTracker(SignUpActivity.this);
 
         if (!checkPermissions()) {

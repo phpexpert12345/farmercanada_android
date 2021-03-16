@@ -31,7 +31,7 @@ public class MyProfileOptionMenuHolder extends BaseViewHolder {
         recyclerView = itemView.findViewById(R.id.my_profile_option_item_recyclerView);
         adapter = new MyProfileOptionItemAdapter(profileOptionsGridMenuClicked);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 40, false));
+        recyclerView.addItemDecoration(new SpacesItemDecoration(2, 25, false));
         recyclerView.setLayoutManager(new GridLayoutManager(itemView.getContext(), 2));
     }
 

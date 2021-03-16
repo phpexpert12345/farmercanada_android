@@ -152,16 +152,15 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/order_date"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/txt_mode"
                         android:text="Payment Mode:"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/sp_14_px"
                         android:layout_gravity="center"
-                        android:textColor="@color/black"
                         android:fontFamily="@font/sf_ui_regular"
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_height="wrap_content"/>
@@ -169,11 +168,12 @@
                         android:id="@+id/txt_pay_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:fontFamily="@font/sf_ui_semibold"
+android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/sf_ui_regular"
                         android:text="Cash"
-                        android:textColor="@color/gradient_color_light"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textColor="@color/primary_button_color"
+                        android:textSize="@dimen/sp_14_px" />
                 </LinearLayout>
 
 
@@ -206,6 +206,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:layout_weight="1"
+                   android:textColor="@color/primary_button_color"
                     android:id="@+id/order_type_txt"
                     android:fontFamily="@font/sf_ui_regular"
                     android:text="" />
@@ -259,12 +260,13 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txt_farm_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_farm_name"
                         android:text="Aman Kumar"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_14_px" />
+                        android:fontFamily="@font/sf_ui_semibold"
+                        android:textColor="@color/gradient_color_light"
+                        android:textSize="@dimen/_16ssp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -280,7 +282,7 @@
                         android:fontFamily="@font/sf_ui_semibold"
                         android:text="4623 William Head Rd"
                         android:textColor="@color/primaryTextColor"
-                        android:textSize="@dimen/sp_16_px" />
+                        android:textSize="@dimen/_14ssp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -336,7 +338,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_weight="1"
-
+android:visibility="gone"
                     android:background="@drawable/round_corner_light_gradient_bg"
                     android:text="Continue"
                     android:textAllCaps="false"

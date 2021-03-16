@@ -36,7 +36,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_20sdp">
+        android:layout_below="@+id/sign_up_header"
+        >
 
         <LinearLayout
             android:id="@+id/linearLayout"
